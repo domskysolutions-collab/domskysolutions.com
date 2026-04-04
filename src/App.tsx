@@ -1490,11 +1490,16 @@ const BlogPost = () => {
 
         <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
           <img 
-            src="/public/images/saas-stack-article.jpg" 
-            alt="Cover image showing SaaS costs funneling into AI tools" 
-            className="w-full h-auto object-cover"
-            referrerPolicy="no-referrer"
-          />
+  src="/images/saas-stack-article.jpg"
+  alt="I Replaced My Entire SaaS Stack With AI Tools"
+  style={{
+    width: '100%',
+    height: '400px',
+    objectFit: 'cover',
+    borderRadius: '12px',
+    marginBottom: '2rem'
+  }}
+/>
         </div>
 
         <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
