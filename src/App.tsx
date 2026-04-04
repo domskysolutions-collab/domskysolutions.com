@@ -1456,7 +1456,7 @@ const BLOG_POSTS = [
     category: "AI News",
     date: "April 2026",
     readTime: "8 minutes",
-    image: "/saas-stack-article.png",
+    image: "/saas-stack-article.jpg",
     author: "Domsky Solutions Team"
   },
   {
