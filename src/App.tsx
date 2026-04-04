@@ -1494,8 +1494,9 @@ const BlogPost = () => {
   alt="I Replaced My Entire SaaS Stack With AI Tools"
   style={{
     width: '100%',
-    height: '400px',
-    objectFit: 'cover',
+    maxWidth: '100%',
+    height: 'auto',
+    display: 'block',
     borderRadius: '12px',
     marginBottom: '2rem'
   }}
