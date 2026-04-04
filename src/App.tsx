@@ -1456,7 +1456,7 @@ const BLOG_POSTS = [
     category: "AI News",
     date: "April 2026",
     readTime: "8 minutes",
-    image: "/saas-stack-article.jpg",
+    image: "/images/saas-stack-article.jpg",
     author: "Domsky Solutions Team"
   },
   {
@@ -1575,7 +1575,7 @@ const BlogPost = () => {
 
         <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
           <img 
-            src="/saas-stack-article.jpg" 
+            src="/images/saas-stack-article.jpg" 
             alt="Cover image showing SaaS costs funneling into AI tools" 
             className="w-full h-auto object-cover"
             referrerPolicy="no-referrer"
