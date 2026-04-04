@@ -871,6 +871,7 @@ const Navbar = () => {
             <a href="/#tools" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Tools</a>
             <a href="/#reviews" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">SaaS Reviews</a>
             <a href="/#news" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">AI News</a>
+            <Link to="/blog/replaced-saas-stack-with-ai-tools" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Blog</Link>
             <a href="/#about" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">About</a>
             <a href="/#newsletter" className="bg-brand-amber text-brand-bg px-5 py-2.5 rounded-none font-bold text-sm hover:bg-yellow-400 transition-colors glow-amber-hover flex items-center gap-2">
               Get Free Newsletter
@@ -891,6 +892,8 @@ const Navbar = () => {
             <a href="/#tools" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Tools</a>
             <a href="/#reviews" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">SaaS Reviews</a>
             <a href="/#news" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">AI News</a>
+            <Link to="/blog/replaced-saas-stack-with-ai-tools" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Blog</Link>
+            <a href="/#about" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">About</a>
             <a href="/#newsletter" className="block px-3 py-2 text-base font-medium text-brand-amber">Get Free Newsletter</a>
           </div>
         </div>
@@ -1485,6 +1488,15 @@ const BlogPost = () => {
           </div>
         </div>
 
+        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
+          <img 
+            src="/saas-stack-article.png" 
+            alt="Cover image showing SaaS costs funneling into AI tools" 
+            className="w-full h-auto object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+
         <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
           <p>
             Twelve months ago I was paying for tools I barely used, tools I used constantly but hated, and tools I kept renewing out of habit because switching felt like too much effort. My SaaS bill had quietly crept past <Money>$500 a month</Money> — <Money>$6,000 a year</Money> — for a stack that was supposed to make me more productive but mostly just made me more subscribed.
@@ -1699,9 +1711,20 @@ const HomePage = () => (
   </main>
 );
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen selection:bg-brand-cyan selection:text-brand-bg">
         <Navbar />
         <Routes>
