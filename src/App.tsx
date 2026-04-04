@@ -871,7 +871,7 @@ const Navbar = () => {
             <a href="/#tools" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Tools</a>
             <a href="/#reviews" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">SaaS Reviews</a>
             <a href="/#news" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">AI News</a>
-            <Link to="/blog/replaced-saas-stack-with-ai-tools" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Blog</Link>
+            <Link to="/blog" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Blog</Link>
             <a href="/#about" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">About</a>
             <a href="/#newsletter" className="bg-brand-amber text-brand-bg px-5 py-2.5 rounded-none font-bold text-sm hover:bg-yellow-400 transition-colors glow-amber-hover flex items-center gap-2">
               Get Free Newsletter
@@ -892,7 +892,7 @@ const Navbar = () => {
             <a href="/#tools" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Tools</a>
             <a href="/#reviews" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">SaaS Reviews</a>
             <a href="/#news" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">AI News</a>
-            <Link to="/blog/replaced-saas-stack-with-ai-tools" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Blog</Link>
+            <Link to="/blog" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Blog</Link>
             <a href="/#about" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">About</a>
             <a href="/#newsletter" className="block px-3 py-2 text-base font-medium text-brand-amber">Get Free Newsletter</a>
           </div>
@@ -1448,6 +1448,101 @@ const Step = ({ number, title, children }: { number: string, title: string, chil
   </div>
 );
 
+const BLOG_POSTS = [
+  {
+    title: "I Replaced My Entire $500/Month SaaS Stack With AI Tools",
+    slug: "/blog/replaced-saas-stack-with-ai-tools",
+    excerpt: "I was spending over $500 every month on traditional SaaS tools. Then I switched to AI-powered alternatives and cut that bill dramatically.",
+    category: "AI News",
+    date: "April 2026",
+    readTime: "8 minutes",
+    image: "/saas-stack-article.png",
+    author: "Domsky Solutions Team"
+  },
+  {
+    title: "The 5 Best AI Coding Assistants Compared",
+    slug: "/blog/best-ai-coding-assistants",
+    excerpt: "We tested Cursor, GitHub Copilot, Codeium, and others to see which AI coding assistant actually makes you faster.",
+    category: "Reviews",
+    date: "March 2026",
+    readTime: "6 min read",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop",
+    author: "Domsky Solutions Team"
+  },
+  {
+    title: "How to Build a Custom AI Chatbot for Your Website",
+    slug: "/blog/build-custom-ai-chatbot",
+    excerpt: "A step-by-step guide to building and deploying a custom AI chatbot trained on your own data in less than an hour.",
+    category: "Tutorials",
+    date: "March 2026",
+    readTime: "12 min read",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop",
+    author: "Domsky Solutions Team"
+  }
+];
+
+const BlogCard: React.FC<{ post: any }> = ({ post }) => (
+  <Link to={post.slug} className="group flex flex-col bg-brand-surface border border-gray-800 rounded-xl overflow-hidden hover:border-brand-cyan/50 transition-all duration-300">
+    <div className="w-full h-48 overflow-hidden">
+      <img 
+        src={post.image} 
+        alt={post.title} 
+        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        referrerPolicy="no-referrer"
+      />
+    </div>
+    <div className="p-6 flex flex-col flex-grow">
+      <div className="flex items-center gap-3 mb-4">
+        <span className="text-brand-cyan font-mono text-xs uppercase tracking-wider">{post.category}</span>
+        <span className="text-gray-500 font-mono text-xs">•</span>
+        <span className="text-gray-400 font-mono text-xs">{post.readTime}</span>
+      </div>
+      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors line-clamp-2">
+        {post.title}
+      </h3>
+      <p className="text-gray-400 text-sm mb-6 line-clamp-2 flex-grow">
+        {post.excerpt}
+      </p>
+      <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-800">
+        <div className="flex flex-col">
+          <span className="text-gray-300 text-xs font-medium">{post.author}</span>
+          <span className="text-gray-500 text-xs">{post.date}</span>
+        </div>
+        <span className="text-brand-cyan text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+          Read Article <ArrowRight size={16} />
+        </span>
+      </div>
+    </div>
+  </Link>
+);
+
+const BlogIndex = () => {
+  useEffect(() => {
+    document.title = "AI Insights & News | Domsky Solutions";
+  }, []);
+
+  return (
+    <div className="bg-brand-bg min-h-screen pt-32 pb-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white mb-6">
+            AI Insights & News
+          </h1>
+          <p className="text-xl text-gray-400">
+            Deep dives, tool comparisons and industry analysis for builders and founders
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {BLOG_POSTS.map(post => (
+            <BlogCard key={post.slug} post={post} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const BlogPost = () => {
   const { scrollYProgress } = useScroll();
 
@@ -1490,16 +1585,11 @@ const BlogPost = () => {
 
         <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
           <img 
-  src="/images/saas-stack-article.jpg"
-  alt="I Replaced My Entire SaaS Stack With AI Tools"
-  style={{
-    width: '100%',
-    height: '400px',
-    objectFit: 'cover',
-    borderRadius: '12px',
-    marginBottom: '2rem'
-  }}
-/>
+            src="/saas-stack-article.png" 
+            alt="Cover image showing SaaS costs funneling into AI tools" 
+            className="w-full h-auto object-cover"
+            referrerPolicy="no-referrer"
+          />
         </div>
 
         <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
@@ -1701,6 +1791,16 @@ const BlogPost = () => {
           </div>
         </div>
       </div>
+
+      {/* Related Articles Section */}
+      <div className="max-w-5xl mx-auto px-6 mt-24 border-t border-gray-800 pt-16">
+        <h2 className="text-2xl font-bold font-mono text-white mb-8">Related Articles</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {BLOG_POSTS.filter(p => p.slug !== "/blog/replaced-saas-stack-with-ai-tools").slice(0, 2).map(post => (
+            <BlogCard key={post.slug} post={post} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
@@ -1736,6 +1836,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/tools/:id" element={<ToolPage />} />
           <Route path="/reviews/:id" element={<ToolPage />} />
+          <Route path="/blog" element={<BlogIndex />} />
           <Route path="/blog/replaced-saas-stack-with-ai-tools" element={<BlogPost />} />
         </Routes>
         <Footer />
