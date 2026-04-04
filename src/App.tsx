@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom';
-import { motion } from 'motion/react';
+import { BrowserRouter as Router, Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
+import { motion, useScroll } from 'motion/react';
 import { 
   Menu, X, ArrowRight, Star, ExternalLink, 
   PenTool, Palette, Code, Megaphone, Zap, Video, Mic, FlaskConical,
@@ -20,88 +20,310 @@ const featuredTools = [
 
 const toolReviews = {
   'claude': {
-    name: 'Claude 3.5',
-    category: 'Writing',
+    name: 'Claude by Anthropic',
+    category: 'AI Assistant / Writing',
     rating: 4.9,
     externalLink: 'https://claude.ai',
+    tagline: 'The AI that actually understands nuance',
     heroDesc: [
-      "Anthropic's Claude 3.5 Sonnet has rapidly become the go-to model for developers and writers alike. Known for its nuanced understanding, massive context window, and exceptional coding capabilities, it often outperforms competitors in complex reasoning tasks.",
-      "What sets Claude apart is its 'Artifacts' feature, which allows users to generate, view, and edit code, documents, and designs in a dedicated side panel. This transforms it from a simple chatbot into a powerful collaborative workspace.",
-      "Whether you're drafting a novel, debugging a complex React application, or analyzing a 100-page PDF, Claude handles it with a level of safety and steerability that feels distinctly next-generation."
+      "Claude is Anthropic's flagship AI assistant, and in a crowded market full of chatbots, it manages to stand out for one simple reason — it feels genuinely intelligent. Built from the ground up with safety and helpfulness in mind, Claude excels at the kinds of tasks that make other AI tools stumble: long-form writing, complex reasoning, nuanced conversation, and coding.",
+      "Whether you're a founder drafting investor updates, a marketer writing campaign copy, or a developer debugging a tricky piece of code, Claude adapts to your style and delivers results that actually sound like a human wrote them — not a robot trying to sound like one.",
+      "What separates Claude from the pack is its massive context window — it can read and reason over enormous amounts of text in a single conversation. Hand it a 50-page business report and ask it to summarize the three biggest risks. It handles it effortlessly. That alone makes it indispensable for knowledge workers drowning in information."
     ],
     features: [
-      "200K token context window",
-      "Artifacts UI for interactive content generation",
-      "Advanced coding and reasoning capabilities",
-      "Vision capabilities for image analysis"
+      "200,000 token context window (one of the largest available)",
+      "Exceptional long-form writing and editing",
+      "Advanced coding assistance across all major languages",
+      "Deep document analysis — PDFs, reports, research papers",
+      "Nuanced reasoning on complex topics",
+      "Artifacts feature — generates live previews of code and documents",
+      "Available via web, mobile app, and API",
+      "Memory across conversations (Pro plan)"
     ],
-    pros: ["Exceptional coding assistant", "Nuanced, human-like writing style", "Artifacts UI is a game-changer"],
-    cons: ["Strict safety filters can sometimes be overzealous", "No native internet browsing in the base chat"],
-    pricing: "Free tier available. Pro plan is $20/month.",
-    verdict: "The current reigning champion for developers and power users who need deep reasoning and a workspace-like interface."
+    pros: [
+      "Best-in-class writing quality — responses feel natural and human",
+      "Handles extremely long documents without losing context",
+      "Refuses to hallucinate facts as often as competitors",
+      "Excellent at following complex, multi-step instructions",
+      "Clean, distraction-free interface",
+      "Strong coding capabilities — great for non-developers too",
+      "Free tier is genuinely useful, not crippled"
+    ],
+    cons: [
+      "No image generation (unlike ChatGPT with DALL-E)",
+      "Can be overly cautious on some sensitive topics",
+      "No internet browsing on the free plan",
+      "API costs can add up at scale",
+      "No voice mode yet"
+    ],
+    pricingCards: [
+      {
+        name: "Free Plan",
+        price: "Free",
+        features: ["Access to Claude Sonnet", "Limited daily messages", "Basic features"],
+        perfectFor: "casual users and trying it out"
+      },
+      {
+        name: "Pro Plan",
+        price: "$20/month",
+        features: ["Access to all Claude models including Opus", "5x more usage than free", "Priority access during peak times", "Memory and Projects features"],
+        perfectFor: "professionals and power users"
+      },
+      {
+        name: "Team Plan",
+        price: "$25/user/month",
+        features: ["Everything in Pro", "Shared Projects for collaboration", "Admin controls"],
+        perfectFor: "small teams and agencies"
+      },
+      {
+        name: "API Access",
+        price: "Pay per token",
+        features: ["Full model access"],
+        perfectFor: "developers building AI-powered products"
+      }
+    ],
+    bestFor: [
+      "Claude is the best AI assistant for people who work with words and ideas for a living. Copywriters, content strategists, founders writing pitch decks, researchers synthesizing literature, developers who need a coding partner that actually explains its reasoning — Claude is built for you.",
+      "If your primary use case is image generation or you need real-time web search built in, look elsewhere. But for thinking, writing, and reasoning? Claude is our top pick."
+    ],
+    verdict: "Claude by Anthropic is the AI assistant we recommend to almost everyone starting out with AI tools. The free plan is good enough to get real work done, the Pro plan at $20/month is one of the best value subscriptions in the AI space, and the quality of output consistently beats the competition on writing and reasoning tasks.\n\nIf you only try one AI tool this year, make it Claude.",
+    bestForTags: "Writing, Research, Coding, Document Analysis",
+    pricingSummary: "Free — $25/user/month",
+    ctaPrimary: "Try Claude Free →"
   },
   'perplexity': {
-    name: 'Perplexity',
-    category: 'Research',
+    name: 'Perplexity AI',
+    category: 'AI Search / Research',
     rating: 4.8,
     externalLink: 'https://perplexity.ai',
+    tagline: 'Google, but it actually answers your question',
     heroDesc: [
-      "Perplexity AI is fundamentally changing how we search the web. Instead of returning a list of blue links, it acts as a conversational answer engine, synthesizing information from multiple sources and providing direct, cited answers.",
-      "For researchers, students, and professionals, the ability to ask complex questions and receive well-structured, verifiable answers saves hours of manual digging. The 'Pro' search feature goes even deeper, asking clarifying questions to refine its search strategy.",
-      "With its focus on accuracy and transparency, Perplexity is the first AI tool that truly feels like a viable replacement for traditional search engines."
+      "If you've ever typed a question into Google and spent the next ten minutes clicking through tabs, skimming articles, and trying to piece together an answer — Perplexity AI was built specifically to fix that. It's not a chatbot. It's not a search engine. It's the best of both combined into something that feels genuinely new.",
+      "Type any question and Perplexity searches the web in real time, reads the most relevant sources, synthesizes the information, and gives you a direct, cited answer in seconds. Every claim is linked back to its source so you can verify anything instantly. No ads. No SEO spam. No ten blue links sending you somewhere else. Just the answer.",
+      "For researchers, founders, journalists, students, and anyone who spends serious time finding information online, Perplexity is not just a nice-to-have — it becomes genuinely hard to work without once you've used it for a week. It handles everything from quick factual lookups to deep multi-step research threads, and its Spaces feature lets you build persistent research hubs around any topic you follow regularly."
     ],
     features: [
-      "Real-time web search with inline citations",
-      "Pro Search for guided, multi-step research",
-      "Choice of underlying AI models (Claude, GPT-4o, etc.)",
-      "Collections for organizing research threads"
+      "Real-time web search with cited sources on every answer",
+      "Follow-up questions that maintain full conversation context",
+      "Focus modes: Web, Academic, YouTube, Reddit, News, Social",
+      "Perplexity Spaces — persistent research hubs by topic",
+      "File upload — analyze PDFs, CSVs, documents",
+      "Image search and generation (Pro)",
+      "Mobile app for iOS and Android",
+      "API access for developers",
+      "Collections to save and organize research"
     ],
-    pros: ["Saves massive amounts of research time", "Citations make verifying facts easy", "Access to multiple top-tier models"],
-    cons: ["Can sometimes hallucinate sources if not careful", "Less suited for creative writing tasks"],
-    pricing: "Free tier available. Pro plan is $20/month.",
-    verdict: "An indispensable tool for anyone who spends a significant portion of their day researching or gathering information."
+    pros: [
+      "Every answer cites its sources — fully verifiable",
+      "Real-time information — no knowledge cutoff problem",
+      "Dramatically faster than traditional research workflows",
+      "Academic mode searches peer-reviewed papers directly",
+      "Reddit and YouTube focus modes are genuinely useful",
+      "Clean, ad-free interface",
+      "Free tier is powerful enough for daily use",
+      "Spaces feature is excellent for ongoing research topics"
+    ],
+    cons: [
+      "Depth of reasoning doesn't match Claude or GPT-4 on complex analysis tasks",
+      "Can occasionally misread or misrepresent source content",
+      "Not ideal for creative writing or content generation",
+      "Pro plan needed for the best model access",
+      "Less useful for tasks that don't require web information",
+      "Answer quality depends heavily on source quality available"
+    ],
+    pricingCards: [
+      {
+        name: "Free Plan",
+        price: "Free",
+        features: ["Unlimited quick searches", "Limited Pro searches per day", "Basic AI model", "File uploads (limited)"],
+        perfectFor: "daily quick research and fact checking"
+      },
+      {
+        name: "Pro Plan",
+        price: "$20/month (or $200/year)",
+        features: ["300+ Pro searches per day", "Access to best AI models including GPT-4 and Claude", "Unlimited file uploads", "Image generation", "Perplexity Spaces", "API credits included"],
+        perfectFor: "researchers, founders, power users"
+      },
+      {
+        name: "Enterprise Plan",
+        price: "Custom pricing",
+        features: ["Team management and admin controls", "SSO and security features", "Usage analytics"],
+        perfectFor: "companies and research teams"
+      }
+    ],
+    bestFor: [
+      "Perplexity is the essential tool for anyone whose job involves finding, synthesizing, or staying on top of information. Journalists fact-checking stories, founders researching competitors, investors tracking market developments, students writing papers, marketers monitoring industry trends — if you need to know things quickly and accurately, Perplexity belongs in your daily workflow.",
+      "It is not the right tool if you primarily need help with writing, coding, or creative tasks — for those, Claude or Cursor are better fits. But as a research companion, nothing currently comes close."
+    ],
+    verdict: "Perplexity AI has quietly become one of the most useful tools in the modern knowledge worker's stack. The free plan alone is enough to replace Google for most research tasks, and the Pro plan at $20/month unlocks a level of research capability that would have required a team of assistants just five years ago.\n\nThe cited sources feature alone makes it worth using over any other AI tool for research — you always know where the information came from, which means you can trust it enough to act on it. In the age of AI hallucinations, that matters enormously.\n\nIf Claude is your thinking partner, Perplexity is your research assistant. Most serious AI users have both open at the same time.",
+    bestForTags: "Research, Fact-checking, News Monitoring, Academic Research",
+    pricingSummary: "Free — $20/month",
+    ctaPrimary: "Try Perplexity Free →"
   },
   'notion-ai': {
     name: 'Notion AI',
-    category: 'Productivity',
+    category: 'Productivity / AI Writing Assistant',
     rating: 4.7,
     externalLink: 'https://notion.so',
+    tagline: 'Your second brain, now with actual intelligence',
     heroDesc: [
-      "Notion AI seamlessly integrates artificial intelligence directly into the workspace where you already organize your life and work. It's not just a chatbot; it's a contextual assistant that understands your documents, databases, and wikis.",
-      "You can use it to draft blog posts, summarize meeting notes, extract action items, or even ask questions about your entire workspace.",
-      "By bringing AI to where your data lives, Notion eliminates the friction of copying and pasting between different tools, making your entire team significantly more productive."
+      "Notion was already the productivity tool that everyone recommended before AI existed. A beautiful, flexible workspace where you could write docs, manage projects, build wikis, track tasks, and run your entire business from a single tab. Then they added AI, and something that was already indispensable became genuinely extraordinary.",
+      "Notion AI doesn't feel like an AI tool bolted onto a productivity app as an afterthought — it feels like it was always meant to be there. It lives inside your workspace, understands your documents, your projects, your meeting notes, and your databases, and helps you do more with all of it without ever making you switch context. Ask it to summarize last week's meeting notes, draft a project brief from a few bullet points, find action items across three different docs, or translate a page into another language — it handles all of it without you leaving the page you're already on.",
+      "For solopreneurs, small teams, and founders who live inside Notion already, adding Notion AI is one of the highest-leverage decisions you can make. It doesn't just help you write faster — it helps you think faster, organize faster, and act faster on everything already living in your workspace. If your knowledge base is in Notion, Notion AI turns it into something you can actually have a conversation with."
     ],
     features: [
-      "Integrated writing and editing assistant",
-      "Q&A across your entire Notion workspace",
-      "Automated summaries and action item extraction",
-      "Database autofill capabilities"
+      "AI writing assistant built directly into every page",
+      "Summarize any document or database instantly",
+      "Draft content from bullet points or rough notes",
+      "Ask questions across your entire Notion workspace",
+      "Action item extraction from meeting notes",
+      "Auto-fill database properties with AI",
+      "Translate pages into 20+ languages",
+      "Improve, shorten, or change tone of any text",
+      "Generate tables, timelines, and structured content",
+      "Works across all Notion page types and databases"
     ],
-    pros: ["Zero context switching", "Understands your company's specific knowledge base", "Excellent UI integration"],
-    cons: ["Requires you to be heavily invested in the Notion ecosystem", "Can be slower than standalone chatbots for general queries"],
-    pricing: "Add-on to Notion plans for $10/user/month.",
-    verdict: "The best implementation of AI within an existing productivity suite. A must-have if your team runs on Notion."
+    pros: [
+      "Deeply integrated — no context switching required",
+      "Understands your entire workspace not just one doc",
+      "Dramatically speeds up meeting note processing",
+      "Auto-fill databases saves hours of manual data entry",
+      "Translation feature is genuinely excellent",
+      "Perfect for teams already using Notion",
+      "Constantly improving with frequent feature updates",
+      "Works on mobile app seamlessly",
+      "One of the most intuitive AI tools for non-technical users"
+    ],
+    cons: [
+      "Only useful if you already use or commit to Notion",
+      "AI add-on costs extra on top of Notion subscription",
+      "Not as powerful as Claude for deep writing tasks",
+      "Q&A across workspace can miss context sometimes",
+      "No real-time web search or live information",
+      "Database AI features still maturing",
+      "Can feel expensive when stacking all plan costs"
+    ],
+    pricingCards: [
+      {
+        name: "Free Plan",
+        price: "Free",
+        features: ["Basic Notion workspace", "Limited AI responses to try the feature", "Up to 10 guests"],
+        perfectFor: "individuals testing Notion and Notion AI"
+      },
+      {
+        name: "Plus Plan",
+        price: "$10/month + $10/month AI add-on",
+        features: ["Unlimited pages and blocks", "Notion AI included as add-on", "Unlimited file uploads", "30 day page history"],
+        perfectFor: "solopreneurs and freelancers"
+      },
+      {
+        name: "Business Plan",
+        price: "$15/user/month + $10/user/month AI",
+        features: ["Everything in Plus", "Private teamspaces", "Advanced analytics", "90 day page history", "SAML SSO"],
+        perfectFor: "small to medium teams"
+      },
+      {
+        name: "Enterprise",
+        price: "Custom pricing",
+        features: ["Everything in Business", "Advanced security and compliance", "Unlimited page history", "Dedicated customer success"],
+        perfectFor: "large organizations"
+      }
+    ],
+    bestFor: [
+      "Notion AI is the perfect tool for people who already run their work life inside Notion — founders managing their company wiki, content creators organizing their editorial calendar, consultants building client workspaces, or teams tracking projects and meeting notes in shared databases. If that sounds like you, Notion AI is a no-brainer addition that pays for itself in saved time within the first week.",
+      "If you don't already use Notion, the question becomes whether it's worth switching your entire workflow to get access to Notion AI specifically. For most people the answer is yes — Notion is the best all-in-one workspace tool available regardless of the AI features, and the AI makes it significantly more powerful. But if you're deeply embedded in another tool like Confluence or Linear, the switching cost is real and worth considering carefully."
+    ],
+    verdict: "Notion AI earns its place in any serious productivity stack by doing something deceptively simple — it makes your existing work more valuable. Every meeting note, every project brief, every brainstorm doc you've ever written in Notion becomes something you can query, summarize, and build on instantly. That compounds over time in a way that standalone AI tools can't replicate.\n\nThe pricing stacks up faster than you'd like once you add the AI add-on to a paid plan, but for anyone already paying for Notion the additional $10/month for AI is one of the easiest upgrade decisions in productivity software. The time it saves in the first month alone justifies the cost many times over.\n\nIf you want one workspace that handles your docs, projects, databases, and AI assistance without switching between five different tools, Notion AI is the closest thing to a complete solution that currently exists.",
+    bestForTags: "Solopreneurs, Small Teams, Founders, Content Creators",
+    pricingSummary: "Free — Custom Enterprise",
+    ctaPrimary: "Try Notion AI Free →"
   },
   'runway': {
-    name: 'Runway Gen-3',
-    category: 'Video',
+    name: 'Runway',
+    category: 'AI Video Generation / Creative Tools',
     rating: 4.8,
     externalLink: 'https://runwayml.com',
+    tagline: 'Hollywood-grade video generation in your browser',
     heroDesc: [
-      "Runway Gen-3 Alpha represents a massive leap forward in AI video generation. It offers unprecedented photorealism, temporal consistency, and control, allowing creators to generate stunning video clips from simple text prompts or reference images.",
-      "Designed with creative professionals in mind, Runway provides granular controls over camera movement, motion brush targeting, and style. It's rapidly becoming an essential tool for filmmakers, marketers, and content creators.",
-      "While AI video is still an evolving field, Gen-3 proves that we are entering an era where high-quality video production is accessible to anyone with an imagination."
+      "Video production used to require a camera crew, a editing suite, a motion graphics team, and a budget that most small businesses and creators couldn't justify. Runway is systematically dismantling every one of those barriers. It is the most powerful AI video generation and editing platform available today, and it is being used right now by independent creators, marketing teams, and yes — actual Hollywood studios — to produce video content that would have been impossible without a massive production budget just two years ago.",
+      "Runway's flagship product Gen-3 Alpha generates high-fidelity, temporally consistent video from a text prompt, an image, or an existing video clip. The results are not the blurry, glitchy AI video outputs that gave the category a bad reputation early on — they are smooth, cinematic, and controllable in ways that make them genuinely useful for professional creative work. Describe a scene, set a visual style, define a camera movement, and Runway renders it in seconds.",
+      "But Runway is far more than a video generator. It is a complete AI creative suite — with tools for removing backgrounds, expanding images, generating music, editing video with text prompts, training custom AI models on your own visual style, and turning static images into living, breathing video scenes. For content creators, marketers, filmmakers, and anyone who communicates visually, Runway is not the future of creative work. It is the present, and it is moving faster than any other tool in this list."
     ],
     features: [
-      "Text-to-Video and Image-to-Video generation",
-      "Advanced camera control (pan, tilt, zoom)",
-      "Motion Brush for animating specific areas of an image",
-      "High-fidelity, photorealistic outputs"
+      "Gen-3 Alpha — state of the art text to video generation",
+      "Image to video — animate any still image",
+      "Video to video — transform existing footage with AI",
+      "Motion Brush — control exactly what moves in a scene",
+      "Director Mode — precise camera movement control",
+      "Background removal — one click, no green screen needed",
+      "Inpainting — remove or replace objects in video",
+      "Text to image generation",
+      "Custom AI model training on your visual style",
+      "Audio generation — create music and sound effects",
+      "Collaboration tools for creative teams",
+      "Green screen and rotoscoping automation"
     ],
-    pros: ["Industry-leading video quality", "Excellent control over motion and camera", "Active community and frequent updates"],
-    cons: ["Generation can be expensive (credits burn fast)", "Steep learning curve to get perfect results"],
-    pricing: "Free trial available. Standard plan starts at $15/month.",
-    verdict: "The premier AI video generation platform for creatives who demand high fidelity and precise control."
+    pros: [
+      "Most advanced AI video generation available today",
+      "Gen-3 produces genuinely cinematic quality output",
+      "Motion Brush gives precise creative control",
+      "Complete creative suite — not just video generation",
+      "Custom model training is unique and powerful",
+      "Actively used by professional filmmakers and studios",
+      "Browser based — no powerful hardware required",
+      "Regular model updates keep pushing quality higher",
+      "Excellent for social media content creation at scale"
+    ],
+    cons: [
+      "Free tier is very limited — credits run out fast",
+      "Pro plan needed for serious creative work",
+      "Video generations can still be inconsistent on complex scenes",
+      "Longer video clips cost significantly more credits",
+      "Steep learning curve to get consistently great results",
+      "Not suitable for talking head or dialogue video yet",
+      "Output resolution capped depending on plan",
+      "Credit system can feel restrictive for heavy users"
+    ],
+    pricingCards: [
+      {
+        name: "Free Plan",
+        price: "Free",
+        features: ["125 one time credits on signup", "Access to basic AI tools", "Watermarked exports"],
+        perfectFor: "testing and exploring what Runway can do"
+      },
+      {
+        name: "Standard Plan",
+        price: "$15/month",
+        features: ["625 credits per month", "Upscaling up to 4K", "No watermarks", "Gen-3 Alpha access"],
+        perfectFor: "casual creators and social media managers"
+      },
+      {
+        name: "Pro Plan",
+        price: "$35/month",
+        features: ["2250 credits per month", "Custom AI model training", "Priority generation queue", "Advanced video tools", "Highest resolution exports"],
+        perfectFor: "professional creators and marketing teams"
+      },
+      {
+        name: "Unlimited Plan",
+        price: "$95/month",
+        features: ["Unlimited standard generations", "All Pro features included", "Maximum resolution and quality"],
+        perfectFor: "studios and agencies producing at scale"
+      },
+      {
+        name: "Enterprise",
+        price: "Custom pricing",
+        features: ["Custom credit volumes", "Dedicated infrastructure", "Advanced security and compliance", "API access"],
+        perfectFor: "media companies and large creative teams"
+      }
+    ],
+    bestFor: [
+      "Runway is built for anyone who creates visual content professionally or seriously. Social media managers who need a constant stream of high quality video content without a production team. Marketing agencies delivering video campaigns at a fraction of traditional costs. Independent filmmakers and music video directors using AI to punch above their budget. Content creators on YouTube, TikTok, and Instagram who want their videos to look like they cost ten times more than they did. And brands who want to maintain a consistent visual identity across all their video output by training a custom model on their own aesthetic.",
+      "If you produce video content of any kind and you are not at least experimenting with Runway, you are already behind your competitors who are."
+    ],
+    verdict: "Runway is the most impressive creative AI tool we have reviewed, full stop. The gap between what is possible with Runway today and what required a professional production team twelve months ago is staggering, and that gap is widening with every model update they ship.\n\nThe credit system and pricing can frustrate heavy users, and the free tier genuinely is too limited to form a proper opinion of what the tool can do at its best. Our recommendation is to start with the Standard plan at $15/month, spend a month really learning the tool, and upgrade to Pro once you understand how to get consistently great results from it.\n\nFor anyone in a creative field, Runway is not optional much longer. The creators and teams adopting it now are building a significant competitive advantage over those waiting to see how the technology matures. It is already mature enough to matter.",
+    bestForTags: "Content Creators, Marketers, Filmmakers, Agencies",
+    pricingSummary: "Free — Custom Enterprise",
+    ctaPrimary: "Try Runway Free →"
   },
   'elevenlabs': {
     name: 'ElevenLabs',
@@ -126,33 +348,485 @@ const toolReviews = {
   },
   'cursor': {
     name: 'Cursor',
-    category: 'Coding',
+    category: 'AI Code Editor / Developer Tools',
     rating: 5.0,
     externalLink: 'https://cursor.sh',
+    tagline: 'The code editor that makes you feel like a senior dev',
     heroDesc: [
-      "Cursor is an AI-first code editor built as a fork of VS Code. It doesn't just add an AI chat panel; it integrates AI deeply into the coding experience, making it feel like you are pair programming with a senior engineer.",
-      "Features like 'Composer' allow you to generate entire multi-file features from a single prompt, while 'Cursor Tab' provides incredibly smart, multi-line autocomplete that anticipates your next move.",
-      "Because it's based on VS Code, all your extensions and keybindings work out of the box. For many developers, switching to Cursor has resulted in the most significant productivity boost in years."
+      "There are tools that make you slightly more productive, and then there are tools that fundamentally change how you work. Cursor is the second kind. It's not a plugin, not an extension, not a chatbot bolted onto an existing editor — it's a complete rethink of what a code editor should be in the age of AI, and it executes that vision better than anything else on the market right now.",
+      "Built on top of VS Code (so everything you already know transfers instantly), Cursor adds a layer of AI intelligence that goes far beyond autocomplete. It understands your entire codebase — not just the file you have open, but every file, every function, every dependency in your project. Ask it to add a feature, fix a bug, refactor a module, or explain why something is broken, and it responds with the full context of your actual project, not generic boilerplate that you have to adapt yourself.",
+      "For professional developers, Cursor is like having a brilliant pair programmer available 24/7 who never gets tired, never judges your code, and always has time to explain their reasoning. For non-developers and founders who can write basic code but aren't engineers, it's something even more powerful — it's the tool that finally makes building real software feel accessible. Entire startups are being built with Cursor by people who couldn't have shipped a product alone two years ago."
     ],
     features: [
-      "Composer for multi-file code generation",
-      "Intelligent multi-line autocomplete (Cursor Tab)",
-      "Chat with your entire codebase as context",
-      "Familiar VS Code foundation"
+      "Full codebase awareness — understands your entire project",
+      "Tab autocomplete that predicts multi-line changes",
+      "CMD+K — edit any code with a natural language instruction",
+      "Chat mode — ask questions about your codebase",
+      "Composer — build entire features from a single prompt",
+      "Agent mode — Cursor plans and executes multi-step tasks",
+      "Built on VS Code — all extensions and shortcuts work",
+      "Supports all major AI models: Claude, GPT-4, Gemini",
+      "Terminal integration — runs commands on your behalf",
+      "One-click bug fixing directly from error messages"
     ],
-    pros: ["Massive productivity multiplier", "Zero friction for VS Code users", "Excellent context awareness of your project"],
-    cons: ["Requires migrating away from your current editor", "Can make you overly reliant on AI if you aren't careful"],
-    pricing: "Free tier available. Pro plan is $20/month.",
-    verdict: "The most impactful AI tool for software developers today. It changes how you write code."
+    pros: [
+      "Codebase-wide context is a genuine game changer",
+      "Feels like VS Code — zero learning curve for existing users",
+      "Composer and Agent modes can build entire features solo",
+      "Works with any programming language or framework",
+      "Dramatically speeds up debugging and code review",
+      "Makes coding accessible to non-developers",
+      "Actively developed — major updates ship every few weeks",
+      "Best-in-class tab autocomplete beats GitHub Copilot",
+      "Free tier is genuinely useful for getting started"
+    ],
+    cons: [
+      "Pro plan required to unlock full AI model access",
+      "Can generate code that works but isn't best practice",
+      "Agent mode can go off track on very complex tasks",
+      "Heavy on API usage — costs can add up on the Pro plan",
+      "Occasionally over-confident on bugs it hasn't fully understood",
+      "Requires basic coding knowledge to get the most out of it",
+      "Windows performance slightly behind Mac at times"
+    ],
+    pricingCards: [
+      {
+        name: "Free Plan (Hobby)",
+        price: "Free",
+        features: ["2,000 code completions per month", "50 slow premium requests", "Basic AI features"],
+        perfectFor: "trying it out and light personal projects"
+      },
+      {
+        name: "Pro Plan",
+        price: "$20/month",
+        features: ["Unlimited code completions", "500 fast premium requests per month", "Access to Claude, GPT-4, and all top models", "Unlimited slow premium requests", "Full Composer and Agent mode access"],
+        perfectFor: "professional developers and serious builders"
+      },
+      {
+        name: "Business Plan",
+        price: "$40/user/month",
+        features: ["Everything in Pro", "Centralized team billing", "Admin usage dashboard", "SSO and security controls", "Zero data retention policy"],
+        perfectFor: "engineering teams and companies"
+      }
+    ],
+    bestFor: [
+      "Cursor is built for three types of people. First, professional software developers who want to move significantly faster — shipping features in hours that used to take days. Second, technical founders who can code but aren't full-time engineers — Cursor bridges the gap between your vision and a working product without needing to hire a developer for every change. Third, ambitious non-developers — people who are willing to learn the basics of coding and use Cursor's AI to handle the complexity they haven't learned yet.",
+      "If you have never written a line of code and have no interest in learning even the basics, Cursor will be frustrating. But if you're willing to meet it halfway, the ceiling on what you can build alone is genuinely extraordinary."
+    ],
+    verdict: "Cursor earns its 5.0 rating because it does something rare in the software world — it delivers fully on an ambitious promise. The promise is that AI can make you a dramatically better, faster developer, and Cursor makes that true in a way that you feel from the very first session.\n\nThe free tier is enough to experience why everyone in the developer community is talking about it. The Pro plan at $20/month is, for any developer or technical founder, one of the easiest spending decisions in their entire software stack — it pays for itself the first time it saves you two hours of debugging.\n\nIn a world where AI tools often overpromise and underdeliver, Cursor is the exception. It is, without question, the best AI-powered developer tool available today.",
+    bestForTags: "Developers, Technical Founders, Ambitious Builders",
+    pricingSummary: "Free — $40/user/month",
+    ctaPrimary: "Download Cursor Free →"
+  },
+  'midjourney': {
+    name: 'Midjourney',
+    category: 'AI Image Generation / Design',
+    rating: 9.5,
+    externalLink: 'https://midjourney.com',
+    tagline: 'The gold standard of AI image generation',
+    heroDesc: [
+      "When people picture AI generated art, they are almost certainly picturing something made with Midjourney. It is the tool that put AI image generation on the map, the one that made headlines, sparked debates about the future of art, and quietly became the most used creative tool in the world for anyone who needs stunning visuals without a design team. Three years into its existence it remains the undisputed quality leader in the category it created.",
+      "What separates Midjourney from every competitor is its aesthetic sensibility. Where other image generators produce technically accurate outputs, Midjourney produces beautiful ones. There is a quality to its rendering — the way it handles light, texture, composition, and mood — that feels less like a machine following instructions and more like a talented art director interpreting a brief. Type a prompt and Midjourney does not just generate what you asked for. It generates the best possible version of what you asked for, with a visual intelligence that consistently surprises even experienced users.",
+      "Version 6 pushed the platform even further into territory that was previously exclusive to professional photography and illustration. Photorealistic portraits, cinematic landscapes, architectural visualizations, product mockups, editorial illustrations — all of it now within reach of anyone who can describe what they want in words. For designers, marketers, founders, and creators who need world class visuals on demand, Midjourney is not one option among many. It is the benchmark everything else is measured against."
+    ],
+    features: [
+      "State of the art photorealistic image generation",
+      "V6 model with unprecedented detail and accuracy",
+      "Style tuning — train the model on your aesthetic",
+      "Vary and remix — iterate on any generated image",
+      "Zoom out — expand any image beyond its original frame",
+      "Pan — extend images in any direction seamlessly",
+      "Upscaling to maximum resolution for print quality",
+      "Blend — combine multiple images into one",
+      "Describe — reverse engineer prompts from any image",
+      "Niji mode — specialized anime and illustration style",
+      "Fast and relaxed generation modes",
+      "Web interface and Discord bot access"
+    ],
+    pros: [
+      "Highest aesthetic quality of any image generator",
+      "Photorealism in V6 is genuinely indistinguishable",
+      "Style consistency across image sets is excellent",
+      "Describe feature is uniquely powerful for learning",
+      "Niji mode best in class for anime and illustration",
+      "Zoom and pan features unlock creative possibilities",
+      "Active community with enormous prompt inspiration",
+      "Regular model updates keep pushing quality forward",
+      "Best tool for portfolio, marketing and brand visuals"
+    ],
+    cons: [
+      "No free tier — subscription required from day one",
+      "Discord interface is confusing for new users",
+      "Web interface still maturing compared to Discord",
+      "Text rendering in images still inconsistent",
+      "Limited control over specific compositional details",
+      "Cannot generate images of real named individuals",
+      "Fast hours run out quickly on lower tier plans",
+      "No API access for developers on standard plans"
+    ],
+    pricingCards: [
+      {
+        name: "Basic Plan",
+        price: "$10/month",
+        features: ["200 GPU minutes per month", "3.3 hours of fast generation", "Access to member gallery"],
+        perfectFor: "casual users and occasional projects"
+      },
+      {
+        name: "Standard Plan",
+        price: "$30/month",
+        features: ["15 hours of fast generation", "Unlimited relaxed generation", "3 concurrent jobs"],
+        perfectFor: "regular creators and small teams"
+      },
+      {
+        name: "Pro Plan",
+        price: "$60/month",
+        features: ["30 hours of fast generation", "Stealth mode for private generations", "12 concurrent jobs"],
+        perfectFor: "professional designers and agencies"
+      },
+      {
+        name: "Mega Plan",
+        price: "$120/month",
+        features: ["60 hours of fast generation", "Maximum concurrent jobs", "All Pro features included"],
+        perfectFor: "studios and high volume production"
+      }
+    ],
+    bestFor: [
+      "Midjourney is the essential tool for anyone who needs high quality visuals regularly and does not have the budget or team for traditional design and photography production. Marketing managers building campaign assets, founders creating pitch deck visuals, content creators illustrating blog posts and social media, product designers mocking up concepts, architects visualizing spaces, and professional designers using AI to dramatically expand their output — all of them have made Midjourney a core part of their workflow.",
+      "The one group for whom Midjourney is less suitable is developers looking to integrate image generation into products — for that use case, the APIs offered by Stability AI or OpenAI's DALL-E are more practical. But for human creative work, Midjourney is the tool you want."
+    ],
+    verdict: "Midjourney earns its Editor's Pick designation by doing one thing extraordinarily well — producing beautiful images. In a market full of capable tools, capability alone is no longer enough. Midjourney understood early that the metric that matters most for creative tools is not accuracy or speed but quality of output, and it has relentlessly optimized for that metric through every model iteration.\n\nThe lack of a free tier is a genuine barrier and the Discord interface remains unnecessarily intimidating for newcomers, but neither of those friction points changes the fundamental truth — when you need the best looking AI generated image possible, Midjourney is where you go. Start with the Basic plan at $10/month, learn the prompting craft, and upgrade when your usage demands it.",
+    bestForTags: "Designers, Marketers, Content Creators, Founders",
+    pricingSummary: "$10 — $120/month",
+    ctaPrimary: "Start Creating with Midjourney →"
+  },
+  'jasper': {
+    name: 'Jasper',
+    category: 'AI Writing / Marketing Content',
+    rating: 8.2,
+    externalLink: 'https://jasper.ai',
+    tagline: 'The AI copywriter built for marketing teams',
+    heroDesc: [
+      "Jasper was one of the first AI writing tools to take the market seriously, and it built its reputation by doing something the early wave of AI writers could not — producing marketing copy that actually converted. Not just grammatically correct sentences, but persuasive, brand-aware, strategically structured content that a marketing professional would be proud to put their name on. That early quality advantage helped Jasper build a loyal enterprise customer base that remains its core strength today.",
+      "Where Jasper truly differentiates itself from standalone AI writing tools like Claude or ChatGPT is in its marketing-specific infrastructure. Brand Voice allows teams to train Jasper on their specific tone, style, and terminology so every piece of content it produces sounds like it came from the same company. Campaigns lets you plan and produce entire marketing campaigns — ads, emails, landing pages, social posts — from a single brief. Jasper Art generates on-brand visuals alongside the copy. These are not features you can replicate by prompting a general purpose AI — they are purpose-built workflows designed around how marketing teams actually operate.",
+      "For growing companies and established marketing departments that need to produce large volumes of consistent, on-brand content across multiple channels simultaneously, Jasper delivers something genuinely valuable — a single platform where the entire content production workflow lives, from brief to published asset, with AI accelerating every step of the process."
+    ],
+    features: [
+      "Brand Voice — train Jasper on your specific tone and style",
+      "Campaigns — plan and produce full marketing campaigns",
+      "50+ templates for every marketing content type",
+      "Jasper Art — AI image generation for marketing visuals",
+      "SEO mode — integrates with Surfer SEO for optimized content",
+      "Team collaboration with roles and permissions",
+      "Browser extension for writing anywhere on the web",
+      "Plagiarism checker built in",
+      "Supports 30+ languages",
+      "Document editor with long form content support",
+      "API access for custom integrations",
+      "Knowledge base — teach Jasper about your products"
+    ],
+    pros: [
+      "Brand Voice is genuinely excellent for consistency",
+      "Marketing specific templates save enormous time",
+      "Campaign workflow is unique and highly practical",
+      "SEO integration with Surfer is a major advantage",
+      "Team features are best in class for collaboration",
+      "Knowledge base ensures product accuracy in outputs",
+      "Browser extension makes it available everywhere",
+      "Strong enterprise support and onboarding",
+      "Constantly adding new templates and features"
+    ],
+    cons: [
+      "Significantly more expensive than general AI tools",
+      "Output quality doesn't always justify the premium over Claude or ChatGPT for simple writing tasks",
+      "Can produce repetitive phrasing across long content",
+      "Templates feel rigid for creative or unusual briefs",
+      "Jasper Art quality lags behind Midjourney significantly",
+      "Overkill for solo creators and small teams",
+      "Requires investment of time to set up Brand Voice properly",
+      "Annual billing required for best pricing"
+    ],
+    pricingCards: [
+      {
+        name: "Creator Plan",
+        price: "$49/month",
+        features: ["1 seat", "1 Brand Voice", "1 Knowledge Base", "Jasper Art included", "SEO mode included"],
+        perfectFor: "solo marketers and freelance copywriters"
+      },
+      {
+        name: "Pro Plan",
+        price: "$69/month",
+        features: ["3 Brand Voices", "10 Knowledge Bases", "Campaigns feature", "Collaboration tools", "3 seats included, add more at $25/seat"],
+        perfectFor: "small marketing teams"
+      },
+      {
+        name: "Business Plan",
+        price: "Custom pricing",
+        features: ["Unlimited Brand Voices", "Custom Knowledge Bases", "SSO and advanced security", "Dedicated account manager", "Custom workflows and integrations"],
+        perfectFor: "enterprise marketing departments"
+      }
+    ],
+    bestFor: [
+      "Jasper is built for marketing teams at growth stage and enterprise companies who need to produce high volumes of consistent, on-brand content across multiple channels and cannot afford for that content to sound different depending on who wrote it. If you have a defined brand voice, a content calendar with real volume demands, a team of more than two people producing content, and a budget that reflects those needs — Jasper was designed specifically for you.",
+      "For solo creators, freelancers, and early stage founders who are still finding their voice and watching every dollar, the price point is hard to justify when Claude or ChatGPT can handle most writing tasks at a fraction of the cost. Jasper's value is in its marketing infrastructure, and that infrastructure only pays off at scale."
+    ],
+    verdict: "Jasper is a genuinely excellent tool for the customer it was built for — the marketing team at a company serious enough about content to invest in the infrastructure that makes it consistent and scalable. The Brand Voice and Campaigns features alone can transform how a marketing department operates, and the SEO integration with Surfer gives content teams a meaningful advantage in organic search.\n\nThe pricing is the honest sticking point. At $49/month for a solo plan and $69/month for a small team, Jasper is a premium product at a premium price, and it needs to deliver premium results to justify the investment. For teams with real content volume and a clear brand voice to maintain, it does. For everyone else, the general purpose AI tools are probably enough.",
+    bestForTags: "Marketing Teams, Growth Companies, Enterprise",
+    pricingSummary: "$49/month — Custom Enterprise",
+    ctaPrimary: "Try Jasper Free →"
+  },
+  'descript': {
+    name: 'Descript',
+    category: 'AI Video & Podcast Editing',
+    rating: 9.0,
+    externalLink: 'https://descript.com',
+    tagline: 'Edit video and audio like a Google Doc',
+    heroDesc: [
+      "Every video and podcast editor has a moment early in their career where they realize that the craft they are learning is genuinely difficult — that cutting audio, removing silences, eliminating filler words, correcting mistakes, and producing a polished final output from raw recorded footage is a time consuming skill that takes years to develop. Descript looked at that reality and asked a simple question: what if editing audio and video was as easy as editing a text document? Then it built the answer.",
+      "Descript transcribes your recording the moment you import it, turning every word spoken into editable text. Delete a sentence from the transcript and it disappears from the audio and video. Highlight a paragraph and replace it with new text and Descript generates new audio in your voice using its Overdub technology. Remove all filler words across an entire hour long recording with a single click. The editing paradigm it has created is so fundamentally different from traditional timeline based editors that experienced editors often find it faster than the tools they have spent years mastering.",
+      "For podcasters, YouTubers, course creators, and anyone producing talking head or interview video content, Descript is not an incremental improvement on existing workflows — it is a complete replacement of them. The time savings are not marginal. Users consistently report cutting their editing time by 50 to 80 percent compared to traditional editing tools, and the quality of the output has reached a level where professional broadcasters and major media companies have adopted it as part of their production stack."
+    ],
+    features: [
+      "Text based video and audio editing",
+      "Automatic transcription in 23 languages",
+      "Overdub — generate new audio in your own voice",
+      "Filler word removal with one click",
+      "Studio Sound — AI audio enhancement and noise removal",
+      "Eye contact correction — makes you look at camera",
+      "Green screen removal without a green screen",
+      "Automatic chapter markers and show notes generation",
+      "Screen recording built in",
+      "Clip creation for social media from long form content",
+      "Team collaboration with comments and version history",
+      "Publish directly to YouTube, podcast hosts and more"
+    ],
+    pros: [
+      "Text based editing is genuinely revolutionary",
+      "Filler word removal alone saves hours per episode",
+      "Overdub voice cloning is remarkably accurate",
+      "Studio Sound audio enhancement is excellent",
+      "Eye contact correction is uniquely powerful for video",
+      "All in one — replaces multiple separate tools",
+      "Best value proposition in the video editing category",
+      "Collaboration features work well for remote teams",
+      "Direct publishing saves additional workflow steps",
+      "Constant feature additions keep raising the ceiling"
+    ],
+    cons: [
+      "Transcription accuracy drops with heavy accents",
+      "Overdub requires significant voice sample to work well",
+      "Not suitable for complex narrative or cinematic editing",
+      "Large project files can slow the editor down",
+      "Timeline editor less powerful than Premiere or Final Cut",
+      "Watermark on free plan exports",
+      "Some AI features still feel experimental",
+      "Learning curve for users coming from traditional editors"
+    ],
+    pricingCards: [
+      {
+        name: "Free Plan",
+        price: "Free",
+        features: ["1 hour of transcription per month", "Watermarked video exports", "720p export resolution", "Basic editing features"],
+        perfectFor: "testing and very occasional use"
+      },
+      {
+        name: "Creator Plan",
+        price: "$24/month",
+        features: ["10 hours of transcription per month", "No watermarks", "4K export resolution", "Overdub included", "Filler word removal"],
+        perfectFor: "individual podcasters and YouTubers"
+      },
+      {
+        name: "Pro Plan",
+        price: "$40/month",
+        features: ["30 hours of transcription per month", "Everything in Creator", "Advanced collaboration", "Priority support", "Unlimited Overdub usage"],
+        perfectFor: "professional creators and small teams"
+      },
+      {
+        name: "Enterprise",
+        price: "Custom pricing",
+        features: ["Unlimited transcription", "Advanced security and SSO", "Dedicated support", "Custom integrations"],
+        perfectFor: "media companies and large teams"
+      }
+    ],
+    bestFor: [
+      "Descript is the perfect tool for anyone producing talking head video or audio content regularly — podcasters publishing weekly episodes, YouTubers producing tutorial or interview content, course creators recording educational material, and marketing teams producing video testimonials, demos, and thought leadership content. If the majority of your content involves people speaking to camera or into a microphone, Descript will transform your production workflow in ways that feel almost unfair compared to what everyone else is using.",
+      "It is less suited for cinematic video production, heavily b-roll driven content, music videos, or any editing work that requires the precise frame level control of a professional timeline editor. For those use cases Premiere Pro or Final Cut remain the right tools. But for the enormous and growing universe of spoken word content, Descript has no equal."
+    ],
+    verdict: "Descript earns its Best Value designation because it delivers a genuinely transformative capability — text based audio and video editing — at a price point that makes it accessible to individual creators, not just production companies. The Creator plan at $24/month is one of the most compelling value propositions in the entire AI tools market, replacing what used to require a transcription service, an audio editor, a video editor, and hours of skilled labor with a single subscription that most users master in an afternoon.\n\nIf you produce any kind of spoken word content and you are still editing on a traditional timeline, Descript will feel like cheating the first time you use it. That feeling does not go away. It just becomes your new normal.",
+    bestForTags: "Podcasters, YouTubers, Course Creators, Marketing Teams",
+    pricingSummary: "Free — Custom Enterprise",
+    ctaPrimary: "Try Descript Free →"
+  },
+  'framer': {
+    name: 'Framer AI',
+    category: 'AI Website Builder / Design Tool',
+    rating: 8.5,
+    externalLink: 'https://framer.com',
+    tagline: 'From idea to live website in minutes',
+    heroDesc: [
+      "Website builders have existed for decades, and for decades they have made the same implicit promise — that anyone can build a professional website without knowing how to code. Most of them delivered something technically true but practically disappointing: websites that looked like they were built with a website builder, limited in their design possibilities, and impossible to customize beyond what the template allowed. Framer AI is the first tool in this category that actually delivers on the original promise without compromise.",
+      "Type a description of the website you want to build and Framer AI generates a complete, fully designed, responsive website in seconds. Not a template with placeholder content — a real website with a coherent design system, properly structured sections, and copy written for your specific use case. From that starting point, Framer's visual editor gives you the kind of precise design control that previously required knowing Figma and having a developer translate your designs into code. Animations, interactions, responsive breakpoints, CMS powered dynamic content — all of it accessible through a visual interface that professional designers find as capable as the tools they trained on.",
+      "What Framer has built is genuinely rare in the software world — a tool that serves two very different audiences exceptionally well simultaneously. Non-designers can go from idea to live professional website faster than any other tool makes possible. Professional designers can build production quality websites with design system rigor and interaction depth that no other no-code tool can match. That dual capability, combined with the AI generation layer that gets both groups to a strong starting point instantly, makes Framer AI one of the most impressive product achievements in the current wave of AI tools."
+    ],
+    features: [
+      "AI website generation from text description",
+      "Visual drag and drop editor with design system support",
+      "Animations and interactions without code",
+      "CMS for dynamic content and blog posts",
+      "Responsive design with full breakpoint control",
+      "Custom domain connection and one click publishing",
+      "Component library with reusable design elements",
+      "SEO controls built into the editor",
+      "Localization for multi language websites",
+      "Team collaboration with real time multiplayer",
+      "Version history and one click rollback",
+      "Analytics dashboard built in"
+    ],
+    pros: [
+      "AI generation produces genuinely impressive starting points",
+      "Design quality ceiling is highest of any no-code tool",
+      "Animations and interactions are unique in the category",
+      "CMS is powerful enough for serious content sites",
+      "Publishing and hosting included — no separate setup",
+      "Real time collaboration is excellent for design teams",
+      "SEO controls are comprehensive and accessible",
+      "Component system enables true design consistency",
+      "Free plan is genuinely useful for small projects"
+    ],
+    cons: [
+      "Learning curve steeper than simpler website builders",
+      "AI generation still needs significant manual refinement",
+      "E-commerce features limited compared to Shopify",
+      "CMS less powerful than dedicated platforms like Webflow",
+      "Can feel overwhelming for complete beginners",
+      "Some advanced interactions require workarounds",
+      "Template library smaller than competitors",
+      "Price jumps significantly for CMS and team features"
+    ],
+    pricingCards: [
+      {
+        name: "Free Plan",
+        price: "Free",
+        features: ["1 project", "Framer subdomain only", "Basic pages and components", "Community support"],
+        perfectFor: "personal projects and testing"
+      },
+      {
+        name: "Mini Plan",
+        price: "$10/month",
+        features: ["1 custom domain", "Basic CMS", "1,000 CMS items", "Standard analytics"],
+        perfectFor: "personal websites and simple portfolios"
+      },
+      {
+        name: "Basic Plan",
+        price: "$20/month",
+        features: ["1 custom domain", "Full CMS access", "10,000 CMS items", "Advanced analytics", "Password protection"],
+        perfectFor: "small business websites and blogs"
+      },
+      {
+        name: "Pro Plan",
+        price: "$40/month",
+        features: ["3 custom domains", "Unlimited CMS items", "Staging environment", "Priority support"],
+        perfectFor: "professional designers and agencies"
+      }
+    ],
+    bestFor: [
+      "Framer AI is the perfect tool for three distinct groups. First, professional designers and design agencies who want to build and ship production quality websites without being blocked by a development handoff process. Second, founders and product teams who need a marketing site that looks genuinely world class without the budget for a designer and developer working together. Third, anyone who has been frustrated by the design limitations of tools like Squarespace or Wix and wants the creative freedom of a professional design tool without needing to learn to code.",
+      "If you primarily need e-commerce functionality or a very content heavy publication, Shopify and Webflow respectively serve those specific needs better. But for marketing sites, portfolios, product landing pages, and startup websites where design quality matters enormously, Framer AI is the strongest tool available."
+    ],
+    verdict: "Framer AI earns its Designers Choice designation by pushing the ceiling of what is possible in a no-code website builder to a place that was previously only achievable with a full design and development team. The AI generation feature genuinely accelerates the starting point, the visual editor delivers professional design capability, and the publishing infrastructure handles everything from hosting to SEO in a single platform.\n\nThe Basic plan at $20/month is the sweet spot for most users — it unlocks the full CMS, a custom domain, and everything needed to run a serious marketing or content website. Start on the free plan to learn the tool, upgrade when you are ready to go live with a custom domain, and discover why professional designers are increasingly choosing Framer over every other option in the market.",
+    bestForTags: "Designers, Founders, Agencies, Product Teams",
+    pricingSummary: "Free — $40/month",
+    ctaPrimary: "Build with Framer Free →"
+  },
+  'synthesia': {
+    name: 'Synthesia',
+    category: 'AI Video / Avatar Creation',
+    rating: 8.8,
+    externalLink: 'https://synthesia.io',
+    tagline: 'Professional video without a camera or crew',
+    heroDesc: [
+      "Corporate video production has always been expensive, time consuming, and logistically complicated. You need a camera, a crew, a location, a presenter who is comfortable on camera, a script that someone has to memorize or read convincingly from a teleprompter, post production editing, and a budget that reflects all of those requirements. For training videos, product updates, internal communications, and localized content across multiple markets, the cost and complexity of traditional video production has always been the bottleneck. Synthesia removes that bottleneck entirely.",
+      "Type a script, choose an AI avatar from a library of over 230 diverse presenters, select a language from 140 options, and Synthesia generates a professional quality video of your avatar delivering your script with natural lip sync, appropriate gestures, and a presentation style that would pass as human recording in most professional contexts. The entire process takes minutes. No camera. No crew. No presenter. No studio. No reshoots when the script changes. Just a finished video ready to share or embed wherever your audience is.",
+      "For enterprise learning and development teams, Synthesia has become the standard platform for producing training content at scale. A compliance training module that used to require weeks of production time and thousands in budget can now be produced and updated in an afternoon. A product tutorial that needs to exist in twelve languages no longer requires twelve separate recording sessions. A CEO update that needs to reach offices across six countries can be localized automatically without the CEO recording it six times. These are not marginal improvements — they are fundamental changes to what is possible in corporate video communication."
+    ],
+    features: [
+      "230+ AI avatars with diverse representation",
+      "140+ languages with natural lip sync",
+      "Custom avatar creation from your own video",
+      "60+ professionally designed video templates",
+      "Screen recording and demo videos",
+      "Automatic closed captions and subtitles",
+      "Brand kit — colors, fonts, logos across all videos",
+      "Player with analytics and engagement tracking",
+      "SCORM export for LMS integration",
+      "Team collaboration with review and approval workflow",
+      "API for programmatic video generation at scale",
+      "Closed caption translation across all languages"
+    ],
+    pros: [
+      "Most realistic AI avatars currently available",
+      "140 language support is unmatched in the category",
+      "Custom avatar from your own likeness is powerful",
+      "Template library covers most corporate use cases",
+      "SCORM export makes LMS integration seamless",
+      "Brand kit ensures visual consistency across videos",
+      "Analytics show exactly how viewers engage with content",
+      "No video production skills required whatsoever",
+      "Update videos instantly when content changes",
+      "Enormous time and cost savings vs traditional production"
+    ],
+    cons: [
+      "Avatar realism still noticeable to careful observers",
+      "Emotional range of avatars is limited",
+      "Not suitable for creative or entertainment video",
+      "Pricing is enterprise focused and relatively high",
+      "Free plan very limited for meaningful evaluation",
+      "Less suitable for conversational or unscripted content",
+      "Script writing still requires human effort and skill",
+      "Avatar gestures can feel repetitive in longer videos"
+    ],
+    pricingCards: [
+      {
+        name: "Free Plan",
+        price: "Free",
+        features: ["3 minutes of video per month", "9 avatar options", "1 language", "Watermarked exports"],
+        perfectFor: "basic testing only"
+      },
+      {
+        name: "Starter Plan",
+        price: "$29/month",
+        features: ["10 minutes of video per month", "90+ avatars", "140+ languages", "No watermark", "1 custom avatar"],
+        perfectFor: "individual content creators"
+      },
+      {
+        name: "Creator Plan",
+        price: "$89/month",
+        features: ["30 minutes of video per month", "All 230+ avatars", "Priority rendering", "Brand kit", "Advanced analytics"],
+        perfectFor: "marketing teams and course creators"
+      },
+      {
+        name: "Enterprise",
+        price: "Custom pricing",
+        features: ["Unlimited video minutes", "Custom avatar development", "SCORM and LMS integration", "SSO and advanced security", "Dedicated customer success", "API access"],
+        perfectFor: "large L&D teams and global companies"
+      }
+    ],
+    bestFor: [
+      "Synthesia is purpose built for corporate and professional video production at scale. Learning and development teams producing training content across global workforces. HR departments communicating policy updates and onboarding materials to distributed teams. Marketing teams producing product demos and explainer videos across multiple markets and languages. Customer success teams creating tutorial libraries that need to stay current as products evolve. And any organization that has historically avoided video communication because of the cost and complexity of traditional production.",
+      "If your primary need is creative, entertainment, or social media video content where production values and human authenticity matter most, Runway and Descript are better fits. Synthesia's strength is professional utility video at scale, and in that category it has no serious competitor."
+    ],
+    verdict: "Synthesia earns its Top Rated designation by delivering extraordinary value in a specific and important use case — professional video production for organizations that need to communicate at scale across languages, geographies, and constantly changing content requirements. The avatar realism is not perfect, but it has crossed the threshold where it is professional enough for the corporate contexts it was designed to serve, and the operational advantages it delivers over traditional video production are so significant that the remaining quality gap simply does not matter to most of its customers.\n\nThe Starter plan at $29/month gives individual users enough to evaluate the platform seriously and produce real content. Most organizations that adopt Synthesia end up on the Enterprise plan, where the unlimited video minutes and LMS integration deliver the full return on investment that makes it one of the most defensible software purchases in the enterprise stack.",
+    bestForTags: "L&D Teams, HR, Marketing, Global Organizations",
+    pricingSummary: "$29/month — Custom Enterprise",
+    ctaPrimary: "Try Synthesia Free →"
   }
 };
 
 const saasReviews = [
-  { name: 'Midjourney v6', score: 9.5, bestFor: 'Photorealistic image generation', tag: 'Editor\'s Pick 🏆', link: 'https://midjourney.com' },
-  { name: 'Jasper', score: 8.2, bestFor: 'Enterprise marketing teams', tag: 'Best for Teams 👥', link: 'https://jasper.ai' },
-  { name: 'Descript', score: 9.0, bestFor: 'Podcast and video editing', tag: 'Best Value 💰', link: 'https://descript.com' },
-  { name: 'Framer AI', score: 8.5, bestFor: 'Rapid website prototyping', tag: 'Designers Choice 🎨', link: 'https://framer.com' },
-  { name: 'Synthesia', score: 8.8, bestFor: 'AI avatar video creation', tag: 'Top Rated ⭐', link: 'https://synthesia.io' },
+  { name: 'Midjourney v6', score: 9.5, bestFor: 'Photorealistic image generation', tag: 'Editor\'s Pick 🏆', link: '/reviews/midjourney' },
+  { name: 'Jasper', score: 8.2, bestFor: 'Enterprise marketing teams', tag: 'Best for Teams 👥', link: '/reviews/jasper' },
+  { name: 'Descript', score: 9.0, bestFor: 'Podcast and video editing', tag: 'Best Value 💰', link: '/reviews/descript' },
+  { name: 'Framer AI', score: 8.5, bestFor: 'Rapid website prototyping', tag: 'Designers Choice 🎨', link: '/reviews/framer' },
+  { name: 'Synthesia', score: 8.8, bestFor: 'AI avatar video creation', tag: 'Top Rated ⭐', link: '/reviews/synthesia' },
 ];
 
 const newsArticles = [
@@ -367,9 +1041,9 @@ const SaasReviews = () => {
                   {review.tag}
                 </span>
               </div>
-              <a href={review.link} className="inline-flex items-center gap-2 text-sm font-bold text-brand-cyan hover:text-white transition-colors">
+              <Link to={review.link} className="inline-flex items-center gap-2 text-sm font-bold text-brand-cyan hover:text-white transition-colors">
                 Read Review <ArrowRight size={16} />
-              </a>
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -562,7 +1236,9 @@ const Footer = () => {
 
 const ToolPage = () => {
   const { id } = useParams();
-  const tool = toolReviews[id as keyof typeof toolReviews];
+  const location = useLocation();
+  const isReview = location.pathname.startsWith('/reviews');
+  const tool = toolReviews[id as keyof typeof toolReviews] as any;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -574,8 +1250,8 @@ const ToolPage = () => {
 
   return (
     <div className="pt-32 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
-      <Link to="/" className="inline-flex items-center gap-2 text-brand-cyan hover:underline font-mono text-sm mb-8">
-        <ArrowRight className="rotate-180" size={16} /> Back to all tools
+      <Link to={isReview ? "/#reviews" : "/#tools"} className="inline-flex items-center gap-2 text-brand-cyan hover:underline font-mono text-sm mb-8">
+        <ArrowRight className="rotate-180" size={16} /> {isReview ? "Back to all reviews" : "Back to all tools"}
       </Link>
       
       <div className="bg-brand-surface border border-gray-800 p-8 md:p-12 relative overflow-hidden">
@@ -591,53 +1267,421 @@ const ToolPage = () => {
                 <Star size={16} fill="currentColor" /> {tool.rating}
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold font-mono mb-4">{tool.name}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold font-mono mb-2">{tool.name}</h1>
+            {tool.tagline && <p className="text-xl text-brand-cyan font-mono mb-4">"{tool.tagline}"</p>}
           </div>
           <a href={tool.externalLink} target="_blank" rel="noopener noreferrer" className="bg-brand-cyan text-brand-bg px-6 py-3 font-bold hover:bg-teal-400 transition-all glow-cyan flex items-center justify-center gap-2 whitespace-nowrap">
-            Visit Website <ExternalLink size={18} />
+            {tool.ctaPrimary || "Visit Website"} <ExternalLink size={18} />
           </a>
         </div>
 
         <div className="prose prose-invert max-w-none mb-12">
-          {tool.heroDesc.map((p, i) => <p key={i} className="text-gray-300 text-lg leading-relaxed mb-4">{p}</p>)}
+          {tool.heroDesc.map((p: string, i: number) => <p key={i} className="text-gray-300 text-lg leading-relaxed mb-4">{p}</p>)}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 mb-12">
-          <div>
-            <h3 className="text-xl font-bold font-mono mb-4 text-white border-b border-gray-800 pb-2">Key Features</h3>
-            <ul className="space-y-3">
-              {tool.features.map((f, i) => (
-                <li key={i} className="flex items-start gap-3 text-gray-400">
-                  <CheckCircle2 size={20} className="text-brand-cyan shrink-0 mt-0.5" />
-                  <span>{f}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold font-mono mb-4 text-white border-b border-gray-800 pb-2">Pricing</h3>
-            <p className="text-gray-400 bg-brand-bg p-4 border border-gray-800 font-mono text-sm">{tool.pricing}</p>
-          </div>
+        <div className="mb-12">
+          <h3 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Key Features</h3>
+          <ul className="grid md:grid-cols-2 gap-4">
+            {tool.features.map((f: string, i: number) => (
+              <li key={i} className="flex items-start gap-3 text-gray-300 bg-brand-bg p-4 border border-gray-800">
+                <CheckCircle2 size={20} className="text-brand-cyan shrink-0 mt-0.5" />
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <div className="bg-green-900/10 border border-green-900/30 p-6">
-            <h3 className="text-lg font-bold font-mono mb-4 text-green-400">Pros</h3>
-            <ul className="space-y-2">
-              {tool.pros.map((p, i) => <li key={i} className="text-gray-300 text-sm flex items-start gap-2"><span className="text-green-500">+</span> {p}</li>)}
+            <h3 className="text-xl font-bold font-mono mb-4 text-green-400">Pros</h3>
+            <ul className="space-y-3">
+              {tool.pros.map((p: string, i: number) => <li key={i} className="text-gray-300 flex items-start gap-3"><span className="text-green-500 font-bold">+</span> {p}</li>)}
             </ul>
           </div>
           <div className="bg-red-900/10 border border-red-900/30 p-6">
-            <h3 className="text-lg font-bold font-mono mb-4 text-red-400">Cons</h3>
-            <ul className="space-y-2">
-              {tool.cons.map((c, i) => <li key={i} className="text-gray-300 text-sm flex items-start gap-2"><span className="text-red-500">-</span> {c}</li>)}
+            <h3 className="text-xl font-bold font-mono mb-4 text-red-400">Cons</h3>
+            <ul className="space-y-3">
+              {tool.cons.map((c: string, i: number) => <li key={i} className="text-gray-300 flex items-start gap-3"><span className="text-red-500 font-bold">-</span> {c}</li>)}
             </ul>
           </div>
         </div>
 
-        <div className="bg-brand-bg border border-gray-800 p-6 md:p-8 text-center">
-          <h3 className="text-xl font-bold font-mono mb-3 text-white">Final Verdict</h3>
-          <p className="text-gray-400 italic">"{tool.verdict}"</p>
+        <div className="mb-12">
+          <h3 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Pricing</h3>
+          {tool.pricingCards ? (
+            <div className="grid md:grid-cols-2 gap-4">
+              {tool.pricingCards.map((card: any, i: number) => (
+                <div key={i} className="bg-brand-bg border border-gray-800 p-6 hover:border-brand-cyan transition-colors">
+                  <h4 className="text-lg font-bold font-mono text-white mb-1">{card.name}</h4>
+                  <p className="text-brand-amber font-mono mb-4">{card.price}</p>
+                  <ul className="space-y-2 mb-4">
+                    {card.features.map((f: string, j: number) => (
+                      <li key={j} className="text-gray-400 text-sm flex items-start gap-2">
+                        <span className="text-brand-cyan mt-0.5">•</span> {f}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="text-xs text-gray-500 border-t border-gray-800 pt-4 mt-auto">
+                    <span className="font-bold text-gray-400">Perfect for:</span> {card.perfectFor}
+                  </p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-gray-400 bg-brand-bg p-4 border border-gray-800 font-mono text-sm">{tool.pricing}</p>
+          )}
+        </div>
+
+        {tool.bestFor && (
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Who is it best for?</h3>
+            <div className="prose prose-invert max-w-none">
+              {tool.bestFor.map((p: string, i: number) => <p key={i} className="text-gray-300 text-lg leading-relaxed mb-4">{p}</p>)}
+            </div>
+          </div>
+        )}
+
+        <div className="bg-brand-bg border border-gray-800 p-8 text-center mb-12">
+          <h3 className="text-2xl font-bold font-mono mb-6 text-white">Final Verdict</h3>
+          <div className="text-gray-300 text-lg italic leading-relaxed mb-6">
+            {tool.verdict.split('\n\n').map((p: string, i: number) => <p key={i} className="mb-4 last:mb-0">"{p}"</p>)}
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t border-gray-800">
+            <div className="text-sm">
+              <span className="text-gray-500 font-mono">Score:</span> <span className="text-brand-amber font-bold">{tool.rating}/{isReview ? '10' : '5'}</span>
+            </div>
+            {tool.bestForTags && (
+              <div className="text-sm">
+                <span className="text-gray-500 font-mono">Best For:</span> <span className="text-brand-cyan">{tool.bestForTags}</span>
+              </div>
+            )}
+            {tool.pricingSummary && (
+              <div className="text-sm">
+                <span className="text-gray-500 font-mono">Pricing:</span> <span className="text-brand-amber">{tool.pricingSummary}</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <a href={tool.externalLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-brand-cyan text-brand-bg px-8 py-4 font-bold text-lg hover:bg-teal-400 transition-all glow-cyan flex items-center justify-center gap-2">
+            {tool.ctaPrimary || "Visit Website"} <ExternalLink size={20} />
+          </a>
+          <Link to={isReview ? "/#reviews" : "/#tools"} className="w-full sm:w-auto bg-transparent border border-gray-600 text-white px-8 py-4 font-bold text-lg hover:border-white hover:bg-brand-surface transition-all flex items-center justify-center gap-2">
+            <ArrowRight className="rotate-180" size={20} /> {isReview ? "Back to all reviews" : "Back to all tools"}
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ToolLink = ({ name, to }: { name: string, to: string }) => (
+  <Link to={to} className="font-bold text-brand-cyan hover:underline decoration-brand-cyan decoration-2 underline-offset-4 transition-all">
+    {name}
+  </Link>
+);
+
+const ToolReviewCard = ({ name, desc, to }: { name: string, desc: string, to: string }) => (
+  <div className="my-6 p-4 border border-gray-800 bg-brand-surface rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 group hover:border-brand-cyan/50 transition-colors">
+    <div>
+      <div className="font-bold font-mono text-white mb-1 text-[14px]">{name}</div>
+      <div className="text-[14px] text-gray-400">{desc}</div>
+    </div>
+    <Link to={to} className="shrink-0 text-[14px] font-bold text-brand-cyan group-hover:text-white transition-colors flex items-center gap-2">
+      Read Review <ArrowRight size={16} />
+    </Link>
+  </div>
+);
+
+const Money = ({ children }: { children: React.ReactNode }) => (
+  <span className="font-bold text-[1.1em] text-white">{children}</span>
+);
+
+const BeforeAfter = ({ before, after, saving }: { before: React.ReactNode, after: React.ReactNode, saving: string }) => (
+  <div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="p-5 bg-red-950/20 border border-red-900/30 rounded-lg">
+      <div className="text-red-400 font-mono text-sm font-bold mb-2 uppercase tracking-wider">Before</div>
+      <div className="text-gray-300">{before}</div>
+    </div>
+    <div className="p-5 bg-green-950/20 border border-green-900/30 rounded-lg relative">
+      <div className="text-green-400 font-mono text-sm font-bold mb-2 uppercase tracking-wider">After</div>
+      <div className="text-gray-300">{after}</div>
+      <div className="absolute -top-3 -right-3 bg-brand-cyan text-brand-bg font-bold font-mono text-xs px-3 py-1 rounded-full shadow-lg">
+        Save {saving}
+      </div>
+    </div>
+  </div>
+);
+
+const SectionDivider = () => (
+  <hr className="my-12 border-t border-gray-800" />
+);
+
+const H2 = ({ children }: { children: React.ReactNode }) => (
+  <h2 className="text-[28px] font-bold font-mono text-brand-cyan mt-16 mb-6">{children}</h2>
+);
+
+const H3 = ({ children }: { children: React.ReactNode }) => (
+  <h3 className="text-[20px] font-medium font-mono text-brand-amber mt-10 mb-4">{children}</h3>
+);
+
+const CalloutTip = ({ children }: { children: React.ReactNode }) => (
+  <div className="my-8 p-6 bg-brand-surface border-l-4 border-brand-amber text-[15px] text-gray-300 italic">
+    {children}
+  </div>
+);
+
+const Step = ({ number, title, children }: { number: string, title: string, children: React.ReactNode }) => (
+  <div className="my-8 flex gap-6">
+    <div className="shrink-0 w-12 h-12 rounded-full bg-brand-amber/10 border border-brand-amber/30 flex items-center justify-center text-brand-amber font-bold font-mono text-xl">
+      {number}
+    </div>
+    <div>
+      <div className="font-bold text-white text-lg mb-2">{title}</div>
+      <div className="text-gray-300">{children}</div>
+    </div>
+  </div>
+);
+
+const BlogPost = () => {
+  const { scrollYProgress } = useScroll();
+
+  useEffect(() => {
+    document.title = "I Replaced My Entire $500/Month SaaS Stack With AI Tools — Here's Exactly What I Use Now";
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', "I was spending over $500 every month on traditional SaaS tools. Then I switched to AI-powered alternatives and cut that bill dramatically. Here's every tool I replaced and what I use instead.");
+  }, []);
+
+  return (
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-brand-cyan origin-left z-50"
+        style={{ scaleX: scrollYProgress }}
+      />
+      
+      <div className="max-w-[680px] mx-auto px-6 pt-32">
+        <div className="mb-12">
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-brand-cyan font-mono text-sm uppercase tracking-wider">AI News</span>
+            <span className="text-gray-500 font-mono text-sm">•</span>
+            <span className="text-gray-400 font-mono text-sm">8 min read</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-8">
+            I Replaced My Entire $500/Month SaaS Stack With AI Tools — Here's Exactly What I Use Now
+          </h1>
+          <div className="flex flex-wrap gap-2">
+            {['AI Tools', 'SaaS', 'Productivity', 'Solopreneur', 'Cost Saving', 'AI Software 2026'].map(tag => (
+              <span key={tag} className="px-3 py-1 bg-gray-800 text-gray-300 text-xs font-mono rounded-full border border-gray-700">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
+          <p>
+            Twelve months ago I was paying for tools I barely used, tools I used constantly but hated, and tools I kept renewing out of habit because switching felt like too much effort. My SaaS bill had quietly crept past <Money>$500 a month</Money> — <Money>$6,000 a year</Money> — for a stack that was supposed to make me more productive but mostly just made me more subscribed.
+          </p>
+          <p>
+            Then the AI tools started getting genuinely good. Not impressive-for-AI good. Actually good. Good enough to replace things I had been paying for for years. So I ran an experiment. Over three months I systematically replaced every tool in my stack with an AI-powered alternative, tracked the results, and kept only what made me faster, cheaper, or both.
+          </p>
+          <p className="font-bold italic text-white">
+            This is what I found.
+          </p>
+
+          <SectionDivider />
+
+          <H2>THE OLD STACK VS THE NEW STACK</H2>
+          <p>
+            Here is a direct comparison of what I was paying for versus what I use now and what it costs:
+          </p>
+
+          <H3>WRITING & CONTENT</H3>
+          <BeforeAfter 
+            before={<>Grammarly Premium (<Money>$30/mo</Money>) +<br/>a copywriter (<Money>$200/mo</Money>)</>}
+            after={<><ToolLink name="Claude" to="/tools/claude" /> Pro (<Money>$20/mo</Money>)</>}
+            saving="$210/mo"
+          />
+          <p>
+            I used Grammarly for proofreading and hired a freelance copywriter for longer content. <ToolLink name="Claude" to="/tools/claude" /> replaced both completely. <span className="font-bold italic text-white">It proofreads better than Grammarly, writes better than most copywriters I have worked with, and does it in seconds instead of days.</span> The <Money>$20/month</Money> Pro plan is one of the most defensible subscriptions in my entire stack.
+          </p>
+          <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" />
+
+          <H3>RESEARCH & INFORMATION</H3>
+          <BeforeAfter 
+            before={<>Various news subscriptions (<Money>$45/mo</Money>)</>}
+            after={<><ToolLink name="Perplexity" to="/tools/perplexity" /> Pro (<Money>$20/mo</Money>)</>}
+            saving="$25/mo"
+          />
+          <p>
+            I was paying for three different newsletter and news subscriptions to stay current on my industry. <ToolLink name="Perplexity" to="/tools/perplexity" /> replaced all of them. <span className="font-bold italic text-white">I can ask it anything happening right now, get a cited answer in seconds, and follow up with deeper questions that no newsletter could anticipate.</span> The research workflow I used to spend an hour on every morning now takes fifteen minutes.
+          </p>
+          <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" />
+
+          <H3>DESIGN & VISUALS</H3>
+          <BeforeAfter 
+            before={<>Adobe Creative Cloud (<Money>$55/mo</Money>) +<br/>Canva Pro (<Money>$13/mo</Money>)</>}
+            after={<><ToolLink name="Midjourney" to="/reviews/midjourney" /> Standard (<Money>$30/mo</Money>)</>}
+            saving="$38/mo"
+          />
+          <p>
+            I was maintaining two design subscriptions and still spending time creating assets that looked like they came from a template. <ToolLink name="Midjourney" to="/reviews/midjourney" /> generates campaign visuals, blog post headers, social media images, and concept mockups that look genuinely professional in minutes. <span className="font-bold italic text-white">I kept a basic free design tool for simple layouts but cancelled Creative Cloud and Canva Pro entirely.</span>
+          </p>
+          <ToolReviewCard name="Midjourney" desc="Best AI tool for image generation" to="/reviews/midjourney" />
+
+          <H3>CODING & DEVELOPMENT</H3>
+          <BeforeAfter 
+            before={<>Freelance developer (<Money>$300/mo</Money> average)</>}
+            after={<><ToolLink name="Cursor" to="/tools/cursor" /> Pro (<Money>$20/mo</Money>)</>}
+            saving="$280/mo"
+          />
+          <p>
+            This is the single biggest saving in my entire stack. I was paying a freelance developer on retainer for small website changes, bug fixes, and new features. <ToolLink name="Cursor" to="/tools/cursor" /> replaced that entirely. <span className="font-bold italic text-white">I am not a developer, but with Cursor I can make changes to my own codebase, build new features from descriptions, and fix bugs by pasting the error message into the chat.</span> The learning curve was real but the payoff was immediate.
+          </p>
+          <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/tools/cursor" />
+
+          <H3>PRODUCTIVITY & KNOWLEDGE MANAGEMENT</H3>
+          <BeforeAfter 
+            before={<>Notion (<Money>$16/mo</Money>) + Evernote (<Money>$15/mo</Money>)</>}
+            after={<><ToolLink name="Notion AI" to="/tools/notion-ai" /> (<Money>$16/mo</Money> + <Money>$10/mo</Money> AI add-on)</>}
+            saving="$5/mo"
+          />
+          <p>
+            This one was less about saving money and more about eliminating redundancy. I was using Notion for project management and Evernote for notes — two separate systems that never quite talked to each other. <span className="font-bold italic text-white">Adding <ToolLink name="Notion AI" to="/tools/notion-ai" /> to my existing Notion subscription replaced Evernote completely and made the notes and documents I already had in Notion significantly more useful.</span> The AI can summarize my meeting notes, find information across my entire workspace, and draft content from rough bullet points I jot down in the moment.
+          </p>
+          <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/tools/notion-ai" />
+
+          <H3>VIDEO CONTENT</H3>
+          <BeforeAfter 
+            before={<>Video editor contractor (<Money>$150/mo</Money> average)</>}
+            after={<><ToolLink name="Descript" to="/reviews/descript" /> Creator (<Money>$24/mo</Money>)</>}
+            saving="$126/mo"
+          />
+          <p>
+            I was outsourcing all my video editing because the timeline based editors felt too technical and too time consuming to learn. <ToolLink name="Descript" to="/reviews/descript" /> changed that completely. <span className="font-bold italic text-white">Editing a video in Descript is genuinely as easy as editing a document.</span> I delete filler words with one click, cut sections by highlighting and deleting text, and produce finished videos that previously took a contractor two days to deliver — in under an hour myself.
+          </p>
+          <ToolReviewCard name="Descript" desc="Best AI tool for video and podcast editing" to="/reviews/descript" />
+
+          <H3>WEBSITE & LANDING PAGES</H3>
+          <BeforeAfter 
+            before={<>Webflow (<Money>$29/mo</Money>) +<br/>design contractor (<Money>$200/mo</Money>)</>}
+            after={<><ToolLink name="Framer AI" to="/reviews/framer" /> Basic (<Money>$20/mo</Money>)</>}
+            saving="$209/mo"
+          />
+          <p>
+            Webflow is a powerful tool but I was barely scratching its surface and paying for a contractor to make design changes I could not figure out myself. <ToolLink name="Framer AI" to="/reviews/framer" /> generates professional landing pages from a text description that I can then customize visually without touching code. <span className="font-bold italic text-white">The pages it produces are genuinely better designed than what I was getting from my contractor, and I can update them myself in real time.</span>
+          </p>
+          <ToolReviewCard name="Framer AI" desc="Best AI tool for websites and landing pages" to="/reviews/framer" />
+
+          <SectionDivider />
+
+          <H2>THE NUMBERS</H2>
+          
+          <div className="my-10 p-8 bg-brand-surface border border-gray-800 rounded-xl text-center">
+            <div className="grid grid-cols-2 gap-8 mb-8">
+              <div>
+                <div className="text-gray-500 font-mono text-sm uppercase tracking-wider mb-2">Old Monthly Spend</div>
+                <div className="text-3xl font-bold text-red-400/80 line-through decoration-red-500/50">$1,053</div>
+              </div>
+              <div>
+                <div className="text-gray-500 font-mono text-sm uppercase tracking-wider mb-2">New Monthly Spend</div>
+                <div className="text-3xl font-bold text-green-400">$140</div>
+              </div>
+            </div>
+            <div className="pt-8 border-t border-gray-800">
+              <div className="text-gray-400 font-mono text-sm uppercase tracking-wider mb-2">Monthly Saving</div>
+              <div className="text-4xl font-bold text-brand-cyan mb-6">$913</div>
+              <div className="text-gray-400 font-mono text-sm uppercase tracking-wider mb-2">Annual Saving</div>
+              <div className="text-6xl md:text-7xl font-bold text-white tracking-tight">$10,956</div>
+            </div>
+          </div>
+
+          <CalloutTip>
+            <span className="font-bold not-italic text-white">Note:</span> my original estimate of <Money>$500/month</Money> was what I thought I was spending. When I actually added up contractors and subscriptions together the real number was significantly higher. <span className="italic">If you have never done this exercise for your own stack, the actual total will probably surprise you.</span>
+          </CalloutTip>
+
+          <SectionDivider />
+
+          <H2>WHAT I LEARNED FROM THREE MONTHS OF SWITCHING</H2>
+
+          <p>
+            <span className="font-bold text-white">The quality gap has closed faster than anyone expected.</span> Twelve months ago the honest answer to "can AI replace [tool]?" was usually "not quite yet." Today the honest answer for most categories is "yes, and often better." <span className="font-bold italic text-white">The tools in this list are not compromises — they are genuine upgrades in most of the dimensions that matter for day to day work.</span>
+          </p>
+
+          <p>
+            <span className="font-bold text-white">The learning curve is real but shorter than you think.</span> Every tool on this list took me between one afternoon and one week to get genuinely useful results from. The instinct to stick with familiar tools because switching costs feel high is understandable but almost always wrong when you actually run the numbers.
+          </p>
+
+          <p>
+            <span className="font-bold text-white">Not everything should be replaced.</span> I kept tools that AI has not meaningfully improved yet — my accounting software, my email provider, my calendar. The goal was not to replace everything with AI for the sake of it. <span className="font-bold italic text-white">The goal was to replace things where AI delivered clearly better results at clearly lower cost.</span> In the categories above, it did.
+          </p>
+
+          <p>
+            <span className="font-bold text-white">The compounding effect is real.</span> The biggest surprise was not any individual tool but how much faster the whole system became once every part of it was optimized. <span className="font-bold italic text-white">Writing that feeds research that feeds design that feeds video production — when every step in that chain gets faster, the total output improvement is multiplicative not additive.</span>
+          </p>
+
+          <SectionDivider />
+
+          <H2>HOW TO DO THIS FOR YOUR OWN STACK</H2>
+          <p>
+            If you want to run this experiment yourself, start with these three steps:
+          </p>
+
+          <Step number="1" title="Audit everything you are paying for">
+            List every subscription and contractor you pay monthly. Include the ones you forget about. The total will be higher than you expect.
+          </Step>
+
+          <Step number="2" title="Identify your highest cost categories">
+            Pick the two or three biggest line items and research what AI tools exist in those categories specifically. <span className="font-bold italic text-white">The savings are almost always largest where you are currently paying humans to do repeatable knowledge work.</span>
+          </Step>
+
+          <Step number="3" title="Run one replacement at a time">
+            <span className="font-bold text-white">Do not try to switch everything simultaneously.</span> Pick one tool, commit to using the AI alternative exclusively for two weeks, and evaluate honestly. If it is genuinely worse in ways that matter, keep the original. If it is better or equivalent at lower cost, make the switch permanent before moving to the next one.
+          </Step>
+
+          <SectionDivider />
+
+          <H2>THE TOOLS IN THIS ARTICLE</H2>
+          <p>
+            Every tool mentioned in this article has a full in-depth review on domskysolutions.com. If you want to understand exactly what each one does, what it costs at every tier, and whether it is the right fit for your specific situation before committing to a switch, start there.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" />
+            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" />
+            <ToolReviewCard name="Midjourney" desc="Best AI tool for image generation" to="/reviews/midjourney" />
+            <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/tools/cursor" />
+            <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/tools/notion-ai" />
+            <ToolReviewCard name="Descript" desc="Best AI tool for video and podcast editing" to="/reviews/descript" />
+            <ToolReviewCard name="Framer AI" desc="Best AI tool for websites and landing pages" to="/reviews/framer" />
+          </div>
+
+          <SectionDivider />
+
+          <H2>CONCLUSION</H2>
+          <p>
+            The question is no longer whether AI tools are good enough to replace your existing SaaS stack. For most knowledge work categories they already are. <span className="font-bold italic text-white">The question is how long you are willing to keep paying for the old way of doing things while the people around you quietly build a significant productivity and cost advantage with the new one.</span>
+          </p>
+
+          <p>
+            I saved nearly <Money>$11,000</Money> in the first year. More importantly I got faster — meaningfully, measurably faster — at every part of my work. The stack I run today produces better output than the one I ran twelve months ago at roughly one seventh of the cost.
+          </p>
+
+          <p className="font-bold text-xl text-brand-cyan mt-8 italic">
+            That is not a marginal improvement. That is a different way of working entirely.
+          </p>
+
+          <div className="mt-16 p-6 bg-gray-900 border border-gray-800 text-sm text-gray-400">
+            <div className="font-bold font-mono text-white mb-2">ABOUT THIS ARTICLE</div>
+            domskysolutions.com reviews AI tools and SaaS software for founders, solopreneurs and builders. We test every tool we recommend and update our reviews regularly as products evolve. Some links in this article are affiliate links — we may earn a commission if you sign up through them at no extra cost to you.
+          </div>
         </div>
       </div>
     </div>
@@ -663,6 +1707,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/tools/:id" element={<ToolPage />} />
+          <Route path="/reviews/:id" element={<ToolPage />} />
+          <Route path="/blog/replaced-saas-stack-with-ai-tools" element={<BlogPost />} />
         </Routes>
         <Footer />
       </div>
