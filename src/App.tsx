@@ -9,26 +9,26 @@ import {
 // --- Data ---
 
 const featuredTools = [
-  { name: 'Claude 3.5', category: 'Writing', desc: 'Anthropic\'s most capable model yet, excelling at coding and complex reasoning.', rating: 4.9, link: '#' },
-  { name: 'Perplexity', category: 'Research', desc: 'The AI search engine that actually cites its sources. A Google killer.', rating: 4.8, link: '#' },
-  { name: 'Notion AI', category: 'Productivity', desc: 'Your workspace, supercharged. Write, brainstorm, and summarize instantly.', rating: 4.7, link: '#' },
-  { name: 'Runway Gen-3', category: 'Video', desc: 'High-fidelity, controllable video generation for creative professionals.', rating: 4.8, link: '#' },
-  { name: 'ElevenLabs', category: 'Audio', desc: 'The undisputed king of AI voice generation and text-to-speech.', rating: 4.9, link: '#' },
-  { name: 'Cursor', category: 'Coding', desc: 'The AI-first code editor that feels like pair programming with a genius.', rating: 5.0, link: '#' },
+  { name: 'Claude 3.5', category: 'Writing', desc: 'Anthropic\'s most capable model yet, excelling at coding and complex reasoning.', rating: 4.9, link: 'https://claude.ai' },
+  { name: 'Perplexity', category: 'Research', desc: 'The AI search engine that actually cites its sources. A Google killer.', rating: 4.8, link: 'https://perplexity.ai' },
+  { name: 'Notion AI', category: 'Productivity', desc: 'Your workspace, supercharged. Write, brainstorm, and summarize instantly.', rating: 4.7, link: 'https://notion.so' },
+  { name: 'Runway Gen-3', category: 'Video', desc: 'High-fidelity, controllable video generation for creative professionals.', rating: 4.8, link: 'https://runwayml.com' },
+  { name: 'ElevenLabs', category: 'Audio', desc: 'The undisputed king of AI voice generation and text-to-speech.', rating: 4.9, link: 'https://elevenlabs.io' },
+  { name: 'Cursor', category: 'Coding', desc: 'The AI-first code editor that feels like pair programming with a genius.', rating: 5.0, link: 'https://cursor.sh' },
 ];
 
 const saasReviews = [
-  { name: 'Midjourney v6', score: 9.5, bestFor: 'Photorealistic image generation', tag: 'Editor\'s Pick 🏆', link: '#' },
-  { name: 'Jasper', score: 8.2, bestFor: 'Enterprise marketing teams', tag: 'Best for Teams 👥', link: '#' },
-  { name: 'Descript', score: 9.0, bestFor: 'Podcast and video editing', tag: 'Best Value 💰', link: '#' },
-  { name: 'Framer AI', score: 8.5, bestFor: 'Rapid website prototyping', tag: 'Designers Choice 🎨', link: '#' },
-  { name: 'Synthesia', score: 8.8, bestFor: 'AI avatar video creation', tag: 'Top Rated ⭐', link: '#' },
+  { name: 'Midjourney v6', score: 9.5, bestFor: 'Photorealistic image generation', tag: 'Editor\'s Pick 🏆', link: 'https://midjourney.com' },
+  { name: 'Jasper', score: 8.2, bestFor: 'Enterprise marketing teams', tag: 'Best for Teams 👥', link: 'https://jasper.ai' },
+  { name: 'Descript', score: 9.0, bestFor: 'Podcast and video editing', tag: 'Best Value 💰', link: 'https://descript.com' },
+  { name: 'Framer AI', score: 8.5, bestFor: 'Rapid website prototyping', tag: 'Designers Choice 🎨', link: 'https://framer.com' },
+  { name: 'Synthesia', score: 8.8, bestFor: 'AI avatar video creation', tag: 'Top Rated ⭐', link: 'https://synthesia.io' },
 ];
 
 const newsArticles = [
-  { tag: 'News', title: 'OpenAI Drops GPT-5: What Founders Need to Know', date: 'Oct 24, 2025', excerpt: 'The highly anticipated model brings agentic capabilities and massive context windows to the masses.' },
-  { tag: 'Research', title: 'Anthropic\'s Claude Gets Memory — Here\'s What Changes', date: 'Oct 22, 2025', excerpt: 'Claude can now remember your preferences across sessions, making it a true personalized assistant.' },
-  { tag: 'Launch', title: 'Top 10 AI Tools Replacing Traditional SaaS in 2025', date: 'Oct 20, 2025', excerpt: 'From CRM to design, these AI-native platforms are eating into the market share of legacy software.' },
+  { tag: 'News', title: 'OpenAI Drops GPT-5: What Founders Need to Know', date: 'Apr 24, 2026', excerpt: 'The highly anticipated model brings agentic capabilities and massive context windows to the masses.' },
+  { tag: 'Research', title: 'Anthropic\'s Claude Gets Memory — Here\'s What Changes', date: 'Apr 22, 2026', excerpt: 'Claude can now remember your preferences across sessions, making it a true personalized assistant.' },
+  { tag: 'Launch', title: 'Top 10 AI Tools Replacing Traditional SaaS in 2025', date: 'Apr 20, 2026', excerpt: 'From CRM to design, these AI-native platforms are eating into the market share of legacy software.' },
 ];
 
 const categories = [
@@ -60,7 +60,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 flex items-center">
             <a href="#" className="font-mono text-2xl font-bold tracking-tighter">
-              domskytech<span className="text-brand-cyan">.ai</span>
+              domskysolutions<span className="text-brand-cyan">.com</span>
             </a>
           </div>
           <div className="hidden md:flex items-center space-x-8">
@@ -336,7 +336,7 @@ const Newsletter = () => {
         >
           <h2 className="text-4xl md:text-5xl font-bold font-mono mb-6">Stay Ahead of the AI Curve</h2>
           <p className="text-xl text-gray-300 mb-10 font-light">
-            Join 12,000+ founders getting weekly AI tool picks, deals & news straight to their inbox.
+            Join our growing community of AI enthusiasts getting weekly AI tool picks, deals & news straight to their inbox.
           </p>
           
           <form className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mb-6" onSubmit={(e) => e.preventDefault()}>
@@ -372,7 +372,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           <div className="lg:col-span-2">
             <a href="#" className="font-mono text-2xl font-bold tracking-tighter block mb-4">
-              domskytech<span className="text-brand-cyan">.ai</span>
+              domskysolutions<span className="text-brand-cyan">.com</span>
             </a>
             <p className="text-gray-400 text-sm mb-6 max-w-sm">
               Your Edge in the AI Era. We curate the best AI tools, software reviews, and news for builders and founders.
@@ -419,10 +419,10 @@ const Footer = () => {
         
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-xs font-mono">
-            © 2025 domskytech.ai — All rights reserved
+            © 2026 domskysolutions.com — All rights reserved
           </p>
           <p className="text-gray-600 text-xs">
-            domskytech.ai is independent. We may earn commissions from affiliate links.
+            domskysolutions.com is independent. We may earn commissions from affiliate links.
           </p>
         </div>
       </div>
