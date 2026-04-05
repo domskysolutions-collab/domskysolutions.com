@@ -8,13 +8,13 @@
   --color-brand-bg: #0D0F12;
   --color-brand-cyan: #00F5D4;
   --color-brand-amber: #F5A623;
-  --color-brand-surface: #1A1D24;
-  --color-brand-surface-hover: #232730;
+  --color-brand-surface: #1a1a2e;
+  --color-brand-surface-hover: #252542;
 }
 
 body {
   background-color: var(--color-brand-bg);
-  color: #ffffff;
+  color: #FFFFFF;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -42,9 +42,8 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 /* Grid Background Pattern */
 .bg-grid-pattern {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 /* Scanline Animation */
@@ -81,4 +80,20 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 }
 .glow-amber-hover:hover {
   box-shadow: 0 0 20px rgba(245, 166, 35, 0.5);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(245, 166, 35, 0.4); }
+  50% { box-shadow: 0 0 25px rgba(245, 166, 35, 0.7); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 2s infinite ease-in-out;
 }
