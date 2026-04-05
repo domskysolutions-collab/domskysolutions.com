@@ -5,6 +5,7 @@ import {
   PenTool, Palette, Code, Megaphone, Zap, Video, Mic, FlaskConical,
   Twitter, Linkedin, Youtube, CheckCircle2
 } from 'lucide-react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 // --- Data ---
 
@@ -443,6 +444,7 @@ export default function App() {
         <Newsletter />
       </main>
       <Footer />
+      <SpeedInsights />
     </div>
   );
 }
