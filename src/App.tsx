@@ -1135,6 +1135,87 @@ const CategoryExplorer = () => {
   );
 };
 
+const ConvertKitForm = ({ 
+  className = "", 
+  inputClassName = "", 
+  buttonClassName = "", 
+  buttonText = "Join the Community",
+  placeholder = "Enter your email address..."
+}) => {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      setStatus("error");
+      return;
+    }
+    
+    setStatus("loading");
+    
+    try {
+      const formId = import.meta.env.VITE_CONVERTKIT_FORM_ID;
+      const apiKey = import.meta.env.VITE_CONVERTKIT_API_KEY;
+
+      const response = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          api_key: apiKey,
+          email: email,
+        }),
+      });
+      
+      if (response.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      setStatus("error");
+    }
+  };
+
+  if (status === "success") {
+    return (
+      <div className={`text-brand-cyan font-bold font-mono text-center py-4 text-lg ${className}`}>
+        You are in! Welcome to the community.
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative w-full">
+      <form className={className} onSubmit={handleSubmit}>
+        <input 
+          type="email" 
+          placeholder={placeholder}
+          className={inputClassName}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          disabled={status === "loading"}
+        />
+        <button 
+          type="submit" 
+          className={`${buttonClassName} ${status === "loading" ? "animate-pulse opacity-80" : ""}`}
+          disabled={status === "loading"}
+        >
+          {status === "loading" ? "Joining..." : buttonText}
+        </button>
+      </form>
+      {status === "error" && (
+        <div className="text-red-500 text-sm mt-2 font-mono text-center absolute -bottom-6 left-0 right-0">
+          Something went wrong. Please try again.
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Newsletter = () => {
   return (
     <section id="newsletter" className="py-24 relative overflow-hidden">
@@ -1154,20 +1235,12 @@ const Newsletter = () => {
             Join our growing community of AI enthusiasts getting weekly AI tool picks, deals & news straight to their inbox.
           </p>
           
-          <form className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mb-6" onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="email" 
-              placeholder="Enter your email address..." 
-              className="flex-grow bg-brand-surface border border-gray-700 px-6 py-4 text-white focus:outline-none focus:border-brand-cyan transition-colors font-mono text-sm"
-              required
-            />
-            <button 
-              type="submit" 
-              className="bg-brand-amber text-brand-bg px-8 py-4 font-bold hover:bg-yellow-400 transition-colors glow-amber-hover whitespace-nowrap"
-            >
-              Subscribe Free
-            </button>
-          </form>
+          <ConvertKitForm 
+            className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mb-6"
+            inputClassName="flex-grow bg-brand-surface border border-gray-700 px-6 py-4 text-white focus:outline-none focus:border-brand-cyan transition-colors font-mono text-sm"
+            buttonClassName="bg-brand-amber text-brand-bg px-8 py-4 font-bold hover:bg-yellow-400 transition-colors glow-amber-hover whitespace-nowrap"
+            buttonText="Subscribe Free"
+          />
           
           <div className="flex flex-wrap justify-center items-center gap-6 text-xs font-mono text-gray-500">
             <span className="flex items-center gap-1"><CheckCircle2 size={14} className="text-brand-cyan" /> No spam.</span>
@@ -3393,16 +3466,13 @@ const AboutPage = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="flex-1 bg-brand-bg border border-gray-700 px-4 py-3 rounded text-white focus:outline-none focus:border-brand-cyan transition-colors"
-                />
-                <button className="bg-brand-amber text-brand-bg px-6 py-3 rounded font-bold hover:bg-yellow-400 transition-colors glow-amber-hover whitespace-nowrap">
-                  Join the Community
-                </button>
-              </div>
+              <ConvertKitForm 
+                className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+                inputClassName="flex-1 bg-brand-bg border border-gray-700 px-4 py-3 rounded text-white focus:outline-none focus:border-brand-cyan transition-colors"
+                buttonClassName="bg-brand-amber text-brand-bg px-6 py-3 rounded font-bold hover:bg-yellow-400 transition-colors glow-amber-hover whitespace-nowrap"
+                buttonText="Join the Community"
+                placeholder="Enter your email"
+              />
               <p className="text-xs text-gray-500 mt-4">
                 Joining is free. Unsubscribing is one click. We have never sent spam and we never will.
               </p>
@@ -3774,20 +3844,13 @@ const HomePage = () => {
             Every week: the best AI tool picks, honest reviews, and strategies that actually move the needle. Free forever.
           </p>
           
-          <form className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto mb-8" onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="email" 
-              placeholder="Enter your email address" 
-              className="flex-grow bg-brand-surface border border-gray-700 px-6 py-4 text-white focus:outline-none focus:border-brand-cyan transition-colors"
-              required
-            />
-            <button 
-              type="submit" 
-              className="bg-brand-amber text-brand-bg px-8 py-4 font-bold hover:bg-yellow-400 transition-colors glow-amber-hover whitespace-nowrap"
-            >
-              Join the Community
-            </button>
-          </form>
+          <ConvertKitForm 
+            className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto mb-8"
+            inputClassName="flex-grow bg-brand-surface border border-gray-700 px-6 py-4 text-white focus:outline-none focus:border-brand-cyan transition-colors"
+            buttonClassName="bg-brand-amber text-brand-bg px-8 py-4 font-bold hover:bg-yellow-400 transition-colors glow-amber-hover whitespace-nowrap"
+            buttonText="Join the Community"
+            placeholder="Enter your email address"
+          />
           
           <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 font-mono">
             <span className="flex items-center gap-2"><CheckCircle2 size={16} className="text-brand-cyan" /> Free forever</span>
