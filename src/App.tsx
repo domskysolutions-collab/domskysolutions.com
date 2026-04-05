@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
-import { motion, useScroll } from 'motion/react';
+import { motion, useScroll, useInView } from 'motion/react';
 import { 
   Menu, X, ArrowRight, Star, ExternalLink, 
   PenTool, Palette, Code, Megaphone, Zap, Video, Mic, FlaskConical,
@@ -863,18 +863,26 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="font-mono text-2xl font-bold tracking-tighter">
-              domskysolutions<span className="text-brand-cyan">.com</span>
+            <Link to="/" className="flex items-center">
+              <img
+                src="/images/domsky-logo.png"
+                alt="Domsky Solutions"
+                style={{ 
+                  height: '40px', 
+                  width: 'auto', 
+                  objectFit: 'contain' 
+                }}
+              />
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-8">
-            <a href="/#tools" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Tools</a>
-            <a href="/#reviews" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">SaaS Reviews</a>
-            <a href="/#news" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">AI News</a>
+            <Link to="/" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Home</Link>
+            <Link to="/tools" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Tools</Link>
+            <Link to="/reviews" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">SaaS Reviews</Link>
             <Link to="/blog" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Blog</Link>
-            <a href="/#about" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">About</a>
+            <Link to="/about" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">About</Link>
             <a href="/#newsletter" className="bg-brand-amber text-brand-bg px-5 py-2.5 rounded-none font-bold text-sm hover:bg-yellow-400 transition-colors glow-amber-hover flex items-center gap-2">
-              Get Free Newsletter
+              Join the Community
             </a>
           </div>
           <div className="md:hidden flex items-center">
@@ -889,12 +897,12 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-brand-surface border-b border-gray-800">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="/#tools" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Tools</a>
-            <a href="/#reviews" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">SaaS Reviews</a>
-            <a href="/#news" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">AI News</a>
-            <Link to="/blog" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Blog</Link>
-            <a href="/#about" className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">About</a>
-            <a href="/#newsletter" className="block px-3 py-2 text-base font-medium text-brand-amber">Get Free Newsletter</a>
+            <Link to="/" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Home</Link>
+            <Link to="/tools" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Tools</Link>
+            <Link to="/reviews" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">SaaS Reviews</Link>
+            <Link to="/blog" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Blog</Link>
+            <Link to="/about" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">About</Link>
+            <a href="/#newsletter" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-brand-amber">Join the Community</a>
           </div>
         </div>
       )}
@@ -1178,11 +1186,20 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           <div className="lg:col-span-2">
-            <a href="#" className="font-mono text-2xl font-bold tracking-tighter block mb-4">
-              domskysolutions<span className="text-brand-cyan">.com</span>
-            </a>
+            <Link to="/" className="flex items-center mb-4">
+              <img
+                src="/images/domsky-logo.png"
+                alt="Domsky Solutions"
+                style={{ 
+                  height: '36px', 
+                  width: 'auto', 
+                  objectFit: 'contain',
+                  opacity: 0.9
+                }}
+              />
+            </Link>
             <p className="text-gray-400 text-sm mb-6 max-w-sm">
-              Your Edge in the AI Era. We curate the best AI tools, software reviews, and news for builders and founders.
+              Independent. Ad-free. Builder-focused. We curate the best AI tools, software reviews, and news for builders and founders.
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-gray-500 hover:text-brand-cyan transition-colors"><Twitter size={20} /></a>
@@ -1192,34 +1209,28 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-mono font-bold text-white mb-4">Tools</h4>
+            <h4 className="font-mono font-bold text-white mb-4">Explore</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Writing AI</a></li>
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Coding Assistants</a></li>
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Image Generators</a></li>
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Video Creation</a></li>
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Productivity</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="font-mono font-bold text-white mb-4">Reviews</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Top SaaS 2025</a></li>
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">ChatGPT vs Claude</a></li>
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Best AI Video Tools</a></li>
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Marketing AI Stack</a></li>
+              <li><Link to="/tools" className="hover:text-brand-cyan transition-colors">Tools</Link></li>
+              <li><Link to="/reviews" className="hover:text-brand-cyan transition-colors">SaaS Reviews</Link></li>
+              <li><Link to="/blog" className="hover:text-brand-cyan transition-colors">Blog</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-mono font-bold text-white mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#about" className="hover:text-brand-cyan transition-colors">About Us</a></li>
+              <li><Link to="/about" className="hover:text-brand-cyan transition-colors">About</Link></li>
               <li><a href="#" className="hover:text-brand-cyan transition-colors">Contact</a></li>
               <li><a href="#" className="hover:text-brand-cyan transition-colors">Advertise</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-mono font-bold text-white mb-4">Legal</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
               <li><a href="#" className="hover:text-brand-cyan transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Terms of Service</a></li>
+              <li><a href="#" className="hover:text-brand-cyan transition-colors">Disclaimer</a></li>
             </ul>
           </div>
         </div>
@@ -1398,6 +1409,12 @@ const ToolReviewCard = ({ name, desc, to }: { name: string, desc: string, to: st
   </div>
 );
 
+const ReviewLinkCard = ({ name, to }: { name: string, to: string }) => (
+  <Link to={to} className="inline-flex items-center gap-2 px-4 py-2 bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan text-sm font-bold font-mono rounded hover:bg-brand-cyan/20 hover:border-brand-cyan transition-all group">
+    Read our full {name} review <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+  </Link>
+);
+
 const Money = ({ children }: { children: React.ReactNode }) => (
   <span className="font-bold text-[1.1em] text-white">{children}</span>
 );
@@ -1467,6 +1484,26 @@ const BLOG_POSTS = [
     date: "April 2026",
     readTime: "9 minutes",
     image: "/images/team-of-10-article.jpg",
+    author: "Domsky Solutions Team"
+  },
+  {
+    title: "Claude vs ChatGPT vs Gemini — Which AI Assistant Should You Actually Use in 2026?",
+    slug: "/blog/claude-vs-chatgpt-vs-gemini-2026",
+    excerpt: "We tested all three head to head for 30 days on real work tasks. Here is the honest verdict on which AI assistant is actually worth your money in 2026.",
+    category: "AI News",
+    date: "April 2026",
+    readTime: "10 minutes",
+    image: "/images/ai-comparison-article.jpg",
+    author: "Domsky Solutions Team"
+  },
+  {
+    title: "How I Use AI to Run My Entire Business Solo — My Exact Daily Workflow",
+    slug: "/blog/ai-daily-workflow-solo-business",
+    excerpt: "I run a growing AI tools publication completely solo. Here is the exact workflow I use every day — the tools, the order, and the time it saves.",
+    category: "AI News",
+    date: "April 2026",
+    readTime: "9 minutes",
+    image: "/images/workflow-article.jpg",
     author: "Domsky Solutions Team"
   }
 ];
@@ -2145,16 +2182,1354 @@ const TeamOf10BlogPost = () => {
   );
 };
 
-const HomePage = () => (
-  <main>
-    <Hero />
-    <FeaturedTools />
-    <SaasReviews />
-    <CategoryExplorer />
-    <AiNews />
-    <Newsletter />
-  </main>
-);
+const AiComparisonBlogPost = () => {
+  const { scrollYProgress } = useScroll();
+
+  useEffect(() => {
+    document.title = "Claude vs ChatGPT vs Gemini — Which AI Assistant Should You Actually Use in 2026?";
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', "We tested Claude, ChatGPT and Gemini head to head across writing, coding, research and reasoning. Here is the honest verdict on which AI assistant is actually worth your money in 2026.");
+  }, []);
+
+  return (
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-brand-cyan origin-left z-50"
+        style={{ scaleX: scrollYProgress }}
+      />
+      
+      <div className="max-w-[680px] mx-auto px-6 pt-32">
+        <div className="mb-12">
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-brand-cyan font-mono text-sm uppercase tracking-wider">AI News</span>
+            <span className="text-gray-500 font-mono text-sm">•</span>
+            <span className="text-gray-400 font-mono text-sm">10 min read</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-8">
+            Claude vs ChatGPT vs Gemini — Which AI Assistant Should You Actually Use in 2026?
+          </h1>
+          <div className="flex flex-wrap gap-2">
+            {['Claude', 'ChatGPT', 'Gemini', 'AI Comparison', 'AI Tools 2026', 'Best AI Assistant'].map(tag => (
+              <span key={tag} className="px-3 py-1 bg-gray-800 text-gray-300 text-xs font-mono rounded-full border border-gray-700">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
+          <img 
+            src="/images/ai-comparison-article.jpg" 
+            alt="Cover image showing Claude, ChatGPT and Gemini logos" 
+            className="w-full h-auto object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+
+        <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
+          <p>
+            If you have spent any time trying to figure out which AI assistant to use in 2026 you already know the problem. Every review tells you they are all great. Every comparison hedges with "it depends on your use case." Every article seems to be written by someone who has not actually used all three seriously enough to have a real opinion.
+          </p>
+          <p>
+            This is not that article.
+          </p>
+          <p>
+            We used <span className="font-bold text-brand-cyan">Claude</span>, <span className="font-bold text-brand-cyan">ChatGPT</span> and <span className="font-bold text-brand-cyan">Gemini</span> as our primary AI assistants for thirty days each — for real work, real tasks, and real deadlines. Writing, coding, research, analysis, summarizing documents, brainstorming, and everything in between. We tracked where each one excelled, where each one frustrated us, and where the gaps between them were meaningful enough to actually change what we recommend.
+          </p>
+          <p className="font-bold italic text-white">
+            Here is the honest verdict.
+          </p>
+
+          <SectionDivider />
+
+          <H2>THE THREE CONTENDERS</H2>
+          <p>
+            Before we get into the comparison it is worth understanding what each of these tools actually is and who built it — because the company behind each model shapes its personality, priorities and weaknesses in ways that matter for daily use.
+          </p>
+
+          <H3>CLAUDE — Built by Anthropic</H3>
+          <p>
+            Claude is built by Anthropic, a company founded specifically around the goal of building AI that is safe, honest and genuinely helpful. That mission is not marketing — it shows up in how Claude behaves. It is more likely to tell you when it is uncertain, more careful about making things up, and more focused on actually solving your problem than on sounding impressive while doing it. The current flagship model is Claude Sonnet 4.6, with Claude Opus 4.6 available for the most demanding tasks.
+          </p>
+
+          <H3>CHATGPT — Built by OpenAI</H3>
+          <p>
+            ChatGPT is the tool that started the current AI revolution and it remains the most recognized name in the category. Built by OpenAI, it was the first AI assistant most people ever used and it has spent the years since trying to be everything to everyone — adding image generation, voice mode, web browsing, plugins, memory and more features than any competitor. The current flagship is GPT-4o, with the o1 and o3 models available for complex reasoning tasks.
+          </p>
+
+          <H3>GEMINI — Built by Google</H3>
+          <p>
+            Gemini is Google's answer to the AI assistant revolution — and it has the most powerful infrastructure behind it of any tool on this list. Google's search index, its real time web access, its integration with Gmail, Docs, Drive and every other Google product gives Gemini capabilities that neither Claude nor ChatGPT can match in the Google ecosystem. The current flagship is Gemini 1.5 Pro, with Gemini Ultra available for the highest capability tasks.
+          </p>
+
+          <SectionDivider />
+
+          <H2>THE HEAD TO HEAD TESTS</H2>
+          <p>
+            We ran the same tasks through all three tools and scored them honestly. Here is what we found.
+          </p>
+
+          <SectionDivider />
+
+          <H2>TEST 1 — WRITING QUALITY</H2>
+          <p>Task: Write a 500 word blog post introduction about the future of remote work</p>
+          <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
+            <span className="font-bold font-mono text-brand-cyan">Winner: Claude 🥇</span>
+          </div>
+          <p>
+            <span className="font-bold text-brand-cyan">Claude</span> produced the most natural, nuanced and genuinely readable output of the three. It did not just string together competent sentences — it constructed an argument with a clear point of view, varied sentence rhythm that made it pleasant to read, and a voice that did not sound like it came from a machine trying to sound human.
+          </p>
+          <p>
+            <span className="font-bold text-brand-cyan">ChatGPT</span> produced solid, competent writing that covered the topic thoroughly but felt slightly formulaic — the kind of writing that is correct in every way but memorable in none. It defaulted to predictable structures and safe observations where Claude took more interesting angles.
+          </p>
+          <p>
+            <span className="font-bold text-brand-cyan">Gemini</span> struggled the most with tone — its output read more like an informational summary than a compelling piece of writing. Technically accurate but flat in a way that would require significant editing before publishing.
+          </p>
+          <p className="font-bold italic text-white mt-6">
+            For anything where writing quality matters — blog posts, emails, copy, proposals — Claude is the clear choice.
+          </p>
+
+          <SectionDivider />
+
+          <H2>TEST 2 — CODING ABILITY</H2>
+          <p>Task: Build a working React component for a newsletter signup form with validation</p>
+          <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
+            <span className="font-bold font-mono text-brand-cyan">Winner: ChatGPT 🥇 (narrow margin over Claude)</span>
+          </div>
+          <p>
+            <span className="font-bold text-brand-cyan">ChatGPT</span> produced clean, well structured code that worked on the first attempt with minimal adjustment needed. Its code comments were clear, its component structure was logical, and it anticipated edge cases we had not mentioned in the prompt without being asked.
+          </p>
+          <p>
+            <span className="font-bold text-brand-cyan">Claude</span> was a very close second — its code was equally functional and arguably better commented, but it occasionally over-engineered solutions in ways that required simplification. For simple to medium complexity coding tasks the gap is negligible. For very complex multi-file architecture tasks Claude's reasoning ability gives it an edge.
+          </p>
+          <p>
+            <span className="font-bold text-brand-cyan">Gemini</span> lagged noticeably on coding tasks — producing working code but with less elegant structure and fewer thoughtful implementation details than either competitor.
+          </p>
+          <p className="font-bold italic text-white mt-6">
+            For coding tasks either Claude or ChatGPT will serve you well. ChatGPT has a slight edge on straightforward implementation, Claude has an edge on complex reasoning about architecture.
+          </p>
+
+          <SectionDivider />
+
+          <H2>TEST 3 — RESEARCH & CURRENT INFORMATION</H2>
+          <p>Task: Summarize the three most significant AI developments from the past month</p>
+          <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
+            <span className="font-bold font-mono text-brand-cyan">Winner: Gemini 🥇</span>
+          </div>
+          <p>
+            This is where <span className="font-bold text-brand-cyan">Gemini's</span> Google infrastructure becomes an insurmountable advantage. Its real time access to Google's search index means it can answer questions about current events, recent developments, and breaking news with an accuracy and depth that neither Claude nor ChatGPT can match from their training data alone.
+          </p>
+          <p>
+            <span className="font-bold text-brand-cyan">ChatGPT</span> with web browsing enabled is a reasonable competitor here — it can search the web and synthesize results, but its search quality and source selection is noticeably less sophisticated than Gemini's native Google integration.
+          </p>
+          <p>
+            <span className="font-bold text-brand-cyan">Claude</span> is the most honest about its limitations here — it will tell you clearly when its knowledge cutoff means it cannot answer a current events question reliably, rather than confidently making something up. That honesty is valuable but it does mean Claude is not the right tool for research requiring real time information.
+          </p>
+          <p className="font-bold italic text-white mt-6">
+            For research requiring current information use Gemini or pair Claude with Perplexity for the best results.
+          </p>
+
+          <SectionDivider />
+
+          <H2>TEST 4 — DOCUMENT ANALYSIS</H2>
+          <p>Task: Analyze a 40 page business report and identify the three biggest risks</p>
+          <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
+            <span className="font-bold font-mono text-brand-cyan">Winner: Claude 🥇</span>
+          </div>
+          <p>
+            <span className="font-bold text-brand-cyan">Claude's</span> massive context window — one of the largest available in any consumer AI tool — gives it a significant advantage on long document tasks. It read, retained and reasoned across the entire 40 page document without losing context or conflating information from different sections.
+          </p>
+          <p>
+            More importantly it identified risks that required reading between the lines — implications buried in financial footnotes, tensions between statements made in different sections, and trends visible only when comparing data across multiple tables. That level of analytical depth genuinely impressed us.
+          </p>
+          <p>
+            <span className="font-bold text-brand-cyan">ChatGPT</span> handled the task competently but showed signs of context strain on the longer document — occasionally referencing information slightly inaccurately in ways that suggested it had not fully retained the earlier sections by the time it reached the end.
+          </p>
+          <p>
+            <span className="font-bold text-brand-cyan">Gemini</span> performed similarly to ChatGPT on this task — capable but not exceptional on the analytical depth dimension.
+          </p>
+          <p className="font-bold italic text-white mt-6">
+            For document analysis, contract review, report summarization and any task requiring reasoning across large amounts of text Claude is the clear winner.
+          </p>
+
+          <SectionDivider />
+
+          <H2>TEST 5 — HONESTY & RELIABILITY</H2>
+          <p>Task: Ask each tool a question with a definitively wrong common answer to see if they push back or agree</p>
+          <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
+            <span className="font-bold font-mono text-brand-cyan">Winner: Claude 🥇</span>
+          </div>
+          <p>
+            This test matters more than most comparisons acknowledge. An AI assistant that confidently tells you wrong things is not just useless — it is actively dangerous if you are making business decisions based on its outputs.
+          </p>
+          <p>
+            <span className="font-bold text-brand-cyan">Claude</span> pushed back on the incorrect premise immediately, explained why the common answer was wrong, and provided the correct information with appropriate context about its confidence level. It did this without being preachy or condescending — just clear and direct.
+          </p>
+          <p>
+            <span className="font-bold text-brand-cyan">ChatGPT</span> agreed with the incorrect premise in two out of three test variations before course correcting when pushed. It was more susceptible to sycophancy — telling us what we seemed to want to hear rather than what was actually true.
+          </p>
+          <p>
+            <span className="font-bold text-brand-cyan">Gemini</span> split the difference — more reliable than ChatGPT on factual accuracy but less consistently willing to push back on incorrect premises than Claude.
+          </p>
+          <p className="font-bold italic text-white mt-6">
+            For any task where accuracy matters more than agreeableness — which is most tasks worth doing — Claude's honesty is a genuine competitive advantage.
+          </p>
+
+          <SectionDivider />
+
+          <H2>TEST 6 — GOOGLE WORKSPACE INTEGRATION</H2>
+          <p>Task: Summarize my last week of emails and identify action items</p>
+          <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
+            <span className="font-bold font-mono text-brand-cyan">Winner: Gemini 🥇 (by a massive margin)</span>
+          </div>
+          <p>
+            This test only applies to <span className="font-bold text-brand-cyan">Gemini</span> because Claude and ChatGPT simply cannot do it — they have no access to your Gmail, Google Drive, Google Docs or Google Calendar. Gemini can read your emails, summarize your documents, find files in your Drive, and work across your entire Google workspace natively.
+          </p>
+          <p>
+            For anyone deeply embedded in the Google ecosystem this capability alone might be enough to justify Gemini as your primary AI assistant regardless of where it falls short on other dimensions.
+          </p>
+          <p className="font-bold italic text-white mt-6">
+            If you live in Google Workspace Gemini is the only tool that works natively with your existing data.
+          </p>
+
+          <SectionDivider />
+
+          <H2>THE SCORECARD</H2>
+          <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden my-8">
+            <table className="w-full text-left border-collapse">
+              <tbody className="divide-y divide-gray-800">
+                <tr className="hover:bg-gray-800/50 transition-colors">
+                  <td className="py-3 px-6 text-gray-300 font-medium">Writing Quality</td>
+                  <td className="py-3 px-6 text-right">
+                    <div className="flex flex-col gap-1 text-sm">
+                      <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
+                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐</span></div>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-800/50 transition-colors">
+                  <td className="py-3 px-6 text-gray-300 font-medium">Coding Ability</td>
+                  <td className="py-3 px-6 text-right">
+                    <div className="flex flex-col gap-1 text-sm">
+                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                      <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐</span></div>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-800/50 transition-colors">
+                  <td className="py-3 px-6 text-gray-300 font-medium">Current Information</td>
+                  <td className="py-3 px-6 text-right">
+                    <div className="flex flex-col gap-1 text-sm">
+                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
+                      <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐</span></div>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-800/50 transition-colors">
+                  <td className="py-3 px-6 text-gray-300 font-medium">Document Analysis</td>
+                  <td className="py-3 px-6 text-right">
+                    <div className="flex flex-col gap-1 text-sm">
+                      <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
+                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-800/50 transition-colors">
+                  <td className="py-3 px-6 text-gray-300 font-medium">Honesty & Reliability</td>
+                  <td className="py-3 px-6 text-right">
+                    <div className="flex flex-col gap-1 text-sm">
+                      <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
+                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐</span></div>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-800/50 transition-colors">
+                  <td className="py-3 px-6 text-gray-300 font-medium">Google Integration</td>
+                  <td className="py-3 px-6 text-right">
+                    <div className="flex flex-col gap-1 text-sm">
+                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-gray-500">✗</span></div>
+                      <div className="flex justify-between"><span>Claude</span><span className="text-gray-500">✗</span></div>
+                    </div>
+                  </td>
+                </tr>
+                <tr className="bg-gray-800/30">
+                  <td className="py-4 px-6 font-bold text-white">Overall Score</td>
+                  <td className="py-4 px-6 text-right">
+                    <div className="flex flex-col gap-1 text-sm font-bold font-mono">
+                      <div className="flex justify-between"><span>Claude</span><span className="text-brand-cyan">29/30</span></div>
+                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-cyan">26/30</span></div>
+                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-cyan">25/30</span></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <SectionDivider />
+
+          <H2>THE HONEST RECOMMENDATION</H2>
+          <p>
+            There is no single right answer here — but there is a right answer for most people reading this article.
+          </p>
+
+          <H3>CHOOSE CLAUDE IF:</H3>
+          <p>
+            You are a writer, founder, consultant, researcher or knowledge worker whose primary use of AI is thinking, writing and analysis. Claude will make you better at your core work in a way that feels less like using a tool and more like thinking alongside someone genuinely intelligent. The <Money>$20/month</Money> Pro plan is one of the best value subscriptions in the AI tools market.
+          </p>
+
+          <H3>CHOOSE CHATGPT IF:</H3>
+          <p>
+            You are a developer or technical user who needs the broadest feature set — image generation, voice mode, plugins, the widest range of third party integrations, and the most established ecosystem of tools built around a single AI platform. ChatGPT's breadth is unmatched even if its depth on individual tasks is occasionally surpassed.
+          </p>
+
+          <H3>CHOOSE GEMINI IF:</H3>
+          <p>
+            You live in Google Workspace and want an AI assistant that works natively with your existing email, documents and calendar. Or if real time web information is a core part of your daily AI usage and you want the most deeply integrated search capability available in any consumer AI tool.
+          </p>
+
+          <CalloutTip>
+            <span className="font-bold text-white">THE POWER USER MOVE:</span> Use Claude as your primary assistant for thinking and writing. Use Perplexity for real time research. Use Cursor for coding. You get the best of every capability without being limited by the weaknesses of any single tool.
+          </CalloutTip>
+
+          <SectionDivider />
+
+          <H2>PRICING COMPARISON</H2>
+          <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden my-8">
+            <table className="w-full text-left border-collapse">
+              <tbody className="divide-y divide-gray-800">
+                <tr className="hover:bg-gray-800/50 transition-colors">
+                  <td className="py-3 px-6 text-gray-300">Claude Free</td>
+                  <td className="py-3 px-6 text-brand-cyan font-mono text-right">Limited daily messages</td>
+                </tr>
+                <tr className="hover:bg-gray-800/50 transition-colors">
+                  <td className="py-3 px-6 text-gray-300">Claude Pro</td>
+                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money> — best value</td>
+                </tr>
+                <tr className="bg-gray-800/20">
+                  <td colSpan={2} className="py-1"></td>
+                </tr>
+                <tr className="hover:bg-gray-800/50 transition-colors">
+                  <td className="py-3 px-6 text-gray-300">ChatGPT Free</td>
+                  <td className="py-3 px-6 text-brand-cyan font-mono text-right">Limited GPT-4o access</td>
+                </tr>
+                <tr className="hover:bg-gray-800/50 transition-colors">
+                  <td className="py-3 px-6 text-gray-300">ChatGPT Plus</td>
+                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money></td>
+                </tr>
+                <tr className="hover:bg-gray-800/50 transition-colors">
+                  <td className="py-3 px-6 text-gray-300">ChatGPT Pro</td>
+                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$200/month</Money></td>
+                </tr>
+                <tr className="bg-gray-800/20">
+                  <td colSpan={2} className="py-1"></td>
+                </tr>
+                <tr className="hover:bg-gray-800/50 transition-colors">
+                  <td className="py-3 px-6 text-gray-300">Gemini Free</td>
+                  <td className="py-3 px-6 text-brand-cyan font-mono text-right">Basic Gemini access</td>
+                </tr>
+                <tr className="hover:bg-gray-800/50 transition-colors">
+                  <td className="py-3 px-6 text-gray-300">Gemini Advanced</td>
+                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$19.99/month</Money> <br/><span className="text-xs text-gray-500">(included in Google One AI Premium)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            All three offer meaningful free tiers that are worth trying before committing to a paid plan. Start free, identify which tool fits your workflow, then upgrade when the usage limits become a real constraint on your work.
+          </p>
+
+          <SectionDivider />
+
+          <H2>FINAL VERDICT</H2>
+          <p>
+            <span className="font-bold text-brand-cyan">Claude</span> wins on the dimensions that matter most for serious knowledge work — writing quality, analytical depth, document reasoning and honesty. For the majority of founders, creators, consultants and professionals reading this article, Claude is the AI assistant we recommend starting with.
+          </p>
+          <p>
+            <span className="font-bold text-brand-cyan">ChatGPT</span> remains the most versatile option for users who need the broadest feature set and the most established third party ecosystem. It is not the best at any single thing on this list but it is excellent at everything, which has its own value.
+          </p>
+          <p>
+            <span className="font-bold text-brand-cyan">Gemini</span> is the specialist — extraordinary in its Google integration and real time information capabilities, and a genuinely strong all-round assistant for anyone already living in the Google ecosystem.
+          </p>
+          <p>
+            The good news is that all three offer free plans generous enough to form a real opinion. Try them all for a week on real tasks from your actual work before committing to a paid plan. The right answer will become obvious faster than you expect.
+          </p>
+
+          <SectionDivider />
+
+          <H2>READ NEXT</H2>
+          <p>
+            We have a complete in-depth review of Claude covering every feature, pricing tier, pros and cons and exactly who it is best for:
+          </p>
+          <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" />
+          
+          <p className="mt-8">
+            And if you are serious about research alongside your AI assistant, read our Perplexity review — the tool that solves Claude's one real weakness:
+          </p>
+          <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" />
+
+          <div className="mt-16 p-6 bg-gray-900 border border-gray-800 text-sm text-gray-400">
+            <div className="font-bold font-mono text-white mb-2">ABOUT THIS ARTICLE</div>
+            domskysolutions.com reviews AI tools and SaaS software for founders, solopreneurs and builders. We test every tool we recommend and update our reviews regularly as products evolve. Some links in this article are affiliate links — we may earn a commission if you sign up through them at no extra cost to you.
+          </div>
+        </div>
+      </div>
+
+      {/* Related Articles Section */}
+      <div className="max-w-5xl mx-auto px-6 mt-24 border-t border-gray-800 pt-16">
+        <h2 className="text-2xl font-bold font-mono text-white mb-8">Related Articles</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {BLOG_POSTS.filter(p => p.slug !== "/blog/claude-vs-chatgpt-vs-gemini-2026").slice(0, 2).map(post => (
+            <BlogCard key={post.slug} post={post} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const AiDailyWorkflowBlogPost = () => {
+  const { scrollYProgress } = useScroll();
+
+  useEffect(() => {
+    document.title = "How I Use AI to Run My Entire Business Solo — My Exact Daily Workflow";
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', "I run a growing AI tools publication completely solo. Here is the exact AI workflow I use every single day — the tools, the order, the prompts, and the time it saves.");
+  }, []);
+
+  return (
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-brand-cyan origin-left z-50"
+        style={{ scaleX: scrollYProgress }}
+      />
+      
+      <div className="max-w-[680px] mx-auto px-6 pt-32">
+        <div className="mb-12">
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-brand-cyan font-mono text-sm uppercase tracking-wider">AI News</span>
+            <span className="text-gray-500 font-mono text-sm">•</span>
+            <span className="text-gray-400 font-mono text-sm">9 min read</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-8">
+            How I Use AI to Run My Entire Business Solo — My Exact Daily Workflow
+          </h1>
+          <div className="flex flex-wrap gap-2">
+            {['AI Workflow', 'Solopreneur', 'Productivity', 'AI Tools 2026', 'Daily Routine', 'Solo Business'].map(tag => (
+              <span key={tag} className="px-3 py-1 bg-gray-800 text-gray-300 text-xs font-mono rounded-full border border-gray-700">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
+          <img 
+            src="/images/workflow-article.jpg" 
+            alt="Cover image showing AI workflow" 
+            className="w-full h-auto object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+
+        <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
+          <p>
+            People ask me regularly how I manage to run domskysolutions.com — researching tools, writing reviews, publishing blog posts, managing social media, and keeping up with a industry that moves faster than any other — completely alone, without a team, without an agency, and without burning out in the process.
+          </p>
+          <p>
+            The honest answer is that I do not do it alone. I do it with a stack of AI tools that handle the parts of the work that used to require either a team or an unsustainable number of hours. What follows is not a theoretical framework or a curated list of tools I think sound impressive. It is the exact workflow I use every single day, in the order I use it, with the specific tools that have earned a permanent place in how I operate.
+          </p>
+          <p>
+            If you are building something solo — a newsletter, a content site, a consulting practice, a SaaS product, or anything in between — this is the closest thing I can offer to showing you exactly what running a one person business looks like when AI is doing its job properly.
+          </p>
+
+          <SectionDivider />
+
+          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE MORNING BLOCK — 7:00 AM TO 9:00 AM</h2>
+          <p className="text-xl text-white mb-6">"Intelligence gathering"</p>
+
+          <p>
+            The first two hours of my day used to be the most chaotic. Tabs open everywhere. Newsletter after newsletter. Twitter scrolling that felt productive but was not. Three different apps for notes that never talked to each other. I was consuming information without processing it, which meant I was always busy but rarely informed in any useful way.
+          </p>
+          <p>
+            Now my morning looks like this:
+          </p>
+
+          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 1 — THE DAILY BRIEF WITH PERPLEXITY</h3>
+          <p className="mb-2"><strong>Time:</strong> 15 minutes</p>
+          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Perplexity Pro</span></p>
+
+          <p>
+            The first thing I open every morning is <span className="text-brand-cyan font-bold">Perplexity</span>. I run the same three searches every day:
+          </p>
+
+          <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
+            <p className="text-brand-cyan mb-2">Search 1:</p>
+            <p className="mb-4">"Most significant AI tool launches and updates in the last 24 hours"</p>
+            
+            <p className="text-brand-cyan mb-2">Search 2:</p>
+            <p className="mb-4">"Latest news about [the specific tool I am currently reviewing]"</p>
+            
+            <p className="text-brand-cyan mb-2">Search 3:</p>
+            <p>"Top discussions about AI tools on Reddit and Twitter today"</p>
+          </div>
+
+          <p>
+            <span className="text-brand-cyan font-bold">Perplexity</span> reads the current web, pulls the most relevant sources, and gives me cited summaries in under a minute each. What used to take an hour of tab switching now takes fifteen minutes and I come away with actual information rather than the feeling of having been informed.
+          </p>
+
+          <CalloutTip>
+            <strong>Key insight:</strong> I save every interesting finding directly into <span className="text-brand-cyan font-bold">Notion</span> with one click. No more losing things in browser tabs.
+          </CalloutTip>
+
+          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 2 — PROCESSING NOTES WITH NOTION AI</h3>
+          <p className="mb-2"><strong>Time:</strong> 10 minutes</p>
+          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Notion AI</span></p>
+
+          <p>
+            Everything I captured yesterday — ideas, research notes, half-formed article concepts, interesting quotes — lives in a <span className="text-brand-cyan font-bold">Notion</span> inbox page. Every morning I open it and ask <span className="text-brand-cyan font-bold">Notion AI</span>:
+          </p>
+
+          <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
+            <p className="text-brand-cyan mb-2">Prompt:</p>
+            <p>"Summarize everything in this inbox, identify any action items, and suggest which items could become content pieces"</p>
+          </div>
+
+          <p>
+            It processes everything I dumped in yesterday and hands me back a clear picture of what needs attention. The cognitive load of remembering what I was working on is completely eliminated. I just read the summary and know exactly where I am.
+          </p>
+
+          <CalloutTip>
+            <strong>Key insight:</strong> <span className="text-brand-cyan font-bold">Notion AI</span> is not just a writing tool — it is a thinking partner that makes your existing notes more valuable than you could make them yourself.
+          </CalloutTip>
+
+          <SectionDivider />
+
+          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE CONTENT BLOCK — 9:00 AM TO 12:00 PM</h2>
+          <p className="text-xl text-white mb-6">"Creating and publishing"</p>
+
+          <p>
+            This is the core of my working day and where AI assistance has the most dramatic impact on output. Three hours of focused content work now produces what used to take a full day.
+          </p>
+
+          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 3 — FIRST DRAFT WITH CLAUDE</h3>
+          <p className="mb-2"><strong>Time:</strong> 30-45 minutes per piece</p>
+          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Claude Pro</span></p>
+
+          <p>
+            I do not stare at a blank page. Ever. <span className="text-brand-cyan font-bold">Claude</span> handles every first draft — blog posts, tool reviews, newsletter issues, social media threads. My process:
+          </p>
+
+          <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
+            <p className="text-brand-cyan mb-2">The prompt I use for blog posts:</p>
+            <p className="mb-4">"Write a detailed outline for an article titled [title]. The audience is founders and solopreneurs. The tone is direct, experienced, and honest — not salesy. Include a hook introduction, 5-7 main sections with subpoints, and a strong conclusion with a clear takeaway."</p>
+            
+            <p className="text-brand-cyan mb-2">Once the outline is approved I ask:</p>
+            <p>"Now write the full article based on this outline. Use specific examples, avoid generic statements, and write as if you are a practitioner who has actually used these tools — not a reviewer who is summarizing specs."</p>
+          </div>
+
+          <p>
+            The draft <span className="text-brand-cyan font-bold">Claude</span> produces is 70-80 percent of the way to publishable. The remaining 20-30 percent is my job — adding personal experience, specific examples from my actual use of the tools, and the genuine opinions that only come from real usage.
+          </p>
+
+          <CalloutTip>
+            <strong>Key insight:</strong> <span className="text-brand-cyan font-bold">Claude</span> does not replace my writing. It eliminates the blank page problem and the structural thinking, which are the two most time consuming parts of the writing process for me. The voice and the insight remain mine.
+          </CalloutTip>
+
+          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 4 — RESEARCH VERIFICATION WITH PERPLEXITY</h3>
+          <p className="mb-2"><strong>Time:</strong> 15 minutes</p>
+          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Perplexity Pro</span></p>
+
+          <p>
+            Before anything gets published I verify every factual claim — pricing, features, recent updates — against current sources. AI tools change fast. A pricing tier that was accurate two months ago might not be accurate today.
+          </p>
+
+          <p>
+            I paste the draft into a note and ask <span className="text-brand-cyan font-bold">Perplexity</span>:
+          </p>
+
+          <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
+            <p>"Verify these specific claims about [tool name] — are the pricing tiers, features, and any statistics current and accurate as of today?"</p>
+          </div>
+
+          <p>
+            It checks against live sources and flags anything that has changed. This single step is what separates content that builds trust from content that erodes it.
+          </p>
+
+          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 5 — VISUALS WITH MIDJOURNEY</h3>
+          <p className="mb-2"><strong>Time:</strong> 20 minutes</p>
+          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Midjourney Standard</span></p>
+
+          <p>
+            Every piece of content needs a cover image. My process is now:
+          </p>
+
+          <ol className="list-decimal pl-6 space-y-2 mb-6">
+            <li>Describe the article concept in one sentence</li>
+            <li>Ask <span className="text-brand-cyan font-bold">Claude</span> to suggest three <span className="text-brand-cyan font-bold">Midjourney</span> prompts that would create a compelling cover image for that concept</li>
+            <li>Run the best prompt in <span className="text-brand-cyan font-bold">Midjourney</span></li>
+            <li>Upscale the best result</li>
+            <li>Done</li>
+          </ol>
+
+          <p>
+            The cover images this process produces are consistently better than anything I could brief a designer to create because <span className="text-brand-cyan font-bold">Claude</span> understands both the article content and what makes a good <span className="text-brand-cyan font-bold">Midjourney</span> prompt.
+          </p>
+
+          <SectionDivider />
+
+          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE DISTRIBUTION BLOCK — 12:00 PM TO 1:00 PM</h2>
+          <p className="text-xl text-white mb-6">"Getting the work seen"</p>
+
+          <p>
+            Creating content that nobody sees is not a content strategy — it is a hobby. Distribution is half the job and AI has made it dramatically more efficient.
+          </p>
+
+          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 6 — SOCIAL CONTENT WITH CLAUDE</h3>
+          <p className="mb-2"><strong>Time:</strong> 20 minutes</p>
+          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Claude Pro</span></p>
+
+          <p>
+            Once an article is published I ask <span className="text-brand-cyan font-bold">Claude</span>:
+          </p>
+
+          <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
+            <p className="mb-4">"Based on this article [paste article], create the following:</p>
+            <ol className="list-decimal pl-6 space-y-2">
+              <li>A LinkedIn post — professional tone, leads with the most counterintuitive insight, ends with a question to drive comments. 250 words maximum.</li>
+              <li>An X thread — 8 tweets, hooks with a bold claim, each tweet is standalone valuable, ends with a link to the full article.</li>
+              <li>Three different hook options for the article that I can test across different platforms."</li>
+            </ol>
+          </div>
+
+          <p>
+            <span className="text-brand-cyan font-bold">Claude</span> produces all of this in under a minute. I review, edit anything that does not sound like me, and schedule everything in one sitting.
+          </p>
+
+          <CalloutTip>
+            <strong>Key insight:</strong> The same article now generates content for three platforms without three times the work. That compounding is what makes solo publishing sustainable.
+          </CalloutTip>
+
+          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 7 — NEWSLETTER ISSUE WITH CLAUDE + NOTION AI</h3>
+          <p className="mb-2"><strong>Time:</strong> 20 minutes</p>
+          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Claude Pro + Notion AI</span></p>
+
+          <p>
+            My weekly newsletter goes out every Thursday. The process:
+          </p>
+
+          <ol className="list-decimal pl-6 space-y-4 mb-6">
+            <li>Ask <span className="text-brand-cyan font-bold">Notion AI</span> to pull the most interesting things I captured in my inbox that week</li>
+            <li>
+              Ask <span className="text-brand-cyan font-bold">Claude</span> to turn the highlights into a newsletter format:
+              <div className="bg-brand-bg border border-gray-800 p-4 rounded mt-2 font-mono text-sm">
+                "Write a weekly newsletter issue using these highlights. Include: one main insight, three tool recommendations with one line each, one tip readers can use today, and a closing thought. Tone: like a smart friend sharing what they learned this week."
+              </div>
+            </li>
+            <li>Edit to add my voice and any personal context</li>
+            <li>Send</li>
+          </ol>
+
+          <p>
+            The entire newsletter production process takes under thirty minutes from a cold start.
+          </p>
+
+          <SectionDivider />
+
+          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE OPERATIONS BLOCK — 2:00 PM TO 3:00 PM</h2>
+          <p className="text-xl text-white mb-6">"Running the business"</p>
+
+          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 8 — TOOL RESEARCH WITH PERPLEXITY + CLAUDE</h3>
+          <p className="mb-2"><strong>Time:</strong> 45 minutes</p>
+          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Perplexity Pro + Claude Pro</span></p>
+
+          <p>
+            Every week I research one new tool deeply enough to write a full review. The process:
+          </p>
+
+          <div className="space-y-4 mb-6">
+            <div>
+              <p className="font-bold text-white">Phase 1 — Research with <span className="text-brand-cyan font-bold">Perplexity</span>:</p>
+              <p className="font-mono text-sm bg-brand-surface p-3 rounded border border-gray-800 mt-1">"Give me a comprehensive overview of [tool name] — what it does, who it is for, current pricing tiers, recent updates, and what users are saying about it on Reddit and Twitter"</p>
+            </div>
+            <div>
+              <p className="font-bold text-white">Phase 2 — Structure with <span className="text-brand-cyan font-bold">Claude</span>:</p>
+              <p className="font-mono text-sm bg-brand-surface p-3 rounded border border-gray-800 mt-1">"Based on this research [paste Perplexity output], create a detailed review outline following this structure: hero description, key features, pros, cons, pricing, who it is best for, final verdict"</p>
+            </div>
+            <div>
+              <p className="font-bold text-white">Phase 3 — Write with <span className="text-brand-cyan font-bold">Claude</span>:</p>
+              <p className="font-mono text-sm bg-brand-surface p-3 rounded border border-gray-800 mt-1">"Now write the full review using this outline. Be honest about limitations — we never write purely positive reviews."</p>
+            </div>
+            <div>
+              <p className="font-bold text-white">Phase 4 — Personal layer:</p>
+              <p className="mt-1">I add my own experience using the tool, specific examples, and genuine opinions before publishing.</p>
+            </div>
+          </div>
+
+          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 9 — CODING AND SITE UPDATES WITH CURSOR</h3>
+          <p className="mb-2"><strong>Time:</strong> As needed</p>
+          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Cursor Pro</span></p>
+
+          <p>
+            Any time the website needs updating — a new section, a bug fix, a design tweak — I use <span className="text-brand-cyan font-bold">Cursor</span>. I describe what I want in plain language and <span className="text-brand-cyan font-bold">Cursor</span> writes the code.
+          </p>
+
+          <p>
+            Last week I added a new filtering system to the tools page. I described what I wanted, <span className="text-brand-cyan font-bold">Cursor</span> wrote the React component, I reviewed it, and it was live in under an hour. Without <span className="text-brand-cyan font-bold">Cursor</span> that change would have required briefing a developer and waiting days.
+          </p>
+
+          <CalloutTip>
+            <strong>Key insight:</strong> <span className="text-brand-cyan font-bold">Cursor</span> is not just for developers. It is for anyone who wants to control their own digital product without being permanently dependent on someone else to make changes for them.
+          </CalloutTip>
+
+          <SectionDivider />
+
+          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE NUMBERS — WHAT THIS WORKFLOW ACTUALLY SAVES</h2>
+
+          <p>
+            Here is an honest accounting of what this AI workflow replaces and what it costs:
+          </p>
+
+          <div className="bg-brand-surface border border-gray-800 rounded-xl overflow-hidden my-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-800">
+              <div className="p-6">
+                <h4 className="text-lg font-bold font-mono text-red-400 mb-4">BEFORE THIS WORKFLOW:</h4>
+                <ul className="space-y-3 text-sm">
+                  <li className="flex justify-between"><span>Research time:</span> <strong>3 hours/day</strong></li>
+                  <li className="flex justify-between"><span>Writing time:</span> <strong>4 hours/article</strong></li>
+                  <li className="flex justify-between"><span>Social content:</span> <strong>1 hour/post</strong></li>
+                  <li className="flex justify-between"><span>Newsletter:</span> <strong>3 hours/issue</strong></li>
+                  <li className="flex justify-between"><span>Developer retainer:</span> <strong>$300/month</strong></li>
+                  <li className="flex justify-between"><span>Designer:</span> <strong>$200/month</strong></li>
+                  <li className="border-t border-gray-700 pt-3 mt-3 flex justify-between text-white"><span>Total time per week:</span> <strong>35-40 hours</strong></li>
+                  <li className="flex justify-between text-red-400"><span>Total monthly cost:</span> <strong>$500+</strong></li>
+                </ul>
+              </div>
+              <div className="p-6">
+                <h4 className="text-lg font-bold font-mono text-green-400 mb-4">WITH THIS WORKFLOW:</h4>
+                <ul className="space-y-3 text-sm">
+                  <li className="flex justify-between"><span>Research time:</span> <strong>45 minutes/day</strong></li>
+                  <li className="flex justify-between"><span>Writing time:</span> <strong>90 minutes/article</strong></li>
+                  <li className="flex justify-between"><span>Social content:</span> <strong>20 minutes/post</strong></li>
+                  <li className="flex justify-between"><span>Newsletter:</span> <strong>30 minutes/issue</strong></li>
+                  <li className="flex justify-between"><span>Developer retainer:</span> <strong>$0</strong></li>
+                  <li className="flex justify-between"><span>Designer:</span> <strong>$0</strong></li>
+                  <li className="border-t border-gray-700 pt-3 mt-3 flex justify-between text-white"><span>Total time per week:</span> <strong>18-20 hours</strong></li>
+                  <li className="flex justify-between text-green-400"><span>Monthly tool cost:</span> <strong>$140/month</strong></li>
+                </ul>
+              </div>
+            </div>
+            <div className="bg-gray-900 p-6 border-t border-gray-800 text-center">
+              <p className="text-lg font-mono text-white mb-1">Time saved per week: <span className="text-green-400 font-bold">15-20 hours</span></p>
+              <p className="text-lg font-mono text-white">Money saved per month: <span className="text-green-400 font-bold">$360+</span></p>
+            </div>
+          </div>
+
+          <p>
+            That time saving is not theoretical. It is the difference between burning out trying to run everything alone and having enough capacity left to actually think about where the business is going.
+          </p>
+
+          <SectionDivider />
+
+          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE TOOLS IN THIS WORKFLOW</h2>
+
+          <p>
+            Every tool mentioned in this workflow has a full review on domskysolutions.com:
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8">
+            <div className="bg-brand-surface border border-gray-800 p-5 rounded-lg">
+              <h4 className="font-bold text-white mb-1">Claude Pro — <span className="text-brand-cyan">$20/month</span></h4>
+              <p className="text-sm text-gray-400 mb-4">The thinking and writing partner that powers everything.</p>
+              <ReviewLinkCard name="Claude" to="/tools/claude" />
+            </div>
+            <div className="bg-brand-surface border border-gray-800 p-5 rounded-lg">
+              <h4 className="font-bold text-white mb-1">Perplexity Pro — <span className="text-brand-cyan">$20/month</span></h4>
+              <p className="text-sm text-gray-400 mb-4">The research department that runs in real time.</p>
+              <ReviewLinkCard name="Perplexity" to="/tools/perplexity" />
+            </div>
+            <div className="bg-brand-surface border border-gray-800 p-5 rounded-lg">
+              <h4 className="font-bold text-white mb-1">Notion AI — <span className="text-brand-cyan">$26/month</span></h4>
+              <p className="text-sm text-gray-400 mb-4">The knowledge system that makes everything else findable.</p>
+              <ReviewLinkCard name="Notion AI" to="/tools/notion" />
+            </div>
+            <div className="bg-brand-surface border border-gray-800 p-5 rounded-lg">
+              <h4 className="font-bold text-white mb-1">Midjourney Standard — <span className="text-brand-cyan">$30/month</span></h4>
+              <p className="text-sm text-gray-400 mb-4">The design studio for every visual asset.</p>
+              <ReviewLinkCard name="Midjourney" to="/tools/midjourney" />
+            </div>
+            <div className="bg-brand-surface border border-gray-800 p-5 rounded-lg">
+              <h4 className="font-bold text-white mb-1">Cursor Pro — <span className="text-brand-cyan">$20/month</span></h4>
+              <p className="text-sm text-gray-400 mb-4">The development team for every site change.</p>
+              <ReviewLinkCard name="Cursor" to="/tools/cursor" />
+            </div>
+          </div>
+
+          <p className="text-xl font-bold font-mono text-center my-8">
+            Total: <span className="text-brand-cyan">$116/month</span> for a workflow that replaces a team.
+          </p>
+
+          <SectionDivider />
+
+          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE ONE THING THAT MAKES IT WORK</h2>
+
+          <p>
+            Every tool in this workflow is only as good as the human judgment applied to its output. <span className="text-brand-cyan font-bold">Claude</span>'s drafts need editing. <span className="text-brand-cyan font-bold">Perplexity</span>'s research needs verification. <span className="text-brand-cyan font-bold">Midjourney</span>'s images need curation. <span className="text-brand-cyan font-bold">Cursor</span>'s code needs review.
+          </p>
+          <p>
+            The workflow does not replace thinking. It removes the friction between thinking and doing — and that is where most of the time in a solo business actually goes. When that friction disappears, the amount you can produce alone genuinely surprises you.
+          </p>
+          <p>
+            This is not about working harder. It is about removing every obstacle between an idea and its execution.
+          </p>
+
+          <SectionDivider />
+
+          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">WANT THIS WORKFLOW FOR YOUR BUSINESS?</h2>
+
+          <p>
+            Start with just two tools — <span className="text-brand-cyan font-bold">Claude</span> and <span className="text-brand-cyan font-bold">Perplexity</span>. Use them exclusively for two weeks on real work tasks. The time saving will be obvious enough to tell you exactly which tool to add next.
+          </p>
+          <p>
+            The full stack takes time to build. The first tool takes an afternoon.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 mt-8">
+            <Link to="/tools/claude" className="flex-1 bg-brand-surface border border-gray-700 p-4 text-center hover:border-brand-cyan transition-colors group">
+              <span className="block font-bold text-white mb-1 group-hover:text-brand-cyan transition-colors">Start with Claude</span>
+              <span className="text-sm text-gray-400 flex items-center justify-center gap-1">Read our review <ArrowRight size={14} /></span>
+            </Link>
+            <Link to="/tools/perplexity" className="flex-1 bg-brand-surface border border-gray-700 p-4 text-center hover:border-brand-cyan transition-colors group">
+              <span className="block font-bold text-white mb-1 group-hover:text-brand-cyan transition-colors">Start with Perplexity</span>
+              <span className="text-sm text-gray-400 flex items-center justify-center gap-1">Read our review <ArrowRight size={14} /></span>
+            </Link>
+          </div>
+
+          <div className="mt-16 p-6 bg-brand-surface border border-gray-800 rounded-xl text-sm text-gray-400">
+            <p className="mb-2"><strong className="text-gray-300">ABOUT THIS ARTICLE</strong></p>
+            <p>
+              domskysolutions.com reviews AI tools and SaaS software for founders, solopreneurs and builders. We test every tool we recommend and update our reviews regularly as products evolve. Some links in this article are affiliate links — we may earn a commission if you sign up through them at no extra cost to you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ToolsPage = () => {
+  useEffect(() => {
+    document.title = "AI Tool Reviews | domskysolutions.com";
+  }, []);
+
+  return (
+    <div className="bg-brand-bg min-h-screen pt-32 pb-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-16 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white mb-4">AI Tool Reviews</h1>
+          <p className="text-xl text-gray-400">Tested. Rated. Honest.</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featuredTools.map((tool, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-brand-surface border border-gray-800 p-6 flex flex-col h-full transition-all duration-300 glow-cyan-hover group"
+            >
+              <div className="flex justify-between items-start mb-4">
+                <span className="px-2.5 py-1 bg-gray-800 text-gray-300 text-xs font-mono uppercase tracking-wider">
+                  {tool.category}
+                </span>
+                <div className="flex items-center gap-1 text-brand-amber text-sm font-mono">
+                  <Star size={14} fill="currentColor" /> {tool.rating}
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold font-mono mb-3 group-hover:text-brand-cyan transition-colors">{tool.name}</h3>
+              <p className="text-gray-400 mb-6 flex-grow text-sm leading-relaxed">{tool.desc}</p>
+              <Link to={`/tools/${tool.id}`} className="inline-flex items-center gap-2 text-sm font-bold text-white group-hover:text-brand-cyan transition-colors mt-auto">
+                Read Review <ArrowRight size={16} />
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ReviewsPage = () => {
+  useEffect(() => {
+    document.title = "SaaS Software Reviews | domskysolutions.com";
+  }, []);
+
+  return (
+    <div className="bg-brand-bg min-h-screen pt-32 pb-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mb-16 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white mb-4">SaaS Software Reviews</h1>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">In-depth breakdowns of the tools builders actually pay for</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {saasReviews.map((review, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-brand-surface border border-gray-800 p-6 flex flex-col h-full transition-all duration-300 hover:border-brand-amber group"
+            >
+              <div className="flex justify-between items-start mb-6">
+                <div className="w-12 h-12 bg-gray-800 flex items-center justify-center text-xl font-bold text-gray-500 group-hover:text-brand-amber transition-colors">
+                  {review.name.charAt(0)}
+                </div>
+                <div className="text-right">
+                  <div className="text-2xl font-mono font-bold text-white">{review.score}<span className="text-gray-500 text-sm">/10</span></div>
+                </div>
+              </div>
+              <h3 className="text-xl font-bold font-mono mb-2">{review.name}</h3>
+              <p className="text-gray-400 text-sm mb-4">Best for: <span className="text-gray-200">{review.bestFor}</span></p>
+              <div className="mb-6 flex-grow">
+                <span className="inline-block px-2 py-1 bg-brand-amber/10 text-brand-amber text-xs font-mono border border-brand-amber/20">
+                  {review.tag}
+                </span>
+              </div>
+              <Link to={review.link} className="inline-flex items-center gap-2 text-sm font-bold text-brand-cyan hover:text-white transition-colors mt-auto">
+                Read Review <ArrowRight size={16} />
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const AboutPage = () => {
+  useEffect(() => {
+    document.title = "About Us | domskysolutions.com";
+  }, []);
+
+  return (
+    <div className="bg-brand-bg min-h-screen pt-32 pb-24">
+      <div className="max-w-3xl mx-auto px-6">
+        <h1 className="text-4xl md:text-5xl font-bold font-mono text-white mb-8">About domskysolutions.com</h1>
+        <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
+          <p>
+            We are a team of builders, founders, and AI enthusiasts who believe that the right tools can give a small team the output of a massive corporation.
+          </p>
+          <p>
+            The problem today isn't a lack of tools—it's the noise. Every day, dozens of new AI products launch, all promising to revolutionize your workflow. Most of them are just wrappers around the same underlying models. A few of them are genuinely transformative.
+          </p>
+          <p>
+            Our mission is to cut through the hype. We spend our time testing, breaking, and analyzing the latest AI tools and SaaS products so you don't have to. We write honest, in-depth reviews based on real-world usage, not press releases.
+          </p>
+          <h2 className="text-2xl font-bold font-mono text-white mt-12 mb-6">Our Principles</h2>
+          <ul className="list-disc pl-6 space-y-4">
+            <li><strong className="text-brand-cyan">Independent:</strong> We are not owned by any tech giant or venture capital firm. Our recommendations are our own.</li>
+            <li><strong className="text-brand-cyan">Builder-Focused:</strong> We evaluate tools based on how much time, money, and effort they save for actual builders and founders.</li>
+            <li><strong className="text-brand-cyan">Honest:</strong> If a tool is overhyped, we will say so. If a free alternative is better than a paid one, we will tell you.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const HomePage = () => {
+  const [count1, setCount1] = useState(0);
+  const [count2, setCount2] = useState(0);
+  const [count3, setCount3] = useState(0);
+  const [count4, setCount4] = useState(0);
+  
+  const statsRef = useRef(null);
+  const isInView = useInView(statsRef, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (!isInView) return;
+    
+    const duration = 2000;
+    const steps = 60;
+    const stepTime = duration / steps;
+    
+    let currentStep = 0;
+    const timer = setInterval(() => {
+      currentStep++;
+      setCount1(Math.floor((10 / steps) * currentStep));
+      setCount2(Math.floor((5 / steps) * currentStep));
+      setCount3(Math.floor((3 / steps) * currentStep));
+      setCount4(Math.floor((100 / steps) * currentStep));
+      
+      if (currentStep >= steps) {
+        clearInterval(timer);
+        setCount1(10);
+        setCount2(5);
+        setCount3(3);
+        setCount4(100);
+      }
+    }, stepTime);
+    
+    return () => clearInterval(timer);
+  }, [isInView]);
+
+  return (
+    <main className="bg-brand-bg min-h-screen">
+      {/* HERO SECTION */}
+      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-grid-pattern">
+        <div className="absolute top-20 left-10 w-64 h-64 bg-brand-cyan/20 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-20 right-10 w-64 h-64 bg-brand-amber/20 rounded-full blur-[100px] pointer-events-none" />
+        
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-block mb-6 px-4 py-1.5 rounded-full border border-brand-amber/30 bg-brand-amber/10 text-brand-amber font-mono text-sm animate-pulse-glow"
+          >
+            🔥 Updated Weekly — April 2026
+          </motion.div>
+          
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-5xl md:text-7xl font-bold font-mono text-white leading-tight mb-6"
+          >
+            The AI Tools Intel<br />Every Builder Needs
+          </motion.h1>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+          >
+            Weekly breakdowns of the best AI tools, honest SaaS reviews, and the strategies top founders use to build more with less.
+          </motion.p>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+          >
+            <a href="/#newsletter" className="w-full sm:w-auto bg-brand-amber text-brand-bg px-8 py-4 font-bold text-lg hover:bg-yellow-400 transition-colors glow-amber-hover flex items-center justify-center gap-2">
+              Join the Community <ArrowRight size={20} />
+            </a>
+            <Link to="/tools" className="w-full sm:w-auto border border-brand-cyan text-brand-cyan px-8 py-4 font-bold text-lg hover:bg-brand-cyan/10 transition-colors flex items-center justify-center">
+              Explore AI Tools
+            </Link>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="flex flex-col items-center gap-2"
+          >
+            <div className="flex gap-1 text-brand-amber mb-2">
+              {[1, 2, 3, 4, 5].map(i => <Star key={i} size={16} fill="currentColor" />)}
+            </div>
+            <p className="text-sm text-gray-500 font-mono">Trusted by 2,400+ founders and builders</p>
+          </motion.div>
+        </div>
+        
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-slow text-gray-500">
+          <ArrowRight size={24} className="rotate-90" />
+        </div>
+      </section>
+
+      {/* PROBLEM/AGITATION SECTION */}
+      <section className="py-24 bg-brand-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className="text-brand-cyan font-mono text-sm uppercase tracking-widest mb-4 block">SOUND FAMILIAR?</span>
+            <h2 className="text-3xl md:text-5xl font-bold font-mono text-white max-w-3xl mx-auto leading-tight">
+              You're drowning in AI tool noise.<br />We cut through it for you.
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-brand-bg p-8 border border-gray-800 rounded-xl"
+            >
+              <div className="text-4xl mb-4">😤</div>
+              <h3 className="text-xl font-bold font-mono text-white mb-4">Too Many Choices</h3>
+              <p className="text-gray-400 leading-relaxed">
+                New AI tools launch every day. Most are hype. A few are game changers. We find the ones that matter.
+              </p>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-brand-bg p-8 border border-gray-800 rounded-xl"
+            >
+              <div className="text-4xl mb-4">💸</div>
+              <h3 className="text-xl font-bold font-mono text-white mb-4">Wasting Money</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Paying for tools that underdeliver? We test them so you don't have to waste another subscription dollar.
+              </p>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-brand-bg p-8 border border-gray-800 rounded-xl"
+            >
+              <div className="text-4xl mb-4">⏰</div>
+              <h3 className="text-xl font-bold font-mono text-white mb-4">No Time to Research</h3>
+              <p className="text-gray-400 leading-relaxed">
+                You need to build, not spend hours reading reviews. We do the research. You get the signal.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHAT WE DO SECTION */}
+      <section className="py-24 bg-brand-bg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-16">
+            <span className="text-brand-cyan font-mono text-sm uppercase tracking-widest mb-4 block">WHAT YOU GET</span>
+            <h2 className="text-3xl md:text-5xl font-bold font-mono text-white leading-tight">
+              Your unfair advantage<br />in the AI era
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Large Card 1 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="md:col-span-2 bg-brand-surface p-8 border border-gray-800 rounded-xl hover:-translate-y-1 hover:border-brand-cyan transition-all duration-300 glow-cyan-hover"
+            >
+              <div className="text-3xl mb-4">🔬</div>
+              <h3 className="text-2xl font-bold font-mono text-white mb-4">Honest AI Tool Reviews</h3>
+              <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
+                We test every tool with real tasks before we recommend it. No sponsored rankings. No fluff. Just the truth about what works.
+              </p>
+            </motion.div>
+            
+            {/* Small Card 1 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-brand-surface p-8 border border-gray-800 rounded-xl hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="text-3xl mb-4">📊</div>
+              <h3 className="text-xl font-bold font-mono text-white mb-4">SaaS Comparisons</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Head to head. Who wins and why.
+              </p>
+            </motion.div>
+            
+            {/* Small Card 2 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-brand-surface p-8 border border-gray-800 rounded-xl hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="text-3xl mb-4">📰</div>
+              <h3 className="text-xl font-bold font-mono text-white mb-4">Weekly AI News</h3>
+              <p className="text-gray-400 leading-relaxed">
+                What matters this week in AI. Curated and explained.
+              </p>
+            </motion.div>
+            
+            {/* Large Card 2 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="md:col-span-2 bg-brand-surface p-8 border border-gray-800 rounded-xl hover:-translate-y-1 hover:border-brand-amber transition-all duration-300 glow-amber-hover"
+            >
+              <div className="text-3xl mb-4">✉️</div>
+              <h3 className="text-2xl font-bold font-mono text-white mb-4">The Weekly Edge Newsletter</h3>
+              <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
+                Every week: one AI tool deep dive, one money saving tip, one insight the algorithm won't show you.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURED TOOLS PREVIEW */}
+      <section className="py-24 bg-brand-surface border-y border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12">
+            <span className="text-brand-cyan font-mono text-sm uppercase tracking-widest mb-4 block">FEATURED THIS WEEK</span>
+            <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Tools worth your attention</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {featuredTools.slice(0, 3).map((tool, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-brand-bg border border-gray-800 p-6 flex flex-col h-full transition-all duration-300 glow-cyan-hover group rounded-xl"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <span className="px-2.5 py-1 bg-gray-800 text-gray-300 text-xs font-mono uppercase tracking-wider">
+                    {tool.category}
+                  </span>
+                  <div className="flex items-center gap-1 text-brand-amber text-sm font-mono">
+                    <Star size={14} fill="currentColor" /> {tool.rating}
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold font-mono mb-3 group-hover:text-brand-cyan transition-colors text-white">{tool.name}</h3>
+                <p className="text-gray-400 mb-6 flex-grow text-sm leading-relaxed">{tool.desc}</p>
+                <Link to={`/tools/${tool.id}`} className="inline-flex items-center gap-2 text-sm font-bold text-brand-cyan hover:text-white transition-colors mt-auto">
+                  Read Full Review <ArrowRight size={16} />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="text-center">
+            <Link to="/tools" className="inline-flex items-center gap-2 text-white hover:text-brand-cyan transition-colors font-mono font-bold">
+              View all 10+ tool reviews <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SOCIAL PROOF / STATS SECTION */}
+      <section ref={statsRef} className="py-20 bg-[#0a0c0e]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+              <div className="text-4xl md:text-5xl font-bold font-mono text-brand-cyan mb-2">{count1}+</div>
+              <div className="text-gray-500 font-mono text-sm uppercase tracking-wider">AI Tools Reviewed</div>
+            </motion.div>
+            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+              <div className="text-4xl md:text-5xl font-bold font-mono text-brand-cyan mb-2">{count2}+</div>
+              <div className="text-gray-500 font-mono text-sm uppercase tracking-wider">SaaS Deep Dives</div>
+            </motion.div>
+            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+              <div className="text-4xl md:text-5xl font-bold font-mono text-brand-cyan mb-2">{count3}</div>
+              <div className="text-gray-500 font-mono text-sm uppercase tracking-wider">Weekly Blog Posts</div>
+            </motion.div>
+            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
+              <div className="text-4xl md:text-5xl font-bold font-mono text-brand-cyan mb-2">{count4}%</div>
+              <div className="text-gray-500 font-mono text-sm uppercase tracking-wider">Independent & Ad Free</div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* COMMUNITY / NEWSLETTER CTA */}
+      <section id="newsletter" className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-brand-cyan/5" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-cyan/10 rounded-full blur-[120px] pointer-events-none" />
+        
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <h2 className="text-4xl md:text-5xl font-bold font-mono text-white mb-6 leading-tight">
+            Join 2,400+ Builders<br />Getting the AI Edge
+          </h2>
+          <p className="text-xl text-gray-300 mb-10 leading-relaxed">
+            Every week: the best AI tool picks, honest reviews, and strategies that actually move the needle. Free forever.
+          </p>
+          
+          <form className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto mb-8" onSubmit={(e) => e.preventDefault()}>
+            <input 
+              type="email" 
+              placeholder="Enter your email address" 
+              className="flex-grow bg-brand-surface border border-gray-700 px-6 py-4 text-white focus:outline-none focus:border-brand-cyan transition-colors"
+              required
+            />
+            <button 
+              type="submit" 
+              className="bg-brand-amber text-brand-bg px-8 py-4 font-bold hover:bg-yellow-400 transition-colors glow-amber-hover whitespace-nowrap"
+            >
+              Join the Community
+            </button>
+          </form>
+          
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 font-mono">
+            <span className="flex items-center gap-2"><CheckCircle2 size={16} className="text-brand-cyan" /> Free forever</span>
+            <span className="flex items-center gap-2"><CheckCircle2 size={16} className="text-brand-cyan" /> No spam</span>
+            <span className="flex items-center gap-2"><CheckCircle2 size={16} className="text-brand-cyan" /> Unsubscribe anytime</span>
+          </div>
+        </div>
+      </section>
+
+      {/* LATEST FROM THE BLOG */}
+      <section className="py-24 bg-brand-surface border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12">
+            <span className="text-brand-cyan font-mono text-sm uppercase tracking-widest mb-4 block">LATEST INSIGHTS</span>
+            <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Fresh from the blog</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {BLOG_POSTS.slice(0, 2).map((post, index) => (
+              <BlogCard key={index} post={post} />
+            ))}
+          </div>
+          
+          <div className="text-center">
+            <Link to="/blog" className="inline-flex items-center gap-2 text-white hover:text-brand-cyan transition-colors font-mono font-bold">
+              View all articles <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA SECTION */}
+      <section className="py-32 bg-brand-bg text-center border-t border-gray-800">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold font-mono text-white mb-10">Ready to build smarter?</h2>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <Link to="/tools" className="w-full sm:w-auto bg-brand-cyan text-brand-bg px-8 py-4 font-bold text-lg hover:bg-[#00e0c2] transition-colors glow-cyan-hover flex items-center justify-center gap-2">
+              Explore AI Tools <ArrowRight size={20} />
+            </Link>
+            <Link to="/blog" className="w-full sm:w-auto border border-gray-600 text-white px-8 py-4 font-bold text-lg hover:bg-gray-800 transition-colors flex items-center justify-center gap-2">
+              Read the Blog <ArrowRight size={20} />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+};
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -2170,16 +3545,23 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen selection:bg-brand-cyan selection:text-brand-bg">
+      <div className="min-h-screen selection:bg-brand-cyan selection:text-brand-bg flex flex-col">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/tools/:id" element={<ToolPage />} />
-          <Route path="/reviews/:id" element={<ToolPage />} />
-          <Route path="/blog" element={<BlogIndex />} />
-          <Route path="/blog/replaced-saas-stack-with-ai-tools" element={<BlogPost />} />
-          <Route path="/blog/ai-tools-look-like-team-of-10" element={<TeamOf10BlogPost />} />
-        </Routes>
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/tools" element={<ToolsPage />} />
+            <Route path="/tools/:id" element={<ToolPage />} />
+            <Route path="/reviews" element={<ReviewsPage />} />
+            <Route path="/reviews/:id" element={<ToolPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/blog" element={<BlogIndex />} />
+            <Route path="/blog/replaced-saas-stack-with-ai-tools" element={<BlogPost />} />
+            <Route path="/blog/ai-tools-look-like-team-of-10" element={<TeamOf10BlogPost />} />
+            <Route path="/blog/claude-vs-chatgpt-vs-gemini-2026" element={<AiComparisonBlogPost />} />
+            <Route path="/blog/ai-daily-workflow-solo-business" element={<AiDailyWorkflowBlogPost />} />
+          </Routes>
+        </div>
         <Footer />
       </div>
     </Router>
