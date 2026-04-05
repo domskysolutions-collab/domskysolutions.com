@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
 import { motion, useScroll, useInView } from 'motion/react';
 import { 
-  Menu, X, ArrowRight, Star, ExternalLink, 
+  Menu, X, ArrowRight, Star, ExternalLink,
   PenTool, Palette, Code, Megaphone, Zap, Video, Mic, FlaskConical,
   Twitter, Linkedin, Youtube, CheckCircle2
 } from 'lucide-react';
@@ -1135,6 +1135,100 @@ const CategoryExplorer = () => {
   );
 };
 
+const ConvertKitForm = ({ 
+  className = "", 
+  inputClassName = "", 
+  buttonClassName = "", 
+  buttonText = "Join the Community",
+  placeholder = "Enter your email address..."
+}) => {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Attempting ConvertKit submission...");
+
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      setStatus("error");
+      console.log("Error: Invalid email format");
+      return;
+    }
+    
+    setStatus("loading");
+    
+    try {
+      const formId = import.meta.env.VITE_CONVERTKIT_FORM_ID;
+      const apiKey = import.meta.env.VITE_CONVERTKIT_API_KEY;
+
+      console.log(`API Key present: ${!!apiKey}`);
+      console.log(`Form ID present: ${!!formId}`);
+
+      const response = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          api_key: apiKey,
+          email: email,
+        }),
+      });
+      
+      console.log(`Response status: ${response.status}`);
+
+      if (response.ok) {
+        setStatus("success");
+        console.log("Success");
+      } else {
+        setStatus("error");
+        console.log(`Error: API returned status ${response.status}`);
+      }
+    } catch (error: any) {
+      setStatus("error");
+      console.log(`Error: ${error.message || "Network error"}`);
+    }
+  };
+
+  if (status === "success") {
+    return (
+      <div className={`text-brand-cyan font-bold font-mono text-center py-4 text-lg ${className}`}>
+        You are in! Welcome to the community.
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative w-full">
+      <form className={className} onSubmit={handleSubmit}>
+        <input 
+          id="email-input"
+          name="email"
+          type="email" 
+          placeholder={placeholder}
+          className={inputClassName}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          disabled={status === "loading"}
+        />
+        <button 
+          type="submit" 
+          className={`${buttonClassName} ${status === "loading" ? "animate-pulse opacity-80" : ""}`}
+          disabled={status === "loading"}
+        >
+          {status === "loading" ? "Joining..." : buttonText}
+        </button>
+      </form>
+      {status === "error" && (
+        <div className="text-red-500 text-sm mt-2 font-mono text-center absolute -bottom-6 left-0 right-0">
+          Something went wrong. Please try again.
+        </div>
+      )}
+    </div>
+  );
+};
+
 const Newsletter = () => {
   return (
     <section id="newsletter" className="py-24 relative overflow-hidden">
@@ -1154,20 +1248,12 @@ const Newsletter = () => {
             Join our growing community of AI enthusiasts getting weekly AI tool picks, deals & news straight to their inbox.
           </p>
           
-          <form className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mb-6" onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="email" 
-              placeholder="Enter your email address..." 
-              className="flex-grow bg-brand-surface border border-gray-700 px-6 py-4 text-white focus:outline-none focus:border-brand-cyan transition-colors font-mono text-sm"
-              required
-            />
-            <button 
-              type="submit" 
-              className="bg-brand-amber text-brand-bg px-8 py-4 font-bold hover:bg-yellow-400 transition-colors glow-amber-hover whitespace-nowrap"
-            >
-              Subscribe Free
-            </button>
-          </form>
+          <ConvertKitForm 
+            className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mb-6"
+            inputClassName="flex-grow bg-brand-surface border border-gray-700 px-6 py-4 text-white focus:outline-none focus:border-brand-cyan transition-colors font-mono text-sm"
+            buttonClassName="bg-brand-amber text-brand-bg px-8 py-4 font-bold hover:bg-yellow-400 transition-colors glow-amber-hover whitespace-nowrap"
+            buttonText="Subscribe Free"
+          />
           
           <div className="flex flex-wrap justify-center items-center gap-6 text-xs font-mono text-gray-500">
             <span className="flex items-center gap-1"><CheckCircle2 size={14} className="text-brand-cyan" /> No spam.</span>
@@ -1473,7 +1559,7 @@ const BLOG_POSTS = [
     category: "AI News",
     date: "April 2026",
     readTime: "8 minutes",
-    image: "/saas-stack-article.png",
+    image: "/images/saas-stack-article.jpg",
     author: "Domsky Solutions Team"
   },
   {
@@ -1612,10 +1698,9 @@ const BlogPost = () => {
 
         <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
           <img 
-            src="/saas-stack-article.png" 
+            src="/images/saas-stack-article.jpg" 
             alt="Cover image showing SaaS costs funneling into AI tools" 
-            className="w-full h-auto object-cover"
-            referrerPolicy="no-referrer"
+            style={{ width: '100%', height: '400px', objectFit: 'cover', borderRadius: '12px' }}
           />
         </div>
 
@@ -1876,8 +1961,7 @@ const TeamOf10BlogPost = () => {
           <img 
             src="/images/team-of-10-article.jpg" 
             alt="Cover image showing a solo founder with 10 AI tools" 
-            className="w-full h-auto object-cover"
-            referrerPolicy="no-referrer"
+            style={{ width: '100%', height: '400px', objectFit: 'cover', borderRadius: '12px' }}
           />
         </div>
 
@@ -2226,8 +2310,7 @@ const AiComparisonBlogPost = () => {
           <img 
             src="/images/ai-comparison-article.jpg" 
             alt="Cover image showing Claude, ChatGPT and Gemini logos" 
-            className="w-full h-auto object-cover"
-            referrerPolicy="no-referrer"
+            style={{ width: '100%', height: '400px', objectFit: 'cover', borderRadius: '12px' }}
           />
         </div>
 
@@ -2643,8 +2726,7 @@ const AiDailyWorkflowBlogPost = () => {
           <img 
             src="/images/workflow-article.jpg" 
             alt="Cover image showing AI workflow" 
-            className="w-full h-auto object-cover"
-            referrerPolicy="no-referrer"
+            style={{ width: '100%', height: '400px', objectFit: 'cover', borderRadius: '12px' }}
           />
         </div>
 
@@ -3127,30 +3209,337 @@ const ReviewsPage = () => {
 };
 
 const AboutPage = () => {
+  const { scrollYProgress } = useScroll();
+
   useEffect(() => {
-    document.title = "About Us | domskysolutions.com";
+    document.title = "About — domskysolutions.com";
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', "The honest story behind domskysolutions.com — who we are, why we built this, and why you can trust what you read here.");
   }, []);
 
   return (
-    <div className="bg-brand-bg min-h-screen pt-32 pb-24">
-      <div className="max-w-3xl mx-auto px-6">
-        <h1 className="text-4xl md:text-5xl font-bold font-mono text-white mb-8">About domskysolutions.com</h1>
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-brand-cyan origin-left z-50"
+        style={{ scaleX: scrollYProgress }}
+      />
+      
+      <div className="max-w-[680px] mx-auto px-6 pt-32">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16 text-center"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-6">
+            "No Hype. No Sponsors.<br />Just Honest AI Intel."
+          </h1>
+          <p className="text-xl text-gray-400">
+            "Here is exactly who is behind this site, why it exists, and what we promise you."
+          </p>
+        </motion.div>
+
         <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
-          <p>
-            We are a team of builders, founders, and AI enthusiasts who believe that the right tools can give a small team the output of a massive corporation.
-          </p>
-          <p>
-            The problem today isn't a lack of tools—it's the noise. Every day, dozens of new AI products launch, all promising to revolutionize your workflow. Most of them are just wrappers around the same underlying models. A few of them are genuinely transformative.
-          </p>
-          <p>
-            Our mission is to cut through the hype. We spend our time testing, breaking, and analyzing the latest AI tools and SaaS products so you don't have to. We write honest, in-depth reviews based on real-world usage, not press releases.
-          </p>
-          <h2 className="text-2xl font-bold font-mono text-white mt-12 mb-6">Our Principles</h2>
-          <ul className="list-disc pl-6 space-y-4">
-            <li><strong className="text-brand-cyan">Independent:</strong> We are not owned by any tech giant or venture capital firm. Our recommendations are our own.</li>
-            <li><strong className="text-brand-cyan">Builder-Focused:</strong> We evaluate tools based on how much time, money, and effort they save for actual builders and founders.</li>
-            <li><strong className="text-brand-cyan">Honest:</strong> If a tool is overhyped, we will say so. If a free alternative is better than a paid one, we will tell you.</li>
-          </ul>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE HONEST INTRODUCTION</h2>
+            <p>
+              Let us start with what this site is not.
+            </p>
+            <p>
+              domskysolutions.com is not run by a team of AI researchers or backed by venture capital. There is no editorial board, no army of staff writers, and no relationships with the tools we review that would influence what we say about them.
+            </p>
+            <p>
+              What this site is — is the work of a small team of builders and enthusiasts who got genuinely frustrated with the state of AI tool coverage online and decided to do something about it.
+            </p>
+            <p>
+              We are not Silicon Valley insiders or machine learning engineers. We are practitioners — people who use AI tools every single day to run real operations, make real decisions, and produce real work. We got tired of reading reviews written by people who had clearly spent forty five minutes with a tool before declaring it revolutionary. We got tired of best of lists that were obviously just affiliate link farms dressed up as journalism. And we got tired of paying for tools that did not deliver what the reviews promised.
+            </p>
+            <p>
+              So we started testing them ourselves. Documenting what we found. And sharing it with anyone who finds it useful.
+            </p>
+            <p className="font-bold text-white">
+              That is domskysolutions.com.
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">WHAT WE ACTUALLY DO</h2>
+            <p>
+              Every tool reviewed on this site goes through the same process:
+            </p>
+            
+            <div className="space-y-6 my-8">
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-amber/20 text-brand-amber flex items-center justify-center font-bold font-mono border border-brand-amber/50">1</div>
+                <div>
+                  <p className="mt-1">We sign up for the actual product — not a demo, not a press preview, the real thing that you would pay for.</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-amber/20 text-brand-amber flex items-center justify-center font-bold font-mono border border-brand-amber/50">2</div>
+                <div>
+                  <p className="mt-1">We use it for real tasks — writing, research, coding, design, video, audio, and productivity. The same tasks you are probably trying to use it for.</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-amber/20 text-brand-amber flex items-center justify-center font-bold font-mono border border-brand-amber/50">3</div>
+                <div>
+                  <p className="mt-1">We note what works, what disappoints, what surprised us, and what we wish we had known before subscribing.</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-amber/20 text-brand-amber flex items-center justify-center font-bold font-mono border border-brand-amber/50">4</div>
+                <div>
+                  <p className="mt-1">We write the review we wish had existed before we signed up.</p>
+                </div>
+              </div>
+            </div>
+
+            <p>
+              That is the whole process. No rating inflation to keep affiliate relationships warm. No burying the cons in footnotes. No recommending tools we would not pay for ourselves.
+            </p>
+            <p>
+              When something is genuinely excellent we say so clearly and explain why. When something overpromises and underdelivers we say that too — even when it costs us affiliate commission to do it.
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">WHY TRUST US</h2>
+            <p>
+              We know trust is earned not declared. So instead of telling you to trust us we will tell you exactly what we do that makes us worth trusting — and let you decide.
+            </p>
+
+            <div className="space-y-4 my-8">
+              <div className="bg-brand-surface border-l-4 border-l-brand-cyan border-y border-r border-gray-800 p-5 rounded-r-lg">
+                <h3 className="font-bold text-white flex items-center gap-2 mb-2">
+                  <CheckCircle2 size={18} className="text-brand-cyan" /> We pay for the tools we review
+                </h3>
+                <p className="text-sm text-gray-400 m-0">No free access arrangements that create obligation to be positive. If we review it, we bought it and tested it ourselves.</p>
+              </div>
+              
+              <div className="bg-brand-surface border-l-4 border-l-brand-cyan border-y border-r border-gray-800 p-5 rounded-r-lg">
+                <h3 className="font-bold text-white flex items-center gap-2 mb-2">
+                  <CheckCircle2 size={18} className="text-brand-cyan" /> We publish honest cons
+                </h3>
+                <p className="text-sm text-gray-400 m-0">Every review on this site includes genuine limitations. If a tool has no meaningful weaknesses in our review, we have not reviewed it honestly enough yet.</p>
+              </div>
+              
+              <div className="bg-brand-surface border-l-4 border-l-brand-cyan border-y border-r border-gray-800 p-5 rounded-r-lg">
+                <h3 className="font-bold text-white flex items-center gap-2 mb-2">
+                  <CheckCircle2 size={18} className="text-brand-cyan" /> We update reviews when things change
+                </h3>
+                <p className="text-sm text-gray-400 m-0">AI tools move fast. Pricing shifts. Features get added or removed. We revisit reviews when something significant changes rather than letting outdated information sit and mislead people.</p>
+              </div>
+              
+              <div className="bg-brand-surface border-l-4 border-l-brand-cyan border-y border-r border-gray-800 p-5 rounded-r-lg">
+                <h3 className="font-bold text-white flex items-center gap-2 mb-2">
+                  <CheckCircle2 size={18} className="text-brand-cyan" /> We disclose affiliate relationships
+                </h3>
+                <p className="text-sm text-gray-400 m-0">Some links on this site are affiliate links. When you sign up through them we may earn a commission at no extra cost to you. We disclose this clearly and it never influences our ratings or recommendations. We have declined affiliate arrangements with tools we do not believe in.</p>
+              </div>
+              
+              <div className="bg-brand-surface border-l-4 border-l-brand-cyan border-y border-r border-gray-800 p-5 rounded-r-lg">
+                <h3 className="font-bold text-white flex items-center gap-2 mb-2">
+                  <CheckCircle2 size={18} className="text-brand-cyan" /> We are independent
+                </h3>
+                <p className="text-sm text-gray-400 m-0">No investors. No brand partnerships. No sponsored content dressed up as editorial. What you read here is what our team actually thinks — based on real usage, not press releases.</p>
+              </div>
+            </div>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">WHO WE ARE</h2>
+            <p>
+              We are a small team of builders, creators, and solopreneurs who share one obsession — figuring out which AI tools actually deliver on their promises and which ones are just well marketed disappointments.
+            </p>
+            <p>
+              Between us we use AI tools across writing, design, development, video, audio, research, and business operations every single day. That range of real world usage is what makes our reviews more useful than a single reviewer testing everything alone.
+            </p>
+            <p>
+              We are not experts in the academic sense. We are practitioners in the most useful sense — people in the trenches every day, learning what works by actually using it, and sharing what we discover with a community that is on the same journey.
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">WHAT WE ARE BUILDING</h2>
+            <p>
+              domskysolutions.com started as a place to document our own research into AI tools. It is becoming something bigger.
+            </p>
+            <p>
+              The vision is a trusted resource for the growing community of builders, founders, creators, and solopreneurs who are figuring out how to use AI to do more with less — and who are tired of wading through hype to find the signal.
+            </p>
+            <p>
+              That means more tool reviews. Deeper comparisons. Honest breakdowns of real workflows. A weekly newsletter that respects your time and your intelligence. And eventually a community where people who are serious about building with AI can share what they are discovering alongside each other.
+            </p>
+            <p>
+              We are early. The site is growing. The reviews are honest. The newsletter is free. And the community is forming.
+            </p>
+            <p className="font-bold text-white">
+              If that sounds like something worth being part of — you are in the right place.
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE NUMBERS</h2>
+            <p className="text-sm text-gray-400 mb-6">(Real ones — updated as we grow)</p>
+            
+            <div className="grid grid-cols-2 gap-4 my-8">
+              <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg text-center">
+                <div className="text-3xl font-bold font-mono text-white mb-2">11</div>
+                <div className="text-sm text-gray-400">Tools reviewed</div>
+              </div>
+              <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg text-center">
+                <div className="text-3xl font-bold font-mono text-white mb-2">4</div>
+                <div className="text-sm text-gray-400">Blog posts</div>
+              </div>
+              <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg text-center">
+                <div className="text-xl font-bold font-mono text-brand-cyan mb-2">Growing</div>
+                <div className="text-sm text-gray-400">Subscribers</div>
+              </div>
+              <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg text-center">
+                <div className="text-xl font-bold font-mono text-brand-amber mb-2">Free</div>
+                <div className="text-sm text-gray-400">Cost to you</div>
+              </div>
+            </div>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="my-16 relative"
+          >
+            {/* Cyan glow effect */}
+            <div className="absolute -inset-1 bg-brand-cyan/20 blur-xl rounded-2xl z-0"></div>
+            
+            <div className="relative z-10 bg-[#08090a] border border-brand-cyan/30 p-8 rounded-xl text-center">
+              <h2 className="text-2xl font-bold font-mono text-white mb-4">JOIN THE COMMUNITY</h2>
+              <p className="text-gray-300 mb-6">
+                The best way to stay connected is the weekly newsletter — <span className="font-bold text-white">The Weekly Edge</span>.
+              </p>
+              
+              <div className="text-left max-w-sm mx-auto mb-8 space-y-2">
+                <p className="text-sm text-gray-400 mb-4">Every Thursday our team sends:</p>
+                <div className="flex items-start gap-2">
+                  <ArrowRight size={16} className="text-brand-cyan mt-1 flex-shrink-0" />
+                  <span className="text-sm text-gray-300">One AI tool worth knowing about</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <ArrowRight size={16} className="text-brand-cyan mt-1 flex-shrink-0" />
+                  <span className="text-sm text-gray-300">One workflow tip that saves real time</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <ArrowRight size={16} className="text-brand-cyan mt-1 flex-shrink-0" />
+                  <span className="text-sm text-gray-300">One insight from the week in AI</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <ArrowRight size={16} className="text-brand-cyan mt-1 flex-shrink-0" />
+                  <span className="text-sm text-gray-300">Zero sponsored content</span>
+                </div>
+              </div>
+
+              <ConvertKitForm 
+                className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+                inputClassName="flex-1 bg-brand-bg border border-gray-700 px-4 py-3 rounded text-white focus:outline-none focus:border-brand-cyan transition-colors"
+                buttonClassName="bg-brand-amber text-brand-bg px-6 py-3 rounded font-bold hover:bg-yellow-400 transition-colors glow-amber-hover whitespace-nowrap"
+                buttonText="Join the Community"
+                placeholder="Enter your email"
+              />
+              <p className="text-xs text-gray-500 mt-4">
+                Joining is free. Unsubscribing is one click. We have never sent spam and we never will.
+              </p>
+            </div>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">GET IN TOUCH</h2>
+            <p>
+              Have a tool you think we should review? A workflow tip worth sharing? A question about something we published?
+            </p>
+            <p className="font-bold text-white">
+              Our team reads every message.
+            </p>
+            
+            <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-8 space-y-3">
+              <div className="flex items-center gap-3">
+                <span className="text-gray-400 w-20">Email:</span>
+                <a href="mailto:hello@domskysolutions.com" className="text-brand-cyan hover:underline">hello@domskysolutions.com</a>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-gray-400 w-20">X:</span>
+                <a href="#" className="text-brand-cyan hover:underline">@domskysolutions</a>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-gray-400 w-20">LinkedIn:</span>
+                <a href="#" className="text-brand-cyan hover:underline">domskysolutions</a>
+              </div>
+            </div>
+
+            <p className="text-sm text-gray-400">
+              For advertising and partnership enquiries: <a href="mailto:partners@domskysolutions.com" className="text-brand-cyan hover:underline">partners@domskysolutions.com</a>
+            </p>
+
+            <div className="mt-8 p-5 border border-gray-800 rounded-lg text-sm text-gray-400 bg-brand-bg">
+              <strong className="text-white">Note:</strong> We do not accept payment for positive reviews. If you are reaching out to ask us to review your tool please send us access and we will add it to our review queue. We will publish what we find — positive or negative.
+            </div>
+          </motion.div>
+
+          <div className="mt-24 mb-12 text-center">
+            <p className="text-xl font-mono text-brand-cyan italic">
+              "Built by a small team of enthusiasts.<br />
+              Trusted by builders.<br />
+              Growing every week."
+            </p>
+            <p className="mt-4 font-bold text-white">domskysolutions.com</p>
+          </div>
+
         </div>
       </div>
     </div>
@@ -3468,20 +3857,13 @@ const HomePage = () => {
             Every week: the best AI tool picks, honest reviews, and strategies that actually move the needle. Free forever.
           </p>
           
-          <form className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto mb-8" onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="email" 
-              placeholder="Enter your email address" 
-              className="flex-grow bg-brand-surface border border-gray-700 px-6 py-4 text-white focus:outline-none focus:border-brand-cyan transition-colors"
-              required
-            />
-            <button 
-              type="submit" 
-              className="bg-brand-amber text-brand-bg px-8 py-4 font-bold hover:bg-yellow-400 transition-colors glow-amber-hover whitespace-nowrap"
-            >
-              Join the Community
-            </button>
-          </form>
+          <ConvertKitForm 
+            className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto mb-8"
+            inputClassName="flex-grow bg-brand-surface border border-gray-700 px-6 py-4 text-white focus:outline-none focus:border-brand-cyan transition-colors"
+            buttonClassName="bg-brand-amber text-brand-bg px-8 py-4 font-bold hover:bg-yellow-400 transition-colors glow-amber-hover whitespace-nowrap"
+            buttonText="Join the Community"
+            placeholder="Enter your email address"
+          />
           
           <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 font-mono">
             <span className="flex items-center gap-2"><CheckCircle2 size={16} className="text-brand-cyan" /> Free forever</span>
