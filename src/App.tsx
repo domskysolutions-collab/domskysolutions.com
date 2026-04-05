@@ -863,9 +863,13 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="font-mono text-2xl font-bold tracking-tighter">
-              domskysolutions<span className="text-brand-cyan">.com</span>
-            </Link>
+           <Link to="/" className="flex items-center">
+  <img
+    src="/images/domsky-logo.png"
+    alt="Domsky Solutions"
+    style={{ height: '40px', width: 'auto', objectFit: 'contain' }}
+  />
+</Link>
           </div>
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Home</Link>
@@ -1178,9 +1182,13 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           <div className="lg:col-span-2">
-            <Link to="/" className="font-mono text-2xl font-bold tracking-tighter block mb-4">
-              domskysolutions<span className="text-brand-cyan">.com</span>
-            </Link>
+            <Link to="/" className="flex items-center mb-4">
+  <img
+    src="/images/domsky-logo.png"
+    alt="Domsky Solutions"
+    style={{ height: '36px', width: 'auto', objectFit: 'contain', opacity: 0.9 }}
+  />
+</Link>
             <p className="text-gray-400 text-sm mb-6 max-w-sm">
               Independent. Ad-free. Builder-focused. We curate the best AI tools, software reviews, and news for builders and founders.
             </p>
