@@ -1315,8 +1315,8 @@ const Footer = () => {
           <div>
             <h4 className="font-mono font-bold text-white mb-4">Legal</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Disclaimer</a></li>
+              <li><Link to="/privacy" className="hover:text-brand-cyan transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/disclaimer" className="hover:text-brand-cyan transition-colors">Disclaimer</Link></li>
             </ul>
           </div>
         </div>
@@ -3913,6 +3913,243 @@ const HomePage = () => {
   );
 };
 
+const PrivacyPolicyPage = () => {
+  useEffect(() => {
+    document.title = "Privacy Policy | Domsky Solutions";
+  }, []);
+
+  return (
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
+      <div className="max-w-[680px] mx-auto px-6 pt-32">
+        <div className="mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-4">
+            PRIVACY POLICY
+          </h1>
+          <p className="text-gray-400 font-mono text-sm">Last updated: April 2026</p>
+        </div>
+
+        <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
+          <H2>INTRODUCTION</H2>
+          <p>
+            Domsky Solutions ("we", "our", or "us") operates domskysolutions.com. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website.
+          </p>
+          <p>
+            By using domskysolutions.com you agree to the collection and use of information in accordance with this policy.
+          </p>
+
+          <SectionDivider />
+
+          <H2>INFORMATION WE COLLECT</H2>
+          <p>
+            <strong className="text-white">Email address</strong><br />
+            When you subscribe to our newsletter we collect your email address. This is used solely to send you The Weekly Edge newsletter and related communications from Domsky Solutions. We never sell your email address to third parties.
+          </p>
+          <p>
+            <strong className="text-white">Usage data</strong><br />
+            We may collect anonymous information about how you use our website including pages visited, time spent on pages, and referring URLs. This data is used to improve our content and user experience.
+          </p>
+          <p>
+            <strong className="text-white">Cookies</strong><br />
+            Our website uses cookies — small files stored on your device — to improve your browsing experience. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. If you do not accept cookies some parts of our website may not function properly.
+          </p>
+
+          <SectionDivider />
+
+          <H2>HOW WE USE YOUR INFORMATION</H2>
+          <p>We use the information we collect to:</p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>Send our weekly newsletter to subscribers</li>
+            <li>Analyze website traffic and improve content</li>
+            <li>Monitor and prevent fraudulent activity</li>
+            <li>Comply with legal obligations</li>
+          </ul>
+
+          <SectionDivider />
+
+          <H2>EMAIL MARKETING</H2>
+          <p>
+            We use ConvertKit to manage our email list and send newsletters. When you subscribe your email address is stored securely by ConvertKit. You can unsubscribe at any time by clicking the unsubscribe link in any email we send.
+          </p>
+          <p>
+            ConvertKit's privacy policy is available at:<br />
+            <a href="https://convertkit.com/privacy" target="_blank" rel="noopener noreferrer" className="text-brand-cyan hover:underline">convertkit.com/privacy</a>
+          </p>
+
+          <SectionDivider />
+
+          <H2>AFFILIATE LINKS</H2>
+          <p>
+            domskysolutions.com participates in affiliate programs. This means we may earn a commission when you click certain links and make a purchase or sign up for a service. This comes at no extra cost to you.
+          </p>
+          <p>
+            We only recommend products and services we genuinely believe in. Affiliate relationships never influence our reviews or ratings.
+          </p>
+
+          <SectionDivider />
+
+          <H2>THIRD PARTY SERVICES</H2>
+          <p>
+            Our website may contain links to third party websites. We are not responsible for the privacy practices of those sites and encourage you to review their privacy policies.
+          </p>
+          <p>We may use the following third party services:</p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>ConvertKit — email marketing platform</li>
+            <li>Vercel — website hosting</li>
+            <li>Cloudflare — domain and DNS management</li>
+            <li>Google Analytics — website analytics (if enabled)</li>
+          </ul>
+
+          <SectionDivider />
+
+          <H2>DATA RETENTION</H2>
+          <p>
+            We retain your email address for as long as you remain subscribed to our newsletter. You may request deletion of your data at any time by contacting us at <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a>.
+          </p>
+
+          <SectionDivider />
+
+          <H2>YOUR RIGHTS</H2>
+          <p>Depending on your location you may have the right to:</p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>Access the personal data we hold about you</li>
+            <li>Request correction of inaccurate data</li>
+            <li>Request deletion of your data</li>
+            <li>Withdraw consent for email marketing</li>
+            <li>Lodge a complaint with your local data protection authority</li>
+          </ul>
+          <p>
+            To exercise any of these rights contact us at:<br />
+            <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a>
+          </p>
+
+          <SectionDivider />
+
+          <H2>GDPR — EUROPEAN USERS</H2>
+          <p>
+            If you are located in the European Economic Area the legal basis for processing your email address is your consent given when you subscribed to our newsletter.
+          </p>
+          <p>
+            You have the right to withdraw consent at any time by unsubscribing from our newsletter or contacting us directly.
+          </p>
+
+          <SectionDivider />
+
+          <H2>CHILDREN'S PRIVACY</H2>
+          <p>
+            Our website is not directed at children under the age of 16. We do not knowingly collect personal information from children. If you believe your child has provided us with personal information please contact us.
+          </p>
+
+          <SectionDivider />
+
+          <H2>CHANGES TO THIS POLICY</H2>
+          <p>
+            We may update this Privacy Policy from time to time. We will notify subscribers of significant changes via email. The date at the top of this page shows when it was last updated.
+          </p>
+
+          <SectionDivider />
+
+          <H2>CONTACT US</H2>
+          <p>If you have questions about this Privacy Policy please contact us:</p>
+          <p>
+            Email: <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a><br />
+            Website: <Link to="/" className="text-brand-cyan hover:underline">domskysolutions.com</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const DisclaimerPage = () => {
+  useEffect(() => {
+    document.title = "Affiliate Disclaimer | Domsky Solutions";
+  }, []);
+
+  return (
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
+      <div className="max-w-[680px] mx-auto px-6 pt-32">
+        <div className="mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-4">
+            Affiliate Disclaimer
+          </h1>
+          <p className="text-gray-400 font-mono text-sm">Last updated: April 2026</p>
+        </div>
+
+        <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
+          <H2>AFFILIATE RELATIONSHIPS</H2>
+          <p>
+            domskysolutions.com is a participant in affiliate programs including but not limited to programs offered by the tools and software we review.
+          </p>
+          <p>
+            This means that when you click certain links on our website and make a purchase or sign up for a service, we may receive a commission at no additional cost to you.
+          </p>
+
+          <SectionDivider />
+
+          <H2>WHICH LINKS ARE AFFILIATE LINKS</H2>
+          <p>
+            We do not mark every affiliate link individually. You should assume that any link to a product or service on this website could be an affiliate link.
+          </p>
+
+          <SectionDivider />
+
+          <H2>OUR COMMITMENT TO HONESTY</H2>
+          <p>
+            Affiliate relationships never influence our reviews, ratings, or recommendations. We only recommend products and services we have personally tested and genuinely believe will be useful to our readers.
+          </p>
+          <p>
+            We have declined affiliate arrangements with tools we do not believe in, and we publish honest negative reviews of tools even when we have affiliate relationships with them.
+          </p>
+
+          <SectionDivider />
+
+          <H2>FTC DISCLOSURE</H2>
+          <p>
+            In accordance with the Federal Trade Commission guidelines we disclose that domskysolutions.com may receive compensation for links to products and services.
+          </p>
+
+          <SectionDivider />
+
+          <H2>QUESTIONS</H2>
+          <p>
+            If you have questions about our affiliate relationships please contact us at:<br />
+            <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const NotFoundPage = () => {
+  return (
+    <div className="min-h-[70vh] flex items-center justify-center px-4 py-20 relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-64 bg-brand-cyan/10 blur-[100px] rounded-full pointer-events-none"></div>
+      
+      <div className="relative z-10 text-center max-w-2xl mx-auto">
+        <h1 className="text-8xl md:text-9xl font-bold font-mono text-brand-cyan mb-6 tracking-tighter">
+          404
+        </h1>
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          This page doesn't exist
+        </h2>
+        <p className="text-xl text-gray-400 mb-10">
+          The page you are looking for has moved or never existed.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link to="/" className="w-full sm:w-auto border border-brand-cyan text-brand-cyan px-8 py-4 font-bold text-lg hover:bg-brand-cyan/10 transition-colors flex items-center justify-center">
+            Go Home →
+          </Link>
+          <Link to="/tools" className="w-full sm:w-auto bg-brand-cyan text-brand-bg px-8 py-4 font-bold text-lg hover:bg-teal-400 transition-all glow-cyan flex items-center justify-center gap-2">
+            Browse AI Tools →
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -3942,6 +4179,9 @@ export default function App() {
             <Route path="/blog/ai-tools-look-like-team-of-10" element={<TeamOf10BlogPost />} />
             <Route path="/blog/claude-vs-chatgpt-vs-gemini-2026" element={<AiComparisonBlogPost />} />
             <Route path="/blog/ai-daily-workflow-solo-business" element={<AiDailyWorkflowBlogPost />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/disclaimer" element={<DisclaimerPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
         <Footer />
