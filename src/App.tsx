@@ -1147,8 +1147,11 @@ const ConvertKitForm = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Attempting ConvertKit submission...");
+
     if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
       setStatus("error");
+      console.log("Error: Invalid email format");
       return;
     }
     
@@ -1157,6 +1160,9 @@ const ConvertKitForm = ({
     try {
       const formId = import.meta.env.VITE_CONVERTKIT_FORM_ID;
       const apiKey = import.meta.env.VITE_CONVERTKIT_API_KEY;
+
+      console.log(`API Key present: ${!!apiKey}`);
+      console.log(`Form ID present: ${!!formId}`);
 
       const response = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, {
         method: "POST",
@@ -1169,13 +1175,18 @@ const ConvertKitForm = ({
         }),
       });
       
+      console.log(`Response status: ${response.status}`);
+
       if (response.ok) {
         setStatus("success");
+        console.log("Success");
       } else {
         setStatus("error");
+        console.log(`Error: API returned status ${response.status}`);
       }
-    } catch (error) {
+    } catch (error: any) {
       setStatus("error");
+      console.log(`Error: ${error.message || "Network error"}`);
     }
   };
 
@@ -1191,6 +1202,8 @@ const ConvertKitForm = ({
     <div className="relative w-full">
       <form className={className} onSubmit={handleSubmit}>
         <input 
+          id="email-input"
+          name="email"
           type="email" 
           placeholder={placeholder}
           className={inputClassName}
