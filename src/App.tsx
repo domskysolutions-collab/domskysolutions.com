@@ -1515,12 +1515,6 @@ const ToolReviewCard = ({ name, desc, to, category }: { name: string, desc: stri
   );
 };
 
-const ReviewLinkCard = ({ name, to }: { name: string, to: string }) => (
-  <Link to={to} className="inline-flex items-center gap-2 px-4 py-2 bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan text-sm font-bold font-mono rounded hover:bg-brand-cyan/20 hover:border-brand-cyan transition-all group">
-    Read our full {name} review <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-  </Link>
-);
-
 const Money = ({ children }: { children: React.ReactNode }) => (
   <span className="font-bold text-[1.1em] text-white">{children}</span>
 );
@@ -1867,13 +1861,13 @@ const BlogPost = () => {
             transition={{ duration: 0.4 }}
           >
             <p>
-              Twelve months ago I was paying for tools I barely used, tools I used constantly but hated, and tools I kept renewing out of habit because switching felt like too much effort. My SaaS bill had quietly crept past <Money>$500 a month</Money> — <Money>$6,000 a year</Money> — for a stack that was supposed to make me more productive but mostly just made me more subscribed.
+              <span className="font-bold text-white">My SaaS bill had quietly crept past <Money>$500 a month</Money>.</span>
             </p>
             <p>
-              Then the AI tools started getting genuinely good. Not impressive-for-AI good. Actually good. Good enough to replace things I had been paying for for years. So I ran an experiment. Over three months I systematically replaced every tool in my stack with an AI-powered alternative, tracked the results, and kept only what made me faster, cheaper, or both.
+              I was paying for tools I barely used, tools I hated, and tools I kept renewing out of habit. It was <Money>$6,000 a year</Money> for a stack that mostly just made me more subscribed.
             </p>
-            <p className="font-bold italic text-white">
-              This is what I found.
+            <p>
+              Then I ran an experiment. Over three months, I systematically replaced every tool with an AI alternative. Here is exactly what I kept, what I cancelled, and how much I saved.
             </p>
           </motion.div>
 
@@ -1887,16 +1881,19 @@ const BlogPost = () => {
           >
             <H2 id="old-vs-new">THE OLD STACK VS THE NEW STACK</H2>
             <p>
-              Here is a direct comparison of what I was paying for versus what I use now and what it costs:
+              Here is a direct comparison of what I was paying for versus what I use now.
             </p>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-          >
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: side-by-side comparison chart of old vs new software logos
+                </p>
+              </div>
+            </div>
+
             <H3>WRITING & CONTENT</H3>
             <BeforeAfter 
               before={<>Grammarly Premium (<Money>$30/mo</Money>) +<br/>a copywriter (<Money>$200/mo</Money>)</>}
@@ -1904,7 +1901,13 @@ const BlogPost = () => {
               saving="$210/mo"
             />
             <p>
-              I used Grammarly for proofreading and hired a freelance copywriter for longer content. <ToolLink name="Claude" to="/tools/claude" /> replaced both completely. <span className="font-bold italic text-white">It proofreads better than Grammarly, writes better than most copywriters I have worked with, and does it in seconds instead of days.</span> The <Money>$20/month</Money> Pro plan is one of the most defensible subscriptions in my entire stack.
+              I used Grammarly for proofreading and hired a freelance copywriter for longer content. <ToolLink name="Claude" to="/tools/claude" /> replaced both completely.
+            </p>
+            <p>
+              It proofreads better than Grammarly and writes better than most copywriters. It does it in seconds instead of days.
+            </p>
+            <p>
+              The <Money>$20/month</Money> Pro plan is one of the <span className="font-bold text-white">most defensible subscriptions</span> in my entire stack.
             </p>
             <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" category="Writing" />
           </motion.div>
@@ -1926,7 +1929,13 @@ const BlogPost = () => {
               saving="$25/mo"
             />
             <p>
-              I was paying for three different newsletter and news subscriptions to stay current on my industry. <ToolLink name="Perplexity" to="/tools/perplexity" /> replaced all of them. <span className="font-bold italic text-white">I can ask it anything happening right now, get a cited answer in seconds, and follow up with deeper questions that no newsletter could anticipate.</span> The research workflow I used to spend an hour on every morning now takes fifteen minutes.
+              I was paying for three different newsletter and news subscriptions. <ToolLink name="Perplexity" to="/tools/perplexity" /> replaced all of them.
+            </p>
+            <p>
+              I can ask it anything happening right now and get a cited answer in seconds. I can follow up with deeper questions that no newsletter could anticipate.
+            </p>
+            <p>
+              The research workflow I used to spend an hour on every morning now <span className="font-bold text-white">takes fifteen minutes</span>.
             </p>
             <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" category="Research" />
           </motion.div>
@@ -1944,7 +1953,13 @@ const BlogPost = () => {
               saving="$38/mo"
             />
             <p>
-              I was maintaining two design subscriptions and still spending time creating assets that looked like they came from a template. <ToolLink name="Midjourney" to="/reviews/midjourney" /> generates campaign visuals, blog post headers, social media images, and concept mockups that look genuinely professional in minutes. <span className="font-bold italic text-white">I kept a basic free design tool for simple layouts but cancelled Creative Cloud and Canva Pro entirely.</span>
+              I was maintaining two design subscriptions and still creating assets that looked like templates.
+            </p>
+            <p>
+              <ToolLink name="Midjourney" to="/reviews/midjourney" /> generates campaign visuals, blog post headers, and concept mockups that look genuinely professional.
+            </p>
+            <p>
+              I kept a basic free design tool for simple layouts but <span className="font-bold text-white">cancelled Creative Cloud entirely</span>.
             </p>
             <ToolReviewCard name="Midjourney" desc="Best AI tool for image generation" to="/reviews/midjourney" category="Design" />
           </motion.div>
@@ -1962,7 +1977,13 @@ const BlogPost = () => {
               saving="$280/mo"
             />
             <p>
-              This is the single biggest saving in my entire stack. I was paying a freelance developer on retainer for small website changes, bug fixes, and new features. <ToolLink name="Cursor" to="/tools/cursor" /> replaced that entirely. <span className="font-bold italic text-white">I am not a developer, but with Cursor I can make changes to my own codebase, build new features from descriptions, and fix bugs by pasting the error message into the chat.</span> The learning curve was real but the payoff was immediate.
+              This is the single biggest saving in my entire stack. I was paying a freelance developer on retainer for small website changes and bug fixes.
+            </p>
+            <p>
+              <ToolLink name="Cursor" to="/tools/cursor" /> replaced that entirely. I am not a developer, but with Cursor I can make changes to my own codebase.
+            </p>
+            <p>
+              The learning curve was real but the <span className="font-bold text-white">payoff was immediate</span>.
             </p>
             <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/tools/cursor" category="Coding" />
           </motion.div>
@@ -1980,7 +2001,13 @@ const BlogPost = () => {
               saving="$5/mo"
             />
             <p>
-              This one was less about saving money and more about eliminating redundancy. I was using Notion for project management and Evernote for notes — two separate systems that never quite talked to each other. <span className="font-bold italic text-white">Adding <ToolLink name="Notion AI" to="/tools/notion-ai" /> to my existing Notion subscription replaced Evernote completely and made the notes and documents I already had in Notion significantly more useful.</span> The AI can summarize my meeting notes, find information across my entire workspace, and draft content from rough bullet points I jot down in the moment.
+              This one was less about saving money and more about eliminating redundancy. I was using Notion for project management and Evernote for notes.
+            </p>
+            <p>
+              Adding <ToolLink name="Notion AI" to="/tools/notion-ai" /> replaced Evernote completely. It made the documents I already had in Notion significantly more useful.
+            </p>
+            <p>
+              The AI can summarize my meeting notes and <span className="font-bold text-white">find information across my workspace</span>.
             </p>
             <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/tools/notion-ai" category="Productivity" />
           </motion.div>
@@ -1998,7 +2025,13 @@ const BlogPost = () => {
               saving="$126/mo"
             />
             <p>
-              I was outsourcing all my video editing because the timeline based editors felt too technical and too time consuming to learn. <ToolLink name="Descript" to="/reviews/descript" /> changed that completely. <span className="font-bold italic text-white">Editing a video in Descript is genuinely as easy as editing a document.</span> I delete filler words with one click, cut sections by highlighting and deleting text, and produce finished videos that previously took a contractor two days to deliver — in under an hour myself.
+              I was outsourcing all my video editing because timeline-based editors felt too technical. <ToolLink name="Descript" to="/reviews/descript" /> changed that completely.
+            </p>
+            <p>
+              Editing a video in Descript is genuinely as easy as editing a document. I delete filler words with one click.
+            </p>
+            <p>
+              I produce finished videos that previously took two days to deliver — <span className="font-bold text-white">in under an hour</span>.
             </p>
             <ToolReviewCard name="Descript" desc="Best AI tool for video and podcast editing" to="/reviews/descript" category="Video" />
           </motion.div>
@@ -2016,9 +2049,18 @@ const BlogPost = () => {
               saving="$209/mo"
             />
             <p>
-              Webflow is a powerful tool but I was barely scratching its surface and paying for a contractor to make design changes I could not figure out myself. <ToolLink name="Framer AI" to="/reviews/framer" /> generates professional landing pages from a text description that I can then customize visually without touching code. <span className="font-bold italic text-white">The pages it produces are genuinely better designed than what I was getting from my contractor, and I can update them myself in real time.</span>
+              Webflow is a powerful tool but I was paying for a contractor to make design changes I could not figure out myself.
+            </p>
+            <p>
+              <ToolLink name="Framer AI" to="/reviews/framer" /> generates professional landing pages from a text description. I can customize them visually without touching code.
+            </p>
+            <p>
+              The pages are genuinely better designed, and I can <span className="font-bold text-white">update them myself in real time</span>.
             </p>
             <ToolReviewCard name="Framer AI" desc="Best AI tool for websites and landing pages" to="/reviews/framer" category="Website" />
+            <p className="font-bold text-white mt-6">
+              The compounding effect of these tools completely transformed how I work.
+            </p>
           </motion.div>
 
           <SectionDivider />
@@ -2030,6 +2072,16 @@ const BlogPost = () => {
             transition={{ duration: 0.4 }}
           >
             <H2 id="the-numbers">THE NUMBERS</H2>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: chart showing subscription costs dropping over time
+                </p>
+              </div>
+            </div>
           </motion.div>
           
           <div className="my-10 p-8 bg-brand-surface border border-gray-800 rounded-xl text-center">
@@ -2054,7 +2106,7 @@ const BlogPost = () => {
           <SavingsChart />
 
           <CalloutTip>
-            <span className="font-bold not-italic text-white">Note:</span> my original estimate of <Money>$500/month</Money> was what I thought I was spending. When I actually added up contractors and subscriptions together the real number was significantly higher. <span className="italic">If you have never done this exercise for your own stack, the actual total will probably surprise you.</span>
+            <span className="font-bold not-italic text-white">Note:</span> my original estimate of <Money>$500/month</Money> was what I thought I was spending. When I actually added up contractors and subscriptions together, the real number was significantly higher. <em>If you have never done this exercise for your own stack, the actual total will probably surprise you.</em>
           </CalloutTip>
 
           <PullQuote>
@@ -2070,6 +2122,16 @@ const BlogPost = () => {
             transition={{ duration: 0.4 }}
           >
             <H2 id="what-i-learned">WHAT I LEARNED FROM THREE MONTHS OF SWITCHING</H2>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: person looking thoughtfully at a laptop screen
+                </p>
+              </div>
+            </div>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10">
@@ -2084,20 +2146,42 @@ const BlogPost = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
+            <H3>The Quality Gap Has Closed</H3>
             <p>
-              <span className="font-bold text-white">The quality gap has closed faster than anyone expected.</span> Twelve months ago the honest answer to "can AI replace [tool]?" was usually "not quite yet." Today the honest answer for most categories is "yes, and often better." <span className="font-bold italic text-white">The tools in this list are not compromises — they are genuine upgrades in most of the dimensions that matter for day to day work.</span>
+              Twelve months ago the honest answer to "can AI replace this tool?" was usually "not quite yet."
+            </p>
+            <p>
+              Today the honest answer for most categories is "yes, and often better." The tools in this list are not compromises.
+            </p>
+            <p>
+              They are genuine upgrades in most of the dimensions that matter for day to day work.
             </p>
 
+            <H3>The Learning Curve Is Short</H3>
             <p>
-              <span className="font-bold text-white">The learning curve is real but shorter than you think.</span> Every tool on this list took me between one afternoon and one week to get genuinely useful results from. The instinct to stick with familiar tools because switching costs feel high is understandable but almost always wrong when you actually run the numbers.
+              Every tool on this list took me between one afternoon and one week to get genuinely useful results from.
+            </p>
+            <p>
+              The instinct to stick with familiar tools because switching costs feel high is understandable. But it is <span className="font-bold text-white">almost always wrong</span> when you actually run the numbers.
             </p>
 
+            <H3>Not Everything Should Be Replaced</H3>
             <p>
-              <span className="font-bold text-white">Not everything should be replaced.</span> I kept tools that AI has not meaningfully improved yet — my accounting software, my email provider, my calendar. The goal was not to replace everything with AI for the sake of it. <span className="font-bold italic text-white">The goal was to replace things where AI delivered clearly better results at clearly lower cost.</span> In the categories above, it did.
+              I kept tools that AI has not meaningfully improved yet — my accounting software, my email provider, my calendar.
+            </p>
+            <p>
+              The goal was not to replace everything with AI for the sake of it. The goal was to replace things where AI delivered <span className="font-bold text-white">better results at lower cost</span>.
             </p>
 
+            <H3>The Compounding Effect</H3>
             <p>
-              <span className="font-bold text-white">The compounding effect is real.</span> The biggest surprise was not any individual tool but how much faster the whole system became once every part of it was optimized. <span className="font-bold italic text-white">Writing that feeds research that feeds design that feeds video production — when every step in that chain gets faster, the total output improvement is multiplicative not additive.</span>
+              The biggest surprise was how much faster the whole system became once every part of it was optimized.
+            </p>
+            <p>
+              Writing feeds research that feeds design that feeds video production. When every step gets faster, the total output improvement is multiplicative.
+            </p>
+            <p className="font-bold text-white mt-6">
+              The speed advantage alone is worth the switch, even if the cost was identical.
             </p>
           </motion.div>
 
@@ -2113,6 +2197,16 @@ const BlogPost = () => {
             <p>
               If you want to run this experiment yourself, start with these three steps:
             </p>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: notebook with a checklist or a Kanban board
+                </p>
+              </div>
+            </div>
           </motion.div>
 
           <Step number="1" title="Audit everything you are paying for">
@@ -2120,12 +2214,16 @@ const BlogPost = () => {
           </Step>
 
           <Step number="2" title="Identify your highest cost categories">
-            Pick the two or three biggest line items and research what AI tools exist in those categories specifically. <span className="font-bold italic text-white">The savings are almost always largest where you are currently paying humans to do repeatable knowledge work.</span>
+            Pick the two or three biggest line items and research what AI tools exist in those categories specifically. <span className="font-bold text-white">The savings are almost always largest where you are currently paying humans to do repeatable knowledge work.</span>
           </Step>
 
           <Step number="3" title="Run one replacement at a time">
-            <span className="font-bold text-white">Do not try to switch everything simultaneously.</span> Pick one tool, commit to using the AI alternative exclusively for two weeks, and evaluate honestly. If it is genuinely worse in ways that matter, keep the original. If it is better or equivalent at lower cost, make the switch permanent before moving to the next one.
+            <span className="font-bold text-white">Do not try to switch everything simultaneously.</span> Pick one tool, commit to using the AI alternative exclusively for two weeks, and evaluate honestly. If it is genuinely worse in ways that matter, keep the original.
           </Step>
+
+          <CalloutTip>
+            Cancel the old subscription the moment you decide the new tool works. Don't leave it "just in case."
+          </CalloutTip>
 
           <SectionDivider />
 
@@ -2137,7 +2235,10 @@ const BlogPost = () => {
           >
             <H2 id="the-tools">THE TOOLS IN THIS ARTICLE</H2>
             <p>
-              Every tool mentioned in this article has a full in-depth review on domskysolutions.com. If you want to understand exactly what each one does, what it costs at every tier, and whether it is the right fit for your specific situation before committing to a switch, start there.
+              Every tool mentioned in this article has a full in-depth review on domskysolutions.com.
+            </p>
+            <p>
+              If you want to understand exactly what each one does, what it costs at every tier, and whether it is the right fit for your specific situation before committing to a switch, start there.
             </p>
           </motion.div>
 
@@ -2161,15 +2262,29 @@ const BlogPost = () => {
           >
             <H2 id="conclusion">CONCLUSION</H2>
             <p>
-              The question is no longer whether AI tools are good enough to replace your existing SaaS stack. For most knowledge work categories they already are. <span className="font-bold italic text-white">The question is how long you are willing to keep paying for the old way of doing things while the people around you quietly build a significant productivity and cost advantage with the new one.</span>
+              The question is no longer whether AI tools are good enough to replace your existing SaaS stack. For most knowledge work categories they already are.
             </p>
-
             <p>
-              I saved nearly <Money>$11,000</Money> in the first year. More importantly I got faster — meaningfully, measurably faster — at every part of my work. The stack I run today produces better output than the one I ran twelve months ago at roughly one seventh of the cost.
+              The question is how long you are willing to keep paying for the old way of doing things.
             </p>
+            <p>
+              I saved nearly <Money>$11,000</Money> in the first year. More importantly, I got faster — meaningfully, measurably faster — at every part of my work.
+            </p>
+            
+            <H3>Key Takeaways</H3>
+            <ul className="list-disc pl-6 space-y-2 text-gray-300 my-4">
+              <li>AI tools can replace expensive subscriptions and contractors.</li>
+              <li>The quality gap between AI and traditional tools has closed.</li>
+              <li>Switching one tool at a time is the most effective strategy.</li>
+            </ul>
 
-            <p className="font-bold text-xl text-brand-cyan mt-8 italic">
-              That is not a marginal improvement. That is a different way of working entirely.
+            <div className="mt-8">
+              <a href="/" className="inline-flex items-center justify-center px-6 py-3 bg-brand-cyan text-brand-bg font-bold font-inter rounded-lg hover:bg-white transition-colors">
+                Explore All Tool Reviews at domskysolutions.com
+              </a>
+            </div>
+            <p className="text-sm text-gray-500 mt-4">
+              Find the right AI tools for your specific workflow.
             </p>
           </motion.div>
 
@@ -2321,7 +2436,13 @@ const AdobeBlogPost = () => {
             transition={{ duration: 0.4 }}
           >
             <p>
-              After 12 years as a graphic designer I finally did it. Here's exactly what replaced it and what I'd never give up.
+              <span className="font-bold text-white">After 12 years as a graphic designer, I finally cancelled Adobe.</span>
+            </p>
+            <p>
+              The monthly subscription was draining my bank account for tools I barely used. It felt like paying a premium tax just to call myself a professional.
+            </p>
+            <p>
+              Here's exactly what replaced it, what surprised me, and the one tool I'd never give up.
             </p>
           </motion.div>
 
@@ -2335,7 +2456,10 @@ const AdobeBlogPost = () => {
           >
             <H2 id="the-breaking-point">THE BREAKING POINT</H2>
             <p>
-              I remember the exact moment. January 2024, opening my bank statement with a coffee in hand, and there it was. <Money>$55</Money>. Again. Like clockwork.
+              I remember the exact moment. January 2024, opening my bank statement with a coffee in hand.
+            </p>
+            <p>
+              And there it was. <Money>$55</Money>. Again. Like clockwork.
             </p>
             <p>
               I opened Photoshop maybe four times that month. Premiere twice. Illustrator once to fix a logo I'd made three years ago.
@@ -2343,11 +2467,25 @@ const AdobeBlogPost = () => {
             <p>
               <Money>$55</Money> for four sessions of Photoshop. I've paid less for a full dinner.
             </p>
+
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: close-up of a bank statement or subscription receipt
+                </p>
+              </div>
+            </div>
+
             <p>
-              Over five years that's <Money>$3,300</Money>. For software I was using at maybe 20% capacity. The math made me feel genuinely stupid.
+              Over five years that's <span className="font-bold text-white"><Money>$3,300</Money> wasted</span>. For software I was using at maybe 20% capacity.
             </p>
             <p>
-              That was the month I decided to run the experiment.
+              The math made me feel genuinely stupid. That was the month I decided to run the experiment.
+            </p>
+            <p className="font-bold text-white mt-6">
+              It was time to see if I could survive without the industry standard.
             </p>
           </motion.div>
 
@@ -2368,20 +2506,38 @@ const AdobeBlogPost = () => {
               Let me be honest about something most "I quit Adobe" posts skip over entirely.
             </p>
             <p>
-              I was terrified.
+              <em>I was terrified.</em>
             </p>
             <p>
-              Not of the tools. Of what clients would think. Of showing up to a meeting and someone asking what software I used and having to explain that I now generate images with a text prompt.
+              Not of the tools. Of what clients would think. Of showing up to a meeting and someone asking what software I used.
             </p>
             <p>
-              Twelve years of Photoshop muscle memory. Twelve years of knowing exactly where every panel, every shortcut, every obscure filter lived. That's not nothing.
+              I dreaded having to explain that I now generate images with a text prompt.
+            </p>
+
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: person looking stressed at a computer
+                </p>
+              </div>
+            </div>
+
+            <H3>The Muscle Memory Trap</H3>
+            <p>
+              Twelve years of Photoshop muscle memory. Twelve years of knowing exactly where every panel, every shortcut, every obscure filter lived.
             </p>
             <p>
-              Switching felt like showing up to work in a different body.
+              That's not nothing. Switching felt like showing up to work in a different body.
             </p>
             <p>
               But <Money>$3,300</Money> over five years has a way of making you brave.
             </p>
+            <CalloutTip>
+              Don't underestimate the emotional cost of switching tools. Give yourself grace during the transition period.
+            </CalloutTip>
           </motion.div>
 
           <SectionDivider />
@@ -2397,13 +2553,13 @@ const AdobeBlogPost = () => {
               30 days. No Adobe. Whatever happened, happened.
             </p>
             <p>
-              Here's what I replaced each tool with:
+              Here's exactly what I replaced each tool with:
             </p>
-            <ul className="list-disc pl-6 space-y-2 text-gray-300">
-              <li>Photoshop → <ToolLink name="Midjourney" to="/reviews/midjourney" /> for image generation, Canva for editing and layouts</li>
-              <li>Premiere → <ToolLink name="Descript" to="/reviews/descript" /> for video editing</li>
-              <li>Acrobat → PDF24 free online tool</li>
-              <li>Stock photos → <ToolLink name="Midjourney" to="/reviews/midjourney" /> entirely</li>
+            <ul className="list-disc pl-6 space-y-2 text-gray-300 my-4">
+              <li><span className="font-bold text-white">Photoshop</span> → <ToolLink name="Midjourney" to="/reviews/midjourney" /> for image generation, Canva for layouts</li>
+              <li><span className="font-bold text-white">Premiere</span> → <ToolLink name="Descript" to="/reviews/descript" /> for video editing</li>
+              <li><span className="font-bold text-white">Acrobat</span> → PDF24 free online tool</li>
+              <li><span className="font-bold text-white">Stock photos</span> → <ToolLink name="Midjourney" to="/reviews/midjourney" /> entirely</li>
             </ul>
 
             <div className="my-8">
@@ -2427,11 +2583,15 @@ const AdobeBlogPost = () => {
               </div>
             </div>
 
+            <H3>The 30-Day Timeline</H3>
             <p>
-              The first week was uncomfortable. The second week was interesting. By week three something unexpected happened.
+              The first week was uncomfortable. The second week was interesting.
             </p>
             <p>
-              I started enjoying it.
+              By week three something unexpected happened. I started enjoying it.
+            </p>
+            <p className="font-bold text-white mt-6">
+              The experiment proved that the tools don't make the designer.
             </p>
           </motion.div>
 
@@ -2456,8 +2616,23 @@ const AdobeBlogPost = () => {
             <p>
               I hadn't. I'd just stopped fighting the tools and started using better ones.
             </p>
+
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: side-by-side comparison of stock photo vs Midjourney generation
+                </p>
+              </div>
+            </div>
+
+            <H3>The Midjourney Revelation</H3>
             <p>
-              Midjourney in particular caught me off guard. I expected it to produce the kind of generic AI imagery you see everywhere. Instead, with the right prompts, it was producing visuals that felt more considered and more original than stock photos ever did.
+              Midjourney in particular caught me off guard. I expected it to produce the kind of generic AI imagery you see everywhere.
+            </p>
+            <p>
+              Instead, with the right prompts, it was producing visuals that felt <span className="font-bold text-white">more considered and original</span> than stock photos ever did.
             </p>
             <p>
               The 30 days ended. I didn't go back.
@@ -2480,23 +2655,43 @@ const AdobeBlogPost = () => {
             <p>
               Here's what I actually lost and won't pretend I didn't.
             </p>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: complex Photoshop layers panel or Illustrator vectors
+                </p>
+              </div>
+            </div>
+
+            <H3>Where Adobe Still Wins</H3>
             <p>
-              Photoshop for complex photo retouching — nothing fully replaces it if that's your core service. Midjourney generates, it doesn't retouch. If you're a beauty photographer editing skin at pixel level, keep Photoshop.
+              <span className="font-bold text-white">Photoshop for complex photo retouching</span> — nothing fully replaces it if that's your core service.
             </p>
             <p>
-              Illustrator for precise vector work — Canva is not Illustrator. If you're building technical diagrams or complex brand systems from scratch, you'll feel the gap.
+              Midjourney generates, it doesn't retouch. If you're a beauty photographer editing skin at pixel level, keep Photoshop.
             </p>
             <p>
-              After Effects — I don't have a good free replacement for motion graphics at a professional level. That's just the truth.
+              <span className="font-bold text-white">Illustrator for precise vector work</span> — Canva is not Illustrator.
             </p>
+            <p>
+              If you're building technical diagrams or complex brand systems from scratch, you'll feel the gap.
+            </p>
+            <p>
+              <span className="font-bold text-white">After Effects</span> — I don't have a good free replacement for motion graphics at a professional level. That's just the truth.
+            </p>
+            
+            <H3>The Final Verdict</H3>
             <p>
               If 80% of your work is client presentations, social media visuals, marketing materials and general creative work — you probably don't need Adobe anymore.
             </p>
             <p>
               If your entire business runs on pixel-level retouching or complex motion work — keep it.
             </p>
-            <p>
-              Know which one you are before you cancel.
+            <p className="font-bold text-white mt-6">
+              Know exactly which type of designer you are before you cancel.
             </p>
           </motion.div>
 
@@ -2516,6 +2711,16 @@ const AdobeBlogPost = () => {
               saving="$45/mo"
             />
 
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: chart showing subscription costs over time
+                </p>
+              </div>
+            </div>
+
             <div className="grid grid-cols-3 gap-4 my-8">
               {[
                 { label: 'Monthly saving', value: '$45' },
@@ -2530,8 +2735,14 @@ const AdobeBlogPost = () => {
             </div>
 
             <p>
-              That's a flight somewhere nice. Or a very good camera. Or just <Money>$2,700</Money> you keep instead of handing it to a software company.
+              That's a flight somewhere nice. Or a very good camera.
             </p>
+            <p>
+              Or just <span className="font-bold text-white"><Money>$2,700</Money> you keep</span> instead of handing it to a software company.
+            </p>
+            <CalloutTip>
+              Calculate your own software ROI. If you use a tool less than 5 times a month, you are overpaying.
+            </CalloutTip>
           </motion.div>
 
           <SectionDivider />
@@ -2547,13 +2758,30 @@ const AdobeBlogPost = () => {
               The tool I genuinely missed most wasn't Photoshop.
             </p>
             <p>
-              It was Bridge. Adobe's file organizer. Boring, unglamorous, never mentioned in any "I quit Adobe" post I've ever read.
+              It was <span className="font-bold text-white">Bridge</span>. Adobe's file organizer.
             </p>
+            <p>
+              Boring, unglamorous, never mentioned in any "I quit Adobe" post I've ever read.
+            </p>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: Adobe Bridge interface screenshot
+                </p>
+              </div>
+            </div>
+
             <p>
               Turns out I used it constantly without realizing. Still haven't found a perfect replacement.
             </p>
             <p>
-              Every honest review has a footnote. That's mine.
+              <em>Every honest review has a footnote. That's mine.</em>
+            </p>
+            <p className="font-bold text-white mt-6">
+              You will miss the boring utilities more than the flagship apps.
             </p>
           </motion.div>
 
@@ -2579,18 +2807,31 @@ const AdobeBlogPost = () => {
           >
             <H2 id="want-the-full-picture">WANT THE FULL PICTURE?</H2>
             <p>
-              If this post made you curious about what else in your software stack has a cheaper AI alternative, I put together a free guide called The AI Tools Starter Kit.
+              If this post made you curious about what else in your software stack has a cheaper AI alternative, I put together a free guide called <span className="font-bold text-white">The AI Tools Starter Kit</span>.
             </p>
             <p>
               5 tools. Real savings numbers. No fluff.
             </p>
             <p>
-              It covers everything I actually use day to day — including Midjourney, Claude, Perplexity, Gamma and Notion — with free tiers, honest limitations and a 7-day plan to get started without paying for anything upfront.
+              It covers everything I actually use day to day — including Midjourney, Claude, Perplexity, Gamma and Notion.
             </p>
             <p>
-              Download it free at domskysolutions.com
+              It includes free tiers, honest limitations and a 7-day plan to get started without paying for anything upfront.
             </p>
-            <p>
+            
+            <H3>Key Takeaways</H3>
+            <ul className="list-disc pl-6 space-y-2 text-gray-300 my-4">
+              <li>You are likely paying for software capacity you don't use.</li>
+              <li>AI tools can replace 80% of standard design workflows.</li>
+              <li>The emotional cost of switching is higher than the technical cost.</li>
+            </ul>
+
+            <div className="mt-8">
+              <a href="/" className="inline-flex items-center justify-center px-6 py-3 bg-brand-cyan text-brand-bg font-bold font-inter rounded-lg hover:bg-white transition-colors">
+                Download the Free Guide at domskysolutions.com
+              </a>
+            </div>
+            <p className="text-sm text-gray-500 mt-4">
               No email required. No catch. Just the guide.
             </p>
           </motion.div>
@@ -2663,286 +2904,591 @@ const TeamOf10BlogPost = () => {
           />
         </div>
 
-        <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
-          <p>
-            The most dangerous competitor you will face in the next two years is not a well funded startup with a team of fifty. It is a single person with a laptop, a clear vision, and the right AI tools running in the background while they sleep.
-          </p>
-          <p>
-            The playing field between individuals and teams has never been more level than it is right now. AI has quietly handed solopreneurs and small teams capabilities that used to require entire departments — a marketing team, a design studio, a development squad, a research department, a video production crew. All of it is now accessible to anyone willing to spend an afternoon learning the tools.
-          </p>
-          <p>
-            We tested dozens of AI tools across every business function to find the ones that deliver the highest leverage for people working alone or in small teams. These ten made the cut because they do not just save time — they produce output that genuinely looks like it came from a specialized professional team.
-          </p>
-          <p className="font-bold italic text-white">
-            Here they are.
-          </p>
+        <div className="prose prose-invert max-w-none text-[18px] leading-[1.9] font-serif space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <p>
+              <span className="font-bold text-white">The most dangerous competitor you will face is not a well-funded startup.</span>
+            </p>
+            <p>
+              It is a single person with a laptop, a clear vision, and the right AI tools running in the background while they sleep. The playing field between individuals and teams has never been more level.
+            </p>
+            <p>
+              We tested dozens of AI tools across every business function. These ten deliver the highest leverage for solopreneurs, producing output that genuinely looks like it came from a specialized professional team.
+            </p>
+          </motion.div>
 
           <SectionDivider />
 
-          <H2>1. CLAUDE — YOUR AI THINKING PARTNER</H2>
-          <H3>Category: Writing & Reasoning</H3>
-          <H3>Best for: Everything that requires intelligence</H3>
-          <p>
-            If you could only pick one AI tool from this entire list, <span className="font-bold text-brand-cyan">Claude</span> would be it. Built by Anthropic with a relentless focus on being genuinely helpful rather than just impressive, Claude is the closest thing to having a brilliant generalist on your team who can write, think, code, analyze, strategize and advise across every area of your business.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">What it replaces:</span> A copywriter, a strategist, a researcher, a proofreader and a brainstorming partner — all available 24 hours a day for <Money>$20 a month</Money>.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">The one thing it does better than anything else:</span> Long form thinking. Give Claude a complex problem, a messy document, or a half-formed idea and it will help you think it through with a clarity and depth that genuinely surprises even experienced users. It does not just answer questions — it helps you ask better ones.
-          </p>
-          <CalloutTip>
-            Pro tip: Use Claude for every first draft of anything important. The editing pass you do after is faster and better than starting from a blank page.
-          </CalloutTip>
-          <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" />
-
-          <SectionDivider />
-
-          <H2>2. PERPLEXITY — YOUR AI RESEARCH DEPARTMENT</H2>
-          <H3>Category: Research & Information</H3>
-          <H3>Best for: Knowing things faster than your competition</H3>
-          <p>
-            Every business decision you make is only as good as the information it is based on. <span className="font-bold text-brand-cyan">Perplexity</span> gives you a research department that works in real time — searching the current web, reading the most relevant sources, and delivering cited, verified answers in seconds.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">What it replaces:</span> A research assistant, multiple news subscriptions, and the two hours you currently spend every morning trying to stay informed about your industry.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">The one thing it does better than anything else:</span> Competitive intelligence. Ask Perplexity about a competitor, a market trend, or an emerging technology and it synthesizes everything written about it recently into a clear sourced summary you can act on immediately.
-          </p>
-          <CalloutTip>
-            Pro tip: Use Focus modes — switch to Academic for research papers, Reddit for real user opinions, and News for breaking developments in your space.
-          </CalloutTip>
-          <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" />
-
-          <SectionDivider />
-
-          <H2>3. CURSOR — YOUR AI DEVELOPMENT TEAM</H2>
-          <H3>Category: Coding & Development</H3>
-          <H3>Best for: Building things without hiring developers</H3>
-          <p>
-            The single most expensive bottleneck for most solo founders is development. <span className="font-bold text-brand-cyan">Cursor</span> eliminates that bottleneck entirely. It is an AI-powered code editor that understands your entire codebase and helps you build, fix, and ship software through natural language instructions.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">What it replaces:</span> A freelance developer on retainer, weeks of back-and-forth revision cycles, and the feeling of being permanently blocked by your own technical limitations.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">The one thing it does better than anything else:</span> Making non-developers dangerous. You do not need to know how to code to use Cursor effectively. You need to know what you want to build and be willing to learn the basics.
-          </p>
-          <CalloutTip>
-            Pro tip: Start by asking Cursor to explain your codebase before asking it to change anything. Understanding what exists makes every subsequent instruction more precise.
-          </CalloutTip>
-          <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/tools/cursor" />
-
-          <SectionDivider />
-
-          <H2>4. MIDJOURNEY — YOUR AI DESIGN STUDIO</H2>
-          <H3>Category: Image Generation & Design</H3>
-          <H3>Best for: Visual assets that stop people scrolling</H3>
-          <p>
-            Every piece of content you publish competes for attention in a feed full of professionally designed visuals. <span className="font-bold text-brand-cyan">Midjourney</span> levels that competition. It generates images of a quality and aesthetic sophistication that genuinely matches what professional design studios produce — from a text prompt, in minutes.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">What it replaces:</span> A graphic designer, a stock photo subscription, a brand asset library, and days of back and forth to get a visual that matched your vision.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">The one thing it does better than anything else:</span> Aesthetic quality. Every other image generator produces technically competent outputs. Midjourney produces beautiful ones.
-          </p>
-          <CalloutTip>
-            Pro tip: Add --style raw to prompts for photorealistic outputs and save your best prompts — they are reusable assets that get more valuable over time.
-          </CalloutTip>
-          <ToolReviewCard name="Midjourney" desc="Best AI tool for image generation" to="/reviews/midjourney" />
-
-          <SectionDivider />
-
-          <H2>5. NOTION AI — YOUR AI CHIEF OF STAFF</H2>
-          <H3>Category: Productivity & Knowledge Management</H3>
-          <H3>Best for: Turning information chaos into clarity</H3>
-          <p>
-            Every growing business drowns in information at some point. <span className="font-bold text-brand-cyan">Notion AI</span> turns your workspace into a living queryable knowledge base that surfaces the right information at the right moment and helps you turn raw notes into structured thinking automatically.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">What it replaces:</span> A chief of staff, a note taker, a project coordinator, and the two tools you are currently maintaining separately for notes and project management.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">The one thing it does better than anything else:</span> Making your existing work more valuable. Every note and document you have ever written in Notion becomes something you can query and build on instantly.
-          </p>
-          <CalloutTip>
-            Pro tip: Create a weekly review template and ask Notion AI to summarize your week's notes into action items every Friday. Thirty seconds replaces an hour of manual review.
-          </CalloutTip>
-          <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/tools/notion-ai" />
-
-          <SectionDivider />
-
-          <H2>6. DESCRIPT — YOUR AI VIDEO & PODCAST TEAM</H2>
-          <H3>Category: Video & Audio Editing</H3>
-          <H3>Best for: Publishing video content without editing skills</H3>
-          <p>
-            Video is the highest trust building medium available to founders right now and the number one reason most people do not use it consistently is that editing is too slow and too technical. <span className="font-bold text-brand-cyan">Descript</span> removes both barriers.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">What it replaces:</span> A video editor, a podcast editor, a transcription service, and two days of production time between recording and publishing.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">The one thing it does better than anything else:</span> Speed. Users consistently report cutting editing time by 50 to 80 percent compared to traditional editing tools.
-          </p>
-          <CalloutTip>
-            Pro tip: Use Studio Sound on every recording before anything else. It removes background noise and enhances audio quality in one click.
-          </CalloutTip>
-          <ToolReviewCard name="Descript" desc="Best AI tool for video and podcast editing" to="/reviews/descript" />
-
-          <SectionDivider />
-
-          <H2>7. ELEVENLABS — YOUR AI VOICE TEAM</H2>
-          <H3>Category: Voice Generation & Audio</H3>
-          <H3>Best for: Professional audio content at scale</H3>
-          <p>
-            Your voice is one of the most powerful tools for building trust with an audience but recording and producing audio at scale is time consuming. <span className="font-bold text-brand-cyan">ElevenLabs</span> gives you the ability to generate professional audio in any language from a text script in minutes.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">What it replaces:</span> A voiceover artist, a recording studio, localization costs for international markets, and scheduling constraints of recording everything yourself.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">The one thing it does better than anything else:</span> Voice quality. The audio ElevenLabs generates is indistinguishable from human recording in most professional contexts.
-          </p>
-          <CalloutTip>
-            Pro tip: Clone your own voice and use it for content you do not have time to record yourself. Two minutes of sample audio is all it needs.
-          </CalloutTip>
-          <ToolReviewCard name="ElevenLabs" desc="Best AI tool for voice generation" to="/tools/elevenlabs" />
-
-          <SectionDivider />
-
-          <H2>8. RUNWAY — YOUR AI VIDEO PRODUCTION CREW</H2>
-          <H3>Category: AI Video Generation</H3>
-          <H3>Best for: Cinematic video content without a camera crew</H3>
-          <p>
-            Brand videos, product demonstrations, social media content — these traditionally required a camera crew and a production budget out of reach for most small operations. <span className="font-bold text-brand-cyan">Runway</span> generates cinematic quality video from text prompts and images.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">What it replaces:</span> A video production company, a motion graphics designer, a stock video subscription, and weeks of production lead time.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">The one thing it does better than anything else:</span> Visual quality. Runway's Gen-3 Alpha produces video that is smooth, cinematic and controllable in ways that make it genuinely useful for professional creative work.
-          </p>
-          <CalloutTip>
-            Pro tip: Use Runway for short high quality atmospheric clips used as background visuals or social content — this is where it delivers the most consistent professional results.
-          </CalloutTip>
-          <ToolReviewCard name="Runway" desc="Best AI tool for video generation" to="/tools/runway" />
-
-          <SectionDivider />
-
-          <H2>9. JASPER — YOUR AI MARKETING DEPARTMENT</H2>
-          <H3>Category: AI Writing & Marketing</H3>
-          <H3>Best for: Brand consistent content at scale</H3>
-          <p>
-            When your business needs emails, ads, landing pages, social posts and blog content that all sound like the same brand, <span className="font-bold text-brand-cyan">Jasper</span> solves that problem. Its Brand Voice feature learns your specific tone and applies it consistently across every piece of content it produces.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">What it replaces:</span> A marketing copywriter, a content strategist, and the brand guidelines document that nobody actually reads before writing something.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">The one thing it does better than anything else:</span> Brand consistency at scale. If you need large volumes of content that sounds like it came from the same company, Jasper does that better than any other tool available.
-          </p>
-          <CalloutTip>
-            Pro tip: Invest time setting up Brand Voice properly before using Jasper for production content. It is the setup that makes everything else work.
-          </CalloutTip>
-          <ToolReviewCard name="Jasper" desc="Best AI tool for marketing copy" to="/reviews/jasper" />
-
-          <SectionDivider />
-
-          <H2>10. FRAMER AI — YOUR AI WEB DESIGN TEAM</H2>
-          <H3>Category: Website Builder & Design</H3>
-          <H3>Best for: Professional websites without a design agency</H3>
-          <p>
-            Your website is the one piece of real estate on the internet you fully control. <span className="font-bold text-brand-cyan">Framer AI</span> generates complete professionally designed websites from a text description and lets you update them visually without touching code or briefing a designer.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">What it replaces:</span> A web design agency, a developer for ongoing updates, a separate hosting service, and weeks of back and forth that traditional website projects require.
-          </p>
-          <p>
-            <span className="font-bold italic text-white">The one thing it does better than anything else:</span> Design quality ceiling. Framer is the first no-code builder that delivers professional results at a level where designers choose it over tools they trained on.
-          </p>
-          <CalloutTip>
-            Pro tip: Use Framer AI to generate your initial site from a detailed description of your brand and audience. The AI starting point will be 70 percent of the way there.
-          </CalloutTip>
-          <ToolReviewCard name="Framer AI" desc="Best AI tool for websites and landing pages" to="/reviews/framer" />
-
-          <SectionDivider />
-
-          <H2>THE TOTAL PICTURE</H2>
-          <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden my-8">
-            <table className="w-full text-left border-collapse">
-              <tbody className="divide-y divide-gray-800">
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">Claude Pro</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money></td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">Perplexity Pro</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money></td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">Cursor Pro</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money></td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">Midjourney Standard</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$30/month</Money></td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">Notion AI</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$26/month</Money></td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">Descript Creator</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$24/month</Money></td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">ElevenLabs Starter</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$5/month</Money></td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">Runway Standard</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$15/month</Money></td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">Jasper Creator</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$49/month</Money></td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">Framer Basic</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money></td>
-                </tr>
-                <tr className="bg-gray-800/30">
-                  <td className="py-4 px-6 font-bold text-white">Total</td>
-                  <td className="py-4 px-6 text-brand-amber font-mono font-bold text-right text-lg"><Money>$229/month</Money></td>
-                </tr>
-              </tbody>
-            </table>
-            <div className="px-6 py-3 bg-gray-950/50 border-t border-gray-800 text-center text-sm text-gray-500 font-mono">
-              Equivalent to <Money>$2,748/year</Money>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="claude-thinking-partner">1. CLAUDE — YOUR AI THINKING PARTNER</H2>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: Claude interface showing a complex reasoning task
+                </p>
+              </div>
             </div>
-          </div>
-          <p>
-            That is <Money>$2,748 per year</Money> for the combined capability of a writing team, a research department, a development squad, a design studio, a video production crew, a voice production team, a marketing department and a web design agency. A single mid-level hire in any one of those disciplines costs more than that annually.
-          </p>
+
+            <H3>Category: Writing & Reasoning</H3>
+            <p>
+              If you could only pick one AI tool from this entire list, <span className="font-bold text-brand-cyan">Claude</span> would be it.
+            </p>
+            <p>
+              Built by Anthropic with a relentless focus on being genuinely helpful, Claude is the closest thing to having a brilliant generalist on your team. It can write, think, code, analyze, and strategize.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">What it replaces:</span> A copywriter, a strategist, a researcher, and a brainstorming partner — all available 24 hours a day for <Money>$20 a month</Money>.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">The one thing it does best:</span> Long form thinking. Give Claude a complex problem, and it will help you think it through with clarity and depth.
+            </p>
+            
+            <CalloutTip>
+              Pro tip: Use Claude for every first draft of anything important. The editing pass you do after is faster and better than starting from a blank page.
+            </CalloutTip>
+            
+            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" category="Writing" />
+          </motion.div>
 
           <SectionDivider />
 
-          <H2>HOW TO START</H2>
-          <p>
-            Do not try to adopt all ten tools simultaneously. Start with <span className="font-bold text-brand-cyan">Claude</span> — spend two weeks making it your default for writing and thinking. Then add <span className="font-bold text-brand-cyan">Perplexity</span>. Together they replace more daily friction than any other combination on this list. From there add tools based on your biggest current bottleneck.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="perplexity-research">2. PERPLEXITY — YOUR AI RESEARCH DEPARTMENT</H2>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: Perplexity showing cited research results
+                </p>
+              </div>
+            </div>
+
+            <H3>Category: Research & Information</H3>
+            <p>
+              Every business decision you make is only as good as the information it is based on.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">Perplexity</span> gives you a research department that works in real time. It searches the current web, reads relevant sources, and delivers cited answers in seconds.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">What it replaces:</span> A research assistant, multiple news subscriptions, and hours spent trying to stay informed.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">The one thing it does best:</span> Competitive intelligence. Ask about a competitor or market trend, and it synthesizes everything into a clear, sourced summary.
+            </p>
+            
+            <CalloutTip>
+              Pro tip: Use Focus modes — switch to Academic for research papers, Reddit for real user opinions, and News for breaking developments.
+            </CalloutTip>
+            
+            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" category="Research" />
+          </motion.div>
+
+          <PullQuote>
+            "The playing field between individuals and teams has never been more level. AI has quietly handed solopreneurs the capabilities of entire departments."
+          </PullQuote>
 
           <SectionDivider />
 
-          <H2>THE BOTTOM LINE</H2>
-          <p>
-            The solopreneur that masters these ten tools does not just compete with larger teams — they outmaneuver them. Larger teams move slower, communicate across more layers, and carry more overhead per unit of output. A single person with the right AI stack moves faster, ships more, and adapts quicker than a department that has not figured out the game has changed.
-          </p>
-          <p>
-            The window to build that advantage is open right now. It will not stay open indefinitely.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="cursor-development">3. CURSOR — YOUR AI DEVELOPMENT TEAM</H2>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: Cursor editor showing AI code generation
+                </p>
+              </div>
+            </div>
+
+            <H3>Category: Coding & Development</H3>
+            <p>
+              The single most expensive bottleneck for most solo founders is development. <span className="font-bold text-brand-cyan">Cursor</span> eliminates that bottleneck entirely.
+            </p>
+            <p>
+              It is an AI-powered code editor that understands your entire codebase. It helps you build, fix, and ship software through natural language instructions.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">What it replaces:</span> A freelance developer on retainer and the feeling of being permanently blocked by technical limitations.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">The one thing it does best:</span> Making non-developers dangerous. You do not need to know how to code to use Cursor effectively.
+            </p>
+            
+            <CalloutTip>
+              Pro tip: Start by asking Cursor to explain your codebase before asking it to change anything. Understanding what exists makes instructions more precise.
+            </CalloutTip>
+            
+            <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/tools/cursor" category="Coding" />
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="midjourney-design">4. MIDJOURNEY — YOUR AI DESIGN STUDIO</H2>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: High-quality Midjourney generated brand asset
+                </p>
+              </div>
+            </div>
+
+            <H3>Category: Image Generation & Design</H3>
+            <p>
+              Every piece of content you publish competes for attention. <span className="font-bold text-brand-cyan">Midjourney</span> levels that competition.
+            </p>
+            <p>
+              It generates images of a quality and aesthetic sophistication that genuinely matches professional design studios — from a text prompt, in minutes.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">What it replaces:</span> A graphic designer, a stock photo subscription, and days of back and forth to get a visual right.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">The one thing it does best:</span> Aesthetic quality. Every other generator produces competent outputs. Midjourney produces beautiful ones.
+            </p>
+            
+            <CalloutTip>
+              Pro tip: Add --style raw to prompts for photorealistic outputs and save your best prompts — they are reusable assets.
+            </CalloutTip>
+            
+            <ToolReviewCard name="Midjourney" desc="Best AI tool for image generation" to="/reviews/midjourney" category="Design" />
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="notion-ai-chief-of-staff">5. NOTION AI — YOUR AI CHIEF OF STAFF</H2>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: Notion AI summarizing a complex meeting note
+                </p>
+              </div>
+            </div>
+
+            <H3>Category: Productivity & Knowledge Management</H3>
+            <p>
+              Every growing business drowns in information at some point. <span className="font-bold text-brand-cyan">Notion AI</span> turns your workspace into a living, queryable knowledge base.
+            </p>
+            <p>
+              It surfaces the right information at the right moment and helps you turn raw notes into structured thinking automatically.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">What it replaces:</span> A chief of staff, a note taker, and the multiple tools you maintain for notes and project management.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">The one thing it does best:</span> Making your existing work more valuable. Every note becomes something you can query instantly.
+            </p>
+            
+            <CalloutTip>
+              Pro tip: Create a weekly review template and ask Notion AI to summarize your week's notes into action items every Friday.
+            </CalloutTip>
+            
+            <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/tools/notion-ai" category="Productivity" />
+          </motion.div>
+
+          <PullQuote>
+            "You do not need to know how to code to use Cursor effectively. You need to know what you want to build and be willing to learn the basics."
+          </PullQuote>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="descript-video">6. DESCRIPT — YOUR AI VIDEO & PODCAST TEAM</H2>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: Descript text-based video editing interface
+                </p>
+              </div>
+            </div>
+
+            <H3>Category: Video & Audio Editing</H3>
+            <p>
+              Video is the highest trust building medium available. The number one reason people do not use it is that editing is too slow.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">Descript</span> removes both barriers. You edit video by editing text.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">What it replaces:</span> A video editor, a podcast editor, and two days of production time between recording and publishing.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">The one thing it does best:</span> Speed. Users consistently report cutting editing time by 50 to 80 percent.
+            </p>
+            
+            <CalloutTip>
+              Pro tip: Use Studio Sound on every recording before anything else. It removes background noise and enhances audio quality in one click.
+            </CalloutTip>
+            
+            <ToolReviewCard name="Descript" desc="Best AI tool for video and podcast editing" to="/reviews/descript" category="Video" />
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="elevenlabs-voice">7. ELEVENLABS — YOUR AI VOICE TEAM</H2>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: ElevenLabs voice generation dashboard
+                </p>
+              </div>
+            </div>
+
+            <H3>Category: Voice Generation & Audio</H3>
+            <p>
+              Your voice is a powerful tool for building trust, but recording audio at scale is time consuming.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">ElevenLabs</span> gives you the ability to generate professional audio in any language from a text script in minutes.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">What it replaces:</span> A voiceover artist, a recording studio, and the scheduling constraints of recording everything yourself.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">The one thing it does best:</span> Voice quality. The audio ElevenLabs generates is indistinguishable from human recording.
+            </p>
+            
+            <CalloutTip>
+              Pro tip: Clone your own voice and use it for content you do not have time to record yourself. Two minutes of sample audio is all it needs.
+            </CalloutTip>
+            
+            <ToolReviewCard name="ElevenLabs" desc="Best AI tool for voice generation" to="/tools/elevenlabs" category="Audio" />
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="runway-video-production">8. RUNWAY — YOUR AI VIDEO PRODUCTION CREW</H2>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: Runway Gen-3 cinematic video output
+                </p>
+              </div>
+            </div>
+
+            <H3>Category: AI Video Generation</H3>
+            <p>
+              Brand videos and product demonstrations traditionally required a camera crew and a large production budget.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">Runway</span> generates cinematic quality video from text prompts and images.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">What it replaces:</span> A video production company, a motion graphics designer, and weeks of production lead time.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">The one thing it does best:</span> Visual quality. Runway's Gen-3 Alpha produces video that is smooth, cinematic and controllable.
+            </p>
+            
+            <CalloutTip>
+              Pro tip: Use Runway for short high quality atmospheric clips used as background visuals or social content.
+            </CalloutTip>
+            
+            <ToolReviewCard name="Runway" desc="Best AI tool for video generation" to="/tools/runway" category="Video" />
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="jasper-marketing">9. JASPER — YOUR AI MARKETING DEPARTMENT</H2>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: Jasper Brand Voice configuration screen
+                </p>
+              </div>
+            </div>
+
+            <H3>Category: AI Writing & Marketing</H3>
+            <p>
+              When your business needs emails, ads, and social posts that all sound like the same brand, <span className="font-bold text-brand-cyan">Jasper</span> solves that problem.
+            </p>
+            <p>
+              Its Brand Voice feature learns your specific tone and applies it consistently across every piece of content it produces.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">What it replaces:</span> A marketing copywriter, a content strategist, and the brand guidelines document nobody reads.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">The one thing it does best:</span> Brand consistency at scale. If you need large volumes of content, Jasper does that better than any other tool.
+            </p>
+            
+            <CalloutTip>
+              Pro tip: Invest time setting up Brand Voice properly before using Jasper for production content. It is the setup that makes everything else work.
+            </CalloutTip>
+            
+            <ToolReviewCard name="Jasper" desc="Best AI tool for marketing copy" to="/reviews/jasper" category="Marketing" />
+          </motion.div>
+
+          <PullQuote>
+            "The solopreneur that masters these ten tools does not just compete with larger teams — they outmaneuver them."
+          </PullQuote>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="framer-web-design">10. FRAMER AI — YOUR AI WEB DESIGN TEAM</H2>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: Framer AI generating a website layout
+                </p>
+              </div>
+            </div>
+
+            <H3>Category: Website Builder & Design</H3>
+            <p>
+              Your website is the one piece of real estate on the internet you fully control.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">Framer AI</span> generates complete professionally designed websites from a text description. You can update them visually without touching code.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">What it replaces:</span> A web design agency, a developer for ongoing updates, and weeks of back and forth.
+            </p>
+            <p>
+              <span className="font-bold italic text-white">The one thing it does best:</span> Design quality ceiling. Framer delivers professional results at a level where designers choose it over tools they trained on.
+            </p>
+            
+            <CalloutTip>
+              Pro tip: Use Framer AI to generate your initial site from a detailed description. The AI starting point will be 70 percent of the way there.
+            </CalloutTip>
+            
+            <ToolReviewCard name="Framer AI" desc="Best AI tool for websites and landing pages" to="/reviews/framer" category="Website" />
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="total-picture">THE TOTAL PICTURE</H2>
+            
+            <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden my-8">
+              <table className="w-full text-left border-collapse">
+                <tbody className="divide-y divide-gray-800">
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">Claude Pro</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money></td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">Perplexity Pro</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money></td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">Cursor Pro</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money></td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">Midjourney Standard</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$30/month</Money></td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">Notion AI</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$26/month</Money></td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">Descript Creator</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$24/month</Money></td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">ElevenLabs Starter</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$5/month</Money></td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">Runway Standard</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$15/month</Money></td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">Jasper Creator</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$49/month</Money></td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">Framer Basic</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money></td>
+                  </tr>
+                  <tr className="bg-gray-800/30">
+                    <td className="py-4 px-6 font-bold text-white">Total</td>
+                    <td className="py-4 px-6 text-brand-amber font-mono font-bold text-right text-lg"><Money>$229/month</Money></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div className="px-6 py-3 bg-gray-950/50 border-t border-gray-800 text-center text-sm text-gray-500 font-mono">
+                Equivalent to <Money>$2,748/year</Money>
+              </div>
+            </div>
+            
+            <p>
+              That is <Money>$2,748 per year</Money> for the combined capability of a writing team, a research department, a development squad, a design studio, a video production crew, a voice production team, a marketing department and a web design agency.
+            </p>
+            <p>
+              A single mid-level hire in any one of those disciplines costs more than that annually.
+            </p>
+            <p className="font-bold text-white mt-6">
+              The ROI on mastering these tools is astronomical.
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="how-to-start">HOW TO START</H2>
+            
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: Calendar showing a two-week learning plan
+                </p>
+              </div>
+            </div>
+
+            <p>
+              Do not try to adopt all ten tools simultaneously. Start with <span className="font-bold text-brand-cyan">Claude</span>.
+            </p>
+            <p>
+              Spend two weeks making it your default for writing and thinking. Then add <span className="font-bold text-brand-cyan">Perplexity</span>. Together they replace more daily friction than any other combination on this list.
+            </p>
+            <p>
+              From there, add tools based on your biggest current bottleneck.
+            </p>
+            
+            <CalloutTip>
+              Commit to using a new tool exclusively for two weeks before deciding if it works for you.
+            </CalloutTip>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-bottom-line">THE BOTTOM LINE</H2>
+            <p>
+              The solopreneur that masters these ten tools does not just compete with larger teams — they outmaneuver them.
+            </p>
+            <p>
+              Larger teams move slower, communicate across more layers, and carry more overhead per unit of output. A single person with the right AI stack moves faster, ships more, and adapts quicker.
+            </p>
+            <p>
+              The window to build that advantage is open right now. <span className="font-bold italic text-white">It will not stay open indefinitely.</span>
+            </p>
+            
+            <H3>Key Takeaways</H3>
+            <ul className="list-disc pl-6 space-y-2 text-gray-300 my-4">
+              <li>AI tools provide the leverage of a full team for $229/month.</li>
+              <li>Start with Claude and Perplexity to build core habits.</li>
+              <li>Solopreneurs with AI can outmaneuver larger, slower teams.</li>
+            </ul>
+
+            <div className="mt-8">
+              <a href="/" className="inline-flex items-center justify-center px-6 py-3 bg-brand-cyan text-brand-bg font-bold font-inter rounded-lg hover:bg-white transition-colors">
+                Explore All Tool Reviews at domskysolutions.com
+              </a>
+            </div>
+            <p className="text-sm text-gray-500 mt-4">
+              Find the right AI tools for your specific workflow.
+            </p>
+          </motion.div>
 
           <div className="mt-16 p-6 bg-gray-900 border border-gray-800 text-sm text-gray-400">
             <div className="font-bold font-mono text-white mb-2">ABOUT THIS ARTICLE</div>
@@ -3004,361 +3550,538 @@ const AiComparisonBlogPost = () => {
           </div>
         </div>
 
-        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
-          <img 
-            src="/images/ai-comparison-article.jpg" 
-            alt="Cover image showing Claude, ChatGPT and Gemini logos" 
-            style={{ width: '100%', height: '400px', objectFit: 'cover', borderRadius: '12px' }}
-          />
+        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl bg-gray-900 flex items-center justify-center" style={{height: '400px'}}>
+          <div className="text-center text-gray-600">
+            <div className="text-6xl mb-4">🖼</div>
+            <p className="font-mono text-sm">
+              [ INSERT COVER IMAGE HERE ]
+            </p>
+            <p className="font-mono text-xs mt-2 text-gray-700">
+              Recommended: Cover image showing Claude, ChatGPT and Gemini logos
+            </p>
+          </div>
         </div>
 
         <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
           <p>
-            If you have spent any time trying to figure out which AI assistant to use in 2026 you already know the problem. Every review tells you they are all great. Every comparison hedges with "it depends on your use case." Every article seems to be written by someone who has not actually used all three seriously enough to have a real opinion.
+            If you have spent any time trying to figure out which AI assistant to use in 2026 you already know the problem.
+          </p>
+          <p>
+            Every review tells you they are all great. Every comparison hedges with "it depends on your use case." Every article seems to be written by someone who has not actually used all three seriously enough to have a real opinion.
           </p>
           <p>
             This is not that article.
           </p>
           <p>
-            We used <span className="font-bold text-brand-cyan">Claude</span>, <span className="font-bold text-brand-cyan">ChatGPT</span> and <span className="font-bold text-brand-cyan">Gemini</span> as our primary AI assistants for thirty days each — for real work, real tasks, and real deadlines. Writing, coding, research, analysis, summarizing documents, brainstorming, and everything in between. We tracked where each one excelled, where each one frustrated us, and where the gaps between them were meaningful enough to actually change what we recommend.
+            We used <ToolLink name="Claude" to="/tools/claude" />, <ToolLink name="ChatGPT" to="/tools/chatgpt" /> and <ToolLink name="Gemini" to="/tools/gemini" /> as our primary AI assistants for thirty days each — for real work, real tasks, and real deadlines.
           </p>
-          <p className="font-bold italic text-white">
+          <p>
+            Writing, coding, research, analysis, summarizing documents, brainstorming, and everything in between. We tracked where each one excelled, where each one frustrated us, and where the gaps between them were meaningful enough to actually change what we recommend.
+          </p>
+          <p className="font-bold italic text-white text-xl mt-8">
             Here is the honest verdict.
           </p>
 
           <SectionDivider />
 
-          <H2>THE THREE CONTENDERS</H2>
-          <p>
-            Before we get into the comparison it is worth understanding what each of these tools actually is and who built it — because the company behind each model shapes its personality, priorities and weaknesses in ways that matter for daily use.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-three-contenders">THE THREE CONTENDERS</H2>
+            <p>
+              Before we get into the comparison it is worth understanding what each of these tools actually is and who built it.
+            </p>
+            <p>
+              The company behind each model shapes its personality, priorities and weaknesses in ways that matter for daily use.
+            </p>
 
-          <H3>CLAUDE — Built by Anthropic</H3>
-          <p>
-            Claude is built by Anthropic, a company founded specifically around the goal of building AI that is safe, honest and genuinely helpful. That mission is not marketing — it shows up in how Claude behaves. It is more likely to tell you when it is uncertain, more careful about making things up, and more focused on actually solving your problem than on sounding impressive while doing it. The current flagship model is Claude Sonnet 4.6, with Claude Opus 4.6 available for the most demanding tasks.
-          </p>
+            <H3>CLAUDE — Built by Anthropic</H3>
+            <p>
+              <ToolLink name="Claude" to="/tools/claude" /> is built by Anthropic, a company founded specifically around the goal of building AI that is safe, honest and genuinely helpful.
+            </p>
+            <p>
+              That mission is not marketing — it shows up in how Claude behaves. It is more likely to tell you when it is uncertain, more careful about making things up, and more focused on actually solving your problem than on sounding impressive while doing it.
+            </p>
+            <p>
+              The current flagship model is <span className="font-bold text-brand-cyan">Claude Sonnet 4.6</span>, with Claude Opus 4.6 available for the most demanding tasks.
+            </p>
 
-          <H3>CHATGPT — Built by OpenAI</H3>
-          <p>
-            ChatGPT is the tool that started the current AI revolution and it remains the most recognized name in the category. Built by OpenAI, it was the first AI assistant most people ever used and it has spent the years since trying to be everything to everyone — adding image generation, voice mode, web browsing, plugins, memory and more features than any competitor. The current flagship is GPT-4o, with the o1 and o3 models available for complex reasoning tasks.
-          </p>
+            <H3>CHATGPT — Built by OpenAI</H3>
+            <p>
+              <ToolLink name="ChatGPT" to="/tools/chatgpt" /> is the tool that started the current AI revolution and it remains the most recognized name in the category.
+            </p>
+            <p>
+              Built by OpenAI, it was the first AI assistant most people ever used and it has spent the years since trying to be everything to everyone — adding image generation, voice mode, web browsing, plugins, memory and more features than any competitor.
+            </p>
+            <p>
+              The current flagship is <span className="font-bold text-brand-cyan">GPT-4o</span>, with the o1 and o3 models available for complex reasoning tasks.
+            </p>
 
-          <H3>GEMINI — Built by Google</H3>
-          <p>
-            Gemini is Google's answer to the AI assistant revolution — and it has the most powerful infrastructure behind it of any tool on this list. Google's search index, its real time web access, its integration with Gmail, Docs, Drive and every other Google product gives Gemini capabilities that neither Claude nor ChatGPT can match in the Google ecosystem. The current flagship is Gemini 1.5 Pro, with Gemini Ultra available for the highest capability tasks.
-          </p>
-
-          <SectionDivider />
-
-          <H2>THE HEAD TO HEAD TESTS</H2>
-          <p>
-            We ran the same tasks through all three tools and scored them honestly. Here is what we found.
-          </p>
-
-          <SectionDivider />
-
-          <H2>TEST 1 — WRITING QUALITY</H2>
-          <p>Task: Write a 500 word blog post introduction about the future of remote work</p>
-          <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
-            <span className="font-bold font-mono text-brand-cyan">Winner: Claude 🥇</span>
-          </div>
-          <p>
-            <span className="font-bold text-brand-cyan">Claude</span> produced the most natural, nuanced and genuinely readable output of the three. It did not just string together competent sentences — it constructed an argument with a clear point of view, varied sentence rhythm that made it pleasant to read, and a voice that did not sound like it came from a machine trying to sound human.
-          </p>
-          <p>
-            <span className="font-bold text-brand-cyan">ChatGPT</span> produced solid, competent writing that covered the topic thoroughly but felt slightly formulaic — the kind of writing that is correct in every way but memorable in none. It defaulted to predictable structures and safe observations where Claude took more interesting angles.
-          </p>
-          <p>
-            <span className="font-bold text-brand-cyan">Gemini</span> struggled the most with tone — its output read more like an informational summary than a compelling piece of writing. Technically accurate but flat in a way that would require significant editing before publishing.
-          </p>
-          <p className="font-bold italic text-white mt-6">
-            For anything where writing quality matters — blog posts, emails, copy, proposals — Claude is the clear choice.
-          </p>
-
-          <SectionDivider />
-
-          <H2>TEST 2 — CODING ABILITY</H2>
-          <p>Task: Build a working React component for a newsletter signup form with validation</p>
-          <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
-            <span className="font-bold font-mono text-brand-cyan">Winner: ChatGPT 🥇 (narrow margin over Claude)</span>
-          </div>
-          <p>
-            <span className="font-bold text-brand-cyan">ChatGPT</span> produced clean, well structured code that worked on the first attempt with minimal adjustment needed. Its code comments were clear, its component structure was logical, and it anticipated edge cases we had not mentioned in the prompt without being asked.
-          </p>
-          <p>
-            <span className="font-bold text-brand-cyan">Claude</span> was a very close second — its code was equally functional and arguably better commented, but it occasionally over-engineered solutions in ways that required simplification. For simple to medium complexity coding tasks the gap is negligible. For very complex multi-file architecture tasks Claude's reasoning ability gives it an edge.
-          </p>
-          <p>
-            <span className="font-bold text-brand-cyan">Gemini</span> lagged noticeably on coding tasks — producing working code but with less elegant structure and fewer thoughtful implementation details than either competitor.
-          </p>
-          <p className="font-bold italic text-white mt-6">
-            For coding tasks either Claude or ChatGPT will serve you well. ChatGPT has a slight edge on straightforward implementation, Claude has an edge on complex reasoning about architecture.
-          </p>
+            <H3>GEMINI — Built by Google</H3>
+            <p>
+              <ToolLink name="Gemini" to="/tools/gemini" /> is Google's answer to the AI assistant revolution — and it has the most powerful infrastructure behind it of any tool on this list.
+            </p>
+            <p>
+              Google's search index, its real time web access, its integration with Gmail, Docs, Drive and every other Google product gives Gemini capabilities that neither Claude nor ChatGPT can match in the Google ecosystem.
+            </p>
+            <p>
+              The current flagship is <span className="font-bold text-brand-cyan">Gemini 1.5 Pro</span>, with Gemini Ultra available for the highest capability tasks.
+            </p>
+          </motion.div>
 
           <SectionDivider />
 
-          <H2>TEST 3 — RESEARCH & CURRENT INFORMATION</H2>
-          <p>Task: Summarize the three most significant AI developments from the past month</p>
-          <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
-            <span className="font-bold font-mono text-brand-cyan">Winner: Gemini 🥇</span>
-          </div>
-          <p>
-            This is where <span className="font-bold text-brand-cyan">Gemini's</span> Google infrastructure becomes an insurmountable advantage. Its real time access to Google's search index means it can answer questions about current events, recent developments, and breaking news with an accuracy and depth that neither Claude nor ChatGPT can match from their training data alone.
-          </p>
-          <p>
-            <span className="font-bold text-brand-cyan">ChatGPT</span> with web browsing enabled is a reasonable competitor here — it can search the web and synthesize results, but its search quality and source selection is noticeably less sophisticated than Gemini's native Google integration.
-          </p>
-          <p>
-            <span className="font-bold text-brand-cyan">Claude</span> is the most honest about its limitations here — it will tell you clearly when its knowledge cutoff means it cannot answer a current events question reliably, rather than confidently making something up. That honesty is valuable but it does mean Claude is not the right tool for research requiring real time information.
-          </p>
-          <p className="font-bold italic text-white mt-6">
-            For research requiring current information use Gemini or pair Claude with Perplexity for the best results.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="head-to-head-tests">THE HEAD TO HEAD TESTS</H2>
+            <p>
+              We ran the same tasks through all three tools and scored them honestly. Here is what we found.
+            </p>
+          </motion.div>
 
           <SectionDivider />
 
-          <H2>TEST 4 — DOCUMENT ANALYSIS</H2>
-          <p>Task: Analyze a 40 page business report and identify the three biggest risks</p>
-          <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
-            <span className="font-bold font-mono text-brand-cyan">Winner: Claude 🥇</span>
-          </div>
-          <p>
-            <span className="font-bold text-brand-cyan">Claude's</span> massive context window — one of the largest available in any consumer AI tool — gives it a significant advantage on long document tasks. It read, retained and reasoned across the entire 40 page document without losing context or conflating information from different sections.
-          </p>
-          <p>
-            More importantly it identified risks that required reading between the lines — implications buried in financial footnotes, tensions between statements made in different sections, and trends visible only when comparing data across multiple tables. That level of analytical depth genuinely impressed us.
-          </p>
-          <p>
-            <span className="font-bold text-brand-cyan">ChatGPT</span> handled the task competently but showed signs of context strain on the longer document — occasionally referencing information slightly inaccurately in ways that suggested it had not fully retained the earlier sections by the time it reached the end.
-          </p>
-          <p>
-            <span className="font-bold text-brand-cyan">Gemini</span> performed similarly to ChatGPT on this task — capable but not exceptional on the analytical depth dimension.
-          </p>
-          <p className="font-bold italic text-white mt-6">
-            For document analysis, contract review, report summarization and any task requiring reasoning across large amounts of text Claude is the clear winner.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="test-1-writing">TEST 1 — WRITING QUALITY</H2>
+            <p className="font-mono text-sm text-gray-400 mb-4">Task: Write a 500 word blog post introduction about the future of remote work</p>
+            <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
+              <span className="font-bold font-mono text-brand-cyan">Winner: Claude 🥇</span>
+            </div>
+            <p>
+              <span className="font-bold text-brand-cyan">Claude</span> produced the most natural, nuanced and genuinely readable output of the three.
+            </p>
+            <p>
+              It did not just string together competent sentences — it constructed an argument with a clear point of view, varied sentence rhythm that made it pleasant to read, and a voice that did not sound like it came from a machine trying to sound human.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">ChatGPT</span> produced solid, competent writing that covered the topic thoroughly but felt slightly formulaic — the kind of writing that is correct in every way but memorable in none.
+            </p>
+            <p>
+              It defaulted to predictable structures and safe observations where Claude took more interesting angles.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">Gemini</span> struggled the most with tone — its output read more like an informational summary than a compelling piece of writing. Technically accurate but flat in a way that would require significant editing before publishing.
+            </p>
+            <p className="font-bold italic text-white mt-6">
+              For anything where writing quality matters — blog posts, emails, copy, proposals — Claude is the clear choice.
+            </p>
+          </motion.div>
 
           <SectionDivider />
 
-          <H2>TEST 5 — HONESTY & RELIABILITY</H2>
-          <p>Task: Ask each tool a question with a definitively wrong common answer to see if they push back or agree</p>
-          <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
-            <span className="font-bold font-mono text-brand-cyan">Winner: Claude 🥇</span>
-          </div>
-          <p>
-            This test matters more than most comparisons acknowledge. An AI assistant that confidently tells you wrong things is not just useless — it is actively dangerous if you are making business decisions based on its outputs.
-          </p>
-          <p>
-            <span className="font-bold text-brand-cyan">Claude</span> pushed back on the incorrect premise immediately, explained why the common answer was wrong, and provided the correct information with appropriate context about its confidence level. It did this without being preachy or condescending — just clear and direct.
-          </p>
-          <p>
-            <span className="font-bold text-brand-cyan">ChatGPT</span> agreed with the incorrect premise in two out of three test variations before course correcting when pushed. It was more susceptible to sycophancy — telling us what we seemed to want to hear rather than what was actually true.
-          </p>
-          <p>
-            <span className="font-bold text-brand-cyan">Gemini</span> split the difference — more reliable than ChatGPT on factual accuracy but less consistently willing to push back on incorrect premises than Claude.
-          </p>
-          <p className="font-bold italic text-white mt-6">
-            For any task where accuracy matters more than agreeableness — which is most tasks worth doing — Claude's honesty is a genuine competitive advantage.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="test-2-coding">TEST 2 — CODING ABILITY</H2>
+            <p className="font-mono text-sm text-gray-400 mb-4">Task: Build a working React component for a newsletter signup form with validation</p>
+            <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
+              <span className="font-bold font-mono text-brand-cyan">Winner: ChatGPT 🥇 (narrow margin over Claude)</span>
+            </div>
+            <p>
+              <span className="font-bold text-brand-cyan">ChatGPT</span> produced clean, well structured code that worked on the first attempt with minimal adjustment needed.
+            </p>
+            <p>
+              Its code comments were clear, its component structure was logical, and it anticipated edge cases we had not mentioned in the prompt without being asked.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">Claude</span> was a very close second — its code was equally functional and arguably better commented, but it occasionally over-engineered solutions in ways that required simplification.
+            </p>
+            <p>
+              For simple to medium complexity coding tasks the gap is negligible. For very complex multi-file architecture tasks Claude's reasoning ability gives it an edge.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">Gemini</span> lagged noticeably on coding tasks — producing working code but with less elegant structure and fewer thoughtful implementation details than either competitor.
+            </p>
+            <p className="font-bold italic text-white mt-6">
+              For coding tasks either Claude or ChatGPT will serve you well. ChatGPT has a slight edge on straightforward implementation, Claude has an edge on complex reasoning about architecture.
+            </p>
+          </motion.div>
 
           <SectionDivider />
 
-          <H2>TEST 6 — GOOGLE WORKSPACE INTEGRATION</H2>
-          <p>Task: Summarize my last week of emails and identify action items</p>
-          <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
-            <span className="font-bold font-mono text-brand-cyan">Winner: Gemini 🥇 (by a massive margin)</span>
-          </div>
-          <p>
-            This test only applies to <span className="font-bold text-brand-cyan">Gemini</span> because Claude and ChatGPT simply cannot do it — they have no access to your Gmail, Google Drive, Google Docs or Google Calendar. Gemini can read your emails, summarize your documents, find files in your Drive, and work across your entire Google workspace natively.
-          </p>
-          <p>
-            For anyone deeply embedded in the Google ecosystem this capability alone might be enough to justify Gemini as your primary AI assistant regardless of where it falls short on other dimensions.
-          </p>
-          <p className="font-bold italic text-white mt-6">
-            If you live in Google Workspace Gemini is the only tool that works natively with your existing data.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="test-3-research">TEST 3 — RESEARCH & CURRENT INFORMATION</H2>
+            <p className="font-mono text-sm text-gray-400 mb-4">Task: Summarize the three most significant AI developments from the past month</p>
+            <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
+              <span className="font-bold font-mono text-brand-cyan">Winner: Gemini 🥇</span>
+            </div>
+            <p>
+              This is where <span className="font-bold text-brand-cyan">Gemini's</span> Google infrastructure becomes an insurmountable advantage.
+            </p>
+            <p>
+              Its real time access to Google's search index means it can answer questions about current events, recent developments, and breaking news with an accuracy and depth that neither Claude nor ChatGPT can match from their training data alone.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">ChatGPT</span> with web browsing enabled is a reasonable competitor here — it can search the web and synthesize results, but its search quality and source selection is noticeably less sophisticated than Gemini's native Google integration.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">Claude</span> is the most honest about its limitations here — it will tell you clearly when its knowledge cutoff means it cannot answer a current events question reliably, rather than confidently making something up.
+            </p>
+            <p>
+              That honesty is valuable but it does mean Claude is not the right tool for research requiring real time information.
+            </p>
+            <p className="font-bold italic text-white mt-6">
+              For research requiring current information use Gemini or pair Claude with Perplexity for the best results.
+            </p>
+          </motion.div>
 
           <SectionDivider />
 
-          <H2>THE SCORECARD</H2>
-          <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden my-8">
-            <table className="w-full text-left border-collapse">
-              <tbody className="divide-y divide-gray-800">
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300 font-medium">Writing Quality</td>
-                  <td className="py-3 px-6 text-right">
-                    <div className="flex flex-col gap-1 text-sm">
-                      <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
-                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
-                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐</span></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300 font-medium">Coding Ability</td>
-                  <td className="py-3 px-6 text-right">
-                    <div className="flex flex-col gap-1 text-sm">
-                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
-                      <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
-                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐</span></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300 font-medium">Current Information</td>
-                  <td className="py-3 px-6 text-right">
-                    <div className="flex flex-col gap-1 text-sm">
-                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
-                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
-                      <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐</span></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300 font-medium">Document Analysis</td>
-                  <td className="py-3 px-6 text-right">
-                    <div className="flex flex-col gap-1 text-sm">
-                      <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
-                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
-                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300 font-medium">Honesty & Reliability</td>
-                  <td className="py-3 px-6 text-right">
-                    <div className="flex flex-col gap-1 text-sm">
-                      <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
-                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
-                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐</span></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300 font-medium">Google Integration</td>
-                  <td className="py-3 px-6 text-right">
-                    <div className="flex flex-col gap-1 text-sm">
-                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
-                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-gray-500">✗</span></div>
-                      <div className="flex justify-between"><span>Claude</span><span className="text-gray-500">✗</span></div>
-                    </div>
-                  </td>
-                </tr>
-                <tr className="bg-gray-800/30">
-                  <td className="py-4 px-6 font-bold text-white">Overall Score</td>
-                  <td className="py-4 px-6 text-right">
-                    <div className="flex flex-col gap-1 text-sm font-bold font-mono">
-                      <div className="flex justify-between"><span>Claude</span><span className="text-brand-cyan">29/30</span></div>
-                      <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-cyan">26/30</span></div>
-                      <div className="flex justify-between"><span>Gemini</span><span className="text-brand-cyan">25/30</span></div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="test-4-document-analysis">TEST 4 — DOCUMENT ANALYSIS</H2>
+            <p className="font-mono text-sm text-gray-400 mb-4">Task: Analyze a 40 page business report and identify the three biggest risks</p>
+            <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
+              <span className="font-bold font-mono text-brand-cyan">Winner: Claude 🥇</span>
+            </div>
+            <p>
+              <span className="font-bold text-brand-cyan">Claude's</span> massive context window — one of the largest available in any consumer AI tool — gives it a significant advantage on long document tasks.
+            </p>
+            <p>
+              It read, retained and reasoned across the entire 40 page document without losing context or conflating information from different sections.
+            </p>
+            <p>
+              More importantly it identified risks that required reading between the lines — implications buried in financial footnotes, tensions between statements made in different sections, and trends visible only when comparing data across multiple tables.
+            </p>
+            <p>
+              That level of analytical depth genuinely impressed us.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">ChatGPT</span> handled the task competently but showed signs of context strain on the longer document — occasionally referencing information slightly inaccurately in ways that suggested it had not fully retained the earlier sections by the time it reached the end.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">Gemini</span> performed similarly to ChatGPT on this task — capable but not exceptional on the analytical depth dimension.
+            </p>
+            <p className="font-bold italic text-white mt-6">
+              For document analysis, contract review, report summarization and any task requiring reasoning across large amounts of text Claude is the clear winner.
+            </p>
+          </motion.div>
 
           <SectionDivider />
 
-          <H2>THE HONEST RECOMMENDATION</H2>
-          <p>
-            There is no single right answer here — but there is a right answer for most people reading this article.
-          </p>
-
-          <H3>CHOOSE CLAUDE IF:</H3>
-          <p>
-            You are a writer, founder, consultant, researcher or knowledge worker whose primary use of AI is thinking, writing and analysis. Claude will make you better at your core work in a way that feels less like using a tool and more like thinking alongside someone genuinely intelligent. The <Money>$20/month</Money> Pro plan is one of the best value subscriptions in the AI tools market.
-          </p>
-
-          <H3>CHOOSE CHATGPT IF:</H3>
-          <p>
-            You are a developer or technical user who needs the broadest feature set — image generation, voice mode, plugins, the widest range of third party integrations, and the most established ecosystem of tools built around a single AI platform. ChatGPT's breadth is unmatched even if its depth on individual tasks is occasionally surpassed.
-          </p>
-
-          <H3>CHOOSE GEMINI IF:</H3>
-          <p>
-            You live in Google Workspace and want an AI assistant that works natively with your existing email, documents and calendar. Or if real time web information is a core part of your daily AI usage and you want the most deeply integrated search capability available in any consumer AI tool.
-          </p>
-
-          <CalloutTip>
-            <span className="font-bold text-white">THE POWER USER MOVE:</span> Use Claude as your primary assistant for thinking and writing. Use Perplexity for real time research. Use Cursor for coding. You get the best of every capability without being limited by the weaknesses of any single tool.
-          </CalloutTip>
-
-          <SectionDivider />
-
-          <H2>PRICING COMPARISON</H2>
-          <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden my-8">
-            <table className="w-full text-left border-collapse">
-              <tbody className="divide-y divide-gray-800">
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">Claude Free</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right">Limited daily messages</td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">Claude Pro</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money> — best value</td>
-                </tr>
-                <tr className="bg-gray-800/20">
-                  <td colSpan={2} className="py-1"></td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">ChatGPT Free</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right">Limited GPT-4o access</td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">ChatGPT Plus</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money></td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">ChatGPT Pro</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$200/month</Money></td>
-                </tr>
-                <tr className="bg-gray-800/20">
-                  <td colSpan={2} className="py-1"></td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">Gemini Free</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right">Basic Gemini access</td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors">
-                  <td className="py-3 px-6 text-gray-300">Gemini Advanced</td>
-                  <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$19.99/month</Money> <br/><span className="text-xs text-gray-500">(included in Google One AI Premium)</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p>
-            All three offer meaningful free tiers that are worth trying before committing to a paid plan. Start free, identify which tool fits your workflow, then upgrade when the usage limits become a real constraint on your work.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="test-5-honesty">TEST 5 — HONESTY & RELIABILITY</H2>
+            <p className="font-mono text-sm text-gray-400 mb-4">Task: Ask each tool a question with a definitively wrong common answer to see if they push back or agree</p>
+            <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
+              <span className="font-bold font-mono text-brand-cyan">Winner: Claude 🥇</span>
+            </div>
+            <p>
+              This test matters more than most comparisons acknowledge.
+            </p>
+            <p>
+              An AI assistant that confidently tells you wrong things is not just useless — it is actively dangerous if you are making business decisions based on its outputs.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">Claude</span> pushed back on the incorrect premise immediately, explained why the common answer was wrong, and provided the correct information with appropriate context about its confidence level.
+            </p>
+            <p>
+              It did this without being preachy or condescending — just clear and direct.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">ChatGPT</span> agreed with the incorrect premise in two out of three test variations before course correcting when pushed. It was more susceptible to sycophancy — telling us what we seemed to want to hear rather than what was actually true.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">Gemini</span> split the difference — more reliable than ChatGPT on factual accuracy but less consistently willing to push back on incorrect premises than Claude.
+            </p>
+            <p className="font-bold italic text-white mt-6">
+              For any task where accuracy matters more than agreeableness — which is most tasks worth doing — Claude's honesty is a genuine competitive advantage.
+            </p>
+          </motion.div>
 
           <SectionDivider />
 
-          <H2>FINAL VERDICT</H2>
-          <p>
-            <span className="font-bold text-brand-cyan">Claude</span> wins on the dimensions that matter most for serious knowledge work — writing quality, analytical depth, document reasoning and honesty. For the majority of founders, creators, consultants and professionals reading this article, Claude is the AI assistant we recommend starting with.
-          </p>
-          <p>
-            <span className="font-bold text-brand-cyan">ChatGPT</span> remains the most versatile option for users who need the broadest feature set and the most established third party ecosystem. It is not the best at any single thing on this list but it is excellent at everything, which has its own value.
-          </p>
-          <p>
-            <span className="font-bold text-brand-cyan">Gemini</span> is the specialist — extraordinary in its Google integration and real time information capabilities, and a genuinely strong all-round assistant for anyone already living in the Google ecosystem.
-          </p>
-          <p>
-            The good news is that all three offer free plans generous enough to form a real opinion. Try them all for a week on real tasks from your actual work before committing to a paid plan. The right answer will become obvious faster than you expect.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="test-6-google-workspace">TEST 6 — GOOGLE WORKSPACE INTEGRATION</H2>
+            <p className="font-mono text-sm text-gray-400 mb-4">Task: Summarize my last week of emails and identify action items</p>
+            <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
+              <span className="font-bold font-mono text-brand-cyan">Winner: Gemini 🥇 (by a massive margin)</span>
+            </div>
+            <p>
+              This test only applies to <span className="font-bold text-brand-cyan">Gemini</span> because Claude and ChatGPT simply cannot do it — they have no access to your Gmail, Google Drive, Google Docs or Google Calendar.
+            </p>
+            <p>
+              Gemini can read your emails, summarize your documents, find files in your Drive, and work across your entire Google workspace natively.
+            </p>
+            <p>
+              For anyone deeply embedded in the Google ecosystem this capability alone might be enough to justify Gemini as your primary AI assistant regardless of where it falls short on other dimensions.
+            </p>
+            <p className="font-bold italic text-white mt-6">
+              If you live in Google Workspace Gemini is the only tool that works natively with your existing data.
+            </p>
+          </motion.div>
 
           <SectionDivider />
 
-          <H2>READ NEXT</H2>
-          <p>
-            We have a complete in-depth review of Claude covering every feature, pricing tier, pros and cons and exactly who it is best for:
-          </p>
-          <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" />
-          
-          <p className="mt-8">
-            And if you are serious about research alongside your AI assistant, read our Perplexity review — the tool that solves Claude's one real weakness:
-          </p>
-          <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-scorecard">THE SCORECARD</H2>
+            <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden my-8">
+              <table className="w-full text-left border-collapse">
+                <tbody className="divide-y divide-gray-800">
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300 font-medium">Writing Quality</td>
+                    <td className="py-3 px-6 text-right">
+                      <div className="flex flex-col gap-1 text-sm">
+                        <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                        <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
+                        <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐</span></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300 font-medium">Coding Ability</td>
+                    <td className="py-3 px-6 text-right">
+                      <div className="flex flex-col gap-1 text-sm">
+                        <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                        <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                        <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐</span></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300 font-medium">Current Information</td>
+                    <td className="py-3 px-6 text-right">
+                      <div className="flex flex-col gap-1 text-sm">
+                        <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                        <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
+                        <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐</span></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300 font-medium">Document Analysis</td>
+                    <td className="py-3 px-6 text-right">
+                      <div className="flex flex-col gap-1 text-sm">
+                        <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                        <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
+                        <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300 font-medium">Honesty & Reliability</td>
+                    <td className="py-3 px-6 text-right">
+                      <div className="flex flex-col gap-1 text-sm">
+                        <div className="flex justify-between"><span>Claude</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                        <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐⭐</span></div>
+                        <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-amber">⭐⭐⭐</span></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300 font-medium">Google Integration</td>
+                    <td className="py-3 px-6 text-right">
+                      <div className="flex flex-col gap-1 text-sm">
+                        <div className="flex justify-between"><span>Gemini</span><span className="text-brand-amber">⭐⭐⭐⭐⭐</span></div>
+                        <div className="flex justify-between"><span>ChatGPT</span><span className="text-gray-500">✗</span></div>
+                        <div className="flex justify-between"><span>Claude</span><span className="text-gray-500">✗</span></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr className="bg-gray-800/30">
+                    <td className="py-4 px-6 font-bold text-white">Overall Score</td>
+                    <td className="py-4 px-6 text-right">
+                      <div className="flex flex-col gap-1 text-sm font-bold font-mono">
+                        <div className="flex justify-between"><span>Claude</span><span className="text-brand-cyan">29/30</span></div>
+                        <div className="flex justify-between"><span>ChatGPT</span><span className="text-brand-cyan">26/30</span></div>
+                        <div className="flex justify-between"><span>Gemini</span><span className="text-brand-cyan">25/30</span></div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-honest-recommendation">THE HONEST RECOMMENDATION</H2>
+            <p>
+              There is no single right answer here — but there is a right answer for most people reading this article.
+            </p>
+
+            <H3>CHOOSE CLAUDE IF:</H3>
+            <p>
+              You are a writer, founder, consultant, researcher or knowledge worker whose primary use of AI is thinking, writing and analysis.
+            </p>
+            <p>
+              <ToolLink name="Claude" to="/tools/claude" /> will make you better at your core work in a way that feels less like using a tool and more like thinking alongside someone genuinely intelligent.
+            </p>
+            <p>
+              The <Money>$20/month</Money> Pro plan is one of the best value subscriptions in the AI tools market.
+            </p>
+
+            <H3>CHOOSE CHATGPT IF:</H3>
+            <p>
+              You are a developer or technical user who needs the broadest feature set — image generation, voice mode, plugins, the widest range of third party integrations, and the most established ecosystem of tools built around a single AI platform.
+            </p>
+            <p>
+              <ToolLink name="ChatGPT" to="/tools/chatgpt" />'s breadth is unmatched even if its depth on individual tasks is occasionally surpassed.
+            </p>
+
+            <H3>CHOOSE GEMINI IF:</H3>
+            <p>
+              You live in Google Workspace and want an AI assistant that works natively with your existing email, documents and calendar.
+            </p>
+            <p>
+              Or if real time web information is a core part of your daily AI usage and you want the most deeply integrated search capability available in any consumer AI tool.
+            </p>
+
+            <CalloutTip>
+              <span className="font-bold text-white">THE POWER USER MOVE:</span> Use Claude as your primary assistant for thinking and writing. Use Perplexity for real time research. Use Cursor for coding. You get the best of every capability without being limited by the weaknesses of any single tool.
+            </CalloutTip>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="pricing-comparison">PRICING COMPARISON</H2>
+            <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden my-8">
+              <table className="w-full text-left border-collapse">
+                <tbody className="divide-y divide-gray-800">
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">Claude Free</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right">Limited daily messages</td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">Claude Pro</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money> — best value</td>
+                  </tr>
+                  <tr className="bg-gray-800/20">
+                    <td colSpan={2} className="py-1"></td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">ChatGPT Free</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right">Limited GPT-4o access</td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">ChatGPT Plus</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$20/month</Money></td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">ChatGPT Pro</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$200/month</Money></td>
+                  </tr>
+                  <tr className="bg-gray-800/20">
+                    <td colSpan={2} className="py-1"></td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">Gemini Free</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right">Basic Gemini access</td>
+                  </tr>
+                  <tr className="hover:bg-gray-800/50 transition-colors">
+                    <td className="py-3 px-6 text-gray-300">Gemini Advanced</td>
+                    <td className="py-3 px-6 text-brand-cyan font-mono text-right"><Money>$19.99/month</Money> <br/><span className="text-xs text-gray-500">(included in Google One AI Premium)</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              All three offer meaningful free tiers that are worth trying before committing to a paid plan.
+            </p>
+            <p>
+              Start free, identify which tool fits your workflow, then upgrade when the usage limits become a real constraint on your work.
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="final-verdict">FINAL VERDICT</H2>
+            <p>
+              <span className="font-bold text-brand-cyan">Claude</span> wins on the dimensions that matter most for serious knowledge work — writing quality, analytical depth, document reasoning and honesty.
+            </p>
+            <p>
+              For the majority of founders, creators, consultants and professionals reading this article, Claude is the AI assistant we recommend starting with.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">ChatGPT</span> remains the most versatile option for users who need the broadest feature set and the most established third party ecosystem.
+            </p>
+            <p>
+              It is not the best at any single thing on this list but it is excellent at everything, which has its own value.
+            </p>
+            <p>
+              <span className="font-bold text-brand-cyan">Gemini</span> is the specialist — extraordinary in its Google integration and real time information capabilities, and a genuinely strong all-round assistant for anyone already living in the Google ecosystem.
+            </p>
+            
+            <PullQuote>
+              "The good news is that all three offer free plans generous enough to form a real opinion. Try them all for a week on real tasks from your actual work before committing to a paid plan."
+            </PullQuote>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="read-next">READ NEXT</H2>
+            <p>
+              We have a complete in-depth review of Claude covering every feature, pricing tier, pros and cons and exactly who it is best for:
+            </p>
+            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" category="AI Assistant" />
+            
+            <p className="mt-8">
+              And if you are serious about research alongside your AI assistant, read our Perplexity review — the tool that solves Claude's one real weakness:
+            </p>
+            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" category="Research" />
+          </motion.div>
 
           <div className="mt-16 p-6 bg-gray-900 border border-gray-800 text-sm text-gray-400">
             <div className="font-bold font-mono text-white mb-2">ABOUT THIS ARTICLE</div>
@@ -3420,12 +4143,16 @@ const AiDailyWorkflowBlogPost = () => {
           </div>
         </div>
 
-        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
-          <img 
-            src="/images/workflow-article.jpg" 
-            alt="Cover image showing AI workflow" 
-            style={{ width: '100%', height: '400px', objectFit: 'cover', borderRadius: '12px' }}
-          />
+        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl bg-gray-900 flex items-center justify-center" style={{height: '400px'}}>
+          <div className="text-center text-gray-600">
+            <div className="text-6xl mb-4">🖼</div>
+            <p className="font-mono text-sm">
+              [ INSERT COVER IMAGE HERE ]
+            </p>
+            <p className="font-mono text-xs mt-2 opacity-50">
+              Suggested: A clean, top-down shot of a minimalist desk setup with a coffee cup and a glowing laptop screen, cinematic lighting.
+            </p>
+          </div>
         </div>
 
         <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
@@ -3433,7 +4160,13 @@ const AiDailyWorkflowBlogPost = () => {
             People ask me regularly how I manage to run domskysolutions.com — researching tools, writing reviews, publishing blog posts, managing social media, and keeping up with a industry that moves faster than any other — completely alone, without a team, without an agency, and without burning out in the process.
           </p>
           <p>
-            The honest answer is that I do not do it alone. I do it with a stack of AI tools that handle the parts of the work that used to require either a team or an unsustainable number of hours. What follows is not a theoretical framework or a curated list of tools I think sound impressive. It is the exact workflow I use every single day, in the order I use it, with the specific tools that have earned a permanent place in how I operate.
+            The honest answer is that I do not do it alone.
+          </p>
+          <p>
+            I do it with a stack of AI tools that handle the parts of the work that used to require either a team or an unsustainable number of hours.
+          </p>
+          <p>
+            What follows is not a theoretical framework or a curated list of tools I think sound impressive. It is the exact workflow I use every single day, in the order I use it, with the specific tools that have earned a permanent place in how I operate.
           </p>
           <p>
             If you are building something solo — a newsletter, a content site, a consulting practice, a SaaS product, or anything in between — this is the closest thing I can offer to showing you exactly what running a one person business looks like when AI is doing its job properly.
@@ -3441,365 +4174,453 @@ const AiDailyWorkflowBlogPost = () => {
 
           <SectionDivider />
 
-          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE MORNING BLOCK — 7:00 AM TO 9:00 AM</h2>
-          <p className="text-xl text-white mb-6">"Intelligence gathering"</p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-morning-block">THE MORNING BLOCK — 7:00 AM TO 9:00 AM</H2>
+            <p className="text-xl text-white mb-6">"Intelligence gathering"</p>
 
-          <p>
-            The first two hours of my day used to be the most chaotic. Tabs open everywhere. Newsletter after newsletter. Twitter scrolling that felt productive but was not. Three different apps for notes that never talked to each other. I was consuming information without processing it, which meant I was always busy but rarely informed in any useful way.
-          </p>
-          <p>
-            Now my morning looks like this:
-          </p>
+            <p>
+              The first two hours of my day used to be the most chaotic. Tabs open everywhere. Newsletter after newsletter. Twitter scrolling that felt productive but was not. Three different apps for notes that never talked to each other.
+            </p>
+            <p>
+              I was consuming information without processing it, which meant I was always busy but rarely informed in any useful way.
+            </p>
+            <p>
+              Now my morning looks like this:
+            </p>
 
-          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 1 — THE DAILY BRIEF WITH PERPLEXITY</h3>
-          <p className="mb-2"><strong>Time:</strong> 15 minutes</p>
-          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Perplexity Pro</span></p>
+            <H3>STEP 1 — THE DAILY BRIEF WITH PERPLEXITY</H3>
+            <p className="mb-2"><strong>Time:</strong> 15 minutes</p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Perplexity Pro" to="/tools/perplexity" /></p>
 
-          <p>
-            The first thing I open every morning is <span className="text-brand-cyan font-bold">Perplexity</span>. I run the same three searches every day:
-          </p>
+            <p>
+              The first thing I open every morning is <ToolLink name="Perplexity" to="/tools/perplexity" />. I run the same three searches every day:
+            </p>
 
-          <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
-            <p className="text-brand-cyan mb-2">Search 1:</p>
-            <p className="mb-4">"Most significant AI tool launches and updates in the last 24 hours"</p>
-            
-            <p className="text-brand-cyan mb-2">Search 2:</p>
-            <p className="mb-4">"Latest news about [the specific tool I am currently reviewing]"</p>
-            
-            <p className="text-brand-cyan mb-2">Search 3:</p>
-            <p>"Top discussions about AI tools on Reddit and Twitter today"</p>
-          </div>
+            <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
+              <p className="text-brand-cyan mb-2">Search 1:</p>
+              <p className="mb-4">"Most significant AI tool launches and updates in the last 24 hours"</p>
+              
+              <p className="text-brand-cyan mb-2">Search 2:</p>
+              <p className="mb-4">"Latest news about [the specific tool I am currently reviewing]"</p>
+              
+              <p className="text-brand-cyan mb-2">Search 3:</p>
+              <p>"Top discussions about AI tools on Reddit and Twitter today"</p>
+            </div>
 
-          <p>
-            <span className="text-brand-cyan font-bold">Perplexity</span> reads the current web, pulls the most relevant sources, and gives me cited summaries in under a minute each. What used to take an hour of tab switching now takes fifteen minutes and I come away with actual information rather than the feeling of having been informed.
-          </p>
+            <p>
+              <ToolLink name="Perplexity" to="/tools/perplexity" /> reads the current web, pulls the most relevant sources, and gives me cited summaries in under a minute each.
+            </p>
+            <p>
+              What used to take an hour of tab switching now takes fifteen minutes and I come away with actual information rather than the feeling of having been informed.
+            </p>
 
-          <CalloutTip>
-            <strong>Key insight:</strong> I save every interesting finding directly into <span className="text-brand-cyan font-bold">Notion</span> with one click. No more losing things in browser tabs.
-          </CalloutTip>
+            <CalloutTip>
+              <span className="font-bold text-white">Key insight:</span> I save every interesting finding directly into <ToolLink name="Notion" to="/tools/notion" /> with one click. No more losing things in browser tabs.
+            </CalloutTip>
 
-          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 2 — PROCESSING NOTES WITH NOTION AI</h3>
-          <p className="mb-2"><strong>Time:</strong> 10 minutes</p>
-          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Notion AI</span></p>
+            <H3>STEP 2 — PROCESSING NOTES WITH NOTION AI</H3>
+            <p className="mb-2"><strong>Time:</strong> 10 minutes</p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Notion AI" to="/tools/notion" /></p>
 
-          <p>
-            Everything I captured yesterday — ideas, research notes, half-formed article concepts, interesting quotes — lives in a <span className="text-brand-cyan font-bold">Notion</span> inbox page. Every morning I open it and ask <span className="text-brand-cyan font-bold">Notion AI</span>:
-          </p>
+            <p>
+              Everything I captured yesterday — ideas, research notes, half-formed article concepts, interesting quotes — lives in a <ToolLink name="Notion" to="/tools/notion" /> inbox page.
+            </p>
+            <p>
+              Every morning I open it and ask <ToolLink name="Notion AI" to="/tools/notion" />:
+            </p>
 
-          <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
-            <p className="text-brand-cyan mb-2">Prompt:</p>
-            <p>"Summarize everything in this inbox, identify any action items, and suggest which items could become content pieces"</p>
-          </div>
+            <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
+              <p className="text-brand-cyan mb-2">Prompt:</p>
+              <p>"Summarize everything in this inbox, identify any action items, and suggest which items could become content pieces"</p>
+            </div>
 
-          <p>
-            It processes everything I dumped in yesterday and hands me back a clear picture of what needs attention. The cognitive load of remembering what I was working on is completely eliminated. I just read the summary and know exactly where I am.
-          </p>
+            <p>
+              It processes everything I dumped in yesterday and hands me back a clear picture of what needs attention.
+            </p>
+            <p>
+              The cognitive load of remembering what I was working on is completely eliminated. I just read the summary and know exactly where I am.
+            </p>
 
-          <CalloutTip>
-            <strong>Key insight:</strong> <span className="text-brand-cyan font-bold">Notion AI</span> is not just a writing tool — it is a thinking partner that makes your existing notes more valuable than you could make them yourself.
-          </CalloutTip>
-
-          <SectionDivider />
-
-          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE CONTENT BLOCK — 9:00 AM TO 12:00 PM</h2>
-          <p className="text-xl text-white mb-6">"Creating and publishing"</p>
-
-          <p>
-            This is the core of my working day and where AI assistance has the most dramatic impact on output. Three hours of focused content work now produces what used to take a full day.
-          </p>
-
-          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 3 — FIRST DRAFT WITH CLAUDE</h3>
-          <p className="mb-2"><strong>Time:</strong> 30-45 minutes per piece</p>
-          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Claude Pro</span></p>
-
-          <p>
-            I do not stare at a blank page. Ever. <span className="text-brand-cyan font-bold">Claude</span> handles every first draft — blog posts, tool reviews, newsletter issues, social media threads. My process:
-          </p>
-
-          <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
-            <p className="text-brand-cyan mb-2">The prompt I use for blog posts:</p>
-            <p className="mb-4">"Write a detailed outline for an article titled [title]. The audience is founders and solopreneurs. The tone is direct, experienced, and honest — not salesy. Include a hook introduction, 5-7 main sections with subpoints, and a strong conclusion with a clear takeaway."</p>
-            
-            <p className="text-brand-cyan mb-2">Once the outline is approved I ask:</p>
-            <p>"Now write the full article based on this outline. Use specific examples, avoid generic statements, and write as if you are a practitioner who has actually used these tools — not a reviewer who is summarizing specs."</p>
-          </div>
-
-          <p>
-            The draft <span className="text-brand-cyan font-bold">Claude</span> produces is 70-80 percent of the way to publishable. The remaining 20-30 percent is my job — adding personal experience, specific examples from my actual use of the tools, and the genuine opinions that only come from real usage.
-          </p>
-
-          <CalloutTip>
-            <strong>Key insight:</strong> <span className="text-brand-cyan font-bold">Claude</span> does not replace my writing. It eliminates the blank page problem and the structural thinking, which are the two most time consuming parts of the writing process for me. The voice and the insight remain mine.
-          </CalloutTip>
-
-          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 4 — RESEARCH VERIFICATION WITH PERPLEXITY</h3>
-          <p className="mb-2"><strong>Time:</strong> 15 minutes</p>
-          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Perplexity Pro</span></p>
-
-          <p>
-            Before anything gets published I verify every factual claim — pricing, features, recent updates — against current sources. AI tools change fast. A pricing tier that was accurate two months ago might not be accurate today.
-          </p>
-
-          <p>
-            I paste the draft into a note and ask <span className="text-brand-cyan font-bold">Perplexity</span>:
-          </p>
-
-          <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
-            <p>"Verify these specific claims about [tool name] — are the pricing tiers, features, and any statistics current and accurate as of today?"</p>
-          </div>
-
-          <p>
-            It checks against live sources and flags anything that has changed. This single step is what separates content that builds trust from content that erodes it.
-          </p>
-
-          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 5 — VISUALS WITH MIDJOURNEY</h3>
-          <p className="mb-2"><strong>Time:</strong> 20 minutes</p>
-          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Midjourney Standard</span></p>
-
-          <p>
-            Every piece of content needs a cover image. My process is now:
-          </p>
-
-          <ol className="list-decimal pl-6 space-y-2 mb-6">
-            <li>Describe the article concept in one sentence</li>
-            <li>Ask <span className="text-brand-cyan font-bold">Claude</span> to suggest three <span className="text-brand-cyan font-bold">Midjourney</span> prompts that would create a compelling cover image for that concept</li>
-            <li>Run the best prompt in <span className="text-brand-cyan font-bold">Midjourney</span></li>
-            <li>Upscale the best result</li>
-            <li>Done</li>
-          </ol>
-
-          <p>
-            The cover images this process produces are consistently better than anything I could brief a designer to create because <span className="text-brand-cyan font-bold">Claude</span> understands both the article content and what makes a good <span className="text-brand-cyan font-bold">Midjourney</span> prompt.
-          </p>
+            <CalloutTip>
+              <span className="font-bold text-white">Key insight:</span> <ToolLink name="Notion AI" to="/tools/notion" /> is not just a writing tool — it is a thinking partner that makes your existing notes more valuable than you could make them yourself.
+            </CalloutTip>
+          </motion.div>
 
           <SectionDivider />
 
-          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE DISTRIBUTION BLOCK — 12:00 PM TO 1:00 PM</h2>
-          <p className="text-xl text-white mb-6">"Getting the work seen"</p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-content-block">THE CONTENT BLOCK — 9:00 AM TO 12:00 PM</H2>
+            <p className="text-xl text-white mb-6">"Creating and publishing"</p>
 
-          <p>
-            Creating content that nobody sees is not a content strategy — it is a hobby. Distribution is half the job and AI has made it dramatically more efficient.
-          </p>
+            <p>
+              This is the core of my working day and where AI assistance has the most dramatic impact on output.
+            </p>
+            <p>
+              Three hours of focused content work now produces what used to take a full day.
+            </p>
 
-          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 6 — SOCIAL CONTENT WITH CLAUDE</h3>
-          <p className="mb-2"><strong>Time:</strong> 20 minutes</p>
-          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Claude Pro</span></p>
+            <H3>STEP 3 — FIRST DRAFT WITH CLAUDE</H3>
+            <p className="mb-2"><strong>Time:</strong> 30-45 minutes per piece</p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Claude Pro" to="/tools/claude" /></p>
 
-          <p>
-            Once an article is published I ask <span className="text-brand-cyan font-bold">Claude</span>:
-          </p>
+            <p>
+              I do not stare at a blank page. Ever.
+            </p>
+            <p>
+              <ToolLink name="Claude" to="/tools/claude" /> handles every first draft — blog posts, tool reviews, newsletter issues, social media threads. My process:
+            </p>
 
-          <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
-            <p className="mb-4">"Based on this article [paste article], create the following:</p>
-            <ol className="list-decimal pl-6 space-y-2">
-              <li>A LinkedIn post — professional tone, leads with the most counterintuitive insight, ends with a question to drive comments. 250 words maximum.</li>
-              <li>An X thread — 8 tweets, hooks with a bold claim, each tweet is standalone valuable, ends with a link to the full article.</li>
-              <li>Three different hook options for the article that I can test across different platforms."</li>
+            <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
+              <p className="text-brand-cyan mb-2">The prompt I use for blog posts:</p>
+              <p className="mb-4">"Write a detailed outline for an article titled [title]. The audience is founders and solopreneurs. The tone is direct, experienced, and honest — not salesy. Include a hook introduction, 5-7 main sections with subpoints, and a strong conclusion with a clear takeaway."</p>
+              
+              <p className="text-brand-cyan mb-2">Once the outline is approved I ask:</p>
+              <p>"Now write the full article based on this outline. Use specific examples, avoid generic statements, and write as if you are a practitioner who has actually used these tools — not a reviewer who is summarizing specs."</p>
+            </div>
+
+            <p>
+              The draft <ToolLink name="Claude" to="/tools/claude" /> produces is 70-80 percent of the way to publishable.
+            </p>
+            <p>
+              The remaining 20-30 percent is my job — adding personal experience, specific examples from my actual use of the tools, and the genuine opinions that only come from real usage.
+            </p>
+
+            <CalloutTip>
+              <span className="font-bold text-white">Key insight:</span> <ToolLink name="Claude" to="/tools/claude" /> does not replace my writing. It eliminates the blank page problem and the structural thinking, which are the two most time consuming parts of the writing process for me. The voice and the insight remain mine.
+            </CalloutTip>
+
+            <H3>STEP 4 — RESEARCH VERIFICATION WITH PERPLEXITY</H3>
+            <p className="mb-2"><strong>Time:</strong> 15 minutes</p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Perplexity Pro" to="/tools/perplexity" /></p>
+
+            <p>
+              Before anything gets published I verify every factual claim — pricing, features, recent updates — against current sources.
+            </p>
+            <p>
+              AI tools change fast. A pricing tier that was accurate two months ago might not be accurate today.
+            </p>
+
+            <p>
+              I paste the draft into a note and ask <ToolLink name="Perplexity" to="/tools/perplexity" />:
+            </p>
+
+            <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
+              <p>"Verify these specific claims about [tool name] — are the pricing tiers, features, and any statistics current and accurate as of today?"</p>
+            </div>
+
+            <p>
+              It checks against live sources and flags anything that has changed. This single step is what separates content that builds trust from content that erodes it.
+            </p>
+
+            <H3>STEP 5 — VISUALS WITH MIDJOURNEY</H3>
+            <p className="mb-2"><strong>Time:</strong> 20 minutes</p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Midjourney Standard" to="/tools/midjourney" /></p>
+
+            <p>
+              Every piece of content needs a cover image. My process is now:
+            </p>
+
+            <ol className="list-decimal pl-6 space-y-2 mb-6">
+              <li>Describe the article concept in one sentence</li>
+              <li>Ask <ToolLink name="Claude" to="/tools/claude" /> to suggest three <ToolLink name="Midjourney" to="/tools/midjourney" /> prompts that would create a compelling cover image for that concept</li>
+              <li>Run the best prompt in <ToolLink name="Midjourney" to="/tools/midjourney" /></li>
+              <li>Upscale the best result</li>
+              <li>Done</li>
             </ol>
-          </div>
 
-          <p>
-            <span className="text-brand-cyan font-bold">Claude</span> produces all of this in under a minute. I review, edit anything that does not sound like me, and schedule everything in one sitting.
-          </p>
-
-          <CalloutTip>
-            <strong>Key insight:</strong> The same article now generates content for three platforms without three times the work. That compounding is what makes solo publishing sustainable.
-          </CalloutTip>
-
-          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 7 — NEWSLETTER ISSUE WITH CLAUDE + NOTION AI</h3>
-          <p className="mb-2"><strong>Time:</strong> 20 minutes</p>
-          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Claude Pro + Notion AI</span></p>
-
-          <p>
-            My weekly newsletter goes out every Thursday. The process:
-          </p>
-
-          <ol className="list-decimal pl-6 space-y-4 mb-6">
-            <li>Ask <span className="text-brand-cyan font-bold">Notion AI</span> to pull the most interesting things I captured in my inbox that week</li>
-            <li>
-              Ask <span className="text-brand-cyan font-bold">Claude</span> to turn the highlights into a newsletter format:
-              <div className="bg-brand-bg border border-gray-800 p-4 rounded mt-2 font-mono text-sm">
-                "Write a weekly newsletter issue using these highlights. Include: one main insight, three tool recommendations with one line each, one tip readers can use today, and a closing thought. Tone: like a smart friend sharing what they learned this week."
-              </div>
-            </li>
-            <li>Edit to add my voice and any personal context</li>
-            <li>Send</li>
-          </ol>
-
-          <p>
-            The entire newsletter production process takes under thirty minutes from a cold start.
-          </p>
+            <p>
+              The cover images this process produces are consistently better than anything I could brief a designer to create because <ToolLink name="Claude" to="/tools/claude" /> understands both the article content and what makes a good <ToolLink name="Midjourney" to="/tools/midjourney" /> prompt.
+            </p>
+          </motion.div>
 
           <SectionDivider />
 
-          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE OPERATIONS BLOCK — 2:00 PM TO 3:00 PM</h2>
-          <p className="text-xl text-white mb-6">"Running the business"</p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-distribution-block">THE DISTRIBUTION BLOCK — 12:00 PM TO 1:00 PM</H2>
+            <p className="text-xl text-white mb-6">"Getting the work seen"</p>
 
-          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 8 — TOOL RESEARCH WITH PERPLEXITY + CLAUDE</h3>
-          <p className="mb-2"><strong>Time:</strong> 45 minutes</p>
-          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Perplexity Pro + Claude Pro</span></p>
+            <p>
+              Creating content that nobody sees is not a content strategy — it is a hobby.
+            </p>
+            <p>
+              Distribution is half the job and AI has made it dramatically more efficient.
+            </p>
 
-          <p>
-            Every week I research one new tool deeply enough to write a full review. The process:
-          </p>
+            <H3>STEP 6 — SOCIAL CONTENT WITH CLAUDE</H3>
+            <p className="mb-2"><strong>Time:</strong> 20 minutes</p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Claude Pro" to="/tools/claude" /></p>
 
-          <div className="space-y-4 mb-6">
-            <div>
-              <p className="font-bold text-white">Phase 1 — Research with <span className="text-brand-cyan font-bold">Perplexity</span>:</p>
-              <p className="font-mono text-sm bg-brand-surface p-3 rounded border border-gray-800 mt-1">"Give me a comprehensive overview of [tool name] — what it does, who it is for, current pricing tiers, recent updates, and what users are saying about it on Reddit and Twitter"</p>
+            <p>
+              Once an article is published I ask <ToolLink name="Claude" to="/tools/claude" />:
+            </p>
+
+            <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
+              <p className="mb-4">"Based on this article [paste article], create the following:</p>
+              <ol className="list-decimal pl-6 space-y-2">
+                <li>A LinkedIn post — professional tone, leads with the most counterintuitive insight, ends with a question to drive comments. 250 words maximum.</li>
+                <li>An X thread — 8 tweets, hooks with a bold claim, each tweet is standalone valuable, ends with a link to the full article.</li>
+                <li>Three different hook options for the article that I can test across different platforms."</li>
+              </ol>
             </div>
-            <div>
-              <p className="font-bold text-white">Phase 2 — Structure with <span className="text-brand-cyan font-bold">Claude</span>:</p>
-              <p className="font-mono text-sm bg-brand-surface p-3 rounded border border-gray-800 mt-1">"Based on this research [paste Perplexity output], create a detailed review outline following this structure: hero description, key features, pros, cons, pricing, who it is best for, final verdict"</p>
-            </div>
-            <div>
-              <p className="font-bold text-white">Phase 3 — Write with <span className="text-brand-cyan font-bold">Claude</span>:</p>
-              <p className="font-mono text-sm bg-brand-surface p-3 rounded border border-gray-800 mt-1">"Now write the full review using this outline. Be honest about limitations — we never write purely positive reviews."</p>
-            </div>
-            <div>
-              <p className="font-bold text-white">Phase 4 — Personal layer:</p>
-              <p className="mt-1">I add my own experience using the tool, specific examples, and genuine opinions before publishing.</p>
-            </div>
-          </div>
 
-          <h3 className="text-xl font-bold font-mono text-brand-amber mt-10 mb-4">STEP 9 — CODING AND SITE UPDATES WITH CURSOR</h3>
-          <p className="mb-2"><strong>Time:</strong> As needed</p>
-          <p className="mb-6"><strong>Tool:</strong> <span className="text-brand-cyan font-bold">Cursor Pro</span></p>
+            <p>
+              <ToolLink name="Claude" to="/tools/claude" /> produces all of this in under a minute.
+            </p>
+            <p>
+              I review, edit anything that does not sound like me, and schedule everything in one sitting.
+            </p>
 
-          <p>
-            Any time the website needs updating — a new section, a bug fix, a design tweak — I use <span className="text-brand-cyan font-bold">Cursor</span>. I describe what I want in plain language and <span className="text-brand-cyan font-bold">Cursor</span> writes the code.
-          </p>
+            <CalloutTip>
+              <span className="font-bold text-white">Key insight:</span> The same article now generates content for three platforms without three times the work. That compounding is what makes solo publishing sustainable.
+            </CalloutTip>
 
-          <p>
-            Last week I added a new filtering system to the tools page. I described what I wanted, <span className="text-brand-cyan font-bold">Cursor</span> wrote the React component, I reviewed it, and it was live in under an hour. Without <span className="text-brand-cyan font-bold">Cursor</span> that change would have required briefing a developer and waiting days.
-          </p>
+            <H3>STEP 7 — NEWSLETTER ISSUE WITH CLAUDE + NOTION AI</H3>
+            <p className="mb-2"><strong>Time:</strong> 20 minutes</p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Claude Pro" to="/tools/claude" /> + <ToolLink name="Notion AI" to="/tools/notion" /></p>
 
-          <CalloutTip>
-            <strong>Key insight:</strong> <span className="text-brand-cyan font-bold">Cursor</span> is not just for developers. It is for anyone who wants to control their own digital product without being permanently dependent on someone else to make changes for them.
-          </CalloutTip>
+            <p>
+              My weekly newsletter goes out every Thursday. The process:
+            </p>
+
+            <ol className="list-decimal pl-6 space-y-4 mb-6">
+              <li>Ask <ToolLink name="Notion AI" to="/tools/notion" /> to pull the most interesting things I captured in my inbox that week</li>
+              <li>
+                Ask <ToolLink name="Claude" to="/tools/claude" /> to turn the highlights into a newsletter format:
+                <div className="bg-brand-bg border border-gray-800 p-4 rounded mt-2 font-mono text-sm">
+                  "Write a weekly newsletter issue using these highlights. Include: one main insight, three tool recommendations with one line each, one tip readers can use today, and a closing thought. Tone: like a smart friend sharing what they learned this week."
+                </div>
+              </li>
+              <li>Edit to add my voice and any personal context</li>
+              <li>Send</li>
+            </ol>
+
+            <p>
+              The entire newsletter production process takes under thirty minutes from a cold start.
+            </p>
+          </motion.div>
 
           <SectionDivider />
 
-          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE NUMBERS — WHAT THIS WORKFLOW ACTUALLY SAVES</h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-operations-block">THE OPERATIONS BLOCK — 2:00 PM TO 3:00 PM</H2>
+            <p className="text-xl text-white mb-6">"Running the business"</p>
 
-          <p>
-            Here is an honest accounting of what this AI workflow replaces and what it costs:
-          </p>
+            <H3>STEP 8 — TOOL RESEARCH WITH PERPLEXITY + CLAUDE</H3>
+            <p className="mb-2"><strong>Time:</strong> 45 minutes</p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Perplexity Pro" to="/tools/perplexity" /> + <ToolLink name="Claude Pro" to="/tools/claude" /></p>
 
-          <div className="bg-brand-surface border border-gray-800 rounded-xl overflow-hidden my-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-800">
-              <div className="p-6">
-                <h4 className="text-lg font-bold font-mono text-red-400 mb-4">BEFORE THIS WORKFLOW:</h4>
-                <ul className="space-y-3 text-sm">
-                  <li className="flex justify-between"><span>Research time:</span> <strong>3 hours/day</strong></li>
-                  <li className="flex justify-between"><span>Writing time:</span> <strong>4 hours/article</strong></li>
-                  <li className="flex justify-between"><span>Social content:</span> <strong>1 hour/post</strong></li>
-                  <li className="flex justify-between"><span>Newsletter:</span> <strong>3 hours/issue</strong></li>
-                  <li className="flex justify-between"><span>Developer retainer:</span> <strong>$300/month</strong></li>
-                  <li className="flex justify-between"><span>Designer:</span> <strong>$200/month</strong></li>
-                  <li className="border-t border-gray-700 pt-3 mt-3 flex justify-between text-white"><span>Total time per week:</span> <strong>35-40 hours</strong></li>
-                  <li className="flex justify-between text-red-400"><span>Total monthly cost:</span> <strong>$500+</strong></li>
-                </ul>
+            <p>
+              Every week I research one new tool deeply enough to write a full review. The process:
+            </p>
+
+            <div className="space-y-4 mb-6">
+              <div>
+                <p className="font-bold text-white">Phase 1 — Research with <ToolLink name="Perplexity" to="/tools/perplexity" />:</p>
+                <p className="font-mono text-sm bg-brand-surface p-3 rounded border border-gray-800 mt-1">"Give me a comprehensive overview of [tool name] — what it does, who it is for, current pricing tiers, recent updates, and what users are saying about it on Reddit and Twitter"</p>
               </div>
-              <div className="p-6">
-                <h4 className="text-lg font-bold font-mono text-green-400 mb-4">WITH THIS WORKFLOW:</h4>
-                <ul className="space-y-3 text-sm">
-                  <li className="flex justify-between"><span>Research time:</span> <strong>45 minutes/day</strong></li>
-                  <li className="flex justify-between"><span>Writing time:</span> <strong>90 minutes/article</strong></li>
-                  <li className="flex justify-between"><span>Social content:</span> <strong>20 minutes/post</strong></li>
-                  <li className="flex justify-between"><span>Newsletter:</span> <strong>30 minutes/issue</strong></li>
-                  <li className="flex justify-between"><span>Developer retainer:</span> <strong>$0</strong></li>
-                  <li className="flex justify-between"><span>Designer:</span> <strong>$0</strong></li>
-                  <li className="border-t border-gray-700 pt-3 mt-3 flex justify-between text-white"><span>Total time per week:</span> <strong>18-20 hours</strong></li>
-                  <li className="flex justify-between text-green-400"><span>Monthly tool cost:</span> <strong>$140/month</strong></li>
-                </ul>
+              <div>
+                <p className="font-bold text-white">Phase 2 — Structure with <ToolLink name="Claude" to="/tools/claude" />:</p>
+                <p className="font-mono text-sm bg-brand-surface p-3 rounded border border-gray-800 mt-1">"Based on this research [paste Perplexity output], create a detailed review outline following this structure: hero description, key features, pros, cons, pricing, who it is best for, final verdict"</p>
+              </div>
+              <div>
+                <p className="font-bold text-white">Phase 3 — Write with <ToolLink name="Claude" to="/tools/claude" />:</p>
+                <p className="font-mono text-sm bg-brand-surface p-3 rounded border border-gray-800 mt-1">"Now write the full review using this outline. Be honest about limitations — we never write purely positive reviews."</p>
+              </div>
+              <div>
+                <p className="font-bold text-white">Phase 4 — Personal layer:</p>
+                <p className="mt-1">I add my own experience using the tool, specific examples, and genuine opinions before publishing.</p>
               </div>
             </div>
-            <div className="bg-gray-900 p-6 border-t border-gray-800 text-center">
-              <p className="text-lg font-mono text-white mb-1">Time saved per week: <span className="text-green-400 font-bold">15-20 hours</span></p>
-              <p className="text-lg font-mono text-white">Money saved per month: <span className="text-green-400 font-bold">$360+</span></p>
-            </div>
-          </div>
 
-          <p>
-            That time saving is not theoretical. It is the difference between burning out trying to run everything alone and having enough capacity left to actually think about where the business is going.
-          </p>
+            <H3>STEP 9 — CODING AND SITE UPDATES WITH CURSOR</H3>
+            <p className="mb-2"><strong>Time:</strong> As needed</p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Cursor Pro" to="/tools/cursor" /></p>
 
-          <SectionDivider />
+            <p>
+              Any time the website needs updating — a new section, a bug fix, a design tweak — I use <ToolLink name="Cursor" to="/tools/cursor" />.
+            </p>
+            <p>
+              I describe what I want in plain language and <ToolLink name="Cursor" to="/tools/cursor" /> writes the code.
+            </p>
 
-          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE TOOLS IN THIS WORKFLOW</h2>
+            <p>
+              Last week I added a new filtering system to the tools page. I described what I wanted, <ToolLink name="Cursor" to="/tools/cursor" /> wrote the React component, I reviewed it, and it was live in under an hour.
+            </p>
+            <p>
+              Without <ToolLink name="Cursor" to="/tools/cursor" /> that change would have required briefing a developer and waiting days.
+            </p>
 
-          <p>
-            Every tool mentioned in this workflow has a full review on domskysolutions.com:
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8">
-            <div className="bg-brand-surface border border-gray-800 p-5 rounded-lg">
-              <h4 className="font-bold text-white mb-1">Claude Pro — <span className="text-brand-cyan">$20/month</span></h4>
-              <p className="text-sm text-gray-400 mb-4">The thinking and writing partner that powers everything.</p>
-              <ReviewLinkCard name="Claude" to="/tools/claude" />
-            </div>
-            <div className="bg-brand-surface border border-gray-800 p-5 rounded-lg">
-              <h4 className="font-bold text-white mb-1">Perplexity Pro — <span className="text-brand-cyan">$20/month</span></h4>
-              <p className="text-sm text-gray-400 mb-4">The research department that runs in real time.</p>
-              <ReviewLinkCard name="Perplexity" to="/tools/perplexity" />
-            </div>
-            <div className="bg-brand-surface border border-gray-800 p-5 rounded-lg">
-              <h4 className="font-bold text-white mb-1">Notion AI — <span className="text-brand-cyan">$26/month</span></h4>
-              <p className="text-sm text-gray-400 mb-4">The knowledge system that makes everything else findable.</p>
-              <ReviewLinkCard name="Notion AI" to="/tools/notion" />
-            </div>
-            <div className="bg-brand-surface border border-gray-800 p-5 rounded-lg">
-              <h4 className="font-bold text-white mb-1">Midjourney Standard — <span className="text-brand-cyan">$30/month</span></h4>
-              <p className="text-sm text-gray-400 mb-4">The design studio for every visual asset.</p>
-              <ReviewLinkCard name="Midjourney" to="/tools/midjourney" />
-            </div>
-            <div className="bg-brand-surface border border-gray-800 p-5 rounded-lg">
-              <h4 className="font-bold text-white mb-1">Cursor Pro — <span className="text-brand-cyan">$20/month</span></h4>
-              <p className="text-sm text-gray-400 mb-4">The development team for every site change.</p>
-              <ReviewLinkCard name="Cursor" to="/tools/cursor" />
-            </div>
-          </div>
-
-          <p className="text-xl font-bold font-mono text-center my-8">
-            Total: <span className="text-brand-cyan">$116/month</span> for a workflow that replaces a team.
-          </p>
+            <CalloutTip>
+              <span className="font-bold text-white">Key insight:</span> <ToolLink name="Cursor" to="/tools/cursor" /> is not just for developers. It is for anyone who wants to control their own digital product without being permanently dependent on someone else to make changes for them.
+            </CalloutTip>
+          </motion.div>
 
           <SectionDivider />
 
-          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">THE ONE THING THAT MAKES IT WORK</h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-numbers">THE NUMBERS — WHAT THIS WORKFLOW ACTUALLY SAVES</H2>
 
-          <p>
-            Every tool in this workflow is only as good as the human judgment applied to its output. <span className="text-brand-cyan font-bold">Claude</span>'s drafts need editing. <span className="text-brand-cyan font-bold">Perplexity</span>'s research needs verification. <span className="text-brand-cyan font-bold">Midjourney</span>'s images need curation. <span className="text-brand-cyan font-bold">Cursor</span>'s code needs review.
-          </p>
-          <p>
-            The workflow does not replace thinking. It removes the friction between thinking and doing — and that is where most of the time in a solo business actually goes. When that friction disappears, the amount you can produce alone genuinely surprises you.
-          </p>
-          <p>
-            This is not about working harder. It is about removing every obstacle between an idea and its execution.
-          </p>
+            <p>
+              Here is an honest accounting of what this AI workflow replaces and what it costs:
+            </p>
+
+            <div className="bg-brand-surface border border-gray-800 rounded-xl overflow-hidden my-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-800">
+                <div className="p-6">
+                  <h4 className="text-lg font-bold font-mono text-red-400 mb-4">BEFORE THIS WORKFLOW:</h4>
+                  <ul className="space-y-3 text-sm">
+                    <li className="flex justify-between"><span>Research time:</span> <strong>3 hours/day</strong></li>
+                    <li className="flex justify-between"><span>Writing time:</span> <strong>4 hours/article</strong></li>
+                    <li className="flex justify-between"><span>Social content:</span> <strong>1 hour/post</strong></li>
+                    <li className="flex justify-between"><span>Newsletter:</span> <strong>3 hours/issue</strong></li>
+                    <li className="flex justify-between"><span>Developer retainer:</span> <strong><Money>$300/month</Money></strong></li>
+                    <li className="flex justify-between"><span>Designer:</span> <strong><Money>$200/month</Money></strong></li>
+                    <li className="border-t border-gray-700 pt-3 mt-3 flex justify-between text-white"><span>Total time per week:</span> <strong>35-40 hours</strong></li>
+                    <li className="flex justify-between text-red-400"><span>Total monthly cost:</span> <strong><Money>$500+</Money></strong></li>
+                  </ul>
+                </div>
+                <div className="p-6">
+                  <h4 className="text-lg font-bold font-mono text-green-400 mb-4">WITH THIS WORKFLOW:</h4>
+                  <ul className="space-y-3 text-sm">
+                    <li className="flex justify-between"><span>Research time:</span> <strong>45 minutes/day</strong></li>
+                    <li className="flex justify-between"><span>Writing time:</span> <strong>90 minutes/article</strong></li>
+                    <li className="flex justify-between"><span>Social content:</span> <strong>20 minutes/post</strong></li>
+                    <li className="flex justify-between"><span>Newsletter:</span> <strong>30 minutes/issue</strong></li>
+                    <li className="flex justify-between"><span>Developer retainer:</span> <strong><Money>$0</Money></strong></li>
+                    <li className="flex justify-between"><span>Designer:</span> <strong><Money>$0</Money></strong></li>
+                    <li className="border-t border-gray-700 pt-3 mt-3 flex justify-between text-white"><span>Total time per week:</span> <strong>18-20 hours</strong></li>
+                    <li className="flex justify-between text-green-400"><span>Monthly tool cost:</span> <strong><Money>$140/month</Money></strong></li>
+                  </ul>
+                </div>
+              </div>
+              <div className="bg-gray-900 p-6 border-t border-gray-800 text-center">
+                <p className="text-lg font-mono text-white mb-1">Time saved per week: <span className="text-green-400 font-bold">15-20 hours</span></p>
+                <p className="text-lg font-mono text-white">Money saved per month: <span className="text-green-400 font-bold"><Money>$360+</Money></span></p>
+              </div>
+            </div>
+
+            <p>
+              That time saving is not theoretical.
+            </p>
+            <p>
+              It is the difference between burning out trying to run everything alone and having enough capacity left to actually think about where the business is going.
+            </p>
+          </motion.div>
 
           <SectionDivider />
 
-          <h2 className="text-2xl font-bold font-mono text-brand-cyan mt-12 mb-6">WANT THIS WORKFLOW FOR YOUR BUSINESS?</h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-tools">THE TOOLS IN THIS WORKFLOW</H2>
 
-          <p>
-            Start with just two tools — <span className="text-brand-cyan font-bold">Claude</span> and <span className="text-brand-cyan font-bold">Perplexity</span>. Use them exclusively for two weeks on real work tasks. The time saving will be obvious enough to tell you exactly which tool to add next.
-          </p>
-          <p>
-            The full stack takes time to build. The first tool takes an afternoon.
-          </p>
+            <p>
+              Every tool mentioned in this workflow has a full review on domskysolutions.com:
+            </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mt-8">
-            <Link to="/tools/claude" className="flex-1 bg-brand-surface border border-gray-700 p-4 text-center hover:border-brand-cyan transition-colors group">
-              <span className="block font-bold text-white mb-1 group-hover:text-brand-cyan transition-colors">Start with Claude</span>
-              <span className="text-sm text-gray-400 flex items-center justify-center gap-1">Read our review <ArrowRight size={14} /></span>
-            </Link>
-            <Link to="/tools/perplexity" className="flex-1 bg-brand-surface border border-gray-700 p-4 text-center hover:border-brand-cyan transition-colors group">
-              <span className="block font-bold text-white mb-1 group-hover:text-brand-cyan transition-colors">Start with Perplexity</span>
-              <span className="text-sm text-gray-400 flex items-center justify-center gap-1">Read our review <ArrowRight size={14} /></span>
-            </Link>
-          </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8">
+              <ToolReviewCard name="Claude" desc="The thinking and writing partner that powers everything." to="/tools/claude" category="AI Assistant" />
+              <ToolReviewCard name="Perplexity" desc="The research department that runs in real time." to="/tools/perplexity" category="Research" />
+              <ToolReviewCard name="Notion AI" desc="The knowledge system that makes everything else findable." to="/tools/notion" category="Workspace" />
+              <ToolReviewCard name="Midjourney" desc="The design studio for every visual asset." to="/tools/midjourney" category="Image Generation" />
+              <ToolReviewCard name="Cursor" desc="The development team for every site change." to="/tools/cursor" category="Code Editor" />
+            </div>
+
+            <p className="text-xl font-bold font-mono text-center my-8">
+              Total: <span className="text-brand-cyan"><Money>$116/month</Money></span> for a workflow that replaces a team.
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-one-thing">THE ONE THING THAT MAKES IT WORK</H2>
+
+            <p>
+              Every tool in this workflow is only as good as the human judgment applied to its output.
+            </p>
+            <p>
+              <ToolLink name="Claude" to="/tools/claude" />'s drafts need editing. <ToolLink name="Perplexity" to="/tools/perplexity" />'s research needs verification. <ToolLink name="Midjourney" to="/tools/midjourney" />'s images need curation. <ToolLink name="Cursor" to="/tools/cursor" />'s code needs review.
+            </p>
+            <p>
+              The workflow does not replace thinking. It removes the friction between thinking and doing — and that is where most of the time in a solo business actually goes.
+            </p>
+            <p>
+              When that friction disappears, the amount you can produce alone genuinely surprises you.
+            </p>
+            <p>
+              This is not about working harder. It is about removing every obstacle between an idea and its execution.
+            </p>
+            
+            <PullQuote>
+              "The workflow does not replace thinking. It removes the friction between thinking and doing."
+            </PullQuote>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="want-this-workflow">WANT THIS WORKFLOW FOR YOUR BUSINESS?</H2>
+
+            <p>
+              Start with just two tools — <ToolLink name="Claude" to="/tools/claude" /> and <ToolLink name="Perplexity" to="/tools/perplexity" />.
+            </p>
+            <p>
+              Use them exclusively for two weeks on real work tasks. The time saving will be obvious enough to tell you exactly which tool to add next.
+            </p>
+            <p>
+              The full stack takes time to build. The first tool takes an afternoon.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              <Link to="/tools/claude" className="flex-1 bg-brand-surface border border-gray-700 p-4 text-center hover:border-brand-cyan transition-colors group">
+                <span className="block font-bold text-white mb-1 group-hover:text-brand-cyan transition-colors">Start with Claude</span>
+                <span className="text-sm text-gray-400 flex items-center justify-center gap-1">Read our review <ArrowRight size={14} /></span>
+              </Link>
+              <Link to="/tools/perplexity" className="flex-1 bg-brand-surface border border-gray-700 p-4 text-center hover:border-brand-cyan transition-colors group">
+                <span className="block font-bold text-white mb-1 group-hover:text-brand-cyan transition-colors">Start with Perplexity</span>
+                <span className="text-sm text-gray-400 flex items-center justify-center gap-1">Read our review <ArrowRight size={14} /></span>
+              </Link>
+            </div>
+          </motion.div>
 
           <div className="mt-16 p-6 bg-brand-surface border border-gray-800 rounded-xl text-sm text-gray-400">
             <p className="mb-2"><strong className="text-gray-300">ABOUT THIS ARTICLE</strong></p>
