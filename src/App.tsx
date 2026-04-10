@@ -4,7 +4,7 @@ import { motion, useScroll, useInView } from 'motion/react';
 import { 
   Menu, X, ArrowRight, Star, ExternalLink,
   PenTool, Palette, Code, Megaphone, Zap, Video, Mic, FlaskConical,
-  Twitter, Linkedin, Youtube, CheckCircle2
+  CheckCircle2, Coffee, ChevronUp, TrendingDown, Clock
 } from 'lucide-react';
 
 // --- Data ---
@@ -979,9 +979,9 @@ const FeaturedTools = () => {
             <h2 className="text-3xl md:text-4xl font-bold font-mono mb-4">Top AI Tools This Week</h2>
             <p className="text-gray-400">Hand-picked software to accelerate your workflow.</p>
           </div>
-          <a href="#" className="hidden md:flex items-center gap-2 text-brand-cyan hover:underline font-mono text-sm">
+          <Link to="/tools" className="hidden md:flex items-center gap-2 text-brand-cyan hover:underline font-mono text-sm">
             View All Tools <ArrowRight size={16} />
-          </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1011,9 +1011,9 @@ const FeaturedTools = () => {
           ))}
         </div>
         <div className="mt-8 text-center md:hidden">
-          <a href="#" className="inline-flex items-center gap-2 text-brand-cyan hover:underline font-mono text-sm">
+          <Link to="/tools" className="inline-flex items-center gap-2 text-brand-cyan hover:underline font-mono text-sm">
             View All Tools <ArrowRight size={16} />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
@@ -1069,9 +1069,9 @@ const AiNews = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-end mb-12">
           <h2 className="text-3xl md:text-4xl font-bold font-mono">Latest in AI</h2>
-          <a href="#" className="hidden md:flex items-center gap-2 text-brand-cyan hover:underline font-mono text-sm">
+          <Link to="/blog" className="hidden md:flex items-center gap-2 text-brand-cyan hover:underline font-mono text-sm">
             All News <ArrowRight size={16} />
-          </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -1115,18 +1115,18 @@ const CategoryExplorer = () => {
           {categories.map((cat, index) => {
             const Icon = cat.icon;
             return (
-              <motion.a
-                href="#"
+              <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="flex flex-col items-center justify-center p-6 bg-brand-bg border border-gray-800 hover:border-brand-cyan hover:bg-brand-cyan/5 transition-all group"
               >
-                <Icon size={32} className="text-gray-500 mb-4 group-hover:text-brand-cyan transition-colors" />
-                <span className="font-mono text-sm font-bold group-hover:text-brand-cyan transition-colors">{cat.name}</span>
-              </motion.a>
+                <Link to="/tools" className="flex flex-col items-center justify-center p-6 bg-brand-bg border border-gray-800 hover:border-brand-cyan hover:bg-brand-cyan/5 transition-all group h-full">
+                  <Icon size={32} className="text-gray-500 mb-4 group-hover:text-brand-cyan transition-colors" />
+                  <span className="font-mono text-sm font-bold group-hover:text-brand-cyan transition-colors">{cat.name}</span>
+                </Link>
+              </motion.div>
             );
           })}
         </div>
@@ -1287,11 +1287,6 @@ const Footer = () => {
             <p className="text-gray-400 text-sm mb-6 max-w-sm">
               Independent. Ad-free. Builder-focused. We curate the best AI tools, software reviews, and news for builders and founders.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="text-gray-500 hover:text-brand-cyan transition-colors"><Twitter size={20} /></a>
-              <a href="#" className="text-gray-500 hover:text-brand-cyan transition-colors"><Linkedin size={20} /></a>
-              <a href="#" className="text-gray-500 hover:text-brand-cyan transition-colors"><Youtube size={20} /></a>
-            </div>
           </div>
           
           <div>
@@ -1307,16 +1302,16 @@ const Footer = () => {
             <h4 className="font-mono font-bold text-white mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li><Link to="/about" className="hover:text-brand-cyan transition-colors">About</Link></li>
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Contact</a></li>
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Advertise</a></li>
+              <li><a href="mailto:team@domskysolutions.com" className="hover:text-brand-cyan transition-colors">Contact</a></li>
+              <li><a href="mailto:partners@domskysolutions.com" className="hover:text-brand-cyan transition-colors">Advertise</a></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-mono font-bold text-white mb-4">Legal</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-brand-cyan transition-colors">Disclaimer</a></li>
+              <li><Link to="/privacy" className="hover:text-brand-cyan transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/disclaimer" className="hover:text-brand-cyan transition-colors">Disclaimer</Link></li>
             </ul>
           </div>
         </div>
@@ -1483,17 +1478,42 @@ const ToolLink = ({ name, to }: { name: string, to: string }) => (
   </Link>
 );
 
-const ToolReviewCard = ({ name, desc, to }: { name: string, desc: string, to: string }) => (
-  <div className="my-6 p-4 border border-gray-800 bg-brand-surface rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 group hover:border-brand-cyan/50 transition-colors">
-    <div>
-      <div className="font-bold font-mono text-white mb-1 text-[14px]">{name}</div>
-      <div className="text-[14px] text-gray-400">{desc}</div>
+const ToolReviewCard = ({ name, desc, to, category }: { name: string, desc: string, to: string, category?: string }) => {
+  const categoryColors: Record<string, string> = {
+    'Writing': 'border-l-[#00F5D4]',
+    'Research': 'border-l-blue-500',
+    'Design': 'border-l-purple-500',
+    'Coding': 'border-l-green-500',
+    'Productivity': 'border-l-[#F5A623]',
+    'Video': 'border-l-coral-500',
+    'Website': 'border-l-teal-500',
+  };
+
+  // coral-500 is not a default tailwind color, let's use a hex or rose-500
+  const categoryColorsSafe: Record<string, string> = {
+    'Writing': 'border-l-[#00F5D4]',
+    'Research': 'border-l-blue-500',
+    'Design': 'border-l-purple-500',
+    'Coding': 'border-l-green-500',
+    'Productivity': 'border-l-[#F5A623]',
+    'Video': 'border-l-[#FF7F50]', // coral
+    'Website': 'border-l-teal-500',
+  };
+
+  const borderClass = category && categoryColorsSafe[category] ? `${categoryColorsSafe[category]} border-l-4` : 'border-l-gray-800 border-l';
+
+  return (
+    <div className={`my-6 p-4 border-y border-r border-gray-800 ${borderClass} bg-brand-surface rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 group hover:border-brand-cyan/50 transition-colors`}>
+      <div>
+        <div className="font-bold font-mono text-white mb-1 text-[14px]">{name}</div>
+        <div className="text-[14px] text-gray-400">{desc}</div>
+      </div>
+      <Link to={to} className="shrink-0 text-[14px] font-bold text-brand-cyan group-hover:text-white transition-colors flex items-center gap-2">
+        Read Review <ArrowRight size={16} />
+      </Link>
     </div>
-    <Link to={to} className="shrink-0 text-[14px] font-bold text-brand-cyan group-hover:text-white transition-colors flex items-center gap-2">
-      Read Review <ArrowRight size={16} />
-    </Link>
-  </div>
-);
+  );
+};
 
 const ReviewLinkCard = ({ name, to }: { name: string, to: string }) => (
   <Link to={to} className="inline-flex items-center gap-2 px-4 py-2 bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan text-sm font-bold font-mono rounded hover:bg-brand-cyan/20 hover:border-brand-cyan transition-all group">
@@ -1525,12 +1545,12 @@ const SectionDivider = () => (
   <hr className="my-12 border-t border-gray-800" />
 );
 
-const H2 = ({ children }: { children: React.ReactNode }) => (
-  <h2 className="text-[28px] font-bold font-mono text-brand-cyan mt-16 mb-6">{children}</h2>
+const H2 = ({ children, id }: { children: React.ReactNode, id?: string }) => (
+  <h2 id={id} className="text-[28px] font-bold font-inter text-brand-cyan mt-16 mb-6">{children}</h2>
 );
 
 const H3 = ({ children }: { children: React.ReactNode }) => (
-  <h3 className="text-[20px] font-medium font-mono text-brand-amber mt-10 mb-4">{children}</h3>
+  <h3 className="text-[20px] font-semibold font-inter text-brand-amber mt-10 mb-4">{children}</h3>
 );
 
 const CalloutTip = ({ children }: { children: React.ReactNode }) => (
@@ -1552,6 +1572,16 @@ const Step = ({ number, title, children }: { number: string, title: string, chil
 );
 
 const BLOG_POSTS = [
+  {
+    title: "Why I Cancelled Adobe and Never Looked Back",
+    slug: "/blog/cancelled-adobe-never-looked-back",
+    excerpt: "After 12 years as a graphic designer I finally did it. Here's exactly what replaced it and what I'd never give up.",
+    category: "Design",
+    date: "April 2026",
+    readTime: "6 minutes",
+    image: "https://picsum.photos/seed/adobe/1920/1080?blur=4",
+    author: "Domsky Solutions Team"
+  },
   {
     title: "I Replaced My Entire $500/Month SaaS Stack With AI Tools",
     slug: "/blog/replaced-saas-stack-with-ai-tools",
@@ -1656,8 +1686,70 @@ const BlogIndex = () => {
   );
 };
 
+const SavingsChart = () => {
+  const data = [
+    { name: 'Writing', before: 230, after: 20 },
+    { name: 'Research', before: 45, after: 20 },
+    { name: 'Design', before: 68, after: 30 },
+    { name: 'Development', before: 300, after: 20 },
+    { name: 'Productivity', before: 31, after: 26 },
+    { name: 'Video', before: 150, after: 24 },
+    { name: 'Website', before: 229, after: 20 },
+  ];
+
+  const maxVal = 300;
+
+  return (
+    <div className="my-10 bg-brand-surface border border-gray-800 rounded-xl p-6 overflow-x-auto">
+      <div className="min-w-[500px]">
+        <h3 className="text-xl font-bold font-mono text-white mb-6">Monthly Cost: Before vs After</h3>
+        <div className="space-y-4">
+          {data.map((item) => (
+            <div key={item.name} className="flex items-center gap-4">
+              <div className="w-32 text-sm font-mono text-gray-400 shrink-0">{item.name}</div>
+              <div className="flex-grow flex flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  <div className="h-3 bg-red-500/80 rounded-r" style={{ width: `${(item.before / maxVal) * 100}%` }}></div>
+                  <span className="text-xs font-mono text-red-400">${item.before}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="h-3 bg-brand-cyan rounded-r" style={{ width: `${(item.after / maxVal) * 100}%` }}></div>
+                  <span className="text-xs font-mono text-brand-cyan">${item.after}</span>
+                </div>
+              </div>
+              <div className="w-24 text-right shrink-0">
+                <span className="text-sm font-bold font-mono text-green-400">-${item.before - item.after}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const PullQuote = ({ children }: { children: React.ReactNode }) => (
+  <div className="my-10 pl-6 py-6 pr-6 border-l-4 border-brand-cyan bg-brand-surface rounded-r-lg">
+    <p className="text-[18px] md:text-[22px] font-serif italic text-white leading-relaxed m-0">
+      {children}
+    </p>
+  </div>
+);
+
+const StatCard = ({ icon: Icon, title, stat }: { icon: any, title: string, stat: string }) => (
+  <div className="bg-brand-surface border border-gray-800 hover:border-brand-cyan/50 transition-colors rounded-xl p-6 flex flex-col items-center text-center group">
+    <div className="w-12 h-12 bg-brand-bg rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+      <Icon size={24} className="text-brand-cyan" />
+    </div>
+    <div className="text-3xl font-bold font-mono text-brand-amber mb-2">{stat}</div>
+    <div className="text-sm font-bold font-mono text-gray-300 uppercase tracking-wider">{title}</div>
+  </div>
+);
+
 const BlogPost = () => {
   const { scrollYProgress } = useScroll();
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     document.title = "I Replaced My Entire $500/Month SaaS Stack With AI Tools — Here's Exactly What I Use Now";
@@ -1670,21 +1762,84 @@ const BlogPost = () => {
     metaDescription.setAttribute('content', "I was spending over $500 every month on traditional SaaS tools. Then I switched to AI-powered alternatives and cut that bill dramatically. Here's every tool I replaced and what I use instead.");
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 500);
+      
+      const sections = ['old-vs-new', 'the-numbers', 'what-i-learned', 'how-to-do-this', 'the-tools'];
+      let current = '';
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element && window.scrollY >= (element.offsetTop - 100)) {
+          current = section;
+        }
+      }
+      setActiveSection(current);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({ top: element.offsetTop - 80, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24 relative">
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-brand-cyan origin-left z-50"
         style={{ scaleX: scrollYProgress }}
       />
       
+      {/* Table of Contents Sidebar (Desktop Only) */}
+      <div className="hidden xl:block fixed left-[max(0px,calc(50%-550px))] top-48 w-64">
+        <div className="text-sm font-bold font-inter text-gray-500 uppercase tracking-wider mb-4">Contents</div>
+        <ul className="space-y-3 font-inter text-sm">
+          {[
+            { id: 'old-vs-new', label: 'The Old Stack vs New Stack' },
+            { id: 'the-numbers', label: 'The Numbers' },
+            { id: 'what-i-learned', label: 'What I Learned' },
+            { id: 'how-to-do-this', label: 'How To Do This' },
+            { id: 'the-tools', label: 'The Tools' },
+          ].map(item => (
+            <li key={item.id}>
+              <button 
+                onClick={() => scrollToSection(item.id)}
+                className={`text-left transition-colors hover:text-brand-cyan ${activeSection === item.id ? 'text-brand-cyan font-semibold' : 'text-gray-400'}`}
+              >
+                {item.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <button 
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-brand-surface border border-gray-800 p-3 rounded-full text-brand-cyan hover:bg-brand-cyan hover:text-brand-bg transition-colors z-50 shadow-lg"
+          aria-label="Back to top"
+        >
+          <ChevronUp size={24} />
+        </button>
+      )}
+
       <div className="max-w-[680px] mx-auto px-6 pt-32">
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-6">
             <span className="text-brand-cyan font-mono text-sm uppercase tracking-wider">AI News</span>
             <span className="text-gray-500 font-mono text-sm">•</span>
-            <span className="text-gray-400 font-mono text-sm">8 min read</span>
+            <span className="text-gray-400 font-mono text-sm flex items-center gap-2"><Coffee size={16} /> 8 min read</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-8">
+          <h1 className="text-[48px] font-bold font-inter text-white leading-tight mb-8">
             I Replaced My Entire $500/Month SaaS Stack With AI Tools — Here's Exactly What I Use Now
           </h1>
           <div className="flex flex-wrap gap-2">
@@ -1704,104 +1859,178 @@ const BlogPost = () => {
           />
         </div>
 
-        <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
-          <p>
-            Twelve months ago I was paying for tools I barely used, tools I used constantly but hated, and tools I kept renewing out of habit because switching felt like too much effort. My SaaS bill had quietly crept past <Money>$500 a month</Money> — <Money>$6,000 a year</Money> — for a stack that was supposed to make me more productive but mostly just made me more subscribed.
-          </p>
-          <p>
-            Then the AI tools started getting genuinely good. Not impressive-for-AI good. Actually good. Good enough to replace things I had been paying for for years. So I ran an experiment. Over three months I systematically replaced every tool in my stack with an AI-powered alternative, tracked the results, and kept only what made me faster, cheaper, or both.
-          </p>
-          <p className="font-bold italic text-white">
-            This is what I found.
-          </p>
+        <div className="prose prose-invert max-w-none text-[18px] leading-[1.9] font-serif space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <p>
+              Twelve months ago I was paying for tools I barely used, tools I used constantly but hated, and tools I kept renewing out of habit because switching felt like too much effort. My SaaS bill had quietly crept past <Money>$500 a month</Money> — <Money>$6,000 a year</Money> — for a stack that was supposed to make me more productive but mostly just made me more subscribed.
+            </p>
+            <p>
+              Then the AI tools started getting genuinely good. Not impressive-for-AI good. Actually good. Good enough to replace things I had been paying for for years. So I ran an experiment. Over three months I systematically replaced every tool in my stack with an AI-powered alternative, tracked the results, and kept only what made me faster, cheaper, or both.
+            </p>
+            <p className="font-bold italic text-white">
+              This is what I found.
+            </p>
+          </motion.div>
 
           <SectionDivider />
 
-          <H2>THE OLD STACK VS THE NEW STACK</H2>
-          <p>
-            Here is a direct comparison of what I was paying for versus what I use now and what it costs:
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="old-vs-new">THE OLD STACK VS THE NEW STACK</H2>
+            <p>
+              Here is a direct comparison of what I was paying for versus what I use now and what it costs:
+            </p>
+          </motion.div>
 
-          <H3>WRITING & CONTENT</H3>
-          <BeforeAfter 
-            before={<>Grammarly Premium (<Money>$30/mo</Money>) +<br/>a copywriter (<Money>$200/mo</Money>)</>}
-            after={<><ToolLink name="Claude" to="/tools/claude" /> Pro (<Money>$20/mo</Money>)</>}
-            saving="$210/mo"
-          />
-          <p>
-            I used Grammarly for proofreading and hired a freelance copywriter for longer content. <ToolLink name="Claude" to="/tools/claude" /> replaced both completely. <span className="font-bold italic text-white">It proofreads better than Grammarly, writes better than most copywriters I have worked with, and does it in seconds instead of days.</span> The <Money>$20/month</Money> Pro plan is one of the most defensible subscriptions in my entire stack.
-          </p>
-          <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H3>WRITING & CONTENT</H3>
+            <BeforeAfter 
+              before={<>Grammarly Premium (<Money>$30/mo</Money>) +<br/>a copywriter (<Money>$200/mo</Money>)</>}
+              after={<><ToolLink name="Claude" to="/tools/claude" /> Pro (<Money>$20/mo</Money>)</>}
+              saving="$210/mo"
+            />
+            <p>
+              I used Grammarly for proofreading and hired a freelance copywriter for longer content. <ToolLink name="Claude" to="/tools/claude" /> replaced both completely. <span className="font-bold italic text-white">It proofreads better than Grammarly, writes better than most copywriters I have worked with, and does it in seconds instead of days.</span> The <Money>$20/month</Money> Pro plan is one of the most defensible subscriptions in my entire stack.
+            </p>
+            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" category="Writing" />
+          </motion.div>
 
-          <H3>RESEARCH & INFORMATION</H3>
-          <BeforeAfter 
-            before={<>Various news subscriptions (<Money>$45/mo</Money>)</>}
-            after={<><ToolLink name="Perplexity" to="/tools/perplexity" /> Pro (<Money>$20/mo</Money>)</>}
-            saving="$25/mo"
-          />
-          <p>
-            I was paying for three different newsletter and news subscriptions to stay current on my industry. <ToolLink name="Perplexity" to="/tools/perplexity" /> replaced all of them. <span className="font-bold italic text-white">I can ask it anything happening right now, get a cited answer in seconds, and follow up with deeper questions that no newsletter could anticipate.</span> The research workflow I used to spend an hour on every morning now takes fifteen minutes.
-          </p>
-          <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" />
+          <PullQuote>
+            "It proofreads better than Grammarly and writes better than most copywriters — for $20 a month."
+          </PullQuote>
 
-          <H3>DESIGN & VISUALS</H3>
-          <BeforeAfter 
-            before={<>Adobe Creative Cloud (<Money>$55/mo</Money>) +<br/>Canva Pro (<Money>$13/mo</Money>)</>}
-            after={<><ToolLink name="Midjourney" to="/reviews/midjourney" /> Standard (<Money>$30/mo</Money>)</>}
-            saving="$38/mo"
-          />
-          <p>
-            I was maintaining two design subscriptions and still spending time creating assets that looked like they came from a template. <ToolLink name="Midjourney" to="/reviews/midjourney" /> generates campaign visuals, blog post headers, social media images, and concept mockups that look genuinely professional in minutes. <span className="font-bold italic text-white">I kept a basic free design tool for simple layouts but cancelled Creative Cloud and Canva Pro entirely.</span>
-          </p>
-          <ToolReviewCard name="Midjourney" desc="Best AI tool for image generation" to="/reviews/midjourney" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H3>RESEARCH & INFORMATION</H3>
+            <BeforeAfter 
+              before={<>Various news subscriptions (<Money>$45/mo</Money>)</>}
+              after={<><ToolLink name="Perplexity" to="/tools/perplexity" /> Pro (<Money>$20/mo</Money>)</>}
+              saving="$25/mo"
+            />
+            <p>
+              I was paying for three different newsletter and news subscriptions to stay current on my industry. <ToolLink name="Perplexity" to="/tools/perplexity" /> replaced all of them. <span className="font-bold italic text-white">I can ask it anything happening right now, get a cited answer in seconds, and follow up with deeper questions that no newsletter could anticipate.</span> The research workflow I used to spend an hour on every morning now takes fifteen minutes.
+            </p>
+            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" category="Research" />
+          </motion.div>
 
-          <H3>CODING & DEVELOPMENT</H3>
-          <BeforeAfter 
-            before={<>Freelance developer (<Money>$300/mo</Money> average)</>}
-            after={<><ToolLink name="Cursor" to="/tools/cursor" /> Pro (<Money>$20/mo</Money>)</>}
-            saving="$280/mo"
-          />
-          <p>
-            This is the single biggest saving in my entire stack. I was paying a freelance developer on retainer for small website changes, bug fixes, and new features. <ToolLink name="Cursor" to="/tools/cursor" /> replaced that entirely. <span className="font-bold italic text-white">I am not a developer, but with Cursor I can make changes to my own codebase, build new features from descriptions, and fix bugs by pasting the error message into the chat.</span> The learning curve was real but the payoff was immediate.
-          </p>
-          <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/tools/cursor" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H3>DESIGN & VISUALS</H3>
+            <BeforeAfter 
+              before={<>Adobe Creative Cloud (<Money>$55/mo</Money>) +<br/>Canva Pro (<Money>$13/mo</Money>)</>}
+              after={<><ToolLink name="Midjourney" to="/reviews/midjourney" /> Standard (<Money>$30/mo</Money>)</>}
+              saving="$38/mo"
+            />
+            <p>
+              I was maintaining two design subscriptions and still spending time creating assets that looked like they came from a template. <ToolLink name="Midjourney" to="/reviews/midjourney" /> generates campaign visuals, blog post headers, social media images, and concept mockups that look genuinely professional in minutes. <span className="font-bold italic text-white">I kept a basic free design tool for simple layouts but cancelled Creative Cloud and Canva Pro entirely.</span>
+            </p>
+            <ToolReviewCard name="Midjourney" desc="Best AI tool for image generation" to="/reviews/midjourney" category="Design" />
+          </motion.div>
 
-          <H3>PRODUCTIVITY & KNOWLEDGE MANAGEMENT</H3>
-          <BeforeAfter 
-            before={<>Notion (<Money>$16/mo</Money>) + Evernote (<Money>$15/mo</Money>)</>}
-            after={<><ToolLink name="Notion AI" to="/tools/notion-ai" /> (<Money>$16/mo</Money> + <Money>$10/mo</Money> AI add-on)</>}
-            saving="$5/mo"
-          />
-          <p>
-            This one was less about saving money and more about eliminating redundancy. I was using Notion for project management and Evernote for notes — two separate systems that never quite talked to each other. <span className="font-bold italic text-white">Adding <ToolLink name="Notion AI" to="/tools/notion-ai" /> to my existing Notion subscription replaced Evernote completely and made the notes and documents I already had in Notion significantly more useful.</span> The AI can summarize my meeting notes, find information across my entire workspace, and draft content from rough bullet points I jot down in the moment.
-          </p>
-          <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/tools/notion-ai" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H3>CODING & DEVELOPMENT</H3>
+            <BeforeAfter 
+              before={<>Freelance developer (<Money>$300/mo</Money> average)</>}
+              after={<><ToolLink name="Cursor" to="/tools/cursor" /> Pro (<Money>$20/mo</Money>)</>}
+              saving="$280/mo"
+            />
+            <p>
+              This is the single biggest saving in my entire stack. I was paying a freelance developer on retainer for small website changes, bug fixes, and new features. <ToolLink name="Cursor" to="/tools/cursor" /> replaced that entirely. <span className="font-bold italic text-white">I am not a developer, but with Cursor I can make changes to my own codebase, build new features from descriptions, and fix bugs by pasting the error message into the chat.</span> The learning curve was real but the payoff was immediate.
+            </p>
+            <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/tools/cursor" category="Coding" />
+          </motion.div>
 
-          <H3>VIDEO CONTENT</H3>
-          <BeforeAfter 
-            before={<>Video editor contractor (<Money>$150/mo</Money> average)</>}
-            after={<><ToolLink name="Descript" to="/reviews/descript" /> Creator (<Money>$24/mo</Money>)</>}
-            saving="$126/mo"
-          />
-          <p>
-            I was outsourcing all my video editing because the timeline based editors felt too technical and too time consuming to learn. <ToolLink name="Descript" to="/reviews/descript" /> changed that completely. <span className="font-bold italic text-white">Editing a video in Descript is genuinely as easy as editing a document.</span> I delete filler words with one click, cut sections by highlighting and deleting text, and produce finished videos that previously took a contractor two days to deliver — in under an hour myself.
-          </p>
-          <ToolReviewCard name="Descript" desc="Best AI tool for video and podcast editing" to="/reviews/descript" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H3>PRODUCTIVITY & KNOWLEDGE MANAGEMENT</H3>
+            <BeforeAfter 
+              before={<>Notion (<Money>$16/mo</Money>) + Evernote (<Money>$15/mo</Money>)</>}
+              after={<><ToolLink name="Notion AI" to="/tools/notion-ai" /> (<Money>$16/mo</Money> + <Money>$10/mo</Money> AI add-on)</>}
+              saving="$5/mo"
+            />
+            <p>
+              This one was less about saving money and more about eliminating redundancy. I was using Notion for project management and Evernote for notes — two separate systems that never quite talked to each other. <span className="font-bold italic text-white">Adding <ToolLink name="Notion AI" to="/tools/notion-ai" /> to my existing Notion subscription replaced Evernote completely and made the notes and documents I already had in Notion significantly more useful.</span> The AI can summarize my meeting notes, find information across my entire workspace, and draft content from rough bullet points I jot down in the moment.
+            </p>
+            <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/tools/notion-ai" category="Productivity" />
+          </motion.div>
 
-          <H3>WEBSITE & LANDING PAGES</H3>
-          <BeforeAfter 
-            before={<>Webflow (<Money>$29/mo</Money>) +<br/>design contractor (<Money>$200/mo</Money>)</>}
-            after={<><ToolLink name="Framer AI" to="/reviews/framer" /> Basic (<Money>$20/mo</Money>)</>}
-            saving="$209/mo"
-          />
-          <p>
-            Webflow is a powerful tool but I was barely scratching its surface and paying for a contractor to make design changes I could not figure out myself. <ToolLink name="Framer AI" to="/reviews/framer" /> generates professional landing pages from a text description that I can then customize visually without touching code. <span className="font-bold italic text-white">The pages it produces are genuinely better designed than what I was getting from my contractor, and I can update them myself in real time.</span>
-          </p>
-          <ToolReviewCard name="Framer AI" desc="Best AI tool for websites and landing pages" to="/reviews/framer" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H3>VIDEO CONTENT</H3>
+            <BeforeAfter 
+              before={<>Video editor contractor (<Money>$150/mo</Money> average)</>}
+              after={<><ToolLink name="Descript" to="/reviews/descript" /> Creator (<Money>$24/mo</Money>)</>}
+              saving="$126/mo"
+            />
+            <p>
+              I was outsourcing all my video editing because the timeline based editors felt too technical and too time consuming to learn. <ToolLink name="Descript" to="/reviews/descript" /> changed that completely. <span className="font-bold italic text-white">Editing a video in Descript is genuinely as easy as editing a document.</span> I delete filler words with one click, cut sections by highlighting and deleting text, and produce finished videos that previously took a contractor two days to deliver — in under an hour myself.
+            </p>
+            <ToolReviewCard name="Descript" desc="Best AI tool for video and podcast editing" to="/reviews/descript" category="Video" />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H3>WEBSITE & LANDING PAGES</H3>
+            <BeforeAfter 
+              before={<>Webflow (<Money>$29/mo</Money>) +<br/>design contractor (<Money>$200/mo</Money>)</>}
+              after={<><ToolLink name="Framer AI" to="/reviews/framer" /> Basic (<Money>$20/mo</Money>)</>}
+              saving="$209/mo"
+            />
+            <p>
+              Webflow is a powerful tool but I was barely scratching its surface and paying for a contractor to make design changes I could not figure out myself. <ToolLink name="Framer AI" to="/reviews/framer" /> generates professional landing pages from a text description that I can then customize visually without touching code. <span className="font-bold italic text-white">The pages it produces are genuinely better designed than what I was getting from my contractor, and I can update them myself in real time.</span>
+            </p>
+            <ToolReviewCard name="Framer AI" desc="Best AI tool for websites and landing pages" to="/reviews/framer" category="Website" />
+          </motion.div>
 
           <SectionDivider />
 
-          <H2>THE NUMBERS</H2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-numbers">THE NUMBERS</H2>
+          </motion.div>
           
           <div className="my-10 p-8 bg-brand-surface border border-gray-800 rounded-xl text-center">
             <div className="grid grid-cols-2 gap-8 mb-8">
@@ -1822,36 +2051,69 @@ const BlogPost = () => {
             </div>
           </div>
 
+          <SavingsChart />
+
           <CalloutTip>
             <span className="font-bold not-italic text-white">Note:</span> my original estimate of <Money>$500/month</Money> was what I thought I was spending. When I actually added up contractors and subscriptions together the real number was significantly higher. <span className="italic">If you have never done this exercise for your own stack, the actual total will probably surprise you.</span>
           </CalloutTip>
 
-          <SectionDivider />
-
-          <H2>WHAT I LEARNED FROM THREE MONTHS OF SWITCHING</H2>
-
-          <p>
-            <span className="font-bold text-white">The quality gap has closed faster than anyone expected.</span> Twelve months ago the honest answer to "can AI replace [tool]?" was usually "not quite yet." Today the honest answer for most categories is "yes, and often better." <span className="font-bold italic text-white">The tools in this list are not compromises — they are genuine upgrades in most of the dimensions that matter for day to day work.</span>
-          </p>
-
-          <p>
-            <span className="font-bold text-white">The learning curve is real but shorter than you think.</span> Every tool on this list took me between one afternoon and one week to get genuinely useful results from. The instinct to stick with familiar tools because switching costs feel high is understandable but almost always wrong when you actually run the numbers.
-          </p>
-
-          <p>
-            <span className="font-bold text-white">Not everything should be replaced.</span> I kept tools that AI has not meaningfully improved yet — my accounting software, my email provider, my calendar. The goal was not to replace everything with AI for the sake of it. <span className="font-bold italic text-white">The goal was to replace things where AI delivered clearly better results at clearly lower cost.</span> In the categories above, it did.
-          </p>
-
-          <p>
-            <span className="font-bold text-white">The compounding effect is real.</span> The biggest surprise was not any individual tool but how much faster the whole system became once every part of it was optimized. <span className="font-bold italic text-white">Writing that feeds research that feeds design that feeds video production — when every step in that chain gets faster, the total output improvement is multiplicative not additive.</span>
-          </p>
+          <PullQuote>
+            "I saved nearly $11,000 in the first year. The stack I run today costs one seventh of what it did before."
+          </PullQuote>
 
           <SectionDivider />
 
-          <H2>HOW TO DO THIS FOR YOUR OWN STACK</H2>
-          <p>
-            If you want to run this experiment yourself, start with these three steps:
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="what-i-learned">WHAT I LEARNED FROM THREE MONTHS OF SWITCHING</H2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10">
+            <StatCard icon={CheckCircle2} title="Quality Gap Closed" stat="100%" />
+            <StatCard icon={Clock} title="Learning Curve" stat="1 Week" />
+            <StatCard icon={TrendingDown} title="Cost Reduction" stat="7x" />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <p>
+              <span className="font-bold text-white">The quality gap has closed faster than anyone expected.</span> Twelve months ago the honest answer to "can AI replace [tool]?" was usually "not quite yet." Today the honest answer for most categories is "yes, and often better." <span className="font-bold italic text-white">The tools in this list are not compromises — they are genuine upgrades in most of the dimensions that matter for day to day work.</span>
+            </p>
+
+            <p>
+              <span className="font-bold text-white">The learning curve is real but shorter than you think.</span> Every tool on this list took me between one afternoon and one week to get genuinely useful results from. The instinct to stick with familiar tools because switching costs feel high is understandable but almost always wrong when you actually run the numbers.
+            </p>
+
+            <p>
+              <span className="font-bold text-white">Not everything should be replaced.</span> I kept tools that AI has not meaningfully improved yet — my accounting software, my email provider, my calendar. The goal was not to replace everything with AI for the sake of it. <span className="font-bold italic text-white">The goal was to replace things where AI delivered clearly better results at clearly lower cost.</span> In the categories above, it did.
+            </p>
+
+            <p>
+              <span className="font-bold text-white">The compounding effect is real.</span> The biggest surprise was not any individual tool but how much faster the whole system became once every part of it was optimized. <span className="font-bold italic text-white">Writing that feeds research that feeds design that feeds video production — when every step in that chain gets faster, the total output improvement is multiplicative not additive.</span>
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="how-to-do-this">HOW TO DO THIS FOR YOUR OWN STACK</H2>
+            <p>
+              If you want to run this experiment yourself, start with these three steps:
+            </p>
+          </motion.div>
 
           <Step number="1" title="Audit everything you are paying for">
             List every subscription and contractor you pay monthly. Include the ones you forget about. The total will be higher than you expect.
@@ -1867,35 +2129,49 @@ const BlogPost = () => {
 
           <SectionDivider />
 
-          <H2>THE TOOLS IN THIS ARTICLE</H2>
-          <p>
-            Every tool mentioned in this article has a full in-depth review on domskysolutions.com. If you want to understand exactly what each one does, what it costs at every tier, and whether it is the right fit for your specific situation before committing to a switch, start there.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-tools">THE TOOLS IN THIS ARTICLE</H2>
+            <p>
+              Every tool mentioned in this article has a full in-depth review on domskysolutions.com. If you want to understand exactly what each one does, what it costs at every tier, and whether it is the right fit for your specific situation before committing to a switch, start there.
+            </p>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" />
-            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" />
-            <ToolReviewCard name="Midjourney" desc="Best AI tool for image generation" to="/reviews/midjourney" />
-            <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/tools/cursor" />
-            <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/tools/notion-ai" />
-            <ToolReviewCard name="Descript" desc="Best AI tool for video and podcast editing" to="/reviews/descript" />
-            <ToolReviewCard name="Framer AI" desc="Best AI tool for websites and landing pages" to="/reviews/framer" />
+            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" category="Writing" />
+            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" category="Research" />
+            <ToolReviewCard name="Midjourney" desc="Best AI tool for image generation" to="/reviews/midjourney" category="Design" />
+            <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/tools/cursor" category="Coding" />
+            <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/tools/notion-ai" category="Productivity" />
+            <ToolReviewCard name="Descript" desc="Best AI tool for video and podcast editing" to="/reviews/descript" category="Video" />
+            <ToolReviewCard name="Framer AI" desc="Best AI tool for websites and landing pages" to="/reviews/framer" category="Website" />
           </div>
 
           <SectionDivider />
 
-          <H2>CONCLUSION</H2>
-          <p>
-            The question is no longer whether AI tools are good enough to replace your existing SaaS stack. For most knowledge work categories they already are. <span className="font-bold italic text-white">The question is how long you are willing to keep paying for the old way of doing things while the people around you quietly build a significant productivity and cost advantage with the new one.</span>
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="conclusion">CONCLUSION</H2>
+            <p>
+              The question is no longer whether AI tools are good enough to replace your existing SaaS stack. For most knowledge work categories they already are. <span className="font-bold italic text-white">The question is how long you are willing to keep paying for the old way of doing things while the people around you quietly build a significant productivity and cost advantage with the new one.</span>
+            </p>
 
-          <p>
-            I saved nearly <Money>$11,000</Money> in the first year. More importantly I got faster — meaningfully, measurably faster — at every part of my work. The stack I run today produces better output than the one I ran twelve months ago at roughly one seventh of the cost.
-          </p>
+            <p>
+              I saved nearly <Money>$11,000</Money> in the first year. More importantly I got faster — meaningfully, measurably faster — at every part of my work. The stack I run today produces better output than the one I ran twelve months ago at roughly one seventh of the cost.
+            </p>
 
-          <p className="font-bold text-xl text-brand-cyan mt-8 italic">
-            That is not a marginal improvement. That is a different way of working entirely.
-          </p>
+            <p className="font-bold text-xl text-brand-cyan mt-8 italic">
+              That is not a marginal improvement. That is a different way of working entirely.
+            </p>
+          </motion.div>
 
           <div className="mt-16 p-6 bg-gray-900 border border-gray-800 text-sm text-gray-400">
             <div className="font-bold font-mono text-white mb-2">ABOUT THIS ARTICLE</div>
@@ -1909,6 +2185,428 @@ const BlogPost = () => {
         <h2 className="text-2xl font-bold font-mono text-white mb-8">Related Articles</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {BLOG_POSTS.filter(p => p.slug !== "/blog/replaced-saas-stack-with-ai-tools").slice(0, 2).map(post => (
+            <BlogCard key={post.slug} post={post} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const AdobeBlogPost = () => {
+  const { scrollYProgress } = useScroll();
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+
+  useEffect(() => {
+    document.title = "Why I Cancelled Adobe and Never Looked Back | Domsky Solutions";
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', "After 12 years as a graphic designer I finally did it. Here's exactly what replaced it and what I'd never give up.");
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 500);
+      
+      const sections = ['the-breaking-point', 'what-i-was-scared-of', 'the-experiment', 'what-surprised-me', 'the-honest-part', 'the-numbers', 'one-more-thing', 'want-the-full-picture'];
+      let current = '';
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element && window.scrollY >= (element.offsetTop - 100)) {
+          current = section;
+        }
+      }
+      setActiveSection(current);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({ top: element.offsetTop - 80, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24 relative">
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-brand-cyan origin-left z-50"
+        style={{ scaleX: scrollYProgress }}
+      />
+      
+      {/* Table of Contents Sidebar (Desktop Only) */}
+      <div className="hidden xl:block fixed left-[max(0px,calc(50%-550px))] top-48 w-64">
+        <div className="text-sm font-bold font-inter text-gray-500 uppercase tracking-wider mb-4">Contents</div>
+        <ul className="space-y-3 font-inter text-sm">
+          {[
+            { id: 'the-breaking-point', label: 'The Breaking Point' },
+            { id: 'what-i-was-scared-of', label: 'What I Was Scared Of' },
+            { id: 'the-experiment', label: 'The Experiment' },
+            { id: 'what-surprised-me', label: 'What Surprised Me' },
+            { id: 'the-honest-part', label: 'The Honest Part' },
+            { id: 'the-numbers', label: 'The Numbers' },
+            { id: 'one-more-thing', label: 'One More Thing' },
+            { id: 'want-the-full-picture', label: 'Want The Full Picture?' },
+          ].map(item => (
+            <li key={item.id}>
+              <button 
+                onClick={() => scrollToSection(item.id)}
+                className={`text-left transition-colors hover:text-brand-cyan ${activeSection === item.id ? 'text-brand-cyan font-semibold' : 'text-gray-400'}`}
+              >
+                {item.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <button 
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-brand-surface border border-gray-800 p-3 rounded-full text-brand-cyan hover:bg-brand-cyan hover:text-brand-bg transition-colors z-50 shadow-lg"
+          aria-label="Back to top"
+        >
+          <ChevronUp size={24} />
+        </button>
+      )}
+
+      <div className="max-w-[680px] mx-auto px-6 pt-32">
+        <div className="mb-12">
+          <div className="flex items-center gap-4 mb-6">
+            <span className="text-brand-cyan font-mono text-sm uppercase tracking-wider">Design</span>
+            <span className="text-gray-500 font-mono text-sm">•</span>
+            <span className="text-gray-400 font-mono text-sm flex items-center gap-2"><Coffee size={16} /> 6 min read</span>
+          </div>
+          <h1 className="text-[48px] font-bold font-inter text-white leading-tight mb-8">
+            Why I Cancelled Adobe and Never Looked Back
+          </h1>
+          <div className="flex flex-wrap gap-2">
+            {['AI Tools', 'Design', 'Adobe', 'Midjourney', 'Cost Saving'].map(tag => (
+              <span key={tag} className="px-3 py-1 bg-gray-800 text-gray-300 text-xs font-mono rounded-full border border-gray-700">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl bg-gray-900 flex items-center justify-center" style={{height: '400px'}}>
+          <div className="text-center text-gray-600">
+            <div className="text-6xl mb-4">🖼</div>
+            <p className="font-mono text-sm">
+              [ INSERT COVER IMAGE HERE ]
+            </p>
+            <p className="font-mono text-xs mt-2 text-gray-700">
+              Recommended: dark moody desk setup, designer at work
+            </p>
+          </div>
+        </div>
+
+        <div className="prose prose-invert max-w-none text-[18px] leading-[1.9] font-serif space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <p>
+              After 12 years as a graphic designer I finally did it. Here's exactly what replaced it and what I'd never give up.
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-breaking-point">THE BREAKING POINT</H2>
+            <p>
+              I remember the exact moment. January 2024, opening my bank statement with a coffee in hand, and there it was. <Money>$55</Money>. Again. Like clockwork.
+            </p>
+            <p>
+              I opened Photoshop maybe four times that month. Premiere twice. Illustrator once to fix a logo I'd made three years ago.
+            </p>
+            <p>
+              <Money>$55</Money> for four sessions of Photoshop. I've paid less for a full dinner.
+            </p>
+            <p>
+              Over five years that's <Money>$3,300</Money>. For software I was using at maybe 20% capacity. The math made me feel genuinely stupid.
+            </p>
+            <p>
+              That was the month I decided to run the experiment.
+            </p>
+          </motion.div>
+
+          <PullQuote>
+            "$55 a month. Four Photoshop sessions. I've paid less for a full dinner."
+          </PullQuote>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="what-i-was-scared-of">WHAT I WAS ACTUALLY SCARED OF</H2>
+            <p>
+              Let me be honest about something most "I quit Adobe" posts skip over entirely.
+            </p>
+            <p>
+              I was terrified.
+            </p>
+            <p>
+              Not of the tools. Of what clients would think. Of showing up to a meeting and someone asking what software I used and having to explain that I now generate images with a text prompt.
+            </p>
+            <p>
+              Twelve years of Photoshop muscle memory. Twelve years of knowing exactly where every panel, every shortcut, every obscure filter lived. That's not nothing.
+            </p>
+            <p>
+              Switching felt like showing up to work in a different body.
+            </p>
+            <p>
+              But <Money>$3,300</Money> over five years has a way of making you brave.
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-experiment">THE EXPERIMENT</H2>
+            <p>
+              30 days. No Adobe. Whatever happened, happened.
+            </p>
+            <p>
+              Here's what I replaced each tool with:
+            </p>
+            <ul className="list-disc pl-6 space-y-2 text-gray-300">
+              <li>Photoshop → <ToolLink name="Midjourney" to="/reviews/midjourney" /> for image generation, Canva for editing and layouts</li>
+              <li>Premiere → <ToolLink name="Descript" to="/reviews/descript" /> for video editing</li>
+              <li>Acrobat → PDF24 free online tool</li>
+              <li>Stock photos → <ToolLink name="Midjourney" to="/reviews/midjourney" /> entirely</li>
+            </ul>
+
+            <div className="my-8">
+              <ToolReviewCard 
+                name="Midjourney" 
+                desc="Best AI tool for image generation" 
+                to="/reviews/midjourney" 
+                category="Design" 
+              />
+            </div>
+
+            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
+              <div className="text-center text-gray-600">
+                <div className="text-5xl mb-4">🖼</div>
+                <p className="font-mono text-sm">
+                  [ INSERT IMAGE HERE ]
+                </p>
+                <p className="font-mono text-xs mt-2 text-gray-700">
+                  Recommended: Midjourney interface screenshot or generated image example
+                </p>
+              </div>
+            </div>
+
+            <p>
+              The first week was uncomfortable. The second week was interesting. By week three something unexpected happened.
+            </p>
+            <p>
+              I started enjoying it.
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="what-surprised-me">WHAT ACTUALLY SURPRISED ME</H2>
+            <p>
+              Week three. Client presentation. I showed work generated and assembled entirely without Adobe.
+            </p>
+            <p>
+              They loved it more than anything I'd shown them in the previous six months.
+            </p>
+            <p>
+              Not slightly more. Noticeably more. One client asked if I'd hired someone new.
+            </p>
+            <p>
+              I hadn't. I'd just stopped fighting the tools and started using better ones.
+            </p>
+            <p>
+              Midjourney in particular caught me off guard. I expected it to produce the kind of generic AI imagery you see everywhere. Instead, with the right prompts, it was producing visuals that felt more considered and more original than stock photos ever did.
+            </p>
+            <p>
+              The 30 days ended. I didn't go back.
+            </p>
+          </motion.div>
+
+          <PullQuote>
+            "One client asked if I'd hired someone new. I hadn't. I'd just started using better tools."
+          </PullQuote>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-honest-part">THE HONEST PART</H2>
+            <p>
+              Here's what I actually lost and won't pretend I didn't.
+            </p>
+            <p>
+              Photoshop for complex photo retouching — nothing fully replaces it if that's your core service. Midjourney generates, it doesn't retouch. If you're a beauty photographer editing skin at pixel level, keep Photoshop.
+            </p>
+            <p>
+              Illustrator for precise vector work — Canva is not Illustrator. If you're building technical diagrams or complex brand systems from scratch, you'll feel the gap.
+            </p>
+            <p>
+              After Effects — I don't have a good free replacement for motion graphics at a professional level. That's just the truth.
+            </p>
+            <p>
+              If 80% of your work is client presentations, social media visuals, marketing materials and general creative work — you probably don't need Adobe anymore.
+            </p>
+            <p>
+              If your entire business runs on pixel-level retouching or complex motion work — keep it.
+            </p>
+            <p>
+              Know which one you are before you cancel.
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="the-numbers">THE NUMBERS</H2>
+            
+            <BeforeAfter
+              before={<>Adobe Creative Cloud — <Money>$55/month</Money></>}
+              after={<>Midjourney <Money>$10/mo</Money> + Canva free + Descript free + PDF24 free</>}
+              saving="$45/mo"
+            />
+
+            <div className="grid grid-cols-3 gap-4 my-8">
+              {[
+                { label: 'Monthly saving', value: '$45' },
+                { label: 'Annual saving', value: '$540' },
+                { label: 'Over 5 years', value: '$2,700' },
+              ].map(stat => (
+                <div key={stat.label} className="bg-gray-900 border border-gray-800 p-4">
+                  <div className="text-2xl font-bold font-mono text-brand-cyan">{stat.value}</div>
+                  <div className="text-xs text-gray-500 font-mono mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <p>
+              That's a flight somewhere nice. Or a very good camera. Or just <Money>$2,700</Money> you keep instead of handing it to a software company.
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="one-more-thing">ONE MORE THING</H2>
+            <p>
+              The tool I genuinely missed most wasn't Photoshop.
+            </p>
+            <p>
+              It was Bridge. Adobe's file organizer. Boring, unglamorous, never mentioned in any "I quit Adobe" post I've ever read.
+            </p>
+            <p>
+              Turns out I used it constantly without realizing. Still haven't found a perfect replacement.
+            </p>
+            <p>
+              Every honest review has a footnote. That's mine.
+            </p>
+          </motion.div>
+
+          <SectionDivider />
+
+          <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '280px'}}>
+            <div className="text-center text-gray-600">
+              <div className="text-5xl mb-4">🖼</div>
+              <p className="font-mono text-sm">
+                [ INSERT IMAGE HERE ]
+              </p>
+              <p className="font-mono text-xs mt-2 text-gray-700">
+                Recommended: before/after of your design workflow or tool comparison
+              </p>
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <H2 id="want-the-full-picture">WANT THE FULL PICTURE?</H2>
+            <p>
+              If this post made you curious about what else in your software stack has a cheaper AI alternative, I put together a free guide called The AI Tools Starter Kit.
+            </p>
+            <p>
+              5 tools. Real savings numbers. No fluff.
+            </p>
+            <p>
+              It covers everything I actually use day to day — including Midjourney, Claude, Perplexity, Gamma and Notion — with free tiers, honest limitations and a 7-day plan to get started without paying for anything upfront.
+            </p>
+            <p>
+              Download it free at domskysolutions.com
+            </p>
+            <p>
+              No email required. No catch. Just the guide.
+            </p>
+          </motion.div>
+
+          <div className="mt-16 p-6 bg-gray-900 border border-gray-800 text-sm text-gray-400">
+            <div className="font-bold font-mono text-white mb-2">ABOUT THIS ARTICLE</div>
+            domskysolutions.com reviews AI tools and SaaS software for founders, solopreneurs and builders. We test every tool we recommend and update our reviews regularly as products evolve. Some links in this article are affiliate links — we may earn a commission if you sign up through them at no extra cost to you.
+          </div>
+        </div>
+      </div>
+
+      {/* Related Articles Section */}
+      <div className="max-w-5xl mx-auto px-6 mt-24 border-t border-gray-800 pt-16">
+        <h2 className="text-2xl font-bold font-mono text-white mb-8">Related Articles</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {BLOG_POSTS.filter(p => p.slug !== "/blog/cancelled-adobe-never-looked-back").slice(0, 2).map(post => (
             <BlogCard key={post.slug} post={post} />
           ))}
         </div>
@@ -3510,15 +4208,7 @@ const AboutPage = () => {
             <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-8 space-y-3">
               <div className="flex items-center gap-3">
                 <span className="text-gray-400 w-20">Email:</span>
-                <a href="mailto:hello@domskysolutions.com" className="text-brand-cyan hover:underline">hello@domskysolutions.com</a>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-gray-400 w-20">X:</span>
-                <a href="#" className="text-brand-cyan hover:underline">@domskysolutions</a>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-gray-400 w-20">LinkedIn:</span>
-                <a href="#" className="text-brand-cyan hover:underline">domskysolutions</a>
+                <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a>
               </div>
             </div>
 
@@ -3813,7 +4503,7 @@ const HomePage = () => {
           </div>
           
           <div className="text-center">
-            <Link to="/tools" className="inline-flex items-center gap-2 text-white hover:text-brand-cyan transition-colors font-mono font-bold">
+            <Link to="/reviews" className="inline-flex items-center gap-2 text-white hover:text-brand-cyan transition-colors font-mono font-bold">
               View all 10+ tool reviews <ArrowRight size={16} />
             </Link>
           </div>
@@ -3913,6 +4603,243 @@ const HomePage = () => {
   );
 };
 
+const PrivacyPolicyPage = () => {
+  useEffect(() => {
+    document.title = "Privacy Policy | Domsky Solutions";
+  }, []);
+
+  return (
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
+      <div className="max-w-[680px] mx-auto px-6 pt-32">
+        <div className="mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-4">
+            PRIVACY POLICY
+          </h1>
+          <p className="text-gray-400 font-mono text-sm">Last updated: April 2026</p>
+        </div>
+
+        <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
+          <H2>INTRODUCTION</H2>
+          <p>
+            Domsky Solutions ("we", "our", or "us") operates domskysolutions.com. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website.
+          </p>
+          <p>
+            By using domskysolutions.com you agree to the collection and use of information in accordance with this policy.
+          </p>
+
+          <SectionDivider />
+
+          <H2>INFORMATION WE COLLECT</H2>
+          <p>
+            <strong className="text-white">Email address</strong><br />
+            When you subscribe to our newsletter we collect your email address. This is used solely to send you The Weekly Edge newsletter and related communications from Domsky Solutions. We never sell your email address to third parties.
+          </p>
+          <p>
+            <strong className="text-white">Usage data</strong><br />
+            We may collect anonymous information about how you use our website including pages visited, time spent on pages, and referring URLs. This data is used to improve our content and user experience.
+          </p>
+          <p>
+            <strong className="text-white">Cookies</strong><br />
+            Our website uses cookies — small files stored on your device — to improve your browsing experience. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. If you do not accept cookies some parts of our website may not function properly.
+          </p>
+
+          <SectionDivider />
+
+          <H2>HOW WE USE YOUR INFORMATION</H2>
+          <p>We use the information we collect to:</p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>Send our weekly newsletter to subscribers</li>
+            <li>Analyze website traffic and improve content</li>
+            <li>Monitor and prevent fraudulent activity</li>
+            <li>Comply with legal obligations</li>
+          </ul>
+
+          <SectionDivider />
+
+          <H2>EMAIL MARKETING</H2>
+          <p>
+            We use ConvertKit to manage our email list and send newsletters. When you subscribe your email address is stored securely by ConvertKit. You can unsubscribe at any time by clicking the unsubscribe link in any email we send.
+          </p>
+          <p>
+            ConvertKit's privacy policy is available at:<br />
+            <a href="https://convertkit.com/privacy" target="_blank" rel="noopener noreferrer" className="text-brand-cyan hover:underline">convertkit.com/privacy</a>
+          </p>
+
+          <SectionDivider />
+
+          <H2>AFFILIATE LINKS</H2>
+          <p>
+            domskysolutions.com participates in affiliate programs. This means we may earn a commission when you click certain links and make a purchase or sign up for a service. This comes at no extra cost to you.
+          </p>
+          <p>
+            We only recommend products and services we genuinely believe in. Affiliate relationships never influence our reviews or ratings.
+          </p>
+
+          <SectionDivider />
+
+          <H2>THIRD PARTY SERVICES</H2>
+          <p>
+            Our website may contain links to third party websites. We are not responsible for the privacy practices of those sites and encourage you to review their privacy policies.
+          </p>
+          <p>We may use the following third party services:</p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>ConvertKit — email marketing platform</li>
+            <li>Vercel — website hosting</li>
+            <li>Cloudflare — domain and DNS management</li>
+            <li>Google Analytics — website analytics (if enabled)</li>
+          </ul>
+
+          <SectionDivider />
+
+          <H2>DATA RETENTION</H2>
+          <p>
+            We retain your email address for as long as you remain subscribed to our newsletter. You may request deletion of your data at any time by contacting us at <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a>.
+          </p>
+
+          <SectionDivider />
+
+          <H2>YOUR RIGHTS</H2>
+          <p>Depending on your location you may have the right to:</p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>Access the personal data we hold about you</li>
+            <li>Request correction of inaccurate data</li>
+            <li>Request deletion of your data</li>
+            <li>Withdraw consent for email marketing</li>
+            <li>Lodge a complaint with your local data protection authority</li>
+          </ul>
+          <p>
+            To exercise any of these rights contact us at:<br />
+            <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a>
+          </p>
+
+          <SectionDivider />
+
+          <H2>GDPR — EUROPEAN USERS</H2>
+          <p>
+            If you are located in the European Economic Area the legal basis for processing your email address is your consent given when you subscribed to our newsletter.
+          </p>
+          <p>
+            You have the right to withdraw consent at any time by unsubscribing from our newsletter or contacting us directly.
+          </p>
+
+          <SectionDivider />
+
+          <H2>CHILDREN'S PRIVACY</H2>
+          <p>
+            Our website is not directed at children under the age of 16. We do not knowingly collect personal information from children. If you believe your child has provided us with personal information please contact us.
+          </p>
+
+          <SectionDivider />
+
+          <H2>CHANGES TO THIS POLICY</H2>
+          <p>
+            We may update this Privacy Policy from time to time. We will notify subscribers of significant changes via email. The date at the top of this page shows when it was last updated.
+          </p>
+
+          <SectionDivider />
+
+          <H2>CONTACT US</H2>
+          <p>If you have questions about this Privacy Policy please contact us:</p>
+          <p>
+            Email: <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a><br />
+            Website: <Link to="/" className="text-brand-cyan hover:underline">domskysolutions.com</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const DisclaimerPage = () => {
+  useEffect(() => {
+    document.title = "Affiliate Disclaimer | Domsky Solutions";
+  }, []);
+
+  return (
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
+      <div className="max-w-[680px] mx-auto px-6 pt-32">
+        <div className="mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-4">
+            Affiliate Disclaimer
+          </h1>
+          <p className="text-gray-400 font-mono text-sm">Last updated: April 2026</p>
+        </div>
+
+        <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
+          <H2>AFFILIATE RELATIONSHIPS</H2>
+          <p>
+            domskysolutions.com is a participant in affiliate programs including but not limited to programs offered by the tools and software we review.
+          </p>
+          <p>
+            This means that when you click certain links on our website and make a purchase or sign up for a service, we may receive a commission at no additional cost to you.
+          </p>
+
+          <SectionDivider />
+
+          <H2>WHICH LINKS ARE AFFILIATE LINKS</H2>
+          <p>
+            We do not mark every affiliate link individually. You should assume that any link to a product or service on this website could be an affiliate link.
+          </p>
+
+          <SectionDivider />
+
+          <H2>OUR COMMITMENT TO HONESTY</H2>
+          <p>
+            Affiliate relationships never influence our reviews, ratings, or recommendations. We only recommend products and services we have personally tested and genuinely believe will be useful to our readers.
+          </p>
+          <p>
+            We have declined affiliate arrangements with tools we do not believe in, and we publish honest negative reviews of tools even when we have affiliate relationships with them.
+          </p>
+
+          <SectionDivider />
+
+          <H2>FTC DISCLOSURE</H2>
+          <p>
+            In accordance with the Federal Trade Commission guidelines we disclose that domskysolutions.com may receive compensation for links to products and services.
+          </p>
+
+          <SectionDivider />
+
+          <H2>QUESTIONS</H2>
+          <p>
+            If you have questions about our affiliate relationships please contact us at:<br />
+            <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const NotFoundPage = () => {
+  return (
+    <div className="min-h-[70vh] flex items-center justify-center px-4 py-20 relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-64 bg-brand-cyan/10 blur-[100px] rounded-full pointer-events-none"></div>
+      
+      <div className="relative z-10 text-center max-w-2xl mx-auto">
+        <h1 className="text-8xl md:text-9xl font-bold font-mono text-brand-cyan mb-6 tracking-tighter">
+          404
+        </h1>
+        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          This page doesn't exist
+        </h2>
+        <p className="text-xl text-gray-400 mb-10">
+          The page you are looking for has moved or never existed.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link to="/" className="w-full sm:w-auto border border-brand-cyan text-brand-cyan px-8 py-4 font-bold text-lg hover:bg-brand-cyan/10 transition-colors flex items-center justify-center">
+            Go Home →
+          </Link>
+          <Link to="/tools" className="w-full sm:w-auto bg-brand-cyan text-brand-bg px-8 py-4 font-bold text-lg hover:bg-teal-400 transition-all glow-cyan flex items-center justify-center gap-2">
+            Browse AI Tools →
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -3938,10 +4865,14 @@ export default function App() {
             <Route path="/reviews/:id" element={<ToolPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/blog" element={<BlogIndex />} />
+            <Route path="/blog/cancelled-adobe-never-looked-back" element={<AdobeBlogPost />} />
             <Route path="/blog/replaced-saas-stack-with-ai-tools" element={<BlogPost />} />
             <Route path="/blog/ai-tools-look-like-team-of-10" element={<TeamOf10BlogPost />} />
             <Route path="/blog/claude-vs-chatgpt-vs-gemini-2026" element={<AiComparisonBlogPost />} />
             <Route path="/blog/ai-daily-workflow-solo-business" element={<AiDailyWorkflowBlogPost />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/disclaimer" element={<DisclaimerPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
         <Footer />
