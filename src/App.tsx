@@ -7,6 +7,8 @@ import {
   CheckCircle2, Coffee, ChevronUp, TrendingDown, Clock, Copy, ChevronDown
 } from 'lucide-react';
 
+import { PromptBuilderPage } from './PromptBuilderPage';
+
 // --- Data ---
 
 const featuredTools = [
@@ -864,6 +866,13 @@ const toolsDropdown = [
     badge: null
   },
   {
+    icon: "✍️",
+    title: "Claude Prompt Builder",
+    description: "Build perfect prompts instantly",
+    link: "/tools/prompt-builder",
+    badge: "FREE TOOL"
+  },
+  {
     icon: "💰",
     title: "SaaS Calculator",
     description: "Find your AI savings instantly",
@@ -1250,7 +1259,7 @@ const CategoryExplorer = () => {
   );
 };
 
-const ConvertKitForm = ({ 
+export const ConvertKitForm = ({ 
   className = "", 
   inputClassName = "", 
   buttonClassName = "", 
@@ -1410,6 +1419,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-gray-400">
               <li><Link to="/tools" className="hover:text-brand-cyan transition-colors">AI Tool Reviews</Link></li>
               <li><Link to="/reviews" className="hover:text-brand-cyan transition-colors">SaaS Reviews</Link></li>
+              <li><Link to="/tools/prompt-builder" className="hover:text-brand-cyan transition-colors">Prompt Builder</Link></li>
               <li><Link to="/tools/saas-calculator" className="hover:text-brand-cyan transition-colors">SaaS Calculator</Link></li>
               <li><Link to="/blog" className="hover:text-brand-cyan transition-colors">Blog</Link></li>
             </ul>
@@ -1486,6 +1496,20 @@ const ToolPage = () => {
             {tool.ctaPrimary || "Visit Website"} <ExternalLink size={18} />
           </a>
         </div>
+
+        {id === 'claude' && (
+          <div className="bg-[#1a1a2e] border-l-4 border-brand-cyan p-6 mb-12">
+            <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
+              <span>🛠️</span> Try our free Claude Prompt Builder
+            </h3>
+            <p className="text-gray-300 mb-4">
+              Build perfect Claude prompts in seconds.
+            </p>
+            <Link to="/tools/prompt-builder" className="inline-flex items-center gap-2 text-brand-cyan font-bold hover:underline">
+              → Open Prompt Builder
+            </Link>
+          </div>
+        )}
 
         <div className="prose prose-invert max-w-none mb-12">
           {tool.heroDesc.map((p: string, i: number) => <p key={i} className="text-gray-300 text-lg leading-relaxed mb-4">{p}</p>)}
@@ -6241,6 +6265,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/tools" element={<ToolsPage />} />
             <Route path="/tools/saas-calculator" element={<SaasCalculatorPage />} />
+            <Route path="/tools/prompt-builder" element={<PromptBuilderPage />} />
             <Route path="/tools/:id" element={<ToolPage />} />
             <Route path="/reviews" element={<ReviewsPage />} />
             <Route path="/reviews/:id" element={<ToolPage />} />
