@@ -8,29 +8,29 @@ export const toolsDropdown = [
     badge: null
   },
   {
-    icon: "📊", 
+    icon: "📊",
     title: "SaaS Reviews",
     description: "In-depth software breakdowns",
     link: "/reviews",
     badge: null
   },
   {
-    icon: "✍️",
-    title: "Claude Prompt Builder",
-    description: "Build perfect prompts instantly",
-    link: "/tools/prompt-builder",
-    badge: "FREE TOOL"
-  },
-  {
     icon: "💰",
     title: "SaaS Calculator",
     description: "Find your AI savings instantly",
     link: "/tools/saas-calculator",
-    badge: "FREE TOOL"
+    badge: "FREE"
+  },
+  {
+    icon: "✍️",
+    title: "Prompt Builder",
+    description: "Build perfect Claude prompts",
+    link: "/tools/prompt-builder",
+    badge: "FREE"
   },
   {
     icon: "🎯",
-    title: "AI Stack Recommender",
+    title: "Stack Recommender",
     description: "Get your personalised AI stack",
     link: "/tools/stack-recommender",
     badge: "NEW"
