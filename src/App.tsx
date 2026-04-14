@@ -15,6 +15,7 @@ import { SaasCalculatorPage } from './pages/tools/SaasCalculatorPage';
 import { PromptBuilderPage } from './pages/tools/PromptBuilderPage';
 import { StackRecommenderPage } from './pages/tools/StackRecommenderPage';
 import { UsesPage } from './pages/UsesPage';
+import { ConvertKitReviewPage } from './pages/uses/ConvertKitReviewPage';
 import { BlogPost1 } from './pages/blog/BlogPost1';
 import { BlogPost2 } from './pages/blog/BlogPost2';
 import { BlogPost3 } from './pages/blog/BlogPost3';
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="/tools/prompt-builder" element={<PromptBuilderPage />} />
         <Route path="/tools/stack-recommender" element={<StackRecommenderPage />} />
         <Route path="/uses" element={<UsesPage />} />
+        <Route path="/uses/convertkit" element={<ConvertKitReviewPage />} />
         <Route path="/tools/:id" element={<ToolPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/reviews/:id" element={<ToolPage />} />
