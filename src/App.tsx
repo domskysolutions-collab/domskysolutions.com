@@ -14,6 +14,7 @@ import { ToolPage } from './pages/tools/ToolPage';
 import { SaasCalculatorPage } from './pages/tools/SaasCalculatorPage';
 import { PromptBuilderPage } from './pages/tools/PromptBuilderPage';
 import { StackRecommenderPage } from './pages/tools/StackRecommenderPage';
+import { ContentCalendarPage } from './pages/tools/ContentCalendarPage';
 import { UsesPage } from './pages/UsesPage';
 import { ConvertKitReviewPage } from './pages/uses/ConvertKitReviewPage';
 import { BlogPost1 } from './pages/blog/BlogPost1';
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="/tools/saas-calculator" element={<SaasCalculatorPage />} />
         <Route path="/tools/prompt-builder" element={<PromptBuilderPage />} />
         <Route path="/tools/stack-recommender" element={<StackRecommenderPage />} />
+        <Route path="/tools/content-calendar" element={<ContentCalendarPage />} />
         <Route path="/uses" element={<UsesPage />} />
         <Route path="/uses/convertkit" element={<ConvertKitReviewPage />} />
         <Route path="/tools/:id" element={<ToolPage />} />

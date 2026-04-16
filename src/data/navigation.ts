@@ -29,6 +29,13 @@ export const toolsDropdown = [
     badge: "FREE"
   },
   {
+    icon: "🗓️",
+    title: "Content Calendar",
+    description: "30 days of content ideas instantly",
+    link: "/tools/content-calendar",
+    badge: "NEW"
+  },
+  {
     icon: "🎯",
     title: "Stack Recommender",
     description: "Get your personalised AI stack",
