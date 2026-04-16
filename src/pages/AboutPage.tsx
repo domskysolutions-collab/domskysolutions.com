@@ -38,7 +38,7 @@ export const AboutPage = () => {
             "25 Years in Tech.<br />No Hype. Just What Works."
           </h1>
           <p className="text-xl text-gray-400">
-            Hi, I'm Dominik — I test AI tools so you don't have to.
+            Hi — I'm Dominik, also known as Domsky. I test AI tools so you do not have to.
           </p>
 
           <div className="flex items-center gap-6 my-12 p-6 bg-brand-surface border border-gray-800 rounded-xl">
@@ -53,7 +53,7 @@ export const AboutPage = () => {
               }}
             />
             <div>
-              <div className="text-white font-bold text-lg">Dominik</div>
+              <div className="text-white font-bold text-lg">Dominik — "Domsky"</div>
               <div className="text-gray-400 text-sm">Graphic & Web Designer</div>
               <div className="text-gray-500 text-xs mt-1">25-year tech veteran · PC enthusiast · AI tools tester</div>
             </div>
@@ -75,6 +75,12 @@ export const AboutPage = () => {
             </p>
             <p>
               I started this site because AI tools coverage online is mostly terrible. Listicles from people who spent an afternoon with each tool. Glowing reviews that hide the limitations. Affiliate farms dressed as journalism.
+            </p>
+            <p>
+              You might know me as Domsky — it is the name I use online and the brand behind this site. It is short, memorable, and has followed me through 25 years of tech communities, design forums, and gaming circles.
+            </p>
+            <p>
+              domskysolutions.com is the professional home for everything I have learned about AI tools, software, and building things on the internet.
             </p>
             <p className="font-bold text-white">
               This is the alternative.
@@ -222,6 +228,9 @@ export const AboutPage = () => {
             viewport={{ once: true }}
           >
             <H2>GET IN TOUCH</H2>
+            <p className="text-gray-400">
+              I read every message personally.
+            </p>
             <div className="my-8 space-y-3 not-prose">
               <div className="flex items-center gap-3">
                 <span className="text-gray-400 w-20">General:</span>
@@ -233,15 +242,15 @@ export const AboutPage = () => {
               </div>
             </div>
             <p className="text-gray-400">
-              I read every message. Review requests welcome — I publish what I actually find.
+              Review requests welcome — send me access and I will add it to the queue. I publish what I actually find — positive, negative, or mixed.
             </p>
           </motion.div>
 
           <div className="mt-24 mb-12 text-center not-prose">
             <p className="text-2xl md:text-3xl font-mono text-white font-bold leading-relaxed mb-12">
-              Built by Dominik.<br />
+              Built by Dominik — known as Domsky.<br />
               Tested on real work.<br />
-              Trusted by builders.
+              No team. No investors. Just honest reviews.
             </p>
             
             <div className="relative z-10 bg-[#08090a] border border-brand-cyan/30 p-8 rounded-xl text-center max-w-2xl mx-auto">
@@ -258,7 +267,7 @@ export const AboutPage = () => {
                 placeholder="Enter your email"
               />
               <p className="text-xs text-gray-500 mt-4">
-                Joining is free. Unsubscribing is one click. We have never sent spam and we never will.
+                Joining is free. Unsubscribing is one click. I do not send spam.
               </p>
             </div>
           </div>
