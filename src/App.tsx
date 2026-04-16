@@ -17,6 +17,7 @@ import { StackRecommenderPage } from './pages/tools/StackRecommenderPage';
 import { ContentCalendarPage } from './pages/tools/ContentCalendarPage';
 import { UsesPage } from './pages/UsesPage';
 import { ConvertKitReviewPage } from './pages/uses/ConvertKitReviewPage';
+import { NamecheapReviewPage } from './pages/uses/NamecheapReviewPage';
 import { BlogPost1 } from './pages/blog/BlogPost1';
 import { BlogPost2 } from './pages/blog/BlogPost2';
 import { BlogPost3 } from './pages/blog/BlogPost3';
@@ -36,6 +37,7 @@ export default function App() {
         <Route path="/tools/content-calendar" element={<ContentCalendarPage />} />
         <Route path="/uses" element={<UsesPage />} />
         <Route path="/uses/convertkit" element={<ConvertKitReviewPage />} />
+        <Route path="/uses/namecheap" element={<NamecheapReviewPage />} />
         <Route path="/tools/:id" element={<ToolPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/reviews/:id" element={<ToolPage />} />
