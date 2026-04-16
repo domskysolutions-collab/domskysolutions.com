@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Star, ExternalLink } from 'lucide-react';
 import { ConvertKitForm } from '../components/ConvertKitForm';
@@ -167,9 +168,24 @@ export const UsesPage = () => {
                   <h2 className="text-3xl font-bold font-mono mb-2 text-white">{tool.name}</h2>
                   <p className="text-lg text-brand-cyan font-mono mb-4">"{tool.tagline}"</p>
                 </div>
-                <a href={tool.externalLink} target="_blank" rel="noopener noreferrer" className="bg-brand-cyan text-brand-bg px-6 py-3 font-bold hover:bg-teal-400 transition-all glow-cyan flex items-center justify-center gap-2 whitespace-nowrap">
-                  {tool.ctaPrimary} <ExternalLink size={18} />
-                </a>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  {tool.id === 'convertkit' && (
+                    <Link
+                      to="/uses/convertkit"
+                      className="bg-transparent border border-gray-600 text-white px-6 py-3 font-bold hover:border-white hover:bg-brand-bg transition-all flex items-center justify-center gap-2 whitespace-nowrap"
+                    >
+                      Read review →
+                    </Link>
+                  )}
+                  <a
+                    href={tool.externalLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-brand-cyan text-brand-bg px-6 py-3 font-bold hover:bg-teal-400 transition-all glow-cyan flex items-center justify-center gap-2 whitespace-nowrap"
+                  >
+                    {tool.ctaPrimary} <ExternalLink size={18} />
+                  </a>
+                </div>
               </div>
 
               <p className="text-gray-300 text-lg leading-relaxed mb-8">{tool.desc}</p>
