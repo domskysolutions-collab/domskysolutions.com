@@ -56,26 +56,74 @@ export const Navbar = () => {
                     className="absolute top-full left-0 w-72 bg-[#1a1a2e] border border-gray-500/20 rounded-lg shadow-xl overflow-hidden mt-1"
                   >
                     <div className="py-2">
-                      {toolsDropdown.map((item, idx) => (
-                        <Link 
-                          key={idx} 
-                          to={item.link}
-                          className="flex items-start gap-3 px-4 py-3 hover:bg-white/5 border-l-2 border-transparent hover:border-brand-cyan transition-colors group"
-                        >
-                          <span className="text-base mt-0.5">{item.icon}</span>
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <span className="text-white font-bold text-sm group-hover:text-brand-cyan transition-colors">{item.title}</span>
-                              {item.badge && (
-                                <span className="bg-brand-cyan/10 text-brand-cyan text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider">
-                                  {item.badge}
+                      {/* SECTION 1 — FREE TOOLS */}
+                      <div className="px-4 pb-2 pt-1">
+                        <div className="text-brand-cyan text-[10px] font-mono font-bold uppercase tracking-widest">
+                          FREE TOOLS
+                        </div>
+                        <div className="h-px bg-brand-cyan/70 mt-1" />
+                      </div>
+
+                      {toolsDropdown
+                        .filter(item => item.section === 'FREE TOOLS')
+                        .map((item, idx) => (
+                          <Link
+                            key={`${item.link}-${idx}`}
+                            to={item.link}
+                            className="flex items-start gap-3 px-4 py-3 hover:bg-white/5 border-l-2 border-transparent hover:border-brand-cyan transition-colors group"
+                          >
+                            <span className="text-base mt-0.5">{item.icon}</span>
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-white font-bold text-sm group-hover:text-brand-cyan transition-colors">
+                                  {item.title}
                                 </span>
-                              )}
+                                {item.badge === 'FREE' && (
+                                  <span className="bg-brand-cyan/10 text-brand-cyan text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider">
+                                    FREE
+                                  </span>
+                                )}
+                              </div>
+                              <div className="text-gray-400 text-xs mt-0.5">
+                                {item.description}
+                              </div>
                             </div>
-                            <div className="text-gray-400 text-xs mt-0.5">{item.description}</div>
-                          </div>
-                        </Link>
-                      ))}
+                          </Link>
+                        ))}
+
+                      {/* DIVIDER */}
+                      <div className="h-px bg-gray-500/20 my-2" />
+
+                      {/* SECTION 2 — REVIEWS */}
+                      <div className="px-4 pb-2 pt-1">
+                        <div className="text-brand-amber text-[10px] font-mono font-bold uppercase tracking-widest">
+                          REVIEWS
+                        </div>
+                        <div className="h-px bg-brand-amber/70 mt-1" />
+                      </div>
+
+                      {toolsDropdown
+                        .filter(item => item.section === 'REVIEWS')
+                        .map((item, idx) => (
+                          <Link
+                            key={`${item.link}-${idx}`}
+                            to={item.link}
+                            className="flex items-start gap-3 px-4 py-3 hover:bg-white/5 border-l-2 border-transparent hover:border-brand-cyan transition-colors group"
+                          >
+                            <span className="text-base mt-0.5">{item.icon}</span>
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <span className="text-white font-bold text-sm group-hover:text-brand-cyan transition-colors">
+                                  {item.title}
+                                </span>
+                              </div>
+                              <div className="text-gray-400 text-xs mt-0.5">
+                                {item.description}
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      <div className="pt-1" />
                     </div>
                   </motion.div>
                 )}
@@ -125,22 +173,55 @@ export const Navbar = () => {
                       className="overflow-hidden"
                     >
                       <div className="pl-4 py-1 space-y-1">
-                        {toolsDropdown.map((item, idx) => (
-                          <Link 
-                            key={idx}
-                            to={item.link} 
-                            onClick={() => setIsOpen(false)} 
-                            className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-400 hover:text-brand-cyan"
-                          >
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan"></span>
-                            {item.title}
-                            {item.badge && (
-                              <span className="bg-brand-cyan/10 text-brand-cyan text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider ml-1">
-                                🆕
-                              </span>
-                            )}
-                          </Link>
-                        ))}
+                        {/* FREE TOOLS section */}
+                        <div className="px-3 pb-1 pt-1">
+                          <div className="text-brand-cyan text-[10px] font-mono font-bold uppercase tracking-widest">
+                            FREE TOOLS
+                          </div>
+                          <div className="h-px bg-brand-cyan/70 mt-1" />
+                        </div>
+                        {toolsDropdown
+                          .filter(item => item.section === 'FREE TOOLS')
+                          .map((item, idx) => (
+                            <Link
+                              key={`${item.link}-${idx}`}
+                              to={item.link}
+                              onClick={() => setIsOpen(false)}
+                              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-400 hover:text-brand-cyan"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan"></span>
+                              {item.title}
+                              {item.badge === 'FREE' && (
+                                <span className="bg-brand-cyan/10 text-brand-cyan text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider ml-1">
+                                  FREE
+                                </span>
+                              )}
+                            </Link>
+                          ))}
+
+                        {/* Divider */}
+                        <div className="h-px bg-gray-500/20 my-2 ml-3 mr-6" />
+
+                        {/* REVIEWS section */}
+                        <div className="px-3 pb-1 pt-1">
+                          <div className="text-brand-amber text-[10px] font-mono font-bold uppercase tracking-widest">
+                            REVIEWS
+                          </div>
+                          <div className="h-px bg-brand-amber/70 mt-1" />
+                        </div>
+                        {toolsDropdown
+                          .filter(item => item.section === 'REVIEWS')
+                          .map((item, idx) => (
+                            <Link
+                              key={`${item.link}-${idx}`}
+                              to={item.link}
+                              onClick={() => setIsOpen(false)}
+                              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-400 hover:text-brand-cyan"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan"></span>
+                              {item.title}
+                            </Link>
+                          ))}
                       </div>
                     </motion.div>
                   )}

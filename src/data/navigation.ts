@@ -1,20 +1,7 @@
 
 export const toolsDropdown = [
   {
-    icon: "🔬",
-    title: "AI Tool Reviews",
-    description: "11 tools tested and rated",
-    link: "/tools",
-    badge: null
-  },
-  {
-    icon: "📊",
-    title: "SaaS Reviews",
-    description: "In-depth software breakdowns",
-    link: "/reviews",
-    badge: null
-  },
-  {
+    section: "FREE TOOLS",
     icon: "💰",
     title: "SaaS Calculator",
     description: "Find your AI savings instantly",
@@ -22,6 +9,7 @@ export const toolsDropdown = [
     badge: "FREE"
   },
   {
+    section: "FREE TOOLS",
     icon: "✍️",
     title: "Prompt Builder",
     description: "Build perfect Claude prompts",
@@ -29,20 +17,39 @@ export const toolsDropdown = [
     badge: "FREE"
   },
   {
-    icon: "🗓️",
-    title: "Content Calendar",
-    description: "30 days of content ideas instantly",
-    link: "/tools/content-calendar",
-    badge: "NEW"
-  },
-  {
+    section: "FREE TOOLS",
     icon: "🎯",
     title: "Stack Recommender",
     description: "Get your personalised AI stack",
     link: "/tools/stack-recommender",
-    badge: "NEW"
+    badge: "FREE"
   },
   {
+    section: "FREE TOOLS",
+    icon: "🗓️",
+    title: "Content Calendar",
+    description: "30 days of content ideas instantly",
+    link: "/tools/content-calendar",
+    badge: "FREE"
+  },
+  {
+    section: "REVIEWS",
+    icon: "🔬",
+    title: "AI Tool Reviews",
+    description: "11 tools tested and rated",
+    link: "/tools",
+    badge: null
+  },
+  {
+    section: "REVIEWS",
+    icon: "📊",
+    title: "SaaS Reviews",
+    description: "In-depth software breakdowns",
+    link: "/reviews",
+    badge: null
+  },
+  {
+    section: "REVIEWS",
     icon: "🛠️",
     title: "Tools We Use",
     description: "What runs this site",
