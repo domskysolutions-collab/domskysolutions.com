@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'motion/react';
-import { CheckCircle2, ArrowRight, Star, XCircle, Check, ChevronRight } from 'lucide-react';
+import { CheckCircle2, Star, XCircle, Check, ChevronRight } from 'lucide-react';
 
 export const NamecheapReviewPage = () => {
   const { scrollYProgress } = useScroll();
@@ -117,10 +117,6 @@ export const NamecheapReviewPage = () => {
               aggressive marketing, Namecheap is the alternative that the developer and creator community has quietly
               rallied around.
             </p>
-            <p className="text-gray-300 text-lg leading-relaxed mb-4">
-              The name is not just marketing. .com domains typically start around $8-10 for the first year with renewal
-              rates that stay reasonable rather than jumping dramatically after year one.
-            </p>
             <p className="text-gray-300 text-lg leading-relaxed mb-0">
               WhoisGuard privacy protection — which hides your personal information from public WHOIS lookup — is
               included free. GoDaddy charges separately for this. That single difference tells you everything about the
@@ -151,7 +147,10 @@ export const NamecheapReviewPage = () => {
                 { icon: '🏷️', title: 'Multi-Domain Management', desc: 'Manage entire domain portfolio from one clean dashboard' },
                 { icon: '💬', title: '24/7 Live Chat Support', desc: 'Real support when you need it' },
               ].map((feature, i) => (
-                <div key={i} className="bg-brand-bg border border-gray-800 p-5 hover:border-brand-cyan transition-colors">
+                <div
+                  key={i}
+                  className="bg-brand-bg border border-gray-800 border-l-4 border-l-brand-cyan p-5 hover:border-brand-cyan transition-colors"
+                >
                   <div className="flex items-start gap-3">
                     <div className="text-xl mt-0.5">{feature.icon}</div>
                     <div>
@@ -169,12 +168,12 @@ export const NamecheapReviewPage = () => {
             {/* SCREENSHOT 2 — domain search */}
             <img
               src="/images/screenshots/namecheap-domain-search.jpg"
-              alt="Domain Search"
+              alt="Namecheap domain search interface"
               className="w-full h-auto block"
               loading="lazy"
             />
             <div className="px-4 py-3 border-t border-gray-800 text-sm text-gray-400">
-              Namecheap domain search — clean and fast with no misleading upsells
+              Domain search — clean with no misleading upsells
             </div>
           </div>
 
@@ -194,8 +193,8 @@ export const NamecheapReviewPage = () => {
                     'Clean intuitive dashboard that does not overwhelm beginners',
                     'Good DNS management interface — straightforward to configure',
                     'Strong 20+ year reputation in the developer and creator community',
-                    'No aggressive upselling at checkout — refreshing compared to GoDaddy',
-                    'Competitive pricing across most popular TLDs',
+                    'No aggressive upselling at checkout',
+                    'Competitive pricing across most TLDs',
                     'Responsive 24/7 live chat support',
                   ].map((text, i) => (
                     <li key={i} className="text-gray-300 flex items-start gap-3">
@@ -209,9 +208,9 @@ export const NamecheapReviewPage = () => {
                 <h3 className="text-xl font-bold font-mono mb-4 text-red-400">What Could Be Better</h3>
                 <ul className="space-y-4">
                   {[
-                    'Hosting plans are basic compared to specialist hosts like Vercel',
+                    'Hosting plans basic compared to specialist hosts like Vercel',
                     'Dashboard design feels slightly dated compared to newer registrars',
-                    'Not always the cheapest for every TLD — worth comparing',
+                    'Not always cheapest for every TLD',
                     'Some upselling exists at checkout — just less aggressive than others',
                     'Advanced DNS features less robust than using Cloudflare separately',
                     'Domain transfer process can be slow compared to competitors',
@@ -255,8 +254,7 @@ export const NamecheapReviewPage = () => {
                 </div>
                 <p className="text-gray-300 text-sm leading-relaxed">
                   Cloudflare wins on price — they sell at cost with zero markup. But they require a Cloudflare account
-                  and are less beginner friendly. Technical users should consider Cloudflare. Everyone else —
-                  Namecheap.
+                  and are less beginner friendly. Technical users should consider Cloudflare. Everyone else — Namecheap.
                 </p>
               </div>
 
@@ -290,7 +288,7 @@ export const NamecheapReviewPage = () => {
           </div>
 
           {/* MY HONEST EXPERIENCE */}
-          <div className="bg-brand-bg border border-gray-800 p-8 mb-16">
+          <div className="bg-brand-bg border border-gray-800 border-l-4 border-l-brand-amber p-8 mb-16">
             <div className="font-mono font-bold text-brand-amber text-sm uppercase mb-6 tracking-wider">
               MY ACTUAL EXPERIENCE
             </div>
@@ -308,10 +306,7 @@ export const NamecheapReviewPage = () => {
               nameservers pointed to Cloudflare was simple but the DNS record interface is not as polished as
               Cloudflare&apos;s own dashboard.
             </p>
-            <p className="text-gray-300 mb-6">
-              That said — it worked. Every record I needed to configure for email routing, DKIM, SPF and DMARC was
-              available and the changes propagated within the expected timeframes.
-            </p>
+            <p className="text-gray-300 mb-6">That said — it worked.</p>
 
             <h3 className="font-bold text-white text-xl mb-3">After 12 Months</h3>
             <p className="text-gray-300 mb-6">
@@ -321,13 +316,10 @@ export const NamecheapReviewPage = () => {
             </p>
 
             <div className="bg-brand-amber/10 border border-brand-amber/20 p-5 rounded-md mt-8">
-              <div className="font-bold text-brand-amber mb-2 flex items-center gap-2">
-                <span>💡 My setup tip:</span>
-              </div>
+              <div className="font-bold text-brand-amber mb-2">💡 My setup tip:</div>
               <div className="text-brand-amber/90 text-base">
-                Register your domain with Namecheap then immediately point the nameservers to Cloudflare. You get
-                Namecheap&apos;s pricing with Cloudflare&apos;s superior DNS management and security. Best of both
-                worlds.
+                Register your domain with Namecheap then immediately point nameservers to Cloudflare. You get
+                Namecheap&apos;s pricing with Cloudflare&apos;s superior DNS management. Best of both worlds.
               </div>
             </div>
           </div>
@@ -449,7 +441,7 @@ export const NamecheapReviewPage = () => {
             {/* SCREENSHOT 4 — pricing page */}
             <img
               src="/images/screenshots/namecheap-pricing.jpg"
-              alt="Domain Pricing"
+              alt="Namecheap pricing page"
               className="w-full h-auto block"
               loading="lazy"
             />
@@ -458,119 +450,6 @@ export const NamecheapReviewPage = () => {
             </div>
           </div>
 
-          {/* WHO IS IT BEST FOR */}
-          <div className="text-gray-300 space-y-6 mb-16">
-            <h2 className="text-2xl font-bold font-mono mb-4 text-white border-b border-gray-800 pb-2">
-              WHO IS IT BEST FOR
-            </h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-brand-bg border border-gray-800 p-6">
-                <h3 className="text-lg font-bold font-mono text-white mb-3">✅ Perfect for</h3>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li>Bloggers and content creators buying their first domain</li>
-                  <li>Solopreneurs launching a new project or business online</li>
-                  <li>Anyone moving away from GoDaddy and wanting a trustworthy alternative</li>
-                  <li>People managing a small portfolio of 1–5 domains</li>
-                </ul>
-              </div>
-              <div className="bg-brand-bg border border-gray-800 p-6">
-                <h3 className="text-lg font-bold font-mono text-white mb-3">⚠️ Consider alternatives if</h3>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li>You are deeply technical and want at-cost pricing — use Cloudflare Registrar</li>
-                  <li>You need enterprise DNS features — use Cloudflare or AWS Route 53</li>
-                  <li>You want hosting bundled with your domain — use a specialist host instead</li>
-                </ul>
-              </div>
-              <div className="bg-brand-bg border border-gray-800 p-6">
-                <h3 className="text-lg font-bold font-mono text-white mb-3">❌ Not ideal for</h3>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li>Large domain portfolios (50+ domains) where bulk pricing matters more</li>
-                  <li>Businesses needing advanced DNS failover and load balancing</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* FINAL VERDICT */}
-          <div className="bg-brand-bg border border-brand-cyan/40 p-8 text-center mb-12">
-            <div className="text-xs font-bold font-mono text-brand-cyan tracking-widest mb-3 uppercase">
-              FINAL VERDICT
-            </div>
-            <div className="text-xl font-bold text-white mb-4">
-              ⭐ 4.5/5
-            </div>
-            <div className="text-gray-300 text-lg leading-relaxed mb-6">
-              <p className="mb-4 last:mb-0">
-                Namecheap earns its place in my recommended tools list by doing something rare in its market — competing
-                on trust rather than tricks.
-              </p>
-              <p className="mb-4 last:mb-0">
-                Twenty years of serving the developer and creator community has built a reputation that aggressive
-                GoDaddy marketing has never managed to undermine.
-              </p>
-              <p className="mb-0">
-                If you are buying a domain for a new project — start here. Transparent pricing, free privacy protection,
-                and a platform that respects your time.
-              </p>
-            </div>
-            <div className="flex flex-wrap justify-center gap-3 mt-4 pt-4 border-t border-gray-800">
-              {['First-time buyers', 'Creators', 'Solopreneurs', 'Small portfolios'].map(label => (
-                <span
-                  key={label}
-                  className="px-3 py-1 rounded-full text-xs font-mono bg-brand-amber/10 text-brand-amber border border-brand-amber/30"
-                >
-                  {label}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* CTA SECTION */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <a
-              href="https://namecheap.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-brand-amber text-brand-bg px-8 py-4 font-bold text-lg hover:bg-yellow-400 transition-all glow-amber-hover flex items-center justify-center gap-2"
-            >
-              Buy Your Domain at Namecheap →
-            </a>
-            <Link
-              to="/uses"
-              className="w-full sm:w-auto bg-transparent border border-brand-cyan text-brand-cyan px-8 py-4 font-bold text-lg hover:border-white hover:bg-brand-surface transition-all flex items-center justify-center gap-2"
-            >
-              ← Back to Tools I Use
-            </Link>
-          </div>
-
-          <p className="text-gray-500 text-sm text-center mt-6">
-            This link will become an affiliate link once I am approved for their program. I registered
-            domskysolutions.com through Namecheap before any affiliate relationship existed.
-          </p>
-
-          {/* RELATED TOOLS */}
-          <div className="mt-12 border-t border-gray-800 pt-8">
-            <h3 className="text-sm font-mono font-bold text-gray-500 uppercase tracking-widest mb-4 text-center">
-              Also in my stack
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <Link
-                to="/uses/convertkit"
-                className="bg-brand-bg border border-gray-800 hover:border-brand-cyan transition-colors p-4 flex flex-col"
-              >
-                <div className="text-xs font-mono text-gray-500 mb-1">EMAIL MARKETING</div>
-                <div className="text-white font-bold font-mono mb-1">ConvertKit</div>
-                <div className="text-gray-400 text-sm mb-2">My full ConvertKit review</div>
-                <span className="text-brand-cyan text-xs font-mono font-bold mt-auto">Read review →</span>
-              </Link>
-              <div className="bg-brand-bg border border-gray-800 p-4 flex flex-col">
-                <div className="text-xs font-mono text-gray-500 mb-1">HOSTING</div>
-                <div className="text-white font-bold font-mono mb-1">Vercel</div>
-                <div className="text-gray-400 text-sm mb-2">Review coming soon</div>
-                <span className="text-gray-500 text-xs font-mono font-bold mt-auto">/uses/vercel · Coming soon</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -177,6 +177,14 @@ export const UsesPage = () => {
                       Read review →
                     </Link>
                   )}
+                  {tool.id === 'namecheap' && (
+                    <Link
+                      to="/uses/namecheap"
+                      className="bg-transparent border border-gray-600 text-white px-6 py-3 font-bold hover:border-white hover:bg-brand-bg transition-all flex items-center justify-center gap-2 whitespace-nowrap"
+                    >
+                      Read review →
+                    </Link>
+                  )}
                   <a
                     href={tool.externalLink}
                     target="_blank"
