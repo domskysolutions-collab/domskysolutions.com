@@ -118,16 +118,18 @@ export const BlogPost5 = () => {
           </div>
         </div>
 
-        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl bg-gray-900 flex items-center justify-center" style={{height: '400px'}}>
-          <div className="text-center text-gray-600">
-            <div className="text-6xl mb-4">🖼</div>
-            <p className="font-mono text-sm">
-              [ INSERT COVER IMAGE HERE ]
-            </p>
-            <p className="font-mono text-xs mt-2 text-gray-700">
-              Recommended: dark moody desk setup, designer at work
-            </p>
-          </div>
+        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
+          <img
+            src="/images/adobe-article.jpg"
+            alt="After 12 Years I Cancelled Adobe — $65/mo saved"
+            style={{
+              width: '100%',
+              height: '400px',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              borderRadius: '12px',
+            }}
+          />
         </div>
 
         <div className="prose prose-invert max-w-none text-[18px] leading-[1.9] font-serif space-y-8">
