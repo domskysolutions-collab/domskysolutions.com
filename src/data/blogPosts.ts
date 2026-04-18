@@ -7,7 +7,7 @@ export const BLOG_POSTS = [
     category: "Design",
     date: "April 2026",
     readTime: "6 minutes",
-    image: "https://picsum.photos/seed/adobe/1920/1080?blur=4",
+    image: "/images/adobe-article.jpg",
     author: "Domsky Solutions Team"
   },
   {
