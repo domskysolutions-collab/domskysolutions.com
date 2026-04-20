@@ -172,15 +172,16 @@ export const BlogPost5 = () => {
               <Money>$55</Money> for four sessions of Photoshop. I've paid less for a full dinner.
             </p>
 
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: close-up of a bank statement or subscription receipt
-                </p>
-              </div>
-            </div>
+            <figure className="my-8">
+              <img
+                src="/images/screenshots/adobe-pricing.jpg"
+                alt="Adobe Creative Cloud pricing — $65/month for tools I barely used"
+                className="w-full rounded-xl border border-brand-surface bg-gray-900"
+              />
+              <figcaption className="mt-3 text-sm text-gray-500 font-inter">
+                Adobe Creative Cloud pricing — $65/month for tools I barely used
+              </figcaption>
+            </figure>
 
             <p>
               Over five years that's <span className="font-bold text-white"><Money>$3,300</Money> wasted</span>. For software I was using at maybe 20% capacity.
@@ -219,15 +220,16 @@ export const BlogPost5 = () => {
               I dreaded having to explain that I now generate images with a text prompt.
             </p>
 
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: person looking stressed at a computer
-                </p>
-              </div>
-            </div>
+            <figure className="my-8">
+              <img
+                src="/images/screenshots/adobe-account.jpg"
+                alt="The cancellation screen — one of the best clicks I ever made"
+                className="w-full rounded-xl border border-brand-surface bg-gray-900"
+              />
+              <figcaption className="mt-3 text-sm text-gray-500 font-inter">
+                The cancellation screen — one of the best clicks I ever made
+              </figcaption>
+            </figure>
 
             <H3>The Muscle Memory Trap</H3>
             <p>
@@ -275,17 +277,16 @@ export const BlogPost5 = () => {
               />
             </div>
 
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">
-                  [ INSERT IMAGE HERE ]
-                </p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: Midjourney interface screenshot or generated image example
-                </p>
-              </div>
-            </div>
+            <figure className="my-8">
+              <img
+                src="/images/screenshots/midjourney-results.jpg"
+                alt="Midjourney results — what replaced a $65/month subscription"
+                className="w-full rounded-xl border border-brand-surface bg-gray-900"
+              />
+              <figcaption className="mt-3 text-sm text-gray-500 font-inter">
+                Midjourney results — what replaced a $65/month subscription
+              </figcaption>
+            </figure>
 
             <H3>The 30-Day Timeline</H3>
             <p>
@@ -415,15 +416,16 @@ export const BlogPost5 = () => {
               saving="$45/mo"
             />
 
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: chart showing subscription costs over time
-                </p>
-              </div>
-            </div>
+            <figure className="my-8">
+              <img
+                src="/images/screenshots/adobe-vs-midjourney-cost.jpg"
+                alt="The cost comparison — $65/mo vs $10/mo for better results"
+                className="w-full rounded-xl border border-brand-surface bg-gray-900"
+              />
+              <figcaption className="mt-3 text-sm text-gray-500 font-inter">
+                The cost comparison — $65/mo vs $10/mo for better results
+              </figcaption>
+            </figure>
 
             <div className="grid grid-cols-3 gap-4 my-8">
               {[
