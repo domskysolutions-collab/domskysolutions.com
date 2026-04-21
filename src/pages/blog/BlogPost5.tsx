@@ -322,14 +322,16 @@ export const BlogPost5 = () => {
               I hadn't. I'd just stopped fighting the tools and started using better ones.
             </p>
 
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: side-by-side comparison of stock photo vs Midjourney generation
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/stock-vs-midjourney.jpg"
+                alt="Stock photos vs Midjourney AI comparison"
+                className="w-full object-cover"
+                style={{ borderRadius: '12px' }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Why I stopped paying for stock photos and switched to AI
+              </p>
             </div>
 
             <H3>The Midjourney Revelation</H3>
@@ -361,14 +363,16 @@ export const BlogPost5 = () => {
               Here's what I actually lost and won't pretend I didn't.
             </p>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: complex Photoshop layers panel or Illustrator vectors
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/photoshop-interface.jpg"
+                alt="The complexity of old design software"
+                className="w-full object-cover"
+                style={{ borderRadius: '12px' }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                The old way — complicated, expensive, and time consuming
+              </p>
             </div>
 
             <H3>Where Adobe Still Wins</H3>
@@ -470,14 +474,16 @@ export const BlogPost5 = () => {
               Boring, unglamorous, never mentioned in any "I quit Adobe" post I've ever read.
             </p>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: Adobe Bridge interface screenshot
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/adobe-bridge.jpg"
+                alt="The hidden cost of legacy software"
+                className="w-full object-cover"
+                style={{ borderRadius: '12px' }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                What nobody tells you about expensive software subscriptions
+              </p>
             </div>
 
             <p>
@@ -493,16 +499,16 @@ export const BlogPost5 = () => {
 
           <SectionDivider />
 
-          <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '280px'}}>
-            <div className="text-center text-gray-600">
-              <div className="text-5xl mb-4">🖼</div>
-              <p className="font-mono text-sm">
-                [ INSERT IMAGE HERE ]
-              </p>
-              <p className="font-mono text-xs mt-2 text-gray-700">
-                Recommended: before/after of your design workflow or tool comparison
-              </p>
-            </div>
+          <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+            <img
+              src="/images/screenshots/workflow-comparison.jpg"
+              alt="My workflow before and after"
+              className="w-full object-cover"
+              style={{ borderRadius: '12px' }}
+            />
+            <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+              From $85/month complicated to $10/month simple
+            </p>
           </div>
 
           <motion.div
