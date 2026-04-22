@@ -71,7 +71,7 @@ export const BlogPost2 = () => {
               It is a single person with a laptop, a clear vision, and the right AI tools running in the background while they sleep. The playing field between individuals and teams has never been more level.
             </p>
             <p>
-              We tested dozens of AI tools across every business function. These ten deliver the highest leverage for solopreneurs, producing output that genuinely looks like it came from a specialized professional team.
+              I tested dozens of AI tools across every business function. These ten deliver the highest leverage for solopreneurs, producing output that genuinely looks like it came from a specialized professional team.
             </p>
           </motion.div>
 
@@ -85,14 +85,20 @@ export const BlogPost2 = () => {
           >
             <H2 id="claude-thinking-partner">1. CLAUDE — YOUR AI THINKING PARTNER</H2>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: Claude interface showing a complex reasoning task
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/claude-interface.jpg"
+                alt="Claude AI interface showing a reasoning task"
+                className="w-full"
+                style={{
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px',
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Claude — the closest thing to a brilliant generalist on your team
+              </p>
             </div>
 
             <H3>Category: Writing & Reasoning</H3>
@@ -126,14 +132,20 @@ export const BlogPost2 = () => {
           >
             <H2 id="perplexity-research">2. PERPLEXITY — YOUR AI RESEARCH DEPARTMENT</H2>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: Perplexity showing cited research results
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/perplexity-research.jpg"
+                alt="Perplexity AI showing cited research results"
+                className="w-full"
+                style={{
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px',
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Perplexity — real time research with cited sources in seconds
+              </p>
             </div>
 
             <H3>Category: Research & Information</H3>
@@ -171,14 +183,20 @@ export const BlogPost2 = () => {
           >
             <H2 id="cursor-development">3. CURSOR — YOUR AI DEVELOPMENT TEAM</H2>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: Cursor editor showing AI code generation
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/cursor-editor.jpg"
+                alt="Cursor AI code editor in action"
+                className="w-full"
+                style={{
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px',
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Cursor — building real software without being a developer
+              </p>
             </div>
 
             <H3>Category: Coding & Development</H3>
