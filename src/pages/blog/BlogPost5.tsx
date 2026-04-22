@@ -220,17 +220,6 @@ export const BlogPost5 = () => {
               I dreaded having to explain that I now generate images with a text prompt.
             </p>
 
-            <figure className="my-8">
-              <img
-                src="/images/screenshots/adobe-account.jpg"
-                alt="The cancellation screen — one of the best clicks I ever made"
-                className="w-full rounded-xl border border-brand-surface bg-gray-900"
-              />
-              <figcaption className="mt-3 text-sm text-gray-500 font-inter">
-                The cancellation screen — one of the best clicks I ever made
-              </figcaption>
-            </figure>
-
             <H3>The Muscle Memory Trap</H3>
             <p>
               Twelve years of Photoshop muscle memory. Twelve years of knowing exactly where every panel, every shortcut, every obscure filter lived.
