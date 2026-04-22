@@ -30,7 +30,7 @@ export const BlogPost5 = () => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 500);
       
-      const sections = ['the-breaking-point', 'what-i-was-scared-of', 'the-experiment', 'what-surprised-me', 'the-honest-part', 'the-numbers', 'one-more-thing', 'want-the-full-picture'];
+      const sections = ['the-breaking-point', 'what-i-was-scared-of', 'the-experiment', 'what-surprised-me', 'the-honest-part', 'the-numbers', 'one-more-thing'];
       let current = '';
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -74,7 +74,6 @@ export const BlogPost5 = () => {
             { id: 'the-honest-part', label: 'The Honest Part' },
             { id: 'the-numbers', label: 'The Numbers' },
             { id: 'one-more-thing', label: 'One More Thing' },
-            { id: 'want-the-full-picture', label: 'Want The Full Picture?' },
           ].map(item => (
             <li key={item.id}>
               <button 
@@ -499,43 +498,6 @@ export const BlogPost5 = () => {
               From $85/month complicated to $10/month simple
             </p>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-          >
-            <H2 id="want-the-full-picture">WANT THE FULL PICTURE?</H2>
-            <p>
-              If this post made you curious about what else in your software stack has a cheaper AI alternative, I put together a free guide called <span className="font-bold text-white">The AI Tools Starter Kit</span>.
-            </p>
-            <p>
-              5 tools. Real savings numbers. No fluff.
-            </p>
-            <p>
-              It covers everything I actually use day to day — including Midjourney, Claude, Perplexity, Gamma and Notion.
-            </p>
-            <p>
-              It includes free tiers, honest limitations and a 7-day plan to get started without paying for anything upfront.
-            </p>
-            
-            <H3>Key Takeaways</H3>
-            <ul className="list-disc pl-6 space-y-2 text-gray-300 my-4">
-              <li>You are likely paying for software capacity you don't use.</li>
-              <li>AI tools can replace 80% of standard design workflows.</li>
-              <li>The emotional cost of switching is higher than the technical cost.</li>
-            </ul>
-
-            <div className="mt-8">
-              <a href="/" className="inline-flex items-center justify-center px-6 py-3 bg-brand-cyan text-brand-bg font-bold font-inter rounded-lg hover:bg-white transition-colors">
-                Download the Free Guide at domskysolutions.com
-              </a>
-            </div>
-            <p className="text-sm text-gray-500 mt-4">
-              No email required. No catch. Just the guide.
-            </p>
-          </motion.div>
 
           <div className="mt-16 p-6 bg-gray-900 border border-gray-800 text-sm text-gray-400">
             <div className="font-bold font-mono text-white mb-2">ABOUT THIS ARTICLE</div>
