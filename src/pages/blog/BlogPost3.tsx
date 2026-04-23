@@ -131,16 +131,19 @@ export const BlogPost3 = () => {
           </div>
         </div>
 
-        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl bg-gray-900 flex items-center justify-center" style={{height: '400px'}}>
-          <div className="text-center text-gray-600">
-            <div className="text-6xl mb-4">🖼</div>
-            <p className="font-mono text-sm">
-              [ INSERT COVER IMAGE HERE ]
-            </p>
-            <p className="font-mono text-xs mt-2 text-gray-700">
-              Recommended: Cover image showing Claude, ChatGPT and Gemini logos
-            </p>
-          </div>
+        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
+          <img
+            src="/images/ai-comparison-article.jpg"
+            alt="ChatGPT vs Claude vs Gemini — 
+         Which AI assistant actually works?"
+            style={{
+              width: '100%',
+              height: '400px',
+              objectFit: 'cover',
+              objectPosition: 'center top',
+              borderRadius: '12px',
+            }}
+          />
         </div>
 
         <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
