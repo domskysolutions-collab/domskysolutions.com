@@ -1,8 +1,8 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowRight, Check, Star, TrendingUp, Clock, Target, Zap, Shield, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, Star, TrendingUp, Clock, Target, Zap, Shield, Sparkles, ChevronUp } from 'lucide-react';
 import { useScroll } from 'motion/react';
 import { ToolReviewCard } from '../../components/ToolCard';
 import { BLOG_POSTS } from '../../data/blogPosts';
@@ -11,6 +11,8 @@ import { ConvertKitForm } from '../../components/ConvertKitForm';
 import { Money, BeforeAfter, SectionDivider, H2, H3, CalloutTip, Step, PullQuote, StatCard, SavingsChart, ToolLink } from '../../components/ui';
 export const BlogPost3 = () => {
   const { scrollYProgress } = useScroll();
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     document.title = "Claude vs ChatGPT vs Gemini — Which AI Assistant Should You Actually Use in 2026?";
@@ -23,13 +25,92 @@ export const BlogPost3 = () => {
     metaDescription.setAttribute('content', "We tested Claude, ChatGPT and Gemini head to head across writing, coding, research and reasoning. Here is the honest verdict on which AI assistant is actually worth your money in 2026.");
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 500);
+      
+      const sections = ['the-test', 'claude', 'chatgpt', 'gemini', 'the-verdict', 'which-to-choose'];
+      let current = '';
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element && window.scrollY >= (element.offsetTop - 100)) {
+          current = section;
+        }
+      }
+      setActiveSection(current);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({ top: element.offsetTop - 80, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24 relative">
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-brand-cyan origin-left z-50"
         style={{ scaleX: scrollYProgress }}
       />
       
+      {/* Table of Contents Sidebar (Desktop Only) */}
+      <div className="hidden xl:block fixed left-[max(0px,calc(50%-550px))] top-48 w-64">
+        <div className="mb-4">
+          <div className="h-[2px] bg-gray-800 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-brand-cyan rounded-full"
+              style={{ scaleX: scrollYProgress, transformOrigin: 'left' }}
+            />
+          </div>
+          <div className="text-[10px] font-mono text-gray-600 mt-1">Reading progress</div>
+        </div>
+
+        <div className="flex items-center gap-3 mb-6">
+          <span className="text-xs font-mono font-bold text-brand-cyan uppercase tracking-[0.2em]">Contents</span>
+          <div className="flex-1 h-px bg-brand-cyan opacity-30" />
+        </div>
+
+        <ul className="space-y-3 font-inter">
+          {[
+            { id: 'the-test', label: 'The Test' },
+            { id: 'claude', label: 'Claude' },
+            { id: 'chatgpt', label: 'ChatGPT' },
+            { id: 'gemini', label: 'Gemini' },
+            { id: 'the-verdict', label: 'The Verdict' },
+            { id: 'which-to-choose', label: 'Which Should You Choose' },
+          ].map(item => (
+            <li key={item.id}>
+              <button
+                onClick={() => scrollToSection(item.id)}
+                className={`text-left transition-all duration-200 flex items-center gap-2 ${activeSection === item.id ? 'text-brand-cyan font-semibold text-[13px]' : 'text-gray-500 text-[12px] hover:text-gray-300'}`}
+              >
+                <span className={`w-1 h-1 rounded-full flex-shrink-0 transition-all ${activeSection === item.id ? 'bg-brand-cyan scale-150' : 'bg-gray-700'}`} />
+                {item.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-brand-surface border border-brand-cyan/30 p-3 rounded-full text-brand-cyan hover:bg-brand-cyan hover:text-brand-bg transition-all duration-300 z-50 shadow-lg hover:shadow-brand-cyan/20 hover:scale-110"
+          aria-label="Back to top"
+        >
+          <ChevronUp size={24} />
+        </button>
+      )}
+
       <div className="max-w-[680px] mx-auto px-6 pt-32">
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-6">
@@ -89,7 +170,7 @@ export const BlogPost3 = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <H2 id="the-three-contenders">THE THREE CONTENDERS</H2>
+            <H2 id="the-test">THE THREE CONTENDERS</H2>
             <p>
               Before we get into the comparison it is worth understanding what each of these tools actually is and who built it.
             </p>
@@ -153,7 +234,7 @@ export const BlogPost3 = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <H2 id="test-1-writing">TEST 1 — WRITING QUALITY</H2>
+            <H2 id="claude">TEST 1 — WRITING QUALITY</H2>
             <p className="font-mono text-sm text-gray-400 mb-4">Task: Write a 500 word blog post introduction about the future of remote work</p>
             <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
               <span className="font-bold font-mono text-brand-cyan">Winner: Claude 🥇</span>
@@ -186,7 +267,7 @@ export const BlogPost3 = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <H2 id="test-2-coding">TEST 2 — CODING ABILITY</H2>
+            <H2 id="chatgpt">TEST 2 — CODING ABILITY</H2>
             <p className="font-mono text-sm text-gray-400 mb-4">Task: Build a working React component for a newsletter signup form with validation</p>
             <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
               <span className="font-bold font-mono text-brand-cyan">Winner: ChatGPT 🥇 (narrow margin over Claude)</span>
@@ -219,7 +300,7 @@ export const BlogPost3 = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <H2 id="test-3-research">TEST 3 — RESEARCH & CURRENT INFORMATION</H2>
+            <H2 id="gemini">TEST 3 — RESEARCH & CURRENT INFORMATION</H2>
             <p className="font-mono text-sm text-gray-400 mb-4">Task: Summarize the three most significant AI developments from the past month</p>
             <div className="my-6 p-4 bg-brand-surface border border-brand-cyan/30 rounded-lg inline-block">
               <span className="font-bold font-mono text-brand-cyan">Winner: Gemini 🥇</span>
@@ -438,7 +519,7 @@ export const BlogPost3 = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <H2 id="the-honest-recommendation">THE HONEST RECOMMENDATION</H2>
+            <H2 id="which-to-choose">THE HONEST RECOMMENDATION</H2>
             <p>
               There is no single right answer here — but there is a right answer for most people reading this article.
             </p>
@@ -540,7 +621,7 @@ export const BlogPost3 = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <H2 id="final-verdict">FINAL VERDICT</H2>
+            <H2 id="the-verdict">FINAL VERDICT</H2>
             <p>
               <span className="font-bold text-brand-cyan">Claude</span> wins on the dimensions that matter most for serious knowledge work — writing quality, analytical depth, document reasoning and honesty.
             </p>
