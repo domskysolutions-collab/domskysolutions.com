@@ -31,7 +31,7 @@ export const BlogPost1 = () => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 500);
       
-      const sections = ['old-vs-new', 'the-numbers', 'what-i-learned', 'how-to-do-this', 'the-tools'];
+      const sections = ['old-stack-new-stack', 'the-numbers', 'what-i-learned', 'how-to-do-this', 'the-tools'];
       let current = '';
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -76,10 +76,24 @@ export const BlogPost1 = () => {
       
       {/* Table of Contents Sidebar (Desktop Only) */}
       <div className={`hidden xl:block ${sidebarFixed ? 'fixed left-[max(0px,calc(50%-550px))] top-48' : 'absolute left-[max(0px,calc(50%-550px))]'} w-64`}>
-        <div className="text-sm font-bold font-inter text-gray-500 uppercase tracking-wider mb-4">Contents</div>
-        <ul className="space-y-3 font-inter text-sm">
+        <div className="mb-4">
+          <div className="h-[2px] bg-gray-800 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-brand-cyan rounded-full"
+              style={{ scaleX: scrollYProgress, transformOrigin: 'left' }}
+            />
+          </div>
+          <div className="text-[10px] font-mono text-gray-600 mt-1">Reading progress</div>
+        </div>
+
+        <div className="flex items-center gap-3 mb-6">
+          <span className="text-xs font-mono font-bold text-brand-cyan uppercase tracking-[0.2em]">Contents</span>
+          <div className="flex-1 h-px bg-brand-cyan opacity-30" />
+        </div>
+
+        <ul className="space-y-3 font-inter">
           {[
-            { id: 'old-vs-new', label: 'The Old Stack vs New Stack' },
+            { id: 'old-stack-new-stack', label: 'Old Stack vs New Stack' },
             { id: 'the-numbers', label: 'The Numbers' },
             { id: 'what-i-learned', label: 'What I Learned' },
             { id: 'how-to-do-this', label: 'How To Do This' },
@@ -88,8 +102,9 @@ export const BlogPost1 = () => {
             <li key={item.id}>
               <button 
                 onClick={() => scrollToSection(item.id)}
-                className={`text-left transition-colors hover:text-brand-cyan ${activeSection === item.id ? 'text-brand-cyan font-semibold' : 'text-gray-400'}`}
+                className={`text-left transition-all duration-200 flex items-center gap-2 ${activeSection === item.id ? 'text-brand-cyan font-semibold text-[13px]' : 'text-gray-500 text-[12px] hover:text-gray-300'}`}
               >
+                <span className={`w-1 h-1 rounded-full flex-shrink-0 transition-all ${activeSection === item.id ? 'bg-brand-cyan scale-150' : 'bg-gray-700'}`} />
                 {item.label}
               </button>
             </li>
@@ -101,7 +116,7 @@ export const BlogPost1 = () => {
       {showBackToTop && (
         <button 
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-brand-surface border border-gray-800 p-3 rounded-full text-brand-cyan hover:bg-brand-cyan hover:text-brand-bg transition-colors z-50 shadow-lg"
+          className="fixed bottom-8 right-8 bg-brand-surface border border-brand-cyan/30 p-3 rounded-full text-brand-cyan hover:bg-brand-cyan hover:text-brand-bg transition-all duration-300 z-50 shadow-lg hover:shadow-brand-cyan/20 hover:scale-110"
           aria-label="Back to top"
         >
           <ChevronUp size={24} />
@@ -161,7 +176,7 @@ export const BlogPost1 = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <H2 id="old-vs-new">THE OLD STACK VS THE NEW STACK</H2>
+            <H2 id="old-stack-new-stack">THE OLD STACK VS THE NEW STACK</H2>
             <p>
               Here is a direct comparison of what I was paying for versus what I use now.
             </p>
