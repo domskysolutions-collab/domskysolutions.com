@@ -1,14 +1,16 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowRight, Check, Star, TrendingUp, Clock, Target, Zap, Shield, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, Star, TrendingUp, Clock, Target, Zap, Shield, Sparkles, ChevronUp } from 'lucide-react';
 import { useScroll } from 'motion/react';
 import { ToolReviewCard } from '../../components/ToolCard';
 import { ConvertKitForm } from '../../components/ConvertKitForm';
 import { Money, BeforeAfter, SectionDivider, H2, H3, CalloutTip, Step, PullQuote, StatCard, SavingsChart, ToolLink } from '../../components/ui';
 export const BlogPost4 = () => {
   const { scrollYProgress } = useScroll();
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     document.title = "How I Use AI to Run My Entire Business Solo — My Exact Daily Workflow";
@@ -21,13 +23,93 @@ export const BlogPost4 = () => {
     metaDescription.setAttribute('content', "I run a growing AI tools publication completely solo. Here is the exact AI workflow I use every single day — the tools, the order, the prompts, and the time it saves.");
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 500);
+      
+      const sections = ['morning-routine', 'content-creation', 'research', 'development', 'end-of-day', 'the-stack'];
+      let current = '';
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element && window.scrollY >= (element.offsetTop - 100)) {
+          current = section;
+        }
+      }
+      setActiveSection(current);
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({ top: element.offsetTop - 80, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24 relative">
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-brand-cyan origin-left z-50"
         style={{ scaleX: scrollYProgress }}
       />
       
+      {/* Table of Contents Sidebar (Desktop Only) */}
+      <div className="hidden xl:block fixed left-[max(0px,calc(50%-550px))] top-48 w-64">
+        <div className="mb-4">
+          <div className="h-[2px] bg-gray-800 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-brand-cyan rounded-full"
+              style={{ scaleX: scrollYProgress, transformOrigin: 'left' }}
+            />
+          </div>
+          <div className="text-[10px] font-mono text-gray-600 mt-1">Reading progress</div>
+        </div>
+
+        <div className="flex items-center gap-3 mb-6">
+          <span className="text-xs font-mono font-bold text-brand-cyan uppercase tracking-[0.2em]">Contents</span>
+          <div className="flex-1 h-px bg-brand-cyan opacity-30" />
+        </div>
+
+        <ul className="space-y-3 font-inter">
+          {[
+            { id: 'morning-routine', label: 'Morning Routine' },
+            { id: 'content-creation', label: 'Content Creation' },
+            { id: 'research', label: 'Research' },
+            { id: 'development', label: 'Development' },
+            { id: 'end-of-day', label: 'End of Day' },
+            { id: 'the-stack', label: 'The Full Stack' },
+          ].map(item => (
+            <li key={item.id}>
+              <button
+                onClick={() => scrollToSection(item.id)}
+                className={`text-left transition-all duration-200 flex items-center gap-2 ${activeSection === item.id ? 'text-brand-cyan font-semibold text-[13px]' : 'text-gray-500 text-[12px] hover:text-gray-300'}`}
+              >
+                <span className={`w-1 h-1 rounded-full flex-shrink-0 transition-all ${activeSection === item.id ? 'bg-brand-cyan scale-150' : 'bg-gray-700'}`} />
+                {item.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Back to Top Button */}
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 bg-brand-surface border border-brand-cyan/30 p-3 rounded-full text-brand-cyan hover:bg-brand-cyan hover:text-brand-bg transition-all duration-300 z-50 shadow-lg hover:shadow-brand-cyan/20 hover:scale-110"
+          aria-label="Back to top"
+        >
+          <ChevronUp size={24} />
+        </button>
+      )}
+
       <div className="max-w-[680px] mx-auto px-6 pt-32">
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-6">
@@ -84,7 +166,7 @@ export const BlogPost4 = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <H2 id="the-morning-block">THE MORNING BLOCK — 7:00 AM TO 9:00 AM</H2>
+            <H2 id="morning-routine">THE MORNING BLOCK — 7:00 AM TO 9:00 AM</H2>
             <p className="text-xl text-white mb-6">"Intelligence gathering"</p>
 
             <p>
@@ -163,7 +245,7 @@ export const BlogPost4 = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <H2 id="the-content-block">THE CONTENT BLOCK — 9:00 AM TO 12:00 PM</H2>
+            <H2 id="content-creation">THE CONTENT BLOCK — 9:00 AM TO 12:00 PM</H2>
             <p className="text-xl text-white mb-6">"Creating and publishing"</p>
 
             <p>
@@ -255,7 +337,7 @@ export const BlogPost4 = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <H2 id="the-distribution-block">THE DISTRIBUTION BLOCK — 12:00 PM TO 1:00 PM</H2>
+            <H2 id="research">THE DISTRIBUTION BLOCK — 12:00 PM TO 1:00 PM</H2>
             <p className="text-xl text-white mb-6">"Getting the work seen"</p>
 
             <p>
@@ -326,7 +408,7 @@ export const BlogPost4 = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <H2 id="the-operations-block">THE OPERATIONS BLOCK — 2:00 PM TO 3:00 PM</H2>
+            <H2 id="development">THE OPERATIONS BLOCK — 2:00 PM TO 3:00 PM</H2>
             <p className="text-xl text-white mb-6">"Running the business"</p>
 
             <H3>STEP 8 — TOOL RESEARCH WITH PERPLEXITY + CLAUDE</H3>
@@ -444,7 +526,7 @@ export const BlogPost4 = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <H2 id="the-tools">THE TOOLS IN THIS WORKFLOW</H2>
+            <H2 id="the-stack">THE TOOLS IN THIS WORKFLOW</H2>
 
             <p>
               Every tool mentioned in this workflow has a full review on domskysolutions.com:
@@ -471,7 +553,7 @@ export const BlogPost4 = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <H2 id="the-one-thing">THE ONE THING THAT MAKES IT WORK</H2>
+            <H2 id="end-of-day">THE ONE THING THAT MAKES IT WORK</H2>
 
             <p>
               Every tool in this workflow is only as good as the human judgment applied to its output.

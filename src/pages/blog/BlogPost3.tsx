@@ -40,6 +40,7 @@ export const BlogPost3 = () => {
       setActiveSection(current);
     };
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
