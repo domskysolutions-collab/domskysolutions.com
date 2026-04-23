@@ -642,14 +642,20 @@ export const BlogPost2 = () => {
           >
             <H2 id="how-to-start">HOW TO START</H2>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: Calendar showing a two-week learning plan
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/how-to-start-plan.jpg"
+                alt="2-week AI tools onboarding plan"
+                className="w-full"
+                style={{ 
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px'
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Start with Claude and Perplexity. Add one tool every two weeks based on your biggest bottleneck.
+              </p>
             </div>
 
             <p>
@@ -705,7 +711,7 @@ export const BlogPost2 = () => {
 
           <div className="mt-16 p-6 bg-gray-900 border border-gray-800 text-sm text-gray-400">
             <div className="font-bold font-mono text-white mb-2">ABOUT THIS ARTICLE</div>
-            domskysolutions.com reviews AI tools and SaaS software for founders, solopreneurs and builders. We test every tool we recommend and update our reviews regularly. Some links in this article are affiliate links — we may earn a commission if you sign up through them at no extra cost to you.
+            domskysolutions.com reviews AI tools and SaaS software for founders, solopreneurs and builders. I test every tool I recommend and update our reviews regularly. Some links in this article are affiliate links — I may earn a commission if you sign up through them at no extra cost to you.
           </div>
         </div>
       </div>
