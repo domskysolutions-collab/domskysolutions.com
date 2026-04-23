@@ -230,14 +230,20 @@ export const BlogPost2 = () => {
           >
             <H2 id="midjourney-design">4. MIDJOURNEY — YOUR AI DESIGN STUDIO</H2>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: High-quality Midjourney generated brand asset
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/midjourney-brand-asset.jpg"
+                alt="Midjourney AI generated brand visual"
+                className="w-full"
+                style={{ 
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px'
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Midjourney — professional visuals from a text prompt in minutes
+              </p>
             </div>
 
             <H3>Category: Image Generation & Design</H3>
@@ -271,14 +277,20 @@ export const BlogPost2 = () => {
           >
             <H2 id="notion-ai-chief-of-staff">5. NOTION AI — YOUR AI CHIEF OF STAFF</H2>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: Notion AI summarizing a complex meeting note
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/notion-ai-workspace.jpg"
+                alt="Notion AI summarizing meeting notes"
+                className="w-full"
+                style={{ 
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px'
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Notion AI — turning raw notes into structured knowledge instantly
+              </p>
             </div>
 
             <H3>Category: Productivity & Knowledge Management</H3>
@@ -316,14 +328,20 @@ export const BlogPost2 = () => {
           >
             <H2 id="descript-video">6. DESCRIPT — YOUR AI VIDEO & PODCAST TEAM</H2>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: Descript text-based video editing interface
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/descript-editor.jpg"
+                alt="Descript text-based video editing"
+                className="w-full"
+                style={{ 
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px'
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Descript — editing video by editing text changes everything
+              </p>
             </div>
 
             <H3>Category: Video & Audio Editing</H3>
@@ -357,14 +375,20 @@ export const BlogPost2 = () => {
           >
             <H2 id="elevenlabs-voice">7. ELEVENLABS — YOUR AI VOICE TEAM</H2>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: ElevenLabs voice generation dashboard
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/elevenlabs-dashboard.jpg"
+                alt="ElevenLabs voice generation dashboard"
+                className="w-full"
+                style={{ 
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px'
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                ElevenLabs — professional voice generation indistinguishable from human
+              </p>
             </div>
 
             <H3>Category: Voice Generation & Audio</H3>
@@ -398,14 +422,20 @@ export const BlogPost2 = () => {
           >
             <H2 id="runway-video-production">8. RUNWAY — YOUR AI VIDEO PRODUCTION CREW</H2>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: Runway Gen-3 cinematic video output
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/runway-video.jpg"
+                alt="Runway Gen-3 AI video generation output"
+                className="w-full"
+                style={{ 
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px'
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Runway Gen-3 — cinematic video from a text prompt in minutes
+              </p>
             </div>
 
             <H3>Category: AI Video Generation</H3>
@@ -439,14 +469,20 @@ export const BlogPost2 = () => {
           >
             <H2 id="jasper-marketing">9. JASPER — YOUR AI MARKETING DEPARTMENT</H2>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: Jasper Brand Voice configuration screen
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/jasper-brand-voice.jpg"
+                alt="Jasper Brand Voice configuration"
+                className="w-full"
+                style={{ 
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px'
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Jasper Brand Voice — consistent marketing copy at scale
+              </p>
             </div>
 
             <H3>Category: AI Writing & Marketing</H3>
@@ -484,14 +520,20 @@ export const BlogPost2 = () => {
           >
             <H2 id="framer-web-design">10. FRAMER AI — YOUR AI WEB DESIGN TEAM</H2>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: Framer AI generating a website layout
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/framer-ai-website.jpg"
+                alt="Framer AI generating a website"
+                className="w-full"
+                style={{ 
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px'
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Framer AI — professional websites generated from a description
+              </p>
             </div>
 
             <H3>Category: Website Builder & Design</H3>
