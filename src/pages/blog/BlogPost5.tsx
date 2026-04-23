@@ -14,6 +14,7 @@ export const BlogPost5 = () => {
   const { scrollYProgress } = useScroll();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [sidebarFixed, setSidebarFixed] = useState(true);
 
   useEffect(() => {
     document.title = "Why I Cancelled Adobe and Never Looked Back | Domsky Solutions";
@@ -39,8 +40,19 @@ export const BlogPost5 = () => {
         }
       }
       setActiveSection(current);
+
+      const relatedSection = document.getElementById('related-articles');
+      if (relatedSection) {
+        const relatedTop = relatedSection.getBoundingClientRect().top;
+        if (relatedTop < window.innerHeight) {
+          setSidebarFixed(false);
+        } else {
+          setSidebarFixed(true);
+        }
+      }
     };
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -63,7 +75,7 @@ export const BlogPost5 = () => {
       />
       
       {/* Table of Contents Sidebar (Desktop Only) */}
-      <div className="hidden xl:block fixed left-[max(0px,calc(50%-550px))] top-48 w-64">
+      <div className={`hidden xl:block ${sidebarFixed ? 'fixed left-[max(0px,calc(50%-550px))] top-48' : 'absolute left-[max(0px,calc(50%-550px))]'} w-64`}>
         <div className="text-sm font-bold font-inter text-gray-500 uppercase tracking-wider mb-4">Contents</div>
         <ul className="space-y-3 font-inter text-sm">
           {[
@@ -507,7 +519,7 @@ export const BlogPost5 = () => {
       </div>
 
       {/* Related Articles Section */}
-      <div className="max-w-5xl mx-auto px-6 mt-24 border-t border-gray-800 pt-16">
+      <div id="related-articles" className="max-w-5xl mx-auto px-6 mt-24 border-t border-gray-800 pt-16">
         <h2 className="text-2xl font-bold font-mono text-white mb-8">Related Articles</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {BLOG_POSTS.filter(p => p.slug !== "/blog/cancelled-adobe-never-looked-back").slice(0, 2).map(post => (
