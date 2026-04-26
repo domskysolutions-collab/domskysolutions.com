@@ -377,14 +377,21 @@ export const BlogPost1 = () => {
           >
             <H2 id="the-numbers">THE NUMBERS</H2>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: chart showing subscription costs dropping over time
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/cost-drop-chart.jpg"
+                alt="Monthly subscription costs dropping from $1,053 to $140 after switching to AI tools"
+                className="w-full"
+                style={{ 
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px',
+                  filter: 'brightness(0.95) contrast(0.97)'
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Monthly costs from January to August 2025 — the moment I started switching is impossible to miss
+              </p>
             </div>
           </motion.div>
           
