@@ -434,14 +434,21 @@ export const BlogPost1 = () => {
           >
             <H2 id="what-i-learned">WHAT I LEARNED FROM THREE MONTHS OF SWITCHING</H2>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: person looking thoughtfully at a laptop screen
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/thoughtful-laptop.jpg"
+                alt="Person looking thoughtfully at a laptop screen realising their software costs"
+                className="w-full"
+                style={{ 
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px',
+                  filter: 'brightness(0.95) contrast(0.97)'
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                The moment I added up every subscription — $1,053 per month I had barely noticed accumulating
+              </p>
             </div>
           </motion.div>
 
