@@ -516,14 +516,21 @@ export const BlogPost1 = () => {
               If you want to run this experiment yourself, start with these three steps:
             </p>
             
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: notebook with a checklist or a Kanban board
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/action-checklist.jpg"
+                alt="30 day action plan kanban board for switching from SaaS to AI tools"
+                className="w-full"
+                style={{ 
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px',
+                  filter: 'brightness(0.95) contrast(0.97)'
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Your 30-day switch plan — Week 1 costs nothing. By Week 4 you will never look back.
+              </p>
             </div>
           </motion.div>
 
