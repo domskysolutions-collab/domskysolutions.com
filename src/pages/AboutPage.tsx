@@ -41,21 +41,40 @@ export const AboutPage = () => {
             Hi — I'm Dominik, also known as Domsky. I test AI tools so you do not have to.
           </p>
 
-          <div className="flex items-center gap-6 my-12 p-6 bg-brand-surface border border-gray-800 rounded-xl">
-            <img 
-              src="/images/dominik-photo.jpg"
-              alt="Dominik — founder"
-              style={{ width: '80px', 
-                       height: '80px', 
-                       borderRadius: '50%',
-                       objectFit: 'cover',
-                       border: '2px solid #00F5D4'
-              }}
-            />
+          <div className="flex items-center gap-6 my-12 p-6 bg-brand-surface border border-gray-800 rounded-xl hover:border-brand-cyan transition-all duration-300">
+            <div className="relative flex-shrink-0">
+              <img
+                src="/images/dominik-photo.jpg"
+                alt="Dominik — founder of domskysolutions.com"
+                style={{
+                  width: '90px',
+                  height: '90px',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  objectPosition: 'center top',
+                  border: '2px solid #00F5D4',
+                  display: 'block'
+                }}
+              />
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '2px',
+                  right: '2px',
+                  width: '14px',
+                  height: '14px',
+                  borderRadius: '50%',
+                  background: '#4ADE80',
+                  border: '2px solid #0D0F12'
+                }}
+              />
+            </div>
             <div>
-              <div className="text-white font-bold text-lg">Dominik — "Domsky"</div>
-              <div className="text-gray-400 text-sm">Graphic & Web Designer</div>
-              <div className="text-gray-500 text-xs mt-1">25-year tech veteran · PC enthusiast · AI tools tester</div>
+              <div className="text-white font-bold text-lg font-inter">Dominik</div>
+              <div className="text-brand-cyan text-sm font-mono mt-0.5">Graphic & Web Designer</div>
+              <div className="text-gray-500 text-xs mt-1.5 font-inter">
+                25-year tech veteran · PC enthusiast · AI tools tester
+              </div>
             </div>
           </div>
         </motion.div>
