@@ -56,6 +56,26 @@ export const Footer = () => {
           </div>
         </div>
         
+        <div className="flex items-center justify-center gap-4 mb-8">
+          <a 
+            href="https://x.com/domskysolutions"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-brand-cyan transition-colors duration-200"
+            aria-label="Follow on X"
+          >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="20" 
+              height="20" 
+              viewBox="0 0 24 24" 
+              fill="currentColor"
+            >
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.213 5.567L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
+            </svg>
+          </a>
+        </div>
+
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-xs font-mono">
             © 2026 domskysolutions.com — All rights reserved

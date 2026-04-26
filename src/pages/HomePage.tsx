@@ -479,6 +479,17 @@ export const HomePage = () => {
           >
             <p className="text-sm text-gray-400 font-mono">25+ years building on PCs. Graphic designer. I only keep what works.</p>
             <p className="text-xs text-gray-500 font-mono mt-2">Most AI tools are a waste of time. I test them so you don't have to.</p>
+            <a
+              href="https://x.com/domskysolutions"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-gray-500 text-sm hover:text-brand-cyan transition-colors duration-200 font-mono"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.213 5.567L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
+              </svg>
+              Follow @domskysolutions on X
+            </a>
           </motion.div>
         </div>
         
