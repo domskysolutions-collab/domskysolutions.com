@@ -181,14 +181,21 @@ export const BlogPost1 = () => {
               Here is a direct comparison of what I was paying for versus what I use now.
             </p>
 
-            <div className="w-full rounded-xl overflow-hidden my-8 border border-brand-surface bg-gray-900 flex items-center justify-center" style={{height: '320px'}}>
-              <div className="text-center text-gray-600">
-                <div className="text-5xl mb-4">🖼</div>
-                <p className="font-mono text-sm">[ INSERT IMAGE HERE ]</p>
-                <p className="font-mono text-xs mt-2 text-gray-700">
-                  Recommended: side-by-side comparison chart of old vs new software logos
-                </p>
-              </div>
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/old-vs-new-stack.jpg"
+                alt="Old SaaS stack vs new AI stack cost comparison"
+                className="w-full"
+                style={{ 
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px',
+                  filter: 'brightness(0.95) contrast(0.97)'
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                The complete before and after — $1,053/month down to $140/month. Same output. One seventh the cost.
+              </p>
             </div>
 
             <H3>WRITING & CONTENT</H3>
