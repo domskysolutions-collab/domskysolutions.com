@@ -639,10 +639,22 @@ export const BlogPost6 = () => {
           >
             <H2 id="your-next-step">YOUR NEXT STEP (KEEP IT SIMPLE)</H2>
 
-            <ScreenshotPlaceholder
-              filename="ai-next-steps.jpg"
-              description='Recommended visual: a simple 3-step graphic labelled "Step 1, Step 2, Step 3".'
-            />
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/ai-next-steps.jpg"
+                alt="Three simple steps to get started with AI tools today"
+                className="w-full"
+                style={{
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px',
+                  filter: 'brightness(0.95) contrast(0.97)',
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                Three steps. That is the entire learning curve. Start today.
+              </p>
+            </div>
 
             <p>I want to give you one specific thing to do after reading this.</p>
             <p>Not ten things. Not a list of tools to sign up for. Not a complicated system to implement.</p>
