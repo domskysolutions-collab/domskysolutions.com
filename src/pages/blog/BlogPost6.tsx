@@ -546,11 +546,6 @@ export const BlogPost6 = () => {
                 </div>
               ))}
             </div>
-
-            <ScreenshotPlaceholder
-              filename="claude-real-example.jpg"
-              description="Recommended visual: a Claude conversation showing one of these practical examples in action."
-            />
           </motion.div>
 
           <SectionDivider />
