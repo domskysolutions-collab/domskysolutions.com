@@ -23,6 +23,7 @@ import { BlogPost2 } from './pages/blog/BlogPost2';
 import { BlogPost3 } from './pages/blog/BlogPost3';
 import { BlogPost4 } from './pages/blog/BlogPost4';
 import { BlogPost5 } from './pages/blog/BlogPost5';
+import { BlogPost6 } from './pages/blog/BlogPost6';
 
 export default function App() {
   return (
@@ -48,6 +49,7 @@ export default function App() {
         <Route path="/blog/claude-vs-chatgpt-vs-gemini-2026" element={<BlogPost3 />} />
         <Route path="/blog/ai-daily-workflow-solo-business" element={<BlogPost4 />} />
         <Route path="/blog/cancelled-adobe-never-looked-back" element={<BlogPost5 />} />
+        <Route path="/blog/you-dont-need-to-be-technical-to-use-ai" element={<BlogPost6 />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/disclaimer" element={<DisclaimerPage />} />
         <Route path="*" element={<NotFoundPage />} />

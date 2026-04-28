@@ -1,6 +1,16 @@
 
 export const BLOG_POSTS = [
   {
+    title: "You Don't Need to Be Technical to Use AI — Start Here",
+    slug: "/blog/you-dont-need-to-be-technical-to-use-ai",
+    excerpt: "Everyone is talking about AI tools but nobody is explaining them for people who are not developers. This is that article. No jargon. No assumptions. Just what you actually need to know to start.",
+    category: "AI News",
+    date: "April 2026",
+    readTime: "10 minutes",
+    image: "/images/ai-non-technical-start-here.jpg",
+    author: "Dominik"
+  },
+  {
     title: "Why I Cancelled Adobe and Never Looked Back",
     slug: "/blog/cancelled-adobe-never-looked-back",
     excerpt: "After 12 years as a graphic designer I finally did it. Here's exactly what replaced it and what I'd never give up.",
