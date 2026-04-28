@@ -5,21 +5,24 @@ export const toolReviews = {
     category: 'AI Assistant / Writing',
     rating: 4.9,
     externalLink: 'https://claude.ai',
-    tagline: 'The AI that actually understands nuance',
+    tagline: 'The most capable AI assistant available — and the one I use every single day.',
     heroDesc: [
       "Claude is Anthropic's flagship AI assistant, and in a crowded market full of chatbots, it manages to stand out for one simple reason — it feels genuinely intelligent. Built from the ground up with safety and helpfulness in mind, Claude excels at the kinds of tasks that make other AI tools stumble: long-form writing, complex reasoning, nuanced conversation, and coding.",
+      "As of April 2026, the headline model is <strong>Claude Opus 4.7</strong> — Anthropic’s most capable generally available model, with major upgrades in coding, vision, and complex reasoning while keeping the same Pro pricing as its predecessor.",
       "Whether you're a founder drafting investor updates, a marketer writing campaign copy, or a developer debugging a tricky piece of code, Claude adapts to your style and delivers results that actually sound like a human wrote them — not a robot trying to sound like one.",
       "What separates Claude from the pack is its massive context window — it can read and reason over enormous amounts of text in a single conversation. Hand it a 50-page business report and ask it to summarize the three biggest risks. It handles it effortlessly. That alone makes it indispensable for knowledge workers drowning in information."
     ],
     features: [
-      "200,000 token context window (one of the largest available)",
-      "Exceptional long-form writing and editing",
-      "Advanced coding assistance across all major languages",
-      "Deep document analysis — PDFs, reports, research papers",
-      "Nuanced reasoning on complex topics",
-      "Artifacts feature — generates live previews of code and documents",
-      "Available via web, mobile app, and API",
-      "Memory across conversations (Pro plan)"
+      "Claude Opus 4.7 — most capable generally available model",
+      "1 million token context window",
+      "128K max output tokens",
+      "High resolution vision — 3.75MP (3.3x better than previous)",
+      "Adaptive thinking and reasoning",
+      "Exceptional coding — 87.6% SWE-bench Verified",
+      "Long-horizon agentic work",
+      "Multi-session memory",
+      "Available on Claude.ai, API, Amazon Bedrock, Google Vertex AI, Microsoft Foundry",
+      "Task budgets for agentic workflows"
     ],
     pros: [
       "Best-in-class writing quality — responses feel natural and human",
@@ -28,39 +31,54 @@ export const toolReviews = {
       "Excellent at following complex, multi-step instructions",
       "Clean, distraction-free interface",
       "Strong coding capabilities — great for non-developers too",
-      "Free tier is genuinely useful, not crippled"
+      "Free tier is genuinely useful, not crippled",
+      "Opus 4.7 verifies its own outputs",
+      "3.3x better vision capabilities",
+      "1 million token context window",
+      "Same price as previous version",
+      "Available across all major platforms"
     ],
     cons: [
       "No image generation (unlike ChatGPT with DALL-E)",
       "Can be overly cautious on some sensitive topics",
       "No internet browsing on the free plan",
       "API costs can add up at scale",
-      "No voice mode yet"
+      "No voice mode yet",
+      "New tokenizer may increase token usage by up to 35% for API users",
+      "Opus 4.7 requires Pro plan minimum ($20/month) — free tier uses Sonnet 4.6",
+      "More literal instruction following may require prompt updates for existing workflows",
+      "Claude Mythos Preview is more powerful but not publicly available"
     ],
     pricingCards: [
       {
-        name: "Free Plan",
+        name: "Free plan",
         price: "Free",
-        features: ["Access to Claude Sonnet", "Limited daily messages", "Basic features"],
-        perfectFor: "casual users and trying it out"
+        features: ["Claude.ai free tier", "Access to Sonnet 4.6", "Daily usage limits"],
+        perfectFor: "trying Claude for the first time"
       },
       {
-        name: "Pro Plan",
+        name: "Pro — $20/month",
         price: "$20/month",
-        features: ["Access to all Claude models including Opus", "5x more usage than free", "Priority access during peak times", "Memory and Projects features"],
-        perfectFor: "professionals and power users"
+        features: ["Access to Claude Opus 4.7", "Higher usage limits", "Priority access during high demand"],
+        perfectFor: "daily professional use"
       },
       {
-        name: "Team Plan",
-        price: "$25/user/month",
-        features: ["Everything in Pro", "Shared Projects for collaboration", "Admin controls"],
-        perfectFor: "small teams and agencies"
+        name: "Max — $100–200/month",
+        price: "$100–200/month",
+        features: ["Higher usage limits", "Best for long sessions and heavy workloads"],
+        perfectFor: "power users and teams"
       },
       {
-        name: "API Access",
-        price: "Pay per token",
-        features: ["Full model access"],
-        perfectFor: "developers building AI-powered products"
+        name: "Team — $25/seat/month",
+        price: "$25/seat/month",
+        features: ["Everything in Pro", "Team collaboration features", "Admin controls"],
+        perfectFor: "small teams"
+      },
+      {
+        name: "Enterprise",
+        price: "Custom pricing",
+        features: ["SSO and security features", "Custom usage limits", "Priority support"],
+        perfectFor: "large organisations"
       }
     ],
     bestFor: [
@@ -69,7 +87,7 @@ export const toolReviews = {
     ],
     verdict: "Claude by Anthropic is the AI assistant we recommend to almost everyone starting out with AI tools. The free plan is good enough to get real work done, the Pro plan at $20/month is one of the best value subscriptions in the AI space, and the quality of output consistently beats the competition on writing and reasoning tasks.\n\nIf you only try one AI tool this year, make it Claude.",
     bestForTags: "Writing, Research, Coding, Document Analysis",
-    pricingSummary: "Free — $25/user/month",
+    pricingSummary: "Free — Custom pricing",
     ctaPrimary: "Try Claude Free →"
   },
   'perplexity': {

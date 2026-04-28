@@ -37,12 +37,25 @@ export const ToolPage = () => {
               <span className="px-3 py-1 bg-gray-800 text-gray-300 text-xs font-mono uppercase tracking-wider">
                 {tool.category}
               </span>
+              {id === 'claude' && (
+                <span className="px-3 py-1 bg-brand-cyan/10 text-brand-cyan text-xs font-mono uppercase tracking-wider border border-brand-cyan/30">
+                  UPDATED APRIL 2026
+                </span>
+              )}
               <div className="flex items-center gap-1 text-brand-amber text-sm font-mono">
                 <Star size={16} fill="currentColor" /> {tool.rating}
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold font-mono mb-2">{tool.name}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold font-mono mb-2">
+              {id === 'claude' ? 'Claude by Anthropic Review 2026' : tool.name}
+            </h1>
+            {id === 'claude' ? (
+              <p className="text-xl text-brand-cyan font-mono mb-2">Claude Opus 4.7 — The Most Capable AI Assistant Available</p>
+            ) : null}
             {tool.tagline && <p className="text-xl text-brand-cyan font-mono mb-4">"{tool.tagline}"</p>}
+            {id === 'claude' && (
+              <div className="text-sm text-gray-500 font-mono">Last updated: April 2026</div>
+            )}
           </div>
           <a href={tool.externalLink} target="_blank" rel="noopener noreferrer" className="bg-brand-cyan text-brand-bg px-6 py-3 font-bold hover:bg-teal-400 transition-all glow-cyan flex items-center justify-center gap-2 whitespace-nowrap">
             {tool.ctaPrimary || "Visit Website"} <ExternalLink size={18} />
@@ -66,6 +79,82 @@ export const ToolPage = () => {
         <div className="prose prose-invert max-w-none mb-12">
           {tool.heroDesc.map((p: string, i: number) => <p key={i} className="text-gray-300 text-lg leading-relaxed mb-4">{p}</p>)}
         </div>
+
+        {id === 'claude' && (
+          <>
+            <div className="mb-12">
+              <h3 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Model overview</h3>
+              <div className="bg-brand-bg border border-gray-800 p-6">
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  Claude Opus 4.7 launched April 16 2026 as Anthropic&apos;s most capable generally available model. It represents a
+                  meaningful upgrade across coding, vision, and complex reasoning — while keeping the same pricing as its
+                  predecessor.
+                </p>
+              </div>
+            </div>
+
+            <div className="mb-12">
+              <h3 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Key improvements over the previous version</h3>
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  {
+                    title: 'Coding performance',
+                    text:
+                      '87.6% on SWE-bench Verified — up from 80.8% on Opus 4.6. 13% improvement on a 93-task coding benchmark.',
+                  },
+                  {
+                    title: 'Vision upgrade',
+                    text:
+                      '98.5% visual accuracy — up from 54.5% on Opus 4.6. Supports images up to 3.75 megapixels — more than 3x the previous resolution limit.',
+                  },
+                  {
+                    title: 'Self-verification',
+                    text:
+                      'Opus 4.7 verifies its own outputs before reporting back — writing tests and sanity checks automatically rather than declaring tasks complete without checking.',
+                  },
+                  {
+                    title: 'Multi-session memory',
+                    text:
+                      'Better at reading, writing and reusing notes across sessions. For long-running tasks this removes the need to re-establish context at the start of every run.',
+                  },
+                  {
+                    title: 'Task budgets',
+                    text:
+                      'New task budget feature lets you set token targets for agentic loops — the model sees a countdown and prioritises work accordingly.',
+                  },
+                  {
+                    title: 'xhigh effort level',
+                    text:
+                      'New xhigh effort level between high and max — finer control over the quality-speed-cost tradeoff.',
+                  },
+                ].map((card) => (
+                  <div key={card.title} className="bg-brand-bg border border-gray-800 p-6 hover:border-brand-cyan transition-colors">
+                    <div className="text-sm font-mono uppercase tracking-wider text-brand-cyan mb-3">{card.title}</div>
+                    <p className="text-gray-300 leading-relaxed">{card.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mb-12">
+              <h3 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Benchmarks</h3>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[
+                  { label: 'SWE-bench Verified', value: '87.6%' },
+                  { label: 'GPQA Diamond', value: '94.2%' },
+                  { label: 'Terminal-Bench 2.0', value: '69.4%' },
+                  { label: 'Finance Agent', value: '64.4%' },
+                  { label: 'Visual Acuity', value: '98.5%' },
+                ].map((b) => (
+                  <div key={b.label} className="bg-brand-bg border border-gray-800 p-6">
+                    <div className="text-3xl font-bold font-mono text-brand-cyan mb-2">{b.value}</div>
+                    <div className="text-sm font-mono text-gray-400 uppercase tracking-wider">{b.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
 
         <div className="mb-12">
           <h3 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Key Features</h3>
