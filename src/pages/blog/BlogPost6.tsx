@@ -366,10 +366,22 @@ export const BlogPost6 = () => {
           >
             <H2 id="where-to-start">WHERE TO START (THE ONLY RECOMMENDATION YOU NEED)</H2>
 
-            <ScreenshotPlaceholder
-              filename="claude-beginner-start.jpg"
-              description="Recommended visual: the Claude.ai interface showing a simple beginner conversation in progress."
-            />
+            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/claude-beginner-start.jpg"
+                alt="Claude AI interface showing a beginner conversation in progress"
+                className="w-full"
+                style={{
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px',
+                  filter: 'brightness(0.95) contrast(0.97)',
+                }}
+              />
+              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                A real Claude conversation — no technical knowledge required. Just describe what you need.
+              </p>
+            </div>
 
             <p>
               If you are reading this and you have never seriously used an AI tool before — start with Claude.
