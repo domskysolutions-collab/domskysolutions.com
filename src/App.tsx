@@ -15,6 +15,7 @@ import { SaasCalculatorPage } from './pages/tools/SaasCalculatorPage';
 import { PromptBuilderPage } from './pages/tools/PromptBuilderPage';
 import { StackRecommenderPage } from './pages/tools/StackRecommenderPage';
 import { ContentCalendarPage } from './pages/tools/ContentCalendarPage';
+import { AiReadinessQuiz } from './pages/tools/AiReadinessQuiz';
 import { UsesPage } from './pages/UsesPage';
 import { ConvertKitReviewPage } from './pages/uses/ConvertKitReviewPage';
 import { NamecheapReviewPage } from './pages/uses/NamecheapReviewPage';
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/uses" element={<UsesPage />} />
         <Route path="/uses/convertkit" element={<ConvertKitReviewPage />} />
         <Route path="/uses/namecheap" element={<NamecheapReviewPage />} />
+        <Route path="/tools/ai-readiness-quiz" element={<AiReadinessQuiz />} />
         <Route path="/tools/:id" element={<ToolPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/reviews/:id" element={<ToolPage />} />

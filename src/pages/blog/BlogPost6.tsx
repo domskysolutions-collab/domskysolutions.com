@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useScroll } from 'motion/react';
 import { ChevronUp, Coffee } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { BLOG_POSTS } from '../../data/blogPosts';
 import { BlogCard } from '../../components/BlogCard';
 import { ConvertKitForm } from '../../components/ConvertKitForm';
@@ -703,6 +704,24 @@ export const BlogPost6 = () => {
               No jargon. No technical assumptions. Just what actually matters for people who have real work to do.
             </p>
             <p>It is called The Weekly Edge and it is free.</p>
+
+            <div className="my-10 p-6 bg-brand-surface border border-brand-cyan/30 rounded-xl">
+              <div className="text-brand-cyan font-mono text-xs uppercase tracking-wider mb-2">
+                Not sure where to start?
+              </div>
+              <h3 className="text-white font-bold text-xl mb-2">
+                Take Our Free AI Readiness Quiz
+              </h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Answer 5 quick questions and get a personalised recommendation for your perfect first AI tool. Takes 60 seconds.
+              </p>
+              <Link
+                to="/tools/ai-readiness-quiz"
+                className="inline-flex items-center gap-2 bg-brand-amber text-brand-bg font-bold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
+              >
+                Take the Quiz — Free →
+              </Link>
+            </div>
 
             <div className="not-prose my-10 rounded-2xl border border-brand-cyan/20 bg-brand-surface p-8 shadow-2xl">
               <div className="text-xs font-mono uppercase tracking-[0.3em] text-brand-cyan mb-4">Newsletter Signup</div>

@@ -10,6 +10,14 @@ export const toolsDropdown = [
   },
   {
     section: "FREE TOOLS",
+    icon: "🎯",
+    title: "AI Readiness Quiz",
+    description: "Find your perfect first AI tool",
+    link: "/tools/ai-readiness-quiz",
+    badge: "NEW"
+  },
+  {
+    section: "FREE TOOLS",
     icon: "✍️",
     title: "Prompt Builder",
     description: "Build perfect Claude prompts",
