@@ -7,7 +7,7 @@ export const BLOG_POSTS = [
     category: "AI News",
     date: "April 2026",
     readTime: "10 minutes",
-    image: "/images/ai-non-technical-start-here.jpg",
+    image: "/images/beginners-guide-article.jpg",
     author: "Dominik"
   },
   {

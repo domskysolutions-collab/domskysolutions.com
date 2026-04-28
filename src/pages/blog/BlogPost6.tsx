@@ -181,17 +181,17 @@ export const BlogPost6 = () => {
         </div>
 
         <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
-          <div className="flex h-[400px] items-center justify-center bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.18),_transparent_45%),linear-gradient(180deg,_rgba(15,23,42,0.9),_rgba(2,6,23,1))] px-10 text-center">
-            <div>
-              <div className="text-xs font-mono uppercase tracking-[0.3em] text-brand-cyan mb-4">April 2026</div>
-              <h2 className="text-3xl md:text-4xl font-bold font-inter text-white leading-tight">
-                AI tools are not for developers only.
-              </h2>
-              <p className="mt-6 text-lg font-serif text-gray-300 leading-8 max-w-2xl">
-                No jargon. No assumptions. Just what a non-technical person actually needs to know to start.
-              </p>
-            </div>
-          </div>
+          <img
+            src="/images/beginners-guide-article.jpg"
+            alt="You don't need to be technical to use AI — beginner guide cover"
+            style={{
+              width: '100%',
+              height: '400px',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              borderRadius: '12px',
+            }}
+          />
         </div>
 
         <div className="prose prose-invert max-w-none text-[18px] leading-[1.9] font-serif space-y-8">
@@ -241,10 +241,21 @@ export const BlogPost6 = () => {
           >
             <H2 id="the-misconception">THE BIGGEST MISCONCEPTION ABOUT AI TOOLS</H2>
 
-            <ScreenshotPlaceholder
-              filename="ai-misconception.jpg"
-              description='Recommended visual: a simple side-by-side diagram showing "What people think AI requires" versus "What AI actually requires".'
-            />
+            <figure className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+              <img
+                src="/images/screenshots/ai-misconception.jpg"
+                alt='Simple diagram: "What people think AI requires" vs "What AI actually requires"'
+                className="w-full"
+                style={{
+                  display: 'block',
+                  height: 'auto',
+                  borderRadius: '12px',
+                }}
+              />
+              <figcaption className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+                What people think AI requires vs what AI actually requires
+              </figcaption>
+            </figure>
 
             <p>Here is what most people believe about AI tools:</p>
             <ul className="list-disc pl-6 space-y-2 text-gray-300 my-4">
