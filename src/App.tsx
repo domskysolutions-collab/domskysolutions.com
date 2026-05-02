@@ -26,6 +26,7 @@ import { BlogPost3 } from './pages/blog/BlogPost3';
 import { BlogPost4 } from './pages/blog/BlogPost4';
 import { BlogPost5 } from './pages/blog/BlogPost5';
 import { BlogPost6 } from './pages/blog/BlogPost6';
+import { ToolsSlugPage } from './pages/ToolsSlugPage';
 
 export default function App() {
   return (
@@ -42,7 +43,7 @@ export default function App() {
         <Route path="/uses/convertkit" element={<ConvertKitReviewPage />} />
         <Route path="/uses/namecheap" element={<NamecheapReviewPage />} />
         <Route path="/tools/ai-readiness-quiz" element={<AiReadinessQuiz />} />
-        <Route path="/tools/:id" element={<ToolPage />} />
+        <Route path="/tools/:slug" element={<ToolsSlugPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/reviews/:id" element={<ToolPage />} />
         <Route path="/about" element={<AboutPage />} />

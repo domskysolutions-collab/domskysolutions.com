@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Check, Plus, Trash2, DollarSign, TrendingDown, Zap, Sparkles, CheckCircle2, Copy } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { AI_ALTERNATIVES, RECOMMENDED_TOOLS } from '../HomePage';
+import { AI_ALTERNATIVES, RECOMMENDED_TOOLS } from '../../data/saasCalculatorShared';
 import { ConvertKitForm } from '../../components/ConvertKitForm';
 
 export const CATEGORIES = [

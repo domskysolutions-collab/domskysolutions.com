@@ -9,14 +9,15 @@ import { saasReviews } from '../../data/saasReviews';
 import { ConvertKitForm } from '../../components/ConvertKitForm';
 
 export const ToolPage = () => {
-  const { id } = useParams();
+  const { slug, id } = useParams<{ slug?: string; id?: string }>();
+  const toolKey = slug ?? id ?? '';
   const location = useLocation();
   const isReview = location.pathname.startsWith('/reviews');
-  const tool = toolReviews[id as keyof typeof toolReviews] as any;
+  const tool = toolReviews[toolKey as keyof typeof toolReviews] as any;
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+  }, [toolKey]);
 
   if (!tool) {
     return <div className="min-h-screen flex items-center justify-center pt-20"><h1 className="text-2xl font-mono">Tool not found</h1></div>;
@@ -37,7 +38,7 @@ export const ToolPage = () => {
               <span className="px-3 py-1 bg-gray-800 text-gray-300 text-xs font-mono uppercase tracking-wider">
                 {tool.category}
               </span>
-              {id === 'claude' && (
+              {toolKey === 'claude' && (
                 <span className="px-3 py-1 bg-brand-cyan/10 text-brand-cyan text-xs font-mono uppercase tracking-wider border border-brand-cyan/30">
                   UPDATED APRIL 2026
                 </span>
@@ -47,13 +48,13 @@ export const ToolPage = () => {
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold font-mono mb-2">
-              {id === 'claude' ? 'Claude by Anthropic Review 2026' : tool.name}
+              {toolKey === 'claude' ? 'Claude by Anthropic Review 2026' : tool.name}
             </h1>
-            {id === 'claude' ? (
+            {toolKey === 'claude' ? (
               <p className="text-xl text-brand-cyan font-mono mb-2">Claude Opus 4.7 — The Most Capable AI Assistant Available</p>
             ) : null}
             {tool.tagline && <p className="text-xl text-brand-cyan font-mono mb-4">"{tool.tagline}"</p>}
-            {id === 'claude' && (
+            {toolKey === 'claude' && (
               <div className="text-sm text-gray-500 font-mono">Last updated: April 2026</div>
             )}
           </div>
@@ -62,7 +63,7 @@ export const ToolPage = () => {
           </a>
         </div>
 
-        {id === 'claude' && (
+        {toolKey === 'claude' && (
           <div className="bg-[#1a1a2e] border-l-4 border-brand-cyan p-6 mb-12">
             <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
               <span>🛠️</span> Try our free Claude Prompt Builder
@@ -80,7 +81,7 @@ export const ToolPage = () => {
           {tool.heroDesc.map((p: string, i: number) => <p key={i} className="text-gray-300 text-lg leading-relaxed mb-4">{p}</p>)}
         </div>
 
-        {id === 'claude' && (
+        {toolKey === 'claude' && (
           <>
             <div className="mb-12">
               <h3 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Model overview</h3>
