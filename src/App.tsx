@@ -16,6 +16,9 @@ import { PromptBuilderPage } from './pages/tools/PromptBuilderPage';
 import { StackRecommenderPage } from './pages/tools/StackRecommenderPage';
 import { ContentCalendarPage } from './pages/tools/ContentCalendarPage';
 import { AiReadinessQuiz } from './pages/tools/AiReadinessQuiz';
+import { EmailWriterPage } from './pages/tools/EmailWriterPage';
+import { ToolDescriptionPage } from './pages/tools/ToolDescriptionPage';
+import { CostAuditPage } from './pages/tools/CostAuditPage';
 import { UsesPage } from './pages/UsesPage';
 import { ConvertKitReviewPage } from './pages/uses/ConvertKitReviewPage';
 import { NamecheapReviewPage } from './pages/uses/NamecheapReviewPage';
@@ -42,6 +45,9 @@ export default function App() {
         <Route path="/uses/convertkit" element={<ConvertKitReviewPage />} />
         <Route path="/uses/namecheap" element={<NamecheapReviewPage />} />
         <Route path="/tools/ai-readiness-quiz" element={<AiReadinessQuiz />} />
+        <Route path="/tools/email-writer" element={<EmailWriterPage />} />
+        <Route path="/tools/tool-description" element={<ToolDescriptionPage />} />
+        <Route path="/tools/cost-audit" element={<CostAuditPage />} />
         <Route path="/tools/:slug" element={<ToolsSlugPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/reviews/:id" element={<ToolPage />} />

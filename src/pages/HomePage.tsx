@@ -3,26 +3,11 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Layers, Sparkles, Zap } from 'lucide-react';
 import { ConvertKitForm } from '../components/ConvertKitForm';
-import { AI_TOOLS } from '../data/tools';
-import { ToolCard } from '../components/tools/ToolCard';
-
-const POPULAR_SLUGS = [
-  'tiktok-hook-generator',
-  'cold-email-generator',
-  'blog-outline-generator',
-  'linkedin-post-generator',
-  'startup-idea-generator',
-  'meeting-notes-summarizer',
-] as const;
 
 export const HomePage = () => {
   useEffect(() => {
     document.title = 'Domsky Solutions — AI workspace for creators & founders';
   }, []);
-
-  const popularTools = AI_TOOLS.filter((t) =>
-    (POPULAR_SLUGS as readonly string[]).includes(t.slug)
-  );
 
   return (
     <main className="bg-brand-bg min-h-screen">
@@ -64,13 +49,13 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* Popular tools */}
+      {/* Featured tools */}
       <section id="tools" className="py-16 md:py-24 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold font-mono text-white mb-2">Popular tools</h2>
-              <p className="text-gray-400">Pick a workflow — open the full library anytime.</p>
+              <h2 className="text-3xl md:text-4xl font-bold font-mono text-white mb-2">Featured tools</h2>
+              <p className="text-gray-400">Built for solopreneurs — free to try, no account needed.</p>
             </div>
             <Link
               to="/tools"
@@ -79,10 +64,183 @@ export const HomePage = () => {
               View all tools <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {popularTools.map((tool) => (
-              <ToolCard key={tool.slug} tool={tool} />
-            ))}
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link
+              to="/tools/email-writer"
+              className="group flex flex-col rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1"
+              style={{
+                background: '#1a1a2e',
+                borderColor: 'rgba(0,245,212,0.2)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = '#00F5D4';
+                e.currentTarget.style.boxShadow = '0 0 30px rgba(0,245,212,0.12)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(0,245,212,0.2)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
+                  style={{
+                    background: 'rgba(0,245,212,0.1)',
+                    border: '1px solid rgba(0,245,212,0.2)',
+                  }}
+                >
+                  ✍️
+                </div>
+                <span
+                  className="text-xs font-mono px-2 py-1 rounded-full"
+                  style={{
+                    background: 'rgba(0,245,212,0.1)',
+                    color: '#00F5D4',
+                    border: '1px solid rgba(0,245,212,0.2)',
+                  }}
+                >
+                  FREE
+                </span>
+              </div>
+              <h3 className="font-bold font-mono text-lg text-white mb-2 group-hover:text-brand-cyan transition-colors">
+                AI Email Writer
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-5 flex-1">
+                Write professional client emails, follow-ups, invoice reminders and proposals in 30 seconds. No more
+                staring at a blank screen.
+              </p>
+              <ul className="space-y-1.5 mb-6">
+                {['Client follow-ups', 'Invoice reminders', 'Cold outreach', 'Project proposals'].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-xs text-gray-500">
+                    <span style={{ color: '#00F5D4' }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex items-center gap-2 text-brand-cyan text-sm font-bold font-mono mt-auto group-hover:gap-3 transition-all">
+                Try free
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+
+            <Link
+              to="/tools/tool-description"
+              className="group flex flex-col rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1"
+              style={{
+                background: '#1a1a2e',
+                borderColor: 'rgba(245,166,35,0.2)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = '#F5A623';
+                e.currentTarget.style.boxShadow = '0 0 30px rgba(245,166,35,0.12)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(245,166,35,0.2)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
+                  style={{
+                    background: 'rgba(245,166,35,0.1)',
+                    border: '1px solid rgba(245,166,35,0.2)',
+                  }}
+                >
+                  🛠️
+                </div>
+                <span
+                  className="text-xs font-mono px-2 py-1 rounded-full"
+                  style={{
+                    background: 'rgba(245,166,35,0.1)',
+                    color: '#F5A623',
+                    border: '1px solid rgba(245,166,35,0.2)',
+                  }}
+                >
+                  FREE
+                </span>
+              </div>
+              <h3 className="font-bold font-mono text-lg text-white mb-2 group-hover:text-brand-amber transition-colors">
+                Tool Description Generator
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-5 flex-1">
+                Generate compelling descriptions for any AI tool or SaaS product. One-liners, landing page copy, social
+                bios — all in seconds.
+              </p>
+              <ul className="space-y-1.5 mb-6">
+                {['Product one-liners', 'Landing page copy', 'Social media bios', 'App store descriptions'].map((item) => (
+                  <li key={item} className="flex items-center gap-2 text-xs text-gray-500">
+                    <span style={{ color: '#F5A623' }}>✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex items-center gap-2 text-brand-amber text-sm font-bold font-mono mt-auto group-hover:gap-3 transition-all">
+                Try free
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+
+            <Link
+              to="/tools/cost-audit"
+              className="group flex flex-col rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1"
+              style={{
+                background: '#1a1a2e',
+                borderColor: 'rgba(74,222,128,0.2)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = '#4ADE80';
+                e.currentTarget.style.boxShadow = '0 0 30px rgba(74,222,128,0.12)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(74,222,128,0.2)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              <div className="flex items-start justify-between mb-4">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
+                  style={{
+                    background: 'rgba(74,222,128,0.1)',
+                    border: '1px solid rgba(74,222,128,0.2)',
+                  }}
+                >
+                  💰
+                </div>
+                <span
+                  className="text-xs font-mono px-2 py-1 rounded-full"
+                  style={{
+                    background: 'rgba(74,222,128,0.1)',
+                    color: '#4ADE80',
+                    border: '1px solid rgba(74,222,128,0.2)',
+                  }}
+                >
+                  FREE
+                </span>
+              </div>
+              <h3 className="font-bold font-mono text-lg text-white mb-2 group-hover:text-green-400 transition-colors">
+                SaaS Cost Audit
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-5 flex-1">
+                Enter your current software stack. Get an AI-powered audit with exact alternatives and how much you could
+                save every single month.
+              </p>
+              <ul className="space-y-1.5 mb-6">
+                {['Full stack analysis', 'AI alternatives matched', 'Monthly savings calculated', 'Switch plan generated'].map(
+                  (item) => (
+                    <li key={item} className="flex items-center gap-2 text-xs text-gray-500">
+                      <span style={{ color: '#4ADE80' }}>✓</span>
+                      {item}
+                    </li>
+                  )
+                )}
+              </ul>
+              <div className="flex items-center gap-2 text-green-400 text-sm font-bold font-mono mt-auto group-hover:gap-3 transition-all">
+                Try free
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
           </div>
         </div>
       </section>
