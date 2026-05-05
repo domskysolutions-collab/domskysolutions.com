@@ -13,7 +13,10 @@ export const HomePage = () => {
   return (
     <main className="bg-brand-bg min-h-screen">
       {/* Hero */}
-      <section className="relative pt-28 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section
+        className="relative px-4 sm:px-6 lg:px-8 overflow-hidden"
+        style={{ paddingTop: 100, paddingBottom: 100 }}
+      >
         <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" aria-hidden />
         <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[min(90vw,720px)] h-48 bg-brand-cyan/10 blur-[80px] rounded-full pointer-events-none" aria-hidden />
 
@@ -24,7 +27,7 @@ export const HomePage = () => {
               to { width: 100%; }
             }
           `}</style>
-          <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-cyan/25 bg-brand-cyan/5 text-brand-cyan text-xs font-mono mb-6">
+          <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-cyan/25 bg-brand-cyan/5 text-brand-cyan text-xs font-mono mb-8">
             <Sparkles className="w-3.5 h-3.5" aria-hidden />
             <span className="block sm:inline">25 years in tech ·</span>{' '}
             <span className="block sm:inline">6 tools reviewed ·</span>{' '}
@@ -33,7 +36,7 @@ export const HomePage = () => {
 
           <div className="mx-auto" style={{ maxWidth: 800 }}>
             <div
-              className="font-mono mb-4"
+              className="font-mono mb-6"
               style={{
                 textTransform: 'uppercase',
                 letterSpacing: '0.2em',
@@ -46,11 +49,11 @@ export const HomePage = () => {
             </div>
 
             <h1
-              className="font-mono text-white mb-3"
+              className="font-mono text-white mb-10"
               style={{
                 fontSize: 'clamp(52px, 8vw, 96px)',
                 fontWeight: 900,
-                lineHeight: 1.1,
+                lineHeight: 1.05,
                 textShadow: '0 0 80px rgba(0, 245, 212, 0.15)',
               }}
             >
@@ -77,7 +80,7 @@ export const HomePage = () => {
                   display: 'block',
                   animation: 'expandLine 1s ease forwards',
                   animationDelay: '0.4s',
-                  margin: '10px auto 0',
+                  margin: '12px auto 48px',
                 }}
               />
             </h1>
@@ -90,14 +93,15 @@ export const HomePage = () => {
                 fontWeight: 400,
                 color: '#F5A623',
                 marginTop: 12,
-                lineHeight: 1.4,
+                marginBottom: 52,
+                lineHeight: 1.5,
               }}
             >
               AI tools reviewed for solopreneurs who build alone.
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Link
               to="/tools"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-brand-bg font-bold text-lg hover:bg-[#33fcd9] transition-colors shadow-[0_0_28px_rgba(0,245,212,0.3)]"
@@ -111,17 +115,17 @@ export const HomePage = () => {
               Try Free Tools
             </Link>
           </div>
-          <p className="mx-auto mb-3" style={{ maxWidth: 800, fontSize: 13, color: '#888', fontStyle: 'italic' }}>
+          <p className="mx-auto mb-4" style={{ maxWidth: 800, fontSize: 13, color: '#888', fontStyle: 'italic' }}>
             I test every AI tool personally and tell you exactly what works, what does not, and what it costs. No
             sponsored verdicts. No hype. Just what actually matters for people building alone.
           </p>
-          <p className="text-sm text-gray-500 font-mono">
+          <p className="text-sm text-gray-500 font-mono mb-14">
             <span className="block sm:inline">6 tools reviewed in depth ·</span>{' '}
             <span className="block sm:inline">No sponsored content ·</span>{' '}
             <span className="block sm:inline">Built by Dominik —</span>{' '}
             <span className="block sm:inline">25yr tech veteran</span>
           </p>
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
+          <div className="flex flex-wrap justify-center gap-5 mt-8">
             {[
               { value: '913/month', label: 'avg saving' },
               { value: '6+', label: 'tools reviewed' },
@@ -133,7 +137,7 @@ export const HomePage = () => {
                 style={{
                   background: 'rgba(0,245,212,0.05)',
                   border: '1px solid rgba(0,245,212,0.15)',
-                  padding: '12px 20px',
+                  padding: '20px 28px',
                   borderRadius: 12,
                 }}
               >
