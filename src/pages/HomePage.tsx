@@ -19,32 +19,35 @@ export const HomePage = () => {
         <div className="relative max-w-4xl mx-auto text-center">
           <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-cyan/25 bg-brand-cyan/5 text-brand-cyan text-xs font-mono mb-6">
             <Sparkles className="w-3.5 h-3.5" aria-hidden />
-            Domsky Solutions · AI workspace
+            <span className="block sm:inline">Honest AI reviews · Free tools ·</span>{' '}
+            <span className="block sm:inline">Real workflows</span>
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-mono text-white leading-tight mb-6">
-            Generate content and marketing assets{' '}
-            <span className="text-brand-cyan">without losing your afternoon</span>
+            Honest AI Tool Reviews for <br className="hidden sm:block" />
+            Solopreneurs Who Are Done <br className="hidden sm:block" />
+            <span className="text-brand-cyan">Overpaying for Software</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            An AI workspace for creators, founders, and solopreneurs — hooks, emails, outlines, and ideas in one flow.
-            Still honest reviews and picks; now with tools that ship output, not just opinions.
+            I test every AI tool personally and tell you exactly what works, what does not, and what it costs. No
+            sponsored verdicts. No hype. Just what actually matters for people building alone.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <Link
               to="/tools"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-brand-bg font-bold text-lg hover:bg-[#33fcd9] transition-colors shadow-[0_0_28px_rgba(0,245,212,0.3)]"
             >
-              Start for free <ArrowRight className="w-5 h-5" />
+              Read the Reviews <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               to="/tools"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-gray-600 text-white font-bold text-lg hover:border-brand-cyan hover:bg-brand-surface transition-colors"
             >
-              Explore tools
+              Free Tools
             </Link>
           </div>
           <p className="text-sm text-gray-500 font-mono">
-            No account needed to try your first generations · Same Domsky standards — practical, not hype.
+            <span className="block sm:inline">Every tool reviewed after weeks of real daily use ·</span>{' '}
+            <span className="block sm:inline">No affiliate bias · Built by a solopreneur for solopreneurs</span>
           </p>
         </div>
       </section>
@@ -248,33 +251,35 @@ export const HomePage = () => {
       {/* How it works */}
       <section className="py-16 md:py-24 bg-brand-surface border-y border-gray-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-12">How it works</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-12">
+            How domskysolutions.com works
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center">
               <div className="w-12 h-12 rounded-lg bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center mx-auto mb-4">
                 <Layers className="w-6 h-6 text-brand-cyan" />
               </div>
-              <h3 className="font-bold font-mono text-lg text-white mb-2">1. Choose a tool</h3>
+              <h3 className="font-bold font-mono text-lg text-white mb-2">1. I test the tools</h3>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Browse by category — social, marketing, business ideas, productivity.
+                Every tool gets weeks of real daily use — not a quick demo. I pay for the subscriptions myself.
               </p>
             </div>
             <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center">
               <div className="w-12 h-12 rounded-lg bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center mx-auto mb-4">
                 <Sparkles className="w-6 h-6 text-brand-cyan" />
               </div>
-              <h3 className="font-bold font-mono text-lg text-white mb-2">2. Add your inputs</h3>
+              <h3 className="font-bold font-mono text-lg text-white mb-2">2. I write the honest verdict</h3>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Short prompts — tuned fields so you get usable drafts, not generic filler.
+                Real pricing. Real limitations. Real use cases. No paid placements or sponsored outcomes.
               </p>
             </div>
             <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center">
               <div className="w-12 h-12 rounded-lg bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center mx-auto mb-4">
                 <Zap className="w-6 h-6 text-brand-cyan" />
               </div>
-              <h3 className="font-bold font-mono text-lg text-white mb-2">3. Copy & ship</h3>
+              <h3 className="font-bold font-mono text-lg text-white mb-2">3. You save time and money</h3>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Copy output, iterate, or jump to a related tool — workspace features arrive next.
+                Skip the research. Use the free tools. Read the blog. Make better decisions faster.
               </p>
             </div>
           </div>
@@ -284,24 +289,26 @@ export const HomePage = () => {
       {/* Benefits */}
       <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-12">Why use this workspace</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-12">
+            Why solopreneurs trust domskysolutions.com
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                title: 'Built for speed',
-                body: 'One library, consistent UX — move from hooks to emails without tab overload.',
+                title: 'Personally tested',
+                body: 'I use every tool I review in my actual daily workflow before writing a single word. No exceptions.',
               },
               {
-                title: 'Honest positioning',
-                body: 'Domsky Solutions stays review-led; generators are practical drafts you still edit.',
+                title: 'No sponsored content',
+                body: 'Affiliate links are disclosed clearly. They never influence ratings or verdicts. If a tool is bad I say so.',
               },
               {
-                title: 'Room to grow',
-                body: 'Accounts, saved history, and Pro limits ship in Phase 2 — today, focus on output quality.',
+                title: 'Built for one-person teams',
+                body: 'Every review and tool is built for solopreneurs — not enterprise teams with IT departments and unlimited budgets.',
               },
               {
-                title: 'Mobile-friendly',
-                body: 'Generate on your phone between meetings; copy straight into your stack.',
+                title: 'Free tools that actually work',
+                body: 'The free tools on this site solve real solopreneur problems — built from the same daily frustrations you have.',
               },
             ].map((item) => (
               <div key={item.title} className="rounded-xl border border-gray-800 bg-brand-surface p-6 flex gap-4">
