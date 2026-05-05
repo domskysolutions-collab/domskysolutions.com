@@ -1,8 +1,9 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, CheckCircle2, Layers, Sparkles, Star, TrendingDown, Wrench, Zap } from 'lucide-react';
+import { ArrowRight, BookOpen, CheckCircle2, Layers, Sparkles, TrendingDown, Wrench, Zap } from 'lucide-react';
 import { ConvertKitForm } from '../components/ConvertKitForm';
+import { StarRating } from '../components/StarRating';
 
 export const HomePage = () => {
   useEffect(() => {
@@ -214,9 +215,7 @@ export const HomePage = () => {
                   <div className="text-right">
                     <div className="text-brand-amber font-bold font-mono text-sm">{card.rating}</div>
                     <div className="flex justify-end gap-1 mt-1">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} className="w-3 h-3" style={{ color: '#F5A623' }} aria-hidden />
-                      ))}
+                      <StarRating rating={Number.parseFloat(card.rating)} size={12} />
                     </div>
                   </div>
                 </div>

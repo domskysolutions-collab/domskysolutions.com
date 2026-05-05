@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'motion/react';
-import { CheckCircle2, Star, XCircle, Check, ChevronRight } from 'lucide-react';
+import { CheckCircle2, XCircle, Check, ChevronRight } from 'lucide-react';
+import { StarRating } from '../../components/StarRating';
 
 export const NamecheapReviewPage = () => {
   const { scrollYProgress } = useScroll();
@@ -55,7 +56,7 @@ export const NamecheapReviewPage = () => {
                 🛠️ I USE THIS
               </span>
               <div className="flex items-center gap-1 text-brand-amber text-xs font-mono uppercase tracking-wider">
-                <Star size={16} fill="currentColor" /> 4.5/5
+                <StarRating rating={4.5} size={16} /> 4.5/5
               </div>
             </div>
 

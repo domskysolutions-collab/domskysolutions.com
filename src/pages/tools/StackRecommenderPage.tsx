@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, ChevronLeft, Loader2, Star, Copy, Share2 } from 'lucide-react';
+import { ArrowRight, Check, ChevronLeft, Loader2, Copy, Share2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ConvertKitForm } from '../../components/ConvertKitForm';
+import { StarRating } from '../../components/StarRating';
 
 const ROLE_OPTIONS = [
   { id: 'founder', icon: '🚀', title: 'Founder / Solopreneur', desc: 'Building a business or product, wearing all the hats' },
@@ -501,9 +502,7 @@ export const StackRecommenderPage = () => {
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-2">{tool.name}</h3>
                     <div className="flex items-center gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={16} className={i < tool.rating ? "text-brand-amber fill-brand-amber" : "text-gray-600"} />
-                      ))}
+                      <StarRating rating={Number(tool.rating)} size={16} />
                     </div>
                     <p className="text-gray-300 text-lg mb-6">
                       {getReasoning(tool.id)}

@@ -3,10 +3,11 @@ import React, { useEffect } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
-import { ArrowRight, Star, ExternalLink, Check, ChevronRight } from 'lucide-react';
+import { ArrowRight, ExternalLink, Check, ChevronRight } from 'lucide-react';
 import { toolReviews } from '../../data/toolReviews';
 import { saasReviews } from '../../data/saasReviews';
 import { ConvertKitForm } from '../../components/ConvertKitForm';
+import { StarRating } from '../../components/StarRating';
 
 export const ToolPage = () => {
   const { slug, id } = useParams<{ slug?: string; id?: string }>();
@@ -44,7 +45,7 @@ export const ToolPage = () => {
                 </span>
               )}
               <div className="flex items-center gap-1 text-brand-amber text-sm font-mono">
-                <Star size={16} fill="currentColor" /> {tool.rating}
+                <StarRating rating={Number(tool.rating)} size={16} /> {tool.rating}
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold font-mono mb-2">

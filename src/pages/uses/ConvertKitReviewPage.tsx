@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'motion/react';
-import { CheckCircle2, ArrowRight, Star, XCircle, Check, ChevronRight } from 'lucide-react';
+import { CheckCircle2, ArrowRight, XCircle, Check, ChevronRight } from 'lucide-react';
+import { StarRating } from '../../components/StarRating';
 
 export const ConvertKitReviewPage = () => {
   const { scrollYProgress } = useScroll();
@@ -43,7 +44,7 @@ export const ConvertKitReviewPage = () => {
                 WE USE THIS
               </span>
               <div className="flex items-center gap-1 text-brand-amber text-xs font-mono uppercase tracking-wider">
-                <Star size={16} fill="currentColor" /> 4.6/5
+                <StarRating rating={4.6} size={16} /> 4.6/5
               </div>
             </div>
 

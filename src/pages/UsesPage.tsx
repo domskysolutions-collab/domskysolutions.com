@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Star, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+import { StarRating } from '../components/StarRating';
 import { ConvertKitForm } from '../components/ConvertKitForm';
 
 const usesTools = [
@@ -162,7 +163,7 @@ export const UsesPage = () => {
                       {tool.category}
                     </span>
                     <div className="flex items-center gap-1 text-brand-amber text-sm font-mono">
-                      <Star size={16} fill="currentColor" /> {tool.rating}
+                      <StarRating rating={Number(tool.rating)} size={16} /> {tool.rating}
                     </div>
                   </div>
                   <h2 className="text-3xl font-bold font-mono mb-2 text-white">{tool.name}</h2>
