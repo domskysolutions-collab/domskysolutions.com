@@ -17,21 +17,85 @@ export const HomePage = () => {
         <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[min(90vw,720px)] h-48 bg-brand-cyan/10 blur-[80px] rounded-full pointer-events-none" aria-hidden />
 
         <div className="relative max-w-4xl mx-auto text-center">
+          <style>{`
+            @keyframes expandLine {
+              from { width: 0%; }
+              to { width: 100%; }
+            }
+          `}</style>
           <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-cyan/25 bg-brand-cyan/5 text-brand-cyan text-xs font-mono mb-6">
             <Sparkles className="w-3.5 h-3.5" aria-hidden />
             <span className="block sm:inline">25 years in tech ·</span>{' '}
             <span className="block sm:inline">6 tools reviewed ·</span>{' '}
             <span className="block sm:inline">$913/month saved</span>
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-mono text-white leading-tight mb-6">
-            Honest AI Tool Reviews for <br className="hidden sm:block" />
-            Solopreneurs Who Are Done <br className="hidden sm:block" />
-            <span className="text-brand-cyan">Overpaying for Software</span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-            I test every AI tool personally and tell you exactly what works, what does not, and what it costs. No
-            sponsored verdicts. No hype. Just what actually matters for people building alone.
-          </p>
+
+          <div className="mx-auto" style={{ maxWidth: 800 }}>
+            <div
+              className="font-mono mb-4"
+              style={{
+                textTransform: 'uppercase',
+                letterSpacing: '0.2em',
+                fontSize: 14,
+                color: '#00F5D4',
+                fontWeight: 500,
+              }}
+            >
+              THE NO-HYPE VERDICT ON EVERY TOOL YOU&apos;RE CONSIDERING
+            </div>
+
+            <h1
+              className="font-mono text-white mb-3"
+              style={{
+                fontSize: 'clamp(52px, 8vw, 96px)',
+                fontWeight: 900,
+                lineHeight: 1.1,
+                textShadow: '0 0 80px rgba(0, 245, 212, 0.15)',
+              }}
+            >
+              <span style={{ display: 'block' }}>
+                Stop{' '}
+                <span
+                  style={{
+                    background: 'linear-gradient(90deg, #00F5D4, #F5A623)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                  }}
+                >
+                  Overpaying
+                </span>
+                .
+              </span>
+              <span
+                aria-hidden
+                style={{
+                  width: 0,
+                  height: 3,
+                  background: 'linear-gradient(90deg, #00F5D4, #F5A623)',
+                  display: 'block',
+                  animation: 'expandLine 1s ease forwards',
+                  animationDelay: '0.4s',
+                  margin: '10px auto 0',
+                }}
+              />
+            </h1>
+
+            <div
+              className="font-mono"
+              style={{
+                display: 'block',
+                fontSize: 'clamp(22px, 3.5vw, 38px)',
+                fontWeight: 400,
+                color: '#F5A623',
+                marginTop: 12,
+                lineHeight: 1.4,
+              }}
+            >
+              AI tools reviewed for solopreneurs who build alone.
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
             <Link
               to="/tools"
@@ -46,6 +110,10 @@ export const HomePage = () => {
               Try Free Tools
             </Link>
           </div>
+          <p className="mx-auto mb-3" style={{ maxWidth: 800, fontSize: 13, color: '#888', fontStyle: 'italic' }}>
+            I test every AI tool personally and tell you exactly what works, what does not, and what it costs. No
+            sponsored verdicts. No hype. Just what actually matters for people building alone.
+          </p>
           <p className="text-sm text-gray-500 font-mono">
             <span className="block sm:inline">6 tools reviewed in depth ·</span>{' '}
             <span className="block sm:inline">No sponsored content ·</span>{' '}
