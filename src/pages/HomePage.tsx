@@ -1,12 +1,12 @@
 
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Layers, Sparkles, Zap } from 'lucide-react';
+import { ArrowRight, BookOpen, CheckCircle2, Layers, Sparkles, Star, TrendingDown, Wrench, Zap } from 'lucide-react';
 import { ConvertKitForm } from '../components/ConvertKitForm';
 
 export const HomePage = () => {
   useEffect(() => {
-    document.title = 'Domsky Solutions — AI workspace for creators & founders';
+    document.title = 'Domsky Solutions — Honest AI Tool Reviews for Solopreneurs';
   }, []);
 
   return (
@@ -19,8 +19,9 @@ export const HomePage = () => {
         <div className="relative max-w-4xl mx-auto text-center">
           <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-cyan/25 bg-brand-cyan/5 text-brand-cyan text-xs font-mono mb-6">
             <Sparkles className="w-3.5 h-3.5" aria-hidden />
-            <span className="block sm:inline">Honest AI reviews · Free tools ·</span>{' '}
-            <span className="block sm:inline">Real workflows</span>
+            <span className="block sm:inline">25 years in tech ·</span>{' '}
+            <span className="block sm:inline">6 tools reviewed ·</span>{' '}
+            <span className="block sm:inline">$913/month saved</span>
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-mono text-white leading-tight mb-6">
             Honest AI Tool Reviews for <br className="hidden sm:block" />
@@ -36,19 +37,139 @@ export const HomePage = () => {
               to="/tools"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-brand-bg font-bold text-lg hover:bg-[#33fcd9] transition-colors shadow-[0_0_28px_rgba(0,245,212,0.3)]"
             >
-              Read the Reviews <ArrowRight className="w-5 h-5" />
+              Browse AI Tool Reviews <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
-              to="/tools"
+              to="/tools/email-writer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-gray-600 text-white font-bold text-lg hover:border-brand-cyan hover:bg-brand-surface transition-colors"
             >
-              Free Tools
+              Try Free Tools
             </Link>
           </div>
           <p className="text-sm text-gray-500 font-mono">
-            <span className="block sm:inline">Every tool reviewed after weeks of real daily use ·</span>{' '}
-            <span className="block sm:inline">No affiliate bias · Built by a solopreneur for solopreneurs</span>
+            <span className="block sm:inline">6 tools reviewed in depth ·</span>{' '}
+            <span className="block sm:inline">No sponsored content ·</span>{' '}
+            <span className="block sm:inline">Built by Dominik —</span>{' '}
+            <span className="block sm:inline">25yr tech veteran</span>
           </p>
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            {[
+              { value: '913/month', label: 'avg saving' },
+              { value: '6+', label: 'tools reviewed' },
+              { value: '100%', label: 'personally tested' },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="text-center"
+                style={{
+                  background: 'rgba(0,245,212,0.05)',
+                  border: '1px solid rgba(0,245,212,0.15)',
+                  padding: '12px 20px',
+                  borderRadius: 12,
+                }}
+              >
+                <div className="text-brand-cyan font-bold font-mono text-xl">{stat.value}</div>
+                <div className="text-gray-500 text-xs font-mono uppercase tracking-wider">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured reviews */}
+      <section className="py-16 md:py-24 bg-brand-surface border-y border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+            <div>
+              <div className="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-2">REVIEWED &amp; TESTED</div>
+              <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">AI Tools I Have Tested</h2>
+              <p className="text-gray-400 mt-2 max-w-2xl">
+                Every review is written after weeks of real daily use. Honest verdicts only.
+              </p>
+            </div>
+            <Link to="/tools" className="inline-flex items-center gap-2 text-brand-cyan font-mono text-sm hover:underline shrink-0">
+              View all reviews <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                emoji: '🤖',
+                rating: '4.9/5',
+                title: 'Claude by Anthropic',
+                category: 'AI Assistant',
+                verdict: 'The best AI assistant for writing, thinking and complex reasoning.',
+                price: 'From $20/month',
+                to: '/tools/claude',
+              },
+              {
+                emoji: '💻',
+                rating: '4.8/5',
+                title: 'Cursor',
+                category: 'AI Code Editor',
+                verdict: 'Build and fix websites without being a developer.',
+                price: 'From $20/month',
+                to: '/tools/cursor',
+              },
+              {
+                emoji: '🔍',
+                rating: '4.7/5',
+                title: 'Perplexity AI',
+                category: 'AI Research',
+                verdict: 'Replace 90 minutes of research with 3 questions.',
+                price: 'Free / $20/month',
+                to: '/tools/perplexity',
+              },
+            ].map((card) => (
+              <Link
+                key={card.title}
+                to={card.to}
+                className="group"
+                style={{
+                  background: '#0D0F12',
+                  border: '1px solid rgba(255,255,255,0.06)',
+                  borderRadius: 16,
+                  padding: 24,
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(0,245,212,0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
+                }}
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="text-3xl leading-none">{card.emoji}</div>
+                  <div className="text-right">
+                    <div className="text-brand-amber font-bold font-mono text-sm">{card.rating}</div>
+                    <div className="flex justify-end gap-1 mt-1">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="w-3 h-3" style={{ color: '#F5A623' }} aria-hidden />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <h3 className="font-bold font-mono text-white text-lg mb-2">{card.title}</h3>
+
+                <div className="mb-3">
+                  <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
+                    {card.category}
+                  </span>
+                </div>
+
+                <p className="text-gray-400 text-sm mb-6">{card.verdict}</p>
+
+                <div className="flex items-center justify-between mt-auto">
+                  <div className="text-xs text-gray-500">{card.price}</div>
+                  <div className="text-brand-cyan text-xs font-mono font-bold">Read Review →</div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -57,6 +178,10 @@ export const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
             <div>
+              <div className="text-xs font-mono text-brand-amber uppercase tracking-wider mb-2 inline-flex items-center gap-2">
+                <Wrench className="w-4 h-4" aria-hidden />
+                FREE TO USE
+              </div>
               <h2 className="text-3xl md:text-4xl font-bold font-mono text-white mb-2">Featured tools</h2>
               <p className="text-gray-400">Built for solopreneurs — free to try, no account needed.</p>
             </div>
@@ -248,40 +373,154 @@ export const HomePage = () => {
         </div>
       </section>
 
+      {/* Stats bar */}
+      <section
+        className="py-10"
+        style={{
+          background: '#111318',
+          borderTop: '1px solid rgba(255,255,255,0.06)',
+          borderBottom: '1px solid rgba(255,255,255,0.06)',
+        }}
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center gap-8 md:gap-16 flex-wrap">
+            {[
+              { value: '$913', label: 'average monthly saving', color: '#00F5D4' },
+              { value: '87%', label: 'average cost reduction', color: '#F5A623' },
+              { value: '6+', label: 'tools reviewed in depth', color: '#00F5D4' },
+              { value: '0', label: 'sponsored reviews', color: '#4ADE80' },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="text-3xl font-bold font-mono" style={{ color: stat.color }}>
+                  {stat.value}
+                </div>
+                <div className="text-xs text-gray-500 font-mono uppercase tracking-wider mt-1 inline-flex items-center gap-2 justify-center">
+                  {stat.label}
+                  {stat.label === 'average cost reduction' ? (
+                    <TrendingDown className="w-3.5 h-3.5" style={{ color: '#F5A623' }} aria-hidden />
+                  ) : null}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* How it works */}
       <section className="py-16 md:py-24 bg-brand-surface border-y border-gray-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-12">
-            How domskysolutions.com works
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-4">The Domsky Promise</h2>
+          <p className="text-gray-400 text-center mb-12">
+            What makes this site different from every other AI tools review site
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center">
-              <div className="w-12 h-12 rounded-lg bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center mx-auto mb-4">
-                <Layers className="w-6 h-6 text-brand-cyan" />
-              </div>
+            <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center relative overflow-hidden">
+              <div className="absolute top-4 right-4 text-5xl font-bold font-mono text-brand-cyan opacity-30">01</div>
               <h3 className="font-bold font-mono text-lg text-white mb-2">1. I test the tools</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
                 Every tool gets weeks of real daily use — not a quick demo. I pay for the subscriptions myself.
               </p>
+              <div className="text-xs text-brand-cyan font-mono">Minimum 2 weeks per tool</div>
             </div>
-            <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center">
-              <div className="w-12 h-12 rounded-lg bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center mx-auto mb-4">
-                <Sparkles className="w-6 h-6 text-brand-cyan" />
-              </div>
+            <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center relative overflow-hidden">
+              <div className="absolute top-4 right-4 text-5xl font-bold font-mono text-brand-cyan opacity-30">02</div>
               <h3 className="font-bold font-mono text-lg text-white mb-2">2. I write the honest verdict</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
                 Real pricing. Real limitations. Real use cases. No paid placements or sponsored outcomes.
               </p>
+              <div className="text-xs text-brand-cyan font-mono">Real pricing. Real limitations.</div>
             </div>
-            <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center">
-              <div className="w-12 h-12 rounded-lg bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center mx-auto mb-4">
-                <Zap className="w-6 h-6 text-brand-cyan" />
-              </div>
+            <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center relative overflow-hidden">
+              <div className="absolute top-4 right-4 text-5xl font-bold font-mono text-brand-cyan opacity-30">03</div>
               <h3 className="font-bold font-mono text-lg text-white mb-2">3. You save time and money</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
                 Skip the research. Use the free tools. Read the blog. Make better decisions faster.
               </p>
+              <div className="text-xs text-brand-cyan font-mono">Skip months of research</div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest blog posts */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+            <div>
+              <div className="text-xs font-mono text-brand-amber uppercase tracking-wider mb-2 inline-flex items-center gap-2">
+                <BookOpen className="w-4 h-4" aria-hidden />
+                FROM THE BLOG
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold font-mono text-white mb-2">Latest Insights</h2>
+            </div>
+            <Link to="/blog" className="inline-flex items-center gap-2 text-brand-cyan font-mono text-sm hover:underline shrink-0">
+              Read all posts <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                category: 'AI NEWS',
+                categoryStyle: {
+                  background: 'rgba(0,245,212,0.1)',
+                  color: '#00F5D4',
+                  border: '1px solid rgba(0,245,212,0.2)',
+                },
+                title: 'I Replaced My Entire $500/Month SaaS Stack With AI Tools',
+                excerpt: 'Every tool. Every saving. Real numbers, no fluff.',
+                readTime: '8 min read',
+                to: '/blog/replaced-saas-stack-with-ai-tools',
+              },
+              {
+                category: 'AI NEWS',
+                categoryStyle: {
+                  background: 'rgba(0,245,212,0.1)',
+                  color: '#00F5D4',
+                  border: '1px solid rgba(0,245,212,0.2)',
+                },
+                title: '10 AI Tools That Will Make You Look Like a Team of 10',
+                excerpt: 'The exact tools solo founders use to compete with full teams.',
+                readTime: '9 min read',
+                to: '/blog/ai-tools-look-like-team-of-10',
+              },
+              {
+                category: 'BEGINNERS',
+                categoryStyle: {
+                  background: 'rgba(245,166,35,0.1)',
+                  color: '#F5A623',
+                  border: '1px solid rgba(245,166,35,0.2)',
+                },
+                title: "You Don't Need to Be Technical to Use AI — Start Here",
+                excerpt: 'The honest beginner guide. No jargon. No assumptions.',
+                readTime: '10 min read',
+                to: '/blog/you-dont-need-to-be-technical-to-use-ai',
+              },
+            ].map((post) => (
+              <Link
+                key={post.to}
+                to={post.to}
+                className="group rounded-2xl transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  background: '#1a1a2e',
+                  border: '1px solid rgba(255,255,255,0.06)',
+                  borderRadius: 16,
+                  padding: 24,
+                }}
+              >
+                <div className="mb-4">
+                  <span className="text-xs font-mono px-2 py-0.5 rounded-full" style={post.categoryStyle}>
+                    {post.category}
+                  </span>
+                </div>
+                <h3 className="font-bold font-mono text-white text-base leading-snug mb-2">{post.title}</h3>
+                <p className="text-gray-400 text-sm mb-4">{post.excerpt}</p>
+                <div className="flex items-center justify-between">
+                  <div className="text-gray-600 text-xs">{post.readTime}</div>
+                  <div className="text-brand-cyan text-xs font-mono font-bold">Read →</div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -290,29 +529,43 @@ export const HomePage = () => {
       <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-12">
-            Why solopreneurs trust domskysolutions.com
+            Why 913 saved readers trust domskysolutions.com
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
                 title: 'Personally tested',
                 body: 'I use every tool I review in my actual daily workflow before writing a single word. No exceptions.',
+                icon: '🔬',
+                iconStyle: { background: 'rgba(0,245,212,0.12)' },
               },
               {
                 title: 'No sponsored content',
                 body: 'Affiliate links are disclosed clearly. They never influence ratings or verdicts. If a tool is bad I say so.',
+                icon: '🚫',
+                iconStyle: { background: 'rgba(239,68,68,0.12)' },
               },
               {
                 title: 'Built for one-person teams',
                 body: 'Every review and tool is built for solopreneurs — not enterprise teams with IT departments and unlimited budgets.',
+                icon: '👤',
+                iconStyle: { background: 'rgba(245,166,35,0.12)' },
               },
               {
                 title: 'Free tools that actually work',
                 body: 'The free tools on this site solve real solopreneur problems — built from the same daily frustrations you have.',
+                icon: '🛠️',
+                iconStyle: { background: 'rgba(74,222,128,0.12)' },
               },
             ].map((item) => (
               <div key={item.title} className="rounded-xl border border-gray-800 bg-brand-surface p-6 flex gap-4">
-                <CheckCircle2 className="w-6 h-6 text-brand-cyan shrink-0 mt-0.5" aria-hidden />
+                <div
+                  className="w-10 h-10 rounded-lg flex items-center justify-center text-xl mr-4 shrink-0"
+                  style={item.iconStyle}
+                  aria-hidden
+                >
+                  {item.icon}
+                </div>
                 <div>
                   <h3 className="font-bold font-mono text-white mb-2">{item.title}</h3>
                   <p className="text-gray-400 text-sm leading-relaxed">{item.body}</p>
@@ -323,55 +576,14 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* Pricing teaser */}
-      <section className="py-16 md:py-24 bg-brand-surface border-y border-gray-800 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-4">Simple pricing later</h2>
-          <p className="text-center text-gray-400 mb-12 max-w-xl mx-auto">
-            Start free today. When billing launches, expect a straight €9–€12/mo Pro tier with higher limits and premium
-            tools.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="rounded-xl border border-gray-700 bg-brand-bg p-8">
-              <h3 className="font-bold font-mono text-xl text-white mb-2">Free</h3>
-              <p className="text-3xl font-bold text-brand-cyan mb-6">€0</p>
-              <ul className="space-y-3 text-sm text-gray-400">
-                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-brand-cyan shrink-0 mt-0.5" /> Generous trial generations</li>
-                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-brand-cyan shrink-0 mt-0.5" /> Core tools library</li>
-                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-brand-cyan shrink-0 mt-0.5" /> Honest reviews & blog</li>
-              </ul>
-            </div>
-            <div className="rounded-xl border border-brand-cyan/40 bg-brand-bg p-8 relative overflow-hidden">
-              <span className="absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider text-brand-bg bg-brand-amber px-2 py-1 rounded">
-                Soon
-              </span>
-              <h3 className="font-bold font-mono text-xl text-white mb-2">Pro</h3>
-              <p className="text-3xl font-bold text-brand-amber mb-6">€9–12<span className="text-lg text-gray-500 font-normal">/mo</span></p>
-              <ul className="space-y-3 text-sm text-gray-400">
-                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-brand-amber shrink-0 mt-0.5" /> Higher or unlimited generations</li>
-                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-brand-amber shrink-0 mt-0.5" /> Premium tools & saved history</li>
-                <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-brand-amber shrink-0 mt-0.5" /> Export-focused workflow</li>
-              </ul>
-            </div>
-          </div>
-          <p className="text-center text-xs text-gray-500 font-mono mt-8">
-            Newsletter subscribers still get weekly picks —{' '}
-            <Link to="/reviews" className="text-brand-cyan hover:underline">
-              read reviews
-            </Link>{' '}
-            anytime.
-          </p>
-        </div>
-      </section>
-
-      {/* Email capture */}
+      {/* Newsletter */}
       <section id="newsletter" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="absolute inset-0 bg-brand-cyan/5 pointer-events-none" aria-hidden />
         <div className="relative max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white mb-4">Get weekly AI picks in your inbox</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white mb-4">The Weekly Edge — Every Thursday</h2>
           <p className="text-gray-400 mb-10 leading-relaxed">
-            Same newsletter Domsky readers trust — tools worth testing, plus updates when the workspace adds accounts and
-            Pro.
+            One AI tool worth knowing. One workflow tip that saves real time. One insight the algorithm won't show you.
+            No sponsors. No fluff. Free forever.
           </p>
           <ConvertKitForm
             className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mb-6"
@@ -381,21 +593,34 @@ export const HomePage = () => {
             placeholder="you@example.com"
           />
           <div className="flex flex-wrap justify-center gap-6 text-xs font-mono text-gray-500">
-            <span className="flex items-center gap-1"><CheckCircle2 size={14} className="text-brand-cyan" /> No spam</span>
-            <span className="flex items-center gap-1"><CheckCircle2 size={14} className="text-brand-cyan" /> Unsubscribe anytime</span>
+            <span className="flex items-center gap-1">
+              <CheckCircle2 size={14} className="text-brand-cyan" /> Every Thursday
+            </span>
+            <span className="flex items-center gap-1">
+              <CheckCircle2 size={14} className="text-brand-cyan" /> No sponsored content
+            </span>
+            <span className="flex items-center gap-1">
+              <CheckCircle2 size={14} className="text-brand-cyan" /> Free forever
+            </span>
           </div>
         </div>
       </section>
 
       {/* Bottom CTA */}
       <section className="py-16 border-t border-gray-800 text-center px-4">
-        <h2 className="text-2xl md:text-3xl font-bold font-mono text-white mb-6">Ready to generate?</h2>
+        <h2 className="text-2xl md:text-3xl font-bold font-mono text-white mb-6">Start saving money on software today</h2>
         <Link
           to="/tools"
           className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-brand-bg font-bold hover:bg-[#33fcd9] transition-colors"
         >
-          Open the tools library <ArrowRight className="w-5 h-5" />
+          Browse AI Tool Reviews <ArrowRight className="w-5 h-5" />
         </Link>
+        <div className="text-gray-500 text-sm mt-4">
+          Or try a free tool —{' '}
+          <Link to="/tools/email-writer" className="text-brand-cyan hover:underline">
+            no account required
+          </Link>
+        </div>
       </section>
     </main>
   );
