@@ -99,3 +99,19 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 .animate-bounce-slow {
   animation: bounce-slow 2s infinite ease-in-out;
 }
+
+@keyframes email-writer-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.email-writer-dot {
+  animation: email-writer-dot 1s ease-in-out infinite;
+}
