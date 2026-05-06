@@ -52,7 +52,7 @@ export const AboutPage = () => {
                   borderRadius: '50%',
                   objectFit: 'cover',
                   objectPosition: 'center top',
-                  border: '2px solid #00F5D4',
+                  border: '2px solid #F97316',
                   display: 'block'
                 }}
               />
@@ -65,7 +65,7 @@ export const AboutPage = () => {
                   height: '14px',
                   borderRadius: '50%',
                   background: '#4ADE80',
-                  border: '2px solid #0D0F12'
+                  border: '2px solid #0F0A05'
                 }}
               />
             </div>
@@ -283,7 +283,7 @@ export const AboutPage = () => {
               No team. No investors. Just honest reviews.
             </p>
             
-            <div className="relative z-10 bg-[#08090a] border border-brand-cyan/30 p-8 rounded-xl text-center max-w-2xl mx-auto">
+            <div className="relative z-10 bg-brand-bg border border-brand-cyan/30 p-8 rounded-xl text-center max-w-2xl mx-auto">
               <h2 className="text-2xl font-bold font-mono text-white mb-4">JOIN THE COMMUNITY</h2>
               <p className="text-gray-300 mb-6">
                 The best way to stay connected is the weekly newsletter — <span className="font-bold text-white">The Weekly Edge</span>.
@@ -292,7 +292,7 @@ export const AboutPage = () => {
               <ConvertKitForm 
                 className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
                 inputClassName="flex-1 bg-brand-bg border border-gray-700 px-4 py-3 rounded text-white focus:outline-none focus:border-brand-cyan transition-colors"
-                buttonClassName="bg-brand-amber text-brand-bg px-6 py-3 rounded font-bold hover:bg-yellow-400 transition-colors glow-amber-hover whitespace-nowrap"
+                buttonClassName="bg-brand-cyan text-[#000000] px-6 py-3 rounded font-bold hover:bg-brand-amber transition-colors glow-cyan-hover whitespace-nowrap"
                 buttonText="Join the Community"
                 placeholder="Enter your email"
               />

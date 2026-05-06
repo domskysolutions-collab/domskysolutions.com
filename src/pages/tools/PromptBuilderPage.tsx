@@ -379,7 +379,7 @@ export const PromptBuilderPage = () => {
               onClick={() => setCategory(cat.id)}
               className={`flex items-center gap-2 px-5 py-3 rounded-full font-bold whitespace-nowrap transition-colors border ${
                 category === cat.id 
-                  ? 'bg-brand-cyan text-[#0D0F12] border-brand-cyan' 
+                  ? 'bg-brand-cyan text-[#000000] border-brand-cyan' 
                   : 'bg-[#1a1a2e] text-gray-400 border-gray-800 hover:border-gray-600'
               }`}
             >
@@ -769,7 +769,7 @@ export const PromptBuilderPage = () => {
                 </div>
               </div>
 
-              <div className="bg-[#0D0F12] border border-brand-cyan rounded-lg p-6 min-h-[400px] max-h-[600px] overflow-y-auto">
+              <div className="bg-brand-bg border border-brand-cyan rounded-lg p-6 min-h-[400px] max-h-[600px] overflow-y-auto">
                 {generatedPrompt ? (
                   <motion.div 
                     key={generatedPrompt}
@@ -857,7 +857,7 @@ export const PromptBuilderPage = () => {
               <div className="w-full sm:w-auto">
                 <ConvertKitForm 
                   className="flex gap-2"
-                  inputClassName="bg-[#0D0F12] border border-gray-700 rounded px-4 py-2 text-white focus:outline-none focus:border-brand-cyan transition-colors w-full sm:w-64"
+                  inputClassName="bg-brand-bg border border-gray-700 rounded px-4 py-2 text-white focus:outline-none focus:border-brand-cyan transition-colors w-full sm:w-64"
                   buttonClassName="bg-brand-cyan text-brand-bg px-4 py-2 rounded font-bold hover:bg-teal-400 transition-colors whitespace-nowrap"
                   buttonText="Send Me the Prompts →"
                   successMessage="Check your inbox! 🎉"

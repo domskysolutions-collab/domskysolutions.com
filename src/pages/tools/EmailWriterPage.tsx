@@ -203,7 +203,7 @@ Write only the email — no explanations or commentary.`;
     'w-full rounded-xl border border-gray-700 bg-brand-bg px-4 py-3 text-sm text-white transition-colors focus:border-brand-cyan focus:outline-none';
 
   return (
-    <div className="min-h-screen bg-brand-bg" style={{ backgroundColor: '#0D0F12' }}>
+    <div className="min-h-screen bg-brand-bg" style={{ backgroundColor: '#0F0A05' }}>
       <div className="mx-auto max-w-3xl px-4 py-16">
         <div className="mb-2 inline-block rounded-full border border-brand-cyan/40 px-3 py-1 font-mono text-xs text-brand-cyan">
           FREE TOOL
@@ -300,7 +300,7 @@ Write only the email — no explanations or commentary.`;
               onClick={generateEmail}
               disabled={loading}
               className={`w-full rounded-xl py-4 font-mono font-bold transition-colors disabled:cursor-not-allowed ${
-                loading ? 'bg-gray-700 text-gray-100' : 'bg-[#00F5D4] text-[#0D0F12] hover:opacity-95'
+                loading ? 'bg-gray-700 text-gray-100' : 'bg-[#F97316] text-[#000000] hover:opacity-95'
               }`}
             >
               {loading ? (

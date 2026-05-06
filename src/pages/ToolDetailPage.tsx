@@ -106,7 +106,7 @@ export function ToolDetailPage({ tool }: Props) {
                 type="button"
                 onClick={runGenerate}
                 disabled={loading}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-cyan text-brand-bg font-bold text-base hover:bg-[#33fcd9] transition-colors disabled:opacity-50 disabled:pointer-events-none shadow-[0_0_24px_rgba(0,245,212,0.25)]"
+                className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-brand-cyan text-[#000000] font-bold text-base hover:bg-brand-amber transition-colors disabled:opacity-50 disabled:pointer-events-none shadow-[0_0_24px_rgba(249,115,22,0.32)]"
               >
                 {loading ? 'Generating…' : 'Generate'}
               </button>

@@ -41,7 +41,7 @@ export const HomePage = () => {
                 textTransform: 'uppercase',
                 letterSpacing: '0.2em',
                 fontSize: 14,
-                color: '#00F5D4',
+                color: '#F97316',
                 fontWeight: 500,
               }}
             >
@@ -54,14 +54,14 @@ export const HomePage = () => {
                 fontSize: 'clamp(52px, 8vw, 96px)',
                 fontWeight: 900,
                 lineHeight: 1.05,
-                textShadow: '0 0 80px rgba(0, 245, 212, 0.15)',
+                textShadow: '0 0 80px rgba(249, 115, 22, 0.18)',
               }}
             >
               <span style={{ display: 'block' }}>
                 Stop{' '}
                 <span
                   style={{
-                    background: 'linear-gradient(90deg, #00F5D4, #F5A623)',
+                    background: 'linear-gradient(90deg, #F97316, #FB923C)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -76,7 +76,7 @@ export const HomePage = () => {
                 style={{
                   width: 0,
                   height: 3,
-                  background: 'linear-gradient(90deg, #00F5D4, #F5A623)',
+                  background: 'linear-gradient(90deg, #F97316, #FB923C)',
                   display: 'block',
                   animation: 'expandLine 1s ease forwards',
                   animationDelay: '0.4s',
@@ -91,7 +91,7 @@ export const HomePage = () => {
                 display: 'block',
                 fontSize: 'clamp(22px, 3.5vw, 38px)',
                 fontWeight: 400,
-                color: '#F5A623',
+                color: '#D97706',
                 marginTop: 12,
                 marginBottom: 52,
                 lineHeight: 1.5,
@@ -104,7 +104,7 @@ export const HomePage = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Link
               to="/tools"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-brand-bg font-bold text-lg hover:bg-[#33fcd9] transition-colors shadow-[0_0_28px_rgba(0,245,212,0.3)]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-[#000000] font-bold text-lg hover:bg-brand-amber transition-colors shadow-[0_0_28px_rgba(249,115,22,0.35)]"
             >
               Browse AI Tool Reviews <ArrowRight className="w-5 h-5" />
             </Link>
@@ -115,7 +115,7 @@ export const HomePage = () => {
               Try Free Tools
             </Link>
           </div>
-          <p className="mx-auto mb-4" style={{ maxWidth: 800, fontSize: 13, color: '#888', fontStyle: 'italic' }}>
+          <p className="mx-auto mb-4" style={{ maxWidth: 800, fontSize: 13, color: '#A16207', fontStyle: 'italic' }}>
             I test every AI tool personally and tell you exactly what works, what does not, and what it costs. No
             sponsored verdicts. No hype. Just what actually matters for people building alone.
           </p>
@@ -135,8 +135,8 @@ export const HomePage = () => {
                 key={stat.label}
                 className="text-center"
                 style={{
-                  background: 'rgba(0,245,212,0.05)',
-                  border: '1px solid rgba(0,245,212,0.15)',
+                  background: 'rgba(249,115,22,0.06)',
+                  border: '1px solid rgba(249,115,22,0.2)',
                   padding: '20px 28px',
                   borderRadius: 12,
                 }}
@@ -200,18 +200,18 @@ export const HomePage = () => {
                 to={card.to}
                 className="group"
                 style={{
-                  background: '#0D0F12',
-                  border: '1px solid rgba(255,255,255,0.06)',
+                  background: '#0F0A05',
+                  border: '1px solid rgba(249,115,22,0.14)',
                   borderRadius: 16,
                   padding: 24,
                   display: 'flex',
                   flexDirection: 'column',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(0,245,212,0.3)';
+                  e.currentTarget.style.borderColor = 'rgba(249,115,22,0.28)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
+                  e.currentTarget.style.borderColor = 'rgba(249,115,22,0.14)';
                 }}
               >
                 <div className="flex items-start justify-between mb-4">
@@ -269,15 +269,15 @@ export const HomePage = () => {
               to="/tools/email-writer"
               className="group flex flex-col rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1"
               style={{
-                background: '#1a1a2e',
-                borderColor: 'rgba(0,245,212,0.2)',
+                background: '#1C0F05',
+                borderColor: 'rgba(249,115,22,0.2)',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = '#00F5D4';
-                e.currentTarget.style.boxShadow = '0 0 30px rgba(0,245,212,0.12)';
+                e.currentTarget.style.borderColor = '#F97316';
+                e.currentTarget.style.boxShadow = '0 0 30px rgba(249,115,22,0.14)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(0,245,212,0.2)';
+                e.currentTarget.style.borderColor = 'rgba(249,115,22,0.2)';
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
@@ -285,8 +285,8 @@ export const HomePage = () => {
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
                   style={{
-                    background: 'rgba(0,245,212,0.1)',
-                    border: '1px solid rgba(0,245,212,0.2)',
+                    background: 'rgba(249,115,22,0.1)',
+                    border: '1px solid rgba(249,115,22,0.22)',
                   }}
                 >
                   ✍️
@@ -294,9 +294,9 @@ export const HomePage = () => {
                 <span
                   className="text-xs font-mono px-2 py-1 rounded-full"
                   style={{
-                    background: 'rgba(0,245,212,0.1)',
-                    color: '#00F5D4',
-                    border: '1px solid rgba(0,245,212,0.2)',
+                    background: 'rgba(249,115,22,0.1)',
+                    color: '#F97316',
+                    border: '1px solid rgba(249,115,22,0.22)',
                   }}
                 >
                   FREE
@@ -312,7 +312,7 @@ export const HomePage = () => {
               <ul className="space-y-1.5 mb-6">
                 {['Client follow-ups', 'Invoice reminders', 'Cold outreach', 'Project proposals'].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-xs text-gray-500">
-                    <span style={{ color: '#00F5D4' }}>✓</span>
+                    <span style={{ color: '#F97316' }}>✓</span>
                     {item}
                   </li>
                 ))}
@@ -327,15 +327,15 @@ export const HomePage = () => {
               to="/tools/tool-description"
               className="group flex flex-col rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1"
               style={{
-                background: '#1a1a2e',
-                borderColor: 'rgba(245,166,35,0.2)',
+                background: '#1C0F05',
+                borderColor: 'rgba(251,146,60,0.22)',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = '#F5A623';
-                e.currentTarget.style.boxShadow = '0 0 30px rgba(245,166,35,0.12)';
+                e.currentTarget.style.borderColor = '#FB923C';
+                e.currentTarget.style.boxShadow = '0 0 30px rgba(251,146,60,0.14)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(245,166,35,0.2)';
+                e.currentTarget.style.borderColor = 'rgba(251,146,60,0.22)';
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
@@ -343,8 +343,8 @@ export const HomePage = () => {
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
                   style={{
-                    background: 'rgba(245,166,35,0.1)',
-                    border: '1px solid rgba(245,166,35,0.2)',
+                    background: 'rgba(251,146,60,0.12)',
+                    border: '1px solid rgba(251,146,60,0.22)',
                   }}
                 >
                   🛠️
@@ -352,9 +352,9 @@ export const HomePage = () => {
                 <span
                   className="text-xs font-mono px-2 py-1 rounded-full"
                   style={{
-                    background: 'rgba(245,166,35,0.1)',
-                    color: '#F5A623',
-                    border: '1px solid rgba(245,166,35,0.2)',
+                    background: 'rgba(251,146,60,0.12)',
+                    color: '#FB923C',
+                    border: '1px solid rgba(251,146,60,0.22)',
                   }}
                 >
                   FREE
@@ -370,7 +370,7 @@ export const HomePage = () => {
               <ul className="space-y-1.5 mb-6">
                 {['Product one-liners', 'Landing page copy', 'Social media bios', 'App store descriptions'].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-xs text-gray-500">
-                    <span style={{ color: '#F5A623' }}>✓</span>
+                    <span style={{ color: '#FB923C' }}>✓</span>
                     {item}
                   </li>
                 ))}
@@ -448,17 +448,17 @@ export const HomePage = () => {
       <section
         className="py-10"
         style={{
-          background: '#111318',
-          borderTop: '1px solid rgba(255,255,255,0.06)',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          background: '#1C0F05',
+          borderTop: '1px solid rgba(249,115,22,0.14)',
+          borderBottom: '1px solid rgba(249,115,22,0.14)',
         }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center gap-8 md:gap-16 flex-wrap">
             {[
-              { value: '$913', label: 'average monthly saving', color: '#00F5D4' },
-              { value: '87%', label: 'average cost reduction', color: '#F5A623' },
-              { value: '6+', label: 'tools reviewed in depth', color: '#00F5D4' },
+              { value: '$913', label: 'average monthly saving', color: '#F97316' },
+              { value: '87%', label: 'average cost reduction', color: '#FB923C' },
+              { value: '6+', label: 'tools reviewed in depth', color: '#F97316' },
               { value: '0', label: 'sponsored reviews', color: '#4ADE80' },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
@@ -468,7 +468,7 @@ export const HomePage = () => {
                 <div className="text-xs text-gray-500 font-mono uppercase tracking-wider mt-1 inline-flex items-center gap-2 justify-center">
                   {stat.label}
                   {stat.label === 'average cost reduction' ? (
-                    <TrendingDown className="w-3.5 h-3.5" style={{ color: '#F5A623' }} aria-hidden />
+                    <TrendingDown className="w-3.5 h-3.5" style={{ color: '#FB923C' }} aria-hidden />
                   ) : null}
                 </div>
               </div>
@@ -534,9 +534,9 @@ export const HomePage = () => {
               {
                 category: 'AI NEWS',
                 categoryStyle: {
-                  background: 'rgba(0,245,212,0.1)',
-                  color: '#00F5D4',
-                  border: '1px solid rgba(0,245,212,0.2)',
+                  background: 'rgba(249,115,22,0.1)',
+                  color: '#F97316',
+                  border: '1px solid rgba(249,115,22,0.2)',
                 },
                 title: 'I Replaced My Entire $500/Month SaaS Stack With AI Tools',
                 excerpt: 'Every tool. Every saving. Real numbers, no fluff.',
@@ -546,9 +546,9 @@ export const HomePage = () => {
               {
                 category: 'AI NEWS',
                 categoryStyle: {
-                  background: 'rgba(0,245,212,0.1)',
-                  color: '#00F5D4',
-                  border: '1px solid rgba(0,245,212,0.2)',
+                  background: 'rgba(249,115,22,0.1)',
+                  color: '#F97316',
+                  border: '1px solid rgba(249,115,22,0.2)',
                 },
                 title: '10 AI Tools That Will Make You Look Like a Team of 10',
                 excerpt: 'The exact tools solo founders use to compete with full teams.',
@@ -558,9 +558,9 @@ export const HomePage = () => {
               {
                 category: 'BEGINNERS',
                 categoryStyle: {
-                  background: 'rgba(245,166,35,0.1)',
-                  color: '#F5A623',
-                  border: '1px solid rgba(245,166,35,0.2)',
+                  background: 'rgba(251,146,60,0.12)',
+                  color: '#FB923C',
+                  border: '1px solid rgba(251,146,60,0.22)',
                 },
                 title: "You Don't Need to Be Technical to Use AI — Start Here",
                 excerpt: 'The honest beginner guide. No jargon. No assumptions.',
@@ -573,8 +573,8 @@ export const HomePage = () => {
                 to={post.to}
                 className="group rounded-2xl transition-all duration-300 hover:-translate-y-1"
                 style={{
-                  background: '#1a1a2e',
-                  border: '1px solid rgba(255,255,255,0.06)',
+                  background: '#1C0F05',
+                  border: '1px solid rgba(249,115,22,0.14)',
                   borderRadius: 16,
                   padding: 24,
                 }}
@@ -608,7 +608,7 @@ export const HomePage = () => {
                 title: 'Personally tested',
                 body: 'I use every tool I review in my actual daily workflow before writing a single word. No exceptions.',
                 icon: '🔬',
-                iconStyle: { background: 'rgba(0,245,212,0.12)' },
+                iconStyle: { background: 'rgba(249,115,22,0.12)' },
               },
               {
                 title: 'No sponsored content',
@@ -620,7 +620,7 @@ export const HomePage = () => {
                 title: 'Built for one-person teams',
                 body: 'Every review and tool is built for solopreneurs — not enterprise teams with IT departments and unlimited budgets.',
                 icon: '👤',
-                iconStyle: { background: 'rgba(245,166,35,0.12)' },
+                iconStyle: { background: 'rgba(251,146,60,0.12)' },
               },
               {
                 title: 'Free tools that actually work',
@@ -682,7 +682,7 @@ export const HomePage = () => {
         <h2 className="text-2xl md:text-3xl font-bold font-mono text-white mb-6">Start saving money on software today</h2>
         <Link
           to="/tools"
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-brand-bg font-bold hover:bg-[#33fcd9] transition-colors"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-[#000000] font-bold hover:bg-brand-amber transition-colors"
         >
           Browse AI Tool Reviews <ArrowRight className="w-5 h-5" />
         </Link>

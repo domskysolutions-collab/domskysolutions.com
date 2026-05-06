@@ -58,7 +58,7 @@ type CalendarItem =
       weekday: string;
     };
 
-const SURFACE = 'bg-[#1a1a2e]';
+const SURFACE = 'bg-brand-surface';
 
 const AUDIENCE_OPTIONS: AudienceOption[] = [
   'Founders and entrepreneurs',
@@ -477,7 +477,7 @@ export const ContentCalendarPage = () => {
   const weekItems = useMemo(() => (calendar ? buildWeekItems(calendar, activeWeek) : []), [calendar, activeWeek]);
 
   return (
-    <div className="bg-[#0D0F12] min-h-screen text-gray-300 font-sans pb-24 pt-32">
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24 pt-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mb-14">
@@ -525,7 +525,7 @@ export const ContentCalendarPage = () => {
                   value={niche}
                   onChange={e => setNiche(e.target.value)}
                   placeholder="e.g. AI tools, graphic design, personal finance, fitness..."
-                  className="w-full bg-[#1a1a2e] border border-gray-700/70 rounded-md px-4 py-3 text-white font-bold focus:outline-none focus:border-brand-cyan transition-colors"
+                  className="w-full bg-brand-surface border border-gray-700/70 rounded-md px-4 py-3 text-white font-bold focus:outline-none focus:border-brand-cyan transition-colors"
                 />
               </div>
 
@@ -545,8 +545,8 @@ export const ContentCalendarPage = () => {
                         className={[
                           'min-h-[44px] px-4 py-2 rounded-full border font-bold font-mono text-sm transition-all',
                           selected
-                            ? 'bg-brand-cyan text-[#0D0F12] border-brand-cyan'
-                            : 'bg-[#12131a] text-gray-400 border-gray-700 hover:border-gray-500',
+                            ? 'bg-brand-cyan text-[#000000] border-brand-cyan'
+                            : 'bg-[#2A1A08] text-gray-400 border-gray-700 hover:border-gray-500',
                         ].join(' ')}
                       >
                         {ct.emoji} {ct.label}
@@ -564,7 +564,7 @@ export const ContentCalendarPage = () => {
                 <select
                   value={audience}
                   onChange={e => setAudience(e.target.value as AudienceOption)}
-                  className="w-full bg-[#1a1a2e] border border-gray-700/70 rounded-md px-4 py-3 text-white font-bold focus:outline-none focus:border-brand-cyan transition-colors"
+                  className="w-full bg-brand-surface border border-gray-700/70 rounded-md px-4 py-3 text-white font-bold focus:outline-none focus:border-brand-cyan transition-colors"
                 >
                   {AUDIENCE_OPTIONS.map(opt => (
                     <option key={opt} value={opt}>
@@ -590,8 +590,8 @@ export const ContentCalendarPage = () => {
                         className={[
                           'min-h-[44px] px-4 py-2 rounded-full border font-bold font-mono text-sm transition-all',
                           selected
-                            ? 'bg-brand-cyan text-[#0D0F12] border-brand-cyan'
-                            : 'bg-[#12131a] text-gray-400 border-gray-700 hover:border-gray-500',
+                            ? 'bg-brand-cyan text-[#000000] border-brand-cyan'
+                            : 'bg-[#2A1A08] text-gray-400 border-gray-700 hover:border-gray-500',
                         ].join(' ')}
                       >
                         {g.emoji} {g.label}
@@ -617,8 +617,8 @@ export const ContentCalendarPage = () => {
                         className={[
                           'min-h-[44px] px-4 py-2 rounded-full border font-bold font-mono text-sm transition-all',
                           selected
-                            ? 'bg-brand-cyan text-[#0D0F12] border-brand-cyan'
-                            : 'bg-[#12131a] text-gray-400 border-gray-700 hover:border-gray-500',
+                            ? 'bg-brand-cyan text-[#000000] border-brand-cyan'
+                            : 'bg-[#2A1A08] text-gray-400 border-gray-700 hover:border-gray-500',
                         ].join(' ')}
                       >
                         {t}
@@ -633,10 +633,10 @@ export const ContentCalendarPage = () => {
                 onClick={() => generateCalendar(0)}
                 disabled={!normalizedNiche || isLoading}
                 className={[
-                  'w-full h-14 rounded-md font-bold text-[#0D0F12] transition-all',
+                  'w-full h-14 rounded-md font-bold text-[#000000] transition-all',
                   normalizedNiche && !isLoading
-                    ? 'bg-[#F5A623] hover:brightness-110'
-                    : 'bg-[#F5A623]/40 cursor-not-allowed',
+                    ? 'bg-[#F97316] hover:bg-[#FB923C]'
+                    : 'bg-[#F97316]/40 cursor-not-allowed',
                 ].join(' ')}
               >
                 Generate My 30-Day Calendar →
@@ -676,19 +676,19 @@ export const ContentCalendarPage = () => {
                       {counts.ideas} ideas in 30 days
                     </div>
                     <div className="flex flex-wrap gap-2 text-sm text-gray-400 mb-6">
-                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-[#0D0F12]">
+                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-brand-bg">
                         {counts.blog} blog posts
                       </span>
-                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-[#0D0F12]">
+                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-brand-bg">
                         {counts.newsletter} newsletters
                       </span>
-                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-[#0D0F12]">
+                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-brand-bg">
                         {counts.social} social posts
                       </span>
-                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-[#0D0F12]">
+                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-brand-bg">
                         {counts.video} videos
                       </span>
-                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-[#0D0F12]">
+                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-brand-bg">
                         {counts.podcast} podcasts
                       </span>
                     </div>
@@ -712,13 +712,13 @@ export const ContentCalendarPage = () => {
                       Enter a niche, pick your formats, then generate a 30-day plan with realistic posting days.
                     </div>
                     <div className="space-y-3 max-w-sm mx-auto">
-                      <div className="bg-[#0D0F12] border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
+                      <div className="bg-brand-bg border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
                         Built for solopreneurs
                       </div>
-                      <div className="bg-[#0D0F12] border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
+                      <div className="bg-brand-bg border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
                         Copy with one click
                       </div>
-                      <div className="bg-[#0D0F12] border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
+                      <div className="bg-brand-bg border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
                         No signup required
                       </div>
                     </div>
@@ -779,8 +779,8 @@ export const ContentCalendarPage = () => {
                     className={[
                       'border rounded-xl p-4 min-h-[180px]',
                       item.kind === 'content'
-                        ? 'bg-[#1a1a2e] border-gray-800'
-                        : 'bg-[#0D0F12] border-gray-800/70',
+                        ? 'bg-brand-surface border-gray-800'
+                        : 'bg-brand-bg border-gray-800/70',
                     ].join(' ')}
                   >
                     <div className="flex items-start justify-between gap-2 mb-3">
@@ -827,8 +827,8 @@ export const ContentCalendarPage = () => {
                     className={[
                       'border rounded-xl p-4',
                       item.kind === 'content'
-                        ? 'bg-[#1a1a2e] border-gray-800'
-                        : 'bg-[#0D0F12] border-gray-800/70',
+                        ? 'bg-brand-surface border-gray-800'
+                        : 'bg-brand-bg border-gray-800/70',
                     ].join(' ')}
                   >
                     <div className="flex items-start justify-between gap-3 mb-2">
@@ -867,7 +867,7 @@ export const ContentCalendarPage = () => {
 
               {/* Email capture */}
               <div className="mt-10">
-                <div className="bg-[#1a1a2e] border border-brand-cyan/30 rounded-xl p-8">
+                <div className="bg-brand-surface border border-brand-cyan/30 rounded-xl p-8">
                   <div className="text-white font-bold font-mono text-xl mb-2">🗓️ Want a new calendar every month?</div>
                   <div className="text-gray-400 mb-6">
                     Join The Weekly Edge — our free Thursday newsletter with fresh content ideas, AI tool tips, and
@@ -875,8 +875,8 @@ export const ContentCalendarPage = () => {
                   </div>
                   <ConvertKitForm
                     className="flex flex-col sm:flex-row gap-3"
-                    inputClassName="flex-1 bg-[#0D0F12] border border-gray-800 rounded-md px-4 py-3 text-white font-bold focus:outline-none focus:border-brand-cyan transition-colors min-h-[44px]"
-                    buttonClassName="bg-brand-cyan text-[#0D0F12] font-bold px-6 py-3 rounded-md hover:brightness-110 transition-all min-h-[44px] whitespace-nowrap"
+                    inputClassName="flex-1 bg-brand-bg border border-gray-800 rounded-md px-4 py-3 text-white font-bold focus:outline-none focus:border-brand-cyan transition-colors min-h-[44px]"
+                    buttonClassName="bg-brand-cyan text-[#000000] font-bold px-6 py-3 rounded-md hover:bg-brand-amber transition-all min-h-[44px] whitespace-nowrap"
                     buttonText="Get Weekly Content Ideas →"
                     placeholder="Enter your email address..."
                   />
@@ -888,7 +888,7 @@ export const ContentCalendarPage = () => {
                 <button
                   type="button"
                   onClick={handleCopyAll}
-                  className="w-full h-14 rounded-md font-bold text-[#0D0F12] bg-[#F5A623] hover:brightness-110 transition-all flex items-center justify-center gap-2"
+                  className="w-full h-14 rounded-md font-bold text-[#000000] bg-[#F97316] hover:bg-[#FB923C] transition-all flex items-center justify-center gap-2"
                 >
                   <Copy size={18} />
                   {copyAllState === 'copied' ? 'Copied! ✓' : 'Copy All Ideas to Clipboard →'}
@@ -937,7 +937,7 @@ export const ContentCalendarPage = () => {
                   </div>
                 </div>
 
-                <div className="mt-4 bg-[#0D0F12] border border-gray-800 rounded-xl p-5 text-gray-400 text-sm whitespace-pre-line">
+                <div className="mt-4 bg-brand-bg border border-gray-800 rounded-xl p-5 text-gray-400 text-sm whitespace-pre-line">
                   {shareText}
                 </div>
               </div>

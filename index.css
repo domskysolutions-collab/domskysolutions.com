@@ -7,16 +7,20 @@
   --font-serif: "Lora", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
   
-  --color-brand-bg: #0D0F12;
-  --color-brand-cyan: #00F5D4;
-  --color-brand-amber: #F5A623;
-  --color-brand-surface: #1a1a2e;
-  --color-brand-surface-hover: #252542;
+  --color-brand-bg: #0F0A05;
+  --color-brand-cyan: #F97316;
+  --color-brand-amber: #FB923C;
+  --color-brand-surface: #1C0F05;
+  --color-brand-surface-hover: #2A1A08;
+  --color-brand-text: #FEF3C7;
+  --color-brand-text-muted: #A16207;
+  --color-brand-border: rgba(249, 115, 22, 0.2);
+  --color-white: #FEF3C7;
 }
 
 body {
   background-color: var(--color-brand-bg);
-  color: #FFFFFF;
+  color: var(--color-brand-text);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -44,7 +48,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 /* Grid Background Pattern */
 .bg-grid-pattern {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(249, 115, 22, 0.08) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
@@ -63,7 +67,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   left: 0;
   width: 100%;
   height: 100px;
-  background: linear-gradient(to bottom, transparent, rgba(0, 245, 212, 0.1), transparent);
+  background: linear-gradient(to bottom, transparent, rgba(249, 115, 22, 0.12), transparent);
   animation: scanline 8s linear infinite;
   pointer-events: none;
   z-index: 10;
@@ -71,22 +75,22 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 
 /* Glow effects */
 .glow-cyan {
-  box-shadow: 0 0 20px rgba(0, 245, 212, 0.3);
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.35);
 }
 .glow-cyan-hover:hover {
-  box-shadow: 0 0 20px rgba(0, 245, 212, 0.5);
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
   border-color: var(--color-brand-cyan);
 }
 .glow-amber {
-  box-shadow: 0 0 20px rgba(245, 166, 35, 0.3);
+  box-shadow: 0 0 20px rgba(251, 146, 60, 0.35);
 }
 .glow-amber-hover:hover {
-  box-shadow: 0 0 20px rgba(245, 166, 35, 0.5);
+  box-shadow: 0 0 20px rgba(251, 146, 60, 0.45);
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 15px rgba(245, 166, 35, 0.4); }
-  50% { box-shadow: 0 0 25px rgba(245, 166, 35, 0.7); }
+  0%, 100% { box-shadow: 0 0 15px rgba(251, 146, 60, 0.4); }
+  50% { box-shadow: 0 0 25px rgba(251, 146, 60, 0.65); }
 }
 .animate-pulse-glow {
   animation: pulse-glow 2s infinite;

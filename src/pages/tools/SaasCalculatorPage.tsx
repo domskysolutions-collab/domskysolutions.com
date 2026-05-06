@@ -122,7 +122,7 @@ export const SaasCalculatorPage = () => {
   };
 
   return (
-    <div className="bg-[#0D0F12] min-h-screen text-gray-300 font-sans pb-24 pt-32">
+    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24 pt-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -208,13 +208,13 @@ export const SaasCalculatorPage = () => {
                   </p>
                   
                   <div className="space-y-4 w-full max-w-xs mx-auto">
-                    <div className="bg-[#0D0F12] border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
+                    <div className="bg-brand-bg border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
                       Average user saves $913/mo
                     </div>
-                    <div className="bg-[#0D0F12] border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
+                    <div className="bg-brand-bg border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
                       That is $10,956/year
                     </div>
-                    <div className="bg-[#0D0F12] border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
+                    <div className="bg-brand-bg border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
                       Switch takes 2 weeks
                     </div>
                   </div>
@@ -238,7 +238,7 @@ export const SaasCalculatorPage = () => {
                         .join(", ");
                         
                       return (
-                        <div key={alt.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-4 bg-[#0D0F12] border border-gray-800 rounded-lg">
+                        <div key={alt.id} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-4 bg-brand-bg border border-gray-800 rounded-lg">
                           <div className="text-gray-400 text-sm sm:w-1/3 truncate" title={triggerLabels}>
                             {triggerLabels}
                           </div>
@@ -344,7 +344,7 @@ export const SaasCalculatorPage = () => {
                         
                         <ConvertKitForm 
                           className="flex flex-col sm:flex-row gap-3 mb-4"
-                          inputClassName="flex-1 bg-[#0D0F12] border border-gray-700 rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors"
+                          inputClassName="flex-1 bg-brand-bg border border-gray-700 rounded px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors"
                           buttonClassName="bg-brand-cyan text-brand-bg px-6 py-3 rounded font-bold hover:bg-teal-400 transition-colors whitespace-nowrap"
                           buttonText="Get Free Guide →"
                           successMessage="Check your inbox! Your guide is on its way. 🎉"
@@ -370,7 +370,7 @@ export const SaasCalculatorPage = () => {
                       <h3 className="text-lg font-bold font-mono text-white mb-4">Tools we recommend for your stack</h3>
                       <div className="space-y-3">
                         {activeRecommendedTools.map(tool => (
-                          <div key={tool.id} className="bg-[#0D0F12] border border-gray-800 p-4 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                          <div key={tool.id} className="bg-brand-bg border border-gray-800 p-4 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div>
                               <div className="font-bold text-white mb-1">{tool.name}</div>
                               <div className="text-sm text-gray-400">{tool.desc}</div>
@@ -384,7 +384,7 @@ export const SaasCalculatorPage = () => {
                     </div>
                   )}
 
-                  <div className="bg-[#0D0F12] border border-brand-cyan/30 p-6 rounded-xl text-center">
+                  <div className="bg-brand-bg border border-brand-cyan/30 p-6 rounded-xl text-center">
                     <h3 className="text-xl font-bold font-mono text-white mb-3">Want the complete guide to making this switch?</h3>
                     <p className="text-gray-400 text-sm mb-6">
                       We documented exactly how we replaced a $1,053/month SaaS stack with AI tools. Every tool, every saving, every result — honest.

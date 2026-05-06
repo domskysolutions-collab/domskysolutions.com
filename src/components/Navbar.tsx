@@ -53,7 +53,7 @@ export const Navbar = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -4 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute top-full left-0 w-72 bg-[#1a1a2e] border border-gray-500/20 rounded-lg shadow-xl overflow-hidden mt-1"
+                    className="absolute top-full left-0 w-72 bg-brand-surface border border-gray-500/20 rounded-lg shadow-xl overflow-hidden mt-1"
                   >
                     <div className="py-2">
                       {/* SECTION 1 — FREE TOOLS */}
@@ -144,7 +144,7 @@ export const Navbar = () => {
               </svg>
               <span>@domskysolutions</span>
             </a>
-            <a href="/#newsletter" className="bg-brand-amber text-brand-bg px-5 py-2.5 rounded-none font-bold text-sm hover:bg-yellow-400 transition-colors glow-amber-hover flex items-center gap-2">
+            <a href="/#newsletter" className="bg-brand-cyan text-[#000000] px-5 py-2.5 rounded-none font-bold text-sm hover:bg-brand-amber transition-colors glow-cyan-hover flex items-center gap-2">
               Join the Community
             </a>
           </div>

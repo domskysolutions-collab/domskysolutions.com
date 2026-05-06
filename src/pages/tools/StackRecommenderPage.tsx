@@ -238,8 +238,8 @@ export const StackRecommenderPage = () => {
                 onClick={() => handleSelect('role', opt.id)}
                 className={`flex items-start gap-4 p-6 rounded-xl text-left transition-all duration-200 border ${
                   answers.role === opt.id 
-                    ? 'border-brand-cyan bg-[#00F5D4]/10' 
-                    : 'border-gray-800 bg-[#1a1a2e] hover:border-gray-600'
+                    ? 'border-brand-cyan bg-[#F97316]/10' 
+                    : 'border-gray-800 bg-brand-surface hover:border-gray-600'
                 }`}
               >
                 <div className="text-3xl">{opt.icon}</div>
@@ -265,8 +265,8 @@ export const StackRecommenderPage = () => {
                 onClick={() => handleSelect('challenge', opt.id)}
                 className={`flex items-start gap-4 p-6 rounded-xl text-left transition-all duration-200 border ${
                   answers.challenge === opt.id 
-                    ? 'border-brand-cyan bg-[#00F5D4]/10' 
-                    : 'border-gray-800 bg-[#1a1a2e] hover:border-gray-600'
+                    ? 'border-brand-cyan bg-[#F97316]/10' 
+                    : 'border-gray-800 bg-brand-surface hover:border-gray-600'
                 }`}
               >
                 <div className="text-3xl">{opt.icon}</div>
@@ -291,8 +291,8 @@ export const StackRecommenderPage = () => {
                 onClick={() => handleSelect('goal', opt.id)}
                 className={`flex items-start gap-4 p-6 rounded-xl text-left transition-all duration-200 border ${
                   answers.goal === opt.id 
-                    ? 'border-brand-cyan bg-[#00F5D4]/10' 
-                    : 'border-gray-800 bg-[#1a1a2e] hover:border-gray-600'
+                    ? 'border-brand-cyan bg-[#F97316]/10' 
+                    : 'border-gray-800 bg-brand-surface hover:border-gray-600'
                 }`}
               >
                 <div className="text-3xl">{opt.icon}</div>
@@ -318,8 +318,8 @@ export const StackRecommenderPage = () => {
                 onClick={() => handleSelect('budget', opt.id)}
                 className={`flex items-center justify-between p-6 rounded-xl text-left transition-all duration-200 border ${
                   answers.budget === opt.id 
-                    ? 'border-brand-cyan bg-[#00F5D4]/10' 
-                    : 'border-gray-800 bg-[#1a1a2e] hover:border-gray-600'
+                    ? 'border-brand-cyan bg-[#F97316]/10' 
+                    : 'border-gray-800 bg-brand-surface hover:border-gray-600'
                 }`}
               >
                 <h3 className={`font-bold text-xl ${answers.budget === opt.id ? 'text-white' : 'text-gray-300'}`}>{opt.title}</h3>
@@ -341,8 +341,8 @@ export const StackRecommenderPage = () => {
                 onClick={() => handleSelect('experience', opt.id)}
                 className={`flex items-start gap-4 p-6 rounded-xl text-left transition-all duration-200 border ${
                   answers.experience === opt.id 
-                    ? 'border-brand-cyan bg-[#00F5D4]/10' 
-                    : 'border-gray-800 bg-[#1a1a2e] hover:border-gray-600'
+                    ? 'border-brand-cyan bg-[#F97316]/10' 
+                    : 'border-gray-800 bg-brand-surface hover:border-gray-600'
                 }`}
               >
                 <div className="text-3xl">{opt.icon}</div>
@@ -488,7 +488,7 @@ export const StackRecommenderPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.15 }}
-                className={`bg-[#1a1a2e] border ${borderColor} border-l-[3px] rounded-xl p-6 md:p-8 hover:-translate-y-1 transition-transform`}
+                className={`bg-brand-surface border ${borderColor} border-l-[3px] rounded-xl p-6 md:p-8 hover:-translate-y-1 transition-transform`}
               >
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                   <div className="flex-1">
@@ -556,7 +556,7 @@ export const StackRecommenderPage = () => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-brand-surface to-[#1a1a2e] border border-gray-800 rounded-2xl p-8 mb-16 text-center">
+        <div className="bg-gradient-to-br from-brand-surface to-[#1C0F05] border border-gray-800 rounded-2xl p-8 mb-16 text-center">
           <h3 className="text-2xl font-bold text-white mb-4">Want the full breakdown of each recommended tool?</h3>
           <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
             Get The AI Tools Starter Kit — our free guide covering setup, pricing and first steps for every tool in your stack.

@@ -33,7 +33,7 @@ export function UsageLimitModal({ open, onClose, dailyLimit }: UsageLimitModalPr
       />
       <div
         className="relative z-10 max-w-md rounded-2xl border border-gray-700 p-6 shadow-xl"
-        style={{ background: '#1a1a2e' }}
+        style={{ background: '#1C0F05' }}
       >
         <h2
           id="usage-limit-title"
@@ -58,7 +58,7 @@ export function UsageLimitModal({ open, onClose, dailyLimit }: UsageLimitModalPr
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-xl px-4 py-2 text-center font-mono text-sm font-bold text-brand-bg transition-opacity hover:opacity-90"
-            style={{ background: '#F5A623' }}
+            style={{ background: '#F97316', color: '#000000' }}
           >
             Join waitlist →
           </a>

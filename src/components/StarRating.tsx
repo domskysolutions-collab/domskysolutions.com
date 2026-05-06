@@ -8,9 +8,9 @@ type StarRatingProps = {
   className?: string;
 };
 
-const FILLED = '#F5A623';
-const EMPTY = '#2a2d3a';
-const GLOW = 'drop-shadow(0 0 3px rgba(245, 166, 35, 0.5))';
+const FILLED = '#FB923C';
+const EMPTY = '#A16207';
+const GLOW = 'drop-shadow(0 0 3px rgba(251, 146, 60, 0.45))';
 
 function clampRating(rating: number, max: number) {
   if (Number.isNaN(rating)) return 0;

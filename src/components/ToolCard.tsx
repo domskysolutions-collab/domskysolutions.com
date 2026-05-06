@@ -6,22 +6,22 @@ import { ArrowRight, Star } from 'lucide-react';
 
 export const ToolReviewCard = ({ name, desc, to, category }: { name: string, desc: string, to: string, category?: string }) => {
   const categoryColors: Record<string, string> = {
-    'Writing': 'border-l-[#00F5D4]',
+    'Writing': 'border-l-[#F97316]',
     'Research': 'border-l-blue-500',
     'Design': 'border-l-purple-500',
     'Coding': 'border-l-green-500',
-    'Productivity': 'border-l-[#F5A623]',
+    'Productivity': 'border-l-[#FB923C]',
     'Video': 'border-l-coral-500',
     'Website': 'border-l-teal-500',
   };
 
   // coral-500 is not a default tailwind color, let's use a hex or rose-500
   const categoryColorsSafe: Record<string, string> = {
-    'Writing': 'border-l-[#00F5D4]',
+    'Writing': 'border-l-[#F97316]',
     'Research': 'border-l-blue-500',
     'Design': 'border-l-purple-500',
     'Coding': 'border-l-green-500',
-    'Productivity': 'border-l-[#F5A623]',
+    'Productivity': 'border-l-[#FB923C]',
     'Video': 'border-l-[#FF7F50]', // coral
     'Website': 'border-l-teal-500',
   };

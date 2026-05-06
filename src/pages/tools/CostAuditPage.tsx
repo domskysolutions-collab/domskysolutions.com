@@ -20,8 +20,8 @@ export function CostAuditPage() {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-opacity hover:opacity-90"
           style={{
-            background: '#F5A623',
-            color: '#0D0F12',
+            background: '#F97316',
+            color: '#000000',
           }}
         >
           Join Waitlist →

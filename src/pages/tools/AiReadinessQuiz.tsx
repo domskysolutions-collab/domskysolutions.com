@@ -382,9 +382,9 @@ domskysolutions.com/tools/ai-readiness-quiz
                   completed
                     ? 'bg-brand-cyan border-brand-cyan text-brand-bg'
                     : active
-                    ? 'border-brand-cyan text-brand-cyan bg-[#00F5D4]/10 animate-pulse'
+                    ? 'border-brand-cyan text-brand-cyan bg-[#F97316]/10 animate-pulse'
                     : upcoming
-                    ? 'border-gray-700 text-gray-600 bg-[#1a1a2e]'
+                    ? 'border-gray-700 text-gray-600 bg-brand-surface'
                     : 'border-gray-700'
                 }`}
               >
@@ -400,7 +400,7 @@ domskysolutions.com/tools/ai-readiness-quiz
 
   const optionCardClass = (selected: boolean) =>
     `flex items-start gap-4 p-6 rounded-xl text-left transition-all duration-200 border cursor-pointer min-h-[104px] ${
-      selected ? 'border-brand-cyan bg-[#00F5D4]/10' : 'border-gray-800 bg-[#1a1a2e] hover:border-gray-600'
+      selected ? 'border-brand-cyan bg-[#F97316]/10' : 'border-gray-800 bg-brand-surface hover:border-gray-600'
     }`;
 
   if (isCalculating) {
@@ -431,7 +431,7 @@ domskysolutions.com/tools/ai-readiness-quiz
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
-          className="bg-[#1a1a2e] border-l-4 border-brand-cyan p-8 md:p-10 shadow-2xl"
+          className="bg-brand-surface border-l-4 border-brand-cyan p-8 md:p-10 shadow-2xl"
         >
           <div className="flex items-center gap-3 mb-5">
             <span className="px-3 py-1 bg-brand-amber/10 text-brand-amber text-xs font-mono uppercase tracking-wider border border-brand-amber/30">
@@ -493,7 +493,7 @@ domskysolutions.com/tools/ai-readiness-quiz
                   href={result.toolUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 border border-brand-cyan text-brand-cyan font-bold px-6 py-3 rounded-lg hover:bg-[#00F5D4]/10 transition-colors min-h-[44px]"
+                  className="inline-flex items-center justify-center gap-2 border border-brand-cyan text-brand-cyan font-bold px-6 py-3 rounded-lg hover:bg-[#F97316]/10 transition-colors min-h-[44px]"
                 >
                   Start Free at {new URL(result.toolUrl!).hostname} → <ExternalLink size={18} />
                 </a>
@@ -508,7 +508,7 @@ domskysolutions.com/tools/ai-readiness-quiz
                 </Link>
                 <Link
                   to={result.reviewLinks![1]}
-                  className="inline-flex items-center justify-center gap-2 border border-brand-cyan text-brand-cyan font-bold px-6 py-3 rounded-lg hover:bg-[#00F5D4]/10 transition-colors min-h-[44px]"
+                  className="inline-flex items-center justify-center gap-2 border border-brand-cyan text-brand-cyan font-bold px-6 py-3 rounded-lg hover:bg-[#F97316]/10 transition-colors min-h-[44px]"
                 >
                   Read Perplexity Review → <ArrowRight size={18} />
                 </Link>
@@ -546,13 +546,13 @@ domskysolutions.com/tools/ai-readiness-quiz
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
             <button
               onClick={copyShareText}
-              className="inline-flex items-center justify-center gap-2 border border-gray-600 text-gray-200 font-bold px-6 py-3 rounded-lg hover:border-white hover:bg-[#1a1a2e] transition-colors min-h-[44px]"
+              className="inline-flex items-center justify-center gap-2 border border-gray-600 text-gray-200 font-bold px-6 py-3 rounded-lg hover:border-white hover:bg-brand-surface transition-colors min-h-[44px]"
             >
               <Copy size={18} /> {copied ? 'Copied!' : 'Copy Share Text'}
             </button>
             <button
               onClick={shareOnX}
-              className="inline-flex items-center justify-center gap-2 border border-brand-cyan text-brand-cyan font-bold px-6 py-3 rounded-lg hover:bg-[#00F5D4]/10 transition-colors min-h-[44px]"
+              className="inline-flex items-center justify-center gap-2 border border-brand-cyan text-brand-cyan font-bold px-6 py-3 rounded-lg hover:bg-[#F97316]/10 transition-colors min-h-[44px]"
             >
               <Share2 size={18} /> Share on X
             </button>
@@ -721,7 +721,7 @@ domskysolutions.com/tools/ai-readiness-quiz
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-cyan to-blue-500" />
 
         <div className="mb-10">
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#00F5D4]/10 border border-brand-cyan/30 text-brand-cyan text-xs font-mono uppercase tracking-wider mb-5">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#F97316]/10 border border-brand-cyan/30 text-brand-cyan text-xs font-mono uppercase tracking-wider mb-5">
             FREE — 60 SECONDS
           </div>
           <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-4">
