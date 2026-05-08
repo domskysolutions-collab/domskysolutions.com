@@ -18,7 +18,7 @@ export const BLOG_POSTS = [
     date: "April 2026",
     readTime: "6 minutes",
     image: "/images/adobe-article.jpg",
-    author: "Domsky Solutions Team"
+    author: "Dominik"
   },
   {
     title: "I Replaced My Entire $500/Month SaaS Stack With AI Tools",
@@ -28,7 +28,7 @@ export const BLOG_POSTS = [
     date: "April 2026",
     readTime: "8 minutes",
     image: "/images/saas-stack-article.jpg",
-    author: "Domsky Solutions Team"
+    author: "Dominik"
   },
   {
     title: "10 AI Tools That Will Make You Look Like a Team of 10",
@@ -38,7 +38,7 @@ export const BLOG_POSTS = [
     date: "April 2026",
     readTime: "9 minutes",
     image: "/images/team-of-10-article.jpg",
-    author: "Domsky Solutions Team"
+    author: "Dominik"
   },
   {
     title: "Claude vs ChatGPT vs Gemini — Which AI Assistant Should You Actually Use in 2026?",
@@ -48,7 +48,7 @@ export const BLOG_POSTS = [
     date: "April 2026",
     readTime: "10 minutes",
     image: "/images/ai-comparison-article.jpg",
-    author: "Domsky Solutions Team"
+    author: "Dominik"
   },
   {
     title: "How I Use AI to Run My Entire Business Solo — My Exact Daily Workflow",
@@ -58,6 +58,6 @@ export const BLOG_POSTS = [
     date: "April 2026",
     readTime: "9 minutes",
     image: "/images/workflow-article.jpg",
-    author: "Domsky Solutions Team"
+    author: "Dominik"
   }
 ];
