@@ -23,7 +23,10 @@ export const StarRating: React.FC<StarRatingProps> = ({ rating, max = 5, size = 
   const hasHalf = safeRating - fullCount >= 0.5;
 
   return (
-    <span className={className} aria-label={`${safeRating}/${max}`}>
+    <span
+      className={`${className ?? ''} inline-flex items-center gap-1 whitespace-nowrap leading-none`}
+      aria-label={`${safeRating}/${max}`}
+    >
       {Array.from({ length: max }).map((_, i) => {
         const isFull = i < fullCount;
         const isHalf = !isFull && hasHalf && i === fullCount;
