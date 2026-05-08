@@ -1,16 +1,25 @@
 
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { ArrowRight, Check } from 'lucide-react';
 
-export const ConvertKitForm = ({ 
-  className = "", 
-  inputClassName = "", 
-  buttonClassName = "", 
+type ConvertKitFormProps = {
+  className?: string;
+  inputClassName?: string;
+  buttonClassName?: string;
+  buttonText?: string;
+  placeholder?: string;
+  successMessage?: string;
+  onSuccess?: (email: string) => void;
+};
+
+export const ConvertKitForm = ({
+  className = "",
+  inputClassName = "",
+  buttonClassName = "",
   buttonText = "Join the Community",
   placeholder = "Enter your email address...",
-  successMessage = "You are in! Welcome to the community."
-}) => {
+  successMessage = "You are in! Welcome to the community.",
+  onSuccess,
+}: ConvertKitFormProps) => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -48,6 +57,7 @@ export const ConvertKitForm = ({
 
       if (response.ok) {
         setStatus("success");
+        onSuccess?.(email);
         console.log("Success");
       } else {
         setStatus("error");
