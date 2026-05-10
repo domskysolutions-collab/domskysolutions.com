@@ -3,6 +3,7 @@ import { useCallback, useMemo, useState } from 'react';
 const TOOL_DAILY_LIMITS: Record<string, number> = {
   'email-writer': 3,
   'tool-description': 3,
+  'cost-audit': 3,
 };
 
 function todayIso(): string {

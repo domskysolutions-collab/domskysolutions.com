@@ -1,5 +1,59 @@
 /** Shared with SaaS calculator — kept out of HomePage to avoid circular/heavy imports. */
 
+export const SAAS_SPEND_CATEGORIES = [
+  {
+    title: 'Writing & Content',
+    items: [
+      { id: 'writingTool', label: 'AI Writing Tools (Jasper, Copy.ai, etc.)' },
+      { id: 'copywriter', label: 'Freelance Copywriters' },
+      { id: 'contentAgency', label: 'Content Marketing Agency' },
+    ],
+  },
+  {
+    title: 'Research & Information',
+    items: [
+      { id: 'newsSubs', label: 'News & Industry Subscriptions' },
+      { id: 'researchTools', label: 'Research & Data Tools' },
+    ],
+  },
+  {
+    title: 'Design & Visuals',
+    items: [
+      { id: 'adobe', label: 'Adobe Creative Cloud' },
+      { id: 'canva', label: 'Canva Pro or similar' },
+      { id: 'stockPhoto', label: 'Stock Photo/Video Subscriptions' },
+      { id: 'graphicDesigner', label: 'Freelance Graphic Designers' },
+    ],
+  },
+  {
+    title: 'Development & Web',
+    items: [
+      { id: 'devRetainer', label: 'Developer Retainers' },
+      { id: 'websiteBuilder', label: 'Website Builders (Wix, Squarespace)' },
+      { id: 'nocodeTool', label: 'No-Code Tools (Webflow, Bubble)' },
+    ],
+  },
+  {
+    title: 'Audio & Video',
+    items: [
+      { id: 'videoEditor', label: 'Freelance Video Editors' },
+      { id: 'podcastEditor', label: 'Podcast Editors' },
+      { id: 'voiceover', label: 'Voiceover Artists' },
+    ],
+  },
+  {
+    title: 'Workspace & Operations',
+    items: [
+      { id: 'noteTaking', label: 'Note-taking Apps (Evernote, Roam)' },
+      { id: 'projectManagement', label: 'Project Management (Asana, Monday)' },
+      { id: 'otherSubs', label: 'Other Software Subscriptions' },
+    ],
+  },
+] as const;
+
+/** @deprecated Use SAAS_SPEND_CATEGORIES — alias for existing calculator imports */
+export const CATEGORIES = SAAS_SPEND_CATEGORIES;
+
 export const AI_ALTERNATIVES = [
   {
     id: 'writing',

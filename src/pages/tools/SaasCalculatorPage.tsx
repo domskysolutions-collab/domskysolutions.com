@@ -3,59 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Check, Plus, Trash2, DollarSign, TrendingDown, Zap, Sparkles, CheckCircle2, Copy } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { AI_ALTERNATIVES, RECOMMENDED_TOOLS } from '../../data/saasCalculatorShared';
+import {
+  AI_ALTERNATIVES,
+  CATEGORIES,
+  RECOMMENDED_TOOLS,
+} from '../../data/saasCalculatorShared';
 import { ConvertKitForm } from '../../components/ConvertKitForm';
 
-export const CATEGORIES = [
-  {
-    title: "Writing & Content",
-    items: [
-      { id: "writingTool", label: "AI Writing Tools (Jasper, Copy.ai, etc.)" },
-      { id: "copywriter", label: "Freelance Copywriters" },
-      { id: "contentAgency", label: "Content Marketing Agency" }
-    ]
-  },
-  {
-    title: "Research & Information",
-    items: [
-      { id: "newsSubs", label: "News & Industry Subscriptions" },
-      { id: "researchTools", label: "Research & Data Tools" }
-    ]
-  },
-  {
-    title: "Design & Visuals",
-    items: [
-      { id: "adobe", label: "Adobe Creative Cloud" },
-      { id: "canva", label: "Canva Pro or similar" },
-      { id: "stockPhoto", label: "Stock Photo/Video Subscriptions" },
-      { id: "graphicDesigner", label: "Freelance Graphic Designers" }
-    ]
-  },
-  {
-    title: "Development & Web",
-    items: [
-      { id: "devRetainer", label: "Developer Retainers" },
-      { id: "websiteBuilder", label: "Website Builders (Wix, Squarespace)" },
-      { id: "nocodeTool", label: "No-Code Tools (Webflow, Bubble)" }
-    ]
-  },
-  {
-    title: "Audio & Video",
-    items: [
-      { id: "videoEditor", label: "Freelance Video Editors" },
-      { id: "podcastEditor", label: "Podcast Editors" },
-      { id: "voiceover", label: "Voiceover Artists" }
-    ]
-  },
-  {
-    title: "Workspace & Operations",
-    items: [
-      { id: "noteTaking", label: "Note-taking Apps (Evernote, Roam)" },
-      { id: "projectManagement", label: "Project Management (Asana, Monday)" },
-      { id: "otherSubs", label: "Other Software Subscriptions" }
-    ]
-  }
-];
+export { CATEGORIES } from '../../data/saasCalculatorShared';
 
 export const SaasCalculatorPage = () => {
   const [inputs, setInputs] = useState<Record<string, string>>({});
