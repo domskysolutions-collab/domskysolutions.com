@@ -34,6 +34,72 @@ export const TOOL_CATEGORIES = [
 
 export const AI_TOOLS: ToolConfig[] = [
   {
+    slug: 'email-writer',
+    name: 'AI Email Writer',
+    category: 'Productivity',
+    description:
+      'Draft professional client emails, follow-ups, and outreach in seconds — built for solopreneurs who hate the blank screen.',
+    isPremium: false,
+    inputs: [
+      {
+        name: 'details',
+        label: 'What should the email cover?',
+        type: 'textarea',
+        placeholder: 'Used on the dedicated Email Writer page — open the tool for the full form.',
+      },
+    ],
+    promptTemplate:
+      'This configured tool opens the standalone Email Writer at /tools/email-writer. Use that page to generate.',
+    outputType: 'text',
+    seoTitle: 'AI Email Writer | Domsky Solutions',
+    seoDescription:
+      'Free AI email writer for freelancers and founders — professional tone, fast drafts.',
+  },
+  {
+    slug: 'tool-description',
+    name: 'Tool Description Generator',
+    category: 'Marketing & Sales',
+    description:
+      'Paste-ready taglines, blurbs, and bullets for Product Hunt, directories, and landing pages — honest copy, not hype.',
+    isPremium: false,
+    inputs: [
+      {
+        name: 'product',
+        label: 'Tool or product',
+        type: 'text',
+        placeholder: 'Full workflow lives on the Tool Description Generator page.',
+      },
+    ],
+    promptTemplate:
+      'Use the Tool Description Generator page at /tools/tool-description for structured marketing copy.',
+    outputType: 'markdown',
+    seoTitle: 'Tool Description Generator | Domsky Solutions',
+    seoDescription:
+      'Generate SaaS and AI tool descriptions for listings and launches — free for creators.',
+  },
+  {
+    slug: 'cost-audit',
+    name: 'SaaS Cost Audit',
+    category: 'Business Ideas',
+    description:
+      'Ground your subscription spend in real numbers and get a prioritized cleanup plan — overlap, waste, and what to cut first.',
+    isPremium: false,
+    inputs: [
+      {
+        name: 'note',
+        label: 'Note',
+        type: 'text',
+        placeholder: 'Use the SaaS Cost Audit page for spend inputs and AI audit.',
+      },
+    ],
+    promptTemplate:
+      'Open /tools/cost-audit to enter monthly costs and generate your personalized SaaS audit.',
+    outputType: 'markdown',
+    seoTitle: 'SaaS Cost Audit | Domsky Solutions',
+    seoDescription:
+      'AI-assisted audit of software spend for solopreneurs — free, grounded in your numbers.',
+  },
+  {
     slug: 'tiktok-hook-generator',
     name: 'TikTok Hook Generator',
     category: 'Social Media',

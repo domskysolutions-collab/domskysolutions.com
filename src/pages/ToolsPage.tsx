@@ -6,20 +6,23 @@ import { ToolCategoryFilter } from '../components/tools/ToolCategoryFilter';
 import { ToolCard } from '../components/tools/ToolCard';
 import { ConvertKitForm } from '../components/ConvertKitForm';
 
+/** Shown before email unlock — browser tools with dedicated pages on this site. */
+const FEATURED_BROWSER_SLUGS = ['email-writer', 'tool-description', 'cost-audit'] as const;
+
 export const ToolsPage = () => {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState<string | null>(null);
   const [emailUnlocked, setEmailUnlocked] = useState(false);
 
-  const featuredToolSlugs = useMemo(
-    () => ['tiktok-hook-generator', 'linkedin-post-generator', 'meeting-notes-summarizer'],
+  const moreExclusiveTools = useMemo(
+    () => Math.max(0, AI_TOOLS.length - FEATURED_BROWSER_SLUGS.length),
     []
   );
 
   const featuredTools = useMemo(() => {
     const bySlug = new Map(AI_TOOLS.map((t) => [t.slug, t]));
-    return featuredToolSlugs.map((slug) => bySlug.get(slug)).filter(Boolean);
-  }, [featuredToolSlugs]);
+    return FEATURED_BROWSER_SLUGS.map((slug) => bySlug.get(slug)).filter(Boolean);
+  }, []);
 
   useEffect(() => {
     document.title = 'AI Workspace Tools | Domsky Solutions';
@@ -69,9 +72,10 @@ export const ToolsPage = () => {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
             <div>
               <div className="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-2">BROWSER AI TOOLS</div>
-              <h2 className="text-2xl md:text-3xl font-bold font-mono text-white mb-2">3 featured tools</h2>
+              <h2 className="text-2xl md:text-3xl font-bold font-mono text-white mb-2">Start with these 3 free tools</h2>
               <p className="text-gray-400 text-sm leading-relaxed max-w-2xl">
-                The full library of {AI_TOOLS.length} tools is unlocked after email signup.
+                AI Email Writer, Tool Description Generator, and SaaS Cost Audit — ready now. Enter your email below to
+                unlock {moreExclusiveTools} more exclusive browser AI tools in the full library.
               </p>
             </div>
           </div>
@@ -85,17 +89,20 @@ export const ToolsPage = () => {
           {!emailUnlocked && (
             <div className="mt-8 border-t border-gray-800 pt-8">
               <div className="max-w-xl">
-                <h3 className="text-white font-bold font-mono text-lg mb-2">Unlock all tools</h3>
+                <h3 className="text-white font-bold font-mono text-lg mb-2">
+                  Enter your email — get {moreExclusiveTools} more exclusive tools
+                </h3>
                 <p className="text-gray-400 text-sm mb-4">
-                  Enter your email once to access the full 20-tool library.
+                  One signup unlocks the rest of the library: {moreExclusiveTools} additional browser AI tools beyond
+                  these three, plus search and filters below.
                 </p>
                 <ConvertKitForm
                   className="flex flex-col sm:flex-row gap-3"
                   inputClassName="flex-1 rounded-xl border border-gray-700 bg-brand-bg px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-cyan/40 focus:border-brand-cyan font-sans text-sm"
                   buttonClassName="px-6 py-3 rounded-xl bg-brand-cyan text-brand-bg font-bold font-mono text-sm hover:opacity-90 transition-opacity"
-                  buttonText="Unlock tools"
-                  placeholder="Enter your email to unlock…"
-                  successMessage="Unlocked — scroll down to the full tools library."
+                  buttonText="Get exclusive tools"
+                  placeholder={`Enter your email for ${moreExclusiveTools} more exclusive tools…`}
+                  successMessage="Unlocked — scroll down for the full tools library and search."
                   onSuccess={(email) => {
                     try {
                       window.localStorage.setItem('ds_tools_email', email);
