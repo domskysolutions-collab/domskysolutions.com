@@ -293,8 +293,12 @@ export function ToolDescriptionPage() {
         </div>
 
         <div
-          className="mt-10 rounded-2xl border border-gray-800 p-8"
-          style={{ background: '#1a1a2e' }}
+          className="mt-10 rounded-2xl border p-8"
+          style={{
+            background: 'rgba(0, 245, 212, 0.08)',
+            borderColor: 'rgba(0, 245, 212, 0.45)',
+            boxShadow: '0 0 40px rgba(0, 245, 212, 0.08)',
+          }}
         >
           <div className="space-y-6">
             <div>
