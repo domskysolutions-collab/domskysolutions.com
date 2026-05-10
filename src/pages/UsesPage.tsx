@@ -11,7 +11,7 @@ const usesTools = [
     name: 'ConvertKit',
     category: 'Email Newsletter',
     rating: 4.8,
-    externalLink: 'https://convertkit.com',
+    externalLink: 'https://partners.kit.com/8n6vc28gsvfm',
     tagline: 'The creator marketing platform',
     desc: 'We use ConvertKit to send our weekly newsletter to thousands of subscribers. It\'s built specifically for creators, making it incredibly easy to set up automations, segment our audience, and deliver content reliably without getting bogged down in complex enterprise features.',
     pros: [
