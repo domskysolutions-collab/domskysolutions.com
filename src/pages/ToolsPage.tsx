@@ -176,6 +176,12 @@ export const ToolsPage = () => {
             >
               SaaS calculator
             </Link>
+            <Link
+              to="/tools/tool-description"
+              className="px-4 py-2 rounded-lg border border-gray-600 text-sm text-gray-300 hover:border-brand-cyan hover:text-brand-cyan transition-colors"
+            >
+              Tool description generator
+            </Link>
           </div>
         </section>
       </div>
