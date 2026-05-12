@@ -25,42 +25,29 @@ export const ConvertKitForm = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Attempting ConvertKit submission...");
 
     if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
       setStatus("error");
-      console.log("Error: Invalid email format");
       return;
     }
-    
+
     setStatus("loading");
-    
+
     try {
-      const formId = import.meta.env.VITE_CONVERTKIT_FORM_ID;
-      const apiKey = import.meta.env.VITE_CONVERTKIT_API_KEY;
-
-      console.log(`API Key present: ${!!apiKey}`);
-      console.log(`Form ID present: ${!!formId}`);
-
-      const response = await fetch('/api/subscribe', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ email }),
-});
-      
-      console.log(`Response status: ${response.status}`);
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
 
       if (response.ok) {
         setStatus("success");
         onSuccess?.(email);
-        console.log("Success");
       } else {
         setStatus("error");
-        console.log(`Error: API returned status ${response.status}`);
       }
-    } catch (error: any) {
+    } catch {
       setStatus("error");
-      console.log(`Error: ${error.message || "Network error"}`);
     }
   };
 
