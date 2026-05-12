@@ -42,16 +42,11 @@ export const ConvertKitForm = ({
       console.log(`API Key present: ${!!apiKey}`);
       console.log(`Form ID present: ${!!formId}`);
 
-      const response = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          api_key: apiKey,
-          email: email,
-        }),
-      });
+      const response = await fetch('/api/subscribe', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email }),
+});
       
       console.log(`Response status: ${response.status}`);
 
