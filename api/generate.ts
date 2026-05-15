@@ -12,9 +12,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // CORS — only allow your own domain
   const origin = req.headers.origin;
-  if (origin !== 'https://domskysolutions.com') {
-    return res.status(403).json({ error: 'Forbidden' });
-  }
+const allowedOrigins = [
+  'https://domskysolutions.com',
+  'https://www.domskysolutions.com',
+];
+if (!origin || !allowedOrigins.includes(origin)) {
+  return res.status(403).json({ error: 'Forbidden' });
+}
 
   const { messages, model, max_tokens } = req.body;
 
