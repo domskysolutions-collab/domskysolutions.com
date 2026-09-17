@@ -23,6 +23,7 @@ import { AiReadinessQuiz } from './pages/tools/AiReadinessQuiz';
 import { EmailWriterPage } from './pages/tools/EmailWriterPage';
 import { ToolDescriptionPage } from './pages/tools/ToolDescriptionPage';
 import { CostAuditPage } from './pages/tools/CostAuditPage';
+import { StackScorecardPage } from './pages/StackScorecardPage';
 import { UsesPage } from './pages/UsesPage';
 import { ConvertKitReviewPage } from './pages/uses/ConvertKitReviewPage';
 import { NamecheapReviewPage } from './pages/uses/NamecheapReviewPage';
@@ -58,6 +59,7 @@ export function SiteRoutes() {
         <Route path="/tools/email-writer" element={<EmailWriterPage />} />
         <Route path="/tools/tool-description" element={<ToolDescriptionPage />} />
         <Route path="/tools/cost-audit" element={<CostAuditPage />} />
+        <Route path="/scorecard" element={<StackScorecardPage />} />
         <Route path="/tools/:slug" element={<ToolsSlugPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/reviews/:id" element={<ToolPage />} />

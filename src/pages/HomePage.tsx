@@ -64,7 +64,7 @@ export const HomePage = () => {
                     backgroundClip: 'text',
                   }}
                 >
-                  Overpaying
+                  Tools
                 </span>
                 .
               </span>
@@ -94,23 +94,23 @@ export const HomePage = () => {
                 lineHeight: 1.5,
               }}
             >
-              AI tools reviewed for solopreneurs who build alone.
+              Practical reviews, comparisons, and guides to help you save time, automate work, and grow smarter.
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
             <Link
-              to="/reviews"
+              to="/tools"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-[#000000] font-bold text-lg hover:bg-brand-amber transition-colors shadow-[0_0_28px_rgba(249,115,22,0.35)]"
             >
-              Read independent reviews <ArrowRight className="w-5 h-5" />
+              Explore the Best Tools <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link
-              to="/tools"
+            <a
+              href="#newsletter"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-gray-600 text-white font-bold text-lg hover:border-brand-cyan hover:bg-brand-surface transition-colors"
             >
-              Try Free Tools
-            </Link>
+              Get the free AI builder toolkit
+            </a>
           </div>
           <p className="mx-auto mb-4" style={{ maxWidth: 800, fontSize: 13, color: '#D6B98C', fontStyle: 'italic' }}>
             Explore practical verdicts, limitations and pricing considerations for your next tool. No
@@ -152,12 +152,12 @@ export const HomePage = () => {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
             <div>
               <div className="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-2">INDEPENDENT REVIEWS</div>
-              <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Featured AI Reviews</h2>
+              <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Popular Reviews & Comparisons</h2>
               <p className="text-gray-400 mt-2 max-w-2xl">
-                Explore the verdicts alongside our methodology and evidence disclosures.
+                See the features, pricing, limitations, and best-fit use cases that matter when you are choosing software.
               </p>
             </div>
-            <Link to="/reviews" className="inline-flex items-center gap-2 text-brand-cyan font-mono text-sm hover:underline shrink-0">
+            <Link to="/tools" className="inline-flex items-center gap-2 text-brand-cyan font-mono text-sm hover:underline shrink-0">
               View all reviews <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -241,6 +241,23 @@ export const HomePage = () => {
         </div>
       </section>
 
+      {/* Best tools for */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-10"><div className="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-2">CHOOSE BY OUTCOME</div><h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Best tools for...</h2><p className="text-gray-400 mt-2">Start with the job you need to get done.</p></div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[['AI & automation','Automate repetitive work and move faster.','/tools/stack-recommender'],['Marketing & growth','Build content, email and lead systems.','/tools/content-calendar'],['Websites & online business','Launch and improve your online presence.','/tools'],['Productivity & business','Organize projects and run the business.','/tools/saas-calculator']].map(([title,body,to]) => <Link key={title} to={to} className="rounded-xl border border-brand-border bg-brand-surface p-5 hover:border-brand-cyan transition-colors"><h3 className="font-bold font-mono text-white mb-2">{title}</h3><p className="text-gray-400 text-sm mb-4">{body}</p><span className="text-brand-cyan text-xs font-mono font-bold">Find the right tools →</span></Link>)}
+          </div>
+        </div>
+      </section>
+
+      {/* Comparison table */}
+      <section className="py-16 md:py-24 bg-brand-surface border-y border-gray-800 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto"><div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10"><div><div className="text-xs font-mono text-brand-amber uppercase tracking-wider mb-2">COMPARE BEFORE YOU PAY</div><h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Popular tool comparisons</h2><p className="text-gray-400 mt-2">A quick starting point before you read the full hands-on review.</p></div><Link to="/comparisons" className="text-brand-cyan font-mono text-sm">Compare all tools →</Link></div><div className="overflow-x-auto rounded-xl border border-gray-800"><table className="w-full text-left text-sm"><thead className="bg-brand-bg"><tr><th className="p-4 text-gray-400 font-mono">Tool</th><th className="p-4 text-gray-400 font-mono">Best for</th><th className="p-4 text-gray-400 font-mono">Starting price</th><th className="p-4"></th></tr></thead><tbody>{[['Claude','Writing and reasoning','Free / $20 mo','/reviews/claude'],['Perplexity','Research with sources','Free / $20 mo','/reviews/perplexity'],['Cursor','AI-assisted coding','Free / $20 mo','/reviews/cursor']].map(([tool,best,price,to])=><tr key={tool} className="border-t border-gray-800"><td className="p-4 text-white font-bold">{tool}</td><td className="p-4 text-gray-400">{best}</td><td className="p-4 text-gray-400">{price}</td><td className="p-4 text-right"><Link to={to} className="text-brand-cyan font-mono text-xs">Read review →</Link></td></tr>)}</tbody></table></div></div>
+      </section>
+
+      {/* Toolkit lead magnet */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8"><div className="max-w-5xl mx-auto rounded-2xl border border-brand-cyan/30 bg-brand-surface p-8 md:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-8"><div><div className="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-3">FREE EMAIL GUIDE</div><h2 className="text-3xl font-bold font-mono text-white mb-3">Get the free AI Builder Toolkit</h2><p className="text-gray-400 max-w-xl">A practical shortlist of AI and SaaS tools for building, automating and growing a small business. Delivered straight to your inbox.</p></div><a href="#newsletter" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-brand-cyan px-6 py-4 font-bold text-brand-bg hover:bg-brand-amber transition-colors">Get the free toolkit <ArrowRight className="w-5 h-5" /></a></div></section>
       {/* Stats bar */}
       <section
         className="py-10"
@@ -277,7 +294,7 @@ export const HomePage = () => {
       {/* How it works */}
       <section className="py-16 md:py-24 bg-brand-surface border-y border-gray-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-4">The Domsky Promise</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-4">Spend Less Time Researching. More Time Building.</h2>
           <p className="text-gray-400 text-center mb-12">
             What makes this site different from every other AI tools review site
           </p>
@@ -479,10 +496,10 @@ export const HomePage = () => {
       <section className="py-16 border-t border-gray-800 text-center px-4">
         <h2 className="text-2xl md:text-3xl font-bold font-mono text-white mb-6">Start saving money on software today</h2>
         <Link
-          to="/reviews"
+          to="/tools"
           className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-[#000000] font-bold hover:bg-brand-amber transition-colors"
         >
-          Read independent reviews <ArrowRight className="w-5 h-5" />
+          Explore the Best Tools <ArrowRight className="w-5 h-5" />
         </Link>
         <div className="text-gray-500 text-sm mt-4">
           Or try a free tool —{' '}
@@ -494,4 +511,10 @@ export const HomePage = () => {
     </main>
   );
 };
+
+
+
+
+
+
 
