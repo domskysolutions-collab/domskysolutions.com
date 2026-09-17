@@ -3,24 +3,22 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, Star, ExternalLink } from 'lucide-react';
-import { saasReviews } from '../data/saasReviews';
+import { reviewCatalog } from '../data/reviewCatalog';
+const reviews = [...reviewCatalog.map(r => ({ name: r.name, score: r.rating, max: r.bestRating, bestFor: r.category, tag: 'Editorial review', link: r.link })), { name: 'Kit (ConvertKit)', score: null, max: null, bestFor: 'Newsletters', tag: 'Tools we use', link: '/reviews/convertkit' }, { name: 'Namecheap', score: null, max: null, bestFor: 'Domains and hosting', tag: 'Tools we use', link: '/reviews/namecheap' }];
 import { ConvertKitForm } from '../components/ConvertKitForm';
 
 export const ReviewsPage = () => {
-  useEffect(() => {
-    document.title = "SaaS Software Reviews | domskysolutions.com";
-  }, []);
-
   return (
     <div className="bg-brand-bg min-h-screen pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white mb-4">SaaS Software Reviews</h1>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">In-depth breakdowns of the tools builders actually pay for</p>
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white mb-4">AI & SaaS Reviews</h1>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">All our software reviews in one place. Scores are editorial opinions; see our methodology for the evidence behind them.</p>
         </div>
         
+        <p className="mb-8 text-center"><Link to="/methodology" className="text-brand-cyan underline">How we review software</Link></p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {saasReviews.map((review, index) => (
+          {reviews.map((review, index) => (
             <motion.div 
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -34,10 +32,10 @@ export const ReviewsPage = () => {
                   {review.name.charAt(0)}
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-mono font-bold text-white">{review.score}<span className="text-gray-500 text-sm">/10</span></div>
+                  <div className="text-2xl font-mono font-bold text-white">{review.score !== null ? <>{review.score}<span className="text-gray-500 text-sm">/{review.max}</span></> : ""}</div>
                 </div>
               </div>
-              <h3 className="text-xl font-bold font-mono mb-2">{review.name}</h3>
+              <h2 className="text-xl font-bold font-mono mb-2">{review.name}</h2>
               <p className="text-gray-400 text-sm mb-4">Best for: <span className="text-gray-200">{review.bestFor}</span></p>
               <div className="mb-6 flex-grow">
                 <span className="inline-block px-2 py-1 bg-brand-amber/10 text-brand-amber text-xs font-mono border border-brand-amber/20">
@@ -54,3 +52,4 @@ export const ReviewsPage = () => {
     </div>
   );
 };
+

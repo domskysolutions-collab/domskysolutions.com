@@ -20,9 +20,9 @@ export const BlogCard: React.FC<{ post: any }> = ({ post }) => (
         <span className="text-gray-500 font-mono text-xs">•</span>
         <span className="text-gray-400 font-mono text-xs">{post.readTime}</span>
       </div>
-      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors line-clamp-2">
+      <h2 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors line-clamp-2">
         {post.title}
-      </h3>
+      </h2>
       <p className="text-gray-400 text-sm mb-6 line-clamp-2 flex-grow">
         {post.excerpt}
       </p>
@@ -38,3 +38,4 @@ export const BlogCard: React.FC<{ post: any }> = ({ post }) => (
     </div>
   </Link>
 );
+

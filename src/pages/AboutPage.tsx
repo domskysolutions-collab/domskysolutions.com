@@ -1,4 +1,6 @@
 
+import { BLOG_POSTS } from '../data/blogPosts';
+import { reviewCount } from '../data/reviewCatalog';
 import React, { useEffect } from 'react';
 import { useScroll } from 'motion/react';
 import { CheckCircle2 } from 'lucide-react';
@@ -8,18 +10,6 @@ import { ConvertKitForm } from '../components/ConvertKitForm';
 
 export const AboutPage = () => {
   const { scrollYProgress } = useScroll();
-
-  useEffect(() => {
-    document.title = "About — domskysolutions.com";
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', "The person behind domskysolutions.com — Dominik, a 25-year tech veteran, graphic designer, and lifelong PC enthusiast who tests AI tools so you don't have to.");
-  }, []);
-
   return (
     <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
       <motion.div
@@ -35,7 +25,7 @@ export const AboutPage = () => {
           className="mb-16"
         >
           <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-6">
-            "25 Years in Tech.<br />No Hype. Just What Works."
+            "A Designer’s Perspective.<br />No Hype. Just What Works."
           </h1>
           <p className="text-xl text-gray-400">
             Hi — I'm Dominik, also known as Domsky. I test AI tools so you do not have to.
@@ -73,7 +63,7 @@ export const AboutPage = () => {
               <div className="text-white font-bold text-lg font-inter">Dominik</div>
               <div className="text-brand-cyan text-sm font-mono mt-0.5">Graphic & Web Designer</div>
               <div className="text-gray-500 text-xs mt-1.5 font-inter">
-                25-year tech veteran · PC enthusiast · AI tools tester
+                Designer · PC enthusiast · AI tools reviewer
               </div>
               <a
                 href="https://x.com/domskysolutions"
@@ -132,7 +122,7 @@ export const AboutPage = () => {
               </div>
               <div className="bg-[#1a1a2e] border-l-[3px] border-l-brand-cyan p-6 rounded-r-xl">
                 <div className="text-3xl text-brand-amber mb-4">🎮</div>
-                <h3 className="font-bold text-white mb-2 text-lg">25-Year Gamer & PC Builder</h3>
+                <h3 className="font-bold text-white mb-2 text-lg">Gamer & PC Builder</h3>
                 <p className="text-sm text-gray-400 m-0 leading-relaxed">Thousands of hours inside complex systems builds instinct for quality software.</p>
               </div>
               <div className="bg-[#1a1a2e] border-l-[3px] border-l-brand-cyan p-6 rounded-r-xl">
@@ -143,7 +133,7 @@ export const AboutPage = () => {
               <div className="bg-[#1a1a2e] border-l-[3px] border-l-brand-cyan p-6 rounded-r-xl">
                 <div className="text-3xl text-brand-amber mb-4">🔍</div>
                 <h3 className="font-bold text-white mb-2 text-lg">AI Tools Tester</h3>
-                <p className="text-sm text-gray-400 m-0 leading-relaxed">Real usage over weeks — not demos. Every limitation included.</p>
+                <p className="text-sm text-gray-400 m-0 leading-relaxed">Editorial opinions with evidence disclosures and practical limitations.</p>
               </div>
             </div>
           </motion.div>
@@ -190,16 +180,16 @@ export const AboutPage = () => {
             <H2>THE NUMBERS</H2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8 not-prose">
               <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg text-center">
-                <div className="text-4xl md:text-5xl font-bold font-mono text-brand-cyan mb-2">11+</div>
+                <div className="text-4xl md:text-5xl font-bold font-mono text-brand-cyan mb-2">{reviewCount}</div>
                 <div className="text-sm text-gray-400">Tools Reviewed</div>
               </div>
               <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg text-center">
-                <div className="text-4xl md:text-5xl font-bold font-mono text-brand-cyan mb-2">4</div>
+                <div className="text-4xl md:text-5xl font-bold font-mono text-brand-cyan mb-2">{BLOG_POSTS.length}</div>
                 <div className="text-sm text-gray-400">Blog Posts</div>
               </div>
               <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg text-center">
-                <div className="text-4xl md:text-5xl font-bold font-mono text-brand-cyan mb-2">25+</div>
-                <div className="text-sm text-gray-400">Years in Tech</div>
+                <div className="text-xl font-bold font-mono text-brand-cyan mb-2">Personal</div>
+                <div className="text-sm text-gray-400">Perspective</div>
               </div>
               <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg text-center">
                 <div className="text-4xl md:text-5xl font-bold font-mono text-brand-cyan mb-2">0</div>
@@ -284,7 +274,7 @@ export const AboutPage = () => {
             </p>
             
             <div className="relative z-10 bg-brand-bg border border-brand-cyan/30 p-8 rounded-xl text-center max-w-2xl mx-auto">
-              <h2 className="text-2xl font-bold font-mono text-white mb-4">JOIN THE COMMUNITY</h2>
+              <h2 className="text-2xl font-bold font-mono text-white mb-4">GET THE WEEKLY EDGE</h2>
               <p className="text-gray-300 mb-6">
                 The best way to stay connected is the weekly newsletter — <span className="font-bold text-white">The Weekly Edge</span>.
               </p>
@@ -293,7 +283,7 @@ export const AboutPage = () => {
                 className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
                 inputClassName="flex-1 bg-brand-bg border border-gray-700 px-4 py-3 rounded text-white focus:outline-none focus:border-brand-cyan transition-colors"
                 buttonClassName="bg-brand-cyan text-[#000000] px-6 py-3 rounded font-bold hover:bg-brand-amber transition-colors glow-cyan-hover whitespace-nowrap"
-                buttonText="Join the Community"
+                buttonText="Get the Weekly Edge"
                 placeholder="Enter your email"
               />
               <p className="text-xs text-gray-500 mt-4">
@@ -307,3 +297,4 @@ export const AboutPage = () => {
     </div>
   );
 };
+

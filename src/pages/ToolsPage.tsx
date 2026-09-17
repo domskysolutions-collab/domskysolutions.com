@@ -4,39 +4,22 @@ import { Search, Wand2 } from 'lucide-react';
 import { AI_TOOLS } from '../data/tools';
 import { ToolCategoryFilter } from '../components/tools/ToolCategoryFilter';
 import { ToolCard } from '../components/tools/ToolCard';
-import { ConvertKitForm } from '../components/ConvertKitForm';
 
-/** Shown before email unlock — browser tools with dedicated pages on this site. */
+
+/** Featured utilities with dedicated pages. */
 const FEATURED_BROWSER_SLUGS = ['email-writer', 'tool-description', 'cost-audit'] as const;
 
 export const ToolsPage = () => {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState<string | null>(null);
-  const [emailUnlocked, setEmailUnlocked] = useState(false);
+  
 
-  const moreExclusiveTools = useMemo(
-    () => Math.max(0, AI_TOOLS.length - FEATURED_BROWSER_SLUGS.length),
-    []
-  );
+
 
   const featuredTools = useMemo(() => {
     const bySlug = new Map(AI_TOOLS.map((t) => [t.slug, t]));
     return FEATURED_BROWSER_SLUGS.map((slug) => bySlug.get(slug)).filter(Boolean);
   }, []);
-
-  useEffect(() => {
-    document.title = 'AI Workspace Tools | Domsky Solutions';
-  }, []);
-
-  useEffect(() => {
-    try {
-      const savedEmail = window.localStorage.getItem('ds_tools_email');
-      setEmailUnlocked(Boolean(savedEmail));
-    } catch {
-      setEmailUnlocked(false);
-    }
-  }, []);
-
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return AI_TOOLS.filter((t) => {
@@ -47,7 +30,7 @@ export const ToolsPage = () => {
     });
   }, [query, category]);
 
-  const visibleTools = emailUnlocked ? filtered : featuredTools;
+  const visibleTools = filtered;
 
   return (
     <div className="bg-brand-bg min-h-screen pt-28 pb-20">
@@ -74,8 +57,7 @@ export const ToolsPage = () => {
               <div className="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-2">BROWSER AI TOOLS</div>
               <h2 className="text-2xl md:text-3xl font-bold font-mono text-white mb-2">Start with these 3 free tools</h2>
               <p className="text-gray-400 text-sm leading-relaxed max-w-2xl">
-                AI Email Writer, Tool Description Generator, and SaaS Cost Audit — ready now. Enter your email below to
-                unlock {moreExclusiveTools} more exclusive browser AI tools in the full library.
+                Try the featured utilities, or browse the full library below. Search and filters are available without a newsletter signup.
               </p>
             </div>
           </div>
@@ -86,33 +68,7 @@ export const ToolsPage = () => {
             ))}
           </div>
 
-          {!emailUnlocked && (
-            <div className="mt-8 border-t border-gray-800 pt-8">
-              <div className="max-w-xl">
-                <h3 className="text-white font-bold font-mono text-lg mb-2">
-                  Enter your email — get {moreExclusiveTools} more exclusive tools
-                </h3>
-                <p className="text-gray-400 text-sm mb-4">
-                  One signup unlocks the rest of the library: {moreExclusiveTools} additional browser AI tools beyond
-                  these three, plus search and filters below.
-                </p>
-                <ConvertKitForm
-                  className="flex flex-col sm:flex-row gap-3"
-                  inputClassName="flex-1 rounded-xl border border-gray-700 bg-brand-bg px-4 py-3 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-cyan/40 focus:border-brand-cyan font-sans text-sm"
-                  buttonClassName="px-6 py-3 rounded-xl bg-brand-cyan text-brand-bg font-bold font-mono text-sm hover:opacity-90 transition-opacity"
-                  buttonText="Get exclusive tools"
-                  placeholder={`Enter your email for ${moreExclusiveTools} more exclusive tools…`}
-                  successMessage="Unlocked — scroll down for the full tools library and search."
-                  onSuccess={(email) => {
-                    try {
-                      window.localStorage.setItem('ds_tools_email', email);
-                    } catch {}
-                    setEmailUnlocked(true);
-                  }}
-                />
-              </div>
-            </div>
-          )}
+
         </section>
 
         <div className="flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-10 mb-10">
@@ -125,10 +81,10 @@ export const ToolsPage = () => {
               placeholder="Search tools by name, topic, or category…"
               className="w-full rounded-xl border border-gray-700 bg-brand-surface pl-12 pr-4 py-3.5 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-cyan/40 focus:border-brand-cyan font-sans text-sm"
               aria-label="Search tools"
-              disabled={!emailUnlocked}
+              
             />
           </div>
-          <div className={!emailUnlocked ? 'opacity-50 pointer-events-none' : ''}>
+          <div >
             <ToolCategoryFilter selected={category} onChange={setCategory} />
           </div>
         </div>
@@ -162,7 +118,7 @@ export const ToolsPage = () => {
         <section className="mt-16 rounded-xl border border-gray-800 bg-brand-surface p-8 text-center">
           <h2 className="text-xl font-bold font-mono text-white mb-2">Classic free utilities</h2>
           <p className="text-gray-400 text-sm mb-6 max-w-lg mx-auto">
-            SaaS calculator, content calendar, prompt builder, and more — same URLs as before.
+            SaaS calculator, content calendar, prompt builder, and more — ready to use in your browser.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
@@ -201,3 +157,4 @@ export const ToolsPage = () => {
     </div>
   );
 };
+

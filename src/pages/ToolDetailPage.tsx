@@ -31,13 +31,6 @@ export function ToolDetailPage({ tool }: Props) {
   const [loading, setLoading] = useState(false);
 
   const related = useMemo(() => getRelatedTools(tool.slug, 4), [tool.slug]);
-
-  useEffect(() => {
-    document.title = tool.seoTitle;
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute('content', tool.seoDescription);
-  }, [tool]);
-
   useEffect(() => {
     setValues(initialValues(tool));
     setOutput(null);
@@ -168,3 +161,4 @@ export function ToolDetailPage({ tool }: Props) {
     </main>
   );
 }
+

@@ -176,12 +176,6 @@ export const PromptBuilderPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Claude Prompt Builder — domskysolutions.com";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', "Build perfect Claude prompts in seconds. Fill in the fields, get a professional prompt ready to copy. Free — no signup required.");
-    }
-    
     const dismissed = sessionStorage.getItem('promptBuilderEmailDismissed');
     if (dismissed) {
       setEmailDismissed(true);
@@ -870,3 +864,4 @@ export const PromptBuilderPage = () => {
     </div>
   );
 };
+

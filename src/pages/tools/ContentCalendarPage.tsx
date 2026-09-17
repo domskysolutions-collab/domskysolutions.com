@@ -352,14 +352,6 @@ export const ContentCalendarPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = '30-Day Content Calendar Generator — domskysolutions.com';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute(
-        'content',
-        'Generate a 30-day content calendar in 30 seconds. Enter your niche and content types — get realistic posting ideas ready to publish.',
-      );
-    }
     return () => {
       if (loadingTimer.current) window.clearTimeout(loadingTimer.current);
     };
@@ -948,4 +940,5 @@ export const ContentCalendarPage = () => {
     </div>
   );
 };
+
 

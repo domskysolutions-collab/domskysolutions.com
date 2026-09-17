@@ -1,12 +1,87 @@
 {
-  "rewrites": [
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "source": "/tools/claude",
+      "destination": "/reviews/claude",
+      "permanent": true
     },
     {
-      "source": "/((?!api|sitemap.xml|robots.txt|images/.*|assets/.*|favicon.ico).*)",
-      "destination": "/index.html"
+      "source": "/tools/perplexity",
+      "destination": "/reviews/perplexity",
+      "permanent": true
+    },
+    {
+      "source": "/tools/notion-ai",
+      "destination": "/reviews/notion-ai",
+      "permanent": true
+    },
+    {
+      "source": "/tools/runway",
+      "destination": "/reviews/runway",
+      "permanent": true
+    },
+    {
+      "source": "/tools/elevenlabs",
+      "destination": "/reviews/elevenlabs",
+      "permanent": true
+    },
+    {
+      "source": "/tools/cursor",
+      "destination": "/reviews/cursor",
+      "permanent": true
+    },
+    {
+      "source": "/tools/midjourney",
+      "destination": "/reviews/midjourney",
+      "permanent": true
+    },
+    {
+      "source": "/tools/jasper",
+      "destination": "/reviews/jasper",
+      "permanent": true
+    },
+    {
+      "source": "/tools/descript",
+      "destination": "/reviews/descript",
+      "permanent": true
+    },
+    {
+      "source": "/tools/framer",
+      "destination": "/reviews/framer",
+      "permanent": true
+    },
+    {
+      "source": "/tools/synthesia",
+      "destination": "/reviews/synthesia",
+      "permanent": true
+    },
+    {
+      "source": "/uses/convertkit",
+      "destination": "/reviews/convertkit",
+      "permanent": true
+    },
+    {
+      "source": "/uses/namecheap",
+      "destination": "/reviews/namecheap",
+      "permanent": true
+    },
+    {
+      "source": "/tools/notion",
+      "destination": "/reviews/notion-ai",
+      "permanent": true
+    },
+    {
+      "source": "/reviews/notion",
+      "destination": "/reviews/notion-ai",
+      "permanent": true
+    },
+    {
+      "source": "/blog/claude-vs-chatgpt-vs-gemini-2026",
+      "destination": "/comparisons/claude-vs-chatgpt-vs-gemini-2026",
+      "permanent": true
     }
   ]
 }
+

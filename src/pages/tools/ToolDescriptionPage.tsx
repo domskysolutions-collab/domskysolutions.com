@@ -157,17 +157,6 @@ export function ToolDescriptionPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'Tool Description Generator — domskysolutions.com';
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute(
-      'content',
-      'Generate honest, ready-to-paste descriptions for AI and SaaS tools — taglines, blurbs, bullets, and SEO meta for Product Hunt, directories, and landing pages. Free for solopreneurs.'
-    );
   }, []);
 
   const applyPreset = useCallback((preset: (typeof PRESETS)[number]) => {
@@ -541,3 +530,4 @@ export function ToolDescriptionPage() {
     </div>
   );
 }
+

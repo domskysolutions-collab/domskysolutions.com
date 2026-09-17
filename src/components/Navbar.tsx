@@ -6,6 +6,8 @@ import { Menu, X, ArrowRight, ChevronDown } from 'lucide-react';
 import { toolsDropdown } from '../data/navigation';
 
 export const Navbar = () => {
+  const location = useLocation();
+  useEffect(() => { setIsOpen(false); setIsToolsOpen(false); setIsMobileToolsOpen(false); }, [location.pathname]);
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
@@ -34,16 +36,18 @@ export const Navbar = () => {
               />
             </Link>
           </div>
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden xl:flex items-center space-x-8">
             <Link to="/" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Home</Link>
             
             <div 
               className="relative"
               onMouseEnter={() => setIsToolsOpen(true)}
               onMouseLeave={() => setIsToolsOpen(false)}
+              onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) setIsToolsOpen(false); }}
+              onKeyDown={(event) => { if (event.key === "Escape") { setIsToolsOpen(false); event.currentTarget.querySelector("button")?.focus(); } }}
             >
-              <button className="flex items-center gap-1 text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium py-2">
-                Tools <ChevronDown size={14} className={`transition-transform duration-200 ${isToolsOpen ? 'rotate-180' : ''}`} />
+              <button aria-expanded={isToolsOpen} aria-controls="tools-menu" onClick={() => setIsToolsOpen(open => !open)} className="flex items-center gap-1 text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium py-2">
+                Free Tools <ChevronDown size={14} className={`transition-transform duration-200 ${isToolsOpen ? 'rotate-180' : ''}`} />
               </button>
               
               <AnimatePresence>
@@ -53,7 +57,7 @@ export const Navbar = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -4 }}
                     transition={{ duration: 0.15 }}
-                    className="absolute top-full left-0 w-72 bg-brand-surface border border-gray-500/20 rounded-lg shadow-xl overflow-hidden mt-1"
+                    id="tools-menu" className="absolute top-full left-0 w-72 bg-brand-surface border border-gray-500/20 rounded-lg shadow-xl overflow-hidden mt-1"
                   >
                     <div className="py-2">
                       {/* SECTION 1 — FREE TOOLS */}
@@ -130,13 +134,15 @@ export const Navbar = () => {
               </AnimatePresence>
             </div>
 
+            <Link to="/reviews" className="text-gray-300 hover:text-brand-cyan text-sm font-medium">Reviews</Link>
+            <Link to="/comparisons" className="text-gray-300 hover:text-brand-cyan text-sm font-medium">Comparisons</Link>
             <Link to="/blog" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Blog</Link>
             <Link to="/about" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">About</Link>
             <a
               href="https://x.com/domskysolutions"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-1.5 text-gray-400 hover:text-brand-cyan transition-colors duration-200 text-sm font-mono"
+              className="hidden xl:flex items-center gap-1.5 text-gray-400 hover:text-brand-cyan transition-colors duration-200 text-sm font-mono"
               aria-label="Follow on X"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -145,11 +151,11 @@ export const Navbar = () => {
               <span>@domskysolutions</span>
             </a>
             <a href="/#newsletter" className="bg-brand-cyan text-[#000000] px-5 py-2.5 rounded-none font-bold text-sm hover:bg-brand-amber transition-colors glow-cyan-hover flex items-center gap-2">
-              Join the Community
+              Get the Weekly Edge
             </a>
           </div>
-          <div className="md:hidden flex items-center">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-gray-300 hover:text-white">
+          <div className="xl:hidden flex items-center">
+            <button aria-label={isOpen ? "Close navigation" : "Open navigation"} aria-expanded={isOpen} aria-controls="mobile-navigation" onClick={() => setIsOpen(!isOpen)} className="text-gray-300 hover:text-white">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -163,14 +169,14 @@ export const Navbar = () => {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden bg-brand-surface border-b border-gray-800 overflow-hidden"
+            id="mobile-navigation" className="xl:hidden bg-brand-surface border-b border-gray-800 overflow-hidden"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               <Link to="/" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Home</Link>
               
               <div>
                 <button 
-                  onClick={() => setIsMobileToolsOpen(!isMobileToolsOpen)} 
+                  aria-expanded={isMobileToolsOpen} aria-controls="mobile-tools" onClick={() => setIsMobileToolsOpen(!isMobileToolsOpen)} 
                   className="flex items-center justify-between w-full px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan"
                 >
                   Tools <ChevronDown size={16} className={`transition-transform duration-200 ${isMobileToolsOpen ? 'rotate-180' : ''}`} />
@@ -184,7 +190,7 @@ export const Navbar = () => {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="pl-4 py-1 space-y-1">
+                      <div id="mobile-tools" className="pl-4 py-1 space-y-1">
                         {/* FREE TOOLS section */}
                         <div className="px-3 pb-1 pt-1">
                           <div className="text-brand-cyan text-[10px] font-mono font-bold uppercase tracking-widest">
@@ -240,9 +246,12 @@ export const Navbar = () => {
                 </AnimatePresence>
               </div>
 
+              <Link to="/reviews" className="block px-3 py-2 text-gray-300">Reviews</Link>
+              <Link to="/comparisons" className="block px-3 py-2 text-gray-300">Comparisons</Link>
+              <Link to="/tools" className="block px-3 py-2 text-gray-300">All free tools</Link>
               <Link to="/blog" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Blog</Link>
               <Link to="/about" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">About</Link>
-              <a href="/#newsletter" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-brand-amber">Join the Community</a>
+              <a href="/#newsletter" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-brand-amber">Get the Weekly Edge</a>
             </div>
           </motion.div>
         )}
@@ -250,3 +259,4 @@ export const Navbar = () => {
     </nav>
   );
 };
+

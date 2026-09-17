@@ -15,18 +15,6 @@ export { CATEGORIES } from '../../data/saasCalculatorShared';
 export const SaasCalculatorPage = () => {
   const [inputs, setInputs] = useState<Record<string, string>>({});
   const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    document.title = "SaaS Stack Cost Calculator";
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', "Find out exactly how much you could save by switching from traditional SaaS to AI alternatives. Free calculator — results in 30 seconds.");
-  }, []);
-
   const handleInputChange = (id: string, value: string) => {
     if (value === '' || /^\d+$/.test(value)) {
       setInputs(prev => ({ ...prev, [id]: value }));
@@ -189,7 +177,7 @@ export const SaasCalculatorPage = () => {
                     {activeAlternatives.map(alt => {
                       const triggerLabels = alt.triggers
                         .filter(t => (parseInt(inputs[t] || '0') || 0) > 0)
-                        .map(t => CATEGORIES.flatMap(c => c.items).find(i => i.id === t)?.label)
+                        .map(t => CATEGORIES.flatMap<{ id: string; label: string }>(c => c.items).find(i => i.id === t)?.label)
                         .join(", ");
                         
                       return (
@@ -379,3 +367,4 @@ export const SaasCalculatorPage = () => {
     </div>
   );
 };
+

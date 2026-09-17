@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useId, useState } from 'react';
 
 type ConvertKitFormProps = {
   className?: string;
@@ -15,11 +15,12 @@ export const ConvertKitForm = ({
   className = "",
   inputClassName = "",
   buttonClassName = "",
-  buttonText = "Join the Community",
+  buttonText = "Get the Weekly Edge",
   placeholder = "Enter your email address...",
-  successMessage = "You are in! Welcome to the community.",
+  successMessage = "You are in! Look out for The Weekly Edge in your inbox.",
   onSuccess,
 }: ConvertKitFormProps) => {
+  const emailId = useId();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -53,7 +54,7 @@ export const ConvertKitForm = ({
 
   if (status === "success") {
     return (
-      <div className={`text-brand-cyan font-bold font-mono text-center py-4 text-lg ${className}`}>
+      <div role="status" className={`text-brand-cyan font-bold font-mono text-center py-4 text-lg ${className}`}>
         {successMessage}
       </div>
     );
@@ -61,9 +62,13 @@ export const ConvertKitForm = ({
 
   return (
     <div className="relative w-full">
+      <label htmlFor={emailId} className="block text-sm text-gray-300 mb-2">Email address</label>
       <form className={className} onSubmit={handleSubmit}>
         <input 
-          id="email-input"
+          id={emailId}
+          autoComplete="email"
+          aria-describedby={`${emailId}-privacy`}
+          aria-invalid={status === "error"}
           name="email"
           type="email" 
           placeholder={placeholder}
@@ -81,11 +86,13 @@ export const ConvertKitForm = ({
           {status === "loading" ? "Joining..." : buttonText}
         </button>
       </form>
+      <p id={`${emailId}-privacy`} className="text-xs text-gray-400 mt-3">Get The Weekly Edge by email. Unsubscribe anytime. <a href="/privacy" className="underline">Privacy policy</a>.</p>
       {status === "error" && (
-        <div className="text-red-500 text-sm mt-2 font-mono text-center absolute -bottom-6 left-0 right-0">
+        <div role="alert" className="text-red-400 text-sm mt-2 font-mono text-center">
           Something went wrong. Please try again.
         </div>
       )}
     </div>
   );
 };
+

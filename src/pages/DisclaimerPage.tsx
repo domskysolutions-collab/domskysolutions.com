@@ -4,10 +4,6 @@ import { H2, SectionDivider } from '../components/ui';
 import { motion } from 'motion/react';
 
 export const DisclaimerPage = () => {
-  useEffect(() => {
-    document.title = "Affiliate Disclaimer | Domsky Solutions";
-  }, []);
-
   return (
     <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
       <div className="max-w-[680px] mx-auto px-6 pt-32">
@@ -63,3 +59,4 @@ export const DisclaimerPage = () => {
     </div>
   );
 };
+
