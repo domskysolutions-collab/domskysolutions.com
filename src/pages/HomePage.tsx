@@ -105,12 +105,12 @@ export const HomePage = () => {
             >
               Explore the Best Tools <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link
-              to="/tools"
+            <a
+              href="#newsletter"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-gray-600 text-white font-bold text-lg hover:border-brand-cyan hover:bg-brand-surface transition-colors"
             >
-              Try Free Tools
-            </Link>
+              Get the free AI builder toolkit
+            </a>
           </div>
           <p className="mx-auto mb-4" style={{ maxWidth: 800, fontSize: 13, color: '#D6B98C', fontStyle: 'italic' }}>
             Explore practical verdicts, limitations and pricing considerations for your next tool. No
@@ -511,6 +511,9 @@ export const HomePage = () => {
     </main>
   );
 };
+
+
+
 
 
 
