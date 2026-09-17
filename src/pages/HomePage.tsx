@@ -64,7 +64,7 @@ export const HomePage = () => {
                     backgroundClip: 'text',
                   }}
                 >
-                  Overpaying
+                  Tools
                 </span>
                 .
               </span>
@@ -94,16 +94,16 @@ export const HomePage = () => {
                 lineHeight: 1.5,
               }}
             >
-              AI tools reviewed for solopreneurs who build alone.
+              Practical reviews, comparisons, and guides to help you save time, automate work, and grow smarter.
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
             <Link
-              to="/reviews"
+              to="/tools"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-[#000000] font-bold text-lg hover:bg-brand-amber transition-colors shadow-[0_0_28px_rgba(249,115,22,0.35)]"
             >
-              Read independent reviews <ArrowRight className="w-5 h-5" />
+              Explore the Best Tools <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               to="/tools"
@@ -152,12 +152,12 @@ export const HomePage = () => {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
             <div>
               <div className="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-2">INDEPENDENT REVIEWS</div>
-              <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Featured AI Reviews</h2>
+              <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Popular Reviews & Comparisons</h2>
               <p className="text-gray-400 mt-2 max-w-2xl">
-                Explore the verdicts alongside our methodology and evidence disclosures.
+                See the features, pricing, limitations, and best-fit use cases that matter when you are choosing software.
               </p>
             </div>
-            <Link to="/reviews" className="inline-flex items-center gap-2 text-brand-cyan font-mono text-sm hover:underline shrink-0">
+            <Link to="/tools" className="inline-flex items-center gap-2 text-brand-cyan font-mono text-sm hover:underline shrink-0">
               View all reviews <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -277,7 +277,7 @@ export const HomePage = () => {
       {/* How it works */}
       <section className="py-16 md:py-24 bg-brand-surface border-y border-gray-800">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-4">The Domsky Promise</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-4">Spend Less Time Researching. More Time Building.</h2>
           <p className="text-gray-400 text-center mb-12">
             What makes this site different from every other AI tools review site
           </p>
@@ -479,10 +479,10 @@ export const HomePage = () => {
       <section className="py-16 border-t border-gray-800 text-center px-4">
         <h2 className="text-2xl md:text-3xl font-bold font-mono text-white mb-6">Start saving money on software today</h2>
         <Link
-          to="/reviews"
+          to="/tools"
           className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-[#000000] font-bold hover:bg-brand-amber transition-colors"
         >
-          Read independent reviews <ArrowRight className="w-5 h-5" />
+          Explore the Best Tools <ArrowRight className="w-5 h-5" />
         </Link>
         <div className="text-gray-500 text-sm mt-4">
           Or try a free tool —{' '}
@@ -494,4 +494,6 @@ export const HomePage = () => {
     </main>
   );
 };
+
+
 
