@@ -11,138 +11,58 @@ export const HomePage = () => {
   return (
     <main className="bg-brand-bg min-h-screen">
       {/* Hero */}
-      <section
-        className="relative px-4 sm:px-6 lg:px-8 overflow-hidden"
-        style={{ paddingTop: 100, paddingBottom: 24 }}
-      >
-        <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" aria-hidden />
-        <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[min(90vw,720px)] h-48 bg-brand-cyan/10 blur-[80px] rounded-full pointer-events-none" aria-hidden />
-
-        <div className="relative max-w-4xl mx-auto text-center">
-          <style>{`
-            @keyframes expandLine {
-              from { width: 0%; }
-              to { width: 100%; }
-            }
-          `}</style>
-          <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-cyan/25 bg-brand-cyan/5 text-brand-cyan text-xs font-mono mb-8">
-            <Sparkles className="w-3.5 h-3.5" aria-hidden />
-            <span className="block sm:inline">Independent reviews ·</span>{' '}
-            <span className="block sm:inline">{reviewCount} reviews ·</span>{' '}
-            <span className="block sm:inline">Clear strengths and limitations</span>
+      <section aria-labelledby="hero-title" className="relative overflow-hidden px-5 sm:px-8 pt-32 pb-16 sm:pt-40 sm:pb-24">
+        <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" aria-hidden="true" />
+        <div className="relative max-w-5xl mx-auto text-center">
+          <p className="text-brand-amber text-xs sm:text-sm font-mono tracking-widest uppercase mb-6">
+            AI &amp; SaaS guidance for solo founders and small teams
           </p>
-
-          <div className="mx-auto" style={{ maxWidth: 800 }}>
-            <div
-              className="font-mono mb-6"
-              style={{
-                textTransform: 'uppercase',
-                letterSpacing: '0.2em',
-                fontSize: 14,
-                color: '#F97316',
-                fontWeight: 500,
-              }}
-            >
-              THE NO-HYPE VERDICT ON EVERY TOOL YOU&apos;RE CONSIDERING
-            </div>
-
-            <h1
-              className="font-mono text-white mb-10"
-              style={{
-                fontSize: 'clamp(30px, 7.5vw, 76px)',
-                fontWeight: 900,
-                lineHeight: 1.05,
-                textShadow: '0 0 80px rgba(249, 115, 22, 0.18)',
-              }}
-            >
-              <span style={{ display: 'block' }}>
-                Stop{' '}
-                <span
-                  style={{
-                    background: 'linear-gradient(90deg, #F97316, #FB923C)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                  }}
-                >
-                  Tools
-                </span>
-                .
-              </span>
-              <span
-                aria-hidden
-                style={{
-                  width: 0,
-                  height: 3,
-                  background: 'linear-gradient(90deg, #F97316, #FB923C)',
-                  display: 'block',
-                  animation: 'expandLine 1s ease forwards',
-                  animationDelay: '0.4s',
-                  margin: '12px auto 20px',
-                }}
-              />
-            </h1>
-
-            <div
-              className="font-mono"
-              style={{
-                display: 'block',
-                fontSize: 'clamp(22px, 3.5vw, 38px)',
-                fontWeight: 400,
-                color: '#FB923C',
-                marginTop: 12,
-                marginBottom: 24,
-                lineHeight: 1.5,
-              }}
-            >
-              Practical reviews, comparisons, and guides to help you save time, automate work, and grow smarter.
-            </div>
-          </div>
-
-          <div className="max-w-2xl mx-auto mb-8 text-left">
-            <p className="text-gray-300 mb-4">Enter your email to get the free AI Builder Toolkit.</p>
+          <h1 id="hero-title" className="text-white mx-auto mb-6" style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: 'clamp(2.5rem, 6.5vw, 5.25rem)',
+            fontWeight: 800,
+            letterSpacing: '-0.045em',
+            lineHeight: 1.08,
+            textWrap: 'balance',
+          }}>
+            Choose better tools.{' '}
+            <span className="block text-brand-cyan">Build a better business.</span>
+          </h1>
+          <p className="max-w-2xl mx-auto text-base sm:text-xl text-gray-300 leading-relaxed mb-8">
+            Find the AI and SaaS tools that fit your work. Practical reviews and comparisons
+            help you choose what to use, what to skip, and where to spend your budget.
+          </p>
+          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-10 text-sm text-gray-300">
+            {['Create better content', 'Simplify repetitive work', 'Build and launch products'].map(benefit => (
+              <li key={benefit} className="inline-flex items-center gap-2">
+                <CheckCircle2 size={16} className="text-brand-cyan shrink-0" aria-hidden="true" />{benefit}
+              </li>
+            ))}
+          </ul>
+          <div className="max-w-2xl mx-auto rounded-2xl border border-brand-cyan/25 bg-brand-surface p-5 sm:p-8 text-left">
+            <p className="text-xs font-mono tracking-widest uppercase text-brand-amber mb-3">Your starting point · Free PDF</p>
+            <h2 className="text-white text-xl sm:text-2xl font-bold mb-3" style={{fontFamily:'var(--font-sans)', letterSpacing:'-0.02em'}}>
+              Get the AI Builder Toolkit
+            </h2>
+            <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+              Five tools to explore, first prompts to try, and a quick-start checklist.
+              Enter your email to unlock the download.
+            </p>
             <ConvertKitForm
-              buttonText="Get the AI Builder Toolkit"
+              buttonText="Get my free toolkit"
               placeholder="you@example.com"
-              successMessage="You're signed up. Your toolkit is ready to download below."
+              successMessage="You're signed up. Download your toolkit below."
               onSuccess={() => setToolkitReady(true)}
               className="flex flex-col sm:flex-row gap-3"
-              inputClassName="min-w-0 flex-1 bg-brand-surface border border-gray-600 px-4 py-4 text-white rounded-xl focus:border-brand-cyan"
-              buttonClassName="bg-brand-cyan text-brand-bg px-6 py-4 font-bold rounded-xl hover:bg-brand-amber"
+              inputClassName="min-w-0 w-full flex-1 bg-brand-bg border border-gray-500 px-4 py-3.5 text-white rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-cyan focus-visible:outline-offset-2"
+              buttonClassName="shrink-0 bg-brand-cyan text-brand-bg px-5 py-3.5 font-bold rounded-lg hover:bg-brand-amber focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-amber focus-visible:outline-offset-2"
             />
             {toolkitReady && <a href="/downloads/ai-builder-toolkit.pdf" download="AI-Builder-Toolkit.pdf" className="inline-block mt-4 text-brand-cyan underline font-bold">Download your AI Builder Toolkit</a>}
           </div>
-          <p className="mx-auto mb-4" style={{ maxWidth: 800, fontSize: 13, color: '#D6B98C', fontStyle: 'italic' }}>
-            Explore practical verdicts, limitations and pricing considerations for your next tool. No
-            sponsored verdicts. No hype. Just what actually matters for people building alone.
+          <p className="mt-6 text-sm text-gray-400 leading-relaxed">
+            {reviewCount} published reviews. Clear strengths and limitations.{' '}
+            <Link to="/methodology" className="text-brand-amber underline underline-offset-4 hover:text-white">See how we review tools</Link>.
           </p>
-          <p className="text-sm text-gray-500 font-mono mb-6">
-            <span className="block sm:inline">{reviewCount} published reviews ·</span>{' '}
-            <span className="block sm:inline">No sponsored content ·</span>{' '}
-            <span className="block sm:inline">Built by Dominik —</span>{' '}
-            <span className="block sm:inline">Designer and PC enthusiast</span>
-          </p>
-          <div className="flex flex-wrap justify-center gap-5 mt-8">
-            {[
-              { value: 'Independent', label: 'editorial opinions' },
-              { value: String(reviewCount), label: 'tools reviewed' },
-              { value: 'Transparent', label: 'evidence disclosures' },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="text-center"
-                style={{
-                  background: 'rgba(249,115,22,0.06)',
-                  border: '1px solid rgba(249,115,22,0.2)',
-                  padding: '12px 20px',
-                  borderRadius: 12,
-                }}
-              >
-                <div className="text-brand-cyan font-bold font-mono text-xl">{stat.value}</div>
-                <div className="text-gray-500 text-xs font-mono uppercase tracking-wider">{stat.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
