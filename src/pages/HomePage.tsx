@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, CheckCircle2, Layers, Sparkles, TrendingDown, Zap } from 'lucide-react';
 import { ConvertKitForm } from '../components/ConvertKitForm';
@@ -7,6 +7,7 @@ import { reviewCount, reviewCatalog } from '../data/reviewCatalog';
 import { StarRating } from '../components/StarRating';
 
 export const HomePage = () => {
+  const [toolkitReady, setToolkitReady] = useState(false);
   return (
     <main className="bg-brand-bg min-h-screen">
       {/* Hero */}
@@ -98,19 +99,18 @@ export const HomePage = () => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <Link
-              to="/tools"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-[#000000] font-bold text-lg hover:bg-brand-amber transition-colors shadow-[0_0_28px_rgba(249,115,22,0.35)]"
-            >
-              Explore the Best Tools <ArrowRight className="w-5 h-5" />
-            </Link>
-            <a
-              href="#newsletter"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-gray-600 text-white font-bold text-lg hover:border-brand-cyan hover:bg-brand-surface transition-colors"
-            >
-              Get the free AI builder toolkit
-            </a>
+          <div className="max-w-2xl mx-auto mb-8 text-left">
+            <p className="text-gray-300 mb-4">Enter your email to get the free AI Builder Toolkit.</p>
+            <ConvertKitForm
+              buttonText="Get the AI Builder Toolkit"
+              placeholder="you@example.com"
+              successMessage="You're signed up. Your toolkit is ready to download below."
+              onSuccess={() => setToolkitReady(true)}
+              className="flex flex-col sm:flex-row gap-3"
+              inputClassName="min-w-0 flex-1 bg-brand-surface border border-gray-600 px-4 py-4 text-white rounded-xl focus:border-brand-cyan"
+              buttonClassName="bg-brand-cyan text-brand-bg px-6 py-4 font-bold rounded-xl hover:bg-brand-amber"
+            />
+            {toolkitReady && <a href="/downloads/ai-builder-toolkit.pdf" download="AI-Builder-Toolkit.pdf" className="inline-block mt-4 text-brand-cyan underline font-bold">Download your AI Builder Toolkit</a>}
           </div>
           <p className="mx-auto mb-4" style={{ maxWidth: 800, fontSize: 13, color: '#D6B98C', fontStyle: 'italic' }}>
             Explore practical verdicts, limitations and pricing considerations for your next tool. No
@@ -492,29 +492,23 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* Bottom CTA */}
+      {/* Toolkit signup reminder */}
       <section className="py-16 border-t border-gray-800 text-center px-4">
-        <h2 className="text-2xl md:text-3xl font-bold font-mono text-white mb-6">Start saving money on software today</h2>
-        <Link
-          to="/tools"
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-[#000000] font-bold hover:bg-brand-amber transition-colors"
-        >
-          Explore the Best Tools <ArrowRight className="w-5 h-5" />
-        </Link>
-        <div className="text-gray-500 text-sm mt-4">
-          Or try a free tool —{' '}
-          <Link to="/tools/email-writer" className="text-brand-cyan hover:underline">
-            no account required
-          </Link>
-        </div>
+        <h2 className="text-2xl md:text-3xl font-bold font-mono text-white mb-6">Get your free AI Builder Toolkit</h2>
+        <div className="max-w-2xl mx-auto mb-8 text-left">
+            <p className="text-gray-300 mb-4">Enter your email to get the free AI Builder Toolkit.</p>
+            <ConvertKitForm
+              buttonText="Get the AI Builder Toolkit"
+              placeholder="you@example.com"
+              successMessage="You're signed up. Your toolkit is ready to download below."
+              onSuccess={() => setToolkitReady(true)}
+              className="flex flex-col sm:flex-row gap-3"
+              inputClassName="min-w-0 flex-1 bg-brand-surface border border-gray-600 px-4 py-4 text-white rounded-xl focus:border-brand-cyan"
+              buttonClassName="bg-brand-cyan text-brand-bg px-6 py-4 font-bold rounded-xl hover:bg-brand-amber"
+            />
+            {toolkitReady && <a href="/downloads/ai-builder-toolkit.pdf" download="AI-Builder-Toolkit.pdf" className="inline-block mt-4 text-brand-cyan underline font-bold">Download your AI Builder Toolkit</a>}
+          </div>
       </section>
     </main>
   );
 };
-
-
-
-
-
-
-
