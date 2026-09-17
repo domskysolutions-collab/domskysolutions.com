@@ -1,4 +1,6 @@
+
 import React, { useEffect } from 'react';
+import { ConvertKitForm } from './ConvertKitForm';
 
 type UsageLimitModalProps = {
   open: boolean;
@@ -45,7 +47,7 @@ export function UsageLimitModal({ open, onClose, dailyLimit }: UsageLimitModalPr
           You have used all {dailyLimit} free generations for this tool today. Come back
           tomorrow or join the waitlist for higher limits when Pro launches.
         </p>
-        <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
+        <div className="mb-5 rounded-xl border border-brand-cyan/30 bg-black/20 p-4"><p className="mb-3 text-sm text-gray-300">Get 3 extra generations per day by email. The Weekly Edge checkbox stays optional.</p><ConvertKitForm buttonText="Unlock extra generations" successMessage="Unlocked! You now have 3 extra generations per day." onSuccess={() => { localStorage.setItem("tool-email-unlocked", "true"); window.dispatchEvent(new Event("tool-email-unlocked")); }} className="flex flex-col gap-2" inputClassName="rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-sm text-white" buttonClassName="rounded-lg bg-brand-cyan px-3 py-2 text-sm font-bold text-brand-bg" /></div><div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
           <button
             type="button"
             onClick={onClose}
@@ -67,3 +69,5 @@ export function UsageLimitModal({ open, onClose, dailyLimit }: UsageLimitModalPr
     </div>
   );
 }
+
+
