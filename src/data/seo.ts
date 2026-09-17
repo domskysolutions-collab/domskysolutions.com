@@ -6,6 +6,7 @@ export const SITE_URL = 'https://domskysolutions.com';
 export type PageSeo = { path: string; title: string; description: string; type?: 'article' | 'website'; review?: typeof reviewCatalog[number]; noindex?: boolean };
 const page = (path: string, title: string, description: string): PageSeo => ({ path, title: `${title} | Domsky Solutions`, description });
 export const seoPages: PageSeo[] = [
+  { path: '/stack-builder', title: 'Simple Business Stack Builder | domskysolutions', description: 'Build a practical software stack for your online business. Get a personalized plan showing what you need now, what to add later, and what to skip.' },
   page('/', 'Independent AI Tool Reviews for Solopreneurs', 'Explore independent AI and SaaS reviews, practical workflows and free tools to choose software for your solo business.'),
   page('/reviews', 'AI & SaaS Reviews', 'Browse all our software reviews, including Claude, Cursor, Perplexity, Kit and Namecheap. Compare strengths, limitations and editorial ratings.'),
   page('/tools', 'Free Tools Library', 'Browse and search our tools for writing, marketing and productivity. Explore the full library without subscribing.'),
