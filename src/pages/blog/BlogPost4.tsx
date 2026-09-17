@@ -11,18 +11,6 @@ export const BlogPost4 = () => {
   const { scrollYProgress } = useScroll();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeSection, setActiveSection] = useState('');
-
-  useEffect(() => {
-    document.title = "How I Use AI to Run My Entire Business Solo — My Exact Daily Workflow";
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', "I run a growing AI tools publication completely solo. Here is the exact AI workflow I use every single day — the tools, the order, the prompts, and the time it saves.");
-  }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 500);
@@ -181,10 +169,10 @@ export const BlogPost4 = () => {
 
             <H3>STEP 1 — THE DAILY BRIEF WITH PERPLEXITY</H3>
             <p className="mb-2"><strong>Time:</strong> 15 minutes</p>
-            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Perplexity Pro" to="/tools/perplexity" /></p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Perplexity Pro" to="/reviews/perplexity" /></p>
 
             <p>
-              The first thing I open every morning is <ToolLink name="Perplexity" to="/tools/perplexity" />. I run the same three searches every day:
+              The first thing I open every morning is <ToolLink name="Perplexity" to="/reviews/perplexity" />. I run the same three searches every day:
             </p>
 
             <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
@@ -199,25 +187,25 @@ export const BlogPost4 = () => {
             </div>
 
             <p>
-              <ToolLink name="Perplexity" to="/tools/perplexity" /> reads the current web, pulls the most relevant sources, and gives me cited summaries in under a minute each.
+              <ToolLink name="Perplexity" to="/reviews/perplexity" /> reads the current web, pulls the most relevant sources, and gives me cited summaries in under a minute each.
             </p>
             <p>
               What used to take an hour of tab switching now takes fifteen minutes and I come away with actual information rather than the feeling of having been informed.
             </p>
 
             <CalloutTip>
-              <span className="font-bold text-white">Key insight:</span> I save every interesting finding directly into <ToolLink name="Notion" to="/tools/notion" /> with one click. No more losing things in browser tabs.
+              <span className="font-bold text-white">Key insight:</span> I save every interesting finding directly into <ToolLink name="Notion" to="/reviews/notion-ai" /> with one click. No more losing things in browser tabs.
             </CalloutTip>
 
             <H3>STEP 2 — PROCESSING NOTES WITH NOTION AI</H3>
             <p className="mb-2"><strong>Time:</strong> 10 minutes</p>
-            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Notion AI" to="/tools/notion" /></p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Notion AI" to="/reviews/notion-ai" /></p>
 
             <p>
-              Everything I captured yesterday — ideas, research notes, half-formed article concepts, interesting quotes — lives in a <ToolLink name="Notion" to="/tools/notion" /> inbox page.
+              Everything I captured yesterday — ideas, research notes, half-formed article concepts, interesting quotes — lives in a <ToolLink name="Notion" to="/reviews/notion-ai" /> inbox page.
             </p>
             <p>
-              Every morning I open it and ask <ToolLink name="Notion AI" to="/tools/notion" />:
+              Every morning I open it and ask <ToolLink name="Notion AI" to="/reviews/notion-ai" />:
             </p>
 
             <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
@@ -233,7 +221,7 @@ export const BlogPost4 = () => {
             </p>
 
             <CalloutTip>
-              <span className="font-bold text-white">Key insight:</span> <ToolLink name="Notion AI" to="/tools/notion" /> is not just a writing tool — it is a thinking partner that makes your existing notes more valuable than you could make them yourself.
+              <span className="font-bold text-white">Key insight:</span> <ToolLink name="Notion AI" to="/reviews/notion-ai" /> is not just a writing tool — it is a thinking partner that makes your existing notes more valuable than you could make them yourself.
             </CalloutTip>
           </motion.div>
 
@@ -257,13 +245,13 @@ export const BlogPost4 = () => {
 
             <H3>STEP 3 — FIRST DRAFT WITH CLAUDE</H3>
             <p className="mb-2"><strong>Time:</strong> 30-45 minutes per piece</p>
-            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Claude Pro" to="/tools/claude" /></p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Claude Pro" to="/reviews/claude" /></p>
 
             <p>
               I do not stare at a blank page. Ever.
             </p>
             <p>
-              <ToolLink name="Claude" to="/tools/claude" /> handles every first draft — blog posts, tool reviews, newsletter issues, social media threads. My process:
+              <ToolLink name="Claude" to="/reviews/claude" /> handles every first draft — blog posts, tool reviews, newsletter issues, social media threads. My process:
             </p>
 
             <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
@@ -275,19 +263,19 @@ export const BlogPost4 = () => {
             </div>
 
             <p>
-              The draft <ToolLink name="Claude" to="/tools/claude" /> produces is 70-80 percent of the way to publishable.
+              The draft <ToolLink name="Claude" to="/reviews/claude" /> produces is 70-80 percent of the way to publishable.
             </p>
             <p>
               The remaining 20-30 percent is my job — adding personal experience, specific examples from my actual use of the tools, and the genuine opinions that only come from real usage.
             </p>
 
             <CalloutTip>
-              <span className="font-bold text-white">Key insight:</span> <ToolLink name="Claude" to="/tools/claude" /> does not replace my writing. It eliminates the blank page problem and the structural thinking, which are the two most time consuming parts of the writing process for me. The voice and the insight remain mine.
+              <span className="font-bold text-white">Key insight:</span> <ToolLink name="Claude" to="/reviews/claude" /> does not replace my writing. It eliminates the blank page problem and the structural thinking, which are the two most time consuming parts of the writing process for me. The voice and the insight remain mine.
             </CalloutTip>
 
             <H3>STEP 4 — RESEARCH VERIFICATION WITH PERPLEXITY</H3>
             <p className="mb-2"><strong>Time:</strong> 15 minutes</p>
-            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Perplexity Pro" to="/tools/perplexity" /></p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Perplexity Pro" to="/reviews/perplexity" /></p>
 
             <p>
               Before anything gets published I verify every factual claim — pricing, features, recent updates — against current sources.
@@ -297,7 +285,7 @@ export const BlogPost4 = () => {
             </p>
 
             <p>
-              I paste the draft into a note and ask <ToolLink name="Perplexity" to="/tools/perplexity" />:
+              I paste the draft into a note and ask <ToolLink name="Perplexity" to="/reviews/perplexity" />:
             </p>
 
             <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
@@ -310,7 +298,7 @@ export const BlogPost4 = () => {
 
             <H3>STEP 5 — VISUALS WITH MIDJOURNEY</H3>
             <p className="mb-2"><strong>Time:</strong> 20 minutes</p>
-            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Midjourney Standard" to="/tools/midjourney" /></p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Midjourney Standard" to="/reviews/midjourney" /></p>
 
             <p>
               Every piece of content needs a cover image. My process is now:
@@ -318,14 +306,14 @@ export const BlogPost4 = () => {
 
             <ol className="list-decimal pl-6 space-y-2 mb-6">
               <li>Describe the article concept in one sentence</li>
-              <li>Ask <ToolLink name="Claude" to="/tools/claude" /> to suggest three <ToolLink name="Midjourney" to="/tools/midjourney" /> prompts that would create a compelling cover image for that concept</li>
-              <li>Run the best prompt in <ToolLink name="Midjourney" to="/tools/midjourney" /></li>
+              <li>Ask <ToolLink name="Claude" to="/reviews/claude" /> to suggest three <ToolLink name="Midjourney" to="/reviews/midjourney" /> prompts that would create a compelling cover image for that concept</li>
+              <li>Run the best prompt in <ToolLink name="Midjourney" to="/reviews/midjourney" /></li>
               <li>Upscale the best result</li>
               <li>Done</li>
             </ol>
 
             <p>
-              The cover images this process produces are consistently better than anything I could brief a designer to create because <ToolLink name="Claude" to="/tools/claude" /> understands both the article content and what makes a good <ToolLink name="Midjourney" to="/tools/midjourney" /> prompt.
+              The cover images this process produces are consistently better than anything I could brief a designer to create because <ToolLink name="Claude" to="/reviews/claude" /> understands both the article content and what makes a good <ToolLink name="Midjourney" to="/reviews/midjourney" /> prompt.
             </p>
           </motion.div>
 
@@ -349,10 +337,10 @@ export const BlogPost4 = () => {
 
             <H3>STEP 6 — SOCIAL CONTENT WITH CLAUDE</H3>
             <p className="mb-2"><strong>Time:</strong> 20 minutes</p>
-            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Claude Pro" to="/tools/claude" /></p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Claude Pro" to="/reviews/claude" /></p>
 
             <p>
-              Once an article is published I ask <ToolLink name="Claude" to="/tools/claude" />:
+              Once an article is published I ask <ToolLink name="Claude" to="/reviews/claude" />:
             </p>
 
             <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg my-6 font-mono text-sm">
@@ -365,7 +353,7 @@ export const BlogPost4 = () => {
             </div>
 
             <p>
-              <ToolLink name="Claude" to="/tools/claude" /> produces all of this in under a minute.
+              <ToolLink name="Claude" to="/reviews/claude" /> produces all of this in under a minute.
             </p>
             <p>
               I review, edit anything that does not sound like me, and schedule everything in one sitting.
@@ -377,16 +365,16 @@ export const BlogPost4 = () => {
 
             <H3>STEP 7 — NEWSLETTER ISSUE WITH CLAUDE + NOTION AI</H3>
             <p className="mb-2"><strong>Time:</strong> 20 minutes</p>
-            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Claude Pro" to="/tools/claude" /> + <ToolLink name="Notion AI" to="/tools/notion" /></p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Claude Pro" to="/reviews/claude" /> + <ToolLink name="Notion AI" to="/reviews/notion-ai" /></p>
 
             <p>
               My weekly newsletter goes out every Thursday. The process:
             </p>
 
             <ol className="list-decimal pl-6 space-y-4 mb-6">
-              <li>Ask <ToolLink name="Notion AI" to="/tools/notion" /> to pull the most interesting things I captured in my inbox that week</li>
+              <li>Ask <ToolLink name="Notion AI" to="/reviews/notion-ai" /> to pull the most interesting things I captured in my inbox that week</li>
               <li>
-                Ask <ToolLink name="Claude" to="/tools/claude" /> to turn the highlights into a newsletter format:
+                Ask <ToolLink name="Claude" to="/reviews/claude" /> to turn the highlights into a newsletter format:
                 <div className="bg-brand-bg border border-gray-800 p-4 rounded mt-2 font-mono text-sm">
                   "Write a weekly newsletter issue using these highlights. Include: one main insight, three tool recommendations with one line each, one tip readers can use today, and a closing thought. Tone: like a smart friend sharing what they learned this week."
                 </div>
@@ -413,7 +401,7 @@ export const BlogPost4 = () => {
 
             <H3>STEP 8 — TOOL RESEARCH WITH PERPLEXITY + CLAUDE</H3>
             <p className="mb-2"><strong>Time:</strong> 45 minutes</p>
-            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Perplexity Pro" to="/tools/perplexity" /> + <ToolLink name="Claude Pro" to="/tools/claude" /></p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Perplexity Pro" to="/reviews/perplexity" /> + <ToolLink name="Claude Pro" to="/reviews/claude" /></p>
 
             <p>
               Every week I research one new tool deeply enough to write a full review. The process:
@@ -421,15 +409,15 @@ export const BlogPost4 = () => {
 
             <div className="space-y-4 mb-6">
               <div>
-                <p className="font-bold text-white">Phase 1 — Research with <ToolLink name="Perplexity" to="/tools/perplexity" />:</p>
+                <p className="font-bold text-white">Phase 1 — Research with <ToolLink name="Perplexity" to="/reviews/perplexity" />:</p>
                 <p className="font-mono text-sm bg-brand-surface p-3 rounded border border-gray-800 mt-1">"Give me a comprehensive overview of [tool name] — what it does, who it is for, current pricing tiers, recent updates, and what users are saying about it on Reddit and Twitter"</p>
               </div>
               <div>
-                <p className="font-bold text-white">Phase 2 — Structure with <ToolLink name="Claude" to="/tools/claude" />:</p>
+                <p className="font-bold text-white">Phase 2 — Structure with <ToolLink name="Claude" to="/reviews/claude" />:</p>
                 <p className="font-mono text-sm bg-brand-surface p-3 rounded border border-gray-800 mt-1">"Based on this research [paste Perplexity output], create a detailed review outline following this structure: hero description, key features, pros, cons, pricing, who it is best for, final verdict"</p>
               </div>
               <div>
-                <p className="font-bold text-white">Phase 3 — Write with <ToolLink name="Claude" to="/tools/claude" />:</p>
+                <p className="font-bold text-white">Phase 3 — Write with <ToolLink name="Claude" to="/reviews/claude" />:</p>
                 <p className="font-mono text-sm bg-brand-surface p-3 rounded border border-gray-800 mt-1">"Now write the full review using this outline. Be honest about limitations — we never write purely positive reviews."</p>
               </div>
               <div>
@@ -440,24 +428,24 @@ export const BlogPost4 = () => {
 
             <H3>STEP 9 — CODING AND SITE UPDATES WITH CURSOR</H3>
             <p className="mb-2"><strong>Time:</strong> As needed</p>
-            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Cursor Pro" to="/tools/cursor" /></p>
+            <p className="mb-6"><strong>Tool:</strong> <ToolLink name="Cursor Pro" to="/reviews/cursor" /></p>
 
             <p>
-              Any time the website needs updating — a new section, a bug fix, a design tweak — I use <ToolLink name="Cursor" to="/tools/cursor" />.
+              Any time the website needs updating — a new section, a bug fix, a design tweak — I use <ToolLink name="Cursor" to="/reviews/cursor" />.
             </p>
             <p>
-              I describe what I want in plain language and <ToolLink name="Cursor" to="/tools/cursor" /> writes the code.
+              I describe what I want in plain language and <ToolLink name="Cursor" to="/reviews/cursor" /> writes the code.
             </p>
 
             <p>
-              Last week I added a new filtering system to the tools page. I described what I wanted, <ToolLink name="Cursor" to="/tools/cursor" /> wrote the React component, I reviewed it, and it was live in under an hour.
+              Last week I added a new filtering system to the tools page. I described what I wanted, <ToolLink name="Cursor" to="/reviews/cursor" /> wrote the React component, I reviewed it, and it was live in under an hour.
             </p>
             <p>
-              Without <ToolLink name="Cursor" to="/tools/cursor" /> that change would have required briefing a developer and waiting days.
+              Without <ToolLink name="Cursor" to="/reviews/cursor" /> that change would have required briefing a developer and waiting days.
             </p>
 
             <CalloutTip>
-              <span className="font-bold text-white">Key insight:</span> <ToolLink name="Cursor" to="/tools/cursor" /> is not just for developers. It is for anyone who wants to control their own digital product without being permanently dependent on someone else to make changes for them.
+              <span className="font-bold text-white">Key insight:</span> <ToolLink name="Cursor" to="/reviews/cursor" /> is not just for developers. It is for anyone who wants to control their own digital product without being permanently dependent on someone else to make changes for them.
             </CalloutTip>
           </motion.div>
 
@@ -533,11 +521,11 @@ export const BlogPost4 = () => {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8">
-              <ToolReviewCard name="Claude" desc="The thinking and writing partner that powers everything." to="/tools/claude" category="AI Assistant" />
-              <ToolReviewCard name="Perplexity" desc="The research department that runs in real time." to="/tools/perplexity" category="Research" />
-              <ToolReviewCard name="Notion AI" desc="The knowledge system that makes everything else findable." to="/tools/notion" category="Workspace" />
-              <ToolReviewCard name="Midjourney" desc="The design studio for every visual asset." to="/tools/midjourney" category="Image Generation" />
-              <ToolReviewCard name="Cursor" desc="The development team for every site change." to="/tools/cursor" category="Code Editor" />
+              <ToolReviewCard name="Claude" desc="The thinking and writing partner that powers everything." to="/reviews/claude" category="AI Assistant" />
+              <ToolReviewCard name="Perplexity" desc="The research department that runs in real time." to="/reviews/perplexity" category="Research" />
+              <ToolReviewCard name="Notion AI" desc="The knowledge system that makes everything else findable." to="/reviews/notion-ai" category="Workspace" />
+              <ToolReviewCard name="Midjourney" desc="The design studio for every visual asset." to="/reviews/midjourney" category="Image Generation" />
+              <ToolReviewCard name="Cursor" desc="The development team for every site change." to="/reviews/cursor" category="Code Editor" />
             </div>
 
             <p className="text-xl font-bold font-mono text-center my-8">
@@ -559,7 +547,7 @@ export const BlogPost4 = () => {
               Every tool in this workflow is only as good as the human judgment applied to its output.
             </p>
             <p>
-              <ToolLink name="Claude" to="/tools/claude" />'s drafts need editing. <ToolLink name="Perplexity" to="/tools/perplexity" />'s research needs verification. <ToolLink name="Midjourney" to="/tools/midjourney" />'s images need curation. <ToolLink name="Cursor" to="/tools/cursor" />'s code needs review.
+              <ToolLink name="Claude" to="/reviews/claude" />'s drafts need editing. <ToolLink name="Perplexity" to="/reviews/perplexity" />'s research needs verification. <ToolLink name="Midjourney" to="/reviews/midjourney" />'s images need curation. <ToolLink name="Cursor" to="/reviews/cursor" />'s code needs review.
             </p>
             <p>
               The workflow does not replace thinking. It removes the friction between thinking and doing — and that is where most of the time in a solo business actually goes.
@@ -587,7 +575,7 @@ export const BlogPost4 = () => {
             <H2 id="want-this-workflow">WANT THIS WORKFLOW FOR YOUR BUSINESS?</H2>
 
             <p>
-              Start with just two tools — <ToolLink name="Claude" to="/tools/claude" /> and <ToolLink name="Perplexity" to="/tools/perplexity" />.
+              Start with just two tools — <ToolLink name="Claude" to="/reviews/claude" /> and <ToolLink name="Perplexity" to="/reviews/perplexity" />.
             </p>
             <p>
               Use them exclusively for two weeks on real work tasks. The time saving will be obvious enough to tell you exactly which tool to add next.
@@ -597,11 +585,11 @@ export const BlogPost4 = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
-              <Link to="/tools/claude" className="flex-1 bg-brand-surface border border-gray-700 p-4 text-center hover:border-brand-cyan transition-colors group">
+              <Link to="/reviews/claude" className="flex-1 bg-brand-surface border border-gray-700 p-4 text-center hover:border-brand-cyan transition-colors group">
                 <span className="block font-bold text-white mb-1 group-hover:text-brand-cyan transition-colors">Start with Claude</span>
                 <span className="text-sm text-gray-400 flex items-center justify-center gap-1">Read our review <ArrowRight size={14} /></span>
               </Link>
-              <Link to="/tools/perplexity" className="flex-1 bg-brand-surface border border-gray-700 p-4 text-center hover:border-brand-cyan transition-colors group">
+              <Link to="/reviews/perplexity" className="flex-1 bg-brand-surface border border-gray-700 p-4 text-center hover:border-brand-cyan transition-colors group">
                 <span className="block font-bold text-white mb-1 group-hover:text-brand-cyan transition-colors">Start with Perplexity</span>
                 <span className="text-sm text-gray-400 flex items-center justify-center gap-1">Read our review <ArrowRight size={14} /></span>
               </Link>

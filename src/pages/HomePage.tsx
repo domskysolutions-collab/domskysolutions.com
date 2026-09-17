@@ -3,19 +3,16 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, BookOpen, CheckCircle2, Layers, Sparkles, TrendingDown, Zap } from 'lucide-react';
 import { ConvertKitForm } from '../components/ConvertKitForm';
+import { reviewCount, reviewCatalog } from '../data/reviewCatalog';
 import { StarRating } from '../components/StarRating';
 
 export const HomePage = () => {
-  useEffect(() => {
-    document.title = 'Domsky Solutions — Honest AI Tool Reviews for Solopreneurs';
-  }, []);
-
   return (
     <main className="bg-brand-bg min-h-screen">
       {/* Hero */}
       <section
         className="relative px-4 sm:px-6 lg:px-8 overflow-hidden"
-        style={{ paddingTop: 100, paddingBottom: 100 }}
+        style={{ paddingTop: 100, paddingBottom: 24 }}
       >
         <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" aria-hidden />
         <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[min(90vw,720px)] h-48 bg-brand-cyan/10 blur-[80px] rounded-full pointer-events-none" aria-hidden />
@@ -29,9 +26,9 @@ export const HomePage = () => {
           `}</style>
           <p className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-cyan/25 bg-brand-cyan/5 text-brand-cyan text-xs font-mono mb-8">
             <Sparkles className="w-3.5 h-3.5" aria-hidden />
-            <span className="block sm:inline">25 years in tech ·</span>{' '}
-            <span className="block sm:inline">6 tools reviewed ·</span>{' '}
-            <span className="block sm:inline">$913/month saved</span>
+            <span className="block sm:inline">Independent reviews ·</span>{' '}
+            <span className="block sm:inline">{reviewCount} reviews ·</span>{' '}
+            <span className="block sm:inline">Clear strengths and limitations</span>
           </p>
 
           <div className="mx-auto" style={{ maxWidth: 800 }}>
@@ -51,7 +48,7 @@ export const HomePage = () => {
             <h1
               className="font-mono text-white mb-10"
               style={{
-                fontSize: 'clamp(52px, 8vw, 96px)',
+                fontSize: 'clamp(30px, 7.5vw, 76px)',
                 fontWeight: 900,
                 lineHeight: 1.05,
                 textShadow: '0 0 80px rgba(249, 115, 22, 0.18)',
@@ -80,7 +77,7 @@ export const HomePage = () => {
                   display: 'block',
                   animation: 'expandLine 1s ease forwards',
                   animationDelay: '0.4s',
-                  margin: '12px auto 48px',
+                  margin: '12px auto 20px',
                 }}
               />
             </h1>
@@ -91,9 +88,9 @@ export const HomePage = () => {
                 display: 'block',
                 fontSize: 'clamp(22px, 3.5vw, 38px)',
                 fontWeight: 400,
-                color: '#D97706',
+                color: '#FB923C',
                 marginTop: 12,
-                marginBottom: 52,
+                marginBottom: 24,
                 lineHeight: 1.5,
               }}
             >
@@ -101,35 +98,35 @@ export const HomePage = () => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
             <Link
-              to="/tools"
+              to="/reviews"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-[#000000] font-bold text-lg hover:bg-brand-amber transition-colors shadow-[0_0_28px_rgba(249,115,22,0.35)]"
             >
-              Browse AI Tool Reviews <ArrowRight className="w-5 h-5" />
+              Read independent reviews <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
-              to="/tools/email-writer"
+              to="/tools"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl border border-gray-600 text-white font-bold text-lg hover:border-brand-cyan hover:bg-brand-surface transition-colors"
             >
               Try Free Tools
             </Link>
           </div>
-          <p className="mx-auto mb-4" style={{ maxWidth: 800, fontSize: 13, color: '#A16207', fontStyle: 'italic' }}>
-            I test every AI tool personally and tell you exactly what works, what does not, and what it costs. No
+          <p className="mx-auto mb-4" style={{ maxWidth: 800, fontSize: 13, color: '#D6B98C', fontStyle: 'italic' }}>
+            Explore practical verdicts, limitations and pricing considerations for your next tool. No
             sponsored verdicts. No hype. Just what actually matters for people building alone.
           </p>
-          <p className="text-sm text-gray-500 font-mono mb-14">
-            <span className="block sm:inline">6 tools reviewed in depth ·</span>{' '}
+          <p className="text-sm text-gray-500 font-mono mb-6">
+            <span className="block sm:inline">{reviewCount} published reviews ·</span>{' '}
             <span className="block sm:inline">No sponsored content ·</span>{' '}
             <span className="block sm:inline">Built by Dominik —</span>{' '}
-            <span className="block sm:inline">25yr tech veteran</span>
+            <span className="block sm:inline">Designer and PC enthusiast</span>
           </p>
           <div className="flex flex-wrap justify-center gap-5 mt-8">
             {[
-              { value: '913/month', label: 'avg saving' },
-              { value: '6+', label: 'tools reviewed' },
-              { value: '100%', label: 'personally tested' },
+              { value: 'Independent', label: 'editorial opinions' },
+              { value: String(reviewCount), label: 'tools reviewed' },
+              { value: 'Transparent', label: 'evidence disclosures' },
             ].map((stat) => (
               <div
                 key={stat.label}
@@ -137,7 +134,7 @@ export const HomePage = () => {
                 style={{
                   background: 'rgba(249,115,22,0.06)',
                   border: '1px solid rgba(249,115,22,0.2)',
-                  padding: '20px 28px',
+                  padding: '12px 20px',
                   borderRadius: 12,
                 }}
               >
@@ -154,13 +151,13 @@ export const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
             <div>
-              <div className="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-2">REVIEWED &amp; TESTED</div>
-              <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">AI Tools I Have Tested</h2>
+              <div className="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-2">INDEPENDENT REVIEWS</div>
+              <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Featured AI Reviews</h2>
               <p className="text-gray-400 mt-2 max-w-2xl">
-                Every review is written after weeks of real daily use. Honest verdicts only.
+                Explore the verdicts alongside our methodology and evidence disclosures.
               </p>
             </div>
-            <Link to="/tools" className="inline-flex items-center gap-2 text-brand-cyan font-mono text-sm hover:underline shrink-0">
+            <Link to="/reviews" className="inline-flex items-center gap-2 text-brand-cyan font-mono text-sm hover:underline shrink-0">
               View all reviews <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -174,7 +171,7 @@ export const HomePage = () => {
                 category: 'AI Assistant',
                 verdict: 'The best AI assistant for writing, thinking and complex reasoning.',
                 price: 'From $20/month',
-                to: '/tools/claude',
+                to: '/reviews/claude',
               },
               {
                 emoji: '💻',
@@ -183,7 +180,7 @@ export const HomePage = () => {
                 category: 'AI Code Editor',
                 verdict: 'Build and fix websites without being a developer.',
                 price: 'From $20/month',
-                to: '/tools/cursor',
+                to: '/reviews/cursor',
               },
               {
                 emoji: '🔍',
@@ -192,7 +189,7 @@ export const HomePage = () => {
                 category: 'AI Research',
                 verdict: 'Replace 90 minutes of research with 3 questions.',
                 price: 'Free / $20/month',
-                to: '/tools/perplexity',
+                to: '/reviews/perplexity',
               },
             ].map((card) => (
               <Link
@@ -217,9 +214,9 @@ export const HomePage = () => {
                 <div className="flex items-start justify-between mb-4">
                   <div className="text-3xl leading-none">{card.emoji}</div>
                   <div className="text-right">
-                    <div className="text-brand-amber font-bold font-mono text-sm">{card.rating}</div>
+                    <div className="text-brand-amber font-bold font-mono text-sm">{reviewCatalog.find(r => r.link === card.to)?.rating}/5</div>
                     <div className="flex justify-end gap-1 mt-1">
-                      <StarRating rating={Number.parseFloat(card.rating)} size={12} />
+                      <StarRating rating={reviewCatalog.find(r => r.link === card.to)?.rating || 0} size={12} />
                     </div>
                   </div>
                 </div>
@@ -256,9 +253,9 @@ export const HomePage = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center gap-8 md:gap-16 flex-wrap">
             {[
-              { value: '$913', label: 'average monthly saving', color: '#F97316' },
-              { value: '87%', label: 'average cost reduction', color: '#FB923C' },
-              { value: '6+', label: 'tools reviewed in depth', color: '#F97316' },
+              { value: 'Clear', label: 'limitations explained', color: '#F97316' },
+              { value: 'Open', label: 'review methodology', color: '#FB923C' },
+              { value: String(reviewCount), label: 'tools reviewed in depth', color: '#F97316' },
               { value: '0', label: 'sponsored reviews', color: '#4ADE80' },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
@@ -289,9 +286,9 @@ export const HomePage = () => {
               <div className="absolute top-4 right-4 text-5xl font-bold font-mono text-brand-cyan opacity-30">01</div>
               <h3 className="font-bold font-mono text-lg text-white mb-2">1. I test the tools</h3>
               <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                Every tool gets weeks of real daily use — not a quick demo. I pay for the subscriptions myself.
+                I explain the strengths, limitations and practical fit of each tool. Read the methodology for the testing details currently documented.
               </p>
-              <div className="text-xs text-brand-cyan font-mono">Minimum 2 weeks per tool</div>
+              <div className="text-xs text-brand-cyan font-mono"><Link to="/methodology" className="underline">Read the review methodology</Link></div>
             </div>
             <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center relative overflow-hidden">
               <div className="absolute top-4 right-4 text-5xl font-bold font-mono text-brand-cyan opacity-30">02</div>
@@ -339,7 +336,7 @@ export const HomePage = () => {
                   border: '1px solid rgba(249,115,22,0.2)',
                 },
                 title: 'I Replaced My Entire $500/Month SaaS Stack With AI Tools',
-                excerpt: 'Every tool. Every saving. Real numbers, no fluff.',
+                excerpt: 'A personal account of changing a software stack.',
                 readTime: '8 min read',
                 to: '/blog/replaced-saas-stack-with-ai-tools',
               },
@@ -400,13 +397,13 @@ export const HomePage = () => {
       <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-12">
-            Why 913 saved readers trust domskysolutions.com
+            What to expect from Domsky Solutions
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                title: 'Personally tested',
-                body: 'I use every tool I review in my actual daily workflow before writing a single word. No exceptions.',
+                title: 'Personal perspective',
+                body: 'Reviews reflect my editorial perspective. The methodology explains which testing details are documented and which are still missing.',
                 icon: '🔬',
                 iconStyle: { background: 'rgba(249,115,22,0.12)' },
               },
@@ -453,9 +450,10 @@ export const HomePage = () => {
         <div className="relative max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold font-mono text-white mb-4">The Weekly Edge — Every Thursday</h2>
           <p className="text-gray-400 mb-10 leading-relaxed">
-            One AI tool worth knowing. One workflow tip that saves real time. One insight the algorithm won't show you.
+            One AI tool worth knowing. One practical workflow tip. One useful insight for building alone.
             No sponsors. No fluff. Free forever.
           </p>
+          <p className="text-sm text-gray-300 mb-6">See the kind of advice we cover: <Link to="/blog/ai-daily-workflow-solo-business" className="text-brand-cyan underline">read the solo-business workflow guide</Link>.</p>
           <ConvertKitForm
             className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mb-6"
             inputClassName="flex-grow bg-brand-surface border border-gray-700 px-5 py-4 text-white rounded-xl focus:outline-none focus:border-brand-cyan transition-colors font-sans text-sm"
@@ -481,10 +479,10 @@ export const HomePage = () => {
       <section className="py-16 border-t border-gray-800 text-center px-4">
         <h2 className="text-2xl md:text-3xl font-bold font-mono text-white mb-6">Start saving money on software today</h2>
         <Link
-          to="/tools"
+          to="/reviews"
           className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-brand-cyan text-[#000000] font-bold hover:bg-brand-amber transition-colors"
         >
-          Browse AI Tool Reviews <ArrowRight className="w-5 h-5" />
+          Read independent reviews <ArrowRight className="w-5 h-5" />
         </Link>
         <div className="text-gray-500 text-sm mt-4">
           Or try a free tool —{' '}
@@ -496,3 +494,4 @@ export const HomePage = () => {
     </main>
   );
 };
+

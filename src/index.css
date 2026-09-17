@@ -119,3 +119,13 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 .email-writer-dot {
   animation: email-writer-dot 1s ease-in-out infinite;
 }
+/* Accessible navigation, small text, and reduced motion. */
+:root { --color-brand-text-muted: #D6B98C; }
+.text-gray-500, .text-gray-600 { color: #A8A29E; }
+:where(a, button, input, select, textarea, [tabindex]):focus-visible { outline: 3px solid #FB923C; outline-offset: 4px; }
+.skip-link { position: fixed; top: -100px; left: 16px; z-index: 100; padding: 12px; background: #FB923C; color: #0F0A05; }
+.skip-link:focus { top: 12px; }
+[id] { scroll-margin-top: 100px; }
+h1 { overflow-wrap: anywhere; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+

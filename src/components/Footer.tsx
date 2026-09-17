@@ -27,10 +27,10 @@ export const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-mono font-bold text-white mb-4">Explore</h4>
+            <h2 className="font-mono font-bold text-white mb-4">Explore</h2>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><Link to="/tools" className="hover:text-brand-cyan transition-colors">AI Tool Reviews</Link></li>
-              <li><Link to="/reviews" className="hover:text-brand-cyan transition-colors">SaaS Reviews</Link></li>
+              <li><Link to="/tools" className="hover:text-brand-cyan transition-colors">Free Tools</Link></li>
+              <li><Link to="/reviews" className="hover:text-brand-cyan transition-colors">AI & SaaS Reviews</Link></li>
               <li><Link to="/tools/prompt-builder" className="hover:text-brand-cyan transition-colors">Prompt Builder</Link></li>
               <li><Link to="/tools/ai-readiness-quiz" className="hover:text-brand-cyan transition-colors">AI Readiness Quiz</Link></li>
               <li><Link to="/tools/saas-calculator" className="hover:text-brand-cyan transition-colors">SaaS Calculator</Link></li>
@@ -42,8 +42,10 @@ export const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-mono font-bold text-white mb-4">Company</h4>
+            <h2 className="font-mono font-bold text-white mb-4">Company</h2>
             <ul className="space-y-2 text-sm text-gray-400">
+              <li><Link to="/methodology" className="hover:text-brand-cyan transition-colors">Review Methodology</Link></li>
+              <li><Link to="/comparisons" className="hover:text-brand-cyan transition-colors">Comparisons</Link></li>
               <li><Link to="/about" className="hover:text-brand-cyan transition-colors">About</Link></li>
               <li><a href="mailto:team@domskysolutions.com" className="hover:text-brand-cyan transition-colors">Contact</a></li>
               <li><a href="mailto:partners@domskysolutions.com" className="hover:text-brand-cyan transition-colors">Advertise</a></li>
@@ -51,7 +53,7 @@ export const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-mono font-bold text-white mb-4">Legal</h4>
+            <h2 className="font-mono font-bold text-white mb-4">Legal</h2>
             <ul className="space-y-2 text-sm text-gray-400">
               <li><Link to="/privacy" className="hover:text-brand-cyan transition-colors">Privacy Policy</Link></li>
               <li><Link to="/disclaimer" className="hover:text-brand-cyan transition-colors">Disclaimer</Link></li>
@@ -91,3 +93,4 @@ export const Footer = () => {
     </footer>
   );
 };
+

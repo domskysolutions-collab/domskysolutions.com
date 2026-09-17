@@ -92,7 +92,7 @@ const TOOL_RESULTS: Record<ResultId, ToolResult> = {
     ],
     firstStep:
       'Go to claude.ai, sign up free and ask it to write one email you have been putting off. Time how long it takes.',
-    reviewLink: '/tools/claude',
+    reviewLink: '/reviews/claude',
     toolUrl: 'https://claude.ai',
   },
   perplexity: {
@@ -110,7 +110,7 @@ const TOOL_RESULTS: Record<ResultId, ToolResult> = {
     ],
     firstStep:
       'Go to perplexity.ai and ask it the question you most need answered about your industry today. No tabs needed.',
-    reviewLink: '/tools/perplexity',
+    reviewLink: '/reviews/perplexity',
     toolUrl: 'https://perplexity.ai',
   },
   midjourney: {
@@ -146,7 +146,7 @@ const TOOL_RESULTS: Record<ResultId, ToolResult> = {
     ],
     firstStep:
       'Download Cursor free at cursor.sh. Open any file and ask it to explain what the file does in plain English. Do not try to edit anything yet.',
-    reviewLink: '/tools/cursor',
+    reviewLink: '/reviews/cursor',
     toolUrl: 'https://cursor.sh',
   },
   notion: {
@@ -160,7 +160,7 @@ const TOOL_RESULTS: Record<ResultId, ToolResult> = {
     pros: ['Organises everything you know', 'Summarises long documents instantly', 'Free workspace to get started'],
     firstStep:
       'Go to notion.so, create a free account and move your most used notes into it. Then ask Notion AI to summarise them.',
-    reviewLink: '/tools/notion-ai',
+    reviewLink: '/reviews/notion-ai',
     toolUrl: 'https://notion.so',
   },
   elevenlabs: {
@@ -174,7 +174,7 @@ const TOOL_RESULTS: Record<ResultId, ToolResult> = {
     pros: ['Voice cloning and generation', 'Replaces expensive voiceover costs', 'Free tier for getting started'],
     firstStep:
       'Go to elevenlabs.io, sign up free and generate your first voiceover from a text script in under 2 minutes.',
-    reviewLink: '/tools/elevenlabs',
+    reviewLink: '/reviews/elevenlabs',
     toolUrl: 'https://elevenlabs.io',
   },
   'full-stack': {
@@ -191,7 +191,7 @@ const TOOL_RESULTS: Record<ResultId, ToolResult> = {
       'Together they free up 2+ hours per day',
     ],
     firstStep: 'Start with Claude today. Add Perplexity on day 3. Use both for one week before adding anything else.',
-    reviewLinks: ['/tools/claude', '/tools/perplexity'],
+    reviewLinks: ['/reviews/claude', '/reviews/perplexity'],
     toolUrls: ['https://claude.ai', 'https://perplexity.ai'],
   },
 };
@@ -243,18 +243,6 @@ export const AiReadinessQuiz = () => {
   const [copied, setCopied] = useState(false);
 
   const loadingTexts = ['Analysing your answers...', 'Matching tools to your situation...', 'Building your recommendation...'];
-
-  useEffect(() => {
-    document.title = 'AI Readiness Quiz — domskysolutions.com';
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        'Answer 5 quick questions and get a personalised recommendation for your perfect first AI tool. No technical knowledge required.'
-      );
-    }
-  }, []);
-
   useEffect(() => {
     if (!isCalculating) return;
 
@@ -802,4 +790,5 @@ domskysolutions.com/tools/ai-readiness-quiz
     </div>
   );
 };
+
 

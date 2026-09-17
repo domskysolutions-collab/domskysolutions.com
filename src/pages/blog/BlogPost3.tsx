@@ -13,18 +13,6 @@ export const BlogPost3 = () => {
   const { scrollYProgress } = useScroll();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeSection, setActiveSection] = useState('');
-
-  useEffect(() => {
-    document.title = "Claude vs ChatGPT vs Gemini — Which AI Assistant Should You Actually Use in 2026?";
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', "We tested Claude, ChatGPT and Gemini head to head across writing, coding, research and reasoning. Here is the honest verdict on which AI assistant is actually worth your money in 2026.");
-  }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 500);
@@ -119,6 +107,7 @@ export const BlogPost3 = () => {
             <span className="text-gray-500 font-mono text-sm">•</span>
             <span className="text-gray-400 font-mono text-sm">10 min read</span>
           </div>
+          <aside className="p-4 mb-6 border border-brand-cyan/30 text-sm text-gray-300">This is an editorial comparison. Dated prompts, outputs and complete test logs are not published, so testing-duration and performance claims below are not independently reproducible. <Link className="underline text-brand-cyan" to="/methodology">Read the evidence policy</Link>.</aside>
           <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-8">
             Claude vs ChatGPT vs Gemini — Which AI Assistant Should You Actually Use in 2026?
           </h1>
@@ -157,7 +146,7 @@ export const BlogPost3 = () => {
             This is not that article.
           </p>
           <p>
-            We used <ToolLink name="Claude" to="/tools/claude" />, <ToolLink name="ChatGPT" to="/tools/chatgpt" /> and <ToolLink name="Gemini" to="/tools/gemini" /> as our primary AI assistants for thirty days each — for real work, real tasks, and real deadlines.
+            We used <ToolLink name="Claude" to="/reviews/claude" />, <a href="https://chatgpt.com" className="text-brand-cyan underline">ChatGPT</a> and <a href="https://gemini.google.com" className="text-brand-cyan underline">Gemini</a> as our primary AI assistants for thirty days each — for real work, real tasks, and real deadlines.
           </p>
           <p>
             Writing, coding, research, analysis, summarizing documents, brainstorming, and everything in between. We tracked where each one excelled, where each one frustrated us, and where the gaps between them were meaningful enough to actually change what we recommend.
@@ -184,7 +173,7 @@ export const BlogPost3 = () => {
 
             <H3>CLAUDE — Built by Anthropic</H3>
             <p>
-              <ToolLink name="Claude" to="/tools/claude" /> is built by Anthropic, a company founded specifically around the goal of building AI that is safe, honest and genuinely helpful.
+              <ToolLink name="Claude" to="/reviews/claude" /> is built by Anthropic, a company founded specifically around the goal of building AI that is safe, honest and genuinely helpful.
             </p>
             <p>
               That mission is not marketing — it shows up in how Claude behaves. It is more likely to tell you when it is uncertain, more careful about making things up, and more focused on actually solving your problem than on sounding impressive while doing it.
@@ -195,7 +184,7 @@ export const BlogPost3 = () => {
 
             <H3>CHATGPT — Built by OpenAI</H3>
             <p>
-              <ToolLink name="ChatGPT" to="/tools/chatgpt" /> is the tool that started the current AI revolution and it remains the most recognized name in the category.
+              <a href="https://chatgpt.com" className="text-brand-cyan underline">ChatGPT</a> is the tool that started the current AI revolution and it remains the most recognized name in the category.
             </p>
             <p>
               Built by OpenAI, it was the first AI assistant most people ever used and it has spent the years since trying to be everything to everyone — adding image generation, voice mode, web browsing, plugins, memory and more features than any competitor.
@@ -206,7 +195,7 @@ export const BlogPost3 = () => {
 
             <H3>GEMINI — Built by Google</H3>
             <p>
-              <ToolLink name="Gemini" to="/tools/gemini" /> is Google's answer to the AI assistant revolution — and it has the most powerful infrastructure behind it of any tool on this list.
+              <a href="https://gemini.google.com" className="text-brand-cyan underline">Gemini</a> is Google's answer to the AI assistant revolution — and it has the most powerful infrastructure behind it of any tool on this list.
             </p>
             <p>
               Google's search index, its real time web access, its integration with Gmail, Docs, Drive and every other Google product gives Gemini capabilities that neither Claude nor ChatGPT can match in the Google ecosystem.
@@ -533,7 +522,7 @@ export const BlogPost3 = () => {
               You are a writer, founder, consultant, researcher or knowledge worker whose primary use of AI is thinking, writing and analysis.
             </p>
             <p>
-              <ToolLink name="Claude" to="/tools/claude" /> will make you better at your core work in a way that feels less like using a tool and more like thinking alongside someone genuinely intelligent.
+              <ToolLink name="Claude" to="/reviews/claude" /> will make you better at your core work in a way that feels less like using a tool and more like thinking alongside someone genuinely intelligent.
             </p>
             <p>
               The <Money>$20/month</Money> Pro plan is one of the best value subscriptions in the AI tools market.
@@ -544,7 +533,7 @@ export const BlogPost3 = () => {
               You are a developer or technical user who needs the broadest feature set — image generation, voice mode, plugins, the widest range of third party integrations, and the most established ecosystem of tools built around a single AI platform.
             </p>
             <p>
-              <ToolLink name="ChatGPT" to="/tools/chatgpt" />'s breadth is unmatched even if its depth on individual tasks is occasionally surpassed.
+              <a href="https://chatgpt.com" className="text-brand-cyan underline">ChatGPT</a>'s breadth is unmatched even if its depth on individual tasks is occasionally surpassed.
             </p>
 
             <H3>CHOOSE GEMINI IF:</H3>
@@ -659,12 +648,12 @@ export const BlogPost3 = () => {
             <p>
               We have a complete in-depth review of Claude covering every feature, pricing tier, pros and cons and exactly who it is best for:
             </p>
-            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" category="AI Assistant" />
+            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/reviews/claude" category="AI Assistant" />
             
             <p className="mt-8">
               And if you are serious about research alongside your AI assistant, read our Perplexity review — the tool that solves Claude's one real weakness:
             </p>
-            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" category="Research" />
+            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/reviews/perplexity" category="Research" />
           </motion.div>
 
           <div className="mt-16 p-6 bg-gray-900 border border-gray-800 text-sm text-gray-400">
@@ -678,7 +667,7 @@ export const BlogPost3 = () => {
       <div className="max-w-5xl mx-auto px-6 mt-24 border-t border-gray-800 pt-16">
         <h2 className="text-2xl font-bold font-mono text-white mb-8">Related Articles</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {BLOG_POSTS.filter(p => p.slug !== "/blog/claude-vs-chatgpt-vs-gemini-2026").slice(0, 2).map(post => (
+          {BLOG_POSTS.filter(p => p.slug !== "/comparisons/claude-vs-chatgpt-vs-gemini-2026").slice(0, 2).map(post => (
             <BlogCard key={post.slug} post={post} />
           ))}
         </div>

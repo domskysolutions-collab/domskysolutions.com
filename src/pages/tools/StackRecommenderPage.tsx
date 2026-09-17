@@ -52,15 +52,15 @@ const EXPERIENCE_OPTIONS = [
 ];
 
 const TOOLS_DB = {
-  claude: { id: 'claude', name: 'Claude', category: 'Writing & Reasoning', rating: 5, price: 20, freeTier: true, reviewLink: '/tools/claude', url: 'https://claude.ai' },
-  midjourney: { id: 'midjourney', name: 'Midjourney', category: 'Image Generation', rating: 5, price: 30, freeTier: false, reviewLink: '/tools/midjourney', url: 'https://midjourney.com' },
-  perplexity: { id: 'perplexity', name: 'Perplexity', category: 'Research', rating: 5, price: 20, freeTier: true, reviewLink: '/tools/perplexity', url: 'https://perplexity.ai' },
-  cursor: { id: 'cursor', name: 'Cursor', category: 'Coding', rating: 5, price: 20, freeTier: true, reviewLink: '/tools/cursor', url: 'https://cursor.sh' },
-  descript: { id: 'descript', name: 'Descript', category: 'Video/Audio', rating: 4, price: 15, freeTier: true, reviewLink: '/tools/descript', url: 'https://descript.com' },
-  elevenlabs: { id: 'elevenlabs', name: 'ElevenLabs', category: 'Voice AI', rating: 5, price: 5, freeTier: true, reviewLink: '/tools/elevenlabs', url: 'https://elevenlabs.io' },
-  framer: { id: 'framer', name: 'Framer', category: 'Web Design', rating: 4, price: 15, freeTier: true, reviewLink: '/tools/framer', url: 'https://framer.com' },
-  jasper: { id: 'jasper', name: 'Jasper', category: 'Marketing', rating: 4, price: 39, freeTier: false, reviewLink: '/tools/jasper', url: 'https://jasper.ai' },
-  notion: { id: 'notion', name: 'Notion AI', category: 'Workspace', rating: 4, price: 10, freeTier: true, reviewLink: '/tools/notion', url: 'https://notion.so' },
+  claude: { id: 'claude', name: 'Claude', category: 'Writing & Reasoning', rating: 5, price: 20, freeTier: true, reviewLink: '/reviews/claude', url: 'https://claude.ai' },
+  midjourney: { id: 'midjourney', name: 'Midjourney', category: 'Image Generation', rating: 5, price: 30, freeTier: false, reviewLink: '/reviews/midjourney', url: 'https://midjourney.com' },
+  perplexity: { id: 'perplexity', name: 'Perplexity', category: 'Research', rating: 5, price: 20, freeTier: true, reviewLink: '/reviews/perplexity', url: 'https://perplexity.ai' },
+  cursor: { id: 'cursor', name: 'Cursor', category: 'Coding', rating: 5, price: 20, freeTier: true, reviewLink: '/reviews/cursor', url: 'https://cursor.sh' },
+  descript: { id: 'descript', name: 'Descript', category: 'Video/Audio', rating: 4, price: 15, freeTier: true, reviewLink: '/reviews/descript', url: 'https://descript.com' },
+  elevenlabs: { id: 'elevenlabs', name: 'ElevenLabs', category: 'Voice AI', rating: 5, price: 5, freeTier: true, reviewLink: '/reviews/elevenlabs', url: 'https://elevenlabs.io' },
+  framer: { id: 'framer', name: 'Framer', category: 'Web Design', rating: 4, price: 15, freeTier: true, reviewLink: '/reviews/framer', url: 'https://framer.com' },
+  jasper: { id: 'jasper', name: 'Jasper', category: 'Marketing', rating: 4, price: 39, freeTier: false, reviewLink: '/reviews/jasper', url: 'https://jasper.ai' },
+  notion: { id: 'notion', name: 'Notion AI', category: 'Workspace', rating: 4, price: 10, freeTier: true, reviewLink: '/reviews/notion-ai', url: 'https://notion.so' },
 };
 
 export const StackRecommenderPage = () => {
@@ -83,15 +83,6 @@ export const StackRecommenderPage = () => {
     "Matching tools to your goals...",
     "Building your stack..."
   ];
-
-  useEffect(() => {
-    document.title = "AI Tool Stack Recommender — domskysolutions.com";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "Answer 5 quick questions and get your personalised AI tool stack. Free recommendations based on your role, goals and budget.");
-    }
-  }, []);
-
   useEffect(() => {
     if (isCalculating) {
       const interval = setInterval(() => {
@@ -630,3 +621,4 @@ export const StackRecommenderPage = () => {
     </div>
   );
 };
+

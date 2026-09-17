@@ -42,8 +42,8 @@ export const BLOG_POSTS = [
   },
   {
     title: "Claude vs ChatGPT vs Gemini — Which AI Assistant Should You Actually Use in 2026?",
-    slug: "/blog/claude-vs-chatgpt-vs-gemini-2026",
-    excerpt: "We tested all three head to head for 30 days on real work tasks. Here is the honest verdict on which AI assistant is actually worth your money in 2026.",
+    slug: "/comparisons/claude-vs-chatgpt-vs-gemini-2026",
+    excerpt: "An editorial comparison of Claude, ChatGPT and Gemini for writing, coding, research and reasoning, with guidance on choosing an assistant.",
     category: "AI News",
     date: "April 2026",
     readTime: "10 minutes",
@@ -61,3 +61,4 @@ export const BLOG_POSTS = [
     author: "Dominik"
   }
 ];
+

@@ -1,3 +1,4 @@
+import { ReviewEvidence } from '../../components/ReviewEvidence';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'motion/react';
@@ -13,7 +14,6 @@ export const ConvertKitReviewPage = () => {
   });
 
   useEffect(() => {
-    document.title = "ConvertKit Review | Tools We Use | domskysolutions.com";
     window.scrollTo(0, 0);
   }, []);
 
@@ -26,11 +26,12 @@ export const ConvertKitReviewPage = () => {
 
       <div className="pt-32 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
         <div className="text-gray-500 font-mono text-sm mb-8 flex items-center gap-2 flex-wrap">
-          <Link to="/uses" className="hover:text-brand-cyan transition-colors">Tools We Use</Link>
+          <Link to="/reviews" className="hover:text-brand-cyan transition-colors">Reviews</Link>
           <ChevronRight size={14} className="text-gray-600" />
           <span className="text-gray-300">ConvertKit</span>
         </div>
 
+        <ReviewEvidence slug="convertkit" />
         <div className="bg-brand-surface border border-gray-800 p-8 md:p-12 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-cyan to-blue-500"></div>
 
@@ -345,3 +346,4 @@ export const ConvertKitReviewPage = () => {
     </div>
   );
 };
+

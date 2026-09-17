@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { getToolBySlug } from '../data/tools';
 import { ToolDetailPage } from './ToolDetailPage';
-import { ToolPage } from './tools/ToolPage';
+import { NotFoundPage } from './NotFoundPage';
 
 /**
  * /tools/:slug — AI workspace tools from config, or legacy tool review pages.
@@ -15,5 +15,6 @@ export function ToolsSlugPage() {
     return <ToolDetailPage tool={aiTool} />;
   }
 
-  return <ToolPage />;
+  return <NotFoundPage />;
 }
+

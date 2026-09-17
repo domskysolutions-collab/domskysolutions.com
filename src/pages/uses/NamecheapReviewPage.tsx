@@ -1,3 +1,4 @@
+import { ReviewEvidence } from '../../components/ReviewEvidence';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'motion/react';
@@ -13,18 +14,7 @@ export const NamecheapReviewPage = () => {
   });
 
   useEffect(() => {
-    document.title = 'Namecheap Review 2026 | Tools I Use | domskysolutions.com';
     window.scrollTo(0, 0);
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute(
-      'content',
-      'My honest Namecheap review after using it to register domskysolutions.com. Real pricing, real pros and cons, no sponsored fluff.',
-    );
   }, []);
 
   return (
@@ -36,13 +26,14 @@ export const NamecheapReviewPage = () => {
 
       <div className="pt-32 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
         <div className="text-gray-500 font-mono text-sm mb-8 flex items-center gap-2 flex-wrap">
-          <Link to="/uses" className="hover:text-brand-cyan transition-colors">
+          <Link to="/reviews" className="hover:text-brand-cyan transition-colors">
             Tools I Use
           </Link>
           <ChevronRight size={14} className="text-gray-600" />
           <span className="text-gray-300">Namecheap Review</span>
         </div>
 
+        <ReviewEvidence slug="namecheap" />
         <div className="bg-brand-surface border border-gray-800 p-8 md:p-12 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-cyan to-blue-500"></div>
 
@@ -456,4 +447,5 @@ export const NamecheapReviewPage = () => {
     </div>
   );
 };
+
 

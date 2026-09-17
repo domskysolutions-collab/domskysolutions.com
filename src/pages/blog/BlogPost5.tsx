@@ -15,18 +15,6 @@ export const BlogPost5 = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [sidebarFixed, setSidebarFixed] = useState(true);
-
-  useEffect(() => {
-    document.title = "Why I Cancelled Adobe and Never Looked Back | Domsky Solutions";
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', "After 12 years as a graphic designer I finally did it. Here's exactly what replaced it and what I'd never give up.");
-  }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 500);

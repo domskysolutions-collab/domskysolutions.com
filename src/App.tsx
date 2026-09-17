@@ -1,5 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { PageSeo } from './components/PageSeo';
+import { MethodologyPage } from './pages/MethodologyPage';
+import { ComparisonsPage } from './pages/ComparisonsPage';
+import { legacyReviewRedirects } from './data/reviewCatalog';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
@@ -30,11 +34,17 @@ import { BlogPost5 } from './pages/blog/BlogPost5';
 import { BlogPost6 } from './pages/blog/BlogPost6';
 import { ToolsSlugPage } from './pages/ToolsSlugPage';
 
-export default function App() {
+export function SiteRoutes() {
   return (
-    <Router>
+    <>
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <Navbar />
+      <PageSeo />
+      <div id="main-content" tabIndex={-1}>
       <Routes>
+        {Object.entries(legacyReviewRedirects).map(([from, to]) => <Route key={from} path={from} element={<Navigate replace to={to} />} />)}
+        <Route path="/methodology" element={<MethodologyPage />} />
+        <Route path="/comparisons" element={<ComparisonsPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/tools" element={<ToolsPage />} />
         <Route path="/tools/saas-calculator" element={<SaasCalculatorPage />} />
@@ -42,8 +52,8 @@ export default function App() {
         <Route path="/tools/stack-recommender" element={<StackRecommenderPage />} />
         <Route path="/tools/content-calendar" element={<ContentCalendarPage />} />
         <Route path="/uses" element={<UsesPage />} />
-        <Route path="/uses/convertkit" element={<ConvertKitReviewPage />} />
-        <Route path="/uses/namecheap" element={<NamecheapReviewPage />} />
+        <Route path="/reviews/convertkit" element={<ConvertKitReviewPage />} />
+        <Route path="/reviews/namecheap" element={<NamecheapReviewPage />} />
         <Route path="/tools/ai-readiness-quiz" element={<AiReadinessQuiz />} />
         <Route path="/tools/email-writer" element={<EmailWriterPage />} />
         <Route path="/tools/tool-description" element={<ToolDescriptionPage />} />
@@ -55,7 +65,7 @@ export default function App() {
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/replaced-saas-stack-with-ai-tools" element={<BlogPost1 />} />
         <Route path="/blog/ai-tools-look-like-team-of-10" element={<BlogPost2 />} />
-        <Route path="/blog/claude-vs-chatgpt-vs-gemini-2026" element={<BlogPost3 />} />
+        <Route path="/comparisons/claude-vs-chatgpt-vs-gemini-2026" element={<BlogPost3 />} />
         <Route path="/blog/ai-daily-workflow-solo-business" element={<BlogPost4 />} />
         <Route path="/blog/cancelled-adobe-never-looked-back" element={<BlogPost5 />} />
         <Route path="/blog/you-dont-need-to-be-technical-to-use-ai" element={<BlogPost6 />} />
@@ -63,7 +73,11 @@ export default function App() {
         <Route path="/disclaimer" element={<DisclaimerPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      </div>
       <Footer />
-    </Router>
+    </>
   );
 }
+
+export default function App() { return <Router><SiteRoutes /></Router>; }
+

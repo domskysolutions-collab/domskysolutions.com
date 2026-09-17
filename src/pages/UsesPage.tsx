@@ -130,7 +130,6 @@ const usesTools = [
 
 export const UsesPage = () => {
   useEffect(() => {
-    document.title = "Tools We Use | domskysolutions.com";
     window.scrollTo(0, 0);
   }, []);
 
@@ -172,7 +171,7 @@ export const UsesPage = () => {
                 <div className="flex flex-col sm:flex-row gap-3">
                   {tool.id === 'convertkit' && (
                     <Link
-                      to="/uses/convertkit"
+                      to="/reviews/convertkit"
                       className="bg-transparent border border-gray-600 text-white px-6 py-3 font-bold hover:border-white hover:bg-brand-bg transition-all flex items-center justify-center gap-2 whitespace-nowrap"
                     >
                       Read review →
@@ -180,7 +179,7 @@ export const UsesPage = () => {
                   )}
                   {tool.id === 'namecheap' && (
                     <Link
-                      to="/uses/namecheap"
+                      to="/reviews/namecheap"
                       className="bg-transparent border border-gray-600 text-white px-6 py-3 font-bold hover:border-white hover:bg-brand-bg transition-all flex items-center justify-center gap-2 whitespace-nowrap"
                     >
                       Read review →
@@ -236,3 +235,4 @@ export const UsesPage = () => {
     </div>
   );
 };
+

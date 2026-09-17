@@ -189,17 +189,6 @@ export function CostAuditPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'SaaS Cost Audit — domskysolutions.com';
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute(
-      'content',
-      'AI-assisted audit of your software spend for solopreneurs — grounded in your numbers, with prioritized cuts and a 30-day plan. Free.'
-    );
   }, []);
 
   const handleInputChange = useCallback((id: string, value: string) => {
@@ -571,3 +560,4 @@ export function CostAuditPage() {
     </div>
   );
 }
+

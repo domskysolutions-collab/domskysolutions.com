@@ -11,18 +11,6 @@ import { ConvertKitForm } from '../../components/ConvertKitForm';
 import { Money, BeforeAfter, SectionDivider, H2, H3, CalloutTip, Step, PullQuote, StatCard, SavingsChart, ToolLink } from '../../components/ui';
 export const BlogPost2 = () => {
   const { scrollYProgress } = useScroll();
-
-  useEffect(() => {
-    document.title = "10 AI Tools That Will Make You Look Like a Team of 10";
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', "You don't need a big team to compete with one. These 10 AI tools give solo founders the output of a full department at a fraction of the cost.");
-  }, []);
-
   return (
     <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
       <motion.div
@@ -119,7 +107,7 @@ export const BlogPost2 = () => {
               Pro tip: Use Claude for every first draft of anything important. The editing pass you do after is faster and better than starting from a blank page.
             </CalloutTip>
             
-            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" category="Writing" />
+            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/reviews/claude" category="Writing" />
           </motion.div>
 
           <SectionDivider />
@@ -166,7 +154,7 @@ export const BlogPost2 = () => {
               Pro tip: Use Focus modes — switch to Academic for research papers, Reddit for real user opinions, and News for breaking developments.
             </CalloutTip>
             
-            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" category="Research" />
+            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/reviews/perplexity" category="Research" />
           </motion.div>
 
           <PullQuote>
@@ -217,7 +205,7 @@ export const BlogPost2 = () => {
               Pro tip: Start by asking Cursor to explain your codebase before asking it to change anything. Understanding what exists makes instructions more precise.
             </CalloutTip>
             
-            <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/tools/cursor" category="Coding" />
+            <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/reviews/cursor" category="Coding" />
           </motion.div>
 
           <SectionDivider />
@@ -311,7 +299,7 @@ export const BlogPost2 = () => {
               Pro tip: Create a weekly review template and ask Notion AI to summarize your week's notes into action items every Friday.
             </CalloutTip>
             
-            <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/tools/notion-ai" category="Productivity" />
+            <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/reviews/notion-ai" category="Productivity" />
           </motion.div>
 
           <PullQuote>
@@ -409,7 +397,7 @@ export const BlogPost2 = () => {
               Pro tip: Clone your own voice and use it for content you do not have time to record yourself. Two minutes of sample audio is all it needs.
             </CalloutTip>
             
-            <ToolReviewCard name="ElevenLabs" desc="Best AI tool for voice generation" to="/tools/elevenlabs" category="Audio" />
+            <ToolReviewCard name="ElevenLabs" desc="Best AI tool for voice generation" to="/reviews/elevenlabs" category="Audio" />
           </motion.div>
 
           <SectionDivider />
@@ -456,7 +444,7 @@ export const BlogPost2 = () => {
               Pro tip: Use Runway for short high quality atmospheric clips used as background visuals or social content.
             </CalloutTip>
             
-            <ToolReviewCard name="Runway" desc="Best AI tool for video generation" to="/tools/runway" category="Video" />
+            <ToolReviewCard name="Runway" desc="Best AI tool for video generation" to="/reviews/runway" category="Video" />
           </motion.div>
 
           <SectionDivider />

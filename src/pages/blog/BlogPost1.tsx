@@ -15,18 +15,6 @@ export const BlogPost1 = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [sidebarFixed, setSidebarFixed] = useState(true);
-
-  useEffect(() => {
-    document.title = "I Replaced My Entire $500/Month SaaS Stack With AI Tools — Here's Exactly What I Use Now";
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute('content', "I was spending over $500 every month on traditional SaaS tools. Then I switched to AI-powered alternatives and cut that bill dramatically. Here's every tool I replaced and what I use instead.");
-  }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 500);
@@ -130,6 +118,7 @@ export const BlogPost1 = () => {
             <span className="text-gray-500 font-mono text-sm">•</span>
             <span className="text-gray-400 font-mono text-sm flex items-center gap-2"><Coffee size={16} /> 8 min read</span>
           </div>
+          <aside className="p-4 mb-6 border border-brand-cyan/30 text-sm text-gray-300">The savings in this article are the author’s reported experience. Receipts and a reproducible cost worksheet are not published; these figures are not verified reader averages or a guarantee. <Link className="underline text-brand-cyan" to="/methodology">How savings should be calculated</Link>.</aside>
           <h1 className="text-[48px] font-bold font-inter text-white leading-tight mb-8">
             I Replaced My Entire $500/Month SaaS Stack With AI Tools — Here's Exactly What I Use Now
           </h1>
@@ -201,11 +190,11 @@ export const BlogPost1 = () => {
             <H3>WRITING & CONTENT</H3>
             <BeforeAfter 
               before={<>Grammarly Premium (<Money>$30/mo</Money>) +<br/>a copywriter (<Money>$200/mo</Money>)</>}
-              after={<><ToolLink name="Claude" to="/tools/claude" /> Pro (<Money>$20/mo</Money>)</>}
+              after={<><ToolLink name="Claude" to="/reviews/claude" /> Pro (<Money>$20/mo</Money>)</>}
               saving="$210/mo"
             />
             <p>
-              I used Grammarly for proofreading and hired a freelance copywriter for longer content. <ToolLink name="Claude" to="/tools/claude" /> replaced both completely.
+              I used Grammarly for proofreading and hired a freelance copywriter for longer content. <ToolLink name="Claude" to="/reviews/claude" /> replaced both completely.
             </p>
             <p>
               It proofreads better than Grammarly and writes better than most copywriters. It does it in seconds instead of days.
@@ -213,7 +202,7 @@ export const BlogPost1 = () => {
             <p>
               The <Money>$20/month</Money> Pro plan is one of the <span className="font-bold text-white">most defensible subscriptions</span> in my entire stack.
             </p>
-            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" category="Writing" />
+            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/reviews/claude" category="Writing" />
           </motion.div>
 
           <PullQuote>
@@ -229,11 +218,11 @@ export const BlogPost1 = () => {
             <H3>RESEARCH & INFORMATION</H3>
             <BeforeAfter 
               before={<>Various news subscriptions (<Money>$45/mo</Money>)</>}
-              after={<><ToolLink name="Perplexity" to="/tools/perplexity" /> Pro (<Money>$20/mo</Money>)</>}
+              after={<><ToolLink name="Perplexity" to="/reviews/perplexity" /> Pro (<Money>$20/mo</Money>)</>}
               saving="$25/mo"
             />
             <p>
-              I was paying for three different newsletter and news subscriptions. <ToolLink name="Perplexity" to="/tools/perplexity" /> replaced all of them.
+              I was paying for three different newsletter and news subscriptions. <ToolLink name="Perplexity" to="/reviews/perplexity" /> replaced all of them.
             </p>
             <p>
               I can ask it anything happening right now and get a cited answer in seconds. I can follow up with deeper questions that no newsletter could anticipate.
@@ -241,7 +230,7 @@ export const BlogPost1 = () => {
             <p>
               The research workflow I used to spend an hour on every morning now <span className="font-bold text-white">takes fifteen minutes</span>.
             </p>
-            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" category="Research" />
+            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/reviews/perplexity" category="Research" />
           </motion.div>
 
           <motion.div
@@ -277,19 +266,19 @@ export const BlogPost1 = () => {
             <H3>CODING & DEVELOPMENT</H3>
             <BeforeAfter 
               before={<>Freelance developer (<Money>$300/mo</Money> average)</>}
-              after={<><ToolLink name="Cursor" to="/tools/cursor" /> Pro (<Money>$20/mo</Money>)</>}
+              after={<><ToolLink name="Cursor" to="/reviews/cursor" /> Pro (<Money>$20/mo</Money>)</>}
               saving="$280/mo"
             />
             <p>
               This is the single biggest saving in my entire stack. I was paying a freelance developer on retainer for small website changes and bug fixes.
             </p>
             <p>
-              <ToolLink name="Cursor" to="/tools/cursor" /> replaced that entirely. I am not a developer, but with Cursor I can make changes to my own codebase.
+              <ToolLink name="Cursor" to="/reviews/cursor" /> replaced that entirely. I am not a developer, but with Cursor I can make changes to my own codebase.
             </p>
             <p>
               The learning curve was real but the <span className="font-bold text-white">payoff was immediate</span>.
             </p>
-            <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/tools/cursor" category="Coding" />
+            <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/reviews/cursor" category="Coding" />
           </motion.div>
 
           <motion.div
@@ -301,19 +290,19 @@ export const BlogPost1 = () => {
             <H3>PRODUCTIVITY & KNOWLEDGE MANAGEMENT</H3>
             <BeforeAfter 
               before={<>Notion (<Money>$16/mo</Money>) + Evernote (<Money>$15/mo</Money>)</>}
-              after={<><ToolLink name="Notion AI" to="/tools/notion-ai" /> (<Money>$16/mo</Money> + <Money>$10/mo</Money> AI add-on)</>}
+              after={<><ToolLink name="Notion AI" to="/reviews/notion-ai" /> (<Money>$16/mo</Money> + <Money>$10/mo</Money> AI add-on)</>}
               saving="$5/mo"
             />
             <p>
               This one was less about saving money and more about eliminating redundancy. I was using Notion for project management and Evernote for notes.
             </p>
             <p>
-              Adding <ToolLink name="Notion AI" to="/tools/notion-ai" /> replaced Evernote completely. It made the documents I already had in Notion significantly more useful.
+              Adding <ToolLink name="Notion AI" to="/reviews/notion-ai" /> replaced Evernote completely. It made the documents I already had in Notion significantly more useful.
             </p>
             <p>
               The AI can summarize my meeting notes and <span className="font-bold text-white">find information across my workspace</span>.
             </p>
-            <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/tools/notion-ai" category="Productivity" />
+            <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/reviews/notion-ai" category="Productivity" />
           </motion.div>
 
           <motion.div
@@ -568,11 +557,11 @@ export const BlogPost1 = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/tools/claude" category="Writing" />
-            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/tools/perplexity" category="Research" />
+            <ToolReviewCard name="Claude" desc="Best AI assistant for writing and reasoning" to="/reviews/claude" category="Writing" />
+            <ToolReviewCard name="Perplexity" desc="Best AI tool for research and information" to="/reviews/perplexity" category="Research" />
             <ToolReviewCard name="Midjourney" desc="Best AI tool for image generation" to="/reviews/midjourney" category="Design" />
-            <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/tools/cursor" category="Coding" />
-            <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/tools/notion-ai" category="Productivity" />
+            <ToolReviewCard name="Cursor" desc="Best AI tool for coding and development" to="/reviews/cursor" category="Coding" />
+            <ToolReviewCard name="Notion AI" desc="Best AI tool for productivity and knowledge" to="/reviews/notion-ai" category="Productivity" />
             <ToolReviewCard name="Descript" desc="Best AI tool for video and podcast editing" to="/reviews/descript" category="Video" />
             <ToolReviewCard name="Framer AI" desc="Best AI tool for websites and landing pages" to="/reviews/framer" category="Website" />
           </div>

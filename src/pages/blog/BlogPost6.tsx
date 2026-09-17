@@ -42,21 +42,6 @@ export const BlogPost6 = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [sidebarFixed, setSidebarFixed] = useState(true);
-
-  useEffect(() => {
-    document.title = "You Don't Need to Be Technical to Use AI — Start Here | Domsky Solutions";
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute(
-      'content',
-      'Everyone is talking about AI tools but nobody is explaining them for people who are not developers. This is that article. No jargon. No assumptions. Just what you actually need to know to start.'
-    );
-  }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 500);
@@ -96,7 +81,7 @@ export const BlogPost6 = () => {
   const relatedPosts = BLOG_POSTS.filter((post) =>
     [
       '/blog/replaced-saas-stack-with-ai-tools',
-      '/blog/claude-vs-chatgpt-vs-gemini-2026',
+      '/comparisons/claude-vs-chatgpt-vs-gemini-2026',
     ].includes(post.slug)
   );
 
@@ -775,3 +760,4 @@ export const BlogPost6 = () => {
     </div>
   );
 };
+
