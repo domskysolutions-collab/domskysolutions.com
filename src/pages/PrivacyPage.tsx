@@ -12,7 +12,7 @@ export const PrivacyPage = () => {
           <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-4">
             PRIVACY POLICY
           </h1>
-          <p className="text-gray-400 font-mono text-sm">Last updated: April 2026</p>
+          <p className="text-gray-400 font-mono text-sm">Last updated: 18 September 2026</p>
         </div>
 
         <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
@@ -42,6 +42,11 @@ export const PrivacyPage = () => {
 
           <SectionDivider />
 
+          <H2>LEAN STACK FINDER</H2>
+          <p>The quiz saves answers and progress in your browser so you can resume after a refresh. It does not save your name or email address in local storage. Restarting the quiz clears its saved answers.</p>
+          <p>If you choose to unlock your complete result, we send your email, optional first name, structured quiz answers, result summary and consent record to Kit (formerly ConvertKit). These fields and tags help us send your results and relevant practical emails. Optional free-text answers stay in your browser. You can unsubscribe from emails at any time or request deletion using the contact details below.</p>
+          <p>Quiz analytics events contain only an event name and, where relevant, a question number. They do not contain names, email addresses, answers or free text.</p>
+          <SectionDivider />
           <H2>HOW WE USE YOUR INFORMATION</H2>
           <p>We use the information we collect to:</p>
           <ul className="list-disc pl-6 space-y-2">

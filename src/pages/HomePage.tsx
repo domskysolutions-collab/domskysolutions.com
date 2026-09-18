@@ -1,3 +1,4 @@
+import { LeanStackFinder } from '../components/LeanStackFinder';
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -39,32 +40,15 @@ export const HomePage = () => {
               </li>
             ))}
           </ul>
-          <div className="max-w-2xl mx-auto rounded-2xl border border-brand-cyan/25 bg-brand-surface p-5 sm:p-8 text-left">
-            <p className="text-xs font-mono tracking-widest uppercase text-brand-amber mb-3">Your starting point · Free PDF</p>
-            <h2 className="text-white text-xl sm:text-2xl font-bold mb-3" style={{fontFamily:'var(--font-sans)', letterSpacing:'-0.02em'}}>
-              Get the AI Builder Toolkit
-            </h2>
-            <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
-              Five tools to explore, first prompts to try, and a quick-start checklist.
-              Enter your email to unlock the download.
-            </p>
-            <ConvertKitForm
-              buttonText="Get my free toolkit"
-              placeholder="you@example.com"
-              successMessage="You're signed up. Download your toolkit below."
-              onSuccess={() => setToolkitReady(true)}
-              className="flex flex-col sm:flex-row gap-3"
-              inputClassName="min-w-0 w-full flex-1 bg-brand-bg border border-gray-500 px-4 py-3.5 text-white rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-cyan focus-visible:outline-offset-2"
-              buttonClassName="shrink-0 bg-brand-cyan text-brand-bg px-5 py-3.5 font-bold rounded-lg hover:bg-brand-amber focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-amber focus-visible:outline-offset-2"
-            />
-            {toolkitReady && <a href="/downloads/ai-builder-toolkit.pdf" download="AI-Builder-Toolkit.pdf" className="inline-block mt-4 text-brand-cyan underline font-bold">Download your AI Builder Toolkit</a>}
-          </div>
+<a href="#stack-finder" className="inline-flex items-center gap-3 bg-brand-cyan text-brand-bg px-6 py-4 rounded-lg font-bold">Find my lean tool stack <ArrowRight size={18} aria-hidden="true" /></a>
           <p className="mt-6 text-sm text-gray-400 leading-relaxed">
             {reviewCount} published reviews. Clear strengths and limitations.{' '}
             <Link to="/methodology" className="text-brand-amber underline underline-offset-4 hover:text-white">See how we review tools</Link>.
           </p>
         </div>
       </section>
+
+      <LeanStackFinder />
 
       {/* Featured reviews */}
       <section className="py-16 md:py-24 bg-brand-surface border-y border-gray-800">

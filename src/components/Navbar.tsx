@@ -7,7 +7,7 @@ import { toolsDropdown } from '../data/navigation';
 
 export const Navbar = () => {
   const location = useLocation();
-  useEffect(() => { setIsOpen(false); setIsToolsOpen(false); setIsMobileToolsOpen(false); }, [location.pathname]);
+  useEffect(() => { setIsOpen(false); setIsToolsOpen(false); setIsMobileToolsOpen(false); }, [location.pathname, location.hash]);
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
@@ -134,6 +134,7 @@ export const Navbar = () => {
               </AnimatePresence>
             </div>
 
+            <Link to="/#stack-finder" className="text-gray-300 hover:text-brand-cyan text-sm font-medium">Stack Finder</Link>
             <Link to="/reviews" className="text-gray-300 hover:text-brand-cyan text-sm font-medium">Reviews</Link>
             <Link to="/comparisons" className="text-gray-300 hover:text-brand-cyan text-sm font-medium">Comparisons</Link>
             <Link to="/blog" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Blog</Link>
@@ -246,6 +247,7 @@ export const Navbar = () => {
                 </AnimatePresence>
               </div>
 
+              <Link to="/#stack-finder" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-gray-300">Stack Finder</Link>
               <Link to="/reviews" className="block px-3 py-2 text-gray-300">Reviews</Link>
               <Link to="/comparisons" className="block px-3 py-2 text-gray-300">Comparisons</Link>
               <Link to="/tools" className="block px-3 py-2 text-gray-300">All free tools</Link>
