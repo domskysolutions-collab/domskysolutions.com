@@ -1,4 +1,3 @@
-import { StackBuilderPage } from './pages/StackBuilderPage';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { PageSeo } from './components/PageSeo';
@@ -48,7 +47,7 @@ export function SiteRoutes() {
         <Route path="/methodology" element={<MethodologyPage />} />
         <Route path="/comparisons" element={<ComparisonsPage />} />
         <Route path="/" element={<HomePage />} />
-        <Route path="/stack-builder" element={<StackBuilderPage />} />
+        <Route path="/stack-builder" element={<Navigate replace to="/#stack-finder" />} />
         <Route path="/tools" element={<ToolsPage />} />
         <Route path="/tools/saas-calculator" element={<SaasCalculatorPage />} />
         <Route path="/tools/prompt-builder" element={<PromptBuilderPage />} />

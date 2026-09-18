@@ -81,7 +81,11 @@
       "source": "/blog/claude-vs-chatgpt-vs-gemini-2026",
       "destination": "/comparisons/claude-vs-chatgpt-vs-gemini-2026",
       "permanent": true
+    },
+    {
+      "source": "/stack-builder",
+      "destination": "/#stack-finder",
+      "permanent": true
     }
   ]
 }
-
