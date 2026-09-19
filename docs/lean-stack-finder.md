@@ -10,19 +10,22 @@ All initial products have documented free plans and normal, non-affiliate URLs. 
 
 ## Kit setup required before launch
 
-Keep credentials server-side in Vercel. Do not prefix credentials with `VITE_` and do not commit values. This quiz uses the existing v3 form subscription API through its own `/api/stack-subscribe` endpoint, leaving the existing newsletter endpoint unchanged.
+Keep credentials server-side in Vercel. Do not prefix credentials with `VITE_` and do not commit values. The quiz uses Kit API v4 through its own `/api/stack-subscribe` endpoint, leaving the existing newsletter endpoint unchanged.
 
 Required environment variables:
 
-- `CONVERTKIT_API_KEY`: existing Kit v3 API key.
+- `KIT_API_KEY`: Kit API v4 key.
 - `KIT_STACK_FORM_ID`: numeric ID of a dedicated Lean Stack Finder form.
+- `KIT_STACK_SEQUENCE_ID`: numeric ID of the welcome sequence.
 - `KIT_STACK_TAG_IDS`: JSON object mapping every tag below to its real positive numeric Kit tag ID. Empty/invalid configuration returns HTTP 503 rather than fake success.
 
 Tags: `content`, `automation`, `product-building`, `customer-sales`, `cost-reduction`, `solo-founder`, `small-team`, `low-budget`, `AI-beginner`, `technical-founder`.
 
 Create these custom fields in Kit first (exact keys): `stack_business`, `stack_team`, `stack_goal`, `stack_tasks`, `stack_budget`, `stack_existing`, `stack_technical`, `stack_result`, `stack_summary`, `stack_consent`. The server calculates the segments/result itself; client-supplied tag IDs or result categories are not accepted. Optional free text is deliberately excluded.
 
-In the dedicated form, enable the incentive/confirmation email if you want double opt-in. The API accepts both active and inactive subscriptions, never forces confirmation, and unlocks on successful form acceptance. The UI tells inactive subscribers to confirm their inbox message. Configure a Kit automation on confirmed subscription to deliver `stack_result` and `stack_summary` and the occasional practical emails described in consent. Configure the ten tags for relevant follow-up. No result-email automation is created by this code, and the UI does not claim an email has already been sent.
+After placing `KIT_API_KEY` in an uncommitted `.env.local`, run `npm run setup:kit`. This idempotently creates missing fields and tags, creates or reuses the `Lean Stack Finder — Welcome` sequence, and adds three draft emails when that sequence is empty. It prints the generated sequence ID and tag mapping. Review the drafts before publishing them. Kit API v4 does not create forms, so the dedicated form remains one manual dashboard step.
+
+In the dedicated form, enable its incentive/confirmation email for double opt-in. The endpoint creates an inactive subscriber, adds the subscriber to the form, applies the calculated tags, and enrolls the subscriber in the configured sequence. Existing active subscribers remain active. The UI tells inactive subscribers to confirm their inbox message. The three setup-script emails are created as drafts, so they cannot send until reviewed and published. The UI does not claim an email has already been sent.
 
 `CONVERTKIT_FORM_ID` remains the separate existing newsletter form. Changing it is not required for the quiz. Old client-prefixed key placeholders were removed from `.env.example`; use server variables instead. No credentials are included in this change.
 
