@@ -1,4 +1,4 @@
-import { parseAnswers, recommend, segments, summaryFor, tagsFor } from '../src/data/leanStack';
+import { parseAnswers, recommend, segments, summaryFor, tagsFor } from '../src/data/leanStack.js';
 type Env = Record<string, string | undefined>;
 export async function subscribeStack(body: unknown, env: Env, fetcher: typeof fetch = fetch) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) return { status:400, body:{ error:'Invalid request.' } };
