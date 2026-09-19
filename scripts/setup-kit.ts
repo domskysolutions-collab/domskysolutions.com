@@ -1,5 +1,7 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import { segments } from '../src/data/leanStack';
+
+dotenv.config({ path:'.env.local' });
 
 const apiKey = process.env.KIT_API_KEY;
 if (!apiKey) throw new Error('Set KIT_API_KEY in .env.local before running npm run setup:kit.');
