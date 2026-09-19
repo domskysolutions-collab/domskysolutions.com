@@ -70,3 +70,14 @@ assert(redirects.some((r:any)=>r.source==='/stack-builder'&&r.destination==='/#s
 assert(fs.readFileSync('src/pages/HomePage.tsx','utf8').includes('<LeanStackFinder />'));
 assert(!fs.readFileSync('src/components/Footer.tsx','utf8').includes('to="/stack-builder"'));
 console.log(`PASS: ${count} recommendation combinations; seven questions, constraints, ownership, budgets, persistence, tags, API success/failure, double opt-in, duplicate prevention, removal and redirect.`);
+
+
+for (const status of [200, 500, 502, 504]) {
+  await assert.rejects(createQuizSubscriber(async()=>new Response('A server error has occurred',{status}))(payload), /couldn’t complete your signup/);
+}
+await assert.rejects(createQuizSubscriber(async()=>new Response('<html>Error</html>',{status:503}))(payload), /not configured/);
+await assert.rejects(createQuizSubscriber(async()=>{throw new TypeError('Failed to fetch');})(payload), /couldn’t reach the signup service/);
+let attempts=0;
+const retry=createQuizSubscriber(async()=>++attempts===1 ? new Response('A server error',{status:500}) : new Response('{"ok":true}'));
+await assert.rejects(retry(payload), /couldn’t complete/);
+assert.deepEqual(await retry(payload),{pendingConfirmation:false});
