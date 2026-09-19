@@ -27,11 +27,13 @@ export function createQuizSubscriber(fetcher: typeof fetch = fetch) {
     pending = true;
     try {
       const response = await fetcher('/api/stack-subscribe', { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(payload), signal:AbortSignal.timeout(15000) });
-      const data = await response.json();
+      // Hosting errors can be plain text or HTML rather than our JSON API response.
+      const data = await response.json().catch(() => null);
       if (!response.ok || data?.ok !== true) throw new Error(response.status === 503 ? 'Email signup is not configured yet. Your preview is still available; please try again later.' : 'We couldn’t complete your signup. Your answers are safe. Please try again.');
       return { pendingConfirmation: data.pendingConfirmation === true };
     } catch (error) {
       if (error instanceof Error && (error.name === 'TimeoutError' || error.name === 'AbortError')) throw new Error('The signup timed out. Please try again; your answers are still here.');
+      if (error instanceof TypeError) throw new Error('We couldn’t reach the signup service. Your answers are safe. Please try again.');
       throw error;
     } finally { pending = false; }
   };
