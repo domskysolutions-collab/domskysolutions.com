@@ -120,20 +120,6 @@ export const BlogPost3 = () => {
           </div>
         </div>
 
-        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
-          <img
-            src="/images/ai-comparison-article.jpg"
-            alt="ChatGPT vs Claude vs Gemini — 
-         Which AI assistant actually works?"
-            style={{
-              width: '100%',
-              height: '400px',
-              objectFit: 'cover',
-              objectPosition: 'center top',
-              borderRadius: '12px',
-            }}
-          />
-        </div>
 
         <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
           <p>
@@ -675,3 +661,4 @@ export const BlogPost3 = () => {
     </div>
   );
 };
+

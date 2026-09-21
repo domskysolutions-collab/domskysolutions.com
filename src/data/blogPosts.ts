@@ -7,7 +7,7 @@ export const BLOG_POSTS = [
     category: "AI News",
     date: "April 2026",
     readTime: "10 minutes",
-    image: "/images/beginners-guide-article.jpg",
+    image: null,
     author: "Dominik"
   },
   {
@@ -17,7 +17,7 @@ export const BLOG_POSTS = [
     category: "Design",
     date: "April 2026",
     readTime: "6 minutes",
-    image: "/images/adobe-article.jpg",
+    image: null,
     author: "Dominik"
   },
   {
@@ -47,7 +47,7 @@ export const BLOG_POSTS = [
     category: "AI News",
     date: "April 2026",
     readTime: "10 minutes",
-    image: "/images/ai-comparison-article.jpg",
+    image: null,
     author: "Dominik"
   },
   {
@@ -61,4 +61,5 @@ export const BLOG_POSTS = [
     author: "Dominik"
   }
 ];
+
 

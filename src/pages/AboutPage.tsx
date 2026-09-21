@@ -32,33 +32,6 @@ export const AboutPage = () => {
           </p>
 
           <div className="flex items-center gap-6 my-12 p-6 bg-brand-surface border border-gray-800 rounded-xl hover:border-brand-cyan transition-all duration-300">
-            <div className="relative flex-shrink-0">
-              <img
-                src="/images/dominik-photo.jpg"
-                alt="Dominik — founder of domskysolutions.com"
-                style={{
-                  width: '90px',
-                  height: '90px',
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                  objectPosition: 'center top',
-                  border: '2px solid #F97316',
-                  display: 'block'
-                }}
-              />
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '2px',
-                  right: '2px',
-                  width: '14px',
-                  height: '14px',
-                  borderRadius: '50%',
-                  background: '#4ADE80',
-                  border: '2px solid #0F0A05'
-                }}
-              />
-            </div>
             <div>
               <div className="text-white font-bold text-lg font-inter">Dominik</div>
               <div className="text-brand-cyan text-sm font-mono mt-0.5">Graphic & Web Designer</div>
@@ -251,15 +224,9 @@ export const AboutPage = () => {
             <p className="text-gray-400">
               I read every message personally.
             </p>
-            <div className="my-8 space-y-3 not-prose">
-              <div className="flex items-center gap-3">
-                <span className="text-gray-400 w-20">General:</span>
-                <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-gray-400 w-20">Partners:</span>
-                <a href="mailto:partners@domskysolutions.com" className="text-brand-cyan hover:underline">partners@domskysolutions.com</a>
-              </div>
+            <div className="my-8 not-prose flex flex-wrap items-center gap-2">
+              <span className="text-gray-400">Contact:</span>
+              <a href="mailto:domskysolutions@gmail.com" className="text-brand-cyan hover:underline break-all">domskysolutions@gmail.com</a>
             </div>
             <p className="text-gray-400">
               Review requests welcome — send me access and I will add it to the queue. I publish what I actually find — positive, negative, or mixed.
@@ -297,4 +264,5 @@ export const AboutPage = () => {
     </div>
   );
 };
+
 

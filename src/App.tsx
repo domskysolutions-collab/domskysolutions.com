@@ -20,9 +20,6 @@ import { PromptBuilderPage } from './pages/tools/PromptBuilderPage';
 import { StackRecommenderPage } from './pages/tools/StackRecommenderPage';
 import { ContentCalendarPage } from './pages/tools/ContentCalendarPage';
 import { AiReadinessQuiz } from './pages/tools/AiReadinessQuiz';
-import { EmailWriterPage } from './pages/tools/EmailWriterPage';
-import { ToolDescriptionPage } from './pages/tools/ToolDescriptionPage';
-import { CostAuditPage } from './pages/tools/CostAuditPage';
 import { StackScorecardPage } from './pages/StackScorecardPage';
 import { UsesPage } from './pages/UsesPage';
 import { ConvertKitReviewPage } from './pages/uses/ConvertKitReviewPage';
@@ -33,7 +30,6 @@ import { BlogPost3 } from './pages/blog/BlogPost3';
 import { BlogPost4 } from './pages/blog/BlogPost4';
 import { BlogPost5 } from './pages/blog/BlogPost5';
 import { BlogPost6 } from './pages/blog/BlogPost6';
-import { ToolsSlugPage } from './pages/ToolsSlugPage';
 
 export function SiteRoutes() {
   return (
@@ -57,11 +53,7 @@ export function SiteRoutes() {
         <Route path="/reviews/convertkit" element={<ConvertKitReviewPage />} />
         <Route path="/reviews/namecheap" element={<NamecheapReviewPage />} />
         <Route path="/tools/ai-readiness-quiz" element={<AiReadinessQuiz />} />
-        <Route path="/tools/email-writer" element={<EmailWriterPage />} />
-        <Route path="/tools/tool-description" element={<ToolDescriptionPage />} />
-        <Route path="/tools/cost-audit" element={<CostAuditPage />} />
         <Route path="/scorecard" element={<StackScorecardPage />} />
-        <Route path="/tools/:slug" element={<ToolsSlugPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/reviews/:id" element={<ToolPage />} />
         <Route path="/about" element={<AboutPage />} />
@@ -83,4 +75,5 @@ export function SiteRoutes() {
 }
 
 export default function App() { return <Router><SiteRoutes /></Router>; }
+
 

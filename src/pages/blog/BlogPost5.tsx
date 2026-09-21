@@ -132,19 +132,6 @@ export const BlogPost5 = () => {
           </div>
         </div>
 
-        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
-          <img
-            src="/images/adobe-article.jpg"
-            alt="After 12 Years I Cancelled Adobe — $65/mo saved"
-            style={{
-              width: '100%',
-              height: '400px',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              borderRadius: '12px',
-            }}
-          />
-        </div>
 
         <div className="prose prose-invert max-w-none text-[18px] leading-[1.9] font-serif space-y-8">
           <motion.div
@@ -533,3 +520,4 @@ export const BlogPost5 = () => {
     </div>
   );
 };
+

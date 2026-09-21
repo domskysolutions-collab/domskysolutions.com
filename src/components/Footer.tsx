@@ -10,16 +10,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center mb-4">
-              <img
-                src="/images/domsky-logo.png"
-                alt="Domsky Solutions"
-                style={{ 
-                  height: '36px', 
-                  width: 'auto', 
-                  objectFit: 'contain',
-                  opacity: 0.9
-                }}
-              />
+              <span className="text-white font-mono font-bold tracking-wide">Domsky Solutions</span>
             </Link>
             <p className="text-gray-400 text-sm mb-6 max-w-sm">
               Independent. Ad-free. Builder-focused. We curate the best AI tools, software reviews, and news for builders and founders.
@@ -35,9 +26,7 @@ export const Footer = () => {
               <li><Link to="/tools/prompt-builder" className="hover:text-brand-cyan transition-colors">Prompt Builder</Link></li>
               <li><Link to="/tools/ai-readiness-quiz" className="hover:text-brand-cyan transition-colors">AI Readiness Quiz</Link></li>
               <li><Link to="/tools/saas-calculator" className="hover:text-brand-cyan transition-colors">SaaS Calculator</Link></li>
-              <li><Link to="/tools/cost-audit" className="hover:text-brand-cyan transition-colors">SaaS Cost Audit</Link></li>
               <li><Link to="/tools/content-calendar" className="hover:text-brand-cyan transition-colors">Content Calendar</Link></li>
-              <li><Link to="/tools/tool-description" className="hover:text-brand-cyan transition-colors">Tool Description Generator</Link></li>
               <li><Link to="/blog" className="hover:text-brand-cyan transition-colors">Blog</Link></li>
             </ul>
           </div>
@@ -48,7 +37,7 @@ export const Footer = () => {
               <li><Link to="/methodology" className="hover:text-brand-cyan transition-colors">Review Methodology</Link></li>
               <li><Link to="/comparisons" className="hover:text-brand-cyan transition-colors">Comparisons</Link></li>
               <li><Link to="/about" className="hover:text-brand-cyan transition-colors">About</Link></li>
-              <li><a href="mailto:team@domskysolutions.com" className="hover:text-brand-cyan transition-colors">Contact</a></li>
+              <li><a href="mailto:domskysolutions@gmail.com" className="hover:text-brand-cyan transition-colors">Contact</a></li>
               <li><a href="mailto:partners@domskysolutions.com" className="hover:text-brand-cyan transition-colors">Advertise</a></li>
             </ul>
           </div>
@@ -94,4 +83,6 @@ export const Footer = () => {
     </footer>
   );
 };
+
+
 
