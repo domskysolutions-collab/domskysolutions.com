@@ -1,264 +1,34 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, ArrowRight, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { toolsDropdown } from '../data/navigation';
 
+const links = [['/reviews','Reviews'],['/comparisons','Comparisons'],['/blog','Blog'],['/about','About']];
 export const Navbar = () => {
   const location = useLocation();
-  useEffect(() => { setIsOpen(false); setIsToolsOpen(false); setIsMobileToolsOpen(false); }, [location.pathname, location.hash]);
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [isToolsOpen, setIsToolsOpen] = useState(false);
-  const [isMobileToolsOpen, setIsMobileToolsOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-brand-bg/90 backdrop-blur-md border-b border-brand-surface' : 'bg-transparent'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="flex items-center">
-              <img
-                src="/images/domsky-logo.png"
-                alt="Domsky Solutions"
-                style={{ 
-                  height: '40px', 
-                  width: 'auto', 
-                  objectFit: 'contain' 
-                }}
-              />
-            </Link>
+  const [open,setOpen] = useState(false);
+  const [toolsOpen,setToolsOpen] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const toolsButton = useRef<HTMLButtonElement>(null);
+  useEffect(()=>{setOpen(false);setToolsOpen(false);},[location.pathname,location.hash]);
+  const linkStyle='block py-3 text-sm font-medium text-gray-300 hover:text-brand-cyan transition-colors';
+  return <nav aria-label="Main navigation" className="fixed inset-x-0 top-0 z-50 bg-brand-bg/95 backdrop-blur-md border-b border-brand-border" onKeyDown={event=>{if(event.key==='Escape'){if(toolsOpen){setToolsOpen(false);toolsButton.current?.focus();}else{setOpen(false);menuButton.current?.focus();}}}}>
+    <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="flex items-center justify-between gap-10 min-h-24">
+        <Link to="/" aria-label="Domsky Solutions home" className="shrink-0 rounded-lg border border-dashed border-brand-cyan/40 px-4 py-3 text-white font-mono text-sm font-bold tracking-wide">Domsky<span className="block text-xs text-gray-400 font-normal tracking-widest">SOLUTIONS</span></Link>
+        <button ref={menuButton} type="button" className="lg:hidden p-3 text-white" aria-label={open?'Close navigation':'Open navigation'} aria-expanded={open} aria-controls="primary-navigation" onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button>
+        <div id="primary-navigation" className={`${open?'flex':'hidden'} lg:flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-8 absolute lg:static top-full left-0 right-0 p-6 lg:p-0 bg-brand-bg max-h-[calc(100dvh-96px)] overflow-y-auto lg:overflow-visible border-b lg:border-0 border-brand-border`}>
+          <div className="relative" onBlur={e=>{if(!e.currentTarget.contains(e.relatedTarget as Node))setToolsOpen(false);}}>
+            <button ref={toolsButton} type="button" className={`${linkStyle} flex items-center justify-between gap-2 w-full`} aria-expanded={toolsOpen} aria-controls="free-tools-menu" onClick={()=>setToolsOpen(!toolsOpen)}>Free Tools <ChevronDown size={16}/></button>
+            {toolsOpen&&<div id="free-tools-menu" className="lg:absolute lg:top-full lg:left-0 lg:w-80 rounded-xl border border-brand-border bg-brand-surface p-3 shadow-xl">
+              {toolsDropdown.filter(item=>item.section==='FREE TOOLS').map(item=><Link key={item.link} to={item.link} className="block rounded-lg px-4 py-3 hover:bg-brand-surface-hover"><span className="block text-white font-semibold text-sm">{item.title}</span><span className="block text-gray-400 text-xs mt-1 leading-relaxed">{item.description}</span></Link>)}
+            </div>}
           </div>
-          <div className="hidden xl:flex items-center space-x-8">
-            <Link to="/" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Home</Link>
-            
-            <div 
-              className="relative"
-              onMouseEnter={() => setIsToolsOpen(true)}
-              onMouseLeave={() => setIsToolsOpen(false)}
-              onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node)) setIsToolsOpen(false); }}
-              onKeyDown={(event) => { if (event.key === "Escape") { setIsToolsOpen(false); event.currentTarget.querySelector("button")?.focus(); } }}
-            >
-              <button aria-expanded={isToolsOpen} aria-controls="tools-menu" onClick={() => setIsToolsOpen(open => !open)} className="flex items-center gap-1 text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium py-2">
-                Free Tools <ChevronDown size={14} className={`transition-transform duration-200 ${isToolsOpen ? 'rotate-180' : ''}`} />
-              </button>
-              
-              <AnimatePresence>
-                {isToolsOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -4 }}
-                    transition={{ duration: 0.15 }}
-                    id="tools-menu" className="absolute top-full left-0 w-72 bg-brand-surface border border-gray-500/20 rounded-lg shadow-xl overflow-hidden mt-1"
-                  >
-                    <div className="py-2">
-                      {/* SECTION 1 — FREE TOOLS */}
-                      <div className="px-4 pb-2 pt-1">
-                        <div className="text-brand-cyan text-[10px] font-mono font-bold uppercase tracking-widest">
-                          FREE TOOLS
-                        </div>
-                        <div className="h-px bg-brand-cyan/70 mt-1" />
-                      </div>
-
-                      {toolsDropdown
-                        .filter(item => item.section === 'FREE TOOLS')
-                        .map((item, idx) => (
-                          <Link
-                            key={`${item.link}-${idx}`}
-                            to={item.link}
-                            className="flex items-start gap-3 px-4 py-3 hover:bg-white/5 border-l-2 border-transparent hover:border-brand-cyan transition-colors group"
-                          >
-                            <span className="text-base mt-0.5">{item.icon}</span>
-                            <div>
-                              <div className="flex items-center gap-2">
-                                <span className="text-white font-bold text-sm group-hover:text-brand-cyan transition-colors">
-                                  {item.title}
-                                </span>
-                                {item.badge === 'FREE' && (
-                                  <span className="bg-brand-cyan/10 text-brand-cyan text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider">
-                                    FREE
-                                  </span>
-                                )}
-                              </div>
-                              <div className="text-gray-400 text-xs mt-0.5">
-                                {item.description}
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
-
-                      {/* DIVIDER */}
-                      <div className="h-px bg-gray-500/20 my-2" />
-
-                      {/* SECTION 2 — REVIEWS */}
-                      <div className="px-4 pb-2 pt-1">
-                        <div className="text-brand-amber text-[10px] font-mono font-bold uppercase tracking-widest">
-                          REVIEWS
-                        </div>
-                        <div className="h-px bg-brand-amber/70 mt-1" />
-                      </div>
-
-                      {toolsDropdown
-                        .filter(item => item.section === 'REVIEWS')
-                        .map((item, idx) => (
-                          <Link
-                            key={`${item.link}-${idx}`}
-                            to={item.link}
-                            className="flex items-start gap-3 px-4 py-3 hover:bg-white/5 border-l-2 border-transparent hover:border-brand-cyan transition-colors group"
-                          >
-                            <span className="text-base mt-0.5">{item.icon}</span>
-                            <div>
-                              <div className="flex items-center gap-2">
-                                <span className="text-white font-bold text-sm group-hover:text-brand-cyan transition-colors">
-                                  {item.title}
-                                </span>
-                              </div>
-                              <div className="text-gray-400 text-xs mt-0.5">
-                                {item.description}
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
-                      <div className="pt-1" />
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            <Link to="/#stack-finder" className="text-gray-300 hover:text-brand-cyan text-sm font-medium">Stack Finder</Link>
-            <Link to="/reviews" className="text-gray-300 hover:text-brand-cyan text-sm font-medium">Reviews</Link>
-            <Link to="/comparisons" className="text-gray-300 hover:text-brand-cyan text-sm font-medium">Comparisons</Link>
-            <Link to="/blog" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">Blog</Link>
-            <Link to="/about" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium">About</Link>
-            <a
-              href="https://x.com/domskysolutions"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden xl:flex items-center gap-1.5 text-gray-400 hover:text-brand-cyan transition-colors duration-200 text-sm font-mono"
-              aria-label="Follow on X"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.213 5.567L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
-              </svg>
-              <span>@domskysolutions</span>
-            </a>
-            <a href="/#newsletter" className="bg-brand-cyan text-[#000000] px-5 py-2.5 rounded-none font-bold text-sm hover:bg-brand-amber transition-colors glow-cyan-hover flex items-center gap-2">
-              Get the Weekly Edge
-            </a>
-          </div>
-          <div className="xl:hidden flex items-center">
-            <button aria-label={isOpen ? "Close navigation" : "Open navigation"} aria-expanded={isOpen} aria-controls="mobile-navigation" onClick={() => setIsOpen(!isOpen)} className="text-gray-300 hover:text-white">
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          {links.map(([to,label])=><Link key={to} to={to} className={linkStyle} aria-current={location.pathname===to?'page':undefined}>{label}</Link>)}
+          <Link to="/#stack-finder" className="rounded-lg border border-brand-cyan/50 px-5 py-3 text-sm font-bold text-brand-cyan hover:bg-brand-surface">Find my stack</Link>
         </div>
       </div>
-      
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            id="mobile-navigation" className="xl:hidden bg-brand-surface border-b border-gray-800 overflow-hidden"
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link to="/" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Home</Link>
-              
-              <div>
-                <button 
-                  aria-expanded={isMobileToolsOpen} aria-controls="mobile-tools" onClick={() => setIsMobileToolsOpen(!isMobileToolsOpen)} 
-                  className="flex items-center justify-between w-full px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan"
-                >
-                  Tools <ChevronDown size={16} className={`transition-transform duration-200 ${isMobileToolsOpen ? 'rotate-180' : ''}`} />
-                </button>
-                
-                <AnimatePresence>
-                  {isMobileToolsOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <div id="mobile-tools" className="pl-4 py-1 space-y-1">
-                        {/* FREE TOOLS section */}
-                        <div className="px-3 pb-1 pt-1">
-                          <div className="text-brand-cyan text-[10px] font-mono font-bold uppercase tracking-widest">
-                            FREE TOOLS
-                          </div>
-                          <div className="h-px bg-brand-cyan/70 mt-1" />
-                        </div>
-                        {toolsDropdown
-                          .filter(item => item.section === 'FREE TOOLS')
-                          .map((item, idx) => (
-                            <Link
-                              key={`${item.link}-${idx}`}
-                              to={item.link}
-                              onClick={() => setIsOpen(false)}
-                              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-400 hover:text-brand-cyan"
-                            >
-                              <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan"></span>
-                              {item.title}
-                              {item.badge === 'FREE' && (
-                                <span className="bg-brand-cyan/10 text-brand-cyan text-[10px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-wider ml-1">
-                                  FREE
-                                </span>
-                              )}
-                            </Link>
-                          ))}
-
-                        {/* Divider */}
-                        <div className="h-px bg-gray-500/20 my-2 ml-3 mr-6" />
-
-                        {/* REVIEWS section */}
-                        <div className="px-3 pb-1 pt-1">
-                          <div className="text-brand-amber text-[10px] font-mono font-bold uppercase tracking-widest">
-                            REVIEWS
-                          </div>
-                          <div className="h-px bg-brand-amber/70 mt-1" />
-                        </div>
-                        {toolsDropdown
-                          .filter(item => item.section === 'REVIEWS')
-                          .map((item, idx) => (
-                            <Link
-                              key={`${item.link}-${idx}`}
-                              to={item.link}
-                              onClick={() => setIsOpen(false)}
-                              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-400 hover:text-brand-cyan"
-                            >
-                              <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan"></span>
-                              {item.title}
-                            </Link>
-                          ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <Link to="/#stack-finder" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-gray-300">Stack Finder</Link>
-              <Link to="/reviews" className="block px-3 py-2 text-gray-300">Reviews</Link>
-              <Link to="/comparisons" className="block px-3 py-2 text-gray-300">Comparisons</Link>
-              <Link to="/tools" className="block px-3 py-2 text-gray-300">All free tools</Link>
-              <Link to="/blog" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Blog</Link>
-              <Link to="/about" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">About</Link>
-              <a href="/#newsletter" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-brand-amber">Get the Weekly Edge</a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
-  );
+    </div>
+  </nav>;
 };
 
