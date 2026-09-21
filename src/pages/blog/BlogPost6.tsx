@@ -166,19 +166,6 @@ export const BlogPost6 = () => {
           </div>
         </div>
 
-        <div className="w-full rounded-xl overflow-hidden mb-12 border border-brand-surface shadow-2xl">
-          <img
-            src="/images/beginners-guide-article.jpg"
-            alt="You don't need to be technical to use AI — beginner guide cover"
-            style={{
-              width: '100%',
-              height: '400px',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              borderRadius: '12px',
-            }}
-          />
-        </div>
 
         <div className="prose prose-invert max-w-none text-[18px] leading-[1.9] font-serif space-y-8">
           <motion.div
@@ -760,4 +747,5 @@ export const BlogPost6 = () => {
     </div>
   );
 };
+
 
