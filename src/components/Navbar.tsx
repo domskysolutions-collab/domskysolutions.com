@@ -15,7 +15,9 @@ export const Navbar = () => {
   return <nav aria-label="Main navigation" className="fixed inset-x-0 top-0 z-50 bg-brand-bg/95 backdrop-blur-md border-b border-brand-border" onKeyDown={event=>{if(event.key==='Escape'){if(toolsOpen){setToolsOpen(false);toolsButton.current?.focus();}else{setOpen(false);menuButton.current?.focus();}}}}>
     <div className="max-w-7xl mx-auto px-6 lg:px-10">
       <div className="flex items-center justify-between gap-10 min-h-24">
-        <Link to="/" aria-label="Domsky Solutions home" className="shrink-0 rounded-lg border border-dashed border-brand-cyan/40 px-4 py-3 text-white font-mono text-sm font-bold tracking-wide">Domsky<span className="block text-xs text-gray-400 font-normal tracking-widest">SOLUTIONS</span></Link>
+        <Link to="/" aria-label="Domsky Solutions home" className="shrink-0 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-cyan">
+          <img src="/images/domsky-logo.png" alt="Domsky Solutions" width={371} height={126} className="block w-[160px] sm:w-[185px] h-auto object-contain" />
+        </Link>
         <button ref={menuButton} type="button" className="lg:hidden p-3 text-white" aria-label={open?'Close navigation':'Open navigation'} aria-expanded={open} aria-controls="primary-navigation" onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button>
         <div id="primary-navigation" className={`${open?'flex':'hidden'} lg:flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-8 absolute lg:static top-full left-0 right-0 p-6 lg:p-0 bg-brand-bg max-h-[calc(100dvh-96px)] overflow-y-auto lg:overflow-visible border-b lg:border-0 border-brand-border`}>
           <div className="relative" onBlur={e=>{if(!e.currentTarget.contains(e.relatedTarget as Node))setToolsOpen(false);}}>
