@@ -22,7 +22,7 @@ const Source = ({ href, children }: { href: string; children: React.ReactNode })
 // Set src to an uploaded image path to replace each placeholder without changing the layout.
 const images = {
   hero: { src: '', alt: 'ChatGPT Astra, Claude, Gemini and Perplexity comparison', brief: 'Four assistant interfaces arranged on a dark background with cyan and amber accents.', file: 'astra-alternatives-hero.webp' },
-  access: { src: '', alt: 'Astra selected in the ChatGPT Work model picker', brief: 'Add a real screenshot showing the selected model and plan. Hide account details.', file: 'astra-work-model-picker.webp' },
+  access: { src: '/images/astra-work-model-picker.webp', alt: 'GPT-6 Astra selected in ChatGPT Work. Original Slovak interface, captured 22 September 2026.', brief: 'Add a real screenshot showing the selected model and plan. Hide account details.', file: 'astra-work-model-picker.webp' },
   workflow: { src: '', alt: 'The same business brief compared across four AI assistants', brief: 'Add real outputs from the same brief. Label the model, date and plan for each.', file: 'astra-alternatives-workflow.webp' },
 };
 function ArticleImage({ image }: { image: typeof images.hero }) {
