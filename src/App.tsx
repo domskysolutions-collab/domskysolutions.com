@@ -30,6 +30,7 @@ import { BlogPost3 } from './pages/blog/BlogPost3';
 import { BlogPost4 } from './pages/blog/BlogPost4';
 import { BlogPost5 } from './pages/blog/BlogPost5';
 import { BlogPost6 } from './pages/blog/BlogPost6';
+import { AstraComparison } from './pages/blog/AstraComparison';
 
 export function SiteRoutes() {
   return (
@@ -42,6 +43,7 @@ export function SiteRoutes() {
         {Object.entries(legacyReviewRedirects).map(([from, to]) => <Route key={from} path={from} element={<Navigate replace to={to} />} />)}
         <Route path="/methodology" element={<MethodologyPage />} />
         <Route path="/comparisons" element={<ComparisonsPage />} />
+        <Route path="/comparisons/chatgpt-astra-vs-alternatives" element={<AstraComparison />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/stack-builder" element={<Navigate replace to="/#stack-finder" />} />
         <Route path="/tools" element={<ToolsPage />} />
@@ -75,5 +77,3 @@ export function SiteRoutes() {
 }
 
 export default function App() { return <Router><SiteRoutes /></Router>; }
-
-
