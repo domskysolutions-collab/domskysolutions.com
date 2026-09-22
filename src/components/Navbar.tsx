@@ -16,7 +16,7 @@ export const Navbar = () => {
     <div className="max-w-7xl mx-auto px-6 lg:px-10">
       <div className="flex items-center justify-between gap-10 min-h-24">
         <Link to="/" aria-label="Domsky Solutions home" className="shrink-0 rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-cyan">
-          <img src="/images/domsky-logo.png" alt="Domsky Solutions" width={371} height={126} className="block w-[160px] sm:w-[185px] h-auto object-contain" />
+          <img src="/images/domsky-logo-transparent.png" alt="Domsky Solutions" width={374} height={109} className="block w-[160px] sm:w-[185px] h-auto object-contain" />
         </Link>
         <button ref={menuButton} type="button" className="lg:hidden p-3 text-white" aria-label={open?'Close navigation':'Open navigation'} aria-expanded={open} aria-controls="primary-navigation" onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button>
         <div id="primary-navigation" className={`${open?'flex':'hidden'} lg:flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-8 absolute lg:static top-full left-0 right-0 p-6 lg:p-0 bg-brand-bg max-h-[calc(100dvh-96px)] overflow-y-auto lg:overflow-visible border-b lg:border-0 border-brand-border`}>
