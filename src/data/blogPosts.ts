@@ -1,6 +1,16 @@
 
 export const BLOG_POSTS = [
   {
+    title: "ChatGPT Astra vs Claude, Gemini & Perplexity: Which AI Is Worth Paying For?",
+    slug: "/comparisons/chatgpt-astra-vs-alternatives",
+    excerpt: "Compare GPT-6 Astra access, Claude, Gemini and Perplexity for real business workflows. A research-based guide to choosing one useful AI subscription.",
+    category: "Comparisons",
+    date: "September 2026",
+    readTime: "8 minutes",
+    image: null,
+    author: "Domsky Solutions editorial"
+  },
+  {
     title: "You Don't Need to Be Technical to Use AI — Start Here",
     slug: "/blog/you-dont-need-to-be-technical-to-use-ai",
     excerpt: "Everyone is talking about AI tools but nobody is explaining them for people who are not developers. This is that article. No jargon. No assumptions. Just what you actually need to know to start.",
@@ -61,5 +71,3 @@ export const BLOG_POSTS = [
     author: "Dominik"
   }
 ];
-
-
