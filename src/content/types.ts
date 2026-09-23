@@ -33,6 +33,9 @@ export type ArticleDocument = {
   relatedSlugs: string[];
   readingMinutes: number;
   featuredImage: ArticleImage | null;
+  featuredImageRequired?: boolean;
+  commercial?: boolean;
+  recommendedUpdateDays?: number;
   ogImage?: ArticleImage;
   affiliateDisclosureRequired: boolean;
   disclosure?: string;

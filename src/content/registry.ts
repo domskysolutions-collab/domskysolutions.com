@@ -1,9 +1,8 @@
-import { astraComparison } from './articles/astra-vs-claude-code';
+import { articles } from './documents';
+export { articles } from './documents';
 import { legacyArticles } from './legacy';
 import { formatArticleDate, type ArticleDocument, type ArticleCardData } from './types';
 
-// Explicit imports work identically in Vite and the Node prerenderer. Register each approved file here.
-export const articles: ArticleDocument[] = [astraComparison];
 export const selectPublished = (documents: ArticleDocument[]) => documents.filter(article => article.status === 'published');
 export const publishedArticles = selectPublished(articles);
 export function toArticleCard(article: ArticleDocument): ArticleCardData {
