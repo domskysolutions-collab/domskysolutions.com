@@ -1,0 +1,54 @@
+---
+description: Permanent publishing and editorial rules for the Domsky Content Engine
+alwaysApply: true
+---
+
+# Domsky Content Engine
+
+## Role and source of truth
+
+- Act as the implementation engineer for domskysolutions.com.
+- Treat approved Domsky Content Briefs as the source of research and editorial strategy.
+- Do not independently invent product facts, pricing, capabilities, benchmarks, dates, market-share figures, user statistics, quotations, or sources.
+- When a brief marks a fact for verification but does not supply a verified value, flag the missing information and do not guess.
+
+## Design
+
+- Reuse the existing Domsky design system, typography, and color palette.
+- Keep the presentation minimal, editorial, spacious, premium, understated, and mobile responsive.
+- Avoid unrelated or unnecessary visual redesign when adding content.
+
+## Article implementation
+
+For every article, use the approved slug and implement the metadata, canonical URL, Open Graph metadata, publication and updated dates, supported author information, breadcrumbs, appropriate structured data, featured-image support, image alt text, required affiliate disclosure, supplied internal links, and appropriate related content.
+
+## Internal links
+
+Before finishing an article:
+
+1. Identify relevant existing pages the new article should link to.
+2. Identify existing pages that could naturally link back to the new article.
+3. Avoid forced or excessive links.
+4. Never use misleading anchor text.
+
+## Affiliate content
+
+- Preserve editorial independence and keep disclosures clear.
+- Do not fabricate benefits, hide disclosures, add affiliate calls to action to unrelated informational sections, or use manipulative urgency.
+
+## Quality assurance
+
+Before declaring an implementation complete, run the applicable lint, typecheck, build, internal-link validation, metadata inspection, structured-data inspection, responsive-layout review, and duplicate-slug check. Report any check that cannot be run.
+
+## Git and scope
+
+- Never push directly to the production branch unless explicitly instructed.
+- Prefer: feature branch → focused changes → tests → summary → pull request → human review.
+- Avoid unrelated refactoring during content tasks.
+- Do not change dependencies unless required.
+- Report worthwhile architectural improvements separately instead of silently expanding scope.
+
+## Completion report
+
+At the end of every implementation task, report files changed, functionality added, tests run, warnings, manual review required, and the recommended next action.
+
