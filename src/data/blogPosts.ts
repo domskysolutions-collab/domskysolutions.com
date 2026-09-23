@@ -1,9 +1,9 @@
 
 export const BLOG_POSTS = [
   {
-    title: "ChatGPT Astra vs Claude, Gemini & Perplexity: Which AI Is Worth Paying For?",
+    title: "ChatGPT Astra vs Claude Code in 2026: Features, Pricing & Real Value",
     slug: "/comparisons/chatgpt-astra-vs-alternatives",
-    excerpt: "Compare GPT-6 Astra access, Claude, Gemini and Perplexity for real business workflows. A research-based guide to choosing one useful AI subscription.",
+    excerpt: "Astra in Codex or Claude Code? Compare features, subscription prices, usage limits and the real cost of getting working software built.",
     category: "Comparisons",
     date: "September 2026",
     readTime: "8 minutes",
