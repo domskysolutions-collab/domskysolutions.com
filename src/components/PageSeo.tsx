@@ -8,7 +8,7 @@ export function PageSeo() {
   useEffect(() => {
     const template = document.createElement('template');
     template.innerHTML = renderSeoHead(meta);
-    document.head.querySelectorAll('title, meta[name="title"], meta[name="description"], meta[name="robots"], link[rel="canonical"], #page-schema, meta[property="og:title"], meta[property="og:description"], meta[property="og:url"], meta[property="og:type"], meta[property="twitter:title"], meta[property="twitter:description"], meta[property="twitter:url"]').forEach(node => node.remove());
+    document.head.querySelectorAll('[data-page-seo], meta[property="og:image"], meta[property="twitter:image"], meta[property="twitter:card"], title, meta[name="title"], meta[name="description"], meta[name="robots"], link[rel="canonical"], #page-schema, meta[property="og:title"], meta[property="og:description"], meta[property="og:url"], meta[property="og:type"], meta[property="twitter:title"], meta[property="twitter:description"], meta[property="twitter:url"]').forEach(node => node.remove());
     document.head.append(template.content);
     if (hash) requestAnimationFrame(() => document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView());
     else window.scrollTo(0, 0);
@@ -21,4 +21,5 @@ export function PageSeo() {
     </li>)}</ol>
   </nav>;
 }
+
 

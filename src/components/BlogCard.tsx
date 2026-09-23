@@ -3,13 +3,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, Clock } from 'lucide-react';
+import type { ArticleCardData } from '../content/types';
 
-export const BlogCard: React.FC<{ post: any }> = ({ post }) => (
+export const BlogCard: React.FC<{ post: ArticleCardData }> = ({ post }) => (
   <Link to={post.slug} className="group flex flex-col bg-brand-surface border border-gray-800 rounded-xl overflow-hidden hover:border-brand-cyan/50 transition-all duration-300">
     {post.image && <div className="w-full h-[220px] overflow-hidden bg-gray-950">
       <img 
         src={post.image} 
-        alt={post.title} 
+        alt={post.imageAlt || post.title}
+        loading="lazy"
         className="block w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
         referrerPolicy="no-referrer"
       />
@@ -38,5 +40,4 @@ export const BlogCard: React.FC<{ post: any }> = ({ post }) => (
     </div>
   </Link>
 );
-
 
