@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "strict": true },
+  "include": ["src/content", "scripts/validate-content.ts", "scripts/test-content.tsx"],
+  "exclude": ["node_modules", "dist"]
+}
+

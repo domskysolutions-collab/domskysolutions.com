@@ -1,8 +1,10 @@
 import { BLOG_POSTS } from './blogPosts';
+import { getArticle } from '../content/registry';
+import type { ArticleDocument } from '../content/types';
 import { reviewCatalog, legacyReviewRedirects } from './reviewCatalog';
 
 export const SITE_URL = 'https://domskysolutions.com';
-export type PageSeo = { path: string; title: string; description: string; type?: 'article' | 'website'; review?: typeof reviewCatalog[number]; noindex?: boolean };
+export type PageSeo = { path: string; title: string; description: string; type?: 'article' | 'website'; review?: typeof reviewCatalog[number]; noindex?: boolean; article?: ArticleDocument };
 const page = (path: string, title: string, description: string): PageSeo => ({ path, title: `${title} | Domsky Solutions`, description });
 export const seoPages: PageSeo[] = [
   page('/', 'Independent AI Tool Reviews for Solopreneurs', 'Explore independent AI and SaaS reviews, practical workflows and free tools to choose software for your solo business.'),
@@ -19,7 +21,7 @@ export const seoPages: PageSeo[] = [
   ...reviewCatalog.map(review => ({ ...page(review.link, `${review.name} Review`, `Explore ${review.name}: features, pricing considerations, strengths and limitations for solopreneurs. Read our editorial verdict and evidence disclosures.`), type: 'article' as const, review })),
   { ...page('/reviews/convertkit', 'Kit (ConvertKit) Review', 'An editorial look at Kit for newsletter publishing, including features, limitations and affiliate disclosure.'), type: 'article' },
   { ...page('/reviews/namecheap', 'Namecheap Review', 'An editorial look at Namecheap for domains and hosting, with practical considerations and affiliate disclosure.'), type: 'article' },
-  ...BLOG_POSTS.map(post => ({ ...page(post.slug, post.title, post.excerpt), type: 'article' as const })),
+  ...BLOG_POSTS.map(post => ({ ...page(post.slug, post.title, post.excerpt), type: 'article' as const, article: getArticle(post.slug) })),
 ];
 
 export function getPageSeo(pathname: string): PageSeo {
@@ -48,9 +50,15 @@ export function structuredData(meta: PageSeo) {
     if (meta.path !== '/') graph.push({ '@type': 'BreadcrumbList', itemListElement: getBreadcrumbs(meta).map((crumb, index) => ({ '@type': 'ListItem', position: index + 1, name: crumb.name, item: SITE_URL + crumb.path })) });
     if (meta.type === 'article') graph.push({
       '@type': meta.review ? 'Review' : 'Article', '@id': `${SITE_URL}${meta.path}#article`, headline: meta.title.split(' | ')[0], description: meta.description,
-      author: { '@id': author['@id'] }, publisher: { '@id': organization['@id'] }, mainEntityOfPage: `${SITE_URL}${meta.path}`,
+      author: meta.article ? { '@type': meta.article.author.type, name: meta.article.author.name, url: new URL(meta.article.author.url, SITE_URL).href } : { '@id': author['@id'] }, publisher: { '@id': organization['@id'] }, mainEntityOfPage: `${SITE_URL}${meta.path}`,
       ...(meta.review ? { itemReviewed: { '@type': 'SoftwareApplication', name: meta.review.name, url: meta.review.externalLink }, reviewRating: { '@type': 'Rating', ratingValue: meta.review.rating, bestRating: meta.review.bestRating, worstRating: 1 } } : {}),
-      // No invented day or "updated today" dates: legacy source only records a month.
+      ...(meta.article ? {
+        ...(meta.article.publishedAt ? { datePublished: meta.article.publishedAt } : {}),
+        ...(meta.article.updatedAt ? { dateModified: meta.article.updatedAt } : {}),
+        articleSection: meta.article.category, keywords: meta.article.tags.join(', '),
+        ...((meta.article.ogImage || meta.article.featuredImage) ? { image: new URL((meta.article.ogImage || meta.article.featuredImage)!.src, SITE_URL).href } : {}),
+      } : {}),
+      // Legacy publication days remain omitted until supplied; never infer them from migration time.
     });
   }
   return { '@context': 'https://schema.org', '@graph': graph };
@@ -59,7 +67,17 @@ export const escapeHtml = (value: string) => value.replace(/[&<>"']/g, char => (
 export function renderSeoHead(meta: PageSeo) {
   const url = SITE_URL + meta.path;
   const tags = [['name', 'description', meta.description], ['name', 'robots', meta.noindex ? 'noindex, follow' : 'index, follow'], ['property', 'og:title', meta.title], ['property', 'og:description', meta.description], ['property', 'og:url', url], ['property', 'og:type', meta.type || 'website'], ['property', 'twitter:title', meta.title], ['property', 'twitter:description', meta.description], ['property', 'twitter:url', url]];
-  return `<title>${escapeHtml(meta.title)}</title>\n${tags.map(([attr, key, value]) => `<meta ${attr}="${key}" content="${escapeHtml(value)}">`).join('\n')}\n${meta.noindex ? '' : `<link rel="canonical" href="${escapeHtml(url)}">`}\n<script id="page-schema" type="application/ld+json">${JSON.stringify(structuredData(meta)).replace(/</g, '\\u003c')}</script>`;
+  const image = meta.article?.ogImage || meta.article?.featuredImage;
+  const imageUrl = new URL(image?.src || '/images/domsky-logo.png', SITE_URL).href;
+  tags.push(['property', 'og:image', imageUrl], ['property', 'og:image:alt', image?.alt || 'Domsky Solutions'],
+    ['name', 'twitter:card', image ? 'summary_large_image' : 'summary'], ['name', 'twitter:image', imageUrl],
+    ['name', 'twitter:image:alt', image?.alt || 'Domsky Solutions']);
+  if (meta.article) {
+    if (meta.article.publishedAt) tags.push(['property', 'article:published_time', meta.article.publishedAt]);
+    if (meta.article.updatedAt) tags.push(['property', 'article:modified_time', meta.article.updatedAt]);
+    tags.push(['property', 'article:author', new URL(meta.article.author.url, SITE_URL).href], ['property', 'article:section', meta.article.category]);
+    for (const tag of meta.article.tags) tags.push(['property', 'article:tag', tag]);
+  }
+  return `<title>${escapeHtml(meta.title)}</title>\n${tags.map(([attr, key, value]) => `<meta data-page-seo="true" ${attr}="${key}" content="${escapeHtml(value)}">`).join('\n')}\n${meta.noindex ? '' : `<link rel="canonical" href="${escapeHtml(url)}">`}\n<script id="page-schema" type="application/ld+json">${JSON.stringify(structuredData(meta)).replace(/</g, '\\u003c')}</script>`;
 }
-
 
