@@ -13,7 +13,9 @@
     "test:stack": "tsc -p tsconfig.stack.json && tsx scripts/test-lean-stack.ts",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.content.json",
     "validate:content": "tsx scripts/validate-content.ts",
-    "test:content": "tsx scripts/test-content.tsx",
+    "content:check": "tsx scripts/check-content.ts",
+    "test:content:quality": "tsx scripts/test-content-quality.ts",
+    "test:content": "tsx scripts/test-content.tsx && npm run test:content:quality",
     "check": "npm run lint && npm run typecheck && npm run test:content && npm run test:stack && npm run build && npm run test:seo"
   },
   "dependencies": {
