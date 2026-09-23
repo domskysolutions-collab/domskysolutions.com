@@ -1,39 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll } from 'motion/react';
-import { Image as ImageIcon, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { H2, H3, SectionDivider, CalloutTip } from '../../components/ui';
 
 const sources = {
-  astra: 'https://openai.com/index/gpt-6-astra/',
   access: 'https://help.openai.com/en/articles/20001275/',
-  claude: 'https://claude.com/pricing',
-  gemini: 'https://gemini.google/subscriptions/',
-  perplexity: 'https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you',
+  plus: 'https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus',
+  code: 'https://code.claude.com/docs/en/overview',
+  pricing: 'https://claude.com/pricing',
+  costs: 'https://code.claude.com/docs/en/costs',
 };
 const contents = [
-  ['quick-answer', 'The quick answer'], ['what-is-astra', 'What Astra actually is'],
-  ['comparison', 'Compare the options'], ['alternatives', 'Which alternative fits?'],
-  ['cost', 'What is worth paying for?'], ['test', 'Try this before subscribing'],
-  ['verdict', 'Our verdict'], ['sources', 'Sources & methodology'],
+  ['quick-answer', 'Which should you choose?'], ['what-is-astra', 'Model vs coding app'],
+  ['comparison', 'Features side by side'], ['alternatives', 'Which workflow fits?'],
+  ['cost', 'Pricing and real value'], ['test', 'Test before subscribing'],
+  ['verdict', 'Verdict & common questions'], ['sources', 'Sources & methodology'],
 ];
 const Source = ({ href, children }: { href: string; children: React.ReactNode }) => <a href={href} className="text-brand-cyan underline underline-offset-4 hover:text-white">{children}</a>;
 
-// Set src to an uploaded image path to replace each placeholder without changing the layout.
-const images = {
-  hero: { src: '', alt: 'ChatGPT Astra, Claude, Gemini and Perplexity comparison', brief: 'Four assistant interfaces arranged on a dark background with cyan and amber accents.', file: 'astra-alternatives-hero.webp' },
-  access: { src: '/images/astra-work-model-picker.webp', alt: 'GPT-6 Astra selected in ChatGPT Work. Original Slovak interface, captured 22 September 2026.', brief: 'Add a real screenshot showing the selected model and plan. Hide account details.', file: 'astra-work-model-picker.webp' },
-  workflow: { src: '', alt: 'The same business brief compared across four AI assistants', brief: 'Add real outputs from the same brief. Label the model, date and plan for each.', file: 'astra-alternatives-workflow.webp' },
-};
-function ArticleImage({ image }: { image: typeof images.hero }) {
-  return <figure className="my-10 overflow-hidden rounded-xl border border-dashed border-brand-cyan/30 bg-brand-surface">
-    {image.src ? <img src={image.src} alt={image.alt} loading="lazy" className="w-full h-auto" /> : <div className="flex aspect-video flex-col items-center justify-center gap-3 px-6 text-center">
-      <ImageIcon aria-hidden="true" className="text-brand-cyan/60" size={30} />
-      <span className="text-xs font-mono uppercase tracking-widest text-brand-cyan">Image placeholder</span>
-      <span className="text-sm text-gray-300 max-w-md">{image.brief}</span>
-      <span className="text-xs text-gray-500 break-all">{image.file}</span>
-    </div>}
-    <figcaption className="border-t border-gray-800 px-5 py-3 text-xs text-gray-400">{image.src ? image.alt : 'Reserved for an original image. No test results are pictured here.'}</figcaption>
+function AccessImage() {
+  return <figure className="my-10 overflow-hidden rounded-xl border border-gray-800 bg-brand-surface">
+    <img src="/images/astra-work-model-picker.webp" alt="GPT-6 Astra selected in the ChatGPT Work model picker in the original Slovak interface." loading="lazy" className="w-full h-auto" />
+    <figcaption className="border-t border-gray-800 px-5 py-3 text-xs text-gray-400">Original capture, 22 September 2026. This shows Astra in ChatGPT Work, not Codex or a coding benchmark. Your account’s options may differ.</figcaption>
   </figure>;
 }
 
@@ -45,9 +34,9 @@ export function AstraComparison() {
       <Link to="/comparisons" className="text-sm text-brand-cyan hover:underline">← All comparisons</Link>
       <header className="max-w-4xl mt-8 mb-12">
         <p className="font-mono text-xs uppercase tracking-widest text-brand-cyan mb-5">AI comparisons · 8 min read</p>
-        <h1 className="font-mono font-bold text-white text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight">ChatGPT Astra vs Claude, Gemini &amp; Perplexity: Which AI Is Worth Paying For?</h1>
-        <p className="text-lg sm:text-xl leading-relaxed text-gray-400 mt-6 max-w-3xl">Choose an assistant for the work you need to finish. A practical guide to Astra access, alternative workflows, and avoiding another subscription you barely use.</p>
-        <p className="mt-6 text-sm text-gray-400">Domsky Solutions editorial · Researched <time dateTime="2026-09-22">22 September 2026</time></p>
+        <h1 className="font-mono font-bold text-white text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight">ChatGPT Astra vs Claude Code in 2026: Features, Pricing &amp; Real Value</h1>
+        <p className="text-lg sm:text-xl leading-relaxed text-gray-400 mt-6 max-w-3xl">Two routes to getting software built. Understand what you are buying, where the limits are, and how to choose without paying for two tools you barely use.</p>
+        <p className="mt-6 text-sm text-gray-400">Domsky Solutions editorial · Updated <time dateTime="2026-09-23">23 September 2026</time></p>
       </header>
       <div className="grid lg:grid-cols-[200px_minmax(0,1fr)] gap-10 lg:gap-14 items-start">
         <nav aria-label="Article contents" className="lg:sticky lg:top-32 rounded-xl border border-gray-800 p-5 bg-brand-surface">
@@ -55,98 +44,124 @@ export function AstraComparison() {
           <ul className="space-y-3 text-sm">{contents.map(([id, label]) => <li key={id}><a href={`#${id}`} className="hover:text-brand-cyan">{label}</a></li>)}</ul>
         </nav>
         <article className="min-w-0 max-w-[760px] text-[17px] leading-[1.85] [&_section]:scroll-mt-32 [&_p]:mb-5">
-          <aside className="text-sm border-l-2 border-brand-cyan bg-brand-surface p-5 rounded-r-lg">This is a research-based buying guide using official product documentation, not a hands-on benchmark. Recommendations are editorial judgments. We have not run a controlled four-way test. <Link to="/methodology" className="text-brand-cyan underline">How we evaluate tools</Link>.</aside>
-          <ArticleImage image={images.hero} />
+          <aside className="text-sm border-l-2 border-brand-cyan bg-brand-surface p-5 rounded-r-lg">This is a research-based buying guide using official product documentation, not a hands-on benchmark. Recommendations are editorial judgments. We have not run a controlled head-to-head coding test. <Link to="/methodology" className="text-brand-cyan underline">How we evaluate tools</Link>.</aside>
+
           <section id="quick-answer">
-            <H2>The quick answer: buy for your bottleneck</H2>
-            <p>A new flagship model is a reason to reassess your tools, not a reason to subscribe to everything. For a solo business, the useful question is simple: which assistant gets your recurring work to a usable result with the least correction?</p>
-            <ul className="list-disc pl-6 space-y-3">
-              <li><strong className="text-white">Shortlist Astra</strong> when you want to delegate a demanding task with several steps and a concrete deliverable.</li>
-              <li><strong className="text-white">Shortlist Claude</strong> when your work centres on drafts, documents, projects and code.</li>
-              <li><strong className="text-white">Shortlist Gemini</strong> when Gmail and Docs are already where your business operates.</li>
-              <li><strong className="text-white">Shortlist Perplexity</strong> when finding and inspecting sources is the main job.</li>
-            </ul>
-            <p className="mt-6">These are starting points for a trial, not exclusive capabilities or a ranking of intelligence. All four overlap. The right choice depends on your actual files, required integrations and tolerance for editing.</p>
+<H2>Which should you choose?</H2>
+<p><strong className="text-white">Already paying for ChatGPT? Try Astra in Codex first.</strong> Give it one real development task before buying another subscription. Your existing access may be enough.</p>
+<p><strong className="text-white">Want a coding agent close to your terminal or IDE? Shortlist Claude Code.</strong> Evaluate how it fits your project, not just how convincing its answers sound.</p>
+<p><strong className="text-white">Mostly creating reports, proposals or spreadsheets?</strong> Compare ChatGPT Work with Claude’s broader productivity offering. A coding-agent comparison is not the best starting point if you rarely work with a codebase.</p>
+<CalloutTip>Start with one paid tool. Add a second only after it reliably solves a recurring problem the first leaves behind. These are buying recommendations, not measured performance rankings.</CalloutTip>
           </section>
           <SectionDivider />
           <section id="what-is-astra">
-            <H2>What is “ChatGPT Astra”?</H2>
-            <p>GPT‑6 Astra is an OpenAI model, not a separate subscription called “Astra.” OpenAI introduced it as a model for demanding reasoning, computer use and professional work. Its launch claims are vendor claims, not an independent ranking in this article. <Source href={sources.astra}>Read OpenAI’s Astra announcement</Source>.</p>
-            <p>The access details matter. OpenAI’s current help page says GPT‑6 Pro, powered by Astra, is available in regular ChatGPT on Pro $100, Pro $200, Business and Enterprise plans. Plus includes Astra in Work and Codex. Work access is still rolling out, and workspace permissions can affect availability. <Source href={sources.access}>Check the official access guide</Source>.</p>
-            <CalloutTip>Before upgrading, check both the plan and the experience you want to use. Access in Work or Codex does not mean the same model is available in ordinary Chat.</CalloutTip>
-            <ArticleImage image={images.access} />
+<H2>Astra is a model. Claude Code is a coding app.</H2>
+<p>“ChatGPT Astra” is shorthand for using OpenAI’s GPT‑6 Astra model. Claude Code is a software-development product powered by Claude models. For coding, the useful comparison is <strong className="text-white">Astra in Codex versus Claude Code with a specified model</strong>.</p>
+<figure className="my-8 rounded-xl border border-brand-cyan/30 bg-brand-surface p-5 sm:p-7">
+<div className="grid sm:grid-cols-2 gap-5">{[
+['OpenAI route', 'GPT‑6 Astra', 'Codex'], ['Anthropic route', 'A Claude model', 'Claude Code']
+].map(([label, model, app]) => <div key={label} className="rounded-lg border border-gray-700 p-5">
+<div className="text-xs font-mono uppercase tracking-widest text-brand-cyan mb-4">{label}</div>
+<div className="text-white font-semibold">{model}</div><div className="text-sm text-gray-400">Model</div>
+<div aria-hidden="true" className="text-brand-cyan my-2">↓</div>
+<div className="text-white font-semibold">{app}</div><div className="text-sm text-gray-400">Workspace and tools</div>
+<div aria-hidden="true" className="text-brand-cyan my-2">↓</div><div className="text-white">A reviewed code change</div>
+</div>)}</div>
+<figcaption className="text-xs text-gray-400 mt-5">Editorial workflow diagram. This illustrates product roles, not performance.</figcaption>
+</figure>
+<p>OpenAI lists Astra in Work and Codex for Plus. GPT‑6 Pro, powered by Astra, is available in regular ChatGPT on Pro $100, Pro $200, Business and Enterprise. Account and workspace settings affect access. <Source href={sources.access}>Check OpenAI’s access guide</Source>.</p>
+<AccessImage />
           </section>
           <section id="comparison">
-            <H2>Astra vs alternatives at a glance</H2>
-            <p>This table compares products and workflows, rather than pretending that an underlying model and a complete research app are identical purchases.</p>
-            <div className="overflow-x-auto rounded-xl border border-gray-800 my-8" role="region" aria-label="AI assistant comparison table" tabIndex={0}>
-              <table className="w-full min-w-[620px] text-sm text-left">
-                <caption className="text-left p-4 bg-brand-surface text-gray-400">Editorial shortlist · official feature sources linked in each row</caption>
-                <thead className="bg-brand-surface text-white"><tr>{['Option', 'Start here when…', 'Check before paying'].map(text => <th scope="col" key={text} className="p-4 border-b border-gray-700">{text}</th>)}</tr></thead>
-                <tbody className="divide-y divide-gray-800">
-                  <tr><th scope="row" className="p-4 align-top"><Source href={sources.access}>ChatGPT / Astra</Source></th><td className="p-4 align-top">You need a multi-step deliverable or repository work.</td><td className="p-4 align-top">Chat vs Work vs Codex access; included allowance and extra credits.</td></tr>
-                  <tr><th scope="row" className="p-4 align-top"><Source href={sources.claude}>Claude</Source></th><td className="p-4 align-top">You want Projects, document work and coding in one ecosystem.</td><td className="p-4 align-top">Which features need Pro, and your usage limits.</td></tr>
-                  <tr><th scope="row" className="p-4 align-top"><Source href={sources.gemini}>Gemini</Source></th><td className="p-4 align-top">You want AI inside your existing Google workflow.</td><td className="p-4 align-top">Personal vs work account, region and app eligibility.</td></tr>
-                  <tr><th scope="row" className="p-4 align-top"><Source href={sources.perplexity}>Perplexity</Source></th><td className="p-4 align-top">Your deliverable starts with web research and source checking.</td><td className="p-4 align-top">Research limits and access to the specific models or tools you need.</td></tr>
-                </tbody>
-              </table>
-            </div>
+<H2>Features side by side</H2>
+<div className="overflow-x-auto rounded-xl border border-gray-800 my-8" role="region" aria-label="Astra in Codex versus Claude Code features" tabIndex={0}>
+<table className="w-full min-w-[620px] text-sm text-left">
+<caption className="text-left p-4 bg-brand-surface text-gray-400">Documented capabilities and practical evaluation criteria</caption>
+<thead className="bg-brand-surface text-white"><tr>{['Decision point', 'Astra in Codex', 'Claude Code'].map(t => <th key={t} scope="col" className="p-4">{t}</th>)}</tr></thead>
+<tbody className="divide-y divide-gray-800">{[
+['What it is', 'A model used inside a development workspace.', 'A coding application using Claude models.'],
+['Repository work', 'Code changes, debugging, tests, commands and review.', 'Reads code, edits files, runs commands and works with Git.'],
+['Environment', 'Check Astra availability in your Codex model picker.', 'Terminal, supported IDEs, desktop and browser.'],
+['Customization', 'Trial it with your repository instructions and checks.', 'CLAUDE.md, MCP integrations, skills and hooks.'],
+['Beyond coding', 'Work is the separate experience for research and deliverables.', 'Evaluate the wider Claude subscription separately.'],
+['Your responsibility', 'Review the diff and verify the finished feature.', 'Review the diff and verify the finished feature.'],
+].map(([label, a, b]) => <tr key={label}><th scope="row" className="p-4 align-top text-white">{label}</th><td className="p-4 align-top">{a}</td><td className="p-4 align-top">{b}</td></tr>)}</tbody>
+</table></div>
+<p className="text-sm">Feature references: <Source href={sources.access}>OpenAI Work and Codex</Source> and <Source href={sources.code}>Claude Code overview</Source>. Similar capabilities do not establish identical results.</p>
           </section>
           <section id="alternatives">
-            <H2>Which alternative fits your work?</H2>
-            <H3>Astra: consider it for an entire assignment</H3>
-            <p>Think about a brief such as “research this market, organise the evidence, and turn it into a decision document.” OpenAI positions Work around finished deliverables and Codex around development. That makes Astra worth trying when moving between steps is itself taking up your day. <Source href={sources.access}>Work and Codex capabilities</Source>.</p>
-            <p>Our buying advice: give it an assignment with a clear acceptance checklist. If the task still requires you to reconstruct the output, the impressive model name has not solved your problem. For a few headlines or a short email, start with the assistant you already have.</p>
-            <H3>Claude: a candidate for document-heavy businesses</H3>
-            <p>Claude’s current Pro plan lists Projects, Claude Code, document and slide tools, and additional models. Its free plan provides an entry point for evaluating everyday work. <Source href={sources.claude}>Compare Claude’s plans</Source>.</p>
-            <p>For a consultant, writer or solo developer, we would trial it on a proposal, a revision-heavy article or a small code change. Judge whether it preserves requirements across revisions. This is a suggested evaluation, not a claim that Claude universally writes better than Astra.</p>
-            <H3>Gemini: a candidate when your files already live in Google</H3>
-            <p>Google’s AI plans include different levels of Gemini access and integrations with apps such as Gmail and Docs. Features vary by plan, account, location and language. <Source href={sources.gemini}>Check Google’s plan details</Source>.</p>
-            <p>Our reasoning is practical: working near the source material can reduce copying, exporting and reformatting. Try a task using the documents you already maintain. If your employer manages your account, verify the relevant Workspace entitlement before buying a personal subscription.</p>
-            <H3>Perplexity: a candidate when evidence comes first</H3>
-            <p>Perplexity’s paid plans combine research features, premium model access and tools for broader work, including Computer. It is no longer useful to describe it only as a simple search box. <Source href={sources.perplexity}>Compare Perplexity’s subscriptions</Source>.</p>
-            <p>We would shortlist it for competitor research, product comparisons and finding the original source behind a claim. Open the cited pages and check that they support the answer. A citation is a route to evidence, not proof that the conclusion is correct. Access to a model through Perplexity also does not reproduce every feature of that model provider’s own app.</p>
-            <ArticleImage image={images.workflow} />
+<H2>Which workflow fits your business?</H2>
+<H3>Astra in Codex: test the access you already have</H3>
+<p>If ChatGPT is already part of your business, start with a bounded feature and a clear acceptance checklist. Judge the implementation, explanation and checks you can rerun. Do not upgrade merely because a model name sounds more advanced.</p>
+<p>Watch whether your allowance lasts through meaningful work. If you repeatedly run out while completing valuable tasks, a higher tier may be justified. If the output requires extensive repair, buying more capacity will not by itself solve the quality problem.</p>
+<H3>Claude Code: test the developer workflow</H3>
+<p>Claude Code is worth evaluating when you want an agent in your development environment. Its documented project instructions and integrations give you specific workflow features to assess. <Source href={sources.code}>Explore Claude Code’s environments and customization</Source>.</p>
+<p>The tradeoff is setup and supervision. Your project needs to run correctly, and somebody needs to assess the changes. For a nontechnical founder, define success in observable terms—what the page displays, how the form behaves, and which existing features must keep working.</p>
+<H3>Neither replaces acceptance checks</H3>
+<p>A polished response is not proof that code works. Check mobile layouts, failure states and existing behavior. Prefer a tool that makes a focused, understandable change over one that produces more code than you can maintain.</p>
           </section>
           <section id="cost">
-            <H2>What is actually worth paying for?</H2>
-            <p>Compare the cost of finishing your work, including the subscription, extra usage, your review time and any tools you can cancel. A cheap plan that constantly blocks your real workload may be poor value. A premium plan used twice a month can be equally wasteful.</p>
-            <p>OpenAI says Astra can consume Work and Codex allowances faster than GPT‑5.6 Sol; task size and settings affect usage. A subscription therefore does not guarantee unlimited Astra work. <Source href={sources.access}>Astra usage details</Source>.</p>
-            <p>Claude lists Pro at US$20 billed monthly, or US$17 per month with annual billing, excluding applicable tax. Treat that as an entry price, not unlimited capacity. <Source href={sources.claude}>Claude pricing</Source>. Google and Perplexity offer several tiers; use their linked plan pages to confirm local prices and included features before checkout.</p>
-            <CalloutTip>Illustrative example, not a measured saving: a $20 subscription that saves two hours you value at $25/hour creates $50 of time value before review effort. Add $15 of extra usage and an hour of corrections, and that same task no longer justifies the spend.</CalloutTip>
-            <p>Start with one paid assistant. Add a second only after you can name a repeated task the first cannot complete well enough. Use the <Link to="/tools/saas-calculator" className="text-brand-cyan underline">SaaS calculator</Link> to review your overall software budget.</p>
+<H2>Pricing: compare allowances, not just monthly fees</H2>
+<p>Published US-dollar consumer prices checked on 23 September 2026. Tax, local checkout and future plan changes can affect your bill.</p>
+<div className="overflow-x-auto rounded-xl border border-gray-800 my-8" role="region" aria-label="Subscription prices" tabIndex={0}>
+<table className="w-full min-w-[580px] text-sm text-left">
+<thead className="bg-brand-surface text-white"><tr>{['Plan', 'Price', 'Buying implication'].map(t => <th key={t} scope="col" className="p-4">{t}</th>)}</tr></thead>
+<tbody className="divide-y divide-gray-800">{[
+['ChatGPT Plus', '$20/month', 'An entry point for limited Astra access in Work and Codex.'],
+['ChatGPT Pro', '$100 or $200/month', 'Compare the included allowance with your actual workload.'],
+['Claude Pro', '$20/month or $200 billed annually', 'Includes Claude Code. Annual billing is an upfront commitment.'],
+['Claude Max', 'From $100/month', 'Higher usage; check the selected tier before paying.'],
+].map(([plan, price, note]) => <tr key={plan}><th scope="row" className="p-4 align-top text-white">{plan}</th><td className="p-4 align-top">{price}</td><td className="p-4 align-top">{note}</td></tr>)}</tbody></table></div>
+<p className="text-sm">Price sources: <Source href={sources.plus}>ChatGPT Plus</Source>, <Source href={sources.access}>OpenAI Pro and Astra access</Source>, <Source href={sources.pricing}>Claude plans</Source>.</p>
+<H3>Three details that change the real cost</H3>
+<ul className="list-disc pl-6 space-y-3">
+<li><strong className="text-white">Subscriptions have limits.</strong> Astra draws on the Work/Codex allowance. Plus includes limited Astra usage; task size and settings affect consumption. <Source href={sources.access}>OpenAI usage details</Source>.</li>
+<li><strong className="text-white">Additional usage can cost extra.</strong> Claude Code has subscription allowances and optional paid extra usage. Its usage view tracks limits; an API-equivalent session cost is not your subscription invoice. <Source href={sources.costs}>Claude Code cost guide</Source>.</li>
+<li><strong className="text-white">API billing is separate.</strong> Do not assume your chat subscription pays for calls made with a personal API key. <Source href={sources.plus}>OpenAI billing</Source>; <Source href={sources.costs}>Claude Code billing</Source>.</li>
+</ul>
+<H3>Measure the cost of an accepted result</H3>
+<p>Include subscription cost, extra usage, review and repair time. A feature has little value if you spend the afternoon fixing it.</p>
+<CalloutTip>Hypothetical example, not a benchmark: allocate a $20 subscription across four tasks, with no extra usage. At $30/hour for your time, 15 minutes of review per task makes the effective cost $12.50 each. One hour of repair per task raises it to $35.</CalloutTip>
+<p>Start with monthly billing while evaluating. Upgrade after repeatedly completing useful work and reaching a limit. Use the <Link to="/tools/saas-calculator" className="text-brand-cyan underline">SaaS calculator</Link> to check your total software spend.</p>
           </section>
           <section id="test">
-            <H2>A useful trial beats another leaderboard</H2>
-            <p>Run these three tasks with the same inputs in your two shortlisted assistants. Use material you are authorised to share. Record the selected model and plan so you know what you actually compared.</p>
-            <ol className="list-decimal pl-6 space-y-4">
-              <li><strong className="text-white">An evidence task:</strong> compare three suppliers using their official pages. Ask for dated sources, missing facts and a recommendation tied to your requirements.</li>
-              <li><strong className="text-white">A production task:</strong> turn a real brief into a client proposal, a content plan or a small working feature. Define the required format before starting.</li>
-              <li><strong className="text-white">A revision task:</strong> change one important requirement. Check whether the assistant updates every affected part without breaking the rest.</li>
-            </ol>
-            <p className="mt-6">Track time to an acceptable result, factual errors, manual corrections and usage consumed. Inspect files and run code where relevant. The winner is the tool you would trust with this task again after reviewing its output.</p>
+<H2>Run a fair three-task trial</H2>
+<p>Give both tools the same starting commit, requirements and checks. Use separate branches so neither benefits from the other’s edits. Record the model, plan, date and settings.</p>
+<ol className="list-decimal pl-6 space-y-4">
+<li><strong className="text-white">Fix a reproducible bug.</strong> Supply steps and expected behavior. Check the original failure and one adjacent case.</li>
+<li><strong className="text-white">Build a small feature.</strong> Try an email form with validation, loading, success and failure states. Review it on mobile and with a keyboard.</li>
+<li><strong className="text-white">Revise a requirement.</strong> Make one change that affects several files. Look for regressions and unnecessary edits.</li>
+</ol>
+<blockquote className="my-8 border-l-2 border-brand-cyan bg-brand-surface p-5 text-base">Implement this requirement in the existing project. Explain the plan, keep the change focused, run relevant checks, and report what passed, what failed, and what needs manual review. Do not deploy it.</blockquote>
+<p>Track accepted tasks, elapsed time, corrections and allowance consumed. Message counts are not comparable units of work. If both pass, choose the better fit for your budget and workflow. If neither passes, narrow the task before buying more capacity.</p>
           </section>
           <section id="verdict">
-            <H2>Our verdict: one useful assistant first</H2>
-            <p>Astra belongs on your shortlist if you want to hand over complex assignments. Claude deserves a trial for document and development workflows. Gemini makes sense to evaluate around Google apps. Perplexity is worth considering when the research trail is central to the result.</p>
-            <p>There is no supported universal winner in the evidence reviewed here. Our recommendation is to choose your most frequent bottleneck, test two candidates on it, and pay for the one that reduces the most work after corrections. Revisit the choice when your needs change, not whenever a new model name appears.</p>
-            <div className="my-10 p-6 sm:p-8 rounded-xl bg-brand-surface border border-brand-cyan/30">
-              <h3 className="text-xl text-white font-bold mb-3">Build a smaller, more useful AI stack</h3>
-              <p className="text-gray-400">Use your business needs to narrow the options before adding another subscription.</p>
-              <Link to="/tools/stack-recommender" className="inline-flex items-center gap-2 text-brand-cyan font-semibold hover:underline">Find my starting AI stack <ArrowRight size={18} aria-hidden="true" /></Link>
-            </div>
+<H2>Our verdict: choose the tool that finishes your work</H2>
+<p>For an existing ChatGPT subscriber, Astra in Codex is the sensible first trial. For someone seeking a terminal or IDE coding workflow, Claude Code deserves a direct evaluation. Neither recommendation is a claim of superior code quality.</p>
+<H3>Is Astra a separate subscription?</H3>
+<p>No. Confirm the plan and experience that provide the model you want. Work access and regular ChatGPT access are different.</p>
+<H3>Is Claude Code the same as Claude chat?</H3>
+<p>No. Claude Code is the development tool. Evaluate it directly rather than assuming a good chat response predicts its repository work.</p>
+<H3>Which produces better code?</H3>
+<p>We have not run a controlled benchmark supporting a universal winner. Your repository, selected model, instructions and acceptance checks are the useful test.</p>
+<H3>Should you pay for both?</H3>
+<p>Only when each consistently handles valuable work the other cannot. One useful subscription is a better starting point than overlapping plans with no defined purpose.</p>
+<div className="my-10 p-6 sm:p-8 rounded-xl bg-brand-surface border border-brand-cyan/30">
+<h3 className="text-xl text-white font-bold mb-3">Build a smaller, more useful AI stack</h3>
+<p className="text-gray-400">Narrow your shortlist around your actual business needs.</p>
+<Link to="/tools/stack-recommender" className="inline-flex items-center gap-2 text-brand-cyan font-semibold hover:underline">Find my starting AI stack <ArrowRight size={18} aria-hidden="true" /></Link></div>
           </section>
-          <section id="sources" className="text-sm text-gray-400">
-            <H2>Sources &amp; methodology</H2>
-            <p>Official documentation checked on 22 September 2026. This guide compares documented access and features with editorial use-case advice. No performance scores, personal test history or measured savings are claimed. Plans and rollouts can change.</p>
-            <ul className="list-disc pl-5 space-y-2">
-              <li><Source href={sources.astra}>OpenAI: GPT‑6 Astra announcement</Source></li>
-              <li><Source href={sources.access}>OpenAI: ChatGPT Work, Codex and Astra access</Source></li>
-              <li><Source href={sources.claude}>Anthropic: Claude plans and features</Source></li>
-              <li><Source href={sources.gemini}>Google: Gemini subscription details</Source></li>
-              <li><Source href={sources.perplexity}>Perplexity: subscription comparison</Source></li>
-            </ul>
-            <p className="mt-6">The provider links in this article are direct, non-affiliate links. Other pages on this site may contain affiliate links. <Link to="/disclaimer" className="text-brand-cyan underline">Read our disclosure</Link>.</p>
+          <section id="sources">
+<H2>Sources &amp; methodology</H2>
+<p>Official documentation checked on 23 September 2026. This guide separates documented facts from editorial recommendations. No measured speed advantage, personal benchmark history or guaranteed savings are claimed.</p>
+<ul className="list-disc pl-5 space-y-2 text-sm">
+<li><Source href={sources.access}>OpenAI: ChatGPT Work, Codex and Astra access</Source></li>
+<li><Source href={sources.plus}>OpenAI: ChatGPT Plus pricing and API billing</Source></li>
+<li><Source href={sources.code}>Anthropic: Claude Code overview</Source></li>
+<li><Source href={sources.pricing}>Anthropic: Claude subscription pricing</Source></li>
+<li><Source href={sources.costs}>Anthropic: Claude Code usage and costs</Source></li>
+</ul>
+<p className="mt-6 text-sm">Provider links here are direct, non-affiliate links. Other pages may contain affiliate links. <Link to="/disclaimer" className="text-brand-cyan underline">Read our disclosure</Link>.</p>
           </section>
         </article>
       </div>
