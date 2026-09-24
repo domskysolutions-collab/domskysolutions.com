@@ -20,11 +20,7 @@ export function validateContent(documents: ArticleDocument[], legacy: ArticleCar
     if (article.publishedAt && article.updatedAt && article.updatedAt < article.publishedAt) error('Updated date precedes publication');
     if (article.status === 'published') {
       if (article.verificationPending.length) error('Unresolved verification: ' + article.verificationPending.join('; '));
-      if (!article.publishedAt) {
-        // The migrated article records only a publication month; this explicit exception must not spread to new articles.
-        if (article.id === 'astra-vs-claude-code' && article.slug === '/comparisons/chatgpt-astra-vs-alternatives') warnings.push(article.id + ': original publication day unknown; datePublished omitted');
-        else error('Published articles need an approved publication date');
-      }
+      if (!article.publishedAt) error('Published articles need an approved publication date');
       if (article.sources.length && !article.verifiedAt) error('Sourced articles need a supplied verification date');
     }
     if (!article.blocks.length) error('Article body is empty');
