@@ -44,16 +44,6 @@ export const legacyArticles: ArticleCardData[] = [
     author: "Dominik"
   },
   {
-    title: "Claude vs ChatGPT vs Gemini — Which AI Assistant Should You Actually Use in 2026?",
-    slug: "/comparisons/claude-vs-chatgpt-vs-gemini-2026",
-    excerpt: "An editorial comparison of Claude, ChatGPT and Gemini for writing, coding, research and reasoning, with guidance on choosing an assistant.",
-    category: "AI News",
-    date: "April 2026",
-    readTime: "10 minutes",
-    image: null,
-    author: "Dominik"
-  },
-  {
     title: "How I Use AI to Run My Entire Business Solo — My Exact Daily Workflow",
     slug: "/blog/ai-daily-workflow-solo-business",
     excerpt: "I run a growing AI tools publication completely solo. Here is the exact workflow I use every day — the tools, the order, and the time it saves.",
