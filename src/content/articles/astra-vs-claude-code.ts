@@ -1,574 +1,205 @@
 import type { ArticleDocument } from '../types';
 
-// Imported from the approved existing article. Exact original publication day is unknown.
 export const astraComparison = {
-  "id": "astra-vs-claude-code",
-  "title": "ChatGPT Astra vs Claude Code in 2026: Features, Pricing & Real Value",
-  "slug": "/comparisons/chatgpt-astra-vs-alternatives",
-  "description": "Astra in Codex or Claude Code? Compare features, subscription prices, usage limits and the real cost of getting working software built.",
-  "deck": "Two routes to getting software built. Understand what you are buying, where the limits are, and how to choose without paying for two tools you barely use.",
-  "category": "Comparisons",
-  "author": {
-    "name": "Domsky Solutions editorial",
-    "type": "Organization",
-    "url": "/about"
+  id: 'dce-03-codex-vs-claude-code',
+  title: 'Codex vs Claude Code for Small Website Changes: Cost, Control and Review Effort',
+  slug: '/comparisons/chatgpt-astra-vs-alternatives',
+  description: 'Compare Codex and Claude Code for small website changes, including plan access, cloud and local workflows, usage costs and review requirements.',
+  excerpt: 'Codex and Claude Code overlap on code changes. Compare how they handle repositories, permissions, usage and review before paying for a second tool.',
+  deck: 'Choose a supervised coding workflow for a bounded website change without paying twice for overlapping access.',
+  seoTitle: 'Codex vs Claude Code for Small Website Changes | Domsky',
+  socialTitle: 'Codex vs Claude Code for Small Website Changes',
+  socialDescription: 'Compare access, control, usage and review effort with a practical three-task trial.',
+  category: 'Comparisons',
+  author: { name: 'Domsky Solutions editorial', type: 'Organization', url: '/about' },
+  publishedAt: '2026-09-24',
+  updatedAt: '2026-09-24',
+  verifiedAt: '2026-09-24',
+  status: 'published',
+  contentType: 'comparison',
+  tags: ['Codex', 'Claude Code', 'Website maintenance', 'Coding agents', 'Solo business'],
+  relatedSlugs: ['/comparisons/claude-vs-chatgpt-vs-gemini-2026'],
+  readingMinutes: 12,
+  featuredImageRequired: true,
+  featuredImage: {
+    src: '/images/codex-vs-claude-code-workflow.svg',
+    alt: 'Codex and Claude Code workflows leading from a small website task to a reviewed code change.',
+    caption: 'Editorial workflow illustration, not a product test or performance result.',
+    width: 1600,
+    height: 900,
   },
-  "publishedAt": null,
-  "updatedAt": "2026-09-23",
-  "verifiedAt": "2026-09-23",
-  "status": "published",
-  "contentType": "comparison",
-  "tags": [
-    "AI assistants",
-    "Coding"
+  ogImage: {
+    src: '/images/codex-vs-claude-code-workflow.svg',
+    alt: 'Codex and Claude Code workflows leading from a small website task to a reviewed code change.',
+    width: 1600,
+    height: 900,
+  },
+  commercial: true,
+  recommendedUpdateDays: 30,
+  affiliateDisclosureRequired: false,
+  disclosure: 'No provider paid for placement. Product and source links are direct, non-affiliate links. Recommendations remain editorially independent.',
+  verificationPending: [],
+  sources: [
+    { id: 'oai-01', title: 'OpenAI: Codex pricing', url: 'https://learn.chatgpt.com/docs/pricing' },
+    { id: 'oai-02', title: 'OpenAI: Codex cloud', url: 'https://learn.chatgpt.com/docs/cloud' },
+    { id: 'oai-03', title: 'OpenAI: Codex documentation', url: 'https://learn.chatgpt.com/docs' },
+    { id: 'oai-04', title: 'OpenAI: Codex code review', url: 'https://learn.chatgpt.com/docs/code-review' },
+    { id: 'ant-01', title: 'Anthropic: Claude pricing', url: 'https://claude.com/pricing' },
+    { id: 'ant-02', title: 'Anthropic: Claude Code overview', url: 'https://code.claude.com/docs/en/overview' },
+    { id: 'ant-03', title: 'Anthropic: Claude Code permissions', url: 'https://code.claude.com/docs/en/permissions' },
+    { id: 'ant-04', title: 'Anthropic: Claude Code costs', url: 'https://code.claude.com/docs/en/costs' },
+    { id: 'ant-05', title: 'Anthropic: Claude Code sandboxing', url: 'https://code.claude.com/docs/en/sandboxing' },
+    { id: 'cur-01', title: 'Cursor: Pricing', url: 'https://cursor.com/pricing' },
+    { id: 'fra-01', title: 'Framer: Pricing', url: 'https://www.framer.com/pricing' },
   ],
-  "relatedSlugs": [
-    "/comparisons/claude-vs-chatgpt-vs-gemini-2026"
-  ],
-  "readingMinutes": 8,
-  "featuredImage": null,
-  "affiliateDisclosureRequired": false,
-  "disclosure": "Provider links here are direct, non-affiliate links. Other pages may contain affiliate links.",
-  "sources": [
+  blocks: [
     {
-      "id": "access",
-      "url": "https://help.openai.com/en/articles/20001275/",
-      "title": "OpenAI: ChatGPT Work, Codex and Astra access"
-    },
-    {
-      "id": "plus",
-      "url": "https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus",
-      "title": "OpenAI: ChatGPT Plus pricing and API billing"
-    },
-    {
-      "id": "code",
-      "url": "https://code.claude.com/docs/en/overview",
-      "title": "Anthropic: Claude Code overview"
-    },
-    {
-      "id": "pricing",
-      "url": "https://claude.com/pricing",
-      "title": "Anthropic: Claude subscription pricing"
-    },
-    {
-      "id": "costs",
-      "url": "https://code.claude.com/docs/en/costs",
-      "title": "Anthropic: Claude Code usage and costs"
-    }
-  ],
-  "verificationPending": [],
-  "blocks": [
-    {
-      "type": "note",
-      "title": "About this comparison",
-      "text": [
-        "This is a research-based buying guide using official product documentation, not a hands-on benchmark. Recommendations are editorial judgments. We have not run a controlled head-to-head coding test. ",
-        {
-          "text": "How we evaluate tools",
-          "href": "/methodology"
-        },
-        "."
-      ]
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "id": "quick-answer",
-      "text": "Which should you choose?"
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        {
-          "text": "Already paying for ChatGPT? Try Astra in Codex first.",
-          "strong": true
-        },
-        " Give it one real development task before buying another subscription. Your existing access may be enough."
-      ]
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        {
-          "text": "Want a coding agent close to your terminal or IDE? Shortlist Claude Code.",
-          "strong": true
-        },
-        " Evaluate how it fits your project, not just how convincing its answers sound."
-      ]
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        {
-          "text": "Mostly creating reports, proposals or spreadsheets?",
-          "strong": true
-        },
-        " Compare ChatGPT Work with Claude’s broader productivity offering. A coding-agent comparison is not the best starting point if you rarely work with a codebase."
-      ]
-    },
-    {
-      "type": "note",
-      "title": "Important note",
-      "text": [
-        "Start with one paid tool. Add a second only after it reliably solves a recurring problem the first leaves behind. These are buying recommendations, not measured performance rankings."
-      ]
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "id": "what-is-astra",
-      "text": "Astra is a model. Claude Code is a coding app."
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "“ChatGPT Astra” is shorthand for using OpenAI’s GPT‑6 Astra model. Claude Code is a software-development product powered by Claude models. For coding, the useful comparison is ",
-        {
-          "text": "Astra in Codex versus Claude Code with a specified model",
-          "strong": true
-        },
-        "."
-      ]
-    },
-    {
-      "type": "workflow",
-      "caption": "Editorial workflow diagram. This illustrates product roles, not performance.",
-      "paths": [
-        {
-          "title": "OpenAI route",
-          "steps": [
-            "GPT‑6 Astra — Model",
-            "Codex — Workspace and tools",
-            "A reviewed code change"
-          ]
-        },
-        {
-          "title": "Anthropic route",
-          "steps": [
-            "A Claude model — Model",
-            "Claude Code — Workspace and tools",
-            "A reviewed code change"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "OpenAI lists Astra in Work and Codex for Plus. GPT‑6 Pro, powered by Astra, is available in regular ChatGPT on Pro $100, Pro $200, Business and Enterprise. Account and workspace settings affect access. ",
-        {
-          "text": "Check OpenAI’s access guide",
-          "href": "https://help.openai.com/en/articles/20001275/"
-        },
-        "."
-      ]
-    },
-    {
-      "type": "image",
-      "image": {
-        "src": "/images/astra-work-model-picker.webp",
-        "alt": "GPT-6 Astra selected in the ChatGPT Work model picker in the original Slovak interface.",
-        "caption": "Original capture, 22 September 2026. This shows Astra in ChatGPT Work, not Codex or a coding benchmark. Your account’s options may differ."
-      }
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "id": "comparison",
-      "text": "Features side by side"
-    },
-    {
-      "type": "table",
-      "caption": "Documented capabilities and practical evaluation criteria",
-      "columns": [
-        "Decision point",
-        "Astra in Codex",
-        "Claude Code"
+      type: 'note',
+      title: 'Editorial disclosure',
+      text: [
+        'This comparison was researched from current OpenAI and Anthropic documentation on 24 September 2026. Domsky did not run a controlled head-to-head test for this article. Product facts are attributed to the providers; the buying recommendations are Domsky editorial analysis. ',
+        { text: 'See how Domsky documents product evidence', href: '/methodology' },
+        '.',
       ],
-      "rows": [
-        [
-          "What it is",
-          "A model used inside a development workspace.",
-          "A coding application using Claude models."
-        ],
-        [
-          "Repository work",
-          "Code changes, debugging, tests, commands and review.",
-          "Reads code, edits files, runs commands and works with Git."
-        ],
-        [
-          "Environment",
-          "Check Astra availability in your Codex model picker.",
-          "Terminal, supported IDEs, desktop and browser."
-        ],
-        [
-          "Customization",
-          "Trial it with your repository instructions and checks.",
-          "CLAUDE.md, MCP integrations, skills and hooks."
-        ],
-        [
-          "Beyond coding",
-          "Work is the separate experience for research and deliverables.",
-          "Evaluate the wider Claude subscription separately."
-        ],
-        [
-          "Your responsibility",
-          "Review the diff and verify the finished feature.",
-          "Review the diff and verify the finished feature."
-        ]
-      ]
     },
+    { type: 'heading', level: 2, id: 'short-answer', text: 'The short answer' },
     {
-      "type": "paragraph",
-      "text": [
-        "Feature references: ",
-        {
-          "text": "OpenAI Work and Codex",
-          "href": "https://help.openai.com/en/articles/20001275/"
-        },
-        " and ",
-        {
-          "text": "Claude Code overview",
-          "href": "https://code.claude.com/docs/en/overview"
-        },
-        ". Similar capabilities do not establish identical results."
-      ]
+      type: 'quickAnswer',
+      title: 'Start with the coding tool already included in your subscription',
+      text: 'Give it one bounded website task with written acceptance criteria. Choose the alternative only when its environment or control model solves a documented problem for your workflow.',
     },
+    { type: 'paragraph', text: 'Codex and Claude Code can both inspect a repository, edit files and run development commands. Paying for both before you know what the first one cannot do creates overlap without proving better results.' },
     {
-      "type": "heading",
-      "level": 2,
-      "id": "alternatives",
-      "text": "Which workflow fits your business?"
-    },
-    {
-      "type": "heading",
-      "level": 3,
-      "id": "alternatives-1",
-      "text": "Astra in Codex: test the access you already have"
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "If ChatGPT is already part of your business, start with a bounded feature and a clear acceptance checklist. Judge the implementation, explanation and checks you can rerun. Do not upgrade merely because a model name sounds more advanced."
-      ]
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "Watch whether your allowance lasts through meaningful work. If you repeatedly run out while completing valuable tasks, a higher tier may be justified. If the output requires extensive repair, buying more capacity will not by itself solve the quality problem."
-      ]
-    },
-    {
-      "type": "heading",
-      "level": 3,
-      "id": "alternatives-2",
-      "text": "Claude Code: test the developer workflow"
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "Claude Code is worth evaluating when you want an agent in your development environment. Its documented project instructions and integrations give you specific workflow features to assess. ",
-        {
-          "text": "Explore Claude Code’s environments and customization",
-          "href": "https://code.claude.com/docs/en/overview"
-        },
-        "."
-      ]
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "The tradeoff is setup and supervision. Your project needs to run correctly, and somebody needs to assess the changes. For a nontechnical founder, define success in observable terms—what the page displays, how the form behaves, and which existing features must keep working."
-      ]
-    },
-    {
-      "type": "heading",
-      "level": 3,
-      "id": "alternatives-3",
-      "text": "Neither replaces acceptance checks"
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "A polished response is not proof that code works. Check mobile layouts, failure states and existing behavior. Prefer a tool that makes a focused, understandable change over one that produces more code than you can maintain."
-      ]
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "id": "cost",
-      "text": "Pricing: compare allowances, not just monthly fees"
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "Published US-dollar consumer prices checked on 23 September 2026. Tax, local checkout and future plan changes can affect your bill."
-      ]
-    },
-    {
-      "type": "pricing",
-      "caption": "Subscription prices",
-      "columns": [
-        "Plan",
-        "Price",
-        "Buying implication"
+      type: 'list',
+      items: [
+        [{ text: 'Choose Codex', strong: true }, ' when isolated cloud tasks, connected repository work and reviewing a result later fit your workflow.'],
+        [{ text: 'Choose Claude Code', strong: true }, ' when you prefer its terminal, IDE, desktop or browser workflow and its explicit permission modes.'],
+        [{ text: 'Choose another workflow', strong: true }, ' when nobody can review a diff or verify the changed behavior. A visual builder or a technical reviewer may be a safer starting point.'],
       ],
-      "rows": [
-        [
-          "ChatGPT Plus",
-          "$20/month",
-          "An entry point for limited Astra access in Work and Codex."
-        ],
-        [
-          "ChatGPT Pro",
-          "$100 or $200/month",
-          "Compare the included allowance with your actual workload."
-        ],
-        [
-          "Claude Pro",
-          "$20/month or $200 billed annually",
-          "Includes Claude Code. Annual billing is an upfront commitment."
-        ],
-        [
-          "Claude Max",
-          "From $100/month",
-          "Higher usage; check the selected tier before paying."
-        ]
-      ]
     },
+    { type: 'note', title: 'Evidence limit', text: 'This is a workflow comparison. It does not claim that one tool writes better code, produces fewer defects or needs less human review.' },
+    { type: 'heading', level: 2, id: 'product-model-distinction', text: 'Codex, Claude Code and Astra are not the same kind of thing' },
+    { type: 'paragraph', text: 'Codex is OpenAI’s coding product and workflow. Claude Code is Anthropic’s coding product. GPT-6 Astra is a model listed in current Codex usage documentation, not a separate coding application.' },
     {
-      "type": "paragraph",
-      "text": [
-        "Price sources: ",
-        {
-          "text": "ChatGPT Plus",
-          "href": "https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus"
-        },
-        ", ",
-        {
-          "text": "OpenAI Pro and Astra access",
-          "href": "https://help.openai.com/en/articles/20001275/"
-        },
-        ", ",
-        {
-          "text": "Claude plans",
-          "href": "https://claude.com/pricing"
-        },
-        "."
-      ]
+      type: 'workflow',
+      caption: 'Product-versus-model distinction. The diagram describes product roles, not performance.',
+      paths: [
+        { title: 'OpenAI route', steps: ['A supported model, including Astra where available', 'Codex product and workflow', 'A reviewed code change'] },
+        { title: 'Anthropic route', steps: ['A supported Claude model', 'Claude Code product and workflow', 'A reviewed code change'] },
+      ],
     },
+    { type: 'paragraph', text: 'A model name does not explain repository access, permissions, branches, diffs, billing or review. For a small-site owner, those product details affect the decision more than a model leaderboard.' },
+    { type: 'heading', level: 2, id: 'paid-plan-comparison', text: 'Compare the first practical paid plans' },
+    { type: 'paragraph', text: 'The table uses current provider documentation checked on 24 September 2026. It is not a performance test.' },
     {
-      "type": "heading",
-      "level": 3,
-      "id": "cost-1",
-      "text": "Three details that change the real cost"
+      type: 'pricing',
+      caption: 'Documented access and workflow differences',
+      columns: ['Decision factor', 'Codex with ChatGPT Plus', 'Claude Code with Claude Pro'],
+      rows: [
+        ['Current US individual price', '$20/month', '$20/month, or $200 billed upfront annually'],
+        ['Main surfaces', 'Web, desktop, CLI, IDE extension, iOS and cloud', 'Terminal, VS Code/Cursor, JetBrains, desktop and browser'],
+        ['Repository workflow', 'Local work plus isolated cloud environments; GitHub and GitLab connections', 'Local and remote workflows across supported surfaces; shared project configuration'],
+        ['Review and control', 'Summary, diff, follow-up request and pull-request workflow; permission and sandbox controls vary by environment', 'Visual diffs plus manual, plan, auto and other documented permission modes'],
+        ['Included usage', 'Plus allowance shared across Codex local/cloud and other applicable agentic features', 'Pro allowance shared across Claude and Claude Code'],
+        ['Beyond included usage', 'Optional ChatGPT credits or separate API-key billing', 'Optional usage credits or separate API/Console billing'],
+        ['Best reason to choose', 'You already pay for ChatGPT or want connected cloud delegation', 'You already pay for Claude or prefer its surfaces and permission model'],
+      ],
     },
+    { type: 'paragraph', text: [{ text: 'Official claims: ', strong: true }, 'Prices, surfaces, access and usage structure come from OpenAI and Anthropic documentation listed in the source section.'] },
+    { type: 'paragraph', text: [{ text: 'Domsky analysis: ', strong: true }, 'At the first paid level, price does not decide the comparison. Existing access and the way you want to supervise changes are more useful tie-breakers.'] },
+    { type: 'heading', level: 2, id: 'workflow-differences', text: 'How the workflows differ' },
+    { type: 'heading', level: 3, id: 'codex-cloud', text: 'Codex cloud and connected repository work' },
+    { type: 'paragraph', text: [{ text: 'OpenAI describes Codex cloud', href: 'https://learn.chatgpt.com/docs/cloud' }, ' as a way to run tasks in isolated cloud environments. A user can connect GitHub or GitLab, configure dependencies and environment variables, start a task, then inspect the summary and diff before requesting a follow-up or opening a pull request.'] },
+    { type: 'paragraph', text: 'That workflow fits a bounded change that can run away from your local machine. It can also suit someone who starts work from a repository issue or wants separate environments for separate tasks.' },
+    { type: 'paragraph', text: 'The convenience does not remove the need to understand repository access. Give the tool access only to the repositories and services needed for the task. Treat secrets and deployment credentials as separate configuration decisions.' },
+    { type: 'heading', level: 3, id: 'claude-code-surfaces', text: 'Claude Code across terminal, IDE, desktop and browser' },
+    { type: 'paragraph', text: [{ text: 'Anthropic describes Claude Code', href: 'https://code.claude.com/docs/en/overview' }, ' as an agentic coding tool that reads a codebase, edits files and runs commands. The workflow is available across terminal, VS Code/Cursor, JetBrains, desktop and browser surfaces.'] },
+    { type: 'paragraph', text: 'That range makes Claude Code a practical candidate when you want to remain inside a familiar editor or terminal, or move a session to a visual desktop diff. Project instructions and settings can follow the repository across supported surfaces.' },
+    { type: 'paragraph', text: 'The product can act across multiple files and tools, but broader reach raises the value of clear permissions and a narrow task brief.' },
+    { type: 'heading', level: 2, id: 'control', text: 'Compare control before comparing output' },
+    { type: 'paragraph', text: 'The safest useful workflow lets you see what the tool plans to change and gives you a reliable way to stop, review or reverse it.' },
+    { type: 'paragraph', text: [{ text: 'Claude Code documents', href: 'https://code.claude.com/docs/en/permissions' }, ' several permission modes. Manual mode asks on first use of a tool. Plan mode reads and explores without editing source files. Other modes allow more automation. Anthropic says bypass-permissions mode should be used only in an isolated environment where unintended actions cannot cause damage.'] },
+    { type: 'paragraph', text: 'Codex also has local and cloud permission, sandbox and approval controls. In Codex cloud, the practical review point is the resulting summary and diff before opening or merging a pull request.' },
+    { type: 'paragraph', text: 'For a first website change, use a low-permission or planning mode where available. Work on a branch, keep the starting commit and avoid connecting production credentials. A good task can still produce a bad change; permissions limit impact while you assess it.' },
+    { type: 'heading', level: 2, id: 'accepted-change-cost', text: 'The real cost is the accepted change' },
+    { type: 'paragraph', text: [{ text: 'Cost of an accepted change = ', strong: true }, 'incremental subscription cost + purchased usage or API charges + human review and correction time.'] },
+    { type: 'paragraph', text: 'Incremental cost matters. If you already pay for ChatGPT Plus for other work, trying Codex may add no new subscription. The same applies to Claude Pro and Claude Code.' },
+    { type: 'paragraph', text: ['Usage is not a fixed number of website changes. ', { text: 'OpenAI says', href: 'https://learn.chatgpt.com/docs/pricing' }, ' Codex consumption depends on the model, task size, context, tools and whether work runs locally or in the cloud. Local messages and cloud chats share the plan allowance. ', { text: 'Anthropic says', href: 'https://code.claude.com/docs/en/costs' }, ' Pro and Max subscribers receive included Claude Code usage, while separate usage credits can extend work after plan limits.'] },
+    { type: 'paragraph', text: 'Do not compare an estimated token value from one interface with the other product’s subscription fee as if they were the same bill. Record only charges that appear on the account and time you actually measure.' },
+    { type: 'heading', level: 2, id: 'three-task-trial', text: 'Run the same three-task trial' },
+    { type: 'paragraph', text: 'Use a copy of a nonsensitive repository. Create one branch per tool from the same starting commit. Write success criteria before either tool begins. Do not deploy the trial changes automatically.' },
+    { type: 'heading', level: 3, id: 'bug-trial', text: '1. Fix a reproducible bug' },
+    { type: 'paragraph', text: 'Choose a bug with clear steps: the starting page and browser size, the action that triggers the problem, expected behavior, current behavior and one adjacent case that must remain unchanged. Require the tool to propose a small fix, run the relevant checks and summarize every changed file.' },
+    { type: 'heading', level: 3, id: 'form-trial', text: '2. Improve a form against written criteria' },
+    { type: 'paragraph', text: 'Use a low-risk form in the test repository. Require associated labels, visible keyboard focus, useful invalid-input feedback, the existing success destination or test stub, and a working mobile layout at a named width. The task is complete only when the stated checks pass.' },
+    { type: 'heading', level: 3, id: 'sitewide-trial', text: '3. Change one requirement across the site' },
+    { type: 'paragraph', text: 'Choose a small requirement that appears in more than one place, such as changing a navigation label and its matching page heading. State which occurrences should change and which should remain untouched.' },
     {
-      "type": "list",
-      "ordered": false,
-      "items": [
-        [
-          {
-            "text": "Subscriptions have limits.",
-            "strong": true
-          },
-          " Astra draws on the Work/Codex allowance. Plus includes limited Astra usage; task size and settings affect consumption. ",
-          {
-            "text": "OpenAI usage details",
-            "href": "https://help.openai.com/en/articles/20001275/"
-          },
-          "."
-        ],
-        [
-          {
-            "text": "Additional usage can cost extra.",
-            "strong": true
-          },
-          " Claude Code has subscription allowances and optional paid extra usage. Its usage view tracks limits; an API-equivalent session cost is not your subscription invoice. ",
-          {
-            "text": "Claude Code cost guide",
-            "href": "https://code.claude.com/docs/en/costs"
-          },
-          "."
-        ],
-        [
-          {
-            "text": "API billing is separate.",
-            "strong": true
-          },
-          " Do not assume your chat subscription pays for calls made with a personal API key. ",
-          {
-            "text": "OpenAI billing",
-            "href": "https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus"
-          },
-          "; ",
-          {
-            "text": "Claude Code billing",
-            "href": "https://code.claude.com/docs/en/costs"
-          },
-          "."
-        ]
-      ]
+      type: 'table',
+      caption: 'Reader-run three-task trial record',
+      columns: ['Measure', 'Codex', 'Claude Code'],
+      rows: [
+        ['Same starting commit', 'Record hash', 'Record hash'],
+        ['Model, plan and date', 'Record', 'Record'],
+        ['Required behavior passes', 'Yes / partly / no', 'Yes / partly / no'],
+        ['Adjacent behavior still passes', 'Yes / partly / no', 'Yes / partly / no'],
+        ['Unrequested changes', 'List', 'List'],
+        ['Human corrections', 'List', 'List'],
+        ['Review time', 'Measured minutes', 'Measured minutes'],
+        ['Extra billed usage', 'Account charge only', 'Account charge only'],
+        ['Final decision', 'Accept / revise / reject', 'Accept / revise / reject'],
+      ],
     },
+    { type: 'paragraph', text: 'This is your evidence. It should not be generalized into a universal product ranking.' },
+    { type: 'cta', title: 'Use the trial with the subscription you already have', text: 'Start from the same commit, define success before the task begins, and keep deployment separate from the evaluation.', label: 'Review the first task', href: '#bug-trial' },
+    { type: 'heading', level: 2, id: 'review-checklist', text: 'Review every proposed change' },
     {
-      "type": "heading",
-      "level": 3,
-      "id": "cost-2",
-      "text": "Measure the cost of an accepted result"
+      type: 'list',
+      ordered: true,
+      items: [
+        'Read the summary and inspect the complete diff.',
+        'Confirm the changed files match the request.',
+        'Run the project’s existing checks.',
+        'Test the requested behavior and one nearby case manually.',
+        'Check desktop and mobile layouts when the interface changed.',
+        'Confirm no credential, generated file or unrelated dependency entered the diff.',
+        'Keep the change on a branch until a reviewer is comfortable merging it.',
+      ],
     },
+    { type: 'paragraph', text: 'Passing a test suite does not prove the page is correct. Visual behavior, content, analytics, forms and accessibility can require separate checks. If you cannot explain what changed well enough to maintain it, get a technical review before release.' },
+    { type: 'heading', level: 2, id: 'alternatives', text: 'When Cursor or Framer is the better starting point' },
+    { type: 'paragraph', text: 'Codex and Claude Code make the most sense when the website already lives in a repository and someone can review code changes.' },
+    { type: 'paragraph', text: 'An AI code editor such as Cursor may be easier when you want generated changes inside an editor with the surrounding code visible. A visual builder such as Framer may be a better fit when the site already uses that platform and the required change can be made safely through its interface.' },
+    { type: 'paragraph', text: 'These are different workflow categories, not fallback rankings. Their Domsky review links remain withheld until those pages pass the publication package’s factual-readiness gate.' },
+    { type: 'heading', level: 2, id: 'recommendation', text: 'Domsky recommendation by situation' },
     {
-      "type": "paragraph",
-      "text": [
-        "Include subscription cost, extra usage, review and repair time. A feature has little value if you spend the afternoon fixing it."
-      ]
+      type: 'table',
+      caption: 'Conditional recommendation by situation',
+      columns: ['Your situation', 'Starting choice', 'Reason'],
+      rows: [
+        ['You already pay for ChatGPT Plus', 'Try Codex first', 'Current Plus access includes Codex surfaces and connected cloud workflows.'],
+        ['You already pay for Claude Pro', 'Try Claude Code first', 'It is included in Pro and spans terminal, IDE, desktop and browser workflows.'],
+        ['You pay for neither and cloud delegation is central', 'Consider Codex', 'Its connected repository and cloud handoff match the required workflow.'],
+        ['You pay for neither and prefer editor or terminal supervision', 'Consider Claude Code', 'Its supported surfaces and permission modes match the required workflow.'],
+        ['You cannot review code or run the site locally', 'Use a visual workflow or technical reviewer', 'A second coding subscription does not solve the review problem.'],
+        ['The first tool completes the trial acceptably', 'Keep it', 'Add the second only for a repeated task the first cannot complete.'],
+      ],
     },
-    {
-      "type": "note",
-      "title": "Important note",
-      "text": [
-        "Hypothetical example, not a benchmark: allocate a $20 subscription across four tasks, with no extra usage. At $30/hour for your time, 15 minutes of review per task makes the effective cost $12.50 each. One hour of repair per task raises it to $35."
-      ]
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "Start with monthly billing while evaluating. Upgrade after repeatedly completing useful work and reaching a limit. Use the ",
-        {
-          "text": "SaaS calculator",
-          "href": "/tools/saas-calculator"
-        },
-        " to check your total software spend."
-      ]
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "id": "test",
-      "text": "Run a fair three-task trial"
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "Give both tools the same starting commit, requirements and checks. Use separate branches so neither benefits from the other’s edits. Record the model, plan, date and settings."
-      ]
-    },
-    {
-      "type": "list",
-      "ordered": true,
-      "items": [
-        [
-          {
-            "text": "Fix a reproducible bug.",
-            "strong": true
-          },
-          " Supply steps and expected behavior. Check the original failure and one adjacent case."
-        ],
-        [
-          {
-            "text": "Build a small feature.",
-            "strong": true
-          },
-          " Try an email form with validation, loading, success and failure states. Review it on mobile and with a keyboard."
-        ],
-        [
-          {
-            "text": "Revise a requirement.",
-            "strong": true
-          },
-          " Make one change that affects several files. Look for regressions and unnecessary edits."
-        ]
-      ]
-    },
-    {
-      "type": "quote",
-      "text": [
-        "Implement this requirement in the existing project. Explain the plan, keep the change focused, run relevant checks, and report what passed, what failed, and what needs manual review. Do not deploy it."
-      ]
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "Track accepted tasks, elapsed time, corrections and allowance consumed. Message counts are not comparable units of work. If both pass, choose the better fit for your budget and workflow. If neither passes, narrow the task before buying more capacity."
-      ]
-    },
-    {
-      "type": "heading",
-      "level": 2,
-      "id": "verdict",
-      "text": "Our verdict: choose the tool that finishes your work"
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "For an existing ChatGPT subscriber, Astra in Codex is the sensible first trial. For someone seeking a terminal or IDE coding workflow, Claude Code deserves a direct evaluation. Neither recommendation is a claim of superior code quality."
-      ]
-    },
-    {
-      "type": "heading",
-      "level": 3,
-      "id": "verdict-1",
-      "text": "Is Astra a separate subscription?"
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "No. Confirm the plan and experience that provide the model you want. Work access and regular ChatGPT access are different."
-      ]
-    },
-    {
-      "type": "heading",
-      "level": 3,
-      "id": "verdict-2",
-      "text": "Is Claude Code the same as Claude chat?"
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "No. Claude Code is the development tool. Evaluate it directly rather than assuming a good chat response predicts its repository work."
-      ]
-    },
-    {
-      "type": "heading",
-      "level": 3,
-      "id": "verdict-3",
-      "text": "Which produces better code?"
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "We have not run a controlled benchmark supporting a universal winner. Your repository, selected model, instructions and acceptance checks are the useful test."
-      ]
-    },
-    {
-      "type": "heading",
-      "level": 3,
-      "id": "verdict-4",
-      "text": "Should you pay for both?"
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "Only when each consistently handles valuable work the other cannot. One useful subscription is a better starting point than overlapping plans with no defined purpose."
-      ]
-    },
-    {
-      "type": "cta",
-      "title": "Build a smaller, more useful AI stack",
-      "text": "Narrow your shortlist around your actual business needs.",
-      "label": "Find my starting AI stack",
-      "href": "/tools/stack-recommender"
-    },
-    {
-      "type": "paragraph",
-      "text": [
-        "Official documentation checked on 23 September 2026. This guide separates documented facts from editorial recommendations. No measured speed advantage, personal benchmark history or guaranteed savings are claimed."
-      ]
-    },
-    {
-      "type": "sources",
-      "id": "sources",
-      "title": "Sources & methodology"
-    }
-  ]
+    { type: 'paragraph', text: ['If your main need is writing, research or files rather than repository work, ', { text: 'compare general AI assistants', href: '/comparisons/claude-vs-chatgpt-vs-gemini-2026' }, ' before buying a coding workflow.'] },
+    { type: 'heading', level: 2, id: 'questions', text: 'Common questions' },
+    { type: 'heading', level: 3, id: 'astra-codex', text: 'Is Astra the same as Codex?' },
+    { type: 'paragraph', text: 'No. Astra is a model listed in current Codex usage documentation. Codex is the product and workflow through which coding tasks, repositories, tools and review are managed.' },
+    { type: 'heading', level: 3, id: 'claude-chat-code', text: 'Is Claude chat the same as Claude Code?' },
+    { type: 'paragraph', text: 'No. They are related Anthropic products under the same account and plan structure. Claude Code is the coding workflow that can inspect repositories, edit files and run commands across supported development surfaces.' },
+    { type: 'heading', level: 3, id: 'nondeveloper', text: 'Can a nondeveloper use a coding agent?' },
+    { type: 'paragraph', text: 'Yes, for a bounded task if the person can run the project, define expected behavior, inspect the result and obtain help when the change is unclear. A coding agent is a poor fit when nobody can verify or maintain the output.' },
+    { type: 'heading', level: 3, id: 'pay-for-both', text: 'Should I pay for both?' },
+    { type: 'paragraph', text: 'Usually no. Start with the tool included in an existing subscription. Add the second only after a repeated, documented limitation makes the extra cost worthwhile.' },
+    { type: 'heading', level: 3, id: 'production', text: 'Can either tool publish directly to production?' },
+    { type: 'paragraph', text: 'Both products can participate in advanced automation, but this article recommends a branch-and-review workflow for a small site. Production deployment should remain a separate, deliberate step with its own checks and authorization.' },
+    { type: 'paragraph', text: 'This comparison uses current OpenAI and Anthropic pricing and product documentation checked on 24 September 2026. It does not report original Domsky performance testing, defect rates or measured review time.' },
+    { type: 'paragraph', text: 'Prices, included models, usage allowances and supported surfaces can change. Check the provider’s current plan page and the exact account before subscribing.' },
+    { type: 'sources', id: 'sources', title: 'Sources and evidence limits' },
+  ],
 } satisfies ArticleDocument;
 
