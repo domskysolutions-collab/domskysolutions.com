@@ -28,9 +28,9 @@ reject(value => { value.blocks.push({ type:'paragraph', text:[{text:'Unsafe',hre
 reject(value => { value.blocks.push({ type:'paragraph', text:[{text:'Unknown',href:'/blog/missing'}] }); }, /Unknown internal/);
 reject(value => { value.blocks.push({ type:'cta',title:'Offer',text:'Example',label:'Visit',href:'https://example.com/',affiliate:true }); }, /requires disclosure/);
 reject(value => { value.relatedSlugs = [value.slug]; }, /related article/);
-reject(value => { value.blocks.push({type:'heading',id:'quick-answer',level:2,text:'Duplicate'}); }, /duplicate anchor/);
+reject(value => { value.blocks.push({type:'heading',id:'short-answer',level:2,text:'Duplicate'}); }, /duplicate anchor/);
 reject(value => { value.blocks.push({type:'table',caption:'Example',columns:['A','B'],rows:[['One']]}); }, /row width/);
-reject(value => { value.id='new-article'; }, /approved publication date/);
+reject(value => { value.id='new-article'; value.publishedAt=null; }, /approved publication date/);
 const draft = clone(); draft.id='draft-example'; draft.slug='/blog/draft-example'; draft.status='draft';
 assert.deepEqual(selectPublished([draft,article]),[article]);
 assert.equal(getArticle(draft.slug), undefined);
@@ -54,7 +54,8 @@ const fixture: ArticleDocument = {
     ...clone().blocks,
   ],
 };
-assert.deepEqual(validate([fixture]).errors, []);
+const validateFixture = (items: ArticleDocument[]) => validateContent(items, legacyArticles, [...routes, ...articles.map(item => item.slug)], src => fs.existsSync('public' + src));
+assert.deepEqual(validateFixture([fixture]).errors, []);
 const html = renderToStaticMarkup(<StaticRouter location={fixture.slug}><ArticlePage article={fixture} /></StaticRouter>);
 assert.equal((html.match(/<h1[ >]/g)||[]).length,1);
 assert(html.includes('&lt;script&gt;'));
@@ -62,7 +63,7 @@ assert(!html.includes('<script>alert'));
 assert(html.includes('sponsored noopener noreferrer'));
 assert(html.includes('aria-label="Affiliate disclosure"'));
 assert(html.includes('scope="col"') && html.includes('scope="row"'));
-assert(html.includes('aria-label="Article contents"') && html.includes('id="quick-answer"'));
+assert(html.includes('aria-label="Article contents"') && html.includes('id="short-answer"'));
 assert(html.includes('Example social image') === false); // OG image is metadata, not a second body image.
 assert(html.includes('Example cover'));
 const meta = {...getPageSeo(article.slug), path:fixture.slug, article:fixture};
@@ -75,7 +76,7 @@ assert.equal(schema.datePublished,'2026-09-22');
 assert.equal(schema.dateModified,'2026-09-23');
 assert.equal((schema.author as {name:string}).name,fixture.author.name);
 assert(graph.some(item=>item['@type']==='BreadcrumbList'));
-assert.equal((structuredData(getPageSeo(article.slug))['@graph'] as Array<Record<string,unknown>>).find(item=>item['@type']==='Article')?.datePublished,undefined);
+assert.equal((structuredData(getPageSeo(article.slug))['@graph'] as Array<Record<string,unknown>>).find(item=>item['@type']==='Article')?.datePublished,'2026-09-24');
 
 const assistant = getArticle('/comparisons/claude-vs-chatgpt-vs-gemini-2026')!;
 assert(assistant);
