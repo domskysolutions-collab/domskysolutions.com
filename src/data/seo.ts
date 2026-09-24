@@ -4,7 +4,7 @@ import type { ArticleDocument } from '../content/types';
 import { reviewCatalog, legacyReviewRedirects } from './reviewCatalog';
 
 export const SITE_URL = 'https://domskysolutions.com';
-export type PageSeo = { path: string; title: string; description: string; type?: 'article' | 'website'; review?: typeof reviewCatalog[number]; noindex?: boolean; article?: ArticleDocument };
+export type PageSeo = { path: string; title: string; description: string; socialTitle?: string; socialDescription?: string; type?: 'article' | 'website'; review?: typeof reviewCatalog[number]; noindex?: boolean; article?: ArticleDocument };
 const page = (path: string, title: string, description: string): PageSeo => ({ path, title: `${title} | Domsky Solutions`, description });
 export const seoPages: PageSeo[] = [
   page('/', 'Independent AI Tool Reviews for Solopreneurs', 'Explore independent AI and SaaS reviews, practical workflows and free tools to choose software for your solo business.'),
@@ -21,7 +21,17 @@ export const seoPages: PageSeo[] = [
   ...reviewCatalog.map(review => ({ ...page(review.link, `${review.name} Review`, `Explore ${review.name}: features, pricing considerations, strengths and limitations for solopreneurs. Read our editorial verdict and evidence disclosures.`), type: 'article' as const, review })),
   { ...page('/reviews/convertkit', 'Kit (ConvertKit) Review', 'An editorial look at Kit for newsletter publishing, including features, limitations and affiliate disclosure.'), type: 'article' },
   { ...page('/reviews/namecheap', 'Namecheap Review', 'An editorial look at Namecheap for domains and hosting, with practical considerations and affiliate disclosure.'), type: 'article' },
-  ...BLOG_POSTS.map(post => ({ ...page(post.slug, post.title, post.excerpt), type: 'article' as const, article: getArticle(post.slug) })),
+  ...BLOG_POSTS.map(post => {
+    const article = getArticle(post.slug);
+    return {
+      ...page(post.slug, post.title, post.excerpt),
+      ...(article?.seoTitle ? { title: article.seoTitle } : {}),
+      ...(article?.socialTitle ? { socialTitle: article.socialTitle } : {}),
+      ...(article?.socialDescription ? { socialDescription: article.socialDescription } : {}),
+      type: 'article' as const,
+      article,
+    };
+  }),
 ];
 
 export function getPageSeo(pathname: string): PageSeo {
@@ -49,7 +59,7 @@ export function structuredData(meta: PageSeo) {
     graph.push({ '@type': 'WebPage', '@id': `${SITE_URL}${meta.path}#page`, url: `${SITE_URL}${meta.path}`, name: meta.title, description: meta.description, publisher: { '@id': organization['@id'] } });
     if (meta.path !== '/') graph.push({ '@type': 'BreadcrumbList', itemListElement: getBreadcrumbs(meta).map((crumb, index) => ({ '@type': 'ListItem', position: index + 1, name: crumb.name, item: SITE_URL + crumb.path })) });
     if (meta.type === 'article') graph.push({
-      '@type': meta.review ? 'Review' : 'Article', '@id': `${SITE_URL}${meta.path}#article`, headline: meta.title.split(' | ')[0], description: meta.description,
+      '@type': meta.review ? 'Review' : 'Article', '@id': `${SITE_URL}${meta.path}#article`, headline: meta.article?.title || meta.title.split(' | ')[0], description: meta.description,
       author: meta.article ? { '@type': meta.article.author.type, name: meta.article.author.name, url: new URL(meta.article.author.url, SITE_URL).href } : { '@id': author['@id'] }, publisher: { '@id': organization['@id'] }, mainEntityOfPage: `${SITE_URL}${meta.path}`,
       ...(meta.review ? { itemReviewed: { '@type': 'SoftwareApplication', name: meta.review.name, url: meta.review.externalLink }, reviewRating: { '@type': 'Rating', ratingValue: meta.review.rating, bestRating: meta.review.bestRating, worstRating: 1 } } : {}),
       ...(meta.article ? {
@@ -66,7 +76,9 @@ export function structuredData(meta: PageSeo) {
 export const escapeHtml = (value: string) => value.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]!));
 export function renderSeoHead(meta: PageSeo) {
   const url = SITE_URL + meta.path;
-  const tags = [['name', 'description', meta.description], ['name', 'robots', meta.noindex ? 'noindex, follow' : 'index, follow'], ['property', 'og:title', meta.title], ['property', 'og:description', meta.description], ['property', 'og:url', url], ['property', 'og:type', meta.type || 'website'], ['property', 'twitter:title', meta.title], ['property', 'twitter:description', meta.description], ['property', 'twitter:url', url]];
+  const socialTitle = meta.socialTitle || meta.title;
+  const socialDescription = meta.socialDescription || meta.description;
+  const tags = [['name', 'description', meta.description], ['name', 'robots', meta.noindex ? 'noindex, follow' : 'index, follow'], ['property', 'og:title', socialTitle], ['property', 'og:description', socialDescription], ['property', 'og:url', url], ['property', 'og:type', meta.type || 'website'], ['property', 'twitter:title', socialTitle], ['property', 'twitter:description', socialDescription], ['property', 'twitter:url', url]];
   const image = meta.article?.ogImage || meta.article?.featuredImage;
   const imageUrl = new URL(image?.src || '/images/domsky-logo.png', SITE_URL).href;
   tags.push(['property', 'og:image', imageUrl], ['property', 'og:image:alt', image?.alt || 'Domsky Solutions'],

@@ -42,6 +42,7 @@ assert.equal(getRelatedArticles(article)[0].slug,article.relatedSlugs[0]);
 // Exercise every reusable block, escaping, affiliate markup, dated metadata and images.
 const fixture: ArticleDocument = {
   ...clone(), id:'fixture', slug:'/blog/fixture', contentType:'guide', publishedAt:'2026-09-22', updatedAt:'2026-09-23',
+  relatedSlugs: [],
   title:'<script>alert("unsafe")</script>', affiliateDisclosureRequired:true, disclosure:undefined,
   featuredImage:{src:'/images/domsky-logo.png',alt:'Example cover'}, ogImage:{src:'/images/astra-work-model-picker.webp',alt:'Example social image'},
   blocks:[
@@ -75,5 +76,22 @@ assert.equal(schema.dateModified,'2026-09-23');
 assert.equal((schema.author as {name:string}).name,fixture.author.name);
 assert(graph.some(item=>item['@type']==='BreadcrumbList'));
 assert.equal((structuredData(getPageSeo(article.slug))['@graph'] as Array<Record<string,unknown>>).find(item=>item['@type']==='Article')?.datePublished,undefined);
+
+const assistant = getArticle('/comparisons/claude-vs-chatgpt-vs-gemini-2026')!;
+assert(assistant);
+const assistantMeta = getPageSeo(assistant.slug);
+assert.equal(assistantMeta.title, 'ChatGPT vs Claude vs Gemini for Solo Businesses | Domsky');
+assert.equal(assistantMeta.socialTitle, 'ChatGPT vs Claude vs Gemini: Which One Fits a Solo Business?');
+const assistantHead = renderSeoHead(assistantMeta);
+assert(assistantHead.includes('property="og:title" content="ChatGPT vs Claude vs Gemini: Which One Fits a Solo Business?"'));
+assert(assistantHead.includes('property="og:image" content="https://domskysolutions.com/images/chatgpt-claude-gemini-comparison.svg"'));
+const assistantGraph = structuredData(assistantMeta)['@graph'] as Array<Record<string,unknown>>;
+const assistantSchema = assistantGraph.find(item => item['@type'] === 'Article')!;
+assert.equal(assistantSchema.headline, assistant.title);
+assert.equal(assistantSchema.datePublished, '2026-09-23');
+assert.equal(assistantSchema.dateModified, '2026-09-23');
+assert.equal(assistantSchema.reviewRating, undefined);
+assert(assistantGraph.some(item => item['@type'] === 'WebPage'));
+assert(assistantGraph.some(item => item['@type'] === 'BreadcrumbList'));
 console.log('PASS: content validation rejection cases, legacy collisions, draft exclusion, related links, all blocks, escaping, disclosure, dates, images and Article/breadcrumb schema.');
 

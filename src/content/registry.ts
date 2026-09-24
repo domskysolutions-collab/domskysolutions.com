@@ -7,7 +7,7 @@ export const selectPublished = (documents: ArticleDocument[]) => documents.filte
 export const publishedArticles = selectPublished(articles);
 export function toArticleCard(article: ArticleDocument): ArticleCardData {
   return {
-    title: article.title, slug: article.slug, excerpt: article.description, category: article.category,
+    title: article.title, slug: article.slug, excerpt: article.excerpt || article.description, category: article.category,
     date: article.publishedAt ? formatArticleDate(article.publishedAt) : article.updatedAt ? 'Updated ' + formatArticleDate(article.updatedAt) : '',
     readTime: article.readingMinutes + ' minutes', image: article.featuredImage?.src || null,
     imageAlt: article.featuredImage?.alt, author: article.author.name,

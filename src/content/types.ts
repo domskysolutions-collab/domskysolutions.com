@@ -21,7 +21,11 @@ export type ArticleDocument = {
   title: string;
   slug: `/blog/${string}` | `/comparisons/${string}`;
   description: string;
+  excerpt?: string;
   deck?: string;
+  seoTitle?: string;
+  socialTitle?: string;
+  socialDescription?: string;
   category: Category;
   author: { name: string; type: 'Person' | 'Organization'; url: string };
   publishedAt: string | null;
