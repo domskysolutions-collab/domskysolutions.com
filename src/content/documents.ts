@@ -4,7 +4,8 @@ import { kitReview } from './articles/kit-review';
 import { emailPlatformComparison } from './articles/kit-vs-mailerlite-vs-beehiiv';
 import { leanContentWorkflow } from './articles/lean-content-workflow';
 import { softwareStackAudit } from './articles/software-stack-audit';
+import { leanSoloBusinessStack } from './articles/lean-solo-business-stack';
 import type { ArticleDocument } from './types';
 
 // Register approved documents here. Keep this module free of rendering/date formatting.
-export const articles: ArticleDocument[] = [astraComparison, assistantComparison, kitReview, emailPlatformComparison, leanContentWorkflow, softwareStackAudit];
+export const articles: ArticleDocument[] = [astraComparison, assistantComparison, kitReview, emailPlatformComparison, leanContentWorkflow, softwareStackAudit, leanSoloBusinessStack];

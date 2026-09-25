@@ -17,12 +17,12 @@ export type ArticleBlock =
   | { type: 'cta'; title: string; text: RichText; label: string; href: string; affiliate?: boolean }
   | { type: 'sources'; id: string; title: string }
   | { type: 'divider' };
-export const categories = ['AI News', 'Comparisons', 'Design', 'Workflows', 'Guides', 'Email Marketing'] as const;
+export const categories = ['AI News', 'Comparisons', 'Design', 'Workflows', 'Guides', 'Email Marketing', 'Lean Software Stack'] as const;
 export type Category = typeof categories[number];
 export type ArticleDocument = {
   id: string;
   title: string;
-  slug: `/blog/${string}` | `/comparisons/${string}` | `/reviews/${string}`;
+  slug: `/blog/${string}` | `/comparisons/${string}` | `/reviews/${string}` | '/uses';
   description: string;
   excerpt?: string;
   deck?: string;
@@ -57,4 +57,3 @@ export type ArticleCardData = {
 export function formatArticleDate(value: string) {
   return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(value + 'T00:00:00Z'));
 }
-

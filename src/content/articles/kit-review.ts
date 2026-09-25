@@ -18,7 +18,7 @@ export const kitReview = {
   status: 'published',
   contentType: 'review',
   tags: ['Kit', 'ConvertKit', 'Email marketing', 'Lead magnets', 'Solo creators'],
-  relatedSlugs: ['/comparisons/kit-vs-mailerlite-vs-beehiiv'],
+  relatedSlugs: ['/uses', '/comparisons/kit-vs-mailerlite-vs-beehiiv'],
   readingMinutes: 13,
   featuredImageRequired: true,
   featuredImage: {
@@ -245,6 +245,7 @@ export const kitReview = {
       ],
     },
     { type: 'paragraph', text: 'The practical rule is simple: pay for the first required workflow that Free cannot run. Before committing, complete one full signup-to-unsubscribe test and export the resulting test record.' },
+    { type: 'paragraph', text: ['Before adding email software at all, use the ', { text: 'lean solo-business stack guide', href: '/uses' }, ' to decide whether subscriber capture and planned email are current jobs or categories that can wait.'] },
     { type: 'cta', title: 'Map your workflow before choosing a plan', text: 'If one sequence and a basic automation are enough, start with Free. If you need several or advanced paths, verify the current Creator checkout price.', label: 'Review the workflow boundary', href: '#lead-magnet-workflow' },
     { type: 'heading', level: 2, id: 'questions', text: 'Common questions' },
     { type: 'heading', level: 3, id: 'convertkit-name', text: 'Is Kit still ConvertKit?' },
@@ -263,4 +264,3 @@ export const kitReview = {
     { type: 'sources', id: 'sources', title: 'Sources and evidence limits' },
   ],
 } satisfies ArticleDocument;
-
