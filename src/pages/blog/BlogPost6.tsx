@@ -684,6 +684,14 @@ export const BlogPost6 = () => {
             </p>
             <p>It is called The Weekly Edge and it is free.</p>
 
+            <p>
+              When you are ready to move from a first AI task to a repeatable publishing process, follow the{' '}
+              <Link to="/blog/ai-daily-workflow-solo-business" className="text-brand-cyan hover:underline">
+                complete research-to-publishing workflow
+              </Link>
+              .
+            </p>
+
             <div className="my-10 p-6 bg-brand-surface border border-brand-cyan/30 rounded-xl">
               <div className="text-brand-cyan font-mono text-xs uppercase tracking-wider mb-2">
                 Not sure where to start?
@@ -747,5 +755,4 @@ export const BlogPost6 = () => {
     </div>
   );
 };
-
 
