@@ -159,3 +159,4 @@ function Block({ block, article }: { block: ArticleBlock; article: ArticleDocume
     default: { const exhaustive: never = block; return exhaustive; }
   }
 }
+

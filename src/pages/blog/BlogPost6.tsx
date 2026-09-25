@@ -755,3 +755,4 @@ export const BlogPost6 = () => {
     </div>
   );
 };
+
