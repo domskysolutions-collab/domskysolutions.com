@@ -30,6 +30,10 @@ reject(value => { value.blocks.push({ type:'cta',title:'Offer',text:'Example',la
 reject(value => { value.relatedSlugs = [value.slug]; }, /related article/);
 reject(value => { value.blocks.push({type:'heading',id:'short-answer',level:2,text:'Duplicate'}); }, /duplicate anchor/);
 reject(value => { value.blocks.push({type:'table',caption:'Example',columns:['A','B'],rows:[['One']]}); }, /row width/);
+reject(value => { value.blocks.push({type:'prosCons',pros:['One'],cons:['One']}); }, /2–6 items/);
+reject(value => { value.blocks.push({type:'decisionCards',cards:[{label:'Only',title:'One',text:'One'}]}); }, /2–4 items/);
+reject(value => { value.blocks.push({type:'process',steps:[{title:'One'},{title:'Two'}]}); }, /3–6 titled steps/);
+reject(value => { value.blocks.push({type:'table',caption:'Example',columns:['A','B'],rows:[['One','Two']],highlightedColumns:[0]}); }, /product columns/);
 reject(value => { value.id='new-article'; value.publishedAt=null; }, /approved publication date/);
 const draft = clone(); draft.id='draft-example'; draft.slug='/blog/draft-example'; draft.status='draft';
 assert.deepEqual(selectPublished([draft,article]),[article]);
@@ -48,8 +52,11 @@ const fixture: ArticleDocument = {
   blocks:[
     {type:'heading',level:2,id:'overview',text:'Overview'},
     {type:'quickAnswer',title:'Quick answer',text:'Example answer'},
+    {type:'quickVerdict',label:'At a glance',summary:'Example summary',bestFor:'Example reader',notFor:'Different reader',verdict:'Example verdict',keyPoints:['One point']},
     {type:'bestFor',title:'Best for',text:'Example audience'},
-    {type:'prosCons',pros:['Example advantage'],cons:['Example limitation']},
+    {type:'prosCons',pros:['Example advantage','Second advantage'],cons:['Example limitation','Second limitation']},
+    {type:'decisionCards',cards:[{label:'Situation one',title:'First choice',text:'First explanation'},{label:'Situation two',title:'Second choice',text:'Second explanation'}]},
+    {type:'process',title:'Example process',steps:[{title:'Research',description:'Check sources'},{title:'Draft',description:'Write clearly'},{title:'Review',description:'Verify the result'}]},
     {type:'cta',title:'Next step',text:'Example CTA',label:'Visit example',href:'https://example.com/',affiliate:true},
     ...clone().blocks,
   ],
@@ -64,6 +71,8 @@ assert(html.includes('sponsored noopener noreferrer'));
 assert(html.includes('aria-label="Affiliate disclosure"'));
 assert(html.includes('scope="col"') && html.includes('scope="row"'));
 assert(html.includes('aria-label="Article contents"') && html.includes('id="short-answer"'));
+assert(html.includes('At a glance') && html.includes('Less suitable for'));
+assert(html.includes('Situation one') && html.includes('Example process'));
 assert(html.includes('Example social image') === false); // OG image is metadata, not a second body image.
 assert(html.includes('Example cover'));
 const meta = {...getPageSeo(article.slug), path:fixture.slug, article:fixture};
