@@ -53,6 +53,7 @@ export function validateContent(documents: ArticleDocument[], legacy: ArticleCar
       if (!value.alt.trim()) error('Image needs alt text: ' + value.src);
       if (!/^\/images\/[a-zA-Z0-9_./-]+\.(png|jpe?g|webp|avif|svg)$/.test(value.src) || value.src.includes('..') || !assetExists(value.src)) error('Missing or invalid local image: ' + value.src);
       if ((value.width !== undefined && (!Number.isInteger(value.width) || value.width <= 0)) || (value.height !== undefined && (!Number.isInteger(value.height) || value.height <= 0))) error('Image dimensions must be positive integers');
+      if (value.sourceUrl) link(value.sourceUrl);
     };
     if (article.featuredImage) image(article.featuredImage);
     if (article.ogImage) image(article.ogImage);
@@ -69,14 +70,25 @@ export function validateContent(documents: ArticleDocument[], legacy: ArticleCar
     for (const block of article.blocks) {
       switch (block.type) {
         case 'paragraph': case 'quote': case 'quickAnswer': case 'note': case 'bestFor': rich(block.text); break;
+        case 'quickVerdict':
+          rich(block.summary); if (block.bestFor) rich(block.bestFor); if (block.notFor) rich(block.notFor); if (block.verdict) rich(block.verdict); block.keyPoints?.forEach(rich); break;
         case 'heading': if (!block.text.trim() || ![2, 3].includes(block.level)) error('Invalid heading'); break;
         case 'list': block.items.forEach(rich); break;
-        case 'prosCons': [...block.pros, ...block.cons].forEach(rich); break;
+        case 'prosCons':
+          if (block.pros.length < 2 || block.pros.length > 6 || block.cons.length < 2 || block.cons.length > 6) error('Pros and cons need 2–6 items per side');
+          [...block.pros, ...block.cons].forEach(rich); break;
+        case 'decisionCards':
+          if (block.cards.length < 2 || block.cards.length > 4) error('Decision cards need 2–4 items');
+          block.cards.forEach(card => rich(card.text)); break;
         case 'table': case 'pricing':
           if (!block.caption.trim() || block.columns.length < 2 || !block.rows.length) error('Table needs a caption, columns and rows');
+          if (block.highlightedColumns?.some(index => !Number.isInteger(index) || index < 1 || index >= block.columns.length)) error('Highlighted table columns must reference product columns');
           for (const row of block.rows) { if (row.length !== block.columns.length) error('Table row width differs from header'); row.forEach(rich); } break;
         case 'image': image(block.image); break;
         case 'workflow': if (!block.paths.length || block.paths.some(path => !path.title || !path.steps.length)) error('Empty workflow'); break;
+        case 'process':
+          if (block.steps.length < 3 || block.steps.length > 6 || block.steps.some(step => !step.title.trim())) error('Processes need 3–6 titled steps');
+          block.steps.forEach(step => { if (step.description) rich(step.description); }); break;
         case 'cta': rich(block.text); link(block.href, block.affiliate); if (!block.label.trim()) error('CTA needs a descriptive label'); break;
         case 'sources': if (!article.sources.length) error('Sources block has no references'); break;
         case 'divider': break;
