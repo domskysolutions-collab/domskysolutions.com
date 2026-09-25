@@ -14,12 +14,12 @@ export type ArticleBlock =
   | { type: 'cta'; title: string; text: RichText; label: string; href: string; affiliate?: boolean }
   | { type: 'sources'; id: string; title: string }
   | { type: 'divider' };
-export const categories = ['AI News', 'Comparisons', 'Design', 'Workflows', 'Guides'] as const;
+export const categories = ['AI News', 'Comparisons', 'Design', 'Workflows', 'Guides', 'Email Marketing'] as const;
 export type Category = typeof categories[number];
 export type ArticleDocument = {
   id: string;
   title: string;
-  slug: `/blog/${string}` | `/comparisons/${string}`;
+  slug: `/blog/${string}` | `/comparisons/${string}` | `/reviews/${string}`;
   description: string;
   excerpt?: string;
   deck?: string;
@@ -32,7 +32,7 @@ export type ArticleDocument = {
   updatedAt: string | null;
   verifiedAt: string | null;
   status: 'draft' | 'published';
-  contentType: 'article' | 'comparison' | 'guide';
+  contentType: 'article' | 'comparison' | 'guide' | 'review';
   tags: string[];
   relatedSlugs: string[];
   readingMinutes: number;
