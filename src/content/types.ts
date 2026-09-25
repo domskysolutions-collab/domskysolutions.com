@@ -1,16 +1,19 @@
 export type RichText = string | Inline[];
 export type Inline = string | { text: string; strong?: boolean; href?: string; affiliate?: boolean };
-export type ArticleImage = { src: string; alt: string; caption?: string; width?: number; height?: number };
+export type ArticleImage = { src: string; alt: string; caption?: string; source?: string; sourceUrl?: string; width?: number; height?: number };
 export type ArticleSource = { id: string; title: string; url: string };
 export type ArticleBlock =
   | { type: 'paragraph' | 'quote'; text: RichText }
   | { type: 'heading'; level: 2 | 3; id: string; text: string; toc?: boolean }
   | { type: 'list'; ordered?: boolean; items: RichText[] }
   | { type: 'quickAnswer' | 'note' | 'bestFor'; title: string; text: RichText }
+  | { type: 'quickVerdict'; label: string; summary: RichText; bestFor?: RichText; notFor?: RichText; verdict?: RichText; keyPoints?: RichText[] }
   | { type: 'prosCons'; pros: RichText[]; cons: RichText[] }
-  | { type: 'table' | 'pricing'; caption: string; columns: string[]; rows: RichText[][] }
+  | { type: 'decisionCards'; cards: { label: string; title: string; text: RichText; tool?: string }[] }
+  | { type: 'table' | 'pricing'; caption: string; columns: string[]; rows: RichText[][]; highlightedColumns?: number[] }
   | { type: 'image'; image: ArticleImage }
   | { type: 'workflow'; caption: string; paths: { title: string; steps: string[] }[] }
+  | { type: 'process'; title?: string; steps: { title: string; description?: RichText }[] }
   | { type: 'cta'; title: string; text: RichText; label: string; href: string; affiliate?: boolean }
   | { type: 'sources'; id: string; title: string }
   | { type: 'divider' };
