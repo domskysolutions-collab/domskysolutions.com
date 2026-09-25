@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Kit vs MailerLite vs beehiiv: choose by workflow</title>
+  <desc id="desc">Three editorial workflow lanes compare a lead magnet, a welcome sequence, and a newsletter business without ranking a universal winner.</desc>
+  <rect width="1600" height="900" fill="#0F0A05"/>
+  <rect x="72" y="68" width="1456" height="764" rx="28" fill="#1C0F05" stroke="#F97316" stroke-opacity=".24" stroke-width="2"/>
+  <text x="130" y="160" fill="#F97316" font-family="DM Sans, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="4">DOMSKY COMPARISON</text>
+  <text x="130" y="235" fill="#FEF3C7" font-family="Lora, Georgia, serif" font-size="54" font-weight="700">Kit vs MailerLite vs beehiiv</text>
+  <text x="130" y="286" fill="#D6C59D" font-family="DM Sans, Arial, sans-serif" font-size="28">Choose by workflow</text>
+
+  <g transform="translate(130 360)">
+    <rect width="400" height="320" rx="20" fill="#0F0A05" stroke="#A16207" stroke-opacity=".7"/>
+    <text x="30" y="52" fill="#FB923C" font-family="Space Mono, monospace" font-size="18">01</text>
+    <text x="30" y="94" fill="#FEF3C7" font-family="DM Sans, Arial, sans-serif" font-size="30" font-weight="700">Lead magnet</text>
+    <g fill="#2A1A08" stroke="#F97316" stroke-opacity=".45">
+      <rect x="30" y="137" width="88" height="52" rx="10"/><rect x="156" y="137" width="88" height="52" rx="10"/><rect x="282" y="137" width="88" height="52" rx="10"/>
+    </g>
+    <g stroke="#F97316" stroke-width="3" stroke-linecap="round"><path d="M120 163h32"/><path d="m144 155 8 8-8 8"/><path d="M246 163h32"/><path d="m270 155 8 8-8 8"/></g>
+    <g fill="#D6C59D" font-family="DM Sans, Arial, sans-serif" font-size="15" text-anchor="middle"><text x="74" y="169">Form</text><text x="200" y="169">Confirm</text><text x="326" y="169">Resource</text></g>
+    <text x="30" y="242" fill="#D6C59D" font-family="DM Sans, Arial, sans-serif" font-size="18">One useful message, then broadcasts</text>
+    <text x="30" y="282" fill="#FEF3C7" font-family="Space Mono, monospace" font-size="17">Kit · MailerLite · beehiiv</text>
+  </g>
+
+  <g transform="translate(600 360)">
+    <rect width="400" height="320" rx="20" fill="#0F0A05" stroke="#A16207" stroke-opacity=".7"/>
+    <text x="30" y="52" fill="#FB923C" font-family="Space Mono, monospace" font-size="18">02</text>
+    <text x="30" y="94" fill="#FEF3C7" font-family="DM Sans, Arial, sans-serif" font-size="30" font-weight="700">Welcome sequence</text>
+    <g fill="#2A1A08" stroke="#F97316" stroke-opacity=".45">
+      <rect x="30" y="137" width="88" height="52" rx="10"/><rect x="156" y="137" width="88" height="52" rx="10"/><rect x="282" y="137" width="88" height="52" rx="10"/>
+    </g>
+    <g stroke="#F97316" stroke-width="3" stroke-linecap="round"><path d="M120 163h32"/><path d="m144 155 8 8-8 8"/><path d="M246 163h32"/><path d="m270 155 8 8-8 8"/></g>
+    <g fill="#D6C59D" font-family="DM Sans, Arial, sans-serif" font-size="15" text-anchor="middle"><text x="74" y="169">Email 1</text><text x="200" y="169">Delay</text><text x="326" y="169">Email 2+</text></g>
+    <text x="30" y="242" fill="#D6C59D" font-family="DM Sans, Arial, sans-serif" font-size="18">Automation becomes the plan boundary</text>
+    <text x="30" y="282" fill="#FEF3C7" font-family="Space Mono, monospace" font-size="17">MailerLite · Kit · beehiiv</text>
+  </g>
+
+  <g transform="translate(1070 360)">
+    <rect width="400" height="320" rx="20" fill="#0F0A05" stroke="#A16207" stroke-opacity=".7"/>
+    <text x="30" y="52" fill="#FB923C" font-family="Space Mono, monospace" font-size="18">03</text>
+    <text x="30" y="94" fill="#FEF3C7" font-family="DM Sans, Arial, sans-serif" font-size="30" font-weight="700">Newsletter business</text>
+    <g fill="#2A1A08" stroke="#F97316" stroke-opacity=".45">
+      <rect x="30" y="137" width="88" height="52" rx="10"/><rect x="156" y="137" width="88" height="52" rx="10"/><rect x="282" y="137" width="88" height="52" rx="10"/>
+    </g>
+    <g stroke="#F97316" stroke-width="3" stroke-linecap="round"><path d="M120 163h32"/><path d="m144 155 8 8-8 8"/><path d="M246 163h32"/><path d="m270 155 8 8-8 8"/></g>
+    <g fill="#D6C59D" font-family="DM Sans, Arial, sans-serif" font-size="15" text-anchor="middle"><text x="74" y="169">Publish</text><text x="200" y="169">Grow</text><text x="326" y="169">Earn</text></g>
+    <text x="30" y="242" fill="#D6C59D" font-family="DM Sans, Arial, sans-serif" font-size="18">The publication is the product</text>
+    <text x="30" y="282" fill="#FEF3C7" font-family="Space Mono, monospace" font-size="17">beehiiv · Kit · MailerLite</text>
+  </g>
+
+  <text x="130" y="770" fill="#A98F62" font-family="DM Sans, Arial, sans-serif" font-size="20">Business model → required journey → lowest sufficient plan</text>
+</svg>
+

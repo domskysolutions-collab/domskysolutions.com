@@ -18,7 +18,7 @@ export const kitReview = {
   status: 'published',
   contentType: 'review',
   tags: ['Kit', 'ConvertKit', 'Email marketing', 'Lead magnets', 'Solo creators'],
-  relatedSlugs: [],
+  relatedSlugs: ['/comparisons/kit-vs-mailerlite-vs-beehiiv'],
   readingMinutes: 13,
   featuredImageRequired: true,
   featuredImage: {
@@ -233,7 +233,7 @@ export const kitReview = {
         'another tool’s free plan includes the exact automation being planned.',
       ],
     },
-    { type: 'paragraph', text: 'Those are workflow mismatches, not evidence that Kit is generally bad. Compare the same subscriber count, billing cadence and required workflow across alternatives. The DCE-05 comparison link remains withheld until that article is live.' },
+    { type: 'paragraph', text: ['Those are workflow mismatches, not evidence that Kit is generally bad. ', { text: 'Compare Kit, MailerLite and beehiiv', href: '/comparisons/kit-vs-mailerlite-vs-beehiiv' }, ' using the same subscriber count, billing cadence and required workflow.'] },
     { type: 'heading', level: 2, id: 'recommendation', text: 'Domsky recommendation' },
     {
       type: 'decisionCards',
