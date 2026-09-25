@@ -42,16 +42,6 @@ export const legacyArticles: ArticleCardData[] = [
     readTime: "9 minutes",
     image: "/images/team-of-10-article.jpg",
     author: "Dominik"
-  },
-  {
-    title: "How I Use AI to Run My Entire Business Solo — My Exact Daily Workflow",
-    slug: "/blog/ai-daily-workflow-solo-business",
-    excerpt: "I run a growing AI tools publication completely solo. Here is the exact workflow I use every day — the tools, the order, and the time it saves.",
-    category: "AI News",
-    date: "April 2026",
-    readTime: "9 minutes",
-    image: "/images/workflow-article.jpg",
-    author: "Dominik"
   }
 ];
 

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">One researched idea becomes an article, email and social post</title>
+  <desc id="desc">A source ledger passes through a human evidence and argument approval gate into a reviewed article, then branches to email and social drafts before a final format and release approval.</desc>
+  <rect width="1600" height="900" fill="#0F0A05"/>
+  <rect x="72" y="68" width="1456" height="764" rx="28" fill="#1C0F05" stroke="#F97316" stroke-opacity=".24" stroke-width="2"/>
+  <text x="130" y="158" fill="#F97316" font-family="DM Sans, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="4">LEAN CONTENT WORKFLOW</text>
+  <text x="130" y="230" fill="#FEF3C7" font-family="Lora, Georgia, serif" font-size="54" font-weight="700">One researched idea</text>
+  <text x="130" y="282" fill="#D6C59D" font-family="DM Sans, Arial, sans-serif" font-size="28">Article → Email → Social</text>
+
+  <g font-family="DM Sans, Arial, sans-serif">
+    <g transform="translate(120 390)">
+      <rect width="220" height="190" rx="18" fill="#0F0A05" stroke="#A16207"/>
+      <text x="24" y="45" fill="#FB923C" font-family="Space Mono, monospace" font-size="17">SOURCE LEDGER</text>
+      <rect x="24" y="72" width="172" height="12" rx="6" fill="#2A1A08"/><rect x="24" y="103" width="136" height="12" rx="6" fill="#2A1A08"/><rect x="24" y="134" width="156" height="12" rx="6" fill="#2A1A08"/>
+    </g>
+    <path d="M350 485h90" stroke="#F97316" stroke-width="3"/><path d="m430 475 12 10-12 10" fill="none" stroke="#F97316" stroke-width="3"/>
+    <g transform="translate(460 410)">
+      <rect width="245" height="150" rx="75" fill="#2A1A08" stroke="#F97316" stroke-width="2"/>
+      <text x="122" y="62" fill="#FEF3C7" text-anchor="middle" font-size="19" font-weight="700">HUMAN APPROVAL</text>
+      <text x="122" y="94" fill="#D6C59D" text-anchor="middle" font-size="16">Evidence + argument</text>
+    </g>
+    <path d="M715 485h90" stroke="#F97316" stroke-width="3"/><path d="m795 475 12 10-12 10" fill="none" stroke="#F97316" stroke-width="3"/>
+    <g transform="translate(825 390)">
+      <rect width="220" height="190" rx="18" fill="#0F0A05" stroke="#A16207"/>
+      <text x="110" y="48" fill="#FEF3C7" text-anchor="middle" font-size="22" font-weight="700">Reviewed article</text>
+      <rect x="28" y="80" width="164" height="10" rx="5" fill="#2A1A08"/><rect x="28" y="108" width="150" height="10" rx="5" fill="#2A1A08"/><rect x="28" y="136" width="174" height="10" rx="5" fill="#2A1A08"/>
+    </g>
+    <path d="M1055 485h74" stroke="#F97316" stroke-width="3"/><path d="m1119 475 12 10-12 10" fill="none" stroke="#F97316" stroke-width="3"/>
+    <g transform="translate(1150 360)">
+      <rect width="300" height="110" rx="18" fill="#0F0A05" stroke="#A16207"/>
+      <text x="28" y="45" fill="#FB923C" font-family="Space Mono, monospace" font-size="16">EMAIL</text>
+      <text x="28" y="78" fill="#D6C59D" font-size="17">Purpose-specific draft</text>
+      <rect y="140" width="300" height="110" rx="18" fill="#0F0A05" stroke="#A16207"/>
+      <text x="28" y="185" fill="#FB923C" font-family="Space Mono, monospace" font-size="16">SOCIAL</text>
+      <text x="28" y="218" fill="#D6C59D" font-size="17">Self-contained draft</text>
+    </g>
+    <path d="M1300 625v58" stroke="#F97316" stroke-width="3"/><path d="m1290 673 10 12 10-12" fill="none" stroke="#F97316" stroke-width="3"/>
+    <g transform="translate(1110 700)">
+      <rect width="380" height="82" rx="41" fill="#2A1A08" stroke="#F97316" stroke-width="2"/>
+      <text x="190" y="34" fill="#FEF3C7" text-anchor="middle" font-size="18" font-weight="700">HUMAN APPROVAL</text>
+      <text x="190" y="59" fill="#D6C59D" text-anchor="middle" font-size="15">Format + release</text>
+    </g>
+  </g>
+  <text x="130" y="748" fill="#A98F62" font-family="DM Sans, Arial, sans-serif" font-size="20">Verify once. Approve twice. Adapt with purpose.</text>
+</svg>
+
