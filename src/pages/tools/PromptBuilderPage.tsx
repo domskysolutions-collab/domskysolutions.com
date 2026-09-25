@@ -845,7 +845,7 @@ export const PromptBuilderPage = () => {
               
               <div className="flex-1">
                 <h3 className="text-xl font-bold text-white mb-1">Want 50 more proven Claude prompts?</h3>
-                <p className="text-gray-400 text-sm">Get our free prompt swipe file.</p>
+                <p className="text-gray-400 text-sm">Get my free prompt swipe file.</p>
               </div>
               
               <div className="w-full sm:w-auto">

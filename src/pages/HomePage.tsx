@@ -1,14 +1,13 @@
 import { LeanStackFinder } from '../components/LeanStackFinder';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, CheckCircle2, Layers, Sparkles, TrendingDown, Zap } from 'lucide-react';
+import { ArrowRight, BookOpen, CheckCircle2, TrendingDown } from 'lucide-react';
 import { ConvertKitForm } from '../components/ConvertKitForm';
 import { reviewCount, reviewCatalog } from '../data/reviewCatalog';
 import { StarRating } from '../components/StarRating';
 
 export const HomePage = () => {
-  const [toolkitReady, setToolkitReady] = useState(false);
   return (
     <main className="bg-brand-bg min-h-screen">
       {/* Hero */}
@@ -43,7 +42,7 @@ export const HomePage = () => {
 <a href="#stack-finder" className="inline-flex items-center gap-3 bg-brand-cyan text-brand-bg px-6 py-4 rounded-lg font-bold">Find my lean tool stack <ArrowRight size={18} aria-hidden="true" /></a>
           <p className="mt-6 text-sm text-gray-400 leading-relaxed">
             {reviewCount} published reviews. Clear strengths and limitations.{' '}
-            <Link to="/methodology" className="text-brand-amber underline underline-offset-4 hover:text-white">See how we review tools</Link>.
+            <Link to="/methodology" className="text-brand-amber underline underline-offset-4 hover:text-white">See how I review tools</Link>.
           </p>
         </div>
       </section>
@@ -160,8 +159,6 @@ export const HomePage = () => {
           <div className="max-w-6xl mx-auto"><div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10"><div><div className="text-xs font-mono text-brand-amber uppercase tracking-wider mb-2">COMPARE BEFORE YOU PAY</div><h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Popular tool comparisons</h2><p className="text-gray-400 mt-2">A quick starting point before you read the full hands-on review.</p><p className="text-sm text-gray-300 mt-4">Choosing your primary AI tool? <Link to="/comparisons/claude-vs-chatgpt-vs-gemini-2026" className="text-brand-cyan underline underline-offset-4">Choose one AI assistant</Link> by tasks, limits, integrations and total value.</p><p className="text-sm text-gray-300 mt-2">Making a small website change? <Link to="/comparisons/chatgpt-astra-vs-alternatives" className="text-brand-cyan underline underline-offset-4">Compare Codex and Claude Code</Link> for a supervised repository workflow.</p></div><Link to="/comparisons" className="text-brand-cyan font-mono text-sm">Compare all tools →</Link></div><div className="overflow-x-auto rounded-xl border border-gray-800"><table className="w-full text-left text-sm"><thead className="bg-brand-bg"><tr><th className="p-4 text-gray-400 font-mono">Tool</th><th className="p-4 text-gray-400 font-mono">Best for</th><th className="p-4 text-gray-400 font-mono">Starting price</th><th className="p-4"></th></tr></thead><tbody>{[['Claude','Writing and reasoning','Free / $20 mo','/reviews/claude'],['Perplexity','Research with sources','Free / $20 mo','/reviews/perplexity'],['Cursor','AI-assisted coding','Free / $20 mo','/reviews/cursor']].map(([tool,best,price,to])=><tr key={tool} className="border-t border-gray-800"><td className="p-4 text-white font-bold">{tool}</td><td className="p-4 text-gray-400">{best}</td><td className="p-4 text-gray-400">{price}</td><td className="p-4 text-right"><Link to={to} className="text-brand-cyan font-mono text-xs">Read review →</Link></td></tr>)}</tbody></table></div></div>
       </section>
 
-      {/* Toolkit lead magnet */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8"><div className="max-w-5xl mx-auto rounded-2xl border border-brand-cyan/30 bg-brand-surface p-8 md:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-8"><div><div className="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-3">FREE EMAIL GUIDE</div><h2 className="text-3xl font-bold font-mono text-white mb-3">Get the free AI Builder Toolkit</h2><p className="text-gray-400 max-w-xl">A practical shortlist of AI and SaaS tools for building, automating and growing a small business. Delivered straight to your inbox.</p></div><a href="#newsletter" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-brand-cyan px-6 py-4 font-bold text-brand-bg hover:bg-brand-amber transition-colors">Get the free toolkit <ArrowRight className="w-5 h-5" /></a></div></section>
       {/* Stats bar */}
       <section
         className="py-10"
@@ -374,7 +371,7 @@ export const HomePage = () => {
             One AI tool worth knowing. One practical workflow tip. One useful insight for building alone.
             No sponsors. No fluff. Free forever.
           </p>
-          <p className="text-sm text-gray-300 mb-6">See the kind of advice we cover: <Link to="/blog/ai-daily-workflow-solo-business" className="text-brand-cyan underline">read the solo-business workflow guide</Link>.</p>
+          <p className="text-sm text-gray-300 mb-6">See the kind of advice I cover: <Link to="/blog/ai-daily-workflow-solo-business" className="text-brand-cyan underline">read the solo-business workflow guide</Link>.</p>
           <ConvertKitForm
             className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mb-6"
             inputClassName="flex-grow bg-brand-surface border border-gray-700 px-5 py-4 text-white rounded-xl focus:outline-none focus:border-brand-cyan transition-colors font-sans text-sm"
@@ -396,23 +393,6 @@ export const HomePage = () => {
         </div>
       </section>
 
-      {/* Toolkit signup reminder */}
-      <section className="py-16 border-t border-gray-800 text-center px-4">
-        <h2 className="text-2xl md:text-3xl font-bold font-mono text-white mb-6">Get your free AI Builder Toolkit</h2>
-        <div className="max-w-2xl mx-auto mb-8 text-left">
-            <p className="text-gray-300 mb-4">Enter your email to get the free AI Builder Toolkit.</p>
-            <ConvertKitForm
-              buttonText="Get the AI Builder Toolkit"
-              placeholder="you@example.com"
-              successMessage="You're signed up. Your toolkit is ready to download below."
-              onSuccess={() => setToolkitReady(true)}
-              className="flex flex-col sm:flex-row gap-3"
-              inputClassName="min-w-0 flex-1 bg-brand-surface border border-gray-600 px-4 py-4 text-white rounded-xl focus:border-brand-cyan"
-              buttonClassName="bg-brand-cyan text-brand-bg px-6 py-4 font-bold rounded-xl hover:bg-brand-amber"
-            />
-            {toolkitReady && <a href="/downloads/ai-builder-toolkit.pdf" download="AI-Builder-Toolkit.pdf" className="inline-block mt-4 text-brand-cyan underline font-bold">Download your AI Builder Toolkit</a>}
-          </div>
-      </section>
     </main>
   );
 };
