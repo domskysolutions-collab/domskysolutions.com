@@ -19,7 +19,7 @@ export const BlogIndex = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {BLOG_POSTS.filter(post => post.slug.startsWith('/blog/')).map(post => (
+          {BLOG_POSTS.filter(post => post.slug.startsWith('/blog/') || post.slug === '/uses').map(post => (
             <BlogCard key={post.slug} post={post} />
           ))}
         </div>
@@ -27,5 +27,4 @@ export const BlogIndex = () => {
     </div>
   );
 };
-
 

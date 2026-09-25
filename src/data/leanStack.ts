@@ -72,11 +72,11 @@ export const products: Record<string, Product> = {
   hubspot: { id:'hubspot', name:'HubSpot CRM', category:'crm', categoryName:'Customers and sales', price:'Free CRM; seat, contact and feature limits apply', url:'https://www.hubspot.com/products/crm', pricingUrl:'https://www.hubspot.com/products/crm', affiliate:false, fit:'Track leads and the next action without buying a large sales suite.', use:'Small client pipelines that fit the current free limits.', skip:'Skip it when a shared lead list is sufficient; check seat limits for larger teams.', alternative:'A spreadsheet with lead, stage, owner and next follow-up date.' },
 };
 export const stacks: Record<string, { name: string; explanation: string; base: Category[] }> = {
-  content: { name:'Lean Content Builder', explanation:'A small publishing stack that helps you research, create and distribute useful content.', base:['assistant','workspace','website','email'] },
-  automation: { name:'Automation Essentials', explanation:'Document one repeatable process, then connect only the tools involved in it.', base:['workspace','automation','website','assistant'] },
-  'product-building': { name:'Product Launch Stack', explanation:'Validate the offer and organize the build before committing to a larger product stack.', base:['website','workspace','assistant','analytics'] },
-  'customer-sales': { name:'Client and Sales Stack', explanation:'Keep inquiries, follow-ups and your offer organized without a large sales suite.', base:['crm','workspace','website','assistant'] },
-  'cost-reduction': { name:'Cost-Conscious Core Stack', explanation:'Reuse what works and remove duplicate jobs before adding another subscription.', base:['workspace','website','assistant','analytics'] },
+  content: { name:'Lean Content Builder', explanation:'Keep your current writing path, then test only the capability blocking useful content now.', base:['assistant'] },
+  automation: { name:'Automation Essentials', explanation:'Document one repeatable process, then trial one connection only if manual work is a measured bottleneck.', base:['automation'] },
+  'product-building': { name:'Product Launch Stack', explanation:'Keep the current validation path and add a website or development capability only when the next test requires it.', base:['website'] },
+  'customer-sales': { name:'Client and Sales Stack', explanation:'Keep dependable client delivery tools and address only the step where inquiries or follow-ups are being lost.', base:['crm'] },
+  'cost-reduction': { name:'Cost-Conscious Core Stack', explanation:'Audit existing access and remove overlap before trialling another subscription.', base:['workspace'] },
 };
 const taskCategory: Record<string, Category> = { writing:'assistant', design:'design', publishing:'email', admin:'automation', customers:'crm', sales:'crm', development:'website', analytics:'analytics', collaboration:'workspace' };
 export function recommend(a: Answers) {
@@ -84,25 +84,26 @@ export function recommend(a: Answers) {
   const stack = stacks[a.goal];
   const scores = new Map<Category, number>(stack.base.map((id, i) => [id, 100 - i]));
   for (const task of a.tasks) { const id = taskCategory[task]; if (id) scores.set(id, (scores.get(id) || 0) + 20); }
-  const businessCategory: Record<string, Category> = { service:'crm', content:'email', saas:'website', ecommerce:'analytics' };
-  const extra = businessCategory[a.business]; if (extra) scores.set(extra, (scores.get(extra) || 0) + 10);
-  const categories = [...scores].sort((a,b) => b[1] - a[1]).slice(0, a.budget === 'low' || a.goal === 'cost-reduction' ? 4 : 6).map(([id]) => id);
+  const categories = [...scores].sort((a,b) => b[1] - a[1]).slice(0, 4).map(([id]) => id);
   const essentials = categories.map(category => {
     const owned = a.existing.includes(category);
     const id = category === 'assistant' ? 'chatgpt' : category === 'design' ? 'canva' : category === 'workspace' ? 'notion' : category === 'email' ? 'kit' : category === 'automation' ? a.technical === 'beginner' ? 'zapier' : 'make' : category === 'crm' ? 'hubspot' : category === 'website' ? a.technical === 'technical' && (a.business === 'saas' || a.goal === 'product-building') ? 'github' : 'wordpress' : '';
     const product = products[id];
-    const manual = category === 'analytics' || (!owned && ((category === 'workspace' && a.team !== 'solo') || (category === 'crm' && (a.team === 'growing' || a.budget === 'low')) || (category === 'automation' && a.budget === 'low')));
+    const manual = category === 'analytics' || a.goal === 'cost-reduction' || (!owned && ((category === 'workspace' && a.team !== 'solo') || (category === 'crm' && (a.team === 'growing' || a.budget === 'low')) || (category === 'automation' && a.budget === 'low')));
     const categoryName = product?.categoryName || 'Reporting and analytics';
-    return { category, categoryName, owned, product: owned || manual ? null : product,
+    const decision = owned ? 'keep' as const : manual ? 'skip' as const : 'trial' as const;
+    return { category, categoryName, owned, decision, product: owned || manual ? null : product,
       name: owned ? `Keep your existing ${categoryName.toLowerCase()} tool` : manual ? category === 'analytics' ? 'Built-in reports and a simple tracking sheet' : `A shared ${category === 'crm' ? 'lead list' : category === 'automation' ? 'process checklist' : 'task list'}` : product.name,
       reason: owned ? 'You already use a tool in this category. Keep it if it meets this goal; do not add a second subscription for the same job.' : manual ? 'A manual or built-in workflow is enough to start. This avoids paid seats and unnecessary integrations.' : product.fit,
-      price: owned ? 'No new subscription recommended; your current fees still apply.' : manual ? 'No new subscription required.' : product.price,
+      price: owned ? 'No incremental subscription recommended; your current fees still apply.' : manual ? 'No new subscription required.' : product.price,
+      gap: owned ? 'No uncovered requirement is assumed. Keep only while the current tool completes the job.' : manual ? 'The selected task can begin with existing or manual access.' : `Your selected goal or task points to ${categoryName.toLowerCase()} as a capability to test.`,
+      trial: owned ? 'Check the current tool against the required job before considering a replacement.' : manual ? 'Run the workflow manually and record any repeated failure before researching software.' : 'Use non-critical work, define pass/fail criteria and keep the current path until the candidate proves coverage.',
+      incrementalCost: owned || manual ? '€0 in new subscriptions' : 'Check the candidate’s current plan only after the trial; count the full new charge unless another cost is actually removed.',
     };
   });
   const budget = budgetConfig.options.find(b => b.id === a.budget)!;
-  // This is a spending envelope, not an invented sum of unknown bills or vendor prices.
-  const allowance = a.goal === 'cost-reduction' || a.budget === 'low' || a.budget === 'unsure' ? 0 : Math.min(budget.ceiling, a.team === 'solo' ? 25 : 50);
-  const cost = allowance ? `${budgetConfig.symbol}0–${budgetConfig.symbol}${allowance}/month in new software (planning allowance)` : `${budgetConfig.symbol}0/month in new subscriptions (free / existing setup)`;
+  const allowance = 0;
+  const cost = 'No universal total — calculate incremental cost after each successful trial.';
   const insight = a.existing.some(v => v !== 'none' && v !== 'other') ? 'Keep the tools you already use when they cover these jobs. Replace a tool only after checking its gaps and export options.' : a.technical === 'beginner' ? 'Skip advanced automation until you have completed the workflow manually.' : 'Skip duplicate AI assistants. Start with one and measure whether it saves useful work.';
   const skip = [
     a.goal === 'automation' ? 'Skip automating an unstable process. Test one repeatable task before expanding.' : 'Skip a new automation platform until you have a stable, recurring task.',
@@ -113,7 +114,7 @@ export function recommend(a: Answers) {
   const bestFor = `${labelFor('business',a.business)} · ${labelFor('team',a.team)} · ${labelFor('goal',a.goal)} · ${budget.label} · ${a.technical} setup`;
   return { name:stack.name, explanation:stack.explanation, bestFor, essentials, cost, allowance, insight, skip, next,
     budgetNote:'The starter recommendations use free tiers, existing tools or manual workflows. Any range is an optional spending allowance, not a vendor quote. Existing subscriptions, tax, domains, hosting, payment fees and usage charges are not included. Check current limits and total team seats before upgrading.',
-    upgrade: a.budget === 'low' || a.budget === 'unsure' || a.goal === 'cost-reduction' ? 'No paid upgrade recommended now. Keep your remaining budget until you encounter a specific limit.' : `Optional: allocate up to ${budgetConfig.symbol}${allowance} within your total budget to the single tool that removes your biggest bottleneck. Verify the actual quote first; if it exceeds the allowance, use the free or manual alternative.`,
+    upgrade: 'Do not spend to fill a category. Trial the smallest missing capability, verify the current quote, then record its full incremental recurring cost and any cost actually removed.',
     businessNote: a.business === 'ecommerce' ? 'For an online store, keep your current commerce platform. This is a supporting workflow stack, not a priced checkout, inventory or payment solution.' : a.business === 'saas' ? 'For a SaaS product, this is a validation and workflow stack. Production hosting, security, data storage and payment processing need a separate cost assessment.' : 'Start with one useful outcome before expanding your stack.',
   };
 }

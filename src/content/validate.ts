@@ -9,7 +9,7 @@ export function validateContent(documents: ArticleDocument[], legacy: ArticleCar
   for (const article of documents) {
     const error = (message: string) => errors.push(article.id + ': ' + message);
     if (!article.id || ids.has(article.id)) error('Missing or duplicate ID'); ids.add(article.id);
-    if (!/^\/(blog|comparisons|reviews)\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(article.slug) || slugs.has(article.slug) || routes.includes(article.slug)) error('Invalid, duplicate or reserved slug'); slugs.add(article.slug);
+    if (!(article.slug === '/uses' || /^\/(blog|comparisons|reviews)\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(article.slug)) || slugs.has(article.slug) || routes.includes(article.slug)) error('Invalid, duplicate or reserved slug'); slugs.add(article.slug);
     if (!article.title.trim() || !article.description.trim() || !article.author.name.trim()) error('Title, description and author are required');
     if (!categories.includes(article.category)) error('Unknown category');
     if (!['draft', 'published'].includes(article.status)) error('Invalid status');
@@ -98,4 +98,3 @@ export function validateContent(documents: ArticleDocument[], legacy: ArticleCar
   }
   return { errors, warnings };
 }
-

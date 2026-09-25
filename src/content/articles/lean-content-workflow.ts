@@ -19,6 +19,7 @@ export const leanContentWorkflow = {
   contentType: 'guide',
   tags: ['Content workflow', 'AI assistants', 'Editorial review', 'Source verification', 'Solo creators'],
   relatedSlugs: [
+    '/uses',
     '/comparisons/kit-vs-mailerlite-vs-beehiiv',
     '/comparisons/claude-vs-chatgpt-vs-gemini-2026',
     '/reviews/convertkit',
@@ -90,6 +91,7 @@ export const leanContentWorkflow = {
       ],
     },
     { type: 'paragraph', text: 'The assistant can help organize, draft and compress. The editor still chooses the question, approves the conclusion and decides what is safe to publish.' },
+    { type: 'paragraph', text: ['For the tools around this process, see the ', { text: 'wider lean stack', href: '/uses' }, ' and add a category only when the workflow exposes a real gap.'] },
     { type: 'heading', level: 2, id: 'define', text: 'Step 1 — Define one reader question and three outputs' },
     { type: 'paragraph', text: 'Avoid prompts such as “make content about email tools.” They leave the assistant to decide the audience, scope, angle and facts.' },
     {
@@ -221,4 +223,3 @@ export const leanContentWorkflow = {
     { type: 'sources', id: 'sources', title: 'Official sources' },
   ],
 } satisfies ArticleDocument;
-

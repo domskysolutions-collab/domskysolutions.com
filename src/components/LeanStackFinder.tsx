@@ -117,7 +117,7 @@ export function LeanStackFinder() {
       {result && <div className="lf-results" data-full={stage === 'full' ? 'true' : 'false'}>
         <p className="lf-eyebrow">{stage === 'full' ? 'Your recommended stack' : 'Your likely stack'}</p>
         <h2 ref={heading} tabIndex={-1}>{result.name}</h2><p className="lf-lead">{result.explanation}</p>
-        <div className="lf-result-stats"><div><span>Estimated monthly cost</span><strong>{result.cost}</strong></div><div><span>Recommended size</span><strong>{result.essentials.length} essential categories</strong><small>Reuse existing tools; manual workflows count.</small></div></div>
+        <div className="lf-result-stats"><div><span>Incremental spend</span><strong>{result.cost}</strong></div><div><span>Current decisions</span><strong>{result.essentials.length} job-based categories</strong><small>Existing tools and manual workflows come first.</small></div></div>
         <p className="lf-fine">{result.budgetNote}</p>
         <div className="lf-insight"><span className="lf-eyebrow">Your keep-or-skip insight</span><p>{result.insight}</p></div>
         {stage === 'partial' ? <>
@@ -137,8 +137,8 @@ export function LeanStackFinder() {
           <section><h3>Best for</h3><p>{result.bestFor}</p><p className="lf-fine">{result.businessNote}</p></section>
           <div className="lf-actions lf-no-print"><button className="lf-secondary" onClick={copy}><Copy size={17} aria-hidden="true" />Copy summary</button><button className="lf-secondary" onClick={() => window.print()}><Printer size={17} aria-hidden="true" />Print / save PDF</button></div>
           {copyMessage && <div className="lf-no-print"><p role="status">{copyMessage}</p>{copyMessage.startsWith('Copy is') && <textarea aria-label="Result summary to copy" readOnly value={summaryFor(result)} rows={8} />}</div>}
-          <h3 className="lf-section-title">Your essential stack</h3>
-          <div className="lf-products">{result.essentials.map((item,index) => <article className="lf-product" key={item.category}><div className="lf-product-top"><span>0{index+1} / {item.categoryName}</span><span>{item.owned ? 'Keep' : 'Essential'}</span></div><h4>{item.name}</h4><p className="lf-price">{item.price}</p><p>{item.reason}</p>
+          <h3 className="lf-section-title">Your keep, trial or skip plan</h3>
+          <div className="lf-products">{result.essentials.map((item,index) => <article className="lf-product" key={item.category}><div className="lf-product-top"><span>0{index+1} / {item.categoryName}</span><span>{item.decision === 'keep' ? 'Keep' : item.decision === 'trial' ? 'Trial' : 'Skip purchase'}</span></div><h4>{item.name}</h4><p className="lf-price">{item.price}</p><p>{item.reason}</p><dl><dt>Current gap</dt><dd>{item.gap}</dd><dt>Trial rule</dt><dd>{item.trial}</dd><dt>Incremental cost</dt><dd>{item.incrementalCost}</dd></dl>
             {item.product ? <><dl><dt>Who should use it</dt><dd>{item.product.use}</dd><dt>Who should skip it</dt><dd>{item.product.skip}</dd><dt>Free or lower-cost alternative</dt><dd>{item.product.alternative}</dd></dl>
               <a href={item.product.url} rel={item.product.affiliate ? 'sponsored noopener noreferrer' : 'noopener noreferrer'} target="_blank" onClick={() => { if (item.product?.affiliate) trackQuiz('affiliate_link_clicked'); }}>Explore {item.product.name} <ArrowRight size={15} aria-hidden="true" /><span className="sr-only"> (opens in a new tab)</span></a>
               <a className="lf-source" href={item.product.pricingUrl} target="_blank" rel="noopener noreferrer">Check current plans and limits<span className="sr-only"> (opens in a new tab)</span></a>
@@ -147,10 +147,10 @@ export function LeanStackFinder() {
           </article>)}</div>
           <section className="lf-upgrade"><p className="lf-eyebrow">Optional upgrades</p><h3>Spend only where it helps.</h3><p>{result.upgrade}</p></section>
           <div className="lf-next-grid"><section><h3>What you should skip for now</h3><ul>{result.skip.map(text => <li key={text}>{text}</li>)}</ul></section><section><p className="lf-eyebrow">Your next best step</p><h3>One achievable action.</h3><p>{result.next}</p></section></div>
-          <p className="lf-fine">Product free-plan information checked 18 September 2026. Limits may change; use the official pricing links before choosing a plan.</p>
+          <p className="lf-fine">Product free-plan information checked 25 September 2026. Limits may change; use the official pricing links before choosing a plan.</p>
         </>}
         <div className="lf-actions lf-no-print"><button className="lf-secondary" disabled={pending} onClick={() => move('questions',0)}>Edit answers</button><button className="lf-text-button" disabled={pending} onClick={restart}>Restart quiz</button></div>
-        <details className="lf-method lf-no-print"><summary>How we choose your recommendations</summary><p>Your main goal sets the core categories. Tasks and business type refine their priority; low budgets limit the stack to four categories. Existing tools take priority over replacements. Beginners receive guided options; teams receive manual alternatives where free seat limits may be restrictive. The quiz runs on predefined rules, not an AI service. Optional text is for your own context and is not sent to Kit. No affiliate ranking is used.</p></details>
+        <details className="lf-method lf-no-print"><summary>How we choose your recommendations</summary><p>Your current goal and selected tasks identify up to four relevant capabilities. Existing sufficient tools are kept, manual coverage can justify skipping a purchase, and a named candidate is presented as a trial rather than a default purchase. The result does not publish a universal bundle total: it asks you to count incremental cost only after a candidate proves the gap. The quiz runs on predefined rules, not an AI service. Optional text stays in your browser and does not affect the rules. No affiliate ranking is used.</p></details>
         <p className="lf-print-footer">The Lean AI &amp; SaaS Stack Finder · domskysolutions.com</p>
       </div>}
       {storageNotice && <p className="lf-fine lf-no-print" role="status">{storageNotice}</p>}

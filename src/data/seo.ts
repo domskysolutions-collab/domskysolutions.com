@@ -14,13 +14,13 @@ export const seoPages: PageSeo[] = [
   page('/comparisons', 'AI Tool Comparisons', 'Compare AI assistants side by side and explore their strengths, limitations and suitability for everyday work.'),
   page('/about', 'About Dominik', 'Meet Dominik, the designer and PC enthusiast behind Domsky Solutions, and learn how AI assists with content production.'),
   page('/methodology', 'Review Methodology & Evidence', 'How to interpret our editorial ratings, testing disclosures, savings examples, source links and review dates.'),
-  page('/uses', 'Tools We Use', 'Explore the software used to run Domsky Solutions, with links to reviews and affiliate disclosures.'),
+  { ...page('/uses', 'A Lean Solo-Business Stack: What to Use, Keep and Skip', 'Choose a smaller software stack for writing, client work or a website. Keep useful tools, identify gaps and avoid overlapping subscriptions.'), title: getArticle('/uses')?.seoTitle || 'A Lean Solo-Business Stack: Use, Keep and Skip | Domsky', socialTitle: getArticle('/uses')?.socialTitle, socialDescription: getArticle('/uses')?.socialDescription, type: 'article' as const, article: getArticle('/uses') },
   page('/privacy', 'Privacy Policy', 'How Domsky Solutions handles newsletter information, analytics and your privacy choices.'),
   page('/disclaimer', 'Affiliate & Editorial Disclosure', 'Understand affiliate links, editorial opinions and the limitations of information on Domsky Solutions.'),
   ...[['saas-calculator', 'Software Stack Audit Calculator', 'Compare old, retained and replacement recurring software cash while keeping migration costs and owner time separate.'], ['prompt-builder', 'Claude Prompt Builder', 'Create structured prompts for writing, research and other Claude tasks.'], ['stack-recommender', 'AI Stack Recommender', 'Find a starting software stack based on your business needs.'], ['content-calendar', '30-Day Content Calendar', 'Plan a month of content ideas for your business.'], ['ai-readiness-quiz', 'AI Readiness Quiz', 'Answer a few questions to find a practical starting point with AI.']].map(([slug, title, description]) => page(`/tools/${slug}`, title, description)),
   ...reviewCatalog.map(review => ({ ...page(review.link, `${review.name} Review`, `Explore ${review.name}: features, pricing considerations, strengths and limitations for solopreneurs. Read our editorial verdict and evidence disclosures.`), type: 'article' as const, review })),
   { ...page('/reviews/namecheap', 'Namecheap Review', 'An editorial look at Namecheap for domains and hosting, with practical considerations and affiliate disclosure.'), type: 'article' },
-  ...BLOG_POSTS.map(post => {
+  ...BLOG_POSTS.filter(post => post.slug !== '/uses').map(post => {
     const article = getArticle(post.slug);
     return {
       ...page(post.slug, post.title, post.excerpt),

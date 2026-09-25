@@ -15,7 +15,7 @@ export const softwareStackAudit = {
   publishedAt: '2026-09-25', updatedAt: '2026-09-25', verifiedAt: '2026-09-25',
   status: 'published', contentType: 'guide',
   tags: ['Lean Software Stack', 'SaaS audit', 'Software costs', 'Subscription management', 'Solo business'],
-  relatedSlugs: ['/blog/ai-daily-workflow-solo-business', '/comparisons/claude-vs-chatgpt-vs-gemini-2026', '/comparisons/kit-vs-mailerlite-vs-beehiiv'],
+  relatedSlugs: ['/uses', '/blog/ai-daily-workflow-solo-business', '/comparisons/claude-vs-chatgpt-vs-gemini-2026', '/comparisons/kit-vs-mailerlite-vs-beehiiv'],
   readingMinutes: 13,
   featuredImageRequired: true,
   featuredImage: { src: '/images/software-stack-audit.svg', alt: 'A software audit worksheet sorting subscriptions into keep, downgrade, cancel and trial columns', caption: 'Make each decision from required coverage, recurring cash and migration risk.', width: 1600, height: 900 },
@@ -105,6 +105,7 @@ export const softwareStackAudit = {
       { label: 'Trial', title: 'Coverage is plausible but unproven', text: 'Run a time-bounded test with success, failure and rollback criteria before changing the live workflow.' },
     ] },
     { type: 'paragraph', text: '“Buy nothing” is also a decision. If a new tool does not close a documented gap, leave it out of the proposed stack.' },
+    { type: 'paragraph', text: ['Once the audit identifies the capabilities that remain necessary, use the ', { text: 'lean solo-business stack guide', href: '/uses' }, ' to rebuild only those capabilities for your current situation.'] },
 
     { type: 'heading', level: 2, id: 'safeguards', text: 'Step 6 — Run cancellation safeguards' },
     { type: 'list', items: [

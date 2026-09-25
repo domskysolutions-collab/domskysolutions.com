@@ -21,16 +21,20 @@ assert.equal(parseAnswers({...base,tasks:['writing','writing']}),null);
 let count=0;
 for(const [business] of questions[0].options) for(const [team] of questions[1].options) for(const [goal] of questions[2].options) for(const [budget] of questions[4].options) for(const [technical] of questions[6].options) {
   const a={...base,business,team,goal,budget,technical};const r=recommend(a);
-  assert(r.essentials.length>=4 && r.essentials.length<=6);
+  assert(r.essentials.length>=1 && r.essentials.length<=4);
   assert.equal(new Set(r.essentials.map(i=>i.category)).size,r.essentials.length);
-  assert(r.allowance <= (budget==='low'||budget==='unsure'?25:budget==='medium'?75:150));
-  if(budget==='low') assert.equal(r.allowance,0);
+  assert.equal(r.allowance,0);
+  assert.equal(r.cost,'No universal total — calculate incremental cost after each successful trial.');
+  assert(r.essentials.every(i=>['keep','trial','skip'].includes(i.decision)));
   if(technical==='beginner') assert(!r.essentials.some(i=>i.product?.id==='github'||i.product?.id==='make'));
   assert.equal(r.name,recommend({...a,business:'other'}).name);
   assert(summaryFor(r).includes(r.next));count++;
 }
 const owned=recommend({...base,existing:['assistant','workspace','email','website']});
 assert(owned.essentials.every(i=>i.owned && !i.product));
+assert(owned.essentials.every(i=>i.decision==='keep'));
+const reduction=recommend({...base,goal:'cost-reduction',tasks:['admin'],existing:['none']});
+assert(reduction.essentials.every(i=>i.decision==='skip' && !i.product));
 assert(recommend({...base,budget:'high',tasks:['design']}).essentials.some(i=>i.category==='design'));
 assert.deepEqual(tagsFor(base),['content','solo-founder','low-budget','AI-beginner']);
 assert(tagsFor({...base,team:'small',technical:'technical'}).includes('technical-founder'));

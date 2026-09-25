@@ -61,6 +61,9 @@ export const BlogPost2 = () => {
             <p>
               I tested dozens of AI tools across every business function. These ten deliver the highest leverage for solopreneurs, producing output that genuinely looks like it came from a specialized professional team.
             </p>
+            <CalloutTip>
+              This older roundup is retained while its traffic and unique intent are reviewed. For the current decision framework, use the <Link to="/uses" className="font-bold text-brand-cyan underline underline-offset-4">lean solo-business stack guide</Link>: keep existing tools, trial one measured gap and skip categories you do not need.
+            </CalloutTip>
           </motion.div>
 
           <SectionDivider />

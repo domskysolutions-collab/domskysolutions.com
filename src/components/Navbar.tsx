@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { toolsDropdown } from '../data/navigation';
 
-const links = [['/reviews','Reviews'],['/comparisons','Comparisons'],['/blog','Blog'],['/about','About']];
+const links = [['/uses','Lean Stack'],['/reviews','Reviews'],['/comparisons','Comparisons'],['/blog','Blog'],['/about','About']];
 export const Navbar = () => {
   const location = useLocation();
   const [open,setOpen] = useState(false);
@@ -33,4 +33,3 @@ export const Navbar = () => {
     </div>
   </nav>;
 };
-

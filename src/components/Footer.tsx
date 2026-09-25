@@ -21,6 +21,7 @@ export const Footer = () => {
             <h2 className="font-mono font-bold text-white mb-4">Explore</h2>
             <ul className="space-y-2 text-sm text-gray-400">
               <li><Link to="/#stack-finder" className="hover:text-brand-cyan transition-colors">Lean AI & SaaS Stack Finder</Link></li>
+              <li><Link to="/uses" className="hover:text-brand-cyan transition-colors">Lean tool stack</Link></li>
               <li><Link to="/tools" className="hover:text-brand-cyan transition-colors">Free Tools</Link></li>
               <li><Link to="/reviews" className="hover:text-brand-cyan transition-colors">AI & SaaS Reviews</Link></li>
               <li><Link to="/tools/prompt-builder" className="hover:text-brand-cyan transition-colors">Prompt Builder</Link></li>
