@@ -115,5 +115,22 @@ assert(kitGraph.some(item => item['@type'] === 'Article'));
 assert(!kitGraph.some(item => item['@type'] === 'Review'));
 assert(kitGraph.some(item => item['@type'] === 'WebPage'));
 assert(kitGraph.some(item => item['@type'] === 'BreadcrumbList'));
+
+const emailComparison = getArticle('/comparisons/kit-vs-mailerlite-vs-beehiiv')!;
+assert(emailComparison);
+assert.equal(emailComparison.contentType, 'comparison');
+assert.equal(emailComparison.sources.length, 22);
+assert.deepEqual(emailComparison.relatedSlugs, ['/reviews/convertkit']);
+assert(kit.relatedSlugs.includes(emailComparison.slug));
+const emailMeta = getPageSeo(emailComparison.slug);
+assert.equal(emailMeta.title, 'Kit vs MailerLite vs beehiiv for Creators | Domsky');
+assert.equal(emailMeta.socialTitle, 'Kit vs MailerLite vs beehiiv: Choose by Workflow');
+const emailHead = renderSeoHead(emailMeta);
+assert(emailHead.includes('property="og:image" content="https://domskysolutions.com/images/kit-mailerlite-beehiiv-workflows.svg"'));
+const emailGraph = structuredData(emailMeta)['@graph'] as Array<Record<string,unknown>>;
+assert(emailGraph.some(item => item['@type'] === 'Article'));
+assert(emailGraph.some(item => item['@type'] === 'WebPage'));
+assert(emailGraph.some(item => item['@type'] === 'BreadcrumbList'));
+assert(!emailGraph.some(item => ['Product', 'Offer', 'Review', 'FAQPage'].includes(String(item['@type']))));
 console.log('PASS: content validation rejection cases, legacy collisions, draft exclusion, related links, all blocks, escaping, disclosure, dates, images and Article/breadcrumb schema.');
 
