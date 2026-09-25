@@ -4,15 +4,19 @@ import { motion, useScroll } from 'motion/react';
 import { getArticle, getRelatedArticles } from '../../content/registry';
 import { formatArticleDate, type ArticleDocument } from '../../content/types';
 import { ArticleBlocks, ArticleFigure, AffiliateDisclosure } from './ArticleBlocks';
-import { BlogCard } from '../BlogCard';
 import { NotFoundPage } from '../../pages/NotFoundPage';
 
 export function RelatedArticles({ article }: { article: ArticleDocument }) {
-  const related = getRelatedArticles(article);
+  const related = getRelatedArticles(article).slice(0, 4);
   if (!related.length) return null;
-  return <section className="mt-16 border-t border-gray-800 pt-10" aria-label="Related articles">
-    <h2 className="text-2xl text-white font-mono font-bold mb-6">Related articles</h2>
-    <div className="grid md:grid-cols-2 gap-6">{related.map(post => <BlogCard key={post.slug} post={post} />)}</div>
+  return <section className="mt-16 border-t border-brand-border pt-9" aria-label="Related articles">
+    <p className="mb-2 font-mono text-xs uppercase tracking-[0.16em] text-brand-cyan">Continue reading</p>
+    <h2 className="mb-5 font-mono text-xl font-bold text-white">Related articles</h2>
+    <div className="grid gap-3 sm:grid-cols-2">{related.map(post => <Link key={post.slug} to={post.slug} className="rounded-lg border border-brand-border bg-brand-surface p-4 hover:border-brand-cyan/60">
+      <span className="font-mono text-[11px] uppercase tracking-wider text-gray-400">{post.category}</span>
+      <h3 className="mt-2 text-sm font-bold leading-snug text-white">{post.title}</h3>
+      <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-gray-400">{post.excerpt}</p>
+    </Link>)}</div>
   </section>;
 }
 export function ArticleRoute() {
