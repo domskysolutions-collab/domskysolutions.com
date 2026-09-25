@@ -441,7 +441,7 @@ export const BlogPost5 = () => {
               Or just <span className="font-bold text-white"><Money>$2,700</Money> you keep</span> instead of handing it to a software company.
             </p>
             <CalloutTip>
-              Calculate your own software ROI. If you use a tool less than 5 times a month, you are overpaying.
+              Usage is only one signal. Before cancelling a subscription, use the <Link to="/blog/replaced-saas-stack-with-ai-tools" className="font-bold text-brand-cyan underline underline-offset-4">software stack audit worksheet</Link> to check required coverage, migration cash and owner time.
             </CalloutTip>
           </motion.div>
 
@@ -520,4 +520,3 @@ export const BlogPost5 = () => {
     </div>
   );
 };
-

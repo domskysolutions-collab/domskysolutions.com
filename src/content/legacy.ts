@@ -24,16 +24,6 @@ export const legacyArticles: ArticleCardData[] = [
     author: "Dominik"
   },
   {
-    title: "I Replaced My Entire $500/Month SaaS Stack With AI Tools",
-    slug: "/blog/replaced-saas-stack-with-ai-tools",
-    excerpt: "I was spending over $500 every month on traditional SaaS tools. Then I switched to AI alternatives and cut that bill dramatically.",
-    category: "AI News",
-    date: "April 2026",
-    readTime: "8 minutes",
-    image: "/images/saas-stack-article.jpg",
-    author: "Dominik"
-  },
-  {
     title: "10 AI Tools That Will Make You Look Like a Team of 10",
     slug: "/blog/ai-tools-look-like-team-of-10",
     excerpt: "You don't need a big team to compete with one. These 10 AI tools give solo founders the output of a full department at a fraction of the cost.",
@@ -44,4 +34,3 @@ export const legacyArticles: ArticleCardData[] = [
     author: "Dominik"
   }
 ];
-

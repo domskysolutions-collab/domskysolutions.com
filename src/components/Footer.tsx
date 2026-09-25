@@ -25,7 +25,7 @@ export const Footer = () => {
               <li><Link to="/reviews" className="hover:text-brand-cyan transition-colors">AI & SaaS Reviews</Link></li>
               <li><Link to="/tools/prompt-builder" className="hover:text-brand-cyan transition-colors">Prompt Builder</Link></li>
               <li><Link to="/tools/ai-readiness-quiz" className="hover:text-brand-cyan transition-colors">AI Readiness Quiz</Link></li>
-              <li><Link to="/tools/saas-calculator" className="hover:text-brand-cyan transition-colors">SaaS Calculator</Link></li>
+              <li><Link to="/tools/saas-calculator" className="hover:text-brand-cyan transition-colors">Software Stack Audit</Link></li>
               <li><Link to="/tools/content-calendar" className="hover:text-brand-cyan transition-colors">Content Calendar</Link></li>
               <li><Link to="/blog" className="hover:text-brand-cyan transition-colors">Blog</Link></li>
             </ul>
@@ -83,6 +83,5 @@ export const Footer = () => {
     </footer>
   );
 };
-
 
 
