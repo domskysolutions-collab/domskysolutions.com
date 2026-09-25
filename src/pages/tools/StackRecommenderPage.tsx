@@ -221,7 +221,7 @@ export const StackRecommenderPage = () => {
       content = (
         <div className="w-full">
           <h2 className="text-3xl font-bold text-white mb-2">What best describes what you do?</h2>
-          <p className="text-gray-400 mb-8">This helps us match tools to your actual workflow</p>
+          <p className="text-gray-400 mb-8">This helps me match tools to your actual workflow</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {ROLE_OPTIONS.map(opt => (
               <button
@@ -301,7 +301,7 @@ export const StackRecommenderPage = () => {
       content = (
         <div className="w-full max-w-2xl mx-auto">
           <h2 className="text-3xl font-bold text-white mb-2">What is your monthly budget for AI tools?</h2>
-          <p className="text-gray-400 mb-8">Be honest — we will match tools to what you can afford</p>
+          <p className="text-gray-400 mb-8">Be honest — I will match tools to what you can afford</p>
           <div className="flex flex-col gap-4">
             {BUDGET_OPTIONS.map(opt => (
               <button
@@ -550,7 +550,7 @@ export const StackRecommenderPage = () => {
         <div className="bg-gradient-to-br from-brand-surface to-[#1C0F05] border border-gray-800 rounded-2xl p-8 mb-16 text-center">
           <h3 className="text-2xl font-bold text-white mb-4">Want the full breakdown of each recommended tool?</h3>
           <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-            Get The AI Tools Starter Kit — our free guide covering setup, pricing and first steps for every tool in your stack.
+            Get The AI Tools Starter Kit — my free guide covering setup, pricing and first steps for every tool in your stack.
           </p>
           <div className="max-w-md mx-auto">
             <ConvertKitForm buttonText="Send Me the Guide →" />

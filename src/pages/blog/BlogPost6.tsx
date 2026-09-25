@@ -697,7 +697,7 @@ export const BlogPost6 = () => {
                 Not sure where to start?
               </div>
               <h3 className="text-white font-bold text-xl mb-2">
-                Take Our Free AI Readiness Quiz
+                Take My Free AI Readiness Quiz
               </h3>
               <p className="text-gray-400 text-sm mb-4">
                 Answer 5 quick questions and get a personalised recommendation for your perfect first AI tool. Takes 60 seconds.

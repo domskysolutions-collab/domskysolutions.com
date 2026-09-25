@@ -13,7 +13,7 @@ export const Footer = () => {
               <span className="text-white font-mono font-bold tracking-wide">Domsky Solutions</span>
             </Link>
             <p className="text-gray-400 text-sm mb-6 max-w-sm">
-              Independent. Ad-free. Builder-focused. We curate the best AI tools, software reviews, and news for builders and founders.
+              Independent. Ad-free. Builder-focused. I curate practical AI tools, software reviews, and news for builders and founders.
             </p>
           </div>
           
@@ -77,7 +77,7 @@ export const Footer = () => {
             © 2026 domskysolutions.com — All rights reserved
           </p>
           <p className="text-gray-600 text-xs">
-            domskysolutions.com is independent. We may earn commissions from affiliate links.
+            domskysolutions.com is independent. I may earn commissions from affiliate links.
           </p>
         </div>
       </div>

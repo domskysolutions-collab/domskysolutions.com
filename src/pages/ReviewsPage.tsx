@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, Star, ExternalLink } from 'lucide-react';
 import { reviewCatalog } from '../data/reviewCatalog';
-const reviews = [...reviewCatalog.map(r => ({ name: r.name, score: r.rating, max: r.bestRating, bestFor: r.category, tag: 'Editorial review', link: r.link })), { name: 'Kit (ConvertKit)', score: null, max: null, bestFor: 'Newsletters', tag: 'Tools we use', link: '/reviews/convertkit' }, { name: 'Namecheap', score: null, max: null, bestFor: 'Domains and hosting', tag: 'Tools we use', link: '/reviews/namecheap' }];
+const reviews = [...reviewCatalog.map(r => ({ name: r.name, score: r.rating, max: r.bestRating, bestFor: r.category, tag: 'Editorial review', link: r.link })), { name: 'Kit (ConvertKit)', score: null, max: null, bestFor: 'Newsletters', tag: 'Tools I use', link: '/reviews/convertkit' }, { name: 'Namecheap', score: null, max: null, bestFor: 'Domains and hosting', tag: 'Tools I use', link: '/reviews/namecheap' }];
 import { ConvertKitForm } from '../components/ConvertKitForm';
 
 export const ReviewsPage = () => {
@@ -13,10 +13,10 @@ export const ReviewsPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold font-mono text-white mb-4">AI & SaaS Reviews</h1>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">All our software reviews in one place. Scores are editorial opinions; see our methodology for the evidence behind them.</p>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">All my software reviews in one place. Scores are editorial opinions; see my methodology for the evidence behind them.</p>
         </div>
         
-        <p className="mb-8 text-center"><Link to="/methodology" className="text-brand-cyan underline">How we review software</Link></p>
+        <p className="mb-8 text-center"><Link to="/methodology" className="text-brand-cyan underline">How I review software</Link></p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map((review, index) => (
             <motion.div 

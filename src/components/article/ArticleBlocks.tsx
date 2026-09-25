@@ -34,7 +34,7 @@ export function AffiliateDisclosure({ required, text }: { required: boolean; tex
   if (!required && !text) return null;
   return <aside aria-label="Affiliate disclosure" className="my-8 border-l-2 border-brand-cyan bg-brand-surface px-5 py-4 text-sm leading-relaxed">
     {text || 'This article contains affiliate links. Domsky Solutions may earn a commission at no extra cost to you. Recommendations remain editorially independent.'}{' '}
-    <ContentLink href="/disclaimer">Read our disclosure</ContentLink>.
+    <ContentLink href="/disclaimer">Read my disclosure</ContentLink>.
   </aside>;
 }
 

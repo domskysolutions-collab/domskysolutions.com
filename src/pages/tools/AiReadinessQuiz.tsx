@@ -511,7 +511,7 @@ domskysolutions.com/tools/ai-readiness-quiz
           </div>
           <h3 className="text-white font-bold text-2xl font-mono mb-2">Get The AI Tools Starter Kit</h3>
           <p className="text-gray-400 mb-6">
-            Our free guide covering exactly how to get value from {resultId === 'full-stack' ? 'these tools' : result.name} in your first week. Delivered to your inbox instantly.
+            My free guide covering exactly how to get value from {resultId === 'full-stack' ? 'these tools' : result.name} in your first week. Delivered to your inbox instantly.
           </p>
           <ConvertKitForm
             className="flex flex-col sm:flex-row gap-3"
@@ -563,7 +563,7 @@ domskysolutions.com/tools/ai-readiness-quiz
         </div>
 
         <div className="mt-4 text-sm text-gray-500">
-          Not the right fit? Retake the quiz or browse all our reviews.
+          Not the right fit? Retake the quiz or browse all my reviews.
         </div>
       </div>
     );
@@ -574,7 +574,7 @@ domskysolutions.com/tools/ai-readiness-quiz
       return (
         <div className="w-full">
           <h2 className="text-3xl font-bold text-white mb-2 font-mono">What do you do for work?</h2>
-          <p className="text-gray-400 mb-8">Pick the one that fits best — we will personalise your result</p>
+          <p className="text-gray-400 mb-8">Pick the one that fits best — I will personalise your result</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {STEP_1_OPTIONS.map((opt) => (
               <button
@@ -626,7 +626,7 @@ domskysolutions.com/tools/ai-readiness-quiz
       return (
         <div className="w-full">
           <h2 className="text-3xl font-bold text-white mb-2 font-mono">What is your monthly budget for AI tools?</h2>
-          <p className="text-gray-400 mb-8">We will match tools to what you can afford</p>
+          <p className="text-gray-400 mb-8">I will match tools to what you can afford</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {STEP_3_OPTIONS.map((opt) => (
               <button

@@ -702,7 +702,7 @@ export const BlogPost2 = () => {
 
           <div className="mt-16 p-6 bg-gray-900 border border-gray-800 text-sm text-gray-400">
             <div className="font-bold font-mono text-white mb-2">ABOUT THIS ARTICLE</div>
-            domskysolutions.com reviews AI tools and SaaS software for founders, solopreneurs and builders. I test every tool I recommend and update our reviews regularly. Some links in this article are affiliate links — I may earn a commission if you sign up through them at no extra cost to you.
+            domskysolutions.com reviews AI tools and SaaS software for founders, solopreneurs and builders. I test every tool I recommend and update my reviews regularly. Some links in this article are affiliate links — I may earn a commission if you sign up through them at no extra cost to you.
           </div>
         </div>
       </div>
