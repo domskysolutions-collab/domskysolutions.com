@@ -23,7 +23,6 @@ import { AiReadinessQuiz } from './pages/tools/AiReadinessQuiz';
 import { StackScorecardPage } from './pages/StackScorecardPage';
 import { UsesPage } from './pages/UsesPage';
 import { NamecheapReviewPage } from './pages/uses/NamecheapReviewPage';
-import { BlogPost1 } from './pages/blog/BlogPost1';
 import { BlogPost2 } from './pages/blog/BlogPost2';
 import { BlogPost5 } from './pages/blog/BlogPost5';
 import { BlogPost6 } from './pages/blog/BlogPost6';
@@ -57,7 +56,6 @@ export function SiteRoutes() {
         <Route path="/reviews/:id" element={<ToolPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/blog" element={<BlogIndex />} />
-        <Route path="/blog/replaced-saas-stack-with-ai-tools" element={<BlogPost1 />} />
         <Route path="/blog/ai-tools-look-like-team-of-10" element={<BlogPost2 />} />
         <Route path="/blog/cancelled-adobe-never-looked-back" element={<BlogPost5 />} />
         <Route path="/blog/you-dont-need-to-be-technical-to-use-ai" element={<BlogPost6 />} />
@@ -72,4 +70,3 @@ export function SiteRoutes() {
 }
 
 export default function App() { return <Router><SiteRoutes /></Router>; }
-

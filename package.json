@@ -10,7 +10,7 @@
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
     "test:seo": "tsx scripts/verify-seo.ts",
-    "test:stack": "tsc -p tsconfig.stack.json && tsx scripts/test-lean-stack.ts",
+    "test:stack": "tsc -p tsconfig.stack.json && tsx scripts/test-lean-stack.ts && tsx scripts/test-saas-audit.ts",
     "typecheck": "tsc --noEmit && tsc -p tsconfig.content.json",
     "validate:content": "tsx scripts/validate-content.ts",
     "content:check": "tsx scripts/check-content.ts",
@@ -45,4 +45,3 @@
     "vite": "^6.2.0"
   }
 }
-

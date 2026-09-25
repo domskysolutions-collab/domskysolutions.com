@@ -1,5 +1,5 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src/data/leanStack.ts", "src/lib/stackQuiz.ts", "server/stackSubscription.ts", "api/stack-subscribe.ts", "scripts/test-lean-stack.ts"],
+  "include": ["src/data/leanStack.ts", "src/data/saasAudit.ts", "src/lib/stackQuiz.ts", "server/stackSubscription.ts", "api/stack-subscribe.ts", "scripts/test-lean-stack.ts", "scripts/test-saas-audit.ts"],
   "exclude": ["node_modules", "dist"]
 }

@@ -18,7 +18,7 @@ export const assistantComparison = {
   status: 'published',
   contentType: 'comparison',
   tags: ['ChatGPT', 'Claude', 'Gemini', 'AI assistants', 'Solo business'],
-  relatedSlugs: ['/comparisons/chatgpt-astra-vs-alternatives'],
+  relatedSlugs: ['/comparisons/chatgpt-astra-vs-alternatives', '/blog/replaced-saas-stack-with-ai-tools'],
   readingMinutes: 13,
   featuredImageRequired: true,
   featuredImage: {
@@ -192,6 +192,7 @@ export const assistantComparison = {
       ],
     },
     { type: 'paragraph', text: 'Do not pay for two general assistants yet unless the second one completes a recurring job the first cannot, and that difference is worth another subscription. Similar features are not proof of incremental value.' },
+    { type: 'paragraph', text: ['If another subscription may be redundant, use the ', { text: 'software stack audit worksheet', href: '/blog/replaced-saas-stack-with-ai-tools' }, ' to test job coverage, recurring cash and migration risk before cancelling it.'] },
     { type: 'paragraph', text: 'If two options satisfy your requirements, keep the one you already know. Switching has a cost too: settings, saved context, connected apps and new habits.' },
     { type: 'heading', level: 2, id: 'questions', text: 'Common questions' },
     { type: 'heading', level: 3, id: 'free-enough', text: 'Is a free AI assistant enough for a solo business?' },
@@ -211,4 +212,3 @@ export const assistantComparison = {
     { type: 'sources', id: 'sources', title: 'Sources & methodology' },
   ],
 } satisfies ArticleDocument;
-
