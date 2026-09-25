@@ -9,12 +9,13 @@ export function validateContent(documents: ArticleDocument[], legacy: ArticleCar
   for (const article of documents) {
     const error = (message: string) => errors.push(article.id + ': ' + message);
     if (!article.id || ids.has(article.id)) error('Missing or duplicate ID'); ids.add(article.id);
-    if (!/^\/(blog|comparisons)\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(article.slug) || slugs.has(article.slug) || routes.includes(article.slug)) error('Invalid, duplicate or reserved slug'); slugs.add(article.slug);
+    if (!/^\/(blog|comparisons|reviews)\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(article.slug) || slugs.has(article.slug) || routes.includes(article.slug)) error('Invalid, duplicate or reserved slug'); slugs.add(article.slug);
     if (!article.title.trim() || !article.description.trim() || !article.author.name.trim()) error('Title, description and author are required');
     if (!categories.includes(article.category)) error('Unknown category');
     if (!['draft', 'published'].includes(article.status)) error('Invalid status');
-    if (!['article', 'comparison', 'guide'].includes(article.contentType)) error('Invalid content type');
+    if (!['article', 'comparison', 'guide', 'review'].includes(article.contentType)) error('Invalid content type');
     if (article.contentType === 'comparison' && !article.slug.startsWith('/comparisons/')) error('Comparisons must use /comparisons/');
+    if (article.contentType === 'review' && !article.slug.startsWith('/reviews/')) error('Reviews must use /reviews/');
     if (!Number.isInteger(article.readingMinutes) || article.readingMinutes < 1) error('Invalid reading time');
     for (const field of ['publishedAt', 'updatedAt', 'verifiedAt'] as const) if (article[field] !== null && !validDate(article[field]!)) error('Invalid ' + field);
     if (article.publishedAt && article.updatedAt && article.updatedAt < article.publishedAt) error('Updated date precedes publication');
