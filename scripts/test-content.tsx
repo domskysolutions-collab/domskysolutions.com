@@ -94,5 +94,17 @@ assert.equal(assistantSchema.dateModified, '2026-09-23');
 assert.equal(assistantSchema.reviewRating, undefined);
 assert(assistantGraph.some(item => item['@type'] === 'WebPage'));
 assert(assistantGraph.some(item => item['@type'] === 'BreadcrumbList'));
+
+const kit = getArticle('/reviews/convertkit')!;
+assert(kit);
+assert.equal(kit.contentType, 'review');
+const kitMeta = getPageSeo(kit.slug);
+assert.equal(kitMeta.title, 'Kit Review for Solo Creators: Free Plan & Limits | Domsky');
+assert.equal(kitMeta.socialTitle, 'Kit Free or Creator? A Practical Solo-Creator Review');
+const kitGraph = structuredData(kitMeta)['@graph'] as Array<Record<string,unknown>>;
+assert(kitGraph.some(item => item['@type'] === 'Article'));
+assert(!kitGraph.some(item => item['@type'] === 'Review'));
+assert(kitGraph.some(item => item['@type'] === 'WebPage'));
+assert(kitGraph.some(item => item['@type'] === 'BreadcrumbList'));
 console.log('PASS: content validation rejection cases, legacy collisions, draft exclusion, related links, all blocks, escaping, disclosure, dates, images and Article/breadcrumb schema.');
 

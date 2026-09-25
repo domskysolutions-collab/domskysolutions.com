@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">Kit Free versus Creator email workflow</title>
+  <desc id="description">A calm email journey from form to confirmation and lead magnet, followed by a divider showing where paid welcome automation begins.</desc>
+  <rect width="1600" height="900" fill="#F4EFE5"/>
+  <rect x="76" y="70" width="1448" height="760" rx="34" fill="#FFFDF8" stroke="#292C28" stroke-width="3"/>
+  <text x="130" y="166" fill="#292C28" font-family="Arial, sans-serif" font-size="66" font-weight="700">Kit Free vs Creator</text>
+  <text x="132" y="220" fill="#69705F" font-family="Arial, sans-serif" font-size="30">Where automation becomes paid</text>
+  <g font-family="Arial, sans-serif">
+    <path d="M170 458 H1430" stroke="#7A806B" stroke-width="8" stroke-linecap="round"/>
+    <g fill="#FFFDF8" stroke="#7A806B" stroke-width="3">
+      <rect x="120" y="350" width="220" height="216" rx="24"/>
+      <rect x="390" y="350" width="220" height="216" rx="24"/>
+      <rect x="660" y="350" width="220" height="216" rx="24"/>
+      <rect x="1010" y="350" width="220" height="216" rx="24"/>
+      <rect x="1280" y="350" width="220" height="216" rx="24"/>
+    </g>
+    <g fill="#292C28" font-size="27" font-weight="700" text-anchor="middle">
+      <text x="230" y="425">FORM</text>
+      <text x="500" y="425">CONFIRM</text>
+      <text x="770" y="410">LEAD</text><text x="770" y="444">MAGNET</text>
+      <text x="1120" y="410">WELCOME</text><text x="1120" y="444">SERIES</text>
+      <text x="1390" y="410">SUBSCRIBER</text><text x="1390" y="444">CONTROL</text>
+    </g>
+    <g fill="#69705F" font-size="19" text-anchor="middle">
+      <text x="230" y="505">Free</text><text x="500" y="505">Free</text><text x="770" y="505">Free</text>
+      <text x="1120" y="505">Creator</text><text x="1390" y="505">All plans</text>
+    </g>
+    <path d="M945 296 V636" stroke="#C36C3B" stroke-width="5" stroke-dasharray="13 12"/>
+    <rect x="748" y="610" width="394" height="76" rx="38" fill="#C36C3B"/>
+    <text x="945" y="657" text-anchor="middle" fill="#FFFDF8" font-size="21" font-weight="700">PAID AUTOMATION BEGINS HERE</text>
+  </g>
+  <text x="130" y="758" fill="#69705F" font-family="Arial, sans-serif" font-size="23">Define the workflow first. Upgrade only when a required step crosses the boundary.</text>
+</svg>
+

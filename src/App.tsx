@@ -22,7 +22,6 @@ import { ContentCalendarPage } from './pages/tools/ContentCalendarPage';
 import { AiReadinessQuiz } from './pages/tools/AiReadinessQuiz';
 import { StackScorecardPage } from './pages/StackScorecardPage';
 import { UsesPage } from './pages/UsesPage';
-import { ConvertKitReviewPage } from './pages/uses/ConvertKitReviewPage';
 import { NamecheapReviewPage } from './pages/uses/NamecheapReviewPage';
 import { BlogPost1 } from './pages/blog/BlogPost1';
 import { BlogPost2 } from './pages/blog/BlogPost2';
@@ -52,7 +51,6 @@ export function SiteRoutes() {
         <Route path="/tools/stack-recommender" element={<StackRecommenderPage />} />
         <Route path="/tools/content-calendar" element={<ContentCalendarPage />} />
         <Route path="/uses" element={<UsesPage />} />
-        <Route path="/reviews/convertkit" element={<ConvertKitReviewPage />} />
         <Route path="/reviews/namecheap" element={<NamecheapReviewPage />} />
         <Route path="/tools/ai-readiness-quiz" element={<AiReadinessQuiz />} />
         <Route path="/scorecard" element={<StackScorecardPage />} />
