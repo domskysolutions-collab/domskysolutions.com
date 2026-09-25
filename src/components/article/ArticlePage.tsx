@@ -25,11 +25,11 @@ export function ArticlePage({ article }: { article: ArticleDocument }) {
   const toc = article.blocks.flatMap(block => block.type === 'heading' && block.level === 2 && block.toc !== false
     ? [{ id: block.id, text: block.text }] : block.type === 'sources' ? [{ id: block.id, text: block.title }] : []);
   const hasToc = toc.length >= 3;
-  const parent = article.slug.startsWith('/comparisons/') ? '/comparisons' : '/blog';
+  const parent = article.slug.startsWith('/comparisons/') ? '/comparisons' : article.slug.startsWith('/reviews/') ? '/reviews' : '/blog';
   return <main className="bg-brand-bg min-h-screen text-gray-300 pb-24">
     <motion.div aria-hidden="true" className="fixed top-0 inset-x-0 h-1 bg-brand-cyan origin-left z-50" style={{ scaleX: scrollYProgress }} />
     <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-36">
-      <Link to={parent} className="text-sm text-brand-cyan hover:underline">← {parent === '/comparisons' ? 'All comparisons' : 'All articles'}</Link>
+      <Link to={parent} className="text-sm text-brand-cyan hover:underline">← {parent === '/comparisons' ? 'All comparisons' : parent === '/reviews' ? 'All reviews' : 'All articles'}</Link>
       <header className="max-w-4xl mt-8 mb-12">
         <p className="font-mono text-xs uppercase tracking-widest text-brand-cyan mb-5">{article.category} · {article.readingMinutes} min read</p>
         <h1 className="font-mono font-bold text-white text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight">{article.title}</h1>
