@@ -258,16 +258,16 @@ export const HomePage = () => {
                 to: '/blog/ai-tools-look-like-team-of-10',
               },
               {
-                category: 'BEGINNERS',
+                category: 'WORKFLOWS',
                 categoryStyle: {
                   background: 'rgba(251,146,60,0.12)',
                   color: '#FB923C',
                   border: '1px solid rgba(251,146,60,0.22)',
                 },
-                title: "You Don't Need to Be Technical to Use AI — Start Here",
-                excerpt: 'The honest beginner guide. No jargon. No assumptions.',
-                readTime: '10 min read',
-                to: '/blog/you-dont-need-to-be-technical-to-use-ai',
+                title: 'A Lean Content Workflow for Solo Creators',
+                excerpt: 'Turn one researched idea into an article, email and social post with clear review gates.',
+                readTime: '15 min read',
+                to: '/blog/ai-daily-workflow-solo-business',
               },
             ].map((post) => (
               <Link

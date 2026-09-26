@@ -8,6 +8,7 @@ import { articles, getArticle, getRelatedArticles, selectPublished } from '../sr
 import { legacyArticles } from '../src/content/legacy';
 import { validateContent } from '../src/content/validate';
 import { getPageSeo, renderSeoHead, structuredData, seoPages } from '../src/data/seo';
+import { BLOG_POSTS } from '../src/data/blogPosts';
 import type { ArticleDocument } from '../src/content/types';
 
 const article = articles[0];
@@ -99,10 +100,12 @@ const assistantGraph = structuredData(assistantMeta)['@graph'] as Array<Record<s
 const assistantSchema = assistantGraph.find(item => item['@type'] === 'Article')!;
 assert.equal(assistantSchema.headline, assistant.title);
 assert.equal(assistantSchema.datePublished, '2026-09-23');
-assert.equal(assistantSchema.dateModified, '2026-09-23');
+assert.equal(assistantSchema.dateModified, '2026-09-26');
 assert.equal(assistantSchema.reviewRating, undefined);
 assert(assistantGraph.some(item => item['@type'] === 'WebPage'));
 assert(assistantGraph.some(item => item['@type'] === 'BreadcrumbList'));
+assert(!BLOG_POSTS.some(item => item.slug === '/blog/you-dont-need-to-be-technical-to-use-ai'));
+assert(legacyArticles.some(item => item.slug === '/blog/you-dont-need-to-be-technical-to-use-ai'));
 
 const kit = getArticle('/reviews/convertkit')!;
 assert(kit);
