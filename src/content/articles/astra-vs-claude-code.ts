@@ -1,4 +1,5 @@
 import type { ArticleDocument } from '../types';
+import { PUBLIC_AUTHOR } from '../../data/site';
 
 export const astraComparison = {
   id: 'dce-03-codex-vs-claude-code',
@@ -11,7 +12,7 @@ export const astraComparison = {
   socialTitle: 'Codex vs Claude Code for Small Website Changes',
   socialDescription: 'Compare access, control, usage and review effort with a practical three-task trial.',
   category: 'Comparisons',
-  author: { name: 'Domsky Solutions editorial', type: 'Organization', url: '/about' },
+  author: PUBLIC_AUTHOR,
   publishedAt: '2026-09-24',
   updatedAt: '2026-09-24',
   verifiedAt: '2026-09-24',

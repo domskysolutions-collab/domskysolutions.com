@@ -1,4 +1,5 @@
 import type { ArticleDocument } from '../types';
+import { PUBLIC_AUTHOR } from '../../data/site';
 
 export const assistantComparison = {
   id: 'dce-02-chatgpt-claude-gemini',
@@ -11,7 +12,7 @@ export const assistantComparison = {
   socialTitle: 'ChatGPT vs Claude vs Gemini: Which One Fits a Solo Business?',
   socialDescription: 'A practical comparison of plans, limits, integrations and upgrade triggers—without a universal winner.',
   category: 'Comparisons',
-  author: { name: 'Domsky Solutions editorial', type: 'Organization', url: '/about' },
+  author: PUBLIC_AUTHOR,
   publishedAt: '2026-09-23',
   updatedAt: '2026-09-23',
   verifiedAt: '2026-09-23',

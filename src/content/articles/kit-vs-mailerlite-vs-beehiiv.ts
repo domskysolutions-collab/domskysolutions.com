@@ -1,4 +1,5 @@
 import type { ArticleDocument } from '../types';
+import { PUBLIC_AUTHOR } from '../../data/site';
 
 export const emailPlatformComparison = {
   id: 'dce-05-kit-mailerlite-beehiiv',
@@ -11,7 +12,7 @@ export const emailPlatformComparison = {
   socialTitle: 'Kit vs MailerLite vs beehiiv: Choose by Workflow',
   socialDescription: 'Compare free limits, welcome automation and equal-size monthly pricing before choosing an email platform.',
   category: 'Comparisons',
-  author: { name: 'Domsky Solutions editorial', type: 'Organization', url: '/about' },
+  author: PUBLIC_AUTHOR,
   publishedAt: '2026-09-25',
   updatedAt: '2026-09-25',
   verifiedAt: '2026-09-25',

@@ -3,6 +3,17 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.domskysolutions.com"
+        }
+      ],
+      "destination": "https://domskysolutions.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/tools/claude",
       "destination": "/reviews/claude",
       "permanent": true

@@ -1,4 +1,5 @@
 import type { ArticleDocument } from '../types';
+import { PUBLIC_AUTHOR } from '../../data/site';
 
 export const kitReview = {
   id: 'dce-04-kit-review',
@@ -11,7 +12,7 @@ export const kitReview = {
   socialTitle: 'Kit Free or Creator? A Practical Solo-Creator Review',
   socialDescription: 'See what Kit Free can handle, where advanced automation becomes paid, and what to test before moving your list.',
   category: 'Email Marketing',
-  author: { name: 'Domsky Solutions editorial', type: 'Organization', url: '/about' },
+  author: PUBLIC_AUTHOR,
   publishedAt: '2026-09-25',
   updatedAt: '2026-09-25',
   verifiedAt: '2026-09-24',

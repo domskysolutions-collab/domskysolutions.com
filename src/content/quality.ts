@@ -1,4 +1,6 @@
 /** Editorial maintenance signals, not SEO scores. No network requests or content mutations. */
+import { ALTERNATE_HOST, SITE_URL } from '../data/site';
+
 type RecordValue = Record<string, unknown>;
 const record = (value: unknown): RecordValue => value !== null && typeof value === 'object' && !Array.isArray(value) ? value as RecordValue : {};
 const list = (value: unknown): unknown[] => Array.isArray(value) ? value : [];
@@ -15,8 +17,8 @@ export const validDate = (value: unknown): value is string => typeof value === '
 const normalize = (path: string) => path.replace(/\/+$/, '') || '/';
 function internalTarget(href: string, slug: string): { path: string; fragment: string } | null {
   try {
-    const url = new URL(href, 'https://www.domskysolutions.com' + (slug || '/'));
-    if (!['domskysolutions.com', 'www.domskysolutions.com'].includes(url.hostname)) return null;
+    const url = new URL(href, SITE_URL + (slug || '/'));
+    if (![new URL(SITE_URL).hostname, ALTERNATE_HOST].includes(url.hostname)) return null;
     return { path: normalize(url.pathname), fragment: decodeURIComponent(url.hash.slice(1)) };
   } catch { return { path: href, fragment: '' }; }
 }

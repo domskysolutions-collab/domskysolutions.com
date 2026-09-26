@@ -1,4 +1,5 @@
 import type { ArticleDocument } from '../types';
+import { PUBLIC_AUTHOR } from '../../data/site';
 
 export const softwareStackAudit = {
   id: 'dce-07-software-stack-audit',
@@ -11,7 +12,7 @@ export const softwareStackAudit = {
   socialTitle: 'Keep, Downgrade, Cancel or Trial? Audit Your Software Stack',
   socialDescription: 'Map subscriptions to required jobs, test replacement coverage and calculate recurring cash without hiding migration costs or owner time.',
   category: 'Guides',
-  author: { name: 'Domsky Solutions editorial', type: 'Organization', url: '/about' },
+  author: PUBLIC_AUTHOR,
   publishedAt: '2026-09-25', updatedAt: '2026-09-25', verifiedAt: '2026-09-25',
   status: 'published', contentType: 'guide',
   tags: ['Lean Software Stack', 'SaaS audit', 'Software costs', 'Subscription management', 'Solo business'],

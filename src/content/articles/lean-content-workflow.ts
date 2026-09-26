@@ -1,4 +1,5 @@
 import type { ArticleDocument } from '../types';
+import { PUBLIC_AUTHOR } from '../../data/site';
 
 export const leanContentWorkflow = {
   id: 'dce-06-lean-content-workflow',
@@ -11,7 +12,7 @@ export const leanContentWorkflow = {
   socialTitle: 'One Research Idea, Three Approved Content Assets',
   socialDescription: 'Use a source ledger and two human approval gates to create an article, email and social post without spreading unsupported claims.',
   category: 'Workflows',
-  author: { name: 'Domsky Solutions editorial', type: 'Organization', url: '/about' },
+  author: PUBLIC_AUTHOR,
   publishedAt: '2026-09-25',
   updatedAt: '2026-09-25',
   verifiedAt: '2026-09-25',

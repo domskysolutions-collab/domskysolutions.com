@@ -2,17 +2,18 @@ import { BLOG_POSTS } from './blogPosts';
 import { getArticle } from '../content/registry';
 import type { ArticleDocument } from '../content/types';
 import { reviewCatalog, legacyReviewRedirects } from './reviewCatalog';
+import { AUTHOR_NAME, PUBLISHER_NAME, SITE_URL } from './site';
 
-export const SITE_URL = 'https://domskysolutions.com';
+export { SITE_URL } from './site';
 export type PageSeo = { path: string; title: string; description: string; socialTitle?: string; socialDescription?: string; type?: 'article' | 'website'; review?: typeof reviewCatalog[number]; noindex?: boolean; article?: ArticleDocument };
 const page = (path: string, title: string, description: string): PageSeo => ({ path, title: `${title} | Domsky Solutions`, description });
 export const seoPages: PageSeo[] = [
   page('/', 'Independent AI Tool Reviews for Solopreneurs', 'Explore independent AI and SaaS reviews, practical workflows and free tools to choose software for your solo business.'),
   page('/reviews', 'AI & SaaS Reviews', 'Browse all my software reviews, including Claude, Cursor, Perplexity, Kit and Namecheap. Compare strengths, limitations and editorial ratings.'),
   page('/tools', 'Free Tools Library', 'Five free browser utilities to plan content, build prompts, compare costs and choose a starting AI stack.'),
-  page('/blog', 'AI Workflows & Insights', 'Practical articles on AI workflows, software costs, design and running a solo business, written by Dominik.'),
+  page('/blog', 'AI Workflows & Insights', `Practical articles on AI workflows, software costs, design and running a solo business, written by ${AUTHOR_NAME}.`),
   page('/comparisons', 'AI Tool Comparisons', 'Compare AI assistants side by side and explore their strengths, limitations and suitability for everyday work.'),
-  page('/about', 'About Dominik', 'Meet Dominik, the designer and PC enthusiast behind Domsky Solutions, and learn how AI assists with content production.'),
+  page('/about', `About ${AUTHOR_NAME}`, `Meet ${AUTHOR_NAME}, the designer and PC enthusiast behind ${PUBLISHER_NAME}, and learn how AI assists with content production.`),
   page('/methodology', 'Review Methodology & Evidence', 'How to interpret my editorial ratings, testing disclosures, savings examples, source links and review dates.'),
   { ...page('/uses', 'A Lean Solo-Business Stack: What to Use, Keep and Skip', 'Choose a smaller software stack for writing, client work or a website. Keep useful tools, identify gaps and avoid overlapping subscriptions.'), title: getArticle('/uses')?.seoTitle || 'A Lean Solo-Business Stack: Use, Keep and Skip | Domsky', socialTitle: getArticle('/uses')?.socialTitle, socialDescription: getArticle('/uses')?.socialDescription, type: 'article' as const, article: getArticle('/uses') },
   page('/privacy', 'Privacy Policy', 'How Domsky Solutions handles newsletter information, analytics and your privacy choices.'),
@@ -51,8 +52,8 @@ export function getBreadcrumbs(meta: PageSeo) {
 }
 
 export function structuredData(meta: PageSeo) {
-  const author = { '@type': 'Person', '@id': `${SITE_URL}/about#author`, name: 'Dominik', url: `${SITE_URL}/about` };
-  const organization = { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: 'Domsky Solutions', url: SITE_URL, founder: { '@id': author['@id'] } };
+  const author = { '@type': 'Person', '@id': `${SITE_URL}/about#author`, name: AUTHOR_NAME, url: `${SITE_URL}/about` };
+  const organization = { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: PUBLISHER_NAME, url: SITE_URL, founder: { '@id': author['@id'] } };
   const graph: object[] = [author, organization];
   if (!meta.noindex) {
     graph.push({ '@type': 'WebPage', '@id': `${SITE_URL}${meta.path}#page`, url: `${SITE_URL}${meta.path}`, name: meta.title, description: meta.description, publisher: { '@id': organization['@id'] } });

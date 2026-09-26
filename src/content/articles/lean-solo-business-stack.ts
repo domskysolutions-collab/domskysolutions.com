@@ -1,4 +1,5 @@
 import type { ArticleDocument } from '../types';
+import { PUBLIC_AUTHOR } from '../../data/site';
 
 export const leanSoloBusinessStack = {
   id: 'dce-08-lean-solo-business-stack',
@@ -11,7 +12,7 @@ export const leanSoloBusinessStack = {
   socialTitle: 'The Lean Solo-Business Stack: Keep, Add or Skip',
   socialDescription: 'Choose a minimum stack for writing, client work or a small website—without paying twice for the same job.',
   category: 'Lean Software Stack',
-  author: { name: 'Dominik', type: 'Person', url: '/about' },
+  author: PUBLIC_AUTHOR,
   publishedAt: '2026-09-25', updatedAt: '2026-09-25', verifiedAt: '2026-09-25',
   status: 'published', contentType: 'guide',
   tags: ['Solo business', 'Software stack', 'AI assistant', 'Email marketing', 'Website builder', 'Cost control'],

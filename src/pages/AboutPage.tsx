@@ -7,6 +7,7 @@ import { CheckCircle2 } from 'lucide-react';
 import { H2, SectionDivider } from '../components/ui';
 import { motion } from 'motion/react';
 import { ConvertKitForm } from '../components/ConvertKitForm';
+import { AUTHOR_NAME } from '../data/site';
 
 export const AboutPage = () => {
   const { scrollYProgress } = useScroll();
@@ -28,12 +29,12 @@ export const AboutPage = () => {
             "A Designer’s Perspective.<br />No Hype. Just What Works."
           </h1>
           <p className="text-xl text-gray-400">
-            Hi — I'm Dominik, also known as Domsky. I test AI tools so you do not have to.
+            Hi — I'm {AUTHOR_NAME}, also known as Domsky. I test AI tools so you do not have to.
           </p>
 
           <div className="flex items-center gap-6 my-12 p-6 bg-brand-surface border border-gray-800 rounded-xl hover:border-brand-cyan transition-all duration-300">
             <div>
-              <div className="text-white font-bold text-lg font-inter">Dominik</div>
+              <div className="text-white font-bold text-lg font-inter">{AUTHOR_NAME}</div>
               <div className="text-brand-cyan text-sm font-mono mt-0.5">Graphic & Web Designer</div>
               <div className="text-gray-500 text-xs mt-1.5 font-inter">
                 Designer · PC enthusiast · AI tools reviewer
@@ -235,7 +236,7 @@ export const AboutPage = () => {
 
           <div className="mt-24 mb-12 text-center not-prose">
             <p className="text-2xl md:text-3xl font-mono text-white font-bold leading-relaxed mb-12">
-              Built by Dominik — known as Domsky.<br />
+              Built by {AUTHOR_NAME} — known as Domsky.<br />
               Tested on real work.<br />
               No team. No investors. Just honest reviews.
             </p>
