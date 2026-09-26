@@ -5,7 +5,6 @@ const TOOL_DAILY_LIMITS: Record<string, number> = {
   'tool-description': 2,
   'cost-audit': 1,
   'prompt-builder': 2,
-  'stack-recommender': 2,
   'content-calendar': 1,
 };
 const EMAIL_BONUS = 3;

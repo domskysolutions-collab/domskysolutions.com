@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import { seoPages, SITE_URL, getPageSeo, structuredData, escapeHtml } from '../src/data/seo';
 import { legacyReviewRedirects, reviewCatalog, reviewCount } from '../src/data/reviewCatalog';
 import { ALTERNATE_HOST, AUTHOR_NAME, PUBLISHER_NAME } from '../src/data/site';
+import { retiredUtilityRedirects } from '../src/data/utilityRoutes';
 
 const dcePaths = [
   '/comparisons/claude-vs-chatgpt-vs-gemini-2026',
@@ -105,10 +106,18 @@ for (const review of reviewCatalog) {
   assert(!serialized.includes('reviewRating'), `Review rating leaked into schema: ${review.link}`);
   assert(!serialized.includes('AggregateRating'), `Aggregate rating leaked into schema: ${review.link}`);
 }
+const vercel = JSON.parse(fs.readFileSync('vercel.json', 'utf8'));
+for (const [from, to] of Object.entries(retiredUtilityRedirects)) {
+  assert(!paths.has(from), `Retired utility remains indexable: ${from}`);
+  assert(!sitemap.includes(`<loc>${SITE_URL}${from}</loc>`), `Retired utility remains in sitemap: ${from}`);
+  assert(vercelRedirect(from, to), `Missing utility redirect: ${from}`);
+}
 assert(getPageSeo('/reviews/nonexistent').noindex);
 const notFound = fs.readFileSync('dist/404.html', 'utf8');
 assert(notFound.includes('noindex, follow')); assert(!notFound.includes('rel="canonical"'));
-const vercel = JSON.parse(fs.readFileSync('vercel.json', 'utf8'));
+function vercelRedirect(source: string, destination: string) {
+  return vercel.redirects.some((redirect: { source:string; destination:string; permanent:boolean }) => redirect.source === source && redirect.destination === destination && redirect.permanent);
+}
 assert.deepEqual(vercel.redirects[0], {
   source: '/:path*',
   has: [{ type: 'host', value: ALTERNATE_HOST }],

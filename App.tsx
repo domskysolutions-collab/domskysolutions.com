@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
@@ -13,7 +13,6 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { ToolPage } from './pages/tools/ToolPage';
 import { SaasCalculatorPage } from './pages/tools/SaasCalculatorPage';
 import { PromptBuilderPage } from './pages/tools/PromptBuilderPage';
-import { StackRecommenderPage } from './pages/tools/StackRecommenderPage';
 import { UsesPage } from './pages/UsesPage';
 import { BlogPost1 } from './pages/blog/BlogPost1';
 import { BlogPost2 } from './pages/blog/BlogPost2';
@@ -30,7 +29,7 @@ export default function App() {
         <Route path="/tools" element={<ToolsPage />} />
         <Route path="/tools/saas-calculator" element={<SaasCalculatorPage />} />
         <Route path="/tools/prompt-builder" element={<PromptBuilderPage />} />
-        <Route path="/tools/stack-recommender" element={<StackRecommenderPage />} />
+        <Route path="/tools/stack-recommender" element={<Navigate replace to="/#stack-finder" />} />
         <Route path="/uses" element={<UsesPage />} />
         <Route path="/tools/:id" element={<ToolPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />

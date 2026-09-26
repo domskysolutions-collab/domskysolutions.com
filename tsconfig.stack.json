@@ -1,5 +1,5 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src/data/leanStack.ts", "src/data/saasAudit.ts", "src/lib/stackQuiz.ts", "server/stackSubscription.ts", "api/stack-subscribe.ts", "scripts/test-lean-stack.ts", "scripts/test-saas-audit.ts"],
+  "include": ["src/data/leanStack.ts", "src/data/productFacts.ts", "src/data/saasAudit.ts", "src/data/aiReadiness.ts", "src/lib/stackQuiz.ts", "src/components/LeanStackFinder.tsx", "src/pages/tools/SaasCalculatorPage.tsx", "src/pages/tools/AiReadinessQuiz.tsx", "server/stackSubscription.ts", "api/stack-subscribe.ts", "scripts/test-lean-stack.ts", "scripts/test-saas-audit.ts", "scripts/test-utility-ui.tsx"],
   "exclude": ["node_modules", "dist"]
 }

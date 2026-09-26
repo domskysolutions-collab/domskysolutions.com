@@ -208,42 +208,42 @@ function buildIdea(
   const angle = goalAngle(goal);
 
   const blogTemplates = [
-    `The Ultimate Guide to ${n} in 2026`,
+    `A Practical Guide to Evaluating ${n} in 2026`,
     `A 30-Day Comparison Plan for ${n} Tools`,
-    `5 ${n} Mistakes That Are Costing You Time and Money`,
-    `How I got results using ${n} — Step by Step`,
-    `The Honest Truth About ${n} Nobody Talks About`,
-    `${(seed % 7) + 3} ${n} Tips That Actually Work`,
-    `Why Most People Fail at ${n} (and how to fix it)`,
+    `5 ${n} Decisions to Review Before You Start`,
+    `A Step-by-Step ${n} Workflow to Evaluate`,
+    `Important ${n} Limitations to Check`,
+    `${(seed % 7) + 3} Practical Questions to Ask About ${n}`,
+    `Common ${n} Planning Gaps and How to Check Them`,
     `The ${n} Beginner's Guide: Start Here`,
   ];
 
   const socialTemplates = [
     `Hot take: ${n} is not about tactics — it’s about systems`,
-    `I just discovered a ${n} shortcut. Here is why it changes everything:`,
+    `A ${n} shortcut worth testing against your current process:`,
     `How to evaluate common ${n} advice against your own workflow:`,
-    `3 things I wish I knew about ${n} when I started:`,
-    `Thread: Everything I know about ${n} after 90 days 🧵`,
+    `3 ${n} questions to answer before you start:`,
+    `Thread: A practical checklist for evaluating ${n} 🧵`,
     `Controversial opinion about ${n}:`,
-    `The ${n} tool I cannot live without:`,
-    `What nobody tells you about ${n}:`,
+    `How to decide whether a ${n} tool belongs in your workflow:`,
+    `A ${n} limitation worth checking:`,
   ];
 
   const videoTemplates = [
     `How to Compare ${n} Over 30 Days`,
-    `${n} Tutorial: From Zero to Results`,
-    `The Truth About ${n} — Honest Review`,
-    `Watch Me do ${n} in Real Time`,
-    `This ${n} Mistake Cost Me a Week`,
-    `${n} vs the old way — Which Wins?`,
-    `Day in My Life as a ${n} Creator`,
-    `React to: Worst ${n} Advice Online`,
+    `${n} Tutorial: A Reviewable Starting Workflow`,
+    `${n}: Claims, Evidence and Limitations`,
+    `A Worked ${n} Example with Clear Assumptions`,
+    `One Common ${n} Failure Mode to Prevent`,
+    `${n} vs the Current Process — What to Measure`,
+    `Plan a Repeatable ${n} Workflow`,
+    `Reviewing Common ${n} Advice Against the Evidence`,
   ];
 
   const podcastTemplates = [
-    `Episode: The ${n} strategy nobody is talking about`,
-    `Interview: How ${aud} grew their results using ${n}`,
-    `Deep dive: The complete ${n} playbook for 2026`,
+    `Episode: A ${n} strategy to test carefully`,
+    `Interview: How ${aud} evaluate ${n} in their workflow`,
+    `Deep dive: A practical ${n} evaluation framework for 2026`,
     `Q&A: Your biggest ${n} questions answered`,
   ];
 
@@ -265,9 +265,9 @@ function buildIdea(
   const hooks = [
     `Make it ${tone.toLowerCase()} and practical — one clear takeaway people can apply today.`,
     `Aim to ${angle}. Write for ${aud} and include 1 concrete example.`,
-    `Open with a surprising insight, then break it into 3 simple steps.`,
-    `Use a “before vs after” contrast and end with a strong call-to-action.`,
-    `Share one mistake you made in ${n}, and the exact fix you’d use now.`,
+    `Open with a clear reader question, then break the answer into 3 reviewable steps.`,
+    `Compare the current and proposed process without inventing measured outcomes.`,
+    `Describe one common ${n} failure mode and a practical prevention step.`,
     `Include a mini checklist so the reader can copy/paste and implement.`,
   ];
 
@@ -504,7 +504,7 @@ export const ContentCalendarPage = () => {
           <div className={`${SURFACE} border border-brand-cyan/30 rounded-xl p-8`}>
             <div className="mb-6">
               <h2 className="text-2xl font-bold font-mono text-white mb-2">Tell me about your content</h2>
-              <p className="text-gray-400">I’ll generate a realistic posting plan for your niche and formats.</p>
+              <p className="text-gray-400">I’ll generate a structured posting plan for your niche and formats.</p>
             </div>
 
             <div className="space-y-7">

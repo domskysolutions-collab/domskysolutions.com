@@ -4,6 +4,9 @@ import { emptyAnswers, parseAnswers, questions, questionValid, recommend, select
 import { createQuizSubscriber, restoreQuiz, SubmissionBusyError } from '../src/lib/stackQuiz';
 import { subscribeStack } from '../server/stackSubscription';
 import handler from '../api/stack-subscribe';
+import { productFacts } from '../src/data/productFacts';
+import { firstTaskOptions, firstTaskPlan } from '../src/data/aiReadiness';
+import { retiredUtilityRedirects } from '../src/data/utilityRoutes';
 
 const base = { ...emptyAnswers(), business:'content', team:'solo', goal:'content', tasks:['writing'], budget:'low', existing:['none'], technical:'beginner' };
 assert.equal(parseAnswers(emptyAnswers()),null);
@@ -25,7 +28,7 @@ for(const [business] of questions[0].options) for(const [team] of questions[1].o
   assert.equal(new Set(r.essentials.map(i=>i.category)).size,r.essentials.length);
   assert.equal(r.allowance,0);
   assert.equal(r.cost,'No universal total — calculate incremental cost after each successful trial.');
-  assert(r.essentials.every(i=>['keep','trial','skip'].includes(i.decision)));
+  assert(r.essentials.every(i=>['keep','trial','add','skip'].includes(i.decision)));
   if(technical==='beginner') assert(!r.essentials.some(i=>i.product?.id==='github'||i.product?.id==='make'));
   assert.equal(r.name,recommend({...a,business:'other'}).name);
   assert(summaryFor(r).includes(r.next));count++;
@@ -36,7 +39,10 @@ assert(owned.essentials.every(i=>i.decision==='keep'));
 const reduction=recommend({...base,goal:'cost-reduction',tasks:['admin'],existing:['none']});
 assert(reduction.essentials.every(i=>i.decision==='skip' && !i.product));
 assert(recommend({...base,budget:'high',tasks:['design']}).essentials.some(i=>i.category==='design'));
+assert(recommend({...base,budget:'high',tasks:['design']}).essentials.some(i=>i.category==='design'&&i.decision==='add'));
+assert(recommend({...base,tasks:['writing']}).essentials.filter(i=>i.category==='assistant').length<=1);
 assert.deepEqual(tagsFor(base),['content','solo-founder','low-budget','AI-beginner']);
+assert(summaryFor(recommend(base)).includes('https://domskysolutions.com/#stack-finder'));
 assert(tagsFor({...base,team:'small',technical:'technical'}).includes('technical-founder'));
 assert.equal(restoreQuiz('{bad'),null);
 assert.equal(restoreQuiz(JSON.stringify({version:9})),null);
@@ -68,12 +74,21 @@ const reply:any={code:0,headers:{},setHeader(k:string,v:string){this.headers[k]=
 await handler({method:'GET',headers:{}} as any,reply);assert.equal(reply.code,405);
 await handler({method:'POST',headers:{'content-type':'text/plain'}} as any,reply);assert.equal(reply.code,415);
 await handler({method:'POST',headers:{'content-type':'application/json'},body:'{' } as any,reply);assert.equal(reply.code,400);
-for(const removed of ['src/pages/StackBuilderPage.tsx','src/pages/stack-builder.css','src/data/stackBuilder.ts','scripts/test-stack-builder.ts']) assert(!fs.existsSync(removed),removed);
+for (const fact of Object.values(productFacts)) {
+  assert.match(fact.verifiedOn,/^\d{4}-\d{2}-\d{2}$/);
+  assert.match(fact.pricingUrl,/^https:\/\//);
+  assert(!/\$|€|£/.test(fact.accessSummary),`Fixed price leaked into product facts: ${fact.id}`);
+}
+for (const option of firstTaskOptions) {
+  const plan=firstTaskPlan(option.id);
+  assert(plan.task&&plan.success&&plan.caution);
+}
+for(const removed of ['src/pages/StackBuilderPage.tsx','src/pages/stack-builder.css','src/data/stackBuilder.ts','scripts/test-stack-builder.ts','src/pages/tools/StackRecommenderPage.tsx','src/pages/StackScorecardPage.tsx']) assert(!fs.existsSync(removed),removed);
 const redirects=JSON.parse(fs.readFileSync('vercel.json','utf8')).redirects;
-assert(redirects.some((r:any)=>r.source==='/stack-builder'&&r.destination==='/#stack-finder'));
+for (const [source,destination] of Object.entries(retiredUtilityRedirects)) assert(redirects.some((r:any)=>r.source===source&&r.destination===destination&&r.permanent));
 assert(fs.readFileSync('src/pages/HomePage.tsx','utf8').includes('<LeanStackFinder />'));
 assert(!fs.readFileSync('src/components/Footer.tsx','utf8').includes('to="/stack-builder"'));
-console.log(`PASS: ${count} recommendation combinations; seven questions, constraints, ownership, budgets, persistence, tags, API success/failure, double opt-in, duplicate prevention, removal and redirect.`);
+console.log(`PASS: ${count} recommendation combinations; four decision states, dated facts, first-task fixtures, persistence, API handling, retirement redirects and overlap prevention.`);
 
 
 for (const status of [200, 500, 502, 504]) {

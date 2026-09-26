@@ -1,12 +1,12 @@
 # Lean AI & SaaS Stack Finder
 
-The homepage contains the quiz at `/#stack-finder`. The previous Stack Builder page, rules, CSS and tests are removed. `/stack-builder` permanently redirects to the homepage quiz; the client router also redirects old in-app links. No dependency was added.
+The homepage contains the authoritative recommendation quiz at `/#stack-finder`. The previous Stack Builder, Stack Recommender and Scorecard implementations are removed. `/stack-builder`, `/tools/stack-recommender` and `/scorecard` permanently redirect to the homepage quiz; the client router also redirects old in-app links. No dependency was added.
 
 ## Recommendations and pricing
 
-`src/data/leanStack.ts` owns questions, currencies/budget ranges, product records, official pricing source links, configurable affiliate flags, category scoring, segments and text summaries. The main goal sets the core four categories. Tasks and business type add priorities; low budgets and cost-reduction retain only four categories, other paths allow up to six. Existing tools take precedence over new products. Beginners get guided choices; technical product builders get GitHub. Teams receive shared/manual alternatives where seats could exceed free tiers. Optional free-text context never changes rules or leaves the browser.
+`src/data/leanStack.ts` owns questions, budget ranges, editorial decision rules, category scoring, segments and text summaries. `src/data/productFacts.ts` separately owns date-stamped provider access facts and official pricing links. The main goal and selected tasks produce at most four categories. Existing tools take precedence. Results explicitly distinguish keep, trial, add-if-the-trial-passes and skip. A product is attached only to a named goal or task gap, and the assistant category never produces overlapping assistants. Optional free-text context never changes rules or leaves the browser.
 
-All initial products have documented free plans and normal, non-affiliate URLs. Existing affiliate data elsewhere is untouched. The minimum is zero new subscription spend. Any displayed upper range is explicitly a planning allowance for an optional upgrade, not a fabricated vendor price or a total of unknown existing bills. Existing fees, tax, domains, hosting, ecommerce fees and usage costs are excluded. Free plans and team limits must be rechecked before rollout; this is not a complete priced production SaaS or ecommerce architecture. Prices/free availability last checked 2026-09-18, with official sources beside each product.
+All initial product records use normal, non-affiliate URLs and omit fixed paid prices. The minimum is zero new subscription spend. The result reports incremental cost only after a candidate passes its trial; it does not fabricate a traditional baseline or total unknown existing bills. Existing fees, tax, domains, hosting, ecommerce fees and usage costs are excluded. Access and team limits must be rechecked before rollout; this is not a complete priced production SaaS or ecommerce architecture. Access information was last checked 2026-09-18, with official sources beside each product.
 
 ## Kit setup required before launch
 
@@ -37,7 +37,7 @@ No analytics provider was found or added. The optional `domsky:analytics` Custom
 ## Validation
 
 - `npm run lint`: existing TypeScript check.
-- `npm run test:stack`: server/client helper typecheck and deterministic tests, including mocked Kit success, failure, missing config, invalid input, inactive subscription, and concurrent-submit guard.
+- `npm run test:stack`: server/client helper typecheck and deterministic tests, including 1,125 rule combinations, four decision states, dated product facts, calculator edge cases, semantic keyboard controls, responsive layout contracts, mocked Kit success/failure, and concurrent-submit protection.
 - `npm run build`: Vite and route prerendering.
 - `npm run test:seo`: metadata, internal links and route checks.
 

@@ -97,6 +97,16 @@
       "source": "/stack-builder",
       "destination": "/#stack-finder",
       "permanent": true
+    },
+    {
+      "source": "/tools/stack-recommender",
+      "destination": "/#stack-finder",
+      "permanent": true
+    },
+    {
+      "source": "/scorecard",
+      "destination": "/#stack-finder",
+      "permanent": true
     }
   ]
 }

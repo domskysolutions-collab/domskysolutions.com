@@ -7,6 +7,7 @@ import { SiteRoutes } from '../src/App';
 import { seoPages, getPageSeo, renderSeoHead, SITE_URL } from '../src/data/seo';
 import { ALTERNATE_HOST } from '../src/data/site';
 import { legacyReviewRedirects } from '../src/data/reviewCatalog';
+import { retiredUtilityRedirects } from '../src/data/utilityRoutes';
 
 const template = fs.readFileSync('dist/index.html', 'utf8');
 if (!template.includes('<!--route-seo-->')) throw new Error('Missing SEO template marker');
@@ -28,7 +29,7 @@ const canonicalHostRedirect = {
   destination: `${SITE_URL}/:path*`,
   permanent: true,
 };
-const expected = { cleanUrls: true, trailingSlash: false, redirects: [canonicalHostRedirect, ...Object.entries(legacyReviewRedirects).map(([source, destination]) => ({ source, destination, permanent: true })), { source: '/stack-builder', destination: '/#stack-finder', permanent: true }] };
+const expected = { cleanUrls: true, trailingSlash: false, redirects: [canonicalHostRedirect, ...Object.entries(legacyReviewRedirects).map(([source, destination]) => ({ source, destination, permanent: true })), ...Object.entries(retiredUtilityRedirects).map(([source, destination]) => ({ source, destination, permanent: true }))] };
 const actual = JSON.parse(fs.readFileSync('vercel.json', 'utf8'));
 if (JSON.stringify(actual) !== JSON.stringify(expected)) throw new Error('vercel.json is out of sync with legacyReviewRedirects. Run tsx scripts/sync-routes.ts.');
 console.log(`Prerendered ${paths.length} indexable routes and a noindex 404; generated sitemap.`);
