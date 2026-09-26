@@ -9,12 +9,12 @@ export type PageSeo = { path: string; title: string; description: string; social
 const page = (path: string, title: string, description: string): PageSeo => ({ path, title: `${title} | Domsky Solutions`, description });
 export const seoPages: PageSeo[] = [
   page('/', 'Independent AI Tool Reviews for Solopreneurs', 'Explore independent AI and SaaS reviews, practical workflows and free tools to choose software for your solo business.'),
-  page('/reviews', 'AI & SaaS Reviews', 'Browse all my software reviews, including Claude, Cursor, Perplexity, Kit and Namecheap. Compare strengths, limitations and editorial ratings.'),
+  page('/reviews', 'AI & SaaS Reviews', 'Browse software reviews covering Claude, Cursor, Perplexity, Kit and Namecheap. Compare documented strengths, limitations and intended use cases.'),
   page('/tools', 'Free Tools Library', 'Five free browser utilities to plan content, build prompts, compare costs and choose a starting AI stack.'),
   page('/blog', 'AI Workflows & Insights', `Practical articles on AI workflows, software costs, design and running a solo business, written by ${AUTHOR_NAME}.`),
   page('/comparisons', 'AI Tool Comparisons', 'Compare AI assistants side by side and explore their strengths, limitations and suitability for everyday work.'),
   page('/about', `About ${AUTHOR_NAME}`, `Meet ${AUTHOR_NAME}, the designer and PC enthusiast behind ${PUBLISHER_NAME}, and learn how AI assists with content production.`),
-  page('/methodology', 'Review Methodology & Evidence', 'How to interpret my editorial ratings, testing disclosures, savings examples, source links and review dates.'),
+  page('/methodology', 'Review Methodology & Evidence', 'How to interpret testing disclosures, savings examples, source links, evidence limits and review dates.'),
   { ...page('/uses', 'A Lean Solo-Business Stack: What to Use, Keep and Skip', 'Choose a smaller software stack for writing, client work or a website. Keep useful tools, identify gaps and avoid overlapping subscriptions.'), title: getArticle('/uses')?.seoTitle || 'A Lean Solo-Business Stack: Use, Keep and Skip | Domsky', socialTitle: getArticle('/uses')?.socialTitle, socialDescription: getArticle('/uses')?.socialDescription, type: 'article' as const, article: getArticle('/uses') },
   page('/privacy', 'Privacy Policy', 'How Domsky Solutions handles newsletter information, analytics and your privacy choices.'),
   page('/disclaimer', 'Affiliate & Editorial Disclosure', 'Understand affiliate links, editorial opinions and the limitations of information on Domsky Solutions.'),
@@ -61,7 +61,7 @@ export function structuredData(meta: PageSeo) {
     if (meta.type === 'article') graph.push({
       '@type': meta.review ? 'Review' : 'Article', '@id': `${SITE_URL}${meta.path}#article`, headline: meta.article?.title || meta.title.split(' | ')[0], description: meta.description,
       author: meta.article ? { '@type': meta.article.author.type, name: meta.article.author.name, url: new URL(meta.article.author.url, SITE_URL).href } : { '@id': author['@id'] }, publisher: { '@id': organization['@id'] }, mainEntityOfPage: `${SITE_URL}${meta.path}`,
-      ...(meta.review ? { itemReviewed: { '@type': 'SoftwareApplication', name: meta.review.name, url: meta.review.externalLink }, reviewRating: { '@type': 'Rating', ratingValue: meta.review.rating, bestRating: meta.review.bestRating, worstRating: 1 } } : {}),
+      ...(meta.review ? { itemReviewed: { '@type': 'SoftwareApplication', name: meta.review.name, url: meta.review.externalLink } } : {}),
       ...(meta.article ? {
         ...(meta.article.publishedAt ? { datePublished: meta.article.publishedAt } : {}),
         ...(meta.article.updatedAt ? { dateModified: meta.article.updatedAt } : {}),

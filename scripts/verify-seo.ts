@@ -97,8 +97,14 @@ for (const [from, to] of Object.entries(legacyReviewRedirects)) {
   assert.equal(getPageSeo(from).path, to);
 }
 assert.equal(reviewCount, reviewCatalog.length + 2);
-assert.equal(getPageSeo('/reviews/claude').review?.bestRating, 5);
-assert.equal(getPageSeo('/reviews/jasper').review?.bestRating, 10);
+for (const review of reviewCatalog) {
+  assert(!('rating' in review), `Visible review rating data returned: ${review.link}`);
+  assert(!('bestRating' in review), `Review rating scale returned: ${review.link}`);
+  const schema = structuredData(getPageSeo(review.link));
+  const serialized = JSON.stringify(schema);
+  assert(!serialized.includes('reviewRating'), `Review rating leaked into schema: ${review.link}`);
+  assert(!serialized.includes('AggregateRating'), `Aggregate rating leaked into schema: ${review.link}`);
+}
 assert(getPageSeo('/reviews/nonexistent').noindex);
 const notFound = fs.readFileSync('dist/404.html', 'utf8');
 assert(notFound.includes('noindex, follow')); assert(!notFound.includes('rel="canonical"'));

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Check, ChevronLeft, Loader2, Copy, Share2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ConvertKitForm } from '../../components/ConvertKitForm';
-import { StarRating } from '../../components/StarRating';
 
 const ROLE_OPTIONS = [
   { id: 'founder', icon: '🚀', title: 'Founder / Solopreneur', desc: 'Building a business or product, wearing all the hats' },
@@ -33,7 +32,7 @@ const GOAL_OPTIONS = [
   { id: 'speed', icon: '⚡', title: 'Work faster and smarter', desc: 'Do the same work in half the time' },
   { id: 'build', icon: '🏗️', title: 'Build something new', desc: 'Launch a product, site or creative project' },
   { id: 'learn', icon: '📚', title: 'Learn and improve skills', desc: 'Get better at my craft and stay current' },
-  { id: 'costs', icon: '🎯', title: 'Replace expensive tools', desc: 'Cut software costs without losing capability' },
+  { id: 'costs', icon: '🎯', title: 'Review expensive tools', desc: 'Compare overlap, retained features and actual costs' },
 ];
 
 const BUDGET_OPTIONS = [
@@ -52,15 +51,15 @@ const EXPERIENCE_OPTIONS = [
 ];
 
 const TOOLS_DB = {
-  claude: { id: 'claude', name: 'Claude', category: 'Writing & Reasoning', rating: 5, price: 20, freeTier: true, reviewLink: '/reviews/claude', url: 'https://claude.ai' },
-  midjourney: { id: 'midjourney', name: 'Midjourney', category: 'Image Generation', rating: 5, price: 30, freeTier: false, reviewLink: '/reviews/midjourney', url: 'https://midjourney.com' },
-  perplexity: { id: 'perplexity', name: 'Perplexity', category: 'Research', rating: 5, price: 20, freeTier: true, reviewLink: '/reviews/perplexity', url: 'https://perplexity.ai' },
-  cursor: { id: 'cursor', name: 'Cursor', category: 'Coding', rating: 5, price: 20, freeTier: true, reviewLink: '/reviews/cursor', url: 'https://cursor.sh' },
-  descript: { id: 'descript', name: 'Descript', category: 'Video/Audio', rating: 4, price: 15, freeTier: true, reviewLink: '/reviews/descript', url: 'https://descript.com' },
-  elevenlabs: { id: 'elevenlabs', name: 'ElevenLabs', category: 'Voice AI', rating: 5, price: 5, freeTier: true, reviewLink: '/reviews/elevenlabs', url: 'https://elevenlabs.io' },
-  framer: { id: 'framer', name: 'Framer', category: 'Web Design', rating: 4, price: 15, freeTier: true, reviewLink: '/reviews/framer', url: 'https://framer.com' },
-  jasper: { id: 'jasper', name: 'Jasper', category: 'Marketing', rating: 4, price: 39, freeTier: false, reviewLink: '/reviews/jasper', url: 'https://jasper.ai' },
-  notion: { id: 'notion', name: 'Notion AI', category: 'Workspace', rating: 4, price: 10, freeTier: true, reviewLink: '/reviews/notion-ai', url: 'https://notion.so' },
+  claude: { id: 'claude', name: 'Claude', category: 'Writing & Reasoning', price: 20, freeTier: true, reviewLink: '/reviews/claude', url: 'https://claude.ai' },
+  midjourney: { id: 'midjourney', name: 'Midjourney', category: 'Image Generation', price: 30, freeTier: false, reviewLink: '/reviews/midjourney', url: 'https://midjourney.com' },
+  perplexity: { id: 'perplexity', name: 'Perplexity', category: 'Research', price: 20, freeTier: true, reviewLink: '/reviews/perplexity', url: 'https://perplexity.ai' },
+  cursor: { id: 'cursor', name: 'Cursor', category: 'Coding', price: 20, freeTier: true, reviewLink: '/reviews/cursor', url: 'https://cursor.sh' },
+  descript: { id: 'descript', name: 'Descript', category: 'Video/Audio', price: 15, freeTier: true, reviewLink: '/reviews/descript', url: 'https://descript.com' },
+  elevenlabs: { id: 'elevenlabs', name: 'ElevenLabs', category: 'Voice AI', price: 5, freeTier: true, reviewLink: '/reviews/elevenlabs', url: 'https://elevenlabs.io' },
+  framer: { id: 'framer', name: 'Framer', category: 'Web Design', price: 15, freeTier: true, reviewLink: '/reviews/framer', url: 'https://framer.com' },
+  jasper: { id: 'jasper', name: 'Jasper', category: 'Marketing', price: 39, freeTier: false, reviewLink: '/reviews/jasper', url: 'https://jasper.ai' },
+  notion: { id: 'notion', name: 'Notion AI', category: 'Workspace', price: 10, freeTier: true, reviewLink: '/reviews/notion-ai', url: 'https://notion.so' },
 };
 
 export const StackRecommenderPage = () => {
@@ -442,8 +441,6 @@ export const StackRecommenderPage = () => {
     else subtitle = "A power user stack for maximum capability";
 
     const totalCost = recommendedTools.reduce((sum, tool) => sum + (answers.budget === '0' ? 0 : tool.price), 0);
-    const traditionalCost = recommendedTools.length * 50; // Rough estimate
-    const savings = Math.round(((traditionalCost - totalCost) / traditionalCost) * 100);
 
     return (
       <div className="w-full max-w-4xl mx-auto">
@@ -492,9 +489,6 @@ export const StackRecommenderPage = () => {
                       </span>
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-2">{tool.name}</h3>
-                    <div className="flex items-center gap-1 mb-4">
-                      <StarRating rating={Number(tool.rating)} size={16} />
-                    </div>
                     <p className="text-gray-300 text-lg mb-6">
                       {getReasoning(tool.id)}
                     </p>
@@ -542,8 +536,7 @@ export const StackRecommenderPage = () => {
             </div>
           </div>
           <div className="pt-8 border-t border-gray-800">
-            <p className="text-gray-400 mb-2">Traditional equivalent: ~${traditionalCost}/month</p>
-            <p className="text-brand-cyan font-bold">Your AI saving: {savings}% less</p>
+            <p className="text-gray-400">This total includes only the listed suggested subscriptions. Compare it with your actual retained, replacement and migration costs before making a savings claim.</p>
           </div>
         </div>
 

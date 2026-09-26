@@ -12,9 +12,9 @@ export function ReviewEvidence({ slug }: { slug: string }) {
   return <aside className="my-8 p-5 border border-brand-cyan/30 bg-brand-bg rounded-lg text-sm text-gray-300 leading-relaxed" aria-label="Review evidence and sources">
     <h2 className="font-bold text-lg text-white mb-3">Evidence & sources</h2>
     <p>By <Link className="underline text-brand-cyan" to="/about">{AUTHOR_NAME}</Link>. This is an editorial review, not an independent benchmark report. Test dates, exact plan/version, sample outputs and purchased or supplied access are not fully documented for this review.</p>
-    <p className="mt-3">Prices and product claims can change. <a href={pricingSources[slug]} target="_blank" rel="noopener noreferrer" className="underline text-brand-cyan">Check the vendor’s current plans and pricing</a> before buying. Some links on this site are affiliate links.</p>
+    <p className="mt-3">Prices and product claims can change. <a href={pricingSources[slug]} target="_blank" rel="noopener noreferrer" className="underline text-brand-cyan">Check the vendor’s current plans and pricing</a> before buying. This evidence link is direct and non-affiliate; any compensated link elsewhere must be identified before it appears.</p>
     {slug === 'claude' && <p className="mt-3">The April 2026 model discussion refers to <a href="https://www.anthropic.com/news/claude-opus-4-7" className="underline text-brand-cyan">Anthropic’s Opus 4.7 release announcement</a>. Benchmark and early-access tester claims belong to the vendor and its named testers; they are not measurements by Domsky Solutions.</p>}
-    <p className="mt-3"><Link className="underline text-brand-cyan" to="/methodology">Read the rating, savings and testing methodology</Link>.</p>
+    <p className="mt-3"><Link className="underline text-brand-cyan" to="/methodology">Read the evidence, savings and testing methodology</Link>.</p>
   </aside>;
 }
 

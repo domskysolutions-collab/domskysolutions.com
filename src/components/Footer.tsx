@@ -39,7 +39,7 @@ export const Footer = () => {
               <li><Link to="/comparisons" className="hover:text-brand-cyan transition-colors">Comparisons</Link></li>
               <li><Link to="/about" className="hover:text-brand-cyan transition-colors">About</Link></li>
               <li><a href="mailto:domskysolutions@gmail.com" className="hover:text-brand-cyan transition-colors">Contact</a></li>
-              <li><a href="mailto:partners@domskysolutions.com" className="hover:text-brand-cyan transition-colors">Advertise</a></li>
+              <li><a href="mailto:domskysolutions@gmail.com" className="hover:text-brand-cyan transition-colors">Advertise</a></li>
             </ul>
           </div>
           

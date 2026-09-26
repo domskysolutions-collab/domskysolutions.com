@@ -1,7 +1,6 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { H2, SectionDivider } from '../components/ui';
-import { motion } from 'motion/react';
 
 export const DisclaimerPage = () => {
   return (
@@ -17,27 +16,27 @@ export const DisclaimerPage = () => {
         <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
           <H2>AFFILIATE RELATIONSHIPS</H2>
           <p>
-            domskysolutions.com is a participant in affiliate programs including but not limited to programs offered by the tools and software we review.
+            Domsky Solutions may participate in affiliate programs offered by software companies covered on this site.
           </p>
           <p>
-            This means that when you click certain links on our website and make a purchase or sign up for a service, we may receive a commission at no additional cost to you.
+            If you click a clearly identified compensated link and make a purchase or sign up, Domsky Solutions may receive a commission at no additional cost to you.
           </p>
 
           <SectionDivider />
 
           <H2>WHICH LINKS ARE AFFILIATE LINKS</H2>
           <p>
-            We do not mark every affiliate link individually. You should assume that any link to a product or service on this website could be an affiliate link.
+            Compensated links are identified, and an affiliate disclosure appears before the first compensated link in relevant content. Official source links used as evidence remain direct and non-affiliate.
           </p>
 
           <SectionDivider />
 
           <H2>OUR COMMITMENT TO HONESTY</H2>
           <p>
-            Affiliate relationships never influence our reviews, ratings, or recommendations. We only recommend products and services we have personally tested and genuinely believe will be useful to our readers.
+            Commercial relationships do not determine an editorial conclusion. Reviews state their evidence limits, intended use case and material drawbacks so readers can assess the recommendation.
           </p>
           <p>
-            We have declined affiliate arrangements with tools we do not believe in, and we publish honest negative reviews of tools even when we have affiliate relationships with them.
+            A product is not presented as personally tested unless a dated, reviewable testing record supports that statement. Missing test details are treated as not documented.
           </p>
 
           <SectionDivider />
@@ -51,8 +50,8 @@ export const DisclaimerPage = () => {
 
           <H2>QUESTIONS</H2>
           <p>
-            If you have questions about our affiliate relationships please contact us at:<br />
-            <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a>
+            If you have questions about affiliate relationships please contact:<br />
+            <a href="mailto:domskysolutions@gmail.com" className="text-brand-cyan hover:underline">domskysolutions@gmail.com</a>
           </p>
         </div>
       </div>

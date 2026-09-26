@@ -176,7 +176,7 @@ export const BlogPost6 = () => {
           >
             <p>
               <span className="font-bold text-white">
-                I have been in tech for 25 years. I built this website myself. I review AI tools for a living.
+                I built this website and publish editorial research about AI tools.
                 <br />
                 <br />
                 And I am telling you honestly — you do not need any of that to start using AI tools today.
@@ -252,7 +252,7 @@ export const BlogPost6 = () => {
             </p>
 
             <CalloutTip>
-              "I am a graphic designer with 25 years of tech experience and I still sometimes sit down with a blank screen and no
+              "I am a graphic designer and I still sometimes sit down with a blank screen and no
               idea how to start something. The difference now is I have a thinking partner I can describe the problem to. That is
               all AI tools are — a thinking partner that types very fast."
             </CalloutTip>
@@ -357,12 +357,11 @@ export const BlogPost6 = () => {
             </div>
 
             <p>
-              If you are reading this and you have never seriously used an AI tool before — start with Claude.
+              If you have not seriously used an AI tool before, Claude is one option you can evaluate with a low-risk task.
             </p>
             <p>
-              Not because it is the only good one. There are several excellent options. But because it is the one I use every
-              single day, the one I can speak about from real experience, and the one I consistently recommend to people who are
-              just starting out.
+              Not because it is the only option. It is used here as a concrete example because the workflow is easy to demonstrate.
+              The repository does not contain a dated personal-use log that supports a broader experience claim.
             </p>
             <p>Here is why Claude specifically:</p>
             <ul className="list-disc pl-6 space-y-2 text-gray-300 my-4">
@@ -370,7 +369,7 @@ export const BlogPost6 = () => {
                 It is honest about what it does not know. Claude is notably better at saying "I am not certain about this" which
                 matters when you are relying on it for real work.
               </li>
-              <li>It writes in a natural way. The output does not immediately read as AI generated.</li>
+              <li>It can draft fluent text, but every output still needs fact checking, editing and a human decision about whether it is suitable.</li>
               <li>The free plan is genuinely useful. You do not need to pay anything to get significant value from it.</li>
               <li>
                 It is designed to be a thinking partner not just a text generator, which fits the tasks most beginners actually
@@ -442,8 +441,7 @@ export const BlogPost6 = () => {
           >
             <H2 id="real-things-you-can-do">REAL THINGS YOU CAN DO WITH CLAUDE TODAY</H2>
             <p>
-              Here are ten things non-technical people use Claude for every day. None of them require any skill beyond describing
-              what you want.
+              Here are ten tasks to evaluate with Claude. The difficulty and review required depend on the input, risk and expected output.
             </p>
 
             <div className="space-y-8 not-prose my-8">
@@ -533,8 +531,8 @@ export const BlogPost6 = () => {
             <H3>"Will it replace my job?"</H3>
             <p>Probably not in the way you fear.</p>
             <p>
-              AI tools are genuinely better than humans at certain specific tasks — generating first drafts, summarising
-              information, producing variations quickly.
+              AI tools can assist with bounded tasks such as first drafts, summaries and variations. Their outputs still require
+              human review, and this article does not establish superiority over people.
             </p>
             <p>
               They are genuinely worse than humans at others — understanding context, making judgement calls, building
@@ -643,8 +641,7 @@ export const BlogPost6 = () => {
             </p>
             <p>That is all there is.</p>
             <p>
-              After 25 years in technology I can say with confidence that AI tools represent the most significant shift in how
-              individuals can work that I have ever seen.
+              AI tools can change how individuals approach drafting, research and repetitive work, but their value depends on the task and review process.
             </p>
             <p>
               And unlike most technology shifts — this one genuinely does not require any technical knowledge to benefit from.
@@ -652,8 +649,7 @@ export const BlogPost6 = () => {
             <p>You just have to start.</p>
 
             <PullQuote>
-              "After 25 years in technology this is the first shift I have seen where the barrier to entry is not technical skill —
-              it is simply deciding to begin."
+              "Start with one bounded task, check the output and keep the decision with the person responsible for the work."
             </PullQuote>
           </motion.div>
 
@@ -676,7 +672,7 @@ export const BlogPost6 = () => {
             </p>
             <ul className="list-disc pl-6 space-y-2 text-gray-300 my-4">
               <li>One tool worth knowing.</li>
-              <li>One workflow tip that saves real time.</li>
+              <li>One workflow tip to test against your current process.</li>
               <li>One insight from the week.</li>
             </ul>
             <p>
@@ -714,7 +710,7 @@ export const BlogPost6 = () => {
               <div className="text-xs font-mono uppercase tracking-[0.3em] text-brand-cyan mb-4">Newsletter Signup</div>
               <h3 className="text-2xl font-bold font-inter text-white mb-3">Join The Weekly Edge</h3>
               <p className="text-gray-300 leading-8 mb-6">
-                One tool worth knowing, one workflow tip that saves real time, and one insight from the week. Every Thursday.
+                One tool worth knowing, one workflow tip to evaluate, and one insight from the week. Every Thursday.
               </p>
               <ConvertKitForm
                 className="flex flex-col sm:flex-row gap-3"
@@ -730,7 +726,7 @@ export const BlogPost6 = () => {
               And if you have questions — about any specific tool, about where to start, about whether a particular AI tool would
               be useful for your specific situation — send me an email.
             </p>
-            <p className="font-bold text-white">team@domskysolutions.com</p>
+            <p className="font-bold text-white">domskysolutions@gmail.com</p>
             <p>I read every message personally.</p>
             <p className="font-bold text-white mt-8">
               "You are not behind. You are exactly where you need to be to start."

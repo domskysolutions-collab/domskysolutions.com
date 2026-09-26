@@ -1,22 +1,15 @@
 
 import React, { useEffect } from 'react';
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
-import { motion } from 'motion/react';
-import { ArrowRight, ExternalLink, Check, ChevronRight } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { toolReviews } from '../../data/toolReviews';
-import { saasReviews } from '../../data/saasReviews';
-import { ConvertKitForm } from '../../components/ConvertKitForm';
-import { reviewCatalog } from '../../data/reviewCatalog';
 import { ReviewEvidence } from '../../components/ReviewEvidence';
 import { NotFoundPage } from '../NotFoundPage';
-import { StarRating } from '../../components/StarRating';
 
 export const ToolPage = () => {
   const { slug, id } = useParams<{ slug?: string; id?: string }>();
   const toolKey = slug ?? id ?? '';
-  const location = useLocation();
-  const ratingMax = reviewCatalog.find(review => review.slug === toolKey)?.bestRating || 5;
   const tool = toolReviews[toolKey as keyof typeof toolReviews] as any;
 
   useEffect(() => {
@@ -47,9 +40,6 @@ export const ToolPage = () => {
                   UPDATED APRIL 2026
                 </span>
               )}
-              <div className="flex items-center gap-1 text-brand-amber text-sm font-mono">
-                <StarRating rating={Number(tool.rating) * 5 / ratingMax} size={16} /> {tool.rating}/{ratingMax}
-              </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold font-mono mb-2">
               {toolKey === 'claude' ? 'Claude by Anthropic Review 2026' : tool.name}
@@ -75,7 +65,7 @@ export const ToolPage = () => {
               <span>🛠️</span> Try my free Claude Prompt Builder
             </h2>
             <p className="text-gray-300 mb-4">
-              Build perfect Claude prompts in seconds.
+              Build a structured Claude prompt for review.
             </p>
             <Link to="/tools/prompt-builder" className="inline-flex items-center gap-2 text-brand-cyan font-bold hover:underline">
               → Open Prompt Builder
@@ -93,9 +83,8 @@ export const ToolPage = () => {
               <h2 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Model overview</h2>
               <div className="bg-brand-bg border border-gray-800 p-6">
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  Claude Opus 4.7 launched April 16 2026 as Anthropic&apos;s most capable generally available model. It represents a
-                  meaningful upgrade across coding, vision, and complex reasoning — while keeping the same pricing as its
-                  predecessor.
+                  Anthropic announced Claude Opus 4.7 on April 16 2026 and described it as its most capable generally available model.
+                  The benchmark and feature statements below are vendor-reported and are not Domsky measurements.
                 </p>
               </div>
             </div>
@@ -232,9 +221,6 @@ export const ToolPage = () => {
           </div>
           
           <div className="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t border-gray-800">
-            <div className="text-sm">
-              <span className="text-gray-500 font-mono">Score:</span> <span className="text-brand-amber font-bold">{tool.rating}/{ratingMax}</span>
-            </div>
             {tool.bestForTags && (
               <div className="text-sm">
                 <span className="text-gray-500 font-mono">Best For:</span> <span className="text-brand-cyan">{tool.bestForTags}</span>

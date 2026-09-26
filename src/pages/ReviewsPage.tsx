@@ -1,11 +1,10 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowRight, Star, ExternalLink } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { reviewCatalog } from '../data/reviewCatalog';
-const reviews = [...reviewCatalog.map(r => ({ name: r.name, score: r.rating, max: r.bestRating, bestFor: r.category, tag: 'Editorial review', link: r.link })), { name: 'Kit (ConvertKit)', score: null, max: null, bestFor: 'Newsletters', tag: 'Tools I use', link: '/reviews/convertkit' }, { name: 'Namecheap', score: null, max: null, bestFor: 'Domains and hosting', tag: 'Tools I use', link: '/reviews/namecheap' }];
-import { ConvertKitForm } from '../components/ConvertKitForm';
+const reviews = [...reviewCatalog.map(r => ({ name: r.name, bestFor: r.category, tag: 'Editorial review', link: r.link })), { name: 'Kit (ConvertKit)', bestFor: 'Newsletters', tag: 'Evidence-based review', link: '/reviews/convertkit' }, { name: 'Namecheap', bestFor: 'Domains and hosting', tag: 'Editorial review', link: '/reviews/namecheap' }];
 
 export const ReviewsPage = () => {
   return (
@@ -13,7 +12,7 @@ export const ReviewsPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold font-mono text-white mb-4">AI & SaaS Reviews</h1>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">All my software reviews in one place. Scores are editorial opinions; see my methodology for the evidence behind them.</p>
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto">All my software reviews in one place. Each review explains its evidence, limitations and intended use case.</p>
         </div>
         
         <p className="mb-8 text-center"><Link to="/methodology" className="text-brand-cyan underline">How I review software</Link></p>
@@ -30,9 +29,6 @@ export const ReviewsPage = () => {
               <div className="flex justify-between items-start mb-6">
                 <div className="w-12 h-12 bg-gray-800 flex items-center justify-center text-xl font-bold text-gray-500 group-hover:text-brand-amber transition-colors">
                   {review.name.charAt(0)}
-                </div>
-                <div className="text-right">
-                  <div className="text-2xl font-mono font-bold text-white">{review.score !== null ? <>{review.score}<span className="text-gray-500 text-sm">/{review.max}</span></> : ""}</div>
                 </div>
               </div>
               <h2 className="text-xl font-bold font-mono mb-2">{review.name}</h2>

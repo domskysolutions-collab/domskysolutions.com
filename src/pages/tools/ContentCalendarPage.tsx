@@ -209,7 +209,7 @@ function buildIdea(
 
   const blogTemplates = [
     `The Ultimate Guide to ${n} in 2026`,
-    `I Tested ${n} tools for 30 Days — Here Is What I Found`,
+    `A 30-Day Comparison Plan for ${n} Tools`,
     `5 ${n} Mistakes That Are Costing You Time and Money`,
     `How I got results using ${n} — Step by Step`,
     `The Honest Truth About ${n} Nobody Talks About`,
@@ -221,7 +221,7 @@ function buildIdea(
   const socialTemplates = [
     `Hot take: ${n} is not about tactics — it’s about systems`,
     `I just discovered a ${n} shortcut. Here is why it changes everything:`,
-    `The ${n} advice everyone gives is wrong. Here is what actually works:`,
+    `How to evaluate common ${n} advice against your own workflow:`,
     `3 things I wish I knew about ${n} when I started:`,
     `Thread: Everything I know about ${n} after 90 days 🧵`,
     `Controversial opinion about ${n}:`,
@@ -230,7 +230,7 @@ function buildIdea(
   ];
 
   const videoTemplates = [
-    `I Tried ${n} for 30 Days`,
+    `How to Compare ${n} Over 30 Days`,
     `${n} Tutorial: From Zero to Results`,
     `The Truth About ${n} — Honest Review`,
     `Watch Me do ${n} in Real Time`,

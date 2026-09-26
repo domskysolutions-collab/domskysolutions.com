@@ -69,9 +69,9 @@ const STEP_4_OPTIONS = [
 ] as const;
 
 const STEP_5_OPTIONS = [
-  { value: 'time', icon: '⏰', title: 'Save 1 hour every day', desc: 'Get time back for the work that actually matters' },
-  { value: 'cost', icon: '💰', title: 'Cut my software costs', desc: 'Pay less for the same or better results' },
-  { value: 'quality', icon: '⭐', title: 'Produce better quality work', desc: 'Output that genuinely impresses clients or readers' },
+  { value: 'time', icon: '⏰', title: 'Reduce repetitive work', desc: 'Identify a task whose time can be measured before and after' },
+  { value: 'cost', icon: '💰', title: 'Review my software costs', desc: 'Compare actual retained and replacement costs' },
+  { value: 'quality', icon: '⭐', title: 'Improve a review workflow', desc: 'Add clearer checks before work reaches clients or readers' },
   { value: 'understand', icon: '💡', title: 'Finally understand AI', desc: 'Stop feeling left behind and actually get it' },
   { value: 'build', icon: '🏗️', title: 'Build something new', desc: 'Launch a project, site or idea I have been sitting on' },
 ] as const;
@@ -99,12 +99,12 @@ const TOOL_RESULTS: Record<ResultId, ToolResult> = {
     id: 'perplexity',
     icon: '🔍',
     name: 'Perplexity AI',
-    tagline: 'Research in seconds instead of hours',
+    tagline: 'Start research with generated answers and linked sources',
     freeTier: true,
     difficulty: 'Very easy',
     timeToValue: 'Same day',
     pros: [
-      'Replaces 90 minutes of tab switching',
+      'Can consolidate an initial source-discovery pass',
       'Every answer cites its sources',
       'Free tier is genuinely powerful',
     ],
@@ -122,7 +122,7 @@ const TOOL_RESULTS: Record<ResultId, ToolResult> = {
     difficulty: 'Easy to start',
     timeToValue: 'Day one',
     pros: [
-      'Replaces expensive stock photo subscriptions',
+      'Can supplement a visual asset workflow',
       'Unique images nobody else has',
       'Gets better the more you use it',
     ],
@@ -171,7 +171,7 @@ const TOOL_RESULTS: Record<ResultId, ToolResult> = {
     freeTier: true,
     difficulty: 'Easy',
     timeToValue: 'Same day',
-    pros: ['Voice cloning and generation', 'Replaces expensive voiceover costs', 'Free tier for getting started'],
+    pros: ['Voice cloning and generation', 'Can supplement some voice-production workflows', 'Free tier for getting started'],
     firstStep:
       'Go to elevenlabs.io, sign up free and generate your first voiceover from a text script in under 2 minutes.',
     reviewLink: '/reviews/elevenlabs',
@@ -181,14 +181,14 @@ const TOOL_RESULTS: Record<ResultId, ToolResult> = {
     id: 'full-stack',
     icon: '🚀',
     name: 'Claude + Perplexity',
-    tagline: 'The two tools that replace the most friction',
+    tagline: 'Two tools to evaluate for complementary tasks',
     freeTier: true,
     difficulty: 'Easy',
     timeToValue: 'Day one',
     pros: [
       'Claude handles all your writing and thinking',
       'Perplexity handles all your research',
-      'Together they free up 2+ hours per day',
+      'Measure each tool against a representative task before keeping both',
     ],
     firstStep: 'Start with Claude today. Add Perplexity on day 3. Use both for one week before adding anything else.',
     reviewLinks: ['/reviews/claude', '/reviews/perplexity'],
@@ -269,9 +269,9 @@ export const AiReadinessQuiz = () => {
     const role = roleLabel(answers.role);
 
     if (resultId === 'claude') return `You spend most time on ${tw} — Claude turns that bottleneck into your biggest strength.`;
-    if (resultId === 'perplexity') return `You spend most time on ${tw} — Perplexity gives you answers with sources in seconds.`;
+    if (resultId === 'perplexity') return `You spend most time on ${tw} — Perplexity can provide a source-linked starting point that still needs verification.`;
     if (resultId === 'midjourney') return `Your work depends on ${role} — Midjourney gives you professional visuals from a simple description.`;
-    if (resultId === 'cursor') return `You’re blocked by ${tw} — Cursor removes the developer bottleneck so you can ship faster.`;
+    if (resultId === 'cursor') return `You’re blocked by ${tw} — Cursor may assist with supervised code changes when you can review and test the result.`;
     if (resultId === 'notion') return `Your biggest friction is ${tw} — Notion AI turns scattered info into organised action.`;
     if (resultId === 'elevenlabs') return `You want more output from ${tw} — ElevenLabs gets you studio-quality voice in minutes.`;
     return `Claude handles your writing and thinking, while Perplexity handles your research — together they remove the most daily friction.`;

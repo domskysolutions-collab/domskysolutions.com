@@ -29,7 +29,7 @@ export const AboutPage = () => {
             "A Designer’s Perspective.<br />No Hype. Just What Works."
           </h1>
           <p className="text-xl text-gray-400">
-            Hi — I'm {AUTHOR_NAME}, also known as Domsky. I test AI tools so you do not have to.
+            Hi — I'm {AUTHOR_NAME}, also known as Domsky. I publish documented software research for solo builders.
           </p>
 
           <div className="flex items-center gap-6 my-12 p-6 bg-brand-surface border border-gray-800 rounded-xl hover:border-brand-cyan transition-all duration-300">
@@ -65,13 +65,13 @@ export const AboutPage = () => {
               I got my first PC in the late 1990s and never stopped being obsessed with technology.
             </p>
             <p>
-              25 years of graphic design, gaming, web building, and deep technical curiosity later — AI arrived and changed everything I thought I knew about what one person could build alone.
+              My background spans graphic design, gaming, web building and a long-running curiosity about technology. This site applies that perspective to software research for solo businesses.
             </p>
             <p>
-              I started this site because AI tools coverage online is mostly terrible. Listicles from people who spent an afternoon with each tool. Glowing reviews that hide the limitations. Affiliate farms dressed as journalism.
+              I started this site because software coverage often hides evidence limits, tradeoffs and commercial relationships. Domsky Solutions makes those limits visible.
             </p>
             <p>
-              You might know me as Domsky — it is the name I use online and the brand behind this site. It is short, memorable, and has followed me through 25 years of tech communities, design forums, and gaming circles.
+              You might know me as Domsky — the name I use online and the brand behind this site.
             </p>
             <p>
               domskysolutions.com is the professional home for everything I have learned about AI tools, software, and building things on the internet.
@@ -97,7 +97,7 @@ export const AboutPage = () => {
               <div className="bg-[#1a1a2e] border-l-[3px] border-l-brand-cyan p-6 rounded-r-xl">
                 <div className="text-3xl text-brand-amber mb-4">🎮</div>
                 <h3 className="font-bold text-white mb-2 text-lg">Gamer & PC Builder</h3>
-                <p className="text-sm text-gray-400 m-0 leading-relaxed">Thousands of hours inside complex systems builds instinct for quality software.</p>
+                <p className="text-sm text-gray-400 m-0 leading-relaxed">An interest in complex systems informs how I explain software workflows and tradeoffs.</p>
               </div>
               <div className="bg-[#1a1a2e] border-l-[3px] border-l-brand-cyan p-6 rounded-r-xl">
                 <div className="text-3xl text-brand-amber mb-4">💻</div>
@@ -106,7 +106,7 @@ export const AboutPage = () => {
               </div>
               <div className="bg-[#1a1a2e] border-l-[3px] border-l-brand-cyan p-6 rounded-r-xl">
                 <div className="text-3xl text-brand-amber mb-4">🔍</div>
-                <h3 className="font-bold text-white mb-2 text-lg">AI Tools Tester</h3>
+                <h3 className="font-bold text-white mb-2 text-lg">Software Researcher</h3>
                 <p className="text-sm text-gray-400 m-0 leading-relaxed">Editorial opinions with evidence disclosures and practical limitations.</p>
               </div>
             </div>
@@ -124,21 +124,22 @@ export const AboutPage = () => {
               <div className="flex gap-4 items-start">
                 <CheckCircle2 size={32} className="text-brand-cyan flex-shrink-0 mt-1" />
                 <div>
-                  <p className="font-bold text-white text-lg m-0">I only review tools I have personally used for real work — not demos, not press previews.</p>
+                  <p className="font-bold text-white text-lg m-0">I distinguish documented testing from vendor documentation and editorial assessment.</p>
+                  <p className="text-gray-400 text-[15px] mt-1 mb-0">If a dated testing record is missing, I do not present personal use as established fact.</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start">
                 <CheckCircle2 size={32} className="text-brand-cyan flex-shrink-0 mt-1" />
                 <div>
-                  <p className="font-bold text-white text-lg m-0">I publish honest cons even when it costs me affiliate commission.</p>
-                  <p className="text-gray-400 text-[15px] mt-1 mb-0">If a tool is not worth it I will say so clearly.</p>
+                  <p className="font-bold text-white text-lg m-0">I publish material limitations alongside strengths.</p>
+                  <p className="text-gray-400 text-[15px] mt-1 mb-0">A recommendation is bounded to a stated use case.</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start">
                 <CheckCircle2 size={32} className="text-brand-cyan flex-shrink-0 mt-1" />
                 <div>
-                  <p className="font-bold text-white text-lg m-0">Affiliate links are disclosed. They never influence ratings.</p>
-                  <p className="text-gray-400 text-[15px] mt-1 mb-0">I have declined arrangements with tools I do not believe in.</p>
+                  <p className="font-bold text-white text-lg m-0">Commercial links are disclosed before the first compensated link.</p>
+                  <p className="text-gray-400 text-[15px] mt-1 mb-0">Official evidence links remain direct and non-affiliate.</p>
                 </div>
               </div>
             </div>
@@ -166,8 +167,8 @@ export const AboutPage = () => {
                 <div className="text-sm text-gray-400">Perspective</div>
               </div>
               <div className="bg-brand-surface border border-gray-800 p-6 rounded-lg text-center">
-                <div className="text-4xl md:text-5xl font-bold font-mono text-brand-cyan mb-2">0</div>
-                <div className="text-sm text-gray-400">Sponsored Posts</div>
+                <div className="text-xl font-bold font-mono text-brand-cyan mb-2">Named</div>
+                <div className="text-sm text-gray-400">Author Identity</div>
               </div>
             </div>
           </motion.div>
@@ -184,7 +185,7 @@ export const AboutPage = () => {
               <div className="bg-brand-surface border-t-[3px] border-t-brand-amber border-x border-b border-gray-800 p-6 rounded-b-xl">
                 <div className="text-3xl text-brand-cyan mb-4">🔬</div>
                 <h3 className="font-bold text-white mb-2 text-lg">AI Tool Reviews</h3>
-                <p className="text-sm text-gray-400 m-0 leading-relaxed">Deep honest dives. Real usage. Real limitations.</p>
+                <p className="text-sm text-gray-400 m-0 leading-relaxed">Evidence scope, use cases and limitations explained clearly.</p>
               </div>
               <div className="bg-brand-surface border-t-[3px] border-t-brand-amber border-x border-b border-gray-800 p-6 rounded-b-xl">
                 <div className="text-3xl text-brand-cyan mb-4">⚖️</div>
@@ -209,7 +210,7 @@ export const AboutPage = () => {
             <H2>A NOTE ON AI</H2>
             <div className="bg-brand-surface border-l-4 border-l-brand-amber border-y border-r border-gray-800 p-6 rounded-r-lg my-8">
               <p className="m-0 text-gray-300">
-                I use Claude, Perplexity and Cursor to help produce content here. I think it would be hypocritical not to — this is an AI tools site. But every review and every opinion is based on my own real experience. AI helps me write faster. It does not replace 25 years of context.
+                AI tools may assist with drafting and production. I remain responsible for the published editorial judgment, and product claims must be supported by cited sources or a dated testing record. AI assistance is not evidence that a product was personally tested.
               </p>
             </div>
           </motion.div>
@@ -230,15 +231,15 @@ export const AboutPage = () => {
               <a href="mailto:domskysolutions@gmail.com" className="text-brand-cyan hover:underline break-all">domskysolutions@gmail.com</a>
             </div>
             <p className="text-gray-400">
-              Review requests welcome — send me access and I will add it to the queue. I publish what I actually find — positive, negative, or mixed.
+              Review requests are welcome. Supplied access and commercial relationships must be disclosed, and they do not guarantee coverage or a favorable conclusion.
             </p>
           </motion.div>
 
           <div className="mt-24 mb-12 text-center not-prose">
             <p className="text-2xl md:text-3xl font-mono text-white font-bold leading-relaxed mb-12">
               Built by {AUTHOR_NAME} — known as Domsky.<br />
-              Tested on real work.<br />
-              No team. No investors. Just honest reviews.
+              Evidence and limitations disclosed.<br />
+              Independent editorial responsibility.
             </p>
             
             <div className="relative z-10 bg-brand-bg border border-brand-cyan/30 p-8 rounded-xl text-center max-w-2xl mx-auto">

@@ -11,26 +11,26 @@ export const legacyArticles: ArticleCardData[] = [
     date: "April 2026",
     readTime: "10 minutes",
     image: null,
-    author: "Dominik"
+    author: "Dominik Kanský"
   },
   {
-    title: "Why I Cancelled Adobe and Never Looked Back",
+    title: "Should You Replace Adobe? A Practical Switching Checklist",
     slug: "/blog/cancelled-adobe-never-looked-back",
-    excerpt: "After 12 years as a graphic designer I finally did it. Here's exactly what replaced it and what I'd never give up.",
+    excerpt: "Map the features you rely on, test alternatives with representative files and count migration and retained costs before changing your creative stack.",
     category: "Design",
     date: "April 2026",
     readTime: "6 minutes",
     image: null,
-    author: "Dominik"
+    author: "Dominik Kanský"
   },
   {
-    title: "10 AI Tools That Will Make You Look Like a Team of 10",
+    title: "10 AI Tools for Common Solo-Business Tasks",
     slug: "/blog/ai-tools-look-like-team-of-10",
-    excerpt: "You don't need a big team to compete with one. These 10 AI tools give solo founders the output of a full department at a fraction of the cost.",
+    excerpt: "A category-by-category map of tools to evaluate for writing, research, design, coding, audio, video and website workflows.",
     category: "AI News",
     date: "April 2026",
     readTime: "9 minutes",
     image: "/images/team-of-10-article.jpg",
-    author: "Dominik"
+    author: "Dominik Kanský"
   }
 ];

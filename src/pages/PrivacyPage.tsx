@@ -1,8 +1,7 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { H2, SectionDivider } from '../components/ui';
-import { motion } from 'motion/react';
 
 export const PrivacyPage = () => {
   return (
@@ -74,7 +73,7 @@ export const PrivacyPage = () => {
             domskysolutions.com participates in affiliate programs. This means we may earn a commission when you click certain links and make a purchase or sign up for a service. This comes at no extra cost to you.
           </p>
           <p>
-            We only recommend products and services we genuinely believe in. Affiliate relationships never influence our reviews or ratings.
+            Compensated links are disclosed before they appear. Commercial relationships do not determine editorial conclusions.
           </p>
 
           <SectionDivider />
@@ -95,7 +94,7 @@ export const PrivacyPage = () => {
 
           <H2>DATA RETENTION</H2>
           <p>
-            We retain your email address for as long as you remain subscribed to our newsletter. You may request deletion of your data at any time by contacting us at <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a>.
+            We retain your email address for as long as you remain subscribed to our newsletter. You may request deletion of your data at any time by contacting us at <a href="mailto:domskysolutions@gmail.com" className="text-brand-cyan hover:underline">domskysolutions@gmail.com</a>.
           </p>
 
           <SectionDivider />
@@ -111,7 +110,7 @@ export const PrivacyPage = () => {
           </ul>
           <p>
             To exercise any of these rights contact us at:<br />
-            <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a>
+            <a href="mailto:domskysolutions@gmail.com" className="text-brand-cyan hover:underline">domskysolutions@gmail.com</a>
           </p>
 
           <SectionDivider />
@@ -143,7 +142,7 @@ export const PrivacyPage = () => {
           <H2>CONTACT US</H2>
           <p>If you have questions about this Privacy Policy please contact us:</p>
           <p>
-            Email: <a href="mailto:team@domskysolutions.com" className="text-brand-cyan hover:underline">team@domskysolutions.com</a><br />
+            Email: <a href="mailto:domskysolutions@gmail.com" className="text-brand-cyan hover:underline">domskysolutions@gmail.com</a><br />
             Website: <Link to="/" className="text-brand-cyan hover:underline">domskysolutions.com</Link>
           </p>
         </div>

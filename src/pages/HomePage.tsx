@@ -2,10 +2,9 @@ import { LeanStackFinder } from '../components/LeanStackFinder';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, CheckCircle2, TrendingDown } from 'lucide-react';
+import { ArrowRight, BookOpen, CheckCircle2 } from 'lucide-react';
 import { ConvertKitForm } from '../components/ConvertKitForm';
-import { reviewCount, reviewCatalog } from '../data/reviewCatalog';
-import { StarRating } from '../components/StarRating';
+import { reviewCount } from '../data/reviewCatalog';
 
 export const HomePage = () => {
   return (
@@ -69,28 +68,25 @@ export const HomePage = () => {
             {[
               {
                 emoji: '🤖',
-                rating: '4.9/5',
                 title: 'Claude by Anthropic',
                 category: 'AI Assistant',
-                verdict: 'The best AI assistant for writing, thinking and complex reasoning.',
+                verdict: 'An editorial review of writing, reasoning, limitations and plan fit.',
                 price: 'From $20/month',
                 to: '/reviews/claude',
               },
               {
                 emoji: '💻',
-                rating: '4.8/5',
                 title: 'Cursor',
                 category: 'AI Code Editor',
-                verdict: 'Build and fix websites without being a developer.',
+                verdict: 'A review of AI-assisted coding workflows, limits and who should consider it.',
                 price: 'From $20/month',
                 to: '/reviews/cursor',
               },
               {
                 emoji: '🔍',
-                rating: '4.7/5',
                 title: 'Perplexity AI',
                 category: 'AI Research',
-                verdict: 'Replace 90 minutes of research with 3 questions.',
+                verdict: 'A review of source-backed research workflows and their limitations.',
                 price: 'Free / $20/month',
                 to: '/reviews/perplexity',
               },
@@ -114,14 +110,8 @@ export const HomePage = () => {
                   e.currentTarget.style.borderColor = 'rgba(249,115,22,0.14)';
                 }}
               >
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start mb-4">
                   <div className="text-3xl leading-none">{card.emoji}</div>
-                  <div className="text-right">
-                    <div className="text-brand-amber font-bold font-mono text-sm">{reviewCatalog.find(r => r.link === card.to)?.rating}/5</div>
-                    <div className="flex justify-end gap-1 mt-1">
-                      <StarRating rating={reviewCatalog.find(r => r.link === card.to)?.rating || 0} size={12} />
-                    </div>
-                  </div>
                 </div>
 
                 <h3 className="font-bold font-mono text-white text-lg mb-2">{card.title}</h3>
@@ -156,7 +146,7 @@ export const HomePage = () => {
 
       {/* Comparison table */}
       <section className="py-16 md:py-24 bg-brand-surface border-y border-gray-800 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto"><div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10"><div><div className="text-xs font-mono text-brand-amber uppercase tracking-wider mb-2">COMPARE BEFORE YOU PAY</div><h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Popular tool comparisons</h2><p className="text-gray-400 mt-2">A quick starting point before you read the full hands-on review.</p><p className="text-sm text-gray-300 mt-4">Choosing your primary AI tool? <Link to="/comparisons/claude-vs-chatgpt-vs-gemini-2026" className="text-brand-cyan underline underline-offset-4">Choose one AI assistant</Link> by tasks, limits, integrations and total value.</p><p className="text-sm text-gray-300 mt-2">Making a small website change? <Link to="/comparisons/chatgpt-astra-vs-alternatives" className="text-brand-cyan underline underline-offset-4">Compare Codex and Claude Code</Link> for a supervised repository workflow.</p></div><Link to="/comparisons" className="text-brand-cyan font-mono text-sm">Compare all tools →</Link></div><div className="overflow-x-auto rounded-xl border border-gray-800"><table className="w-full text-left text-sm"><thead className="bg-brand-bg"><tr><th className="p-4 text-gray-400 font-mono">Tool</th><th className="p-4 text-gray-400 font-mono">Best for</th><th className="p-4 text-gray-400 font-mono">Starting price</th><th className="p-4"></th></tr></thead><tbody>{[['Claude','Writing and reasoning','Free / $20 mo','/reviews/claude'],['Perplexity','Research with sources','Free / $20 mo','/reviews/perplexity'],['Cursor','AI-assisted coding','Free / $20 mo','/reviews/cursor']].map(([tool,best,price,to])=><tr key={tool} className="border-t border-gray-800"><td className="p-4 text-white font-bold">{tool}</td><td className="p-4 text-gray-400">{best}</td><td className="p-4 text-gray-400">{price}</td><td className="p-4 text-right"><Link to={to} className="text-brand-cyan font-mono text-xs">Read review →</Link></td></tr>)}</tbody></table></div></div>
+          <div className="max-w-6xl mx-auto"><div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10"><div><div className="text-xs font-mono text-brand-amber uppercase tracking-wider mb-2">COMPARE BEFORE YOU PAY</div><h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Popular tool comparisons</h2><p className="text-gray-400 mt-2">A quick starting point before you read the full documented review.</p><p className="text-sm text-gray-300 mt-4">Choosing your primary AI tool? <Link to="/comparisons/claude-vs-chatgpt-vs-gemini-2026" className="text-brand-cyan underline underline-offset-4">Choose one AI assistant</Link> by tasks, limits, integrations and total value.</p><p className="text-sm text-gray-300 mt-2">Making a small website change? <Link to="/comparisons/chatgpt-astra-vs-alternatives" className="text-brand-cyan underline underline-offset-4">Compare Codex and Claude Code</Link> for a supervised repository workflow.</p></div><Link to="/comparisons" className="text-brand-cyan font-mono text-sm">Compare all tools →</Link></div><div className="overflow-x-auto rounded-xl border border-gray-800"><table className="w-full text-left text-sm"><thead className="bg-brand-bg"><tr><th className="p-4 text-gray-400 font-mono">Tool</th><th className="p-4 text-gray-400 font-mono">Best for</th><th className="p-4 text-gray-400 font-mono">Starting price</th><th className="p-4"></th></tr></thead><tbody>{[['Claude','Writing and reasoning','Free / $20 mo','/reviews/claude'],['Perplexity','Research with sources','Free / $20 mo','/reviews/perplexity'],['Cursor','AI-assisted coding','Free / $20 mo','/reviews/cursor']].map(([tool,best,price,to])=><tr key={tool} className="border-t border-gray-800"><td className="p-4 text-white font-bold">{tool}</td><td className="p-4 text-gray-400">{best}</td><td className="p-4 text-gray-400">{price}</td><td className="p-4 text-right"><Link to={to} className="text-brand-cyan font-mono text-xs">Read review →</Link></td></tr>)}</tbody></table></div></div>
       </section>
 
       {/* Stats bar */}
@@ -174,7 +164,7 @@ export const HomePage = () => {
               { value: 'Clear', label: 'limitations explained', color: '#F97316' },
               { value: 'Open', label: 'review methodology', color: '#FB923C' },
               { value: String(reviewCount), label: 'tools reviewed in depth', color: '#F97316' },
-              { value: '0', label: 'sponsored reviews', color: '#4ADE80' },
+              { value: 'Named', label: 'author identity', color: '#4ADE80' },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-3xl font-bold font-mono" style={{ color: stat.color }}>
@@ -182,9 +172,6 @@ export const HomePage = () => {
                 </div>
                 <div className="text-xs text-gray-500 font-mono uppercase tracking-wider mt-1 inline-flex items-center gap-2 justify-center">
                   {stat.label}
-                  {stat.label === 'average cost reduction' ? (
-                    <TrendingDown className="w-3.5 h-3.5" style={{ color: '#FB923C' }} aria-hidden />
-                  ) : null}
                 </div>
               </div>
             ))}
@@ -202,7 +189,7 @@ export const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center relative overflow-hidden">
               <div className="absolute top-4 right-4 text-5xl font-bold font-mono text-brand-cyan opacity-30">01</div>
-              <h3 className="font-bold font-mono text-lg text-white mb-2">1. I test the tools</h3>
+              <h3 className="font-bold font-mono text-lg text-white mb-2">1. I check the evidence</h3>
               <p className="text-gray-400 text-sm leading-relaxed mb-4">
                 I explain the strengths, limitations and practical fit of each tool. Read the methodology for the testing details currently documented.
               </p>
@@ -212,17 +199,17 @@ export const HomePage = () => {
               <div className="absolute top-4 right-4 text-5xl font-bold font-mono text-brand-cyan opacity-30">02</div>
               <h3 className="font-bold font-mono text-lg text-white mb-2">2. I write the honest verdict</h3>
               <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                Real pricing. Real limitations. Real use cases. No paid placements or sponsored outcomes.
+                Pricing context, limitations, use cases and commercial disclosures are presented together.
               </p>
               <div className="text-xs text-brand-cyan font-mono">Real pricing. Real limitations.</div>
             </div>
             <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center relative overflow-hidden">
               <div className="absolute top-4 right-4 text-5xl font-bold font-mono text-brand-cyan opacity-30">03</div>
-              <h3 className="font-bold font-mono text-lg text-white mb-2">3. You save time and money</h3>
+              <h3 className="font-bold font-mono text-lg text-white mb-2">3. You compare the tradeoffs</h3>
               <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                Skip the research. Use the free tools. Read the blog. Make better decisions faster.
+                Use the research, free tools and comparisons to make a more informed decision.
               </p>
-              <div className="text-xs text-brand-cyan font-mono">Skip months of research</div>
+              <div className="text-xs text-brand-cyan font-mono">Check fit before you subscribe</div>
             </div>
           </div>
         </div>
@@ -265,8 +252,8 @@ export const HomePage = () => {
                   color: '#F97316',
                   border: '1px solid rgba(249,115,22,0.2)',
                 },
-                title: '10 AI Tools That Will Make You Look Like a Team of 10',
-                excerpt: 'The exact tools solo founders use to compete with full teams.',
+                title: '10 AI Tools for Common Solo-Business Tasks',
+                excerpt: 'A category-by-category map of tools to evaluate for common workflows.',
                 readTime: '9 min read',
                 to: '/blog/ai-tools-look-like-team-of-10',
               },
@@ -326,8 +313,8 @@ export const HomePage = () => {
                 iconStyle: { background: 'rgba(249,115,22,0.12)' },
               },
               {
-                title: 'No sponsored content',
-                body: 'Affiliate links are disclosed clearly. They never influence ratings or verdicts. If a tool is bad I say so.',
+                title: 'Visible commercial disclosures',
+                body: 'Compensated links are disclosed before they appear. Commercial relationships do not determine editorial conclusions.',
                 icon: '🚫',
                 iconStyle: { background: 'rgba(239,68,68,0.12)' },
               },
@@ -338,8 +325,8 @@ export const HomePage = () => {
                 iconStyle: { background: 'rgba(251,146,60,0.12)' },
               },
               {
-                title: 'Free tools that actually work',
-                body: 'The free tools on this site solve real solopreneur problems — built from the same daily frustrations you have.',
+                title: 'Free planning tools',
+                body: 'The free tools on this site help structure common planning and comparison tasks. Their assumptions are explained in context.',
                 icon: '🛠️',
                 iconStyle: { background: 'rgba(74,222,128,0.12)' },
               },
@@ -384,7 +371,7 @@ export const HomePage = () => {
               <CheckCircle2 size={14} className="text-brand-cyan" /> Every Thursday
             </span>
             <span className="flex items-center gap-1">
-              <CheckCircle2 size={14} className="text-brand-cyan" /> No sponsored content
+              <CheckCircle2 size={14} className="text-brand-cyan" /> Commercial links disclosed
             </span>
             <span className="flex items-center gap-1">
               <CheckCircle2 size={14} className="text-brand-cyan" /> Free forever
