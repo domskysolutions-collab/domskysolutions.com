@@ -39,7 +39,7 @@ export const ReviewsPage = () => {
                 </span>
               </div>
               <Link to={review.link} className="inline-flex items-center gap-2 text-sm font-bold text-brand-cyan hover:text-white transition-colors mt-auto">
-                Read Review <ArrowRight size={16} />
+                Read {review.name} review <ArrowRight size={16} />
               </Link>
             </motion.div>
           ))}

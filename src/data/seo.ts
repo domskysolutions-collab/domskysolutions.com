@@ -8,7 +8,7 @@ export { SITE_URL } from './site';
 export type PageSeo = { path: string; title: string; description: string; socialTitle?: string; socialDescription?: string; type?: 'article' | 'website'; review?: typeof reviewCatalog[number]; noindex?: boolean; article?: ArticleDocument };
 const page = (path: string, title: string, description: string): PageSeo => ({ path, title: `${title} | Domsky Solutions`, description });
 export const seoPages: PageSeo[] = [
-  page('/', 'Independent AI Tool Reviews for Solopreneurs', 'Explore independent AI and SaaS reviews, practical workflows and free tools to choose software for your solo business.'),
+  { path: '/', title: 'AI & SaaS Reviews for Solopreneurs | Domsky Solutions', description: 'Explore independent AI and SaaS reviews, practical workflows and free tools to choose software for your solo business.' },
   page('/reviews', 'AI & SaaS Reviews', 'Browse software reviews covering Claude, Cursor, Perplexity, Kit and Namecheap. Compare documented strengths, limitations and intended use cases.'),
   page('/tools', 'Free Tools Library', 'Four free browser utilities plus the Lean Stack Finder for prompts, content planning, cost audits and a careful first AI task.'),
   page('/blog', 'AI Workflows & Insights', `Practical articles on AI workflows, software costs, design and running a solo business, written by ${AUTHOR_NAME}.`),
@@ -56,7 +56,8 @@ export function structuredData(meta: PageSeo) {
   const organization = { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: PUBLISHER_NAME, url: SITE_URL, founder: { '@id': author['@id'] } };
   const graph: object[] = [author, organization];
   if (!meta.noindex) {
-    graph.push({ '@type': 'WebPage', '@id': `${SITE_URL}${meta.path}#page`, url: `${SITE_URL}${meta.path}`, name: meta.title, description: meta.description, publisher: { '@id': organization['@id'] } });
+    if (meta.path === '/') graph.push({ '@type': 'WebSite', '@id': `${SITE_URL}/#website`, url: SITE_URL, name: PUBLISHER_NAME, publisher: { '@id': organization['@id'] } });
+    graph.push({ '@type': 'WebPage', '@id': `${SITE_URL}${meta.path}#page`, url: `${SITE_URL}${meta.path}`, name: meta.title, description: meta.description, isPartOf: { '@id': `${SITE_URL}/#website` }, publisher: { '@id': organization['@id'] } });
     if (meta.path !== '/') graph.push({ '@type': 'BreadcrumbList', itemListElement: getBreadcrumbs(meta).map((crumb, index) => ({ '@type': 'ListItem', position: index + 1, name: crumb.name, item: SITE_URL + crumb.path })) });
     if (meta.type === 'article') graph.push({
       '@type': meta.review ? 'Review' : 'Article', '@id': `${SITE_URL}${meta.path}#article`, headline: meta.article?.title || meta.title.split(' | ')[0], description: meta.description,

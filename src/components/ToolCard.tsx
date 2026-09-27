@@ -35,7 +35,7 @@ export const ToolReviewCard = ({ name, desc, to, category }: { name: string, des
         <div className="text-[14px] text-gray-400">{desc}</div>
       </div>
       <Link to={to} className="shrink-0 text-[14px] font-bold text-brand-cyan group-hover:text-white transition-colors flex items-center gap-2">
-        Read Review <ArrowRight size={16} />
+        Read {name} review <ArrowRight size={16} />
       </Link>
     </div>
   );

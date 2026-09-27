@@ -93,7 +93,7 @@ export function LeanStackFinder() {
           <p className="lf-fine">About 3 minutes · Rule-based recommendations · Preview before email</p>
         </div>
         <aside className="lf-preview"><p className="lf-eyebrow">A clear plan for your next move</p>
-          {[['01','What to use','A focused stack for the work that matters now.'],['02','What to keep','Get more from the tools you already have.'],['03','What to skip','Leave overlapping subscriptions and unnecessary upgrades behind.']].map(([n,t,d]) => <div key={n}><span>{n}</span><section><h3>{t}</h3><p>{d}</p></section></div>)}
+          {[['01','What to use','A focused stack for the work that matters now.'],['02','What to keep','Get more from the tools you already have.'],['03','What to skip','Leave overlapping subscriptions and unnecessary upgrades behind.']].map(([n,t,d]) => <div key={n}><span>{n}</span><div><p className="lf-preview-title">{t}</p><p>{d}</p></div></div>)}
           <p className="lf-trust">No bloated tool list. No generic recommendations. Just practical options matched to your goals, team, and budget.</p>
         </aside>
       </div>}
