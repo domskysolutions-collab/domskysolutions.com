@@ -15,7 +15,8 @@
     "validate:content": "tsx scripts/validate-content.ts",
     "content:check": "tsx scripts/check-content.ts",
     "test:content:quality": "tsx scripts/test-content-quality.ts",
-    "test:content": "tsx scripts/test-content.tsx && npm run test:content:quality",
+    "test:content": "tsx scripts/test-content.tsx && npm run test:content:quality && npm run test:presentation",
+    "test:presentation": "tsx scripts/test-presentation.ts",
     "check": "npm run lint && npm run typecheck && npm run test:content && npm run test:stack && npm run build && npm run test:seo"
   },
   "dependencies": {

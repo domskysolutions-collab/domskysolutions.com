@@ -15,7 +15,7 @@ export const ReviewsPage = () => {
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">All my software reviews in one place. Each review explains its evidence, limitations and intended use case.</p>
         </div>
         
-        <p className="mb-8 text-center"><Link to="/methodology" className="text-brand-cyan underline">How I review software</Link></p>
+        <p className="mb-8 text-center text-gray-400"><Link to="/methodology" className="text-brand-cyan underline">How I review software</Link><span aria-hidden="true"> · </span><Link to="/uses" className="text-brand-cyan underline">Start with the lean stack guide</Link></p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map((review, index) => (
             <motion.div 

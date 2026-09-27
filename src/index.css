@@ -130,3 +130,22 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 h1 { overflow-wrap: anywhere; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
 
+/* Keep editorial guides and worksheets legible when saved or printed. */
+@media print {
+  @page { margin: 16mm; }
+  body { background: #fff !important; color: #111 !important; }
+  #root > nav, #root > footer, .skip-link, [aria-label="Article contents"] { display: none !important; }
+  main, main article, main section, main aside, main figure, main table, main thead, main tbody, main tr, main th, main td {
+    background: transparent !important;
+    color: #111 !important;
+    box-shadow: none !important;
+  }
+  main { padding: 0 !important; }
+  main a { color: #111 !important; text-decoration: underline !important; }
+  main article { max-width: none !important; font-size: 11pt !important; line-height: 1.55 !important; }
+  main figure, main table, main aside { break-inside: avoid; }
+  main [role="region"] { overflow: visible !important; }
+  main table { min-width: 0 !important; width: 100% !important; font-size: 9pt !important; }
+  main th, main td { border: 1px solid #777 !important; }
+}
+

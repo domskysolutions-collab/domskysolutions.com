@@ -11,13 +11,13 @@ export const PrivacyPage = () => {
           <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-4">
             PRIVACY POLICY
           </h1>
-          <p className="text-gray-400 font-mono text-sm">Last updated: 18 September 2026</p>
+          <p className="text-gray-400 font-mono text-sm">Last updated: 27 September 2026</p>
         </div>
 
         <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
           <H2>INTRODUCTION</H2>
           <p>
-            Domsky Solutions ("we", "our", or "us") operates domskysolutions.com. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website.
+            Domsky Solutions operates domskysolutions.com. This Privacy Policy explains how information is collected and used when you visit the website.
           </p>
           <p>
             By using domskysolutions.com you agree to the collection and use of information in accordance with this policy.
@@ -35,8 +35,8 @@ export const PrivacyPage = () => {
             We may collect anonymous information about how you use our website including pages visited, time spent on pages, and referring URLs. This data is used to improve our content and user experience.
           </p>
           <p>
-            <strong className="text-white">Cookies</strong><br />
-            Our website uses cookies — small files stored on your device — to improve your browsing experience. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. If you do not accept cookies some parts of our website may not function properly.
+            <strong className="text-white">Analytics and browser storage</strong><br />
+            Google Analytics currently loads when a page loads. It can receive page, device, browser and referral information and may use browser identifiers according to its configuration and your browser settings. The Lean Stack Finder separately stores quiz progress in your browser. The site does not currently provide an analytics consent control.
           </p>
 
           <SectionDivider />
@@ -44,7 +44,7 @@ export const PrivacyPage = () => {
           <H2>LEAN STACK FINDER</H2>
           <p>The quiz saves answers and progress in your browser so you can resume after a refresh. It does not save your name or email address in local storage. Restarting the quiz clears its saved answers.</p>
           <p>If you choose to unlock your complete result, we send your email, optional first name, structured quiz answers, result summary and consent record to Kit (formerly ConvertKit). These fields and tags help us send your results and relevant practical emails. Optional free-text answers stay in your browser. You can unsubscribe from emails at any time or request deletion using the contact details below.</p>
-          <p>Quiz analytics events contain only an event name and, where relevant, a question number. They do not contain names, email addresses, answers or free text.</p>
+          <p>The quiz dispatches a local browser event containing only an event name and, where relevant, a question number. It does not include names, email addresses, answers or free text. The current site has no adapter that forwards these quiz events to Google Analytics.</p>
           <SectionDivider />
           <H2>HOW WE USE YOUR INFORMATION</H2>
           <p>We use the information we collect to:</p>
@@ -87,7 +87,7 @@ export const PrivacyPage = () => {
             <li>ConvertKit — email marketing platform</li>
             <li>Vercel — website hosting</li>
             <li>Cloudflare — domain and DNS management</li>
-            <li>Google Analytics — website analytics (if enabled)</li>
+            <li>Google Analytics — website analytics; its script currently loads on each page visit</li>
           </ul>
 
           <SectionDivider />
