@@ -17,6 +17,7 @@ const dcePaths = [
 
 const paths = new Set(seoPages.map(page => page.path));
 assert.equal(paths.size, seoPages.length, 'Duplicate route metadata');
+assert.equal(getPageSeo('/').title, 'AI & SaaS Reviews for Solopreneurs | Domsky Solutions', 'Approved homepage title');
 const titles = new Set<string>();
 const descriptions = new Set<string>();
 for (const meta of seoPages) {
@@ -31,6 +32,12 @@ for (const meta of seoPages) {
   assert(html.includes(`name="description" content="${escapeHtml(meta.description)}"`));
   assert(html.includes(`property="og:url" content="${SITE_URL}${meta.path}"`));
   assert(html.includes(`property="twitter:url" content="${SITE_URL}${meta.path}"`));
+  assert(html.includes(`property="og:title" content="${escapeHtml(meta.socialTitle || meta.title)}"`));
+  assert(html.includes(`property="og:description" content="${escapeHtml(meta.socialDescription || meta.description)}"`));
+  assert(html.includes(`property="twitter:title" content="${escapeHtml(meta.socialTitle || meta.title)}"`));
+  assert(html.includes(`property="twitter:description" content="${escapeHtml(meta.socialDescription || meta.description)}"`));
+  assert(html.includes(`property="og:image" content="${SITE_URL}/`), `Canonical Open Graph image: ${meta.path}`);
+  assert(html.includes(`name="twitter:image" content="${SITE_URL}/`), `Canonical Twitter image: ${meta.path}`);
   assert(!html.includes(`https://${ALTERNATE_HOST}`), `Alternate host leaked into ${meta.path}`);
   assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, `One H1: ${meta.path}`);
   const schema = JSON.parse(html.match(/<script id="page-schema" type="application\/ld\+json">([\s\S]*?)<\/script>/)![1]);
@@ -43,6 +50,14 @@ for (const meta of seoPages) {
   assert.equal(publisher?.name, PUBLISHER_NAME, `Publisher identity: ${meta.path}`);
   assert.equal(publisher?.['@id'], `${SITE_URL}/#organization`, `Publisher ID: ${meta.path}`);
   assert.equal(webPage?.url, `${SITE_URL}${meta.path}`, `WebPage URL: ${meta.path}`);
+  assert.deepEqual(webPage?.isPartOf, { '@id': `${SITE_URL}/#website` }, `WebSite reference: ${meta.path}`);
+  if (meta.path === '/') {
+    const website = schema['@graph'].find((entry: Record<string, unknown>) => entry['@type'] === 'WebSite');
+    assert.equal(website?.['@id'], `${SITE_URL}/#website`, 'Homepage WebSite ID');
+    assert.equal(website?.url, SITE_URL, 'Homepage WebSite URL');
+    assert.equal(website?.name, PUBLISHER_NAME, 'Homepage WebSite name');
+    assert.deepEqual(website?.publisher, { '@id': `${SITE_URL}/#organization` }, 'Homepage WebSite publisher');
+  }
   if (meta.article) {
     const article = meta.article;
     const expectedImage = article.ogImage || article.featuredImage;
@@ -72,6 +87,8 @@ const robots = fs.readFileSync('dist/robots.txt', 'utf8');
 assert(!fs.existsSync('public/sitemap.xml'), 'Sitemap must only be generated at build time');
 assert(!fs.existsSync('public/robots.txt'), 'Robots file must only be generated at build time');
 assert(!sitemap.includes(ALTERNATE_HOST), 'Alternate host in generated sitemap');
+assert.equal((sitemap.match(/<loc>/g) || []).length, paths.size, 'Sitemap contains exactly one URL per indexable page');
+for (const match of sitemap.matchAll(/<loc>(.*?)<\/loc>/g)) assert(match[1].startsWith(`${SITE_URL}/`), `Non-canonical sitemap URL: ${match[1]}`);
 assert.equal(robots, `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 for (const meta of seoPages) {
   assert(sitemap.includes('<loc>' + SITE_URL + meta.path + '</loc>'), 'Missing sitemap URL');
