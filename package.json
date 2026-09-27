@@ -5,22 +5,23 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "npm run validate:content && vite build && tsx scripts/prerender.tsx",
+    "build": "npm run validate:content && vite build && tsx scripts/prerender.tsx && npm run test:client-secrets",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit",
     "test:seo": "tsx scripts/verify-seo.ts",
     "test:stack": "tsc -p tsconfig.stack.json && tsx scripts/test-lean-stack.ts && tsx scripts/test-saas-audit.ts && tsx scripts/test-utility-ui.tsx",
-    "typecheck": "tsc --noEmit && tsc -p tsconfig.content.json",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.content.json && tsc -p tsconfig.api.json",
     "validate:content": "tsx scripts/validate-content.ts",
     "content:check": "tsx scripts/check-content.ts",
     "test:content:quality": "tsx scripts/test-content-quality.ts",
     "test:content": "tsx scripts/test-content.tsx && npm run test:content:quality && npm run test:presentation",
     "test:presentation": "tsx scripts/test-presentation.ts",
-    "check": "npm run lint && npm run typecheck && npm run test:content && npm run test:stack && npm run build && npm run test:seo"
+    "test:api": "tsx scripts/test-api-security.ts",
+    "test:client-secrets": "tsx scripts/check-client-secrets.ts",
+    "check": "npm run lint && npm run typecheck && npm run test:content && npm run test:stack && npm run test:api && npm run build && npm run test:seo"
   },
   "dependencies": {
-    "@google/genai": "^1.29.0",
     "@tailwindcss/vite": "^4.1.14",
     "@vitejs/plugin-react": "^5.0.4",
     "dotenv": "^17.2.3",

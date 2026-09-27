@@ -1,4 +1,4 @@
-import { Answers, emptyAnswers, parseAnswers, questionValid } from '../data/leanStack';
+import { Answers, emptyAnswers, parseAnswers, questionValid, type StackResult } from '../data/leanStack';
 export const STORAGE_KEY = 'domsky.lean-stack.v1';
 export type QuizState = { answers: Answers; step: number; stage: 'intro' | 'questions' | 'partial' };
 export function restoreQuiz(raw: string | null): QuizState | null {
@@ -22,15 +22,15 @@ export function trackQuiz(event: Event, question?: number) {
 export class SubmissionBusyError extends Error {}
 export function createQuizSubscriber(fetcher: typeof fetch = fetch) {
   let pending = false;
-  return async (payload: { email: string; firstName: string; consent: boolean; answers: Answers }) => {
+  return async (payload: { email: string; firstName: string; deliveryRequested: true; marketingConsent: boolean; answers: Answers }) => {
     if (pending) throw new SubmissionBusyError('Submission already in progress.');
     pending = true;
     try {
       const response = await fetcher('/api/stack-subscribe', { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(payload), signal:AbortSignal.timeout(15000) });
       // Hosting errors can be plain text or HTML rather than the expected JSON API response.
       const data = await response.json().catch(() => null);
-      if (!response.ok || data?.ok !== true) throw new Error(response.status === 503 ? 'Email signup is not configured yet. Your preview is still available; please try again later.' : 'I couldn’t complete your signup. Your answers are safe. Please try again.');
-      return { pendingConfirmation: data.pendingConfirmation === true };
+      if (!response.ok || data?.ok !== true || !data.result || typeof data.result.name !== 'string' || !Array.isArray(data.result.essentials)) throw new Error(response.status === 503 ? 'Email signup is not configured yet. Your preview is still available; please try again later.' : 'I couldn’t complete your signup. Your answers are safe. Please try again.');
+      return { pendingConfirmation: data.pendingConfirmation === true, result:data.result as StackResult };
     } catch (error) {
       if (error instanceof Error && (error.name === 'TimeoutError' || error.name === 'AbortError')) throw new Error('The signup timed out. Please try again; your answers are still here.');
       if (error instanceof TypeError) throw new Error('I couldn’t reach the signup service. Your answers are safe. Please try again.');

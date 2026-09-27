@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check, Copy, Printer } from 'lucide-react';
-import { Answers, emptyAnswers, labelFor, questionValid, questions, recommend, selection, summaryFor } from '../data/leanStack';
+import { Answers, emptyAnswers, labelFor, questionValid, questions, recommend, selection, summaryFor, type StackResult } from '../data/leanStack';
 import { createQuizSubscriber, initialQuiz, restoreQuiz, STORAGE_KEY, trackQuiz } from '../lib/stackQuiz';
 
 export function LeanStackFinder() {
@@ -12,7 +12,8 @@ export function LeanStackFinder() {
   const [storageNotice, setStorageNotice] = useState('');
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
-  const [consent, setConsent] = useState(false);
+  const [marketingConsent, setMarketingConsent] = useState(false);
+  const [serverResult, setServerResult] = useState<StackResult | null>(null);
   const [pending, setPending] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
   const [copyMessage, setCopyMessage] = useState('');
@@ -44,13 +45,13 @@ export function LeanStackFinder() {
   function move(nextStage: typeof stage, nextStep = step) { setError(''); focusNext.current = true; setStep(nextStep); setStage(nextStage); }
   function restart() {
     if (busy.current) return;
-    const fresh = initialQuiz(); setAnswers(fresh.answers); setEmail(''); setFirstName(''); setConsent(false); setUnlocked(false); setCopyMessage('');
+    const fresh = initialQuiz(); setAnswers(fresh.answers); setEmail(''); setFirstName(''); setMarketingConsent(false); setServerResult(null); setUnlocked(false); setCopyMessage('');
     move('intro',0); trackQuiz('restarted');
     try { localStorage.removeItem(STORAGE_KEY); } catch { /* In-memory restart still works. */ }
   }
   const q = questions[step];
   const selected = Array.isArray(answers[q.key]) ? answers[q.key] as string[] : [answers[q.key] as string];
-  const result = stage === 'partial' || stage === 'full' ? recommend(answers) : null;
+  const result = stage === 'partial' ? recommend(answers) : stage === 'full' ? serverResult : null;
   function choose(value: string) {
     if (q.key === 'tasks' && !selected.includes(value) && selected.length >= 3) { setError('Choose up to three tasks. Deselect one before adding another.'); return; }
     setError('');
@@ -71,11 +72,11 @@ export function LeanStackFinder() {
   async function unlock(e: React.FormEvent) {
     e.preventDefault();
     if (busy.current) return;
-    if (!consent || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) { setError('Enter a valid email and confirm you want to receive these emails.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) { setError('Enter a valid email address.'); return; }
     busy.current = true; setPending(true); setError(''); trackQuiz('email_submitted');
     try {
-      const response = await submit.current!({ email:email.trim(), firstName:firstName.trim(), consent, answers });
-      setConfirmation(response.pendingConfirmation); setUnlocked(true); setEmail(''); setFirstName(''); move('full'); trackQuiz('completed');
+      const response = await submit.current!({ email:email.trim(), firstName:firstName.trim(), deliveryRequested:true, marketingConsent, answers });
+      setServerResult(response.result); setConfirmation(marketingConsent && response.pendingConfirmation); setUnlocked(true); setEmail(''); setFirstName(''); move('full'); trackQuiz('completed');
     } catch (err) { setError(err instanceof Error ? err.message : 'Signup failed. Please try again.'); }
     finally { busy.current = false; setPending(false); }
   }
@@ -126,14 +127,14 @@ export function LeanStackFinder() {
             <form onSubmit={unlock} aria-label="Unlock your complete stack" aria-busy={pending}>
               <label className="lf-field">First name (optional)<input name="firstName" autoComplete="given-name" maxLength={80} value={firstName} disabled={pending} onChange={e => setFirstName(e.target.value)} /></label>
               <label className="lf-field">Email address<input name="email" type="email" autoComplete="email" maxLength={254} required value={email} disabled={pending} aria-describedby="lf-consent lf-signup-error" onChange={e => setEmail(e.target.value)} /></label>
-              <label className="lf-consent" id="lf-consent"><input type="checkbox" checked={consent} required disabled={pending} onChange={e => setConsent(e.target.checked)} /><span>I agree to receive my results and occasional practical emails from Domsky Solutions. I can unsubscribe at any time. <a href="/privacy">Privacy policy</a>.</span></label>
+              <label className="lf-consent" id="lf-consent"><input type="checkbox" checked={marketingConsent} disabled={pending} onChange={e => setMarketingConsent(e.target.checked)} /><span>Optional: Send me The Weekly Edge and occasional practical emails. I can unsubscribe at any time. <a href="/privacy">Privacy policy</a>.</span></label>
               <p className="lf-error" id="lf-signup-error" role={error ? 'alert' : undefined}>{error}</p>
               <button className="lf-primary" disabled={pending} type="submit">{pending ? 'Submitting…' : 'Show My Complete Stack'} {!pending && <ArrowRight size={17} aria-hidden="true" />}</button>
-              <p className="lf-fine">Your result opens here after signup. If confirmation is enabled, check your inbox to confirm future emails.</p>
+              <p className="lf-fine">Your server-validated result opens here. The newsletter checkbox is optional and separate from this result request.</p>
             </form>
           </div>
         </> : <>
-          <p className="lf-success lf-no-print" role="status">Your complete stack is unlocked.{confirmation ? ' Check your inbox to confirm your email subscription.' : ''}</p>
+          <p className="lf-success lf-no-print" role="status">Your complete stack is unlocked.{confirmation ? ' Check your inbox to confirm The Weekly Edge subscription.' : ''}</p>
           <section><h3>Best for</h3><p>{result.bestFor}</p><p className="lf-fine">{result.businessNote}</p></section>
           <div className="lf-actions lf-no-print"><button className="lf-secondary" onClick={copy}><Copy size={17} aria-hidden="true" />Copy summary</button><button className="lf-secondary" onClick={() => window.print()}><Printer size={17} aria-hidden="true" />Print / save PDF</button></div>
           {copyMessage && <div className="lf-no-print"><p role="status">{copyMessage}</p>{copyMessage.startsWith('Copy is') && <textarea aria-label="Result summary to copy" readOnly value={summaryFor(result)} rows={8} />}</div>}

@@ -43,7 +43,8 @@ export const PrivacyPage = () => {
 
           <H2>LEAN STACK FINDER</H2>
           <p>The quiz saves answers and progress in your browser so you can resume after a refresh. It does not save your name or email address in local storage. Restarting the quiz clears its saved answers.</p>
-          <p>If you choose to unlock your complete result, we send your email, optional first name, structured quiz answers, result summary and consent record to Kit (formerly ConvertKit). These fields and tags help us send your results and relevant practical emails. Optional free-text answers stay in your browser. You can unsubscribe from emails at any time or request deletion using the contact details below.</p>
+          <p>If you choose to unlock your complete result, the server validates your email and structured quiz answers, recalculates the result, and sends your email, optional first name, structured answers and server-generated result summary to the dedicated Kit form. Optional free-text answers stay in your browser. The complete result opens on this website; the site does not claim that an identical report was emailed.</p>
+          <p>Marketing consent is a separate optional checkbox. The server records that choice and adds the newsletter tag only when it is selected. The dedicated result form must not be connected to a promotional sequence unless that separate marketing consent is present.</p>
           <p>The quiz dispatches a local browser event containing only an event name and, where relevant, a question number. It does not include names, email addresses, answers or free text. The current site has no adapter that forwards these quiz events to Google Analytics.</p>
           <SectionDivider />
           <H2>HOW WE USE YOUR INFORMATION</H2>
