@@ -1,13 +1,14 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { rateLimit, readJsonRequest } from '../server/apiSecurity.js';
+import { subscribeNewsletter } from '../server/newsletterSubscription.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method !== 'POST') return res.status(405).end();
-  const { email, newsletter = false } = req.body ?? {};
-  if (!email || !/^\S+@\S+\.\S+$/.test(email)) return res.status(400).json({ error: 'Invalid email' });
-  const tags = newsletter && process.env.CONVERTKIT_NEWSLETTER_TAG_ID ? [Number(process.env.CONVERTKIT_NEWSLETTER_TAG_ID)] : undefined;
-  try {
-    const response = await fetch(`https://api.convertkit.com/v3/forms/${process.env.CONVERTKIT_FORM_ID}/subscribe`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ api_key: process.env.CONVERTKIT_API_KEY, email, ...(tags ? { tags } : {}) }) });
-    const data = await response.json();
-    return res.status(response.ok ? 200 : 500).json(data);
-  } catch { return res.status(500).json({ error: 'Internal server error' }); }
+  res.setHeader('Cache-Control', 'no-store'); res.setHeader('X-Content-Type-Options', 'nosniff');
+  if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return res.status(405).json({ error: 'Use POST.', code: 'invalid_request' }); }
+  const limited = rateLimit(req, 'newsletter', 5, 10 * 60_000);
+  if (!limited.allowed) { res.setHeader('Retry-After', String(limited.retryAfter)); return res.status(429).json({ error: 'Too many requests. Try again later.', code: 'rate_limited' }); }
+  const request = readJsonRequest(req, 2048);
+  if (request.status !== 200) return res.status(request.status).json(request.body);
+  const result = await subscribeNewsletter(request.body, process.env);
+  return res.status(result.status).json(result.body);
 }

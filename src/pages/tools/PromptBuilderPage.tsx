@@ -844,8 +844,8 @@ export const PromptBuilderPage = () => {
               </button>
               
               <div className="flex-1">
-                <h3 className="text-xl font-bold text-white mb-1">Want 50 more proven Claude prompts?</h3>
-                <p className="text-gray-400 text-sm">Get my free prompt swipe file.</p>
+                <h3 className="text-xl font-bold text-white mb-1">Want practical prompt examples each week?</h3>
+                <p className="text-gray-400 text-sm">Subscribe to The Weekly Edge for prompts, workflow tips and tool guidance.</p>
               </div>
               
               <div className="w-full sm:w-auto">
@@ -853,8 +853,8 @@ export const PromptBuilderPage = () => {
                   className="flex gap-2"
                   inputClassName="bg-brand-bg border border-gray-700 rounded px-4 py-2 text-white focus:outline-none focus:border-brand-cyan transition-colors w-full sm:w-64"
                   buttonClassName="bg-brand-cyan text-brand-bg px-4 py-2 rounded font-bold hover:bg-teal-400 transition-colors whitespace-nowrap"
-                  buttonText="Send Me the Prompts →"
-                  successMessage="Check your inbox! 🎉"
+                  buttonText="Subscribe to The Weekly Edge →"
+                  successMessage="Subscribed. Watch your inbox for the next issue."
                 />
               </div>
             </div>

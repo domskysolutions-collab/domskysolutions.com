@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["api/**/*.ts", "server/**/*.ts", "scripts/test-api-security.ts", "scripts/check-client-secrets.ts"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -31,4 +31,11 @@ for (const invented of ['How I got results','I just discovered','I wish I knew',
   assert(!calendar.includes(invented),`Invented calendar claim remains: ${invented}`);
 }
 
+const usageLimit = fs.readFileSync('src/components/UsageLimitModal.tsx','utf8');
+assert(usageLimit.includes('Subscribe to The Weekly Edge and unlock 3 extra generations'));
+assert(!usageLimit.includes('checkbox stays optional'));
+const promptBuilder = fs.readFileSync('src/pages/tools/PromptBuilderPage.tsx','utf8');
+assert(promptBuilder.includes('Subscribe to The Weekly Edge for prompts'));
+assert(!promptBuilder.includes('Check your inbox!'));
+
 console.log('PASS: semantic keyboard controls, responsive layout contracts and claim-safe calendar templates.');
