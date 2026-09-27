@@ -13,7 +13,7 @@ export const leanSoloBusinessStack = {
   socialDescription: 'Choose a minimum stack for writing, client work or a small website—without paying twice for the same job.',
   category: 'Lean Software Stack',
   author: PUBLIC_AUTHOR,
-  publishedAt: '2026-09-25', updatedAt: '2026-09-25', verifiedAt: '2026-09-25',
+  publishedAt: '2026-09-25', updatedAt: '2026-09-26', verifiedAt: '2026-09-26',
   status: 'published', contentType: 'guide',
   tags: ['Solo business', 'Software stack', 'AI assistant', 'Email marketing', 'Website builder', 'Cost control'],
   relatedSlugs: ['/blog/replaced-saas-stack-with-ai-tools', '/comparisons/claude-vs-chatgpt-vs-gemini-2026', '/blog/ai-daily-workflow-solo-business', '/reviews/convertkit'],
@@ -42,7 +42,7 @@ export const leanSoloBusinessStack = {
     { type: 'quickAnswer', title: 'Quick answer', text: 'The smallest useful stack starts with jobs performed every week. Keep existing tools that complete those jobs, identify one uncovered requirement, trial a candidate against that requirement and count only its incremental recurring cost. Skip categories that solve no current task.' },
     { type: 'paragraph', text: 'A writer needs a reliable place to research, draft and edit. A service provider first needs to deliver work and communicate with clients. A small-site builder needs a maintainable publishing path. Buying the same ten tools for all three situations creates cost and complexity before it creates value.' },
     { type: 'list', ordered: true, items: ['What work do you perform every week?', 'Which tools you already have complete that work well enough?', 'What specific capability is still missing?'] },
-    { type: 'paragraph', text: ['If you cannot name the missing capability, do not add a subscription yet. If AI is new to you, ', { text: 'start with three practical AI tasks', href: '/blog/you-dont-need-to-be-technical-to-use-ai' }, ' before choosing a paid plan.'] },
+    { type: 'paragraph', text: ['If you cannot name the missing capability, do not add a subscription yet. If AI is new to you, use the ', { text: 'Prompt Builder', href: '/tools/prompt-builder' }, ' to define one bounded first task before choosing a paid plan.'] },
 
     { type: 'heading', level: 2, id: 'work-first', text: 'Start with the work, not the tool list' },
     { type: 'paragraph', text: 'A software category becomes necessary only when it serves a current job. Use outcomes such as drafting one useful article, delivering client work, publishing five website pages, collecting subscribers with consent or tracking renewals.' },
@@ -81,7 +81,7 @@ export const leanSoloBusinessStack = {
     { type: 'paragraph', text: ['The minimum writer path can be an editor plus free assistant access. ', { text: 'Follow the lean content workflow', href: '/blog/ai-daily-workflow-solo-business' }, ' before expanding the stack: define one reader question, build the evidence ledger, approve the article and then adapt it.'] },
     { type: 'heading', level: 3, id: 'writer-email', text: 'When email becomes useful' },
     { type: 'paragraph', text: 'Email software is justified when you can name what readers subscribe to, the consent and confirmation flow, the first email or sequence, the sending plan and how contacts and exports will be maintained.' },
-    { type: 'paragraph', text: ['Kit is one candidate, not a default. As checked on 25 September 2026, its Newsletter Plan supports one Email Sequence and one basic Visual Automation. Paid plans become relevant when the workflow needs more or more advanced automation. ', { text: 'Check Kit’s current limits and upgrade triggers', href: '/reviews/convertkit' }, ' before implementation.'] },
+    { type: 'paragraph', text: ['Kit is one candidate, not a default. As checked on 26 September 2026, its Newsletter Plan supports one Email Sequence and one basic Visual Automation. Paid Creator and Pro plans add unlimited sequences and more advanced automation capabilities. ', { text: 'Check Kit’s current limits and upgrade triggers', href: '/reviews/convertkit' }, ' before implementation.'] },
 
     { type: 'heading', level: 2, id: 'service-provider', text: 'A lean setup for a service provider' },
     { type: 'paragraph', text: 'Start with one complete delivery path: inquiry, scope, meeting or access, work, delivery, payment record and follow-up. Keep existing email, calendar, documents, file delivery and billing methods when they are dependable and appropriate.' },

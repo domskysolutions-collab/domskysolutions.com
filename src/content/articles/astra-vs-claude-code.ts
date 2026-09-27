@@ -14,8 +14,8 @@ export const astraComparison = {
   category: 'Comparisons',
   author: PUBLIC_AUTHOR,
   publishedAt: '2026-09-24',
-  updatedAt: '2026-09-24',
-  verifiedAt: '2026-09-24',
+  updatedAt: '2026-09-26',
+  verifiedAt: '2026-09-26',
   status: 'published',
   contentType: 'comparison',
   tags: ['Codex', 'Claude Code', 'Website maintenance', 'Coding agents', 'Solo business'],
@@ -41,6 +41,8 @@ export const astraComparison = {
   disclosure: 'No provider paid for placement. Product and source links are direct, non-affiliate links. Recommendations remain editorially independent.',
   verificationPending: [],
   sources: [
+    { id: 'oai-00', title: 'OpenAI: Using Codex with your ChatGPT plan', url: 'https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan' },
+    { id: 'oai-00b', title: 'OpenAI: ChatGPT Work and Codex', url: 'https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex' },
     { id: 'oai-01', title: 'OpenAI: Codex pricing', url: 'https://learn.chatgpt.com/docs/pricing' },
     { id: 'oai-02', title: 'OpenAI: Codex cloud', url: 'https://learn.chatgpt.com/docs/cloud' },
     { id: 'oai-03', title: 'OpenAI: Codex documentation', url: 'https://learn.chatgpt.com/docs' },
@@ -58,7 +60,7 @@ export const astraComparison = {
       type: 'note',
       title: 'Editorial disclosure',
       text: [
-        'This comparison was researched from current OpenAI and Anthropic documentation on 24 September 2026. Domsky did not run a controlled head-to-head test for this article. Product facts are attributed to the providers; the buying recommendations are Domsky editorial analysis. ',
+        'This comparison was rechecked against current OpenAI and Anthropic documentation on 26 September 2026. Domsky did not run a controlled head-to-head test for this article. Product facts are attributed to the providers; the buying recommendations are Domsky editorial analysis. ',
         { text: 'See how Domsky documents product evidence', href: '/methodology' },
         '.',
       ],
@@ -70,6 +72,7 @@ export const astraComparison = {
       text: 'Give it one bounded website task with written acceptance criteria. Choose the alternative only when its environment or control model solves a documented problem for your workflow.',
     },
     { type: 'paragraph', text: 'Codex and Claude Code can both inspect a repository, edit files and run development commands. Paying for both before you know what the first one cannot do creates overlap without proving better results.' },
+    { type: 'paragraph', text: 'OpenAI currently says Codex is included across ChatGPT plans, including Free and Go, with limits that vary by plan. This article compares ChatGPT Plus with Claude Pro as the first paid individual reference point; paid access is not a prerequisite for trying Codex.' },
     {
       type: 'list',
       items: [
@@ -80,7 +83,7 @@ export const astraComparison = {
     },
     { type: 'note', title: 'Evidence limit', text: 'This is a workflow comparison. It does not claim that one tool writes better code, produces fewer defects or needs less human review.' },
     { type: 'heading', level: 2, id: 'product-model-distinction', text: 'Codex, Claude Code and Astra are not the same kind of thing' },
-    { type: 'paragraph', text: 'Codex is OpenAI’s coding product and workflow. Claude Code is Anthropic’s coding product. GPT-6 Astra is a model listed in current Codex usage documentation, not a separate coding application.' },
+    { type: 'paragraph', text: 'Codex is OpenAI’s coding product and workflow. Claude Code is Anthropic’s coding product. GPT-6 Astra is a model available in Codex for eligible plans, not a separate coding application. OpenAI currently says Plus includes Astra in Work and Codex.' },
     {
       type: 'workflow',
       caption: 'Product-versus-model distinction. The diagram describes product roles, not performance.',
@@ -91,12 +94,13 @@ export const astraComparison = {
     },
     { type: 'paragraph', text: 'A model name does not explain repository access, permissions, branches, diffs, billing or review. For a small-site owner, those product details affect the decision more than a model leaderboard.' },
     { type: 'heading', level: 2, id: 'paid-plan-comparison', text: 'Compare the first practical paid plans' },
-    { type: 'paragraph', text: 'The table uses current provider documentation checked on 24 September 2026. It is not a performance test.' },
+    { type: 'paragraph', text: 'The table uses current provider documentation checked on 26 September 2026. It is not a performance test.' },
     {
       type: 'pricing',
       caption: 'Documented access and workflow differences',
       columns: ['Decision factor', 'Codex with ChatGPT Plus', 'Claude Code with Claude Pro'],
       rows: [
+        ['Lower-cost starting point', 'Codex is also available on ChatGPT Free and Go with plan-specific limits', 'Claude Code is included with Claude Pro; API or Console billing is separate'],
         ['Current US individual price', '$20/month', '$20/month, or $200 billed upfront annually'],
         ['Main surfaces', 'Web, desktop, CLI, IDE extension, iOS and cloud', 'Terminal, VS Code/Cursor, JetBrains, desktop and browser'],
         ['Repository workflow', 'Local work plus isolated cloud environments; GitHub and GitLab connections', 'Local and remote workflows across supported surfaces; shared project configuration'],
@@ -198,7 +202,7 @@ export const astraComparison = {
     { type: 'paragraph', text: 'Usually no. Start with the tool included in an existing subscription. Add the second only after a repeated, documented limitation makes the extra cost worthwhile.' },
     { type: 'heading', level: 3, id: 'production', text: 'Can either tool publish directly to production?' },
     { type: 'paragraph', text: 'Both products can participate in advanced automation, but this article recommends a branch-and-review workflow for a small site. Production deployment should remain a separate, deliberate step with its own checks and authorization.' },
-    { type: 'paragraph', text: 'This comparison uses current OpenAI and Anthropic pricing and product documentation checked on 24 September 2026. It does not report original Domsky performance testing, defect rates or measured review time.' },
+    { type: 'paragraph', text: 'This comparison uses current OpenAI and Anthropic pricing and product documentation checked on 26 September 2026. It does not report original Domsky performance testing, defect rates or measured review time.' },
     { type: 'paragraph', text: 'Prices, included models, usage allowances and supported surfaces can change. Check the provider’s current plan page and the exact account before subscribing.' },
     { type: 'sources', id: 'sources', title: 'Sources and evidence limits' },
   ],
