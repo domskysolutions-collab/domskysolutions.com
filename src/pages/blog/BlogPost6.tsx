@@ -16,27 +16,6 @@ const tocItems = [
   { id: 'your-next-step', label: 'Your Next Step' },
 ];
 
-const ScreenshotPlaceholder = ({
-  filename,
-  description,
-}: {
-  filename: string;
-  description: string;
-}) => (
-  <figure className="my-8 rounded-xl border border-dashed border-brand-cyan/40 bg-brand-surface/80 p-6 shadow-2xl">
-    <div className="flex min-h-[260px] items-center justify-center rounded-lg border border-gray-800 bg-gray-950/60 px-6 text-center">
-      <div>
-        <div className="mb-3 text-xs font-mono uppercase tracking-[0.25em] text-brand-cyan">
-          Screenshot Placeholder
-        </div>
-        <div className="text-lg font-semibold text-white">{filename}</div>
-        <p className="mx-auto mt-3 max-w-xl text-sm leading-7 text-gray-400">{description}</p>
-      </div>
-    </div>
-    <figcaption className="mt-3 text-center font-mono text-sm text-gray-500">{filename}</figcaption>
-  </figure>
-);
-
 export const BlogPost6 = () => {
   const { scrollYProgress } = useScroll();
   const [showBackToTop, setShowBackToTop] = useState(false);
