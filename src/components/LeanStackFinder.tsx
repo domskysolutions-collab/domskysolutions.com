@@ -1,29 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check, Copy, Printer } from 'lucide-react';
-import { Answers, emptyAnswers, labelFor, questionValid, questions, recommend, selection, summaryFor, type StackResult } from '../data/leanStack';
-import { createQuizSubscriber, initialQuiz, restoreQuiz, STORAGE_KEY, trackQuiz } from '../lib/stackQuiz';
+import { Answers, emptyAnswers, questionValid, questions, recommend, selection, summaryFor } from '../data/leanStack';
+import { initialQuiz, restoreQuiz, STORAGE_KEY, trackQuiz } from '../lib/stackQuiz';
+import { ConvertKitForm } from './ConvertKitForm';
 
 export function LeanStackFinder() {
   const [answers, setAnswers] = useState<Answers>(emptyAnswers);
-  const [stage, setStage] = useState<'intro' | 'questions' | 'partial' | 'full'>('intro');
+  const [stage, setStage] = useState<'intro' | 'questions' | 'full'>('intro');
   const [step, setStep] = useState(0);
   const [hydrated, setHydrated] = useState(false);
   const [error, setError] = useState('');
   const [storageNotice, setStorageNotice] = useState('');
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [marketingConsent, setMarketingConsent] = useState(false);
-  const [serverResult, setServerResult] = useState<StackResult | null>(null);
-  const [pending, setPending] = useState(false);
-  const [confirmation, setConfirmation] = useState(false);
   const [copyMessage, setCopyMessage] = useState('');
-  const [unlocked, setUnlocked] = useState(false);
   const heading = useRef<HTMLHeadingElement>(null);
   const focusNext = useRef(false);
-  const busy = useRef(false);
-  const submit = useRef<ReturnType<typeof createQuizSubscriber> | null>(null);
   useEffect(() => {
-    submit.current = createQuizSubscriber();
     try {
       const saved = restoreQuiz(localStorage.getItem(STORAGE_KEY));
       if (saved) { setAnswers(saved.answers); setStep(saved.step); setStage(saved.stage); }
@@ -32,7 +23,7 @@ export function LeanStackFinder() {
   }, []);
   useEffect(() => {
     if (!hydrated) return;
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ version:1, answers, step, stage:stage === 'full' ? 'partial' : stage })); }
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ version:1, answers, step, stage })); }
     catch { setStorageNotice('Progress can’t be saved in this browser. Keep this page open until you finish.'); }
   }, [answers, step, stage, hydrated]);
   useEffect(() => {
@@ -44,14 +35,13 @@ export function LeanStackFinder() {
   }, [stage, step]);
   function move(nextStage: typeof stage, nextStep = step) { setError(''); focusNext.current = true; setStep(nextStep); setStage(nextStage); }
   function restart() {
-    if (busy.current) return;
-    const fresh = initialQuiz(); setAnswers(fresh.answers); setEmail(''); setFirstName(''); setMarketingConsent(false); setServerResult(null); setUnlocked(false); setCopyMessage('');
+    const fresh = initialQuiz(); setAnswers(fresh.answers); setCopyMessage('');
     move('intro',0); trackQuiz('restarted');
     try { localStorage.removeItem(STORAGE_KEY); } catch { /* In-memory restart still works. */ }
   }
   const q = questions[step];
   const selected = Array.isArray(answers[q.key]) ? answers[q.key] as string[] : [answers[q.key] as string];
-  const result = stage === 'partial' ? recommend(answers) : stage === 'full' ? serverResult : null;
+  const result = stage === 'full' ? recommend(answers) : null;
   function choose(value: string) {
     if (q.key === 'tasks' && !selected.includes(value) && selected.length >= 3) { setError('Choose up to three tasks. Deselect one before adding another.'); return; }
     setError('');
@@ -67,18 +57,7 @@ export function LeanStackFinder() {
     if (!questionValid(answers,q.key)) { setError(q.multi ? 'Select at least one answer to continue.' : 'Choose one answer to continue.'); return; }
     trackQuiz('question_completed',step + 1);
     if (step < 6) move('questions',step + 1);
-    else { move(unlocked ? 'full' : 'partial'); trackQuiz(unlocked ? 'completed' : 'partial_result_viewed'); }
-  }
-  async function unlock(e: React.FormEvent) {
-    e.preventDefault();
-    if (busy.current) return;
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) { setError('Enter a valid email address.'); return; }
-    busy.current = true; setPending(true); setError(''); trackQuiz('email_submitted');
-    try {
-      const response = await submit.current!({ email:email.trim(), firstName:firstName.trim(), deliveryRequested:true, marketingConsent, answers });
-      setServerResult(response.result); setConfirmation(marketingConsent && response.pendingConfirmation); setUnlocked(true); setEmail(''); setFirstName(''); move('full'); trackQuiz('completed');
-    } catch (err) { setError(err instanceof Error ? err.message : 'Signup failed. Please try again.'); }
-    finally { busy.current = false; setPending(false); }
+    else { move('full'); trackQuiz('completed'); }
   }
   async function copy() {
     try { await navigator.clipboard.writeText(summaryFor(result!)); setCopyMessage('Summary copied.'); }
@@ -91,7 +70,7 @@ export function LeanStackFinder() {
         <div><p className="lf-eyebrow">Free personalized tool finder</p><h2 ref={heading} tabIndex={-1}>Find the Right AI and SaaS Tools for Your Business</h2>
           <p className="lf-lead">Answer seven questions and receive a personalized, budget-conscious tool stack for creating content, automating work, or building products.</p>
           <button className="lf-primary" disabled={!hydrated} onClick={() => { move('questions'); trackQuiz('started'); }}>Show My Recommended Stack <ArrowRight size={18} aria-hidden="true" /></button>
-          <p className="lf-fine">About 3 minutes · Rule-based recommendations · Preview before email</p>
+          <p className="lf-fine">About 3 minutes · Rule-based recommendations · Complete result shown immediately</p>
         </div>
         <aside className="lf-preview"><p className="lf-eyebrow">A clear plan for your next move</p>
           {[['01','What to use','A focused stack for the work that matters now.'],['02','What to keep','Get more from the tools you already have.'],['03','What to skip','Leave overlapping subscriptions and unnecessary upgrades behind.']].map(([n,t,d]) => <div key={n}><span>{n}</span><div><p className="lf-preview-title">{t}</p><p>{d}</p></div></div>)}
@@ -111,30 +90,19 @@ export function LeanStackFinder() {
             {q.other && selected.includes('other') && <label className="lf-field">Tell me a little more (optional)<input maxLength={160} value={answers[q.other] as string} onChange={e => setAnswers(a => ({ ...a, [q.other!]:e.target.value }))} /><span className="lf-fine">Keep this general. This text stays in your browser and does not affect the rules.</span></label>}
           </fieldset>
           <p className="lf-error" id="lf-question-error" role={error ? 'alert' : undefined}>{error}</p>
-          <div className="lf-actions"><button type="button" className="lf-secondary" onClick={() => move(step ? 'questions' : 'intro', Math.max(0,step-1))}>Back</button><button type="submit" className="lf-primary">{step === 6 ? 'See My Stack Preview' : 'Continue'}<ArrowRight size={17} aria-hidden="true" /></button></div>
+          <div className="lf-actions"><button type="button" className="lf-secondary" onClick={() => move(step ? 'questions' : 'intro', Math.max(0,step-1))}>Back</button><button type="submit" className="lf-primary">{step === 6 ? 'See My Complete Stack' : 'Continue'}<ArrowRight size={17} aria-hidden="true" /></button></div>
         </form>
         <button className="lf-text-button" onClick={restart}>Restart quiz</button>
       </div>}
-      {result && <div className="lf-results" data-full={stage === 'full' ? 'true' : 'false'}>
-        <p className="lf-eyebrow">{stage === 'full' ? 'Your recommended stack' : 'Your likely stack'}</p>
+      {result && <div className="lf-results" data-full="true">
+        <p className="lf-eyebrow">Your recommended stack</p>
         <h2 ref={heading} tabIndex={-1}>{result.name}</h2><p className="lf-lead">{result.explanation}</p>
         <div className="lf-result-stats"><div><span>Incremental spend</span><strong>{result.cost}</strong></div><div><span>Current decisions</span><strong>{result.essentials.length} job-based categories</strong><small>Existing tools and manual workflows come first.</small></div></div>
         <p className="lf-fine">{result.budgetNote}</p>
         <div className="lf-insight"><span className="lf-eyebrow">Your keep-or-skip insight</span><p>{result.insight}</p></div>
-        {stage === 'partial' ? <>
-          <p>Your full result includes specific tools, lower-cost alternatives, what to skip, and where your budget will have the greatest impact.</p>
-          <div className="lf-gate"><div><p className="lf-eyebrow">Your plan, in practical detail</p><h3>Unlock Your Complete Lean Stack</h3><p>Enter your email to see your personalized tool recommendations, affordable alternatives, and the tools you can safely skip.</p></div>
-            <form onSubmit={unlock} aria-label="Unlock your complete stack" aria-busy={pending}>
-              <label className="lf-field">First name (optional)<input name="firstName" autoComplete="given-name" maxLength={80} value={firstName} disabled={pending} onChange={e => setFirstName(e.target.value)} /></label>
-              <label className="lf-field">Email address<input name="email" type="email" autoComplete="email" maxLength={254} required value={email} disabled={pending} aria-describedby="lf-consent lf-signup-error" onChange={e => setEmail(e.target.value)} /></label>
-              <label className="lf-consent" id="lf-consent"><input type="checkbox" checked={marketingConsent} disabled={pending} onChange={e => setMarketingConsent(e.target.checked)} /><span>Optional: Send me The Weekly Edge and occasional practical emails. I can unsubscribe at any time. <a href="/privacy">Privacy policy</a>.</span></label>
-              <p className="lf-error" id="lf-signup-error" role={error ? 'alert' : undefined}>{error}</p>
-              <button className="lf-primary" disabled={pending} type="submit">{pending ? 'Submitting…' : 'Show My Complete Stack'} {!pending && <ArrowRight size={17} aria-hidden="true" />}</button>
-              <p className="lf-fine">Your server-validated result opens here. The newsletter checkbox is optional and separate from this result request.</p>
-            </form>
-          </div>
-        </> : <>
-          <p className="lf-success lf-no-print" role="status">Your complete stack is unlocked.{confirmation ? ' Check your inbox to confirm The Weekly Edge subscription.' : ''}</p>
+        <div className="lf-gate lf-no-print"><div><p className="lf-eyebrow">Optional newsletter</p><h3>Get The Weekly Edge</h3><p>Receive one practical AI tool, workflow tip, and useful insight each Thursday. Your recommendation is already available and newsletter signup is optional.</p></div>
+          <ConvertKitForm className="lf-newsletter-form" inputClassName="lf-newsletter-input" buttonClassName="lf-primary" buttonText="Join The Weekly Edge" placeholder="you@example.com" successMessage="You’re subscribed. Check your inbox if Kit asks you to confirm." />
+        </div>
           <section><h3>Best for</h3><p>{result.bestFor}</p><p className="lf-fine">{result.businessNote}</p></section>
           <div className="lf-actions lf-no-print"><button className="lf-secondary" onClick={copy}><Copy size={17} aria-hidden="true" />Copy summary</button><button className="lf-secondary" onClick={() => window.print()}><Printer size={17} aria-hidden="true" />Print / save PDF</button></div>
           {copyMessage && <div className="lf-no-print"><p role="status">{copyMessage}</p>{copyMessage.startsWith('Copy is') && <textarea aria-label="Result summary to copy" readOnly value={summaryFor(result)} rows={8} />}</div>}
@@ -149,8 +117,7 @@ export function LeanStackFinder() {
           <section className="lf-upgrade"><p className="lf-eyebrow">Optional upgrades</p><h3>Spend only where it helps.</h3><p>{result.upgrade}</p></section>
           <div className="lf-next-grid"><section><h3>What you should skip for now</h3><ul>{result.skip.map(text => <li key={text}>{text}</li>)}</ul></section><section><p className="lf-eyebrow">Your next best step</p><h3>One achievable action.</h3><p>{result.next}</p></section></div>
           <p className="lf-fine">Product access information checked 18 September 2026. Limits may change; use the official pricing links before choosing a plan.</p>
-        </>}
-        <div className="lf-actions lf-no-print"><button className="lf-secondary" disabled={pending} onClick={() => move('questions',0)}>Edit answers</button><button className="lf-text-button" disabled={pending} onClick={restart}>Restart quiz</button></div>
+        <div className="lf-actions lf-no-print"><button className="lf-secondary" onClick={() => move('questions',0)}>Edit answers</button><button className="lf-text-button" onClick={restart}>Restart quiz</button></div>
         <details className="lf-method lf-no-print"><summary>How I choose your recommendations</summary><p>Your current goal and selected tasks identify up to four relevant capabilities. Existing sufficient tools are kept, manual coverage can justify skipping a purchase, and a named candidate is presented as a trial rather than a default purchase. The result does not publish a universal bundle total: it asks you to count incremental cost only after a candidate proves the gap. The quiz runs on predefined rules, not an AI service. Optional text stays in your browser and does not affect the rules. No affiliate ranking is used.</p></details>
         <p className="lf-print-footer">The Lean AI &amp; SaaS Stack Finder · domskysolutions.com</p>
       </div>}

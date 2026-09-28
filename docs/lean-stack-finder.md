@@ -8,37 +8,31 @@ The homepage contains the authoritative recommendation quiz at `/#stack-finder`.
 
 All initial product records use normal, non-affiliate URLs and omit fixed paid prices. The minimum is zero new subscription spend. The result reports incremental cost only after a candidate passes its trial; it does not fabricate a traditional baseline or total unknown existing bills. Existing fees, tax, domains, hosting, ecommerce fees and usage costs are excluded. Access and team limits must be rechecked before rollout; this is not a complete priced production SaaS or ecommerce architecture. Access information was last checked 2026-09-18, with official sources beside each product.
 
-## Kit setup required before launch
+## Immediate results and optional Kit signup
 
-Keep credentials server-side in Vercel. Do not prefix credentials with `VITE_` and do not commit values. This quiz uses the existing v3 form subscription API through its own `/api/stack-subscribe` endpoint, leaving the existing newsletter endpoint unchanged.
+The seventh answer immediately opens the complete recommendation in the browser. The result does not depend on Kit, an email address or a network request. Visitors can copy, print or save it without subscribing.
 
-Required environment variables:
+The result includes a separate optional `ConvertKitForm` for The Weekly Edge. It uses the existing `/api/subscribe` newsletter endpoint. Keep credentials server-side in Vercel, do not prefix credentials with `VITE_`, and do not commit values.
+
+Newsletter environment variables:
 
 - `CONVERTKIT_API_KEY`: existing Kit v3 API key.
-- `KIT_STACK_FORM_ID`: numeric ID of a dedicated Lean Stack Finder form.
-- `KIT_STACK_TAG_IDS`: JSON object mapping every tag below to its real positive numeric Kit tag ID. Empty/invalid configuration returns HTTP 503 rather than fake success.
+- `CONVERTKIT_FORM_ID`: numeric ID of The Weekly Edge form.
+- `CONVERTKIT_NEWSLETTER_TAG_ID`: numeric ID of its newsletter tag.
 
-Tags: `content`, `automation`, `product-building`, `customer-sales`, `cost-reduction`, `solo-founder`, `small-team`, `low-budget`, `AI-beginner`, `technical-founder`.
-
-Create these custom fields in Kit first (exact keys): `stack_business`, `stack_team`, `stack_goal`, `stack_tasks`, `stack_budget`, `stack_existing`, `stack_technical`, `stack_result`, `stack_summary`, `stack_consent`. The server calculates the segments/result itself; client-supplied tag IDs or result categories are not accepted. Optional free text is deliberately excluded.
-
-In the dedicated form, enable the incentive/confirmation email if you want double opt-in. The API accepts both active and inactive subscriptions, never forces confirmation, and unlocks on successful form acceptance. The UI tells inactive subscribers to confirm their inbox message. Configure a Kit automation on confirmed subscription to deliver `stack_result` and `stack_summary` and the occasional practical emails described in consent. Configure the ten tags for relevant follow-up. No result-email automation is created by this code, and the UI does not claim an email has already been sent.
-
-`CONVERTKIT_FORM_ID` remains the separate existing newsletter form. Changing it is not required for the quiz. Old client-prefixed key placeholders were removed from `.env.example`; use server variables instead. No credentials are included in this change.
-
-The real Kit configuration and inbox delivery must be verified with an authorized test address before launch. Do not use another person's email for testing.
+No dedicated Stack Finder form, result-delivery automation, segment tags or Stack Finder custom fields are required. On Kit Free, send The Weekly Edge as broadcasts. Verify signup, optional confirmation and unsubscribe with an authorized test address before launch.
 
 ## Persistence and analytics
 
-Only quiz answers and progress are saved in local storage under `domsky.lean-stack.v1`; names, emails, consent and unlock state are not persisted. Refresh restores preview/in-progress answers but requires a fresh submission to unlock. Within an unlocked session, editing recalculates locally without resubscribing; those edits do not update Kit fields until another submission. Restart clears quiz and signup state. Corrupt or unavailable storage does not prevent taking the quiz.
+Only quiz answers and progress are saved in local storage under `domsky.lean-stack.v1`; newsletter email state is not persisted by the quiz. Refresh restores a completed result or in-progress answers. Editing recalculates locally, and restart clears quiz state. Corrupt or unavailable storage does not prevent taking the quiz.
 
 No analytics provider was found or added. The optional `domsky:analytics` CustomEvent exposes only a fixed event name and question number. It never contains answers, free text, email or name. A future adapter can consume it without changes to the quiz. Affiliate-click events fire only for explicitly enabled affiliate records.
 
 ## Validation
 
 - `npm run lint`: existing TypeScript check.
-- `npm run test:stack`: server/client helper typecheck and deterministic tests, including 1,125 rule combinations, four decision states, dated product facts, calculator edge cases, semantic keyboard controls, responsive layout contracts, mocked Kit success/failure, and concurrent-submit protection.
+- `npm run test:stack`: client helper typecheck and deterministic tests, including 1,125 rule combinations, four decision states, dated product facts, immediate result delivery, the optional newsletter form, calculator edge cases, semantic keyboard controls and responsive layout contracts.
 - `npm run build`: Vite and route prerendering.
 - `npm run test:seo`: metadata, internal links and route checks.
 
-There is no existing formatter command. Browser QA must cover the seven questions, keyboard use, mobile widths, editing and restart, mocked email paths and print layout. Mock success demonstrates UI behavior, not real Kit delivery. No bypass or mock provider is shipped in the production endpoint.
+There is no existing formatter command. Browser QA must cover the seven questions, immediate results, keyboard use, mobile widths, editing and restart, newsletter success/failure states and print layout. Mock success demonstrates UI behavior, not real Kit delivery.

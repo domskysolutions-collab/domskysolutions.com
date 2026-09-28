@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const privateNames = ['GEMINI_API_KEY', 'ANTHROPIC_API_KEY', 'CONVERTKIT_API_KEY', 'CONVERTKIT_FORM_ID', 'CONVERTKIT_NEWSLETTER_TAG_ID', 'KIT_STACK_FORM_ID', 'KIT_STACK_TAG_IDS'];
+const privateNames = ['GEMINI_API_KEY', 'ANTHROPIC_API_KEY', 'CONVERTKIT_API_KEY', 'CONVERTKIT_FORM_ID', 'CONVERTKIT_NEWSLETTER_TAG_ID'];
 const files: string[] = [];
 function walk(directory: string) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
