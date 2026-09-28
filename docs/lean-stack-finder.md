@@ -16,11 +16,10 @@ The result includes a separate optional `ConvertKitForm` for The Weekly Edge. It
 
 Newsletter environment variables:
 
-- `CONVERTKIT_API_KEY`: existing Kit v3 API key.
+- `CONVERTKIT_API_KEY`: Kit v4 API key.
 - `CONVERTKIT_FORM_ID`: numeric ID of The Weekly Edge form.
-- `CONVERTKIT_NEWSLETTER_TAG_ID`: numeric ID of its newsletter tag.
 
-No dedicated Stack Finder form, result-delivery automation, segment tags or Stack Finder custom fields are required. On Kit Free, send The Weekly Edge as broadcasts. Verify signup, optional confirmation and unsubscribe with an authorized test address before launch.
+No dedicated Stack Finder form, result-delivery automation, tags or Stack Finder custom fields are required. On Kit Free, send The Weekly Edge as broadcasts. Verify signup, optional confirmation and unsubscribe with an authorized test address before launch.
 
 ## Persistence and analytics
 

@@ -11,7 +11,7 @@ const errorCode = (result: { status:number; body:unknown }) => {
 };
 
 const kitEnv = {
-  CONVERTKIT_API_KEY:'test-secret-never-log', CONVERTKIT_FORM_ID:'10', CONVERTKIT_NEWSLETTER_TAG_ID:'99',
+  CONVERTKIT_API_KEY:'test-secret-never-log', CONVERTKIT_FORM_ID:'10',
 };
 const kitCalls: Array<{ url:string; options?:RequestInit }> = [];
 const providerSuccess = async (url: string | URL | Request, options?: RequestInit) => {
@@ -28,7 +28,6 @@ assert.equal(newsletter.status, 200);
 assert.deepEqual(kitCalls.map(call => call.url), [
   'https://api.kit.com/v4/subscribers',
   'https://api.kit.com/v4/forms/10/subscribers',
-  'https://api.kit.com/v4/tags/99/subscribers',
 ]);
 assert(kitCalls.every(call => (call.options?.headers as Record<string,string>)['X-Kit-Api-Key'] === kitEnv.CONVERTKIT_API_KEY));
 assert(!kitCalls.some(call => String(call.options?.body).includes(kitEnv.CONVERTKIT_API_KEY)));
