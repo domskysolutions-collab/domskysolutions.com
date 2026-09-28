@@ -43,7 +43,10 @@ export async function fetchJsonWithTimeout(url: string, init: RequestInit, fetch
     const response = await fetcher(url, { ...init, signal: AbortSignal.timeout(timeoutMs) });
     if (response.status === 429) return failure(503, 'provider_rate_limited', 'The provider is temporarily busy. Try again later.');
     const data = await response.json().catch(() => null);
-    if (!response.ok || data === null) return failure(502, 'provider_unavailable', 'The provider could not complete the request.');
+    if (!response.ok || data === null) {
+      safeApiWarning('provider_http_failure', response.status);
+      return failure(502, 'provider_unavailable', 'The provider could not complete the request.');
+    }
     return { status: 200, body: data };
   } catch (error) {
     if (error instanceof Error && (error.name === 'TimeoutError' || error.name === 'AbortError')) return failure(504, 'provider_timeout', 'The provider timed out. Try again.');
