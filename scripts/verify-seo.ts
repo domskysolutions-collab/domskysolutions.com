@@ -136,11 +136,24 @@ function vercelRedirect(source: string, destination: string) {
   return vercel.redirects.some((redirect: { source:string; destination:string; permanent:boolean }) => redirect.source === source && redirect.destination === destination && redirect.permanent);
 }
 assert.deepEqual(vercel.redirects[0], {
-  source: '/:path*',
+  source: '/',
   has: [{ type: 'host', value: ALTERNATE_HOST }],
-  destination: `${SITE_URL}/:path*`,
+  destination: SITE_URL,
   permanent: true,
 });
+assert.deepEqual(vercel.redirects[1], {
+  source: '/:path((?!api(?:/|$)).+)',
+  has: [{ type: 'host', value: ALTERNATE_HOST }],
+  destination: `${SITE_URL}/:path`,
+  permanent: true,
+});
+const pageRedirectPattern = new RegExp(`^/${vercel.redirects[1].source.slice('/:path'.length)}$`);
+for (const apiPath of ['/api', '/api/subscribe', '/api/generate', '/api/subscribe/']) {
+  assert(!pageRedirectPattern.test(apiPath), `API path must stay on its original host: ${apiPath}`);
+}
+for (const pagePath of ['/about', '/reviews/convertkit', '/api-guide']) {
+  assert(pageRedirectPattern.test(pagePath), `Page must redirect to the canonical host: ${pagePath}`);
+}
 console.log(`Verified metadata, schema, H1s and internal links across ${paths.size} routes; ${Object.keys(legacyReviewRedirects).length} redirects; noindex 404.`);
 
 

@@ -3,14 +3,25 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/",
       "has": [
         {
           "type": "host",
           "value": "www.domskysolutions.com"
         }
       ],
-      "destination": "https://domskysolutions.com/:path*",
+      "destination": "https://domskysolutions.com",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!api(?:/|$)).+)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.domskysolutions.com"
+        }
+      ],
+      "destination": "https://domskysolutions.com/:path",
       "permanent": true
     },
     {

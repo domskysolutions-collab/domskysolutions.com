@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const privateNames = ['GEMINI_API_KEY', 'ANTHROPIC_API_KEY', 'CONVERTKIT_API_KEY', 'CONVERTKIT_FORM_ID'];
+const privateNames = ['GEMINI_API_KEY', 'ANTHROPIC_API_KEY', 'KIT_API_KEY', 'CONVERTKIT_API_KEY', 'CONVERTKIT_FORM_ID'];
 const files: string[] = [];
 function walk(directory: string) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -14,6 +14,7 @@ function walk(directory: string) {
 assert(fs.existsSync('dist'), 'Build output is missing.');
 walk('dist');
 const assets = files.map(filename => fs.readFileSync(filename, 'utf8')).join('\n');
+assert(!/https?:\/\/(?:www\.)?domskysolutions\.com\/api\/subscribe/.test(assets), 'Newsletter requests must use the same-origin /api/subscribe endpoint.');
 for (const name of privateNames) assert(!assets.includes(name), `Private environment-variable name bundled into client assets: ${name}`);
 for (const name of privateNames) {
   const value = process.env[name];

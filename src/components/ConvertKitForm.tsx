@@ -37,6 +37,8 @@ export const ConvertKitForm = ({
     try {
       const response = await fetch("/api/subscribe", {
         method: "POST",
+        mode: "same-origin",
+        redirect: "error",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, marketingConsent: true }),
       });
