@@ -13,7 +13,11 @@ const errorCode = (result: { status:number; body:unknown }) => {
 const kitEnv = {
   CONVERTKIT_API_KEY:'test-secret-never-log', CONVERTKIT_FORM_ID:'10', CONVERTKIT_NEWSLETTER_TAG_ID:'99',
 };
-const providerSuccess = async () => new Response(JSON.stringify({ subscription:{ state:'inactive', subscriber:{ id:123 } } }), { status:200, headers:{'content-type':'application/json'} });
+const kitCalls: Array<{ url:string; options?:RequestInit }> = [];
+const providerSuccess = async (url: string | URL | Request, options?: RequestInit) => {
+  kitCalls.push({ url:String(url), options });
+  return new Response(JSON.stringify({ subscriber:{ id:123, state:'inactive' } }), { status:200, headers:{'content-type':'application/json'} });
+};
 const providerTimeout = async (_url: string | URL | Request, options?: RequestInit) => new Promise<Response>((_resolve, reject) => {
   const hold = setTimeout(() => reject(new Error('Mock timeout signal was not received.')), 100);
   options?.signal?.addEventListener('abort', () => { clearTimeout(hold); reject(options.signal?.reason); }, { once:true });
@@ -21,6 +25,13 @@ const providerTimeout = async (_url: string | URL | Request, options?: RequestIn
 
 const newsletter = await subscribeNewsletter({email:'reader@example.com',marketingConsent:true}, kitEnv, providerSuccess as typeof fetch);
 assert.equal(newsletter.status, 200);
+assert.deepEqual(kitCalls.map(call => call.url), [
+  'https://api.kit.com/v4/subscribers',
+  'https://api.kit.com/v4/forms/10/subscribers',
+  'https://api.kit.com/v4/tags/99/subscribers',
+]);
+assert(kitCalls.every(call => (call.options?.headers as Record<string,string>)['X-Kit-Api-Key'] === kitEnv.CONVERTKIT_API_KEY));
+assert(!kitCalls.some(call => String(call.options?.body).includes(kitEnv.CONVERTKIT_API_KEY)));
 assert.equal((await subscribeNewsletter({email:'invalid',marketingConsent:true}, kitEnv, providerSuccess as typeof fetch)).status, 400);
 assert.equal((await subscribeNewsletter({email:'reader@example.com',marketingConsent:false}, kitEnv, providerSuccess as typeof fetch)).status, 400);
 assert.equal((await subscribeNewsletter({email:'reader@example.com',marketingConsent:true}, kitEnv, providerTimeout as typeof fetch, 5)).status, 504);
