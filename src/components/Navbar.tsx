@@ -27,7 +27,7 @@ export const Navbar = () => {
             </div>}
           </div>
           {links.map(([to,label])=><Link key={to} to={to} className={linkStyle} aria-current={location.pathname===to?'page':undefined}>{label}</Link>)}
-          <Link to="/#stack-finder" className="rounded-lg border border-brand-cyan/50 px-5 py-3 text-sm font-bold text-brand-cyan hover:bg-brand-surface">Find my stack</Link>
+          <Link to="/#newsletter" className="rounded-lg border border-brand-cyan/50 px-5 py-3 text-sm font-bold text-brand-cyan hover:bg-brand-surface">Weekly Edge</Link>
         </div>
       </div>
     </div>

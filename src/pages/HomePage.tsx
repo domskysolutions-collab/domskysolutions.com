@@ -10,42 +10,6 @@ export const HomePage = () => {
   return (
     <main className="bg-brand-bg min-h-screen">
       {/* Hero */}
-      <section aria-labelledby="hero-title" className="relative overflow-hidden px-5 sm:px-8 pt-32 pb-16 sm:pt-40 sm:pb-24">
-        <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" aria-hidden="true" />
-        <div className="relative max-w-5xl mx-auto text-center">
-          <p className="text-brand-amber text-xs sm:text-sm font-mono tracking-widest uppercase mb-6">
-            AI &amp; SaaS guidance for solo founders and small teams
-          </p>
-          <h1 id="hero-title" className="text-white mx-auto mb-6" style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: 'clamp(2.5rem, 6.5vw, 5.25rem)',
-            fontWeight: 800,
-            letterSpacing: '-0.045em',
-            lineHeight: 1.08,
-            textWrap: 'balance',
-          }}>
-            Choose better tools.{' '}
-            <span className="block text-brand-cyan">Build a better business.</span>
-          </h1>
-          <p className="max-w-2xl mx-auto text-base sm:text-xl text-gray-300 leading-relaxed mb-8">
-            Find the AI and SaaS tools that fit your work. Practical reviews and comparisons
-            help you choose what to use, what to skip, and where to spend your budget.
-          </p>
-          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 mb-10 text-sm text-gray-300">
-            {['Create better content', 'Simplify repetitive work', 'Build and launch products'].map(benefit => (
-              <li key={benefit} className="inline-flex items-center gap-2">
-                <CheckCircle2 size={16} className="text-brand-cyan shrink-0" aria-hidden="true" />{benefit}
-              </li>
-            ))}
-          </ul>
-<a href="#stack-finder" className="inline-flex items-center gap-3 bg-brand-cyan text-brand-bg px-6 py-4 rounded-lg font-bold">Find my lean tool stack <ArrowRight size={18} aria-hidden="true" /></a>
-          <p className="mt-6 text-sm text-gray-400 leading-relaxed">
-            {reviewCount} published reviews. Clear strengths and limitations.{' '}
-            <Link to="/methodology" className="text-brand-amber underline underline-offset-4 hover:text-white">See how I review tools</Link>.
-          </p>
-        </div>
-      </section>
-
       <LeanStackFinder />
 
       {/* Featured reviews */}

@@ -63,12 +63,12 @@ export function LeanStackFinder() {
     try { await navigator.clipboard.writeText(summaryFor(result!)); setCopyMessage('Summary copied.'); }
     catch { setCopyMessage('Copy is unavailable here. Select the summary below and copy it manually.'); }
   }
-  return <section id="stack-finder" className="lean-finder" aria-label="The Lean AI & SaaS Stack Finder">
+  return <section id="stack-finder" className="lean-finder lean-finder-hero" aria-labelledby={stage === 'intro' ? 'hero-title' : undefined} aria-label="The Lean AI & SaaS Stack Finder">
     <div className="lf-shell">
       <div className="lf-masthead"><span>domskysolutions</span><span>The Lean AI &amp; SaaS Stack Finder</span></div>
       {stage === 'intro' && <div className="lf-intro">
-        <div><p className="lf-eyebrow">Free personalized tool finder</p><h2 ref={heading} tabIndex={-1}>Find the Right AI and SaaS Tools for Your Business</h2>
-          <p className="lf-lead">Answer seven questions and receive a personalized, budget-conscious tool stack for creating content, automating work, or building products.</p>
+        <div><p className="lf-eyebrow">Free personalized tool finder for solo founders and small teams</p><h1 id="hero-title" ref={heading} tabIndex={-1}>Choose better tools.<span>Build a better business.</span></h1>
+          <p className="lf-lead">Answer seven questions and get an immediate, budget-conscious AI and SaaS stack for creating content, automating work, or building products.</p>
           <button className="lf-primary" disabled={!hydrated} onClick={() => { move('questions'); trackQuiz('started'); }}>Show My Recommended Stack <ArrowRight size={18} aria-hidden="true" /></button>
           <p className="lf-fine">About 3 minutes · Rule-based recommendations · Complete result shown immediately</p>
         </div>
