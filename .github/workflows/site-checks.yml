@@ -22,4 +22,61 @@ jobs:
       - run: npm run build
       - run: npm run test:seo
 
+  content-quality:
+    name: Content Engine validation
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Detect content-impacting changes
+        id: content-changes
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if git diff --quiet "$BASE_SHA" "$HEAD_SHA" -- \
+            'src/content/**' \
+            'src/components/article/**' \
+            'src/pages/blog/**' \
+            'src/pages/ComparisonsPage.tsx' \
+            'src/data/blogPosts.ts' \
+            'src/data/seo.ts' \
+            'src/App.tsx' \
+            'scripts/check-content.ts' \
+            'scripts/validate-content.ts' \
+            'scripts/prerender.tsx' \
+            'scripts/verify-seo.ts' \
+            'public/images/**' \
+            'package.json' \
+            'tsconfig.content.json'; then
+            echo "affected=false" >> "$GITHUB_OUTPUT"
+            echo "No content-impacting changes detected."
+          else
+            echo "affected=true" >> "$GITHUB_OUTPUT"
+            echo "Content-impacting changes detected."
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.content-changes.outputs.affected == 'true'
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        if: steps.content-changes.outputs.affected == 'true'
+        run: npm ci
+      - name: Validate content
+        if: steps.content-changes.outputs.affected == 'true'
+        run: npm run validate:content && npm run content:check
+      - name: Lint
+        if: steps.content-changes.outputs.affected == 'true'
+        run: npm run lint
+      - name: Typecheck
+        if: steps.content-changes.outputs.affected == 'true'
+        run: npm run typecheck
+      - name: Production build
+        if: steps.content-changes.outputs.affected == 'true'
+        run: npm run build
+
 
