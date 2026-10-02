@@ -88,6 +88,7 @@ export const leanSoloBusinessStack = {
     { type: 'list', items: ['Inquiries are repeatedly lost.', 'The same scheduling exchange consumes significant time.', 'Required approvals are not recorded.', 'File versions become confused.', 'Renewal or follow-up dates are missed.'] },
     { type: 'paragraph', text: 'These are measurable gaps worth investigating. Research one capability at a time. A CRM, scheduler, automation platform and proposal suite are not automatic starter requirements. An assistant should not receive confidential client information unless the provider’s controls and the business’s obligations allow it.' },
 
+    {"type":"paragraph","text":[{"text":"Compare Make and Zapier for a missing cross-app handoff before adding an automation subscription.","href":"/comparisons/make-vs-zapier-solo-business"}]},
     { type: 'heading', level: 2, id: 'small-website', text: 'A lean setup for a small website' },
     { type: 'paragraph', text: 'The important choice is which publishing path can be maintained safely after launch.' },
     { type: 'table', caption: 'Visual builder or supervised code?', columns: ['Decision factor', 'Visual-builder path', 'Supervised-code path'], rows: [

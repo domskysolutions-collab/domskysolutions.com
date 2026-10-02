@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Make and Zapier: three workflow decisions</title>
+  <desc id="desc">Client inquiries, confirmed subscribers and approved content are evaluated in parallel Make and Zapier lanes. Native tools may be enough. This is an editorial diagram, not a product screenshot.</desc>
+  <rect width="1600" height="900" fill="#0F0A05"/>
+  <g font-family="DM Sans, Arial, sans-serif" fill="#FEF3C7">
+    <text x="90" y="115" font-family="Space Mono, monospace" font-size="54" font-weight="700">Make vs Zapier</text>
+    <text x="90" y="173" font-size="30">Start with the handoff you need.</text>
+    <g fill="#1C0F05" stroke="#F97316" stroke-opacity=".5" stroke-width="2">
+      <rect x="90" y="240" width="440" height="90" rx="14"/>
+      <rect x="580" y="240" width="440" height="90" rx="14"/>
+      <rect x="1070" y="240" width="440" height="90" rx="14"/>
+      <rect x="90" y="390" width="1420" height="135" rx="14"/>
+      <rect x="90" y="550" width="1420" height="135" rx="14"/>
+      <rect x="90" y="740" width="1420" height="80" rx="14"/>
+    </g>
+    <g text-anchor="middle" font-size="27">
+      <text x="310" y="294">Client inquiry</text>
+      <text x="800" y="294">Confirmed subscriber</text>
+      <text x="1290" y="294">Approved content</text>
+    </g>
+    <g fill="none" stroke="#FB923C" stroke-width="3" stroke-dasharray="6 8">
+      <path d="M310 330v60M800 330v60M1290 330v60"/>
+    </g>
+    <text x="125" y="447" font-family="Space Mono, monospace" font-size="36" font-weight="700" fill="#F97316">Make</text>
+    <text x="440" y="444" font-size="28">Check exact actions and fields</text>
+    <text x="440" y="490" font-size="25">Track credits · Define repeat behavior · Test recovery</text>
+    <text x="125" y="607" font-family="Space Mono, monospace" font-size="36" font-weight="700" fill="#F97316">Zapier</text>
+    <text x="440" y="604" font-size="28">Check exact actions and fields</text>
+    <text x="440" y="650" font-size="25">Track tasks · Define repeat behavior · Test recovery</text>
+    <text x="800" y="789" text-anchor="middle" font-size="30">Native tools may be enough.</text>
+    <text x="1510" y="865" text-anchor="end" font-family="Space Mono, monospace" font-size="20" fill="#FB923C">DOMSKY SOLUTIONS · EDITORIAL DIAGRAM</text>
+  </g>
+</svg>

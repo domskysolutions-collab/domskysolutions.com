@@ -78,6 +78,7 @@ export const softwareStackAudit = {
     ] },
     { type: 'note', title: 'AI is not automatic coverage', text: 'An assistant can draft, classify or transform information. It does not automatically replace storage, consent records, publishing controls, billing, delivery guarantees or accountable human review. Compare the completed job and safeguards, not the novelty of the interface.' },
 
+    {"type":"paragraph","text":[{"text":"Compare Make and Zapier when a recurring handoff remains uncovered after the stack audit.","href":"/comparisons/make-vs-zapier-solo-business"}]},
     { type: 'heading', level: 2, id: 'cash-formula', text: 'Step 4 — Calculate recurring cash honestly' },
     { type: 'quote', text: 'Monthly net reduction = old recurring cash total − retained recurring costs − incremental replacement recurring costs' },
     { type: 'quote', text: 'First-year net cash reduction = monthly net reduction × 12 − one-time migration cash' },

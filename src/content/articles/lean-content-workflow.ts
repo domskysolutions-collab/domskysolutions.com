@@ -209,6 +209,7 @@ export const leanContentWorkflow = {
     { type: 'paragraph', text: 'Do not add an automation platform merely to move an unapproved draft between tools. The slow step should be editorial judgment, not copying text.' },
     { type: 'paragraph', text: 'When a repeated bottleneck appears, document the repeated action, its frequency, the error it creates, the review that must remain manual and whether automation would reduce work without removing the approval gate.' },
     { type: 'cta', title: 'Plan your next researched piece', text: 'Choose one reader question, record the sources and schedule the next reviewable publishing package.', label: 'Open the Content Calendar', href: '/tools/content-calendar' },
+    {"type":"paragraph","text":[{"text":"Compare Make and Zapier for an optional task and reminder handoff after content approval.","href":"/comparisons/make-vs-zapier-solo-business"}]},
     { type: 'heading', level: 2, id: 'questions', text: 'Common questions' },
     { type: 'heading', level: 3, id: 'research-first', text: 'Should research finish before drafting?' },
     { type: 'paragraph', text: 'Finish the evidence needed for the approved scope. New questions may appear during drafting, but they should return to research as explicit gaps rather than being answered from memory.' },

@@ -19,7 +19,7 @@ export const kitReview = {
   status: 'published',
   contentType: 'review',
   tags: ['Kit', 'ConvertKit', 'Email marketing', 'Lead magnets', 'Solo creators'],
-  relatedSlugs: ['/uses', '/comparisons/kit-vs-mailerlite-vs-beehiiv'],
+  relatedSlugs: ['/uses', '/comparisons/kit-vs-mailerlite-vs-beehiiv', '/comparisons/make-vs-zapier-solo-business'],
   readingMinutes: 13,
   featuredImageRequired: true,
   featuredImage: {
@@ -191,6 +191,7 @@ export const kitReview = {
       ],
     },
     { type: 'paragraph', text: 'Documentation can establish that the controls exist. Only an account-level test can show whether the current interface and exported fields fit your process.' },
+    {"type":"paragraph","text":[{"text":"Compare Make and Zapier for a needed external handoff after checking Kit’s native features and the exact confirmation event.","href":"/comparisons/make-vs-zapier-solo-business"}]},
     { type: 'heading', level: 2, id: 'launch-tests', text: 'Practical limitations to test before launch' },
     { type: 'paragraph', text: 'This review does not claim firsthand results. These checks remain part of Domsky’s pre-publication product test and should also form the reader’s launch checklist.' },
     {
