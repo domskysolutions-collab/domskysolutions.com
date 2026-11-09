@@ -10,10 +10,10 @@ export const BlogIndex = () => {
     <div className="bg-brand-bg min-h-screen pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-ink mb-6">
             AI Insights & News
           </h1>
-          <p className="text-xl text-gray-400">
+          <p className="text-xl text-secondary">
             Deep dives, tool comparisons and industry analysis for builders and founders
           </p>
         </div>

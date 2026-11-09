@@ -4,13 +4,13 @@ import { H2, SectionDivider } from '../components/ui';
 
 export const DisclaimerPage = () => {
   return (
-    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
+    <div className="bg-brand-bg min-h-screen text-secondary font-sans pb-24">
       <div className="max-w-[680px] mx-auto px-6 pt-32">
         <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-ink leading-tight mb-4">
             Affiliate Disclaimer
           </h1>
-          <p className="text-gray-400 font-mono text-sm">Last updated: April 2026</p>
+          <p className="text-secondary font-mono text-sm">Last updated: April 2026</p>
         </div>
 
         <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
@@ -51,7 +51,7 @@ export const DisclaimerPage = () => {
           <H2>QUESTIONS</H2>
           <p>
             If you have questions about affiliate relationships please contact:<br />
-            <a href="mailto:domskysolutions@gmail.com" className="text-brand-cyan hover:underline">domskysolutions@gmail.com</a>
+            <a href="mailto:domskysolutions@gmail.com" className="text-link hover:underline">domskysolutions@gmail.com</a>
           </p>
         </div>
       </div>

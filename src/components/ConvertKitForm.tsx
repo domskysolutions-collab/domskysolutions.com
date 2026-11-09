@@ -56,7 +56,7 @@ export const ConvertKitForm = ({
 
   if (status === "success") {
     return (
-      <div role="status" className={`text-brand-cyan font-bold font-mono text-center py-4 text-lg ${className}`}>
+      <div role="status" className={`text-link font-bold font-mono text-center py-4 text-lg ${className}`}>
         {successMessage}
       </div>
     );
@@ -64,7 +64,7 @@ export const ConvertKitForm = ({
 
   return (
     <div className="relative w-full">
-      <label htmlFor={emailId} className="block text-sm text-gray-300 mb-2">Email address</label>
+      <label htmlFor={emailId} className="block text-sm text-secondary mb-2">Email address</label>
       <form className={className} onSubmit={handleSubmit}>
         <input 
           id={emailId}
@@ -88,9 +88,9 @@ export const ConvertKitForm = ({
           {status === "loading" ? "Joining..." : buttonText}
         </button>
       </form>
-      <p id={`${emailId}-privacy`} className="text-xs text-gray-400 mt-3">Get The Weekly Edge by email. Unsubscribe anytime. <a href="/privacy" className="underline">Privacy policy</a>.</p>
+      <p id={`${emailId}-privacy`} className="text-xs text-secondary mt-3">Get The Weekly Edge by email. Unsubscribe anytime. <a href="/privacy" className="underline">Privacy policy</a>.</p>
       {status === "error" && (
-        <div role="alert" className="text-red-400 text-sm mt-2 font-mono text-center">
+        <div role="alert" className="text-error text-sm mt-2 font-mono text-center">
           Something went wrong. Please try again.
         </div>
       )}

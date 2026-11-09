@@ -14,10 +14,10 @@ export function PageSeo() {
     else window.scrollTo(0, 0);
   }, [pathname, hash]);
   if (meta.path === '/' || meta.noindex) return null;
-  return <nav aria-label="Breadcrumb" className="relative top-24 max-w-7xl mx-auto px-6 text-sm text-gray-400">
+  return <nav aria-label="Breadcrumb" className="relative top-24 max-w-7xl mx-auto px-6 text-sm text-secondary">
     <ol className="flex flex-wrap gap-2">{getBreadcrumbs(meta).map((crumb, index, list) => <li key={crumb.path}>
       {index > 0 && <span aria-hidden="true" className="mr-2">/</span>}
-      {index === list.length - 1 ? <span aria-current="page">{crumb.name}</span> : <Link className="hover:text-brand-cyan underline" to={crumb.path}>{crumb.name}</Link>}
+      {index === list.length - 1 ? <span aria-current="page">{crumb.name}</span> : <Link className="hover:text-link underline" to={crumb.path}>{crumb.name}</Link>}
     </li>)}</ol>
   </nav>;
 }

@@ -29,29 +29,29 @@ export function UsageLimitModal({ open, onClose, dailyLimit }: UsageLimitModalPr
     >
       <button
         type="button"
-        className="absolute inset-0 bg-black/70"
+        className="absolute inset-0 bg-surface"
         onClick={onClose}
         aria-label="Close dialog"
       />
       <div
-        className="relative z-10 max-w-md rounded-2xl border border-gray-700 p-6 shadow-xl"
-        style={{ background: '#1C0F05' }}
+        className="relative z-10 max-w-md rounded-2xl border border-line p-6 "
+        style={{ background: 'var(--color-surface)' }}
       >
         <h2
           id="usage-limit-title"
-          className="mb-2 font-mono text-lg font-bold text-white"
+          className="mb-2 font-mono text-lg font-bold text-ink"
         >
           Daily limit reached
         </h2>
-        <p className="mb-6 text-sm leading-relaxed text-gray-400">
+        <p className="mb-6 text-sm leading-relaxed text-secondary">
           You have used all {dailyLimit} free generations for this tool today. Come back
           tomorrow or join the waitlist for higher limits when Pro launches.
         </p>
-        <div className="mb-5 rounded-xl border border-brand-cyan/30 bg-black/20 p-4"><p className="mb-3 text-sm text-gray-300">Subscribe to The Weekly Edge and unlock 3 extra generations per day in this browser.</p><ConvertKitForm buttonText="Subscribe and unlock" successMessage="Subscribed. You now have 3 extra generations per day in this browser." onSuccess={() => { localStorage.setItem("tool-email-unlocked", "true"); window.dispatchEvent(new Event("tool-email-unlocked")); }} className="flex flex-col gap-2" inputClassName="rounded-lg border border-white/20 bg-black/30 px-3 py-2 text-sm text-white" buttonClassName="rounded-lg bg-brand-cyan px-3 py-2 text-sm font-bold text-brand-bg" /></div><div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
+        <div className="mb-5 rounded-xl border border-brand-cyan bg-surface p-4"><p className="mb-3 text-sm text-secondary">Subscribe to The Weekly Edge and unlock 3 extra generations per day in this browser.</p><ConvertKitForm buttonText="Subscribe and unlock" successMessage="Subscribed. You now have 3 extra generations per day in this browser." onSuccess={() => { localStorage.setItem("tool-email-unlocked", "true"); window.dispatchEvent(new Event("tool-email-unlocked")); }} className="flex flex-col gap-2" inputClassName="rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink" buttonClassName="rounded-lg bg-action px-3 py-2 text-sm font-bold text-brand-bg" /></div><div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-gray-600 px-4 py-2 font-mono text-sm text-gray-300 transition-colors hover:border-brand-cyan hover:text-brand-cyan"
+            className="rounded-xl border border-line px-4 py-2 font-mono text-sm text-secondary transition-colors hover:border-brand-cyan hover:text-link"
           >
             Close
           </button>
@@ -60,7 +60,7 @@ export function UsageLimitModal({ open, onClose, dailyLimit }: UsageLimitModalPr
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-xl px-4 py-2 text-center font-mono text-sm font-bold text-brand-bg transition-opacity hover:opacity-90"
-            style={{ background: '#F97316', color: '#000000' }}
+            style={{ background: 'var(--color-action)', color: 'var(--color-on-action)' }}
           >
             Join waitlist →
           </a>
