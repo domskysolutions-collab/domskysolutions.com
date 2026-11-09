@@ -76,9 +76,20 @@ function contrast(foreground: string, background: string) {
   const values = [luminance(foreground), luminance(background)].sort((a, b) => b - a);
   return (values[0] + 0.05) / (values[1] + 0.05);
 }
-for (const [foreground, background] of [['F97316', '0F0A05'], ['F97316', '1C0F05'], ['FB923C', '0F0A05'], ['A8A29E', '0F0A05'], ['A8A29E', '1C0F05'], ['FEF3C7', '0F0A05']]) {
-  assert(contrast(foreground, background) >= 4.5, `Palette contrast fails WCAG AA: #${foreground} on #${background}`);
+const theme = source('src/index.css');
+const token = (name: string) => {
+  const value = theme.match(new RegExp('--color-' + name + ':\\s*#([0-9a-fA-F]{6})'))?.[1];
+  assert(value, `Missing semantic color: ${name}`); return value;
+};
+for (const [fg, bg] of [['ink','page'],['secondary','page'],['subtle','page'],['subtle','surface'],['link','page'],['link','surface'],['emphasis','page'],['on-action','action'],['on-action','action-hover'],['error','error-surface'],['success','success-surface']]) {
+  assert(contrast(token(fg), token(bg)) >= 4.5, `Palette contrast fails WCAG AA: ${fg} on ${bg}`);
 }
+for (const bg of ['page','surface','field']) {
+  assert(contrast(token('focus'), token(bg)) >= 3, `Focus contrast: ${bg}`);
+  assert(contrast(token('control-border'), token(bg)) >= 3, `Control boundary contrast: ${bg}`);
+}
+const visualFiles = ['src/index.css', 'src/components/lean-stack-finder.css', 'src/pages/editorial-home.css'];
+for (const filename of visualFiles) assert(!/(?:linear|radial|conic)-gradient\(|text-shadow:|backdrop-filter:/.test(source(filename)), `Forbidden effect: ${filename}`);
 
 const css = source('src/index.css');
 assert(css.includes(':focus-visible') && css.includes('@media print'), 'Global visible-focus and print rules are required');
