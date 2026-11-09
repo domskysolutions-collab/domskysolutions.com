@@ -67,7 +67,7 @@ export function LeanStackFinder() {
     <div className="lf-shell">
       <div className="lf-masthead"><span>domskysolutions</span><span>The Lean AI &amp; SaaS Stack Finder</span></div>
       {stage === 'intro' && <div className="lf-intro">
-        <div><p className="lf-eyebrow">Free personalized tool finder for solo founders and small teams</p><h1 id="hero-title" ref={heading} tabIndex={-1}>Choose better tools.<span>Build a better business.</span></h1>
+        <div><p className="lf-eyebrow">Free personalized tool finder for solo founders and small teams</p><h2 id="hero-title" ref={heading} tabIndex={-1}>Find a starting stack.</h2>
           <p className="lf-lead">Answer seven questions and get an immediate, budget-conscious AI and SaaS stack for creating content, automating work, or building products.</p>
           <button className="lf-primary" disabled={!hydrated} onClick={() => { move('questions'); trackQuiz('started'); }}>Show My Recommended Stack <ArrowRight size={18} aria-hidden="true" /></button>
           <p className="lf-fine">About 3 minutes · Rule-based recommendations · Complete result shown immediately</p>

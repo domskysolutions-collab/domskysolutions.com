@@ -14,7 +14,7 @@ export const makeZapierComparison = {
   "category": "Comparisons",
   author: PUBLIC_AUTHOR,
   "publishedAt": "2026-10-02",
-  "updatedAt": null,
+  "updatedAt": "2026-11-09",
   "verifiedAt": "2026-10-02",
   "status": "published",
   "contentType": "comparison",
@@ -98,11 +98,7 @@ export const makeZapierComparison = {
   "blocks": [
     {
       "type": "paragraph",
-      "text": "Copying an inquiry into a spreadsheet is manageable. Remembering to do it every time, checking the details and sending yourself a reminder can become a recurring distraction."
-    },
-    {
-      "type": "paragraph",
-      "text": "Make and Zapier are candidates for those repeated handoffs. The useful question is which one completes your work with a setup you understand and costs you can track."
+      "text": "An inquiry needs a record and an owner notification. Check whether your form already handles both before adding Make or Zapier."
     },
     {
       "type": "paragraph",
@@ -115,18 +111,11 @@ export const makeZapierComparison = {
       ]
     },
     {
-      "type": "paragraph",
-      "text": "That is Domsky's fit-based recommendation, not a performance ranking."
-    },
-    {
-      "type": "quote",
+      "type": "note",
       "text": [
-        {
-          "text": "Evidence note:",
-          "strong": true
-        },
         " Product facts below come from official documentation checked on 2 October 2026. Domsky has not run a controlled Make–Zapier test for this article. The three workflows are evaluation scenarios, not completed tests. Exact paid checkout prices and measured savings are not reported. Product and source links are direct, non-affiliate links."
-      ]
+      ],
+      "title": "Evidence scope"
     },
     {
       "type": "heading",
