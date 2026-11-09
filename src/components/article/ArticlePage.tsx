@@ -30,7 +30,8 @@ export function ArticlePage({ article }: { article: ArticleDocument }) {
     ? [{ id: block.id, text: block.text }] : block.type === 'sources' ? [{ id: block.id, text: block.title }] : []);
   const hasToc = toc.length >= 3;
   const parent = article.slug === '/uses' ? '/' : article.slug.startsWith('/comparisons/') ? '/comparisons' : article.slug.startsWith('/reviews/') ? '/reviews' : '/blog';
-  return <main className="bg-brand-bg min-h-screen text-gray-300 pb-24">
+  const editorialPilot = article.id === 'ds-comp-make-zapier';
+  return <main data-editorial={editorialPilot ? 'comparison' : undefined} className="bg-brand-bg min-h-screen text-gray-300 pb-24">
     <motion.div aria-hidden="true" className="fixed top-0 inset-x-0 h-1 bg-brand-cyan origin-left z-50" style={{ scaleX: scrollYProgress }} />
     <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-36">
       <Link to={parent} className="text-sm text-brand-cyan hover:underline">← {parent === '/' ? 'Home' : parent === '/comparisons' ? 'All comparisons' : parent === '/reviews' ? 'All reviews' : 'All articles'}</Link>
@@ -51,8 +52,10 @@ export function ArticlePage({ article }: { article: ArticleDocument }) {
         </nav>}
         <article className="min-w-0 max-w-[760px] text-[17px] leading-[1.85] break-words [&_[id]]:scroll-mt-32 [&_p]:mb-5">
           <AffiliateDisclosure required={article.affiliateDisclosureRequired} text={article.disclosure} />
-          {article.featuredImage && <ArticleFigure image={article.featuredImage} eager />}
-          <ArticleBlocks article={article} />
+          {!editorialPilot && article.featuredImage && <ArticleFigure image={article.featuredImage} eager />}
+          {editorialPilot && <ArticleBlocks article={{ ...article, blocks: article.blocks.slice(0, 3) }} />}
+          {editorialPilot && article.featuredImage && <ArticleFigure image={article.featuredImage} eager />}
+          <ArticleBlocks article={editorialPilot ? { ...article, blocks: article.blocks.slice(3) } : article} />
           <RelatedArticles article={article} />
         </article>
       </div>

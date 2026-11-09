@@ -5,6 +5,8 @@ alwaysApply: true
 
 # Domsky Content Engine
 
+Follow `docs/DOMSKY_EDITORIAL_STYLE.md` for voice, evidence distinctions and human editorial review; follow `docs/DOMSKY_VISUAL_IDENTITY.md` for restrained layout choices. Root `AGENTS.md` connects these guides to the publishing workflow. They do not override approved factual briefs.
+
 ## Role and source of truth
 
 - Act as the implementation engineer for domskysolutions.com.

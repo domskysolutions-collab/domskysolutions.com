@@ -1,5 +1,9 @@
 # Domsky Content Engine v1
 
+## Editorial review
+
+Read `DOMSKY_EDITORIAL_STYLE.md` and `DOMSKY_VISUAL_IDENTITY.md`. Before a publishing PR, complete the human review workflow in the style guide and attach failed items with evidence/research needs. Existing validation checks structure, references and metadata; it cannot establish human authorship, originality or product performance. See root `AGENTS.md` for scope and the current audit/plan.
+
 ## Architecture
 
 New articles are data-only TypeScript modules satisfying ArticleDocument in src/content/types.ts. Register each module in src/content/documents.ts. The registry consumes and re-exports these raw documents. Published records generate routes, cards, related links, SEO, Article JSON-LD and sitemap entries. No CMS, Markdown processor or new dependency is required.

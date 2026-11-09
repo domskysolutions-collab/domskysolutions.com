@@ -1,318 +1,46 @@
-import { LeanStackFinder } from '../components/LeanStackFinder';
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, CheckCircle2 } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
+import { LeanStackFinder } from '../components/LeanStackFinder';
 import { ConvertKitForm } from '../components/ConvertKitForm';
-import { reviewCount } from '../data/reviewCatalog';
 
-export const HomePage = () => {
-  return (
-    <main className="bg-brand-bg min-h-screen">
-      {/* Hero */}
-      <LeanStackFinder />
-
-      {/* Featured reviews */}
-      <section className="py-16 md:py-24 bg-brand-surface border-y border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
-            <div>
-              <div className="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-2">INDEPENDENT REVIEWS</div>
-              <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Popular Reviews & Comparisons</h2>
-              <p className="text-gray-400 mt-2 max-w-2xl">
-                See the features, pricing, limitations, and best-fit use cases that matter when you are choosing software.
-              </p>
-            </div>
-            <Link to="/reviews" className="inline-flex items-center gap-2 text-brand-cyan font-mono text-sm hover:underline shrink-0">
-              View all reviews <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                emoji: '🤖',
-                title: 'Claude by Anthropic',
-                category: 'AI Assistant',
-                verdict: 'An editorial review of writing, reasoning, limitations and plan fit.',
-                price: 'From $20/month',
-                to: '/reviews/claude',
-              },
-              {
-                emoji: '💻',
-                title: 'Cursor',
-                category: 'AI Code Editor',
-                verdict: 'A review of AI-assisted coding workflows, limits and who should consider it.',
-                price: 'From $20/month',
-                to: '/reviews/cursor',
-              },
-              {
-                emoji: '🔍',
-                title: 'Perplexity AI',
-                category: 'AI Research',
-                verdict: 'A review of source-backed research workflows and their limitations.',
-                price: 'Free / $20/month',
-                to: '/reviews/perplexity',
-              },
-            ].map((card) => (
-              <Link
-                key={card.title}
-                to={card.to}
-                className="group"
-                style={{
-                  background: '#0F0A05',
-                  border: '1px solid rgba(249,115,22,0.14)',
-                  borderRadius: 16,
-                  padding: 24,
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(249,115,22,0.28)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'rgba(249,115,22,0.14)';
-                }}
-              >
-                <div className="flex items-start mb-4">
-                  <div className="text-3xl leading-none">{card.emoji}</div>
-                </div>
-
-                <h3 className="font-bold font-mono text-white text-lg mb-2">{card.title}</h3>
-
-                <div className="mb-3">
-                  <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
-                    {card.category}
-                  </span>
-                </div>
-
-                <p className="text-gray-400 text-sm mb-6">{card.verdict}</p>
-
-                <div className="flex items-center justify-between mt-auto">
-                  <div className="text-xs text-gray-500">{card.price}</div>
-                  <div className="text-brand-cyan text-xs font-mono font-bold">Read {card.title} review →</div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Best tools for */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10"><div className="text-xs font-mono text-brand-cyan uppercase tracking-wider mb-2">CHOOSE BY OUTCOME</div><h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Best tools for...</h2><p className="text-gray-400 mt-2">Start with the job you need to get done.</p></div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[['Lean software stack','Keep useful tools, fill one measured gap and skip the rest.','/uses'],['AI & automation','Use the Lean Stack Finder to keep, trial, add or skip tools for a named need.','/#stack-finder'],['Marketing & growth','Build content, email and lead systems.','/tools/content-calendar'],['Websites & online business','Launch and improve your online presence.','/tools']].map(([title,body,to]) => <Link key={title} to={to} className="rounded-xl border border-brand-border bg-brand-surface p-5 hover:border-brand-cyan transition-colors"><h3 className="font-bold font-mono text-white mb-2">{title}</h3><p className="text-gray-400 text-sm mb-4">{body}</p><span className="text-brand-cyan text-xs font-mono font-bold">Find the right tools →</span></Link>)}
-          </div>
-        </div>
-      </section>
-
-      {/* Comparison table */}
-      <section className="py-16 md:py-24 bg-brand-surface border-y border-gray-800 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto"><div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10"><div><div className="text-xs font-mono text-brand-amber uppercase tracking-wider mb-2">COMPARE BEFORE YOU PAY</div><h2 className="text-3xl md:text-4xl font-bold font-mono text-white">Popular tool comparisons</h2><p className="text-gray-400 mt-2">A quick starting point before you read the full documented review.</p><p className="text-sm text-gray-300 mt-4">Choosing your primary AI tool? <Link to="/comparisons/claude-vs-chatgpt-vs-gemini-2026" className="text-brand-cyan underline underline-offset-4">Choose one AI assistant</Link> by tasks, limits, integrations and total value.</p><p className="text-sm text-gray-300 mt-2">Making a small website change? <Link to="/comparisons/chatgpt-astra-vs-alternatives" className="text-brand-cyan underline underline-offset-4">Compare Codex and Claude Code</Link> for a supervised repository workflow.</p></div><Link to="/comparisons" className="text-brand-cyan font-mono text-sm">Compare all tools →</Link></div><div role="region" aria-label="Popular tool comparison" tabIndex={0} className="overflow-x-auto rounded-xl border border-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-cyan/60"><table className="w-full min-w-[620px] text-left text-sm"><thead className="bg-brand-bg"><tr><th scope="col" className="p-4 text-gray-400 font-mono">Tool</th><th scope="col" className="p-4 text-gray-400 font-mono">Best for</th><th scope="col" className="p-4 text-gray-400 font-mono">Starting price</th><th scope="col" aria-label="Review" className="p-4"></th></tr></thead><tbody>{[['Claude','Writing and reasoning','Free / $20 mo','/reviews/claude'],['Perplexity','Research with sources','Free / $20 mo','/reviews/perplexity'],['Cursor','AI-assisted coding','Free / $20 mo','/reviews/cursor']].map(([tool,best,price,to])=><tr key={tool} className="border-t border-gray-800"><th scope="row" className="p-4 text-white font-bold">{tool}</th><td className="p-4 text-gray-400">{best}</td><td className="p-4 text-gray-400">{price}</td><td className="p-4 text-right"><Link to={to} className="text-brand-cyan font-mono text-xs">Read {tool} review →</Link></td></tr>)}</tbody></table></div></div>
-      </section>
-
-      {/* Stats bar */}
-      <section
-        className="py-10"
-        style={{
-          background: '#1C0F05',
-          borderTop: '1px solid rgba(249,115,22,0.14)',
-          borderBottom: '1px solid rgba(249,115,22,0.14)',
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center gap-8 md:gap-16 flex-wrap">
-            {[
-              { value: 'Clear', label: 'limitations explained', color: '#F97316' },
-              { value: 'Open', label: 'review methodology', color: '#FB923C' },
-              { value: String(reviewCount), label: 'tools reviewed in depth', color: '#F97316' },
-              { value: 'Named', label: 'author identity', color: '#4ADE80' },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl font-bold font-mono" style={{ color: stat.color }}>
-                  {stat.value}
-                </div>
-                <div className="text-xs text-gray-500 font-mono uppercase tracking-wider mt-1 inline-flex items-center gap-2 justify-center">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="py-16 md:py-24 bg-brand-surface border-y border-gray-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-4">Spend Less Time Researching. More Time Building.</h2>
-          <p className="text-gray-400 text-center mb-12">
-            What makes this site different from every other AI tools review site
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center relative overflow-hidden">
-              <div className="absolute top-4 right-4 text-5xl font-bold font-mono text-brand-cyan opacity-30">01</div>
-              <h3 className="font-bold font-mono text-lg text-white mb-2">1. I check the evidence</h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                I explain the strengths, limitations and practical fit of each tool. Read the methodology for the testing details currently documented.
-              </p>
-              <div className="text-xs text-brand-cyan font-mono"><Link to="/methodology" className="underline">Read the review methodology</Link></div>
-            </div>
-            <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center relative overflow-hidden">
-              <div className="absolute top-4 right-4 text-5xl font-bold font-mono text-brand-cyan opacity-30">02</div>
-              <h3 className="font-bold font-mono text-lg text-white mb-2">2. I write the honest verdict</h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                Pricing context, limitations, use cases and commercial disclosures are presented together.
-              </p>
-              <div className="text-xs text-brand-cyan font-mono">Real pricing. Real limitations.</div>
-            </div>
-            <div className="rounded-xl border border-gray-800 bg-brand-bg p-8 text-center relative overflow-hidden">
-              <div className="absolute top-4 right-4 text-5xl font-bold font-mono text-brand-cyan opacity-30">03</div>
-              <h3 className="font-bold font-mono text-lg text-white mb-2">3. You compare the tradeoffs</h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                Use the research, free tools and comparisons to make a more informed decision.
-              </p>
-              <div className="text-xs text-brand-cyan font-mono">Check fit before you subscribe</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Latest blog posts */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
-            <div>
-              <div className="text-xs font-mono text-brand-amber uppercase tracking-wider mb-2 inline-flex items-center gap-2">
-                <BookOpen className="w-4 h-4" aria-hidden />
-                FROM THE BLOG
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold font-mono text-white mb-2">Latest Insights</h2>
-            </div>
-            <Link to="/blog" className="inline-flex items-center gap-2 text-brand-cyan font-mono text-sm hover:underline shrink-0">
-              Read all posts <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                category: 'GUIDES',
-                categoryStyle: {
-                  background: 'rgba(249,115,22,0.1)',
-                  color: '#F97316',
-                  border: '1px solid rgba(249,115,22,0.2)',
-                },
-                title: 'Audit Your Software Stack: What to Keep, Cancel or Replace',
-                excerpt: 'Map required jobs, test replacement coverage and calculate recurring cash honestly.',
-                readTime: '13 min read',
-                to: '/blog/replaced-saas-stack-with-ai-tools',
-              },
-              {
-                category: 'AI NEWS',
-                categoryStyle: {
-                  background: 'rgba(249,115,22,0.1)',
-                  color: '#F97316',
-                  border: '1px solid rgba(249,115,22,0.2)',
-                },
-                title: '10 AI Tools for Common Solo-Business Tasks',
-                excerpt: 'A category-by-category map of tools to evaluate for common workflows.',
-                readTime: '9 min read',
-                to: '/blog/ai-tools-look-like-team-of-10',
-              },
-              {
-                category: 'WORKFLOWS',
-                categoryStyle: {
-                  background: 'rgba(251,146,60,0.12)',
-                  color: '#FB923C',
-                  border: '1px solid rgba(251,146,60,0.22)',
-                },
-                title: 'A Lean Content Workflow for Solo Creators',
-                excerpt: 'Turn one researched idea into an article, email and social post with clear review gates.',
-                readTime: '15 min read',
-                to: '/blog/ai-daily-workflow-solo-business',
-              },
-            ].map((post) => (
-              <Link
-                key={post.to}
-                to={post.to}
-                className="group rounded-2xl transition-all duration-300 hover:-translate-y-1"
-                style={{
-                  background: '#1C0F05',
-                  border: '1px solid rgba(249,115,22,0.14)',
-                  borderRadius: 16,
-                  padding: 24,
-                }}
-              >
-                <div className="mb-4">
-                  <span className="text-xs font-mono px-2 py-0.5 rounded-full" style={post.categoryStyle}>
-                    {post.category}
-                  </span>
-                </div>
-                <h3 className="font-bold font-mono text-white text-base leading-snug mb-2">{post.title}</h3>
-                <p className="text-gray-400 text-sm mb-4">{post.excerpt}</p>
-                <div className="flex items-center justify-between">
-                  <div className="text-gray-600 text-xs">{post.readTime}</div>
-                  <div className="text-brand-cyan text-xs font-mono font-bold">Read →</div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits */}
-      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white text-center mb-12">
-            What to expect from Domsky Solutions
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              {
-                title: 'Personal perspective',
-                body: 'Reviews reflect my editorial perspective. The methodology explains which testing details are documented and which are still missing.',
-                icon: '🔬',
-                iconStyle: { background: 'rgba(249,115,22,0.12)' },
-              },
-              {
-                title: 'Visible commercial disclosures',
-                body: 'Compensated links are disclosed before they appear. Commercial relationships do not determine editorial conclusions.',
-                icon: '🚫',
-                iconStyle: { background: 'rgba(239,68,68,0.12)' },
-              },
-              {
-                title: 'Built for one-person teams',
-                body: 'Every review and tool is built for solopreneurs — not enterprise teams with IT departments and unlimited budgets.',
-                icon: '👤',
-                iconStyle: { background: 'rgba(251,146,60,0.12)' },
-              },
-              {
-                title: 'Free planning tools',
-                body: 'The free tools on this site help structure common planning and comparison tasks. Their assumptions are explained in context.',
-                icon: '🛠️',
-                iconStyle: { background: 'rgba(74,222,128,0.12)' },
-              },
-            ].map((item) => (
-              <div key={item.title} className="rounded-xl border border-gray-800 bg-brand-surface p-6 flex gap-4">
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center text-xl mr-4 shrink-0"
-                  style={item.iconStyle}
-                  aria-hidden
-                >
-                  {item.icon}
-                </div>
-                <div>
-                  <h3 className="font-bold font-mono text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{item.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+export const HomePage = () => <main className="editorial-home bg-brand-bg min-h-screen">
+  <header className="ed-masthead">
+    <p className="ed-label">Domsky Solutions / Software decisions</p>
+    <h1>What deserves a place <br />in your software stack?</h1>
+    <p className="ed-deck">Comparisons and practical guides for running a solo business. Start with the work a tool must do, the limits that matter and the reasons to keep what you have.</p>
+    <Link className="ed-policy" to="/methodology">How to read the evidence</Link>
+  </header>
+  <section className="ed-lead-grid" aria-label="Featured reading">
+    <article className="ed-lead">
+      <p className="ed-label">The automation decision</p>
+      <h2><Link to="/comparisons/make-vs-zapier-solo-business">Before Make or Zapier, check the handoff.</Link></h2>
+      <p>An inquiry needs a record and a notification. Your form may already handle both. If a gap remains, compare the exact actions, billing rules and recovery path.</p>
+      <p className="ed-evidence">Documentation-based comparison. The proposed workflows have not been tested by Domsky.</p>
+      <Link className="ed-read" to="/comparisons/make-vs-zapier-solo-business">Read the Make vs Zapier comparison</Link>
+    </article>
+    <aside className="ed-reading" aria-label="More software decisions">
+      <h2>Other decisions</h2>
+      <article><p className="ed-label">Email</p><h3><Link to="/comparisons/kit-vs-mailerlite-vs-beehiiv">One welcome email or a branching sequence?</Link></h3><p>Kit, MailerLite and beehiiv solve different subscriber journeys. Map yours before comparing allowances.</p></article>
+      <article><p className="ed-label">AI assistants</p><h3><Link to="/comparisons/claude-vs-chatgpt-vs-gemini-2026">Choose one assistant before paying for another.</Link></h3><p>Compare tasks, plan limits and the subscriptions you already hold.</p></article>
+      <article><p className="ed-label">Coding</p><h3><Link to="/comparisons/chatgpt-astra-vs-alternatives">A small website change still needs review.</Link></h3><p>Compare Codex and Claude Code by repository access, control and review effort.</p></article>
+    </aside>
+  </section>
+  <section className="ed-section" aria-labelledby="decision-index">
+    <div className="ed-section-head"><h2 id="decision-index">Choose a starting point</h2><Link to="/comparisons">All comparisons</Link></div>
+    <div role="region" aria-label="Popular tool comparison" tabIndex={0} className="ed-table-scroll">
+      <table><caption>Start with the work, then read the relevant decision guide.</caption><thead><tr><th scope="col">Your decision</th><th scope="col">First thing to check</th><th scope="col">Read next</th></tr></thead><tbody>
+        <tr><th scope="row">Another automation platform?</th><td>Can the current form or tracker complete the handoff?</td><td><Link to="/comparisons/make-vs-zapier-solo-business">Make vs Zapier</Link></td></tr>
+        <tr><th scope="row">A smaller software bill?</th><td>Which subscriptions still cover a required job?</td><td><Link to="/blog/replaced-saas-stack-with-ai-tools">Software stack audit</Link></td></tr>
+        <tr><th scope="row">A content workflow?</th><td>Where do research and approval happen?</td><td><Link to="/blog/ai-daily-workflow-solo-business">Lean content workflow</Link></td></tr>
+      </tbody></table>
+    </div>
+  </section>
+  <section className="ed-section ed-tools" aria-labelledby="working-tools">
+    <div><p className="ed-label">Working tools</p><h2 id="working-tools">Check the job and the cost.</h2><p>Use the calculator to separate recurring cash from migration work. Use the stack guide when you need to decide what to keep or skip.</p></div>
+    <ul><li><Link to="/tools/saas-calculator">Software stack audit calculator</Link></li><li><Link to="/uses">Lean solo-business stack guide</Link></li><li><Link to="/tools">Free planning tools</Link></li><li><Link to="/reviews">View all reviews</Link></li><li><Link to="/blog">All articles</Link></li></ul>
+  </section>
+  <LeanStackFinder />
       {/* Newsletter */}
       <section id="newsletter" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="absolute inset-0 bg-brand-cyan/5 pointer-events-none" aria-hidden />
@@ -344,6 +72,4 @@ export const HomePage = () => {
         </div>
       </section>
 
-    </main>
-  );
-};
+</main>;
