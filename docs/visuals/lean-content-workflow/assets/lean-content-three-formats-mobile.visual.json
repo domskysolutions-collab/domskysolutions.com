@@ -1,0 +1,16 @@
+{
+  "id": "lean-content-three-formats-mobile",
+  "file": "lean-content-three-formats-mobile.svg",
+  "articleSlug": "/blog/ai-daily-workflow-solo-business",
+  "articleStatus": "published",
+  "width": 1000,
+  "height": 1500,
+  "format": "pinterest",
+  "alt": "An approved article supplies consistent facts and a core conclusion to distinct email and LinkedIn drafts; distribution still requires approval.",
+  "archetype": "software-workflow",
+  "method": "programmatic",
+  "status": "draft",
+  "sourceBrief": "docs/visuals/lean-content-workflow/brief.md",
+  "maxBytes": 400000,
+  "sitePath": "/images/workflows/lean-content-three-formats-mobile.svg"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "lean-content-claim-correction-mobile",
+  "file": "lean-content-claim-correction-mobile.svg",
+  "articleSlug": "/blog/ai-daily-workflow-solo-business",
+  "articleStatus": "published",
+  "width": 1000,
+  "height": 1500,
+  "format": "pinterest",
+  "alt": "The September 2026 Kit example connects a rejected claim to the specific help article, correction and approved wording.",
+  "archetype": "software-workflow",
+  "method": "programmatic",
+  "status": "draft",
+  "sourceBrief": "docs/visuals/lean-content-workflow/brief.md",
+  "maxBytes": 400000,
+  "sitePath": "/images/workflows/lean-content-claim-correction-mobile.svg"
+}

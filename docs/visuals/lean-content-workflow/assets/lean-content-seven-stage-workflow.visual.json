@@ -1,0 +1,16 @@
+{
+  "id": "lean-content-seven-stage-workflow",
+  "file": "lean-content-seven-stage-workflow.svg",
+  "articleSlug": "/blog/ai-daily-workflow-solo-business",
+  "articleStatus": "published",
+  "width": 1600,
+  "height": 900,
+  "format": "article",
+  "alt": "Seven stages from defining the question to the release check, with human approval at the argument and corrected-article stages.",
+  "archetype": "software-workflow",
+  "method": "programmatic",
+  "status": "draft",
+  "sourceBrief": "docs/visuals/lean-content-workflow/brief.md",
+  "maxBytes": 400000,
+  "sitePath": "/images/workflows/lean-content-seven-stage-workflow.svg"
+}

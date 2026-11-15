@@ -68,6 +68,7 @@ export function checkContent(input: readonly unknown[], options: QualityOptions 
       const item = record(value);
       if (!text(item.alt)) warn('image-alt', 'Missing image alt text: ' + (text(item.src) || label));
       if (!text(item.src) || text(item.src).startsWith('/') && options.assetExists && !options.assetExists(text(item.src))) error('image-reference', 'Missing image reference or local file: ' + (text(item.src) || label));
+      if (item.mobile) image({ ...record(item.mobile), alt: item.alt }, 'mobile body image');
     };
     if (doc.featuredImageRequired === true && !text(record(doc.featuredImage).src)) error('required-image', 'Missing required featured-image reference');
     if (doc.featuredImage) image(doc.featuredImage, 'featured image');

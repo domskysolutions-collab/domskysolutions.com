@@ -54,6 +54,10 @@ export function validateContent(documents: ArticleDocument[], legacy: ArticleCar
       if (!/^\/images\/[a-zA-Z0-9_./-]+\.(png|jpe?g|webp|avif|svg)$/.test(value.src) || value.src.includes('..') || !assetExists(value.src)) error('Missing or invalid local image: ' + value.src);
       if ((value.width !== undefined && (!Number.isInteger(value.width) || value.width <= 0)) || (value.height !== undefined && (!Number.isInteger(value.height) || value.height <= 0))) error('Image dimensions must be positive integers');
       if (value.sourceUrl) link(value.sourceUrl);
+      if (value.mobile) {
+        if (!value.mobile.width || !value.mobile.height) error('Mobile image needs declared dimensions');
+        image({ ...value.mobile, alt: value.alt });
+      }
     };
     if (article.featuredImage) image(article.featuredImage);
     if (article.ogImage) image(article.ogImage);
@@ -81,6 +85,7 @@ export function validateContent(documents: ArticleDocument[], legacy: ArticleCar
           if (block.cards.length < 2 || block.cards.length > 4) error('Decision cards need 2–4 items');
           block.cards.forEach(card => rich(card.text)); break;
         case 'table': case 'pricing':
+          if (block.summary !== undefined && !block.summary.trim()) error('Reference table summary must not be empty');
           if (!block.caption.trim() || block.columns.length < 2 || !block.rows.length) error('Table needs a caption, columns and rows');
           if (block.highlightedColumns?.some(index => !Number.isInteger(index) || index < 1 || index >= block.columns.length)) error('Highlighted table columns must reference product columns');
           for (const row of block.rows) { if (row.length !== block.columns.length) error('Table row width differs from header'); row.forEach(rich); } break;

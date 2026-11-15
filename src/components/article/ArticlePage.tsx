@@ -32,7 +32,7 @@ export function ArticlePage({ article }: { article: ArticleDocument }) {
   const hasToc = toc.length >= 3;
   const parent = article.slug === '/uses' ? '/' : article.slug.startsWith('/comparisons/') ? '/comparisons' : article.slug.startsWith('/reviews/') ? '/reviews' : '/blog';
   const editorialPilot = article.id === 'ds-comp-make-zapier';
-  return <main data-editorial={editorialPilot ? 'comparison' : undefined} className="bg-brand-bg min-h-screen text-secondary pb-24">
+  return <main data-editorial={editorialPilot ? 'comparison' : article.id === 'dce-06-lean-content-workflow' ? 'workflow' : undefined} className="bg-brand-bg min-h-screen text-secondary pb-24">
     <motion.div aria-hidden="true" className="fixed top-0 inset-x-0 h-1 bg-action origin-left z-50" style={{ scaleX: scrollYProgress }} />
     <div className="max-w-6xl mx-auto px-5 sm:px-8 pt-36">
       <Link to={parent} className="text-sm text-link hover:underline">← {parent === '/' ? 'Home' : parent === '/comparisons' ? 'All comparisons' : parent === '/reviews' ? 'All reviews' : 'All articles'}</Link>

@@ -21,7 +21,10 @@ export function Text({ value }: { value: RichText }) {
 
 export function ArticleFigure({ image, eager = false }: { image: ArticleImage; eager?: boolean }) {
   return <figure className="my-10 overflow-hidden rounded-xl border border-brand-border bg-brand-surface">
-    <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading={eager ? 'eager' : 'lazy'} decoding="async" className="block w-full h-auto" />
+    {image.mobile ? <picture>
+      <source media="(max-width: 640px)" srcSet={image.mobile.src} width={image.mobile.width} height={image.mobile.height} />
+      <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading={eager ? 'eager' : 'lazy'} decoding="async" className="block w-full h-auto" />
+    </picture> : <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading={eager ? 'eager' : 'lazy'} decoding="async" className="block w-full h-auto" />}
     {(image.caption || image.source) && <figcaption className="border-t border-brand-border px-5 py-3 text-xs leading-relaxed text-secondary">
       {image.caption}
       {image.caption && image.source ? ' ' : null}
@@ -93,7 +96,7 @@ function DecisionCards({ cards }: { cards: Extract<ArticleBlock, { type: 'decisi
 
 function ComparisonTable({ block }: { block: Extract<ArticleBlock, { type: 'table' | 'pricing' }> }) {
   const highlighted = new Set(block.highlightedColumns || []);
-  return <div role="region" aria-label={block.caption} tabIndex={0} className="my-9 overflow-x-auto rounded-xl border border-brand-border focus:outline-none focus:ring-2 focus:ring-brand-cyan/60">
+  const table = <div role="region" aria-label={block.caption} tabIndex={0} className="my-9 overflow-x-auto rounded-xl border border-brand-border focus:outline-none focus:ring-2 focus:ring-brand-cyan/60">
     <table className="w-full min-w-[620px] border-collapse text-left text-sm">
       <caption className="bg-brand-surface px-4 py-3 text-left text-xs leading-relaxed text-secondary">{block.caption}</caption>
       <thead className="border-t border-brand-border bg-brand-surface text-ink">
@@ -106,6 +109,10 @@ function ComparisonTable({ block }: { block: Extract<ArticleBlock, { type: 'tabl
       </tr>)}</tbody>
     </table>
   </div>;
+  return block.summary ? <details className="article-reference my-7 border-y border-line">
+    <summary className="cursor-pointer py-4 text-base font-medium text-link focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-action">{block.summary}</summary>
+    {table}
+  </details> : table;
 }
 
 function Process({ block }: { block: Extract<ArticleBlock, { type: 'process' }> }) {
@@ -138,7 +145,7 @@ function Block({ block, article }: { block: ArticleBlock; article: ArticleDocume
     case 'note': return <EditorialNote title={block.title} text={block.text} />;
     case 'list': {
       const Tag = block.ordered ? 'ol' : 'ul';
-      return <Tag className={`my-6 space-y-3 pl-6 ${block.ordered ? 'list-decimal' : 'list-disc'}`}>{block.items.map((item, i) => <li key={i}><Text value={item} /></li>)}</Tag>;
+      return <Tag role="list" className={block.checklist ? 'article-checklist my-5 grid gap-x-8 gap-y-3 sm:grid-cols-2' : `my-6 space-y-3 pl-6 ${block.ordered ? 'list-decimal' : 'list-disc'}`}>{block.items.map((item, i) => <li key={i} className={block.checklist ? 'relative pl-6 text-base leading-relaxed before:absolute before:left-0 before:top-2 before:h-2.5 before:w-2.5 before:border before:border-action' : undefined}><Text value={item} /></li>)}</Tag>;
     }
     case 'prosCons': return <ProsCons pros={block.pros} cons={block.cons} />;
     case 'decisionCards': return <DecisionCards cards={block.cards} />;
