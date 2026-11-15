@@ -5,13 +5,13 @@ import { H2, SectionDivider } from '../components/ui';
 
 export const PrivacyPage = () => {
   return (
-    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24">
+    <div className="bg-brand-bg min-h-screen text-secondary font-sans pb-24">
       <div className="max-w-[680px] mx-auto px-6 pt-32">
         <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-ink leading-tight mb-4">
             PRIVACY POLICY
           </h1>
-          <p className="text-gray-400 font-mono text-sm">Last updated: 27 September 2026</p>
+          <p className="text-secondary font-mono text-sm">Last updated: 27 September 2026</p>
         </div>
 
         <div className="prose prose-invert max-w-none text-[17px] leading-[1.8] space-y-6">
@@ -27,15 +27,15 @@ export const PrivacyPage = () => {
 
           <H2>INFORMATION WE COLLECT</H2>
           <p>
-            <strong className="text-white">Email address</strong><br />
+            <strong className="text-ink">Email address</strong><br />
             When you subscribe to our newsletter we collect your email address. This is used solely to send you The Weekly Edge newsletter and related communications from Domsky Solutions. We never sell your email address to third parties.
           </p>
           <p>
-            <strong className="text-white">Usage data</strong><br />
+            <strong className="text-ink">Usage data</strong><br />
             We may collect anonymous information about how you use our website including pages visited, time spent on pages, and referring URLs. This data is used to improve our content and user experience.
           </p>
           <p>
-            <strong className="text-white">Analytics and browser storage</strong><br />
+            <strong className="text-ink">Analytics and browser storage</strong><br />
             Google Analytics currently loads when a page loads. It can receive page, device, browser and referral information and may use browser identifiers according to its configuration and your browser settings. The Lean Stack Finder separately stores quiz progress in your browser. The site does not currently provide an analytics consent control.
           </p>
 
@@ -64,7 +64,7 @@ export const PrivacyPage = () => {
           </p>
           <p>
             ConvertKit's privacy policy is available at:<br />
-            <a href="https://convertkit.com/privacy" target="_blank" rel="noopener noreferrer" className="text-brand-cyan hover:underline">convertkit.com/privacy</a>
+            <a href="https://convertkit.com/privacy" target="_blank" rel="noopener noreferrer" className="text-link hover:underline">convertkit.com/privacy</a>
           </p>
 
           <SectionDivider />
@@ -95,7 +95,7 @@ export const PrivacyPage = () => {
 
           <H2>DATA RETENTION</H2>
           <p>
-            We retain your email address for as long as you remain subscribed to our newsletter. You may request deletion of your data at any time by contacting us at <a href="mailto:domskysolutions@gmail.com" className="text-brand-cyan hover:underline">domskysolutions@gmail.com</a>.
+            We retain your email address for as long as you remain subscribed to our newsletter. You may request deletion of your data at any time by contacting us at <a href="mailto:domskysolutions@gmail.com" className="text-link hover:underline">domskysolutions@gmail.com</a>.
           </p>
 
           <SectionDivider />
@@ -111,7 +111,7 @@ export const PrivacyPage = () => {
           </ul>
           <p>
             To exercise any of these rights contact us at:<br />
-            <a href="mailto:domskysolutions@gmail.com" className="text-brand-cyan hover:underline">domskysolutions@gmail.com</a>
+            <a href="mailto:domskysolutions@gmail.com" className="text-link hover:underline">domskysolutions@gmail.com</a>
           </p>
 
           <SectionDivider />
@@ -143,8 +143,8 @@ export const PrivacyPage = () => {
           <H2>CONTACT US</H2>
           <p>If you have questions about this Privacy Policy please contact us:</p>
           <p>
-            Email: <a href="mailto:domskysolutions@gmail.com" className="text-brand-cyan hover:underline">domskysolutions@gmail.com</a><br />
-            Website: <Link to="/" className="text-brand-cyan hover:underline">domskysolutions.com</Link>
+            Email: <a href="mailto:domskysolutions@gmail.com" className="text-link hover:underline">domskysolutions@gmail.com</a><br />
+            Website: <Link to="/" className="text-link hover:underline">domskysolutions.com</Link>
           </p>
         </div>
       </div>
