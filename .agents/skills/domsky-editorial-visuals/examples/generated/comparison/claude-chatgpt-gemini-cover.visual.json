@@ -1,0 +1,15 @@
+{
+  "id": "claude-chatgpt-gemini-cover",
+  "file": "claude-chatgpt-gemini-cover.svg",
+  "articleSlug": "/comparisons/claude-vs-chatgpt-vs-gemini-2026",
+  "articleStatus": "published",
+  "width": 1600,
+  "height": 900,
+  "format": "article",
+  "alt": "Editorial comparison of ChatGPT, Claude and Gemini with equal prominence and no declared winner.",
+  "archetype": "editorial-comparison",
+  "method": "programmatic",
+  "status": "draft",
+  "sourceBrief": ".agents/skills/domsky-editorial-visuals/examples/comparison.json",
+  "maxBytes": 400000
+}

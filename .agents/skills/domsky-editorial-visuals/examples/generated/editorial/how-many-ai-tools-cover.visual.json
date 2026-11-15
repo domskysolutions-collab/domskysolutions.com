@@ -1,0 +1,15 @@
+{
+  "id": "how-many-ai-tools-cover",
+  "file": "how-many-ai-tools-cover.svg",
+  "articleSlug": null,
+  "articleStatus": "concept",
+  "width": 1600,
+  "height": 900,
+  "format": "article",
+  "alt": "A deliberate group of useful modules separated from optional extras, illustrating intentional tool selection.",
+  "archetype": "geometric-editorial",
+  "method": "programmatic",
+  "status": "draft",
+  "sourceBrief": ".agents/skills/domsky-editorial-visuals/examples/editorial.json",
+  "maxBytes": 400000
+}
