@@ -1,0 +1,15 @@
+{
+  "id": "chatgpt-business-hub-small-business-cover",
+  "file": "chatgpt-business-hub-small-business-cover.svg",
+  "articleSlug": "/blog/chatgpt-business-hub-small-business",
+  "articleStatus": "published",
+  "width": 1600,
+  "height": 900,
+  "format": "article",
+  "alt": "ChatGPT Business Hub editorial guide: check eligibility, prepare business facts and review answers.",
+  "archetype": "software-workflow",
+  "method": "programmatic",
+  "status": "draft",
+  "sourceBrief": "docs/editorial/chatgpt-business-hub/brief.md",
+  "maxBytes": 400000
+}
