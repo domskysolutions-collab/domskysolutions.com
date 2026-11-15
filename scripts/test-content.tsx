@@ -97,7 +97,7 @@ assert.equal(assistantMeta.title, 'ChatGPT vs Claude vs Gemini for Solo Business
 assert.equal(assistantMeta.socialTitle, 'ChatGPT vs Claude vs Gemini: Which One Fits a Solo Business?');
 const assistantHead = renderSeoHead(assistantMeta);
 assert(assistantHead.includes('property="og:title" content="ChatGPT vs Claude vs Gemini: Which One Fits a Solo Business?"'));
-assert(assistantHead.includes('property="og:image" content="https://domskysolutions.com/images/claude-vs-chatgpt-vs-gemini-2026.jpg"'));
+assert(assistantHead.includes('property="og:image" content="https://domskysolutions.com/images/comparisons/chatgpt-vs-claude-vs-gemini.png"'));
 const assistantGraph = structuredData(assistantMeta)['@graph'] as Array<Record<string,unknown>>;
 const assistantSchema = assistantGraph.find(item => item['@type'] === 'Article')!;
 assert.equal(assistantSchema.headline, assistant.title);
@@ -131,7 +131,7 @@ const emailMeta = getPageSeo(emailComparison.slug);
 assert.equal(emailMeta.title, 'Kit vs MailerLite vs beehiiv for Creators | Domsky');
 assert.equal(emailMeta.socialTitle, 'Kit vs MailerLite vs beehiiv: Choose by Workflow');
 const emailHead = renderSeoHead(emailMeta);
-assert(emailHead.includes('property="og:image" content="https://domskysolutions.com/images/kit-mailerlite-beehiiv-workflows.svg"'));
+assert(emailHead.includes('property="og:image" content="https://domskysolutions.com/images/comparisons/kit-vs-mailerlite-vs-beehiiv.png"'));
 const emailGraph = structuredData(emailMeta)['@graph'] as Array<Record<string,unknown>>;
 assert(emailGraph.some(item => item['@type'] === 'Article'));
 assert(emailGraph.some(item => item['@type'] === 'WebPage'));

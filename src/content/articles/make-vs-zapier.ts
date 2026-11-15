@@ -34,10 +34,17 @@ export const makeZapierComparison = {
   "readingMinutes": 10,
   "featuredImageRequired": true,
   "featuredImage": {
-    "src": "/images/make-vs-zapier-workflows.svg",
-    "alt": "Make and Zapier compared for client inquiries, newsletter handoffs and approved content tasks.",
-    "width": 1600,
-    "height": 900
+    "src": "/images/comparisons/make-vs-zapier.png",
+    "alt": "Make vs Zapier: automate what matters.",
+    "caption": "Title artwork supplied by Domsky Solutions.",
+    "width": 1200,
+    "height": 620
+  },
+  "ogImage": {
+    "src": "/images/comparisons/make-vs-zapier.png",
+    "alt": "Make vs Zapier: automate what matters.",
+    "width": 1200,
+    "height": 620
   },
   "commercial": false,
   "recommendedUpdateDays": 30,
