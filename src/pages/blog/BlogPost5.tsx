@@ -1,14 +1,17 @@
+import { articleCovers } from '../../data/articleCovers';
+import { ArticleFigure } from '../../components/article/ArticleBlocks';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export const BlogPost5 = () => {
-  useEffect(() => window.scrollTo(0, 0), []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <main className="bg-brand-bg min-h-screen pt-32 pb-20">
       <article className="max-w-3xl mx-auto px-5 text-secondary leading-relaxed">
         <p className="text-emphasis font-mono text-xs uppercase tracking-wider mb-4">Legacy guide · personal claims removed</p>
         <h1 className="text-4xl md:text-5xl font-bold font-mono text-ink leading-tight mb-6">Should you replace Adobe? A practical switching checklist</h1>
         <p className="text-xl mb-8">Treat a creative-software change as a workflow migration. Test the files, features and handoffs you actually use before cancelling an existing plan.</p>
+        <ArticleFigure image={{ ...articleCovers.adobe, caption: 'Title artwork supplied by Domsky Solutions.' }} eager />
         <div className="border border-brand-amber bg-callout p-5 mb-10">
           <strong className="text-ink">Evidence note:</strong> The original article’s years-of-use, cancellation and personal-savings claims were not backed by a dated, reviewable record in the repository. They have been removed rather than restated as general user experience.
         </div>

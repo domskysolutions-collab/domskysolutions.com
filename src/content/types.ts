@@ -52,7 +52,7 @@ export type ArticleDocument = {
 };
 export type ArticleCardData = {
   title: string; slug: string; excerpt: string; category: string; date: string;
-  readTime: string; image: string | null; imageAlt?: string; author: string;
+  readTime: string; image: string | null; imageAlt?: string; imageWidth?: number; imageHeight?: number; author: string;
 };
 export function formatArticleDate(value: string) {
   return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(value + 'T00:00:00Z'));

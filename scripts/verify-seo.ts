@@ -42,6 +42,14 @@ for (const meta of seoPages) {
   assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, `One H1: ${meta.path}`);
   const schema = JSON.parse(html.match(/<script id="page-schema" type="application\/ld\+json">([\s\S]*?)<\/script>/)![1]);
   assert.deepEqual(schema, structuredData(meta));
+  if (meta.image && !meta.article) {
+    const imageUrl = SITE_URL + meta.image.src;
+    assert(fs.existsSync('public' + meta.image.src), `Missing legacy cover: ${meta.path}`);
+    assert(html.includes(`src="${meta.image.src}"`), `Legacy cover missing from article: ${meta.path}`);
+    assert(html.includes(`property="og:image" content="${imageUrl}"`), `Legacy social cover: ${meta.path}`);
+    assert(html.includes(`name="twitter:image" content="${imageUrl}"`), `Legacy Twitter cover: ${meta.path}`);
+    assert.equal(schema['@graph'].find((entry: Record<string, unknown>) => entry['@type'] === 'Article')?.image, imageUrl, `Legacy schema cover: ${meta.path}`);
+  }
   const person = schema['@graph'].find((entry: Record<string, unknown>) => entry['@type'] === 'Person');
   const publisher = schema['@graph'].find((entry: Record<string, unknown>) => entry['@type'] === 'Organization');
   const webPage = schema['@graph'].find((entry: Record<string, unknown>) => entry['@type'] === 'WebPage');

@@ -1,3 +1,4 @@
+import { articleCovers } from '../../data/articleCovers';
 import type { ArticleDocument } from '../types';
 import { PUBLIC_AUTHOR } from '../../data/site';
 
@@ -19,8 +20,8 @@ export const softwareStackAudit = {
   relatedSlugs: ['/uses', '/blog/ai-daily-workflow-solo-business', '/comparisons/claude-vs-chatgpt-vs-gemini-2026', '/comparisons/kit-vs-mailerlite-vs-beehiiv'],
   readingMinutes: 13,
   featuredImageRequired: true,
-  featuredImage: { src: '/images/software-stack-audit.svg', alt: 'A software audit worksheet sorting subscriptions into keep, downgrade, cancel and trial columns', caption: 'Make each decision from required coverage, recurring cash and migration risk.', width: 1600, height: 900 },
-  ogImage: { src: '/images/software-stack-audit.svg', alt: 'A software audit worksheet with keep, downgrade, cancel and trial decisions', width: 1600, height: 900 },
+  featuredImage: { ...articleCovers.audit, caption: 'Supplied title artwork. Audit required coverage, recurring cash and migration risk before changing tools.' },
+  ogImage: articleCovers.audit,
   commercial: false,
   recommendedUpdateDays: 180,
   affiliateDisclosureRequired: false,

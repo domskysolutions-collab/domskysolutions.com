@@ -10,7 +10,7 @@ export function toArticleCard(article: ArticleDocument): ArticleCardData {
     title: article.title, slug: article.slug, excerpt: article.excerpt || article.description, category: article.category,
     date: article.publishedAt ? formatArticleDate(article.publishedAt) : article.updatedAt ? 'Updated ' + formatArticleDate(article.updatedAt) : '',
     readTime: article.readingMinutes + ' minutes', image: article.featuredImage?.src || null,
-    imageAlt: article.featuredImage?.alt, author: article.author.name,
+    imageAlt: article.featuredImage?.alt, imageWidth: article.featuredImage?.width, imageHeight: article.featuredImage?.height, author: article.author.name,
   };
 }
 export const articleCards: ArticleCardData[] = [...publishedArticles.map(toArticleCard), ...legacyArticles];
