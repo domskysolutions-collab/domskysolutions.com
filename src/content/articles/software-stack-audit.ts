@@ -17,7 +17,7 @@ export const softwareStackAudit = {
   publishedAt: '2026-09-25', updatedAt: '2026-09-25', verifiedAt: '2026-09-25',
   status: 'published', contentType: 'guide',
   tags: ['Lean Software Stack', 'SaaS audit', 'Software costs', 'Subscription management', 'Solo business'],
-  relatedSlugs: ['/uses', '/blog/ai-daily-workflow-solo-business', '/comparisons/claude-vs-chatgpt-vs-gemini-2026', '/comparisons/kit-vs-mailerlite-vs-beehiiv'],
+  relatedSlugs: ['/uses', '/blog/ai-daily-workflow-solo-business', '/comparisons/claude-vs-chatgpt-vs-gemini-2026', '/blog/chatgpt-business-hub-small-business'],
   readingMinutes: 13,
   featuredImageRequired: true,
   featuredImage: { ...articleCovers.audit, caption: 'Supplied title artwork. Audit required coverage, recurring cash and migration risk before changing tools.' },
