@@ -111,15 +111,15 @@ function weekdayForDayNumber(dayNumber: number) {
 function typeBadge(ideaKind: IdeaKind) {
   switch (ideaKind) {
     case 'Blog':
-      return { label: 'Blog', className: 'bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/30' };
+      return { label: 'Blog', className: 'bg-callout text-link border border-brand-cyan' };
     case 'Social':
-      return { label: 'Social', className: 'bg-brand-amber/10 text-brand-amber border border-brand-amber/30' };
+      return { label: 'Social', className: 'bg-callout text-emphasis border border-brand-amber' };
     case 'Video':
-      return { label: 'Video', className: 'bg-purple-500/10 text-purple-300 border border-purple-500/30' };
+      return { label: 'Video', className: 'bg-callout text-link border border-line' };
     case 'Podcast':
-      return { label: 'Podcast', className: 'bg-green-500/10 text-green-300 border border-green-500/30' };
+      return { label: 'Podcast', className: 'bg-success-surface text-success border border-success' };
     case 'Newsletter':
-      return { label: 'Newsletter', className: 'bg-blue-500/10 text-blue-300 border border-blue-500/30' };
+      return { label: 'Newsletter', className: 'bg-callout text-link border border-line' };
   }
 }
 
@@ -469,61 +469,61 @@ export const ContentCalendarPage = () => {
   const weekItems = useMemo(() => (calendar ? buildWeekItems(calendar, activeWeek) : []), [calendar, activeWeek]);
 
   return (
-    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24 pt-32">
+    <div className="bg-brand-bg min-h-screen text-secondary font-sans pb-24 pt-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-3xl mb-14">
-          <div className="inline-block bg-brand-cyan/10 text-brand-cyan text-xs font-bold px-3 py-1 rounded-full mb-6 uppercase tracking-wider font-mono">
+          <div className="inline-block bg-callout text-link text-xs font-bold px-3 py-1 rounded-full mb-6 uppercase tracking-wider font-mono">
             FREE TOOL — NO SIGNUP REQUIRED
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold font-mono text-white leading-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-bold font-mono text-ink leading-tight mb-6">
             30-Day Content Calendar Generator
           </h1>
-          <p className="text-xl text-gray-400 mb-8">
+          <p className="text-xl text-secondary mb-8">
             Enter your niche and content type — get 30 days of content ideas ready to publish. Takes 30 seconds.
           </p>
 
-          <div className="flex flex-wrap gap-4 text-sm text-gray-400">
+          <div className="flex flex-wrap gap-4 text-sm text-secondary">
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 size={16} className="text-brand-cyan" /> 30 ideas instantly
+              <CheckCircle2 size={16} className="text-link" /> 30 ideas instantly
             </span>
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 size={16} className="text-brand-cyan" /> No signup required
+              <CheckCircle2 size={16} className="text-link" /> No signup required
             </span>
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 size={16} className="text-brand-cyan" /> Copy with one click
+              <CheckCircle2 size={16} className="text-link" /> Copy with one click
             </span>
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 size={16} className="text-brand-cyan" /> Built for solopreneurs
+              <CheckCircle2 size={16} className="text-link" /> Built for solopreneurs
             </span>
           </div>
         </div>
 
         {/* Inputs */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-          <div className={`${SURFACE} border border-brand-cyan/30 rounded-xl p-8`}>
+          <div className={`${SURFACE} border border-brand-cyan rounded-xl p-8`}>
             <div className="mb-6">
-              <h2 className="text-2xl font-bold font-mono text-white mb-2">Tell me about your content</h2>
-              <p className="text-gray-400">I’ll generate a structured posting plan for your niche and formats.</p>
+              <h2 className="text-2xl font-bold font-mono text-ink mb-2">Tell me about your content</h2>
+              <p className="text-secondary">I’ll generate a structured posting plan for your niche and formats.</p>
             </div>
 
             <div className="space-y-7">
               {/* Niche */}
               <div>
-                <label className="block text-sm font-mono font-bold text-gray-500 uppercase tracking-widest mb-3">
-                  Your niche or topic <span className="text-brand-amber">*</span>
+                <label className="block text-sm font-mono font-bold text-subtle uppercase tracking-widest mb-3">
+                  Your niche or topic <span className="text-emphasis">*</span>
                 </label>
                 <input
                   value={niche}
                   onChange={e => setNiche(e.target.value)}
                   placeholder="e.g. AI tools, graphic design, personal finance, fitness..."
-                  className="w-full bg-brand-surface border border-gray-700/70 rounded-md px-4 py-3 text-white font-bold focus:outline-none focus:border-brand-cyan transition-colors"
+                  className="w-full bg-brand-surface border border-line rounded-md px-4 py-3 text-ink font-bold focus:outline-none focus:border-brand-cyan transition-colors"
                 />
               </div>
 
               {/* Content types */}
               <div>
-                <label className="block text-sm font-mono font-bold text-gray-500 uppercase tracking-widest mb-3">
+                <label className="block text-sm font-mono font-bold text-subtle uppercase tracking-widest mb-3">
                   What content do you create?
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -537,8 +537,8 @@ export const ContentCalendarPage = () => {
                         className={[
                           'min-h-[44px] px-4 py-2 rounded-full border font-bold font-mono text-sm transition-all',
                           selected
-                            ? 'bg-brand-cyan text-[#000000] border-brand-cyan'
-                            : 'bg-[#2A1A08] text-gray-400 border-gray-700 hover:border-gray-500',
+                            ? 'bg-action text-ink border-brand-cyan'
+                            : 'bg-surface text-secondary border-line hover:border-line',
                         ].join(' ')}
                       >
                         {ct.emoji} {ct.label}
@@ -550,13 +550,13 @@ export const ContentCalendarPage = () => {
 
               {/* Audience */}
               <div>
-                <label className="block text-sm font-mono font-bold text-gray-500 uppercase tracking-widest mb-3">
+                <label className="block text-sm font-mono font-bold text-subtle uppercase tracking-widest mb-3">
                   Your target audience
                 </label>
                 <select
                   value={audience}
                   onChange={e => setAudience(e.target.value as AudienceOption)}
-                  className="w-full bg-brand-surface border border-gray-700/70 rounded-md px-4 py-3 text-white font-bold focus:outline-none focus:border-brand-cyan transition-colors"
+                  className="w-full bg-brand-surface border border-line rounded-md px-4 py-3 text-ink font-bold focus:outline-none focus:border-brand-cyan transition-colors"
                 >
                   {AUDIENCE_OPTIONS.map(opt => (
                     <option key={opt} value={opt}>
@@ -568,7 +568,7 @@ export const ContentCalendarPage = () => {
 
               {/* Goals */}
               <div>
-                <label className="block text-sm font-mono font-bold text-gray-500 uppercase tracking-widest mb-3">
+                <label className="block text-sm font-mono font-bold text-subtle uppercase tracking-widest mb-3">
                   Primary content goal
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -582,8 +582,8 @@ export const ContentCalendarPage = () => {
                         className={[
                           'min-h-[44px] px-4 py-2 rounded-full border font-bold font-mono text-sm transition-all',
                           selected
-                            ? 'bg-brand-cyan text-[#000000] border-brand-cyan'
-                            : 'bg-[#2A1A08] text-gray-400 border-gray-700 hover:border-gray-500',
+                            ? 'bg-action text-ink border-brand-cyan'
+                            : 'bg-surface text-secondary border-line hover:border-line',
                         ].join(' ')}
                       >
                         {g.emoji} {g.label}
@@ -595,7 +595,7 @@ export const ContentCalendarPage = () => {
 
               {/* Tone */}
               <div>
-                <label className="block text-sm font-mono font-bold text-gray-500 uppercase tracking-widest mb-3">
+                <label className="block text-sm font-mono font-bold text-subtle uppercase tracking-widest mb-3">
                   Content tone
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -609,8 +609,8 @@ export const ContentCalendarPage = () => {
                         className={[
                           'min-h-[44px] px-4 py-2 rounded-full border font-bold font-mono text-sm transition-all',
                           selected
-                            ? 'bg-brand-cyan text-[#000000] border-brand-cyan'
-                            : 'bg-[#2A1A08] text-gray-400 border-gray-700 hover:border-gray-500',
+                            ? 'bg-action text-ink border-brand-cyan'
+                            : 'bg-surface text-secondary border-line hover:border-line',
                         ].join(' ')}
                       >
                         {t}
@@ -625,10 +625,10 @@ export const ContentCalendarPage = () => {
                 onClick={() => generateCalendar(0)}
                 disabled={!normalizedNiche || isLoading}
                 className={[
-                  'w-full h-14 rounded-md font-bold text-[#000000] transition-all',
+                  'w-full h-14 rounded-md font-bold text-ink transition-all',
                   normalizedNiche && !isLoading
-                    ? 'bg-[#F97316] hover:bg-[#FB923C]'
-                    : 'bg-[#F97316]/40 cursor-not-allowed',
+                    ? 'bg-action hover:bg-action-hover'
+                    : 'bg-action cursor-not-allowed',
                 ].join(' ')}
               >
                 Generate My 30-Day Calendar →
@@ -638,7 +638,7 @@ export const ContentCalendarPage = () => {
 
           {/* Right side helper / loading / empty */}
           <div className="lg:sticky lg:top-24 h-fit">
-            <div className={`${SURFACE} border border-gray-800 rounded-xl p-8`}>
+            <div className={`${SURFACE} border border-line rounded-xl p-8`}>
               <AnimatePresence mode="wait">
                 {isLoading ? (
                   <motion.div
@@ -649,10 +649,10 @@ export const ContentCalendarPage = () => {
                     className="text-center py-10"
                   >
                     <div className="flex justify-center mb-5">
-                      <div className="w-10 h-10 rounded-full border-2 border-brand-cyan/30 border-t-brand-cyan animate-spin" />
+                      <div className="w-10 h-10 rounded-full border-2 border-brand-cyan border-t-brand-cyan animate-spin" />
                     </div>
-                    <div className="text-white font-bold font-mono text-lg mb-2">Building your calendar...</div>
-                    <div className="text-gray-400">Mixing ideas for your formats and audience.</div>
+                    <div className="text-ink font-bold font-mono text-lg mb-2">Building your calendar...</div>
+                    <div className="text-secondary">Mixing ideas for your formats and audience.</div>
                   </motion.div>
                 ) : calendar ? (
                   <motion.div
@@ -661,31 +661,31 @@ export const ContentCalendarPage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                   >
-                    <div className="text-sm font-mono font-bold text-gray-500 uppercase tracking-widest mb-2">
+                    <div className="text-sm font-mono font-bold text-subtle uppercase tracking-widest mb-2">
                       Summary
                     </div>
-                    <div className="text-white font-bold font-mono text-2xl mb-4">
+                    <div className="text-ink font-bold font-mono text-2xl mb-4">
                       {counts.ideas} ideas in 30 days
                     </div>
-                    <div className="flex flex-wrap gap-2 text-sm text-gray-400 mb-6">
-                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-brand-bg">
+                    <div className="flex flex-wrap gap-2 text-sm text-secondary mb-6">
+                      <span className="px-3 py-1 rounded-full border border-line bg-brand-bg">
                         {counts.blog} blog posts
                       </span>
-                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-brand-bg">
+                      <span className="px-3 py-1 rounded-full border border-line bg-brand-bg">
                         {counts.newsletter} newsletters
                       </span>
-                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-brand-bg">
+                      <span className="px-3 py-1 rounded-full border border-line bg-brand-bg">
                         {counts.social} social posts
                       </span>
-                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-brand-bg">
+                      <span className="px-3 py-1 rounded-full border border-line bg-brand-bg">
                         {counts.video} videos
                       </span>
-                      <span className="px-3 py-1 rounded-full border border-gray-800 bg-brand-bg">
+                      <span className="px-3 py-1 rounded-full border border-line bg-brand-bg">
                         {counts.podcast} podcasts
                       </span>
                     </div>
 
-                    <div className="text-gray-400 text-sm leading-relaxed">
+                    <div className="text-secondary text-sm leading-relaxed">
                       Tip: This is a realistic schedule (rest days included). If you want more volume, regenerate and
                       expand your content types.
                     </div>
@@ -699,18 +699,18 @@ export const ContentCalendarPage = () => {
                     className="text-center py-10"
                   >
                     <div className="text-6xl mb-5">🗓️</div>
-                    <div className="text-white font-bold font-mono text-2xl mb-3">Generate your calendar</div>
-                    <div className="text-gray-400 mb-8 max-w-sm mx-auto">
+                    <div className="text-ink font-bold font-mono text-2xl mb-3">Generate your calendar</div>
+                    <div className="text-secondary mb-8 max-w-sm mx-auto">
                       Enter a niche, pick your formats, then generate a 30-day plan with realistic posting days.
                     </div>
                     <div className="space-y-3 max-w-sm mx-auto">
-                      <div className="bg-brand-bg border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
+                      <div className="bg-brand-bg border border-line rounded-lg p-4 text-secondary font-medium">
                         Built for solopreneurs
                       </div>
-                      <div className="bg-brand-bg border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
+                      <div className="bg-brand-bg border border-line rounded-lg p-4 text-secondary font-medium">
                         Copy with one click
                       </div>
-                      <div className="bg-brand-bg border border-gray-800 rounded-lg p-4 text-gray-300 font-medium">
+                      <div className="bg-brand-bg border border-line rounded-lg p-4 text-secondary font-medium">
                         No signup required
                       </div>
                     </div>
@@ -739,7 +739,7 @@ export const ContentCalendarPage = () => {
                     onClick={() => setActiveWeek(w)}
                     className={[
                       'min-h-[44px] font-mono font-bold text-sm px-2 whitespace-nowrap transition-colors',
-                      activeWeek === w ? 'text-brand-cyan' : 'text-gray-400 hover:text-gray-200',
+                      activeWeek === w ? 'text-link' : 'text-secondary hover:text-ink',
                     ].join(' ')}
                   >
                     <span className="pb-2 inline-block border-b-2">
@@ -754,8 +754,8 @@ export const ContentCalendarPage = () => {
 
               {/* Above calendar summary row */}
               <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                <div className="text-gray-400 font-mono text-sm">
-                  <span className="text-white font-bold">{counts.ideas} ideas</span> · {counts.blog} blog posts ·{' '}
+                <div className="text-secondary font-mono text-sm">
+                  <span className="text-ink font-bold">{counts.ideas} ideas</span> · {counts.blog} blog posts ·{' '}
                   {counts.social} social posts · {counts.video} videos
                 </div>
               </div>
@@ -771,14 +771,14 @@ export const ContentCalendarPage = () => {
                     className={[
                       'border rounded-xl p-4 min-h-[180px]',
                       item.kind === 'content'
-                        ? 'bg-brand-surface border-gray-800'
-                        : 'bg-brand-bg border-gray-800/70',
+                        ? 'bg-brand-surface border-line'
+                        : 'bg-brand-bg border-line',
                     ].join(' ')}
                   >
                     <div className="flex items-start justify-between gap-2 mb-3">
                       <div>
-                        <div className="text-white font-bold font-mono text-sm">Day {item.dayNumber}</div>
-                        <div className="text-gray-500 text-xs font-mono">{item.weekday}</div>
+                        <div className="text-ink font-bold font-mono text-sm">Day {item.dayNumber}</div>
+                        <div className="text-subtle text-xs font-mono">{item.weekday}</div>
                       </div>
                       {item.kind === 'content' && (
                         <span
@@ -793,12 +793,12 @@ export const ContentCalendarPage = () => {
                     </div>
 
                     {item.kind === 'rest' ? (
-                      <div className="text-gray-600 text-sm font-mono">Rest day</div>
+                      <div className="text-subtle text-sm font-mono">Rest day</div>
                     ) : (
                       <>
-                        <div className="text-white font-bold text-sm leading-snug mb-2">{item.title}</div>
-                        <div className="text-gray-400 text-xs leading-relaxed mb-3">{item.hook}</div>
-                        <div className="text-gray-500 text-xs font-mono flex items-center justify-between">
+                        <div className="text-ink font-bold text-sm leading-snug mb-2">{item.title}</div>
+                        <div className="text-secondary text-xs leading-relaxed mb-3">{item.hook}</div>
+                        <div className="text-subtle text-xs font-mono flex items-center justify-between">
                           <span>{item.typeLabel}</span>
                           <span>{item.estTime}</span>
                         </div>
@@ -819,14 +819,14 @@ export const ContentCalendarPage = () => {
                     className={[
                       'border rounded-xl p-4',
                       item.kind === 'content'
-                        ? 'bg-brand-surface border-gray-800'
-                        : 'bg-brand-bg border-gray-800/70',
+                        ? 'bg-brand-surface border-line'
+                        : 'bg-brand-bg border-line',
                     ].join(' ')}
                   >
                     <div className="flex items-start justify-between gap-3 mb-2">
                       <div>
-                        <div className="text-white font-bold font-mono text-sm">
-                          Day {item.dayNumber} <span className="text-gray-500 font-mono text-xs">({item.weekday})</span>
+                        <div className="text-ink font-bold font-mono text-sm">
+                          Day {item.dayNumber} <span className="text-subtle font-mono text-xs">({item.weekday})</span>
                         </div>
                       </div>
                       {item.kind === 'content' && (
@@ -842,12 +842,12 @@ export const ContentCalendarPage = () => {
                     </div>
 
                     {item.kind === 'rest' ? (
-                      <div className="text-gray-600 text-sm font-mono">Rest day</div>
+                      <div className="text-subtle text-sm font-mono">Rest day</div>
                     ) : (
                       <>
-                        <div className="text-white font-bold text-sm leading-snug mb-2">{item.title}</div>
-                        <div className="text-gray-400 text-xs leading-relaxed mb-3">{item.hook}</div>
-                        <div className="text-gray-500 text-xs font-mono flex items-center justify-between">
+                        <div className="text-ink font-bold text-sm leading-snug mb-2">{item.title}</div>
+                        <div className="text-secondary text-xs leading-relaxed mb-3">{item.hook}</div>
+                        <div className="text-subtle text-xs font-mono flex items-center justify-between">
                           <span>{item.typeLabel}</span>
                           <span>{item.estTime}</span>
                         </div>
@@ -859,16 +859,16 @@ export const ContentCalendarPage = () => {
 
               {/* Email capture */}
               <div className="mt-10">
-                <div className="bg-brand-surface border border-brand-cyan/30 rounded-xl p-8">
-                  <div className="text-white font-bold font-mono text-xl mb-2">🗓️ Want a new calendar every month?</div>
-                  <div className="text-gray-400 mb-6">
+                <div className="bg-brand-surface border border-brand-cyan rounded-xl p-8">
+                  <div className="text-ink font-bold font-mono text-xl mb-2">🗓️ Want a new calendar every month?</div>
+                  <div className="text-secondary mb-6">
                     Join The Weekly Edge — my free Thursday newsletter with fresh content ideas, AI tool tips, and
                     workflow hacks for solopreneurs.
                   </div>
                   <ConvertKitForm
                     className="flex flex-col sm:flex-row gap-3"
-                    inputClassName="flex-1 bg-brand-bg border border-gray-800 rounded-md px-4 py-3 text-white font-bold focus:outline-none focus:border-brand-cyan transition-colors min-h-[44px]"
-                    buttonClassName="bg-brand-cyan text-[#000000] font-bold px-6 py-3 rounded-md hover:bg-brand-amber transition-all min-h-[44px] whitespace-nowrap"
+                    inputClassName="flex-1 bg-brand-bg border border-line rounded-md px-4 py-3 text-ink font-bold focus:outline-none focus:border-brand-cyan transition-colors min-h-[44px]"
+                    buttonClassName="bg-action text-ink font-bold px-6 py-3 rounded-md hover:bg-action-hover transition-all min-h-[44px] whitespace-nowrap"
                     buttonText="Get Weekly Content Ideas →"
                     placeholder="Enter your email address..."
                   />
@@ -880,7 +880,7 @@ export const ContentCalendarPage = () => {
                 <button
                   type="button"
                   onClick={handleCopyAll}
-                  className="w-full h-14 rounded-md font-bold text-[#000000] bg-[#F97316] hover:bg-[#FB923C] transition-all flex items-center justify-center gap-2"
+                  className="w-full h-14 rounded-md font-bold text-ink bg-action hover:bg-action-hover transition-all flex items-center justify-center gap-2"
                 >
                   <Copy size={18} />
                   {copyAllState === 'copied' ? 'Copied! ✓' : 'Copy All Ideas to Clipboard →'}
@@ -890,14 +890,14 @@ export const ContentCalendarPage = () => {
                   <button
                     type="button"
                     onClick={() => generateCalendar(1)}
-                    className="min-h-[44px] rounded-md font-bold text-brand-cyan border border-brand-cyan/50 bg-transparent hover:bg-brand-cyan/10 transition-all flex items-center justify-center gap-2"
+                    className="min-h-[44px] rounded-md font-bold text-link border border-brand-cyan bg-transparent hover:bg-callout transition-all flex items-center justify-center gap-2"
                   >
                     <RefreshCw size={18} /> Regenerate Calendar 🔄
                   </button>
                   <button
                     type="button"
                     onClick={startOver}
-                    className="min-h-[44px] rounded-md font-bold text-gray-300 border border-gray-700 bg-transparent hover:border-gray-500 hover:bg-white/5 transition-all flex items-center justify-center gap-2"
+                    className="min-h-[44px] rounded-md font-bold text-secondary border border-line bg-transparent hover:border-line hover:bg-surface transition-all flex items-center justify-center gap-2"
                   >
                     <RotateCcw size={18} /> Start Over
                   </button>
@@ -908,28 +908,28 @@ export const ContentCalendarPage = () => {
               <div className="mt-12">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                   <div>
-                    <div className="text-white font-bold font-mono text-lg mb-1">Share your calendar</div>
-                    <div className="text-gray-400 text-sm">Copy the share text or post it on X.</div>
+                    <div className="text-ink font-bold font-mono text-lg mb-1">Share your calendar</div>
+                    <div className="text-secondary text-sm">Copy the share text or post it on X.</div>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-3">
                     <button
                       type="button"
                       onClick={handleCopyShareText}
-                      className="min-h-[44px] rounded-md font-bold text-gray-300 border border-gray-700 bg-transparent hover:border-gray-500 hover:bg-white/5 transition-all px-5 flex items-center justify-center gap-2"
+                      className="min-h-[44px] rounded-md font-bold text-secondary border border-line bg-transparent hover:border-line hover:bg-surface transition-all px-5 flex items-center justify-center gap-2"
                     >
                       <Copy size={18} /> {copyShareState === 'copied' ? 'Copied! ✓' : 'Copy Share Text'}
                     </button>
                     <button
                       type="button"
                       onClick={handleShareX}
-                      className="min-h-[44px] rounded-md font-bold text-brand-cyan border border-brand-cyan/50 bg-transparent hover:bg-brand-cyan/10 transition-all px-5 flex items-center justify-center gap-2"
+                      className="min-h-[44px] rounded-md font-bold text-link border border-brand-cyan bg-transparent hover:bg-callout transition-all px-5 flex items-center justify-center gap-2"
                     >
                       Share on X
                     </button>
                   </div>
                 </div>
 
-                <div className="mt-4 bg-brand-bg border border-gray-800 rounded-xl p-5 text-gray-400 text-sm whitespace-pre-line">
+                <div className="mt-4 bg-brand-bg border border-line rounded-xl p-5 text-secondary text-sm whitespace-pre-line">
                   {shareText}
                 </div>
               </div>

@@ -22,21 +22,20 @@ export const ToolPage = () => {
 
   return (
     <div className="pt-32 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
-      <Link to="/reviews" className="inline-flex items-center gap-2 text-brand-cyan hover:underline font-mono text-sm mb-8">
+      <Link to="/reviews" className="inline-flex items-center gap-2 text-link hover:underline font-mono text-sm mb-8">
         <ArrowRight className="rotate-180" size={16} /> Back to all reviews
       </Link>
       
-      <div className="bg-brand-surface border border-gray-800 p-5 sm:p-8 md:p-12 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-cyan to-blue-500"></div>
+      <div className="bg-brand-surface border border-line p-5 sm:p-8 md:p-12 relative overflow-hidden">
         
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6 mb-8">
           <div>
             <div className="flex flex-wrap items-center gap-3 mb-4">
-              <span className="px-3 py-1 bg-gray-800 text-gray-300 text-xs font-mono uppercase tracking-wider">
+              <span className="px-3 py-1 bg-surface text-secondary text-xs font-mono uppercase tracking-wider">
                 {tool.category}
               </span>
               {toolKey === 'claude' && (
-                <span className="px-3 py-1 bg-brand-cyan/10 text-brand-cyan text-xs font-mono uppercase tracking-wider border border-brand-cyan/30">
+                <span className="px-3 py-1 bg-callout text-link text-xs font-mono uppercase tracking-wider border border-brand-cyan">
                   UPDATED APRIL 2026
                 </span>
               )}
@@ -45,14 +44,14 @@ export const ToolPage = () => {
               {toolKey === 'claude' ? 'Claude by Anthropic Review 2026' : tool.name}
             </h1>
             {toolKey === 'claude' ? (
-              <p className="text-xl text-brand-cyan font-mono mb-2">Claude Opus 4.7 — Writing, Coding and Reasoning</p>
+              <p className="text-xl text-link font-mono mb-2">Claude Opus 4.7 — Writing, Coding and Reasoning</p>
             ) : null}
-            {tool.tagline && <p className="text-xl text-brand-cyan font-mono mb-4">"{tool.tagline}"</p>}
+            {tool.tagline && <p className="text-xl text-link font-mono mb-4">"{tool.tagline}"</p>}
             {toolKey === 'claude' && (
-              <div className="text-sm text-gray-500 font-mono">Last updated: April 2026</div>
+              <div className="text-sm text-subtle font-mono">Last updated: April 2026</div>
             )}
           </div>
-          <a href={tool.externalLink} target="_blank" rel="noopener noreferrer" className="bg-brand-cyan text-brand-bg px-6 py-3 font-bold hover:bg-teal-400 transition-all glow-cyan flex items-center justify-center gap-2 whitespace-nowrap">
+          <a href={tool.externalLink} target="_blank" rel="noopener noreferrer" className="bg-action text-brand-bg px-6 py-3 font-bold hover:bg-action-hover transition-all  flex items-center justify-center gap-2 whitespace-nowrap">
             {tool.ctaPrimary || "Visit Website"} <ExternalLink size={18} />
           </a>
         </div>
@@ -60,29 +59,29 @@ export const ToolPage = () => {
         <ReviewEvidence slug={toolKey} />
 
         {toolKey === 'claude' && (
-          <div className="bg-[#1a1a2e] border-l-4 border-brand-cyan p-6 mb-12">
-            <h2 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
+          <div className="bg-surface border-l-4 border-brand-cyan p-6 mb-12">
+            <h2 className="text-xl font-bold text-ink mb-2 flex items-center gap-2">
               <span>🛠️</span> Try my free Claude Prompt Builder
             </h2>
-            <p className="text-gray-300 mb-4">
+            <p className="text-secondary mb-4">
               Build a structured Claude prompt for review.
             </p>
-            <Link to="/tools/prompt-builder" className="inline-flex items-center gap-2 text-brand-cyan font-bold hover:underline">
+            <Link to="/tools/prompt-builder" className="inline-flex items-center gap-2 text-link font-bold hover:underline">
               → Open Prompt Builder
             </Link>
           </div>
         )}
 
         <div className="prose prose-invert max-w-none mb-12">
-          {tool.heroDesc.map((p: string, i: number) => <p key={i} className="text-gray-300 text-lg leading-relaxed mb-4">{p.replace(/<[^>]*>/g, "")}</p>)}
+          {tool.heroDesc.map((p: string, i: number) => <p key={i} className="text-secondary text-lg leading-relaxed mb-4">{p.replace(/<[^>]*>/g, "")}</p>)}
         </div>
 
         {toolKey === 'claude' && (
           <>
             <div className="mb-12">
-              <h2 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Model overview</h2>
-              <div className="bg-brand-bg border border-gray-800 p-6">
-                <p className="text-gray-300 text-lg leading-relaxed">
+              <h2 className="text-2xl font-bold font-mono mb-6 text-ink border-b border-line pb-2">Model overview</h2>
+              <div className="bg-brand-bg border border-line p-6">
+                <p className="text-secondary text-lg leading-relaxed">
                   Anthropic announced Claude Opus 4.7 on April 16 2026 and described it as its most capable generally available model.
                   The benchmark and feature statements below are vendor-reported and are not Domsky measurements.
                 </p>
@@ -90,7 +89,7 @@ export const ToolPage = () => {
             </div>
 
             <div className="mb-12">
-              <h2 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Key improvements over the previous version</h2>
+              <h2 className="text-2xl font-bold font-mono mb-6 text-ink border-b border-line pb-2">Key improvements over the previous version</h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {[
                   {
@@ -124,16 +123,16 @@ export const ToolPage = () => {
                       'New xhigh effort level between high and max — finer control over the quality-speed-cost tradeoff.',
                   },
                 ].map((card) => (
-                  <div key={card.title} className="bg-brand-bg border border-gray-800 p-6 hover:border-brand-cyan transition-colors">
-                    <div className="text-sm font-mono uppercase tracking-wider text-brand-cyan mb-3">{card.title}</div>
-                    <p className="text-gray-300 leading-relaxed">{card.text}</p>
+                  <div key={card.title} className="bg-brand-bg border border-line p-6 hover:border-brand-cyan transition-colors">
+                    <div className="text-sm font-mono uppercase tracking-wider text-link mb-3">{card.title}</div>
+                    <p className="text-secondary leading-relaxed">{card.text}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="mb-12">
-              <h2 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Vendor-reported benchmarks</h2>
+              <h2 className="text-2xl font-bold font-mono mb-6 text-ink border-b border-line pb-2">Vendor-reported benchmarks</h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
                   { label: 'SWE-bench Verified', value: '87.6%' },
@@ -142,9 +141,9 @@ export const ToolPage = () => {
                   { label: 'Finance Agent', value: '64.4%' },
                   { label: 'Visual Acuity', value: '98.5%' },
                 ].map((b) => (
-                  <div key={b.label} className="bg-brand-bg border border-gray-800 p-6">
-                    <div className="text-3xl font-bold font-mono text-brand-cyan mb-2">{b.value}</div>
-                    <div className="text-sm font-mono text-gray-400 uppercase tracking-wider">{b.label}</div>
+                  <div key={b.label} className="bg-brand-bg border border-line p-6">
+                    <div className="text-3xl font-bold font-mono text-link mb-2">{b.value}</div>
+                    <div className="text-sm font-mono text-secondary uppercase tracking-wider">{b.label}</div>
                   </div>
                 ))}
               </div>
@@ -153,11 +152,11 @@ export const ToolPage = () => {
         )}
 
         <div className="mb-12">
-          <h2 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Key Features</h2>
+          <h2 className="text-2xl font-bold font-mono mb-6 text-ink border-b border-line pb-2">Key Features</h2>
           <ul className="grid md:grid-cols-2 gap-4">
             {tool.features.map((f: string, i: number) => (
-              <li key={i} className="flex items-start gap-3 text-gray-300 bg-brand-bg p-4 border border-gray-800">
-                <CheckCircle2 size={20} className="text-brand-cyan shrink-0 mt-0.5" />
+              <li key={i} className="flex items-start gap-3 text-secondary bg-brand-bg p-4 border border-line">
+                <CheckCircle2 size={20} className="text-link shrink-0 mt-0.5" />
                 <span>{f}</span>
               </li>
             ))}
@@ -165,80 +164,80 @@ export const ToolPage = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-green-900/10 border border-green-900/30 p-6">
-            <h2 className="text-xl font-bold font-mono mb-4 text-green-400">Pros</h2>
+          <div className="bg-success-surface border border-success p-6">
+            <h2 className="text-xl font-bold font-mono mb-4 text-success">Pros</h2>
             <ul className="space-y-3">
-              {tool.pros.map((p: string, i: number) => <li key={i} className="text-gray-300 flex items-start gap-3"><span className="text-green-500 font-bold">+</span> {p}</li>)}
+              {tool.pros.map((p: string, i: number) => <li key={i} className="text-secondary flex items-start gap-3"><span className="text-success font-bold">+</span> {p}</li>)}
             </ul>
           </div>
-          <div className="bg-red-900/10 border border-red-900/30 p-6">
-            <h2 className="text-xl font-bold font-mono mb-4 text-red-400">Cons</h2>
+          <div className="bg-error-surface border border-error p-6">
+            <h2 className="text-xl font-bold font-mono mb-4 text-error">Cons</h2>
             <ul className="space-y-3">
-              {tool.cons.map((c: string, i: number) => <li key={i} className="text-gray-300 flex items-start gap-3"><span className="text-red-500 font-bold">-</span> {c}</li>)}
+              {tool.cons.map((c: string, i: number) => <li key={i} className="text-secondary flex items-start gap-3"><span className="text-error font-bold">-</span> {c}</li>)}
             </ul>
           </div>
         </div>
 
         <div className="mb-12">
-          <h2 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Pricing</h2>
+          <h2 className="text-2xl font-bold font-mono mb-6 text-ink border-b border-line pb-2">Pricing</h2>
           {tool.pricingCards ? (
             <div className="grid md:grid-cols-2 gap-4">
               {tool.pricingCards.map((card: any, i: number) => (
-                <div key={i} className="bg-brand-bg border border-gray-800 p-6 hover:border-brand-cyan transition-colors">
-                  <h3 className="text-lg font-bold font-mono text-white mb-1">{card.name}</h3>
-                  <p className="text-brand-amber font-mono mb-4">{card.price}</p>
+                <div key={i} className="bg-brand-bg border border-line p-6 hover:border-brand-cyan transition-colors">
+                  <h3 className="text-lg font-bold font-mono text-ink mb-1">{card.name}</h3>
+                  <p className="text-emphasis font-mono mb-4">{card.price}</p>
                   <ul className="space-y-2 mb-4">
                     {card.features.map((f: string, j: number) => (
-                      <li key={j} className="text-gray-400 text-sm flex items-start gap-2">
-                        <span className="text-brand-cyan mt-0.5">•</span> {f}
+                      <li key={j} className="text-secondary text-sm flex items-start gap-2">
+                        <span className="text-link mt-0.5">•</span> {f}
                       </li>
                     ))}
                   </ul>
-                  <p className="text-xs text-gray-500 border-t border-gray-800 pt-4 mt-auto">
-                    <span className="font-bold text-gray-400">Perfect for:</span> {card.perfectFor}
+                  <p className="text-xs text-subtle border-t border-line pt-4 mt-auto">
+                    <span className="font-bold text-secondary">Perfect for:</span> {card.perfectFor}
                   </p>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="text-gray-400 bg-brand-bg p-4 border border-gray-800 font-mono text-sm">{tool.pricing}</p>
+            <p className="text-secondary bg-brand-bg p-4 border border-line font-mono text-sm">{tool.pricing}</p>
           )}
         </div>
 
         {tool.bestFor && (
           <div className="mb-12">
-            <h2 className="text-2xl font-bold font-mono mb-6 text-white border-b border-gray-800 pb-2">Who is it best for?</h2>
+            <h2 className="text-2xl font-bold font-mono mb-6 text-ink border-b border-line pb-2">Who is it best for?</h2>
             <div className="prose prose-invert max-w-none">
-              {tool.bestFor.map((p: string, i: number) => <p key={i} className="text-gray-300 text-lg leading-relaxed mb-4">{p}</p>)}
+              {tool.bestFor.map((p: string, i: number) => <p key={i} className="text-secondary text-lg leading-relaxed mb-4">{p}</p>)}
             </div>
           </div>
         )}
 
-        <div className="bg-brand-bg border border-gray-800 p-8 text-center mb-12">
-          <h2 className="text-2xl font-bold font-mono mb-6 text-white">Final Verdict</h2>
-          <div className="text-gray-300 text-lg italic leading-relaxed mb-6">
+        <div className="bg-brand-bg border border-line p-8 text-center mb-12">
+          <h2 className="text-2xl font-bold font-mono mb-6 text-ink">Final Verdict</h2>
+          <div className="text-secondary text-lg italic leading-relaxed mb-6">
             {tool.verdict.split('\n\n').map((p: string, i: number) => <p key={i} className="mb-4 last:mb-0">"{p}"</p>)}
           </div>
           
-          <div className="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t border-gray-800">
+          <div className="flex flex-wrap justify-center gap-4 mt-6 pt-6 border-t border-line">
             {tool.bestForTags && (
               <div className="text-sm">
-                <span className="text-gray-500 font-mono">Best For:</span> <span className="text-brand-cyan">{tool.bestForTags}</span>
+                <span className="text-subtle font-mono">Best For:</span> <span className="text-link">{tool.bestForTags}</span>
               </div>
             )}
             {tool.pricingSummary && (
               <div className="text-sm">
-                <span className="text-gray-500 font-mono">Pricing:</span> <span className="text-brand-amber">{tool.pricingSummary}</span>
+                <span className="text-subtle font-mono">Pricing:</span> <span className="text-emphasis">{tool.pricingSummary}</span>
               </div>
             )}
           </div>
         </div>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-          <a href={tool.externalLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-brand-cyan text-brand-bg px-8 py-4 font-bold text-lg hover:bg-teal-400 transition-all glow-cyan flex items-center justify-center gap-2">
+          <a href={tool.externalLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-action text-brand-bg px-8 py-4 font-bold text-lg hover:bg-action-hover transition-all  flex items-center justify-center gap-2">
             {tool.ctaPrimary || "Visit Website"} <ExternalLink size={20} />
           </a>
-          <Link to="/reviews" className="w-full sm:w-auto bg-transparent border border-gray-600 text-white px-8 py-4 font-bold text-lg hover:border-white hover:bg-brand-surface transition-all flex items-center justify-center gap-2">
+          <Link to="/reviews" className="w-full sm:w-auto bg-transparent border border-line text-ink px-8 py-4 font-bold text-lg hover:border-line hover:bg-brand-surface transition-all flex items-center justify-center gap-2">
             <ArrowRight className="rotate-180" size={20} /> Back to all reviews
           </Link>
         </div>

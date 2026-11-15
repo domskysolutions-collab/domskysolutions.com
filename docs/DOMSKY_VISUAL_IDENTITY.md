@@ -1,8 +1,8 @@
 # Domsky visual identity
 
-Preserve the warm dark tokens in `src/index.css`: #0F0A05 background, #1C0F05 surface, #F97316 orange, #FB923C amber and #FEF3C7 cream. Reuse DM Sans, Space Mono and the already-loaded Lora. No new fonts, dependencies or brand migration.
+Use the DS palette and section rhythm described in `DOMSKY_DS_BRAND.md`: paper cream reading surfaces, teal hero/actions, sage finder/discovery, sand tools and charcoal footer. `src/index.css` owns semantic tokens. The Version 3 logo and November 15 direction supersede the earlier ivory-only proposal; preserve existing fonts and functional behavior.
 
-Lead with a decision rather than a trust statistic. Prefer an asymmetric lead and short reading list over interchangeable feature cards. Use dividers to separate stories; orange identifies links, focus and restrained labels. Keep useful cards in working tools. Avoid blanket removal of grids, tables or callouts.
+Lead with a decision rather than a trust statistic. Prefer an asymmetric lead and short reading list over interchangeable feature cards. Use dividers to separate stories; forest green identifies links, focus and restrained labels. Keep useful cards in working tools. Avoid blanket removal of grids, tables or callouts.
 
 Body copy should remain at least 16px with a comfortable reading measure and 1.7–1.85 line height. Keep visible focus, semantic headings, contrast, 200% text enlargement and mobile wrapping. Wide tables use labeled, focusable overflow regions and row/column headers; the page itself must not scroll horizontally.
 

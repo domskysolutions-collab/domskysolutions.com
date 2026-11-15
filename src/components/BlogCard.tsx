@@ -6,8 +6,8 @@ import { ArrowRight, Clock } from 'lucide-react';
 import type { ArticleCardData } from '../content/types';
 
 export const BlogCard: React.FC<{ post: ArticleCardData }> = ({ post }) => (
-  <Link to={post.slug} className="group flex flex-col bg-brand-surface border border-gray-800 rounded-xl overflow-hidden hover:border-brand-cyan/50 transition-all duration-300">
-    {post.image && <div className="w-full h-[220px] overflow-hidden bg-gray-950">
+  <Link to={post.slug} className="group flex flex-col bg-brand-surface border border-line rounded-xl overflow-hidden hover:border-brand-cyan transition-all duration-300">
+    {post.image && <div className="w-full h-[220px] overflow-hidden bg-surface">
       <img 
         src={post.image} 
         alt={post.imageAlt || post.title}
@@ -18,22 +18,22 @@ export const BlogCard: React.FC<{ post: ArticleCardData }> = ({ post }) => (
     </div>}
     <div className="p-6 flex flex-col flex-grow">
       <div className="flex items-center gap-3 mb-4">
-        <span className="text-brand-cyan font-mono text-xs uppercase tracking-wider">{post.category}</span>
-        <span className="text-gray-500 font-mono text-xs">•</span>
-        <span className="text-gray-400 font-mono text-xs">{post.readTime}</span>
+        <span className="text-link font-mono text-xs uppercase tracking-wider">{post.category}</span>
+        <span className="text-subtle font-mono text-xs">•</span>
+        <span className="text-secondary font-mono text-xs">{post.readTime}</span>
       </div>
-      <h2 className="text-xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors line-clamp-2">
+      <h2 className="text-xl font-bold text-ink mb-3 group-hover:text-link transition-colors line-clamp-2">
         {post.title}
       </h2>
-      <p className="text-gray-400 text-sm mb-6 line-clamp-2 flex-grow">
+      <p className="text-secondary text-sm mb-6 line-clamp-2 flex-grow">
         {post.excerpt}
       </p>
-      <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-800">
+      <div className="flex items-center justify-between mt-auto pt-4 border-t border-line">
         <div className="flex flex-col">
-          <span className="text-gray-300 text-xs font-medium">{post.author}</span>
-          <span className="text-gray-500 text-xs">{post.date}</span>
+          <span className="text-secondary text-xs font-medium">{post.author}</span>
+          <span className="text-subtle text-xs">{post.date}</span>
         </div>
-        <span className="text-brand-cyan text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+        <span className="text-link text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
           Read Article <ArrowRight size={16} />
         </span>
       </div>

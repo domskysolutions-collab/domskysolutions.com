@@ -43,30 +43,30 @@ export const HomePage = () => <main className="editorial-home bg-brand-bg min-h-
   <LeanStackFinder />
       {/* Newsletter */}
       <section id="newsletter" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div className="absolute inset-0 bg-brand-cyan/5 pointer-events-none" aria-hidden />
+        <div className="absolute inset-0 bg-callout pointer-events-none" aria-hidden />
         <div className="relative max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white mb-4">The Weekly Edge — Every Thursday</h2>
-          <p className="text-gray-400 mb-10 leading-relaxed">
+          <h2 className="text-3xl md:text-4xl font-bold font-mono text-ink mb-4">The Weekly Edge — Every Thursday</h2>
+          <p className="text-secondary mb-10 leading-relaxed">
             One AI tool worth knowing. One practical workflow tip. One useful insight for building alone.
             No sponsors. No fluff. Free forever.
           </p>
-          <p className="text-sm text-gray-300 mb-6">See the kind of advice I cover: <Link to="/blog/ai-daily-workflow-solo-business" className="text-brand-cyan underline">read the solo-business workflow guide</Link>.</p>
+          <p className="text-sm text-secondary mb-6">See the kind of advice I cover: <Link to="/blog/ai-daily-workflow-solo-business" className="text-link underline">read the solo-business workflow guide</Link>.</p>
           <ConvertKitForm
             className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mb-6"
-            inputClassName="flex-grow bg-brand-surface border border-gray-700 px-5 py-4 text-white rounded-xl focus:outline-none focus:border-brand-cyan transition-colors font-sans text-sm"
-            buttonClassName="bg-brand-amber text-brand-bg px-8 py-4 font-bold rounded-xl hover:bg-yellow-400 transition-colors whitespace-nowrap"
+            inputClassName="flex-grow bg-brand-surface border border-line px-5 py-4 text-ink rounded-xl focus:outline-none focus:border-brand-cyan transition-colors font-sans text-sm"
+            buttonClassName="bg-action text-brand-bg px-8 py-4 font-bold rounded-xl hover:bg-action-hover transition-colors whitespace-nowrap"
             buttonText="Subscribe"
             placeholder="you@example.com"
           />
-          <div className="flex flex-wrap justify-center gap-6 text-xs font-mono text-gray-500">
+          <div className="flex flex-wrap justify-center gap-6 text-xs font-mono text-subtle">
             <span className="flex items-center gap-1">
-              <CheckCircle2 size={14} className="text-brand-cyan" /> Every Thursday
+              <CheckCircle2 size={14} className="text-link" /> Every Thursday
             </span>
             <span className="flex items-center gap-1">
-              <CheckCircle2 size={14} className="text-brand-cyan" /> Commercial links disclosed
+              <CheckCircle2 size={14} className="text-link" /> Commercial links disclosed
             </span>
             <span className="flex items-center gap-1">
-              <CheckCircle2 size={14} className="text-brand-cyan" /> Free forever
+              <CheckCircle2 size={14} className="text-link" /> Free forever
             </span>
           </div>
         </div>

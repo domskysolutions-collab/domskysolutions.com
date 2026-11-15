@@ -323,23 +323,23 @@ export const PromptBuilderPage = () => {
 
   const filledCount = getFilledFieldsCount();
   let strengthLabel = "Weak";
-  let strengthColor = "bg-red-500";
+  let strengthColor = "bg-error-surface";
   let strengthText = "Add more detail for better results";
   let strengthBars = 2;
   
   if (filledCount >= 6) {
     strengthLabel = "Strong";
-    strengthColor = "bg-brand-cyan";
+    strengthColor = "bg-action";
     strengthText = "Great prompt — ready to use!";
     strengthBars = 10;
   } else if (filledCount >= 4) {
     strengthLabel = "Good";
-    strengthColor = "bg-green-400";
+    strengthColor = "bg-success-surface";
     strengthText = "Looking good, add a bit more context if needed";
     strengthBars = 7;
   } else if (filledCount >= 2) {
     strengthLabel = "Basic";
-    strengthColor = "bg-brand-amber";
+    strengthColor = "bg-action";
     strengthText = "Add more detail for better results";
     strengthBars = 4;
   }
@@ -350,18 +350,18 @@ export const PromptBuilderPage = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-block bg-brand-cyan/10 text-brand-cyan text-xs font-bold font-mono px-3 py-1 rounded-full mb-6 uppercase tracking-wider border border-brand-cyan/20">
+          <div className="inline-block bg-callout text-link text-xs font-bold font-mono px-3 py-1 rounded-full mb-6 uppercase tracking-wider border border-brand-cyan">
             FREE TOOL — NO SIGNUP REQUIRED
           </div>
           <h1 className="text-4xl md:text-6xl font-bold font-mono mb-6">Claude Prompt Builder</h1>
-          <p className="text-xl text-gray-400 mb-8">
+          <p className="text-xl text-secondary mb-8">
             Stop writing prompts from scratch. Fill in what you need — get a professional Claude prompt ready to copy in seconds.
           </p>
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm font-medium text-gray-300">
-            <span className="flex items-center gap-1"><CheckCircle2 size={16} className="text-brand-cyan" /> Works with Claude Free & Pro</span>
-            <span className="flex items-center gap-1"><CheckCircle2 size={16} className="text-brand-cyan" /> No signup required</span>
-            <span className="flex items-center gap-1"><CheckCircle2 size={16} className="text-brand-cyan" /> Copy with one click</span>
-            <span className="flex items-center gap-1"><CheckCircle2 size={16} className="text-brand-cyan" /> Built by domskysolutions.com</span>
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm font-medium text-secondary">
+            <span className="flex items-center gap-1"><CheckCircle2 size={16} className="text-link" /> Works with Claude Free & Pro</span>
+            <span className="flex items-center gap-1"><CheckCircle2 size={16} className="text-link" /> No signup required</span>
+            <span className="flex items-center gap-1"><CheckCircle2 size={16} className="text-link" /> Copy with one click</span>
+            <span className="flex items-center gap-1"><CheckCircle2 size={16} className="text-link" /> Built by domskysolutions.com</span>
           </div>
         </div>
 
@@ -373,8 +373,8 @@ export const PromptBuilderPage = () => {
               onClick={() => setCategory(cat.id)}
               className={`flex items-center gap-2 px-5 py-3 rounded-full font-bold whitespace-nowrap transition-colors border ${
                 category === cat.id 
-                  ? 'bg-brand-cyan text-[#000000] border-brand-cyan' 
-                  : 'bg-[#1a1a2e] text-gray-400 border-gray-800 hover:border-gray-600'
+                  ? 'bg-action text-ink border-brand-cyan'
+                  : 'bg-surface text-secondary border-line hover:border-line'
               }`}
             >
               <span>{cat.icon}</span> {cat.label}
@@ -399,11 +399,11 @@ export const PromptBuilderPage = () => {
                 {/* Global Fields */}
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-gray-400 font-medium mb-2">Your Role / Context</label>
+                    <label className="block text-secondary font-medium mb-2">Your Role / Context</label>
                     <select 
                       value={fields.role}
                       onChange={(e) => handleFieldChange('role', e.target.value)}
-                      className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors appearance-none"
+                      className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors appearance-none"
                     >
                       <option value="">Who are you?</option>
                       {ROLES.map(r => <option key={r} value={r}>{r}</option>)}
@@ -411,18 +411,18 @@ export const PromptBuilderPage = () => {
                   </div>
 
                   <div>
-                    <label className="block text-gray-400 font-medium mb-2">What do you need Claude to do?</label>
+                    <label className="block text-secondary font-medium mb-2">What do you need Claude to do?</label>
                     <textarea 
                       value={fields.task}
                       onChange={(e) => handleFieldChange('task', e.target.value)}
                       placeholder="e.g. Write a blog post introduction about AI tools"
-                      className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]"
+                      className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]"
                     />
-                    <div className="text-right text-xs text-gray-500 mt-1">{fields.task.length} characters</div>
+                    <div className="text-right text-xs text-subtle mt-1">{fields.task.length} characters</div>
                   </div>
 
                   <div>
-                    <label className="block text-gray-400 font-medium mb-2">Tone of voice (select multiple)</label>
+                    <label className="block text-secondary font-medium mb-2">Tone of voice (select multiple)</label>
                     <div className="flex flex-wrap gap-2">
                       {TONES.map(tone => (
                         <button
@@ -430,8 +430,8 @@ export const PromptBuilderPage = () => {
                           onClick={() => toggleTone(tone)}
                           className={`px-4 py-2 rounded-full text-sm font-medium transition-colors border ${
                             fields.tones.includes(tone)
-                              ? 'bg-brand-cyan/10 text-brand-cyan border-brand-cyan'
-                              : 'bg-[#1a1a2e] text-gray-400 border-gray-800 hover:border-gray-600'
+                              ? 'bg-callout text-link border-brand-cyan'
+                              : 'bg-surface text-secondary border-line hover:border-line'
                           }`}
                         >
                           {tone}
@@ -441,7 +441,7 @@ export const PromptBuilderPage = () => {
                   </div>
 
                   <div>
-                    <label className="block text-gray-400 font-medium mb-2">How should Claude format the output?</label>
+                    <label className="block text-secondary font-medium mb-2">How should Claude format the output?</label>
                     <div className="flex flex-wrap gap-2">
                       {FORMATS.map(format => (
                         <button
@@ -449,8 +449,8 @@ export const PromptBuilderPage = () => {
                           onClick={() => handleFieldChange('format', fields.format === format ? '' : format)}
                           className={`px-4 py-2 rounded-full text-sm font-medium transition-colors border ${
                             fields.format === format
-                              ? 'bg-brand-cyan/10 text-brand-cyan border-brand-cyan'
-                              : 'bg-[#1a1a2e] text-gray-400 border-gray-800 hover:border-gray-600'
+                              ? 'bg-callout text-link border-brand-cyan'
+                              : 'bg-surface text-secondary border-line hover:border-line'
                           }`}
                         >
                           {format}
@@ -460,23 +460,23 @@ export const PromptBuilderPage = () => {
                   </div>
                 </div>
 
-                <div className="h-px bg-gray-800 w-full my-8"></div>
+                <div className="h-px bg-surface w-full my-8"></div>
 
                 {/* Category Specific Fields */}
                 <div className="space-y-6">
                   {category === 'writing' && (
                     <>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Topic or title</label>
-                        <input type="text" value={fields.writingTopic} onChange={e => handleFieldChange('writingTopic', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" />
+                        <label className="block text-secondary font-medium mb-2">Topic or title</label>
+                        <input type="text" value={fields.writingTopic} onChange={e => handleFieldChange('writingTopic', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Target audience</label>
-                        <input type="text" value={fields.writingAudience} onChange={e => handleFieldChange('writingAudience', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" />
+                        <label className="block text-secondary font-medium mb-2">Target audience</label>
+                        <input type="text" value={fields.writingAudience} onChange={e => handleFieldChange('writingAudience', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Word count / length</label>
-                        <select value={fields.writingLength} onChange={e => handleFieldChange('writingLength', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
+                        <label className="block text-secondary font-medium mb-2">Word count / length</label>
+                        <select value={fields.writingLength} onChange={e => handleFieldChange('writingLength', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
                           <option value="">Select length</option>
                           <option value="Short (under 300 words)">Short (under 300 words)</option>
                           <option value="Medium (300-600 words)">Medium (300-600 words)</option>
@@ -485,12 +485,12 @@ export const PromptBuilderPage = () => {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Include these points</label>
-                        <textarea value={fields.writingInclude} onChange={e => handleFieldChange('writingInclude', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]" />
+                        <label className="block text-secondary font-medium mb-2">Include these points</label>
+                        <textarea value={fields.writingInclude} onChange={e => handleFieldChange('writingInclude', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Avoid</label>
-                        <input type="text" value={fields.writingAvoid} onChange={e => handleFieldChange('writingAvoid', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" />
+                        <label className="block text-secondary font-medium mb-2">Avoid</label>
+                        <input type="text" value={fields.writingAvoid} onChange={e => handleFieldChange('writingAvoid', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors" />
                       </div>
                     </>
                   )}
@@ -498,12 +498,12 @@ export const PromptBuilderPage = () => {
                   {category === 'research' && (
                     <>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Topic to research</label>
-                        <input type="text" value={fields.researchTopic} onChange={e => handleFieldChange('researchTopic', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" />
+                        <label className="block text-secondary font-medium mb-2">Topic to research</label>
+                        <input type="text" value={fields.researchTopic} onChange={e => handleFieldChange('researchTopic', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Depth of research</label>
-                        <select value={fields.researchDepth} onChange={e => handleFieldChange('researchDepth', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
+                        <label className="block text-secondary font-medium mb-2">Depth of research</label>
+                        <select value={fields.researchDepth} onChange={e => handleFieldChange('researchDepth', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
                           <option value="">Select depth</option>
                           <option value="Quick overview">Quick overview</option>
                           <option value="Detailed breakdown">Detailed breakdown</option>
@@ -511,12 +511,12 @@ export const PromptBuilderPage = () => {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Specific questions to answer</label>
-                        <textarea value={fields.researchQuestions} onChange={e => handleFieldChange('researchQuestions', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]" />
+                        <label className="block text-secondary font-medium mb-2">Specific questions to answer</label>
+                        <textarea value={fields.researchQuestions} onChange={e => handleFieldChange('researchQuestions', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Sources to consider</label>
-                        <select value={fields.researchSources} onChange={e => handleFieldChange('researchSources', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
+                        <label className="block text-secondary font-medium mb-2">Sources to consider</label>
+                        <select value={fields.researchSources} onChange={e => handleFieldChange('researchSources', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
                           <option value="">Select sources</option>
                           <option value="Any sources">Any sources</option>
                           <option value="Focus on recent (last 6 months)">Focus on recent (last 6 months)</option>
@@ -530,8 +530,8 @@ export const PromptBuilderPage = () => {
                   {category === 'coding' && (
                     <>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Programming language</label>
-                        <select value={fields.codingLanguage} onChange={e => handleFieldChange('codingLanguage', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
+                        <label className="block text-secondary font-medium mb-2">Programming language</label>
+                        <select value={fields.codingLanguage} onChange={e => handleFieldChange('codingLanguage', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
                           <option value="">Select language</option>
                           <option value="JavaScript">JavaScript</option>
                           <option value="Python">Python</option>
@@ -544,12 +544,12 @@ export const PromptBuilderPage = () => {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">What to build or fix</label>
-                        <textarea value={fields.codingTask} onChange={e => handleFieldChange('codingTask', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]" />
+                        <label className="block text-secondary font-medium mb-2">What to build or fix</label>
+                        <textarea value={fields.codingTask} onChange={e => handleFieldChange('codingTask', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Experience level</label>
-                        <select value={fields.codingExperience} onChange={e => handleFieldChange('codingExperience', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
+                        <label className="block text-secondary font-medium mb-2">Experience level</label>
+                        <select value={fields.codingExperience} onChange={e => handleFieldChange('codingExperience', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
                           <option value="">Select experience</option>
                           <option value="Explain like I'm not a developer">Explain like I'm not a developer</option>
                           <option value="I understand basics">I understand basics</option>
@@ -558,8 +558,8 @@ export const PromptBuilderPage = () => {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Code style preference</label>
-                        <select value={fields.codingStyle} onChange={e => handleFieldChange('codingStyle', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
+                        <label className="block text-secondary font-medium mb-2">Code style preference</label>
+                        <select value={fields.codingStyle} onChange={e => handleFieldChange('codingStyle', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
                           <option value="">Select style</option>
                           <option value="Clean and simple">Clean and simple</option>
                           <option value="Well commented">Well commented</option>
@@ -573,8 +573,8 @@ export const PromptBuilderPage = () => {
                   {category === 'email' && (
                     <>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Email type</label>
-                        <select value={fields.emailType} onChange={e => handleFieldChange('emailType', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
+                        <label className="block text-secondary font-medium mb-2">Email type</label>
+                        <select value={fields.emailType} onChange={e => handleFieldChange('emailType', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
                           <option value="">Select type</option>
                           <option value="Cold outreach">Cold outreach</option>
                           <option value="Follow up">Follow up</option>
@@ -587,20 +587,20 @@ export const PromptBuilderPage = () => {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Recipient</label>
-                        <input type="text" value={fields.emailRecipient} onChange={e => handleFieldChange('emailRecipient', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" />
+                        <label className="block text-secondary font-medium mb-2">Recipient</label>
+                        <input type="text" value={fields.emailRecipient} onChange={e => handleFieldChange('emailRecipient', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Main goal of email</label>
-                        <input type="text" value={fields.emailGoal} onChange={e => handleFieldChange('emailGoal', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" />
+                        <label className="block text-secondary font-medium mb-2">Main goal of email</label>
+                        <input type="text" value={fields.emailGoal} onChange={e => handleFieldChange('emailGoal', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Key information to include</label>
-                        <textarea value={fields.emailInclude} onChange={e => handleFieldChange('emailInclude', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]" />
+                        <label className="block text-secondary font-medium mb-2">Key information to include</label>
+                        <textarea value={fields.emailInclude} onChange={e => handleFieldChange('emailInclude', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Email length</label>
-                        <select value={fields.emailLength} onChange={e => handleFieldChange('emailLength', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
+                        <label className="block text-secondary font-medium mb-2">Email length</label>
+                        <select value={fields.emailLength} onChange={e => handleFieldChange('emailLength', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
                           <option value="">Select length</option>
                           <option value="Very short (3-4 lines)">Very short (3-4 lines)</option>
                           <option value="Short (under 150 words)">Short (under 150 words)</option>
@@ -614,7 +614,7 @@ export const PromptBuilderPage = () => {
                   {category === 'social' && (
                     <>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Platform</label>
+                        <label className="block text-secondary font-medium mb-2">Platform</label>
                         <div className="flex flex-wrap gap-2">
                           {['X/Twitter', 'LinkedIn', 'Instagram', 'Facebook', 'TikTok', 'YouTube desc'].map(platform => (
                             <button
@@ -622,8 +622,8 @@ export const PromptBuilderPage = () => {
                               onClick={() => handleFieldChange('socialPlatform', fields.socialPlatform === platform ? '' : platform)}
                               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors border ${
                                 fields.socialPlatform === platform
-                                  ? 'bg-brand-cyan/10 text-brand-cyan border-brand-cyan'
-                                  : 'bg-[#1a1a2e] text-gray-400 border-gray-800 hover:border-gray-600'
+                                  ? 'bg-callout text-link border-brand-cyan'
+                                  : 'bg-surface text-secondary border-line hover:border-line'
                               }`}
                             >
                               {platform}
@@ -632,8 +632,8 @@ export const PromptBuilderPage = () => {
                         </div>
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Post goal</label>
-                        <select value={fields.socialGoal} onChange={e => handleFieldChange('socialGoal', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
+                        <label className="block text-secondary font-medium mb-2">Post goal</label>
+                        <select value={fields.socialGoal} onChange={e => handleFieldChange('socialGoal', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
                           <option value="">Select goal</option>
                           <option value="Drive engagement / comments">Drive engagement / comments</option>
                           <option value="Drive clicks to website">Drive clicks to website</option>
@@ -644,18 +644,18 @@ export const PromptBuilderPage = () => {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Topic or hook</label>
-                        <input type="text" value={fields.socialTopic} onChange={e => handleFieldChange('socialTopic', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" />
+                        <label className="block text-secondary font-medium mb-2">Topic or hook</label>
+                        <input type="text" value={fields.socialTopic} onChange={e => handleFieldChange('socialTopic', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors" />
                       </div>
                       <div className="flex items-center gap-3">
-                        <label className="text-gray-400 font-medium">Include hashtags?</label>
+                        <label className="text-secondary font-medium">Include hashtags?</label>
                         <button
                           onClick={() => handleFieldChange('socialHashtags', !fields.socialHashtags)}
-                          className={`w-12 h-6 rounded-full transition-colors relative ${fields.socialHashtags ? 'bg-brand-cyan' : 'bg-gray-700'}`}
+                          className={`w-12 h-6 rounded-full transition-colors relative ${fields.socialHashtags ? 'bg-action' : 'bg-surface'}`}
                         >
-                          <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${fields.socialHashtags ? 'left-7' : 'left-1'}`}></span>
+                          <span className={`absolute top-1 w-4 h-4 rounded-full bg-surface transition-all ${fields.socialHashtags ? 'left-7' : 'left-1'}`}></span>
                         </button>
-                        <span className="text-white text-sm">{fields.socialHashtags ? 'Yes' : 'No'}</span>
+                        <span className="text-ink text-sm">{fields.socialHashtags ? 'Yes' : 'No'}</span>
                       </div>
                     </>
                   )}
@@ -663,20 +663,20 @@ export const PromptBuilderPage = () => {
                   {category === 'strategy' && (
                     <>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Business or project type</label>
-                        <input type="text" value={fields.strategyType} onChange={e => handleFieldChange('strategyType', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" />
+                        <label className="block text-secondary font-medium mb-2">Business or project type</label>
+                        <input type="text" value={fields.strategyType} onChange={e => handleFieldChange('strategyType', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Strategic challenge</label>
-                        <textarea value={fields.strategyChallenge} onChange={e => handleFieldChange('strategyChallenge', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]" />
+                        <label className="block text-secondary font-medium mb-2">Strategic challenge</label>
+                        <textarea value={fields.strategyChallenge} onChange={e => handleFieldChange('strategyChallenge', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Constraints to consider</label>
-                        <input type="text" value={fields.strategyConstraints} onChange={e => handleFieldChange('strategyConstraints', e.target.value)} placeholder="budget, time, team size" className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" />
+                        <label className="block text-secondary font-medium mb-2">Constraints to consider</label>
+                        <input type="text" value={fields.strategyConstraints} onChange={e => handleFieldChange('strategyConstraints', e.target.value)} placeholder="budget, time, team size" className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Desired outcome</label>
-                        <input type="text" value={fields.strategyOutcome} onChange={e => handleFieldChange('strategyOutcome', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" />
+                        <label className="block text-secondary font-medium mb-2">Desired outcome</label>
+                        <input type="text" value={fields.strategyOutcome} onChange={e => handleFieldChange('strategyOutcome', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors" />
                       </div>
                     </>
                   )}
@@ -684,12 +684,12 @@ export const PromptBuilderPage = () => {
                   {category === 'analysis' && (
                     <>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">What to analyze</label>
-                        <textarea value={fields.analysisTopic} onChange={e => handleFieldChange('analysisTopic', e.target.value)} placeholder="paste content or describe what to analyze" className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]" />
+                        <label className="block text-secondary font-medium mb-2">What to analyze</label>
+                        <textarea value={fields.analysisTopic} onChange={e => handleFieldChange('analysisTopic', e.target.value)} placeholder="paste content or describe what to analyze" className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors min-h-[100px]" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Analysis type</label>
-                        <select value={fields.analysisType} onChange={e => handleFieldChange('analysisType', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
+                        <label className="block text-secondary font-medium mb-2">Analysis type</label>
+                        <select value={fields.analysisType} onChange={e => handleFieldChange('analysisType', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
                           <option value="">Select type</option>
                           <option value="Pros and cons">Pros and cons</option>
                           <option value="SWOT analysis">SWOT analysis</option>
@@ -700,8 +700,8 @@ export const PromptBuilderPage = () => {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Output format preference</label>
-                        <select value={fields.analysisFormat} onChange={e => handleFieldChange('analysisFormat', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
+                        <label className="block text-secondary font-medium mb-2">Output format preference</label>
+                        <select value={fields.analysisFormat} onChange={e => handleFieldChange('analysisFormat', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
                           <option value="">Select format</option>
                           <option value="Summary">Summary</option>
                           <option value="Table">Table</option>
@@ -715,8 +715,8 @@ export const PromptBuilderPage = () => {
                   {category === 'creative' && (
                     <>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Creative type</label>
-                        <select value={fields.creativeType} onChange={e => handleFieldChange('creativeType', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
+                        <label className="block text-secondary font-medium mb-2">Creative type</label>
+                        <select value={fields.creativeType} onChange={e => handleFieldChange('creativeType', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors appearance-none">
                           <option value="">Select type</option>
                           <option value="Blog post">Blog post</option>
                           <option value="Story / narrative">Story / narrative</option>
@@ -728,12 +728,12 @@ export const PromptBuilderPage = () => {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Style inspiration</label>
-                        <input type="text" value={fields.creativeStyle} onChange={e => handleFieldChange('creativeStyle', e.target.value)} placeholder="describe the style or mention a reference" className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" />
+                        <label className="block text-secondary font-medium mb-2">Style inspiration</label>
+                        <input type="text" value={fields.creativeStyle} onChange={e => handleFieldChange('creativeStyle', e.target.value)} placeholder="describe the style or mention a reference" className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors" />
                       </div>
                       <div>
-                        <label className="block text-gray-400 font-medium mb-2">Key message</label>
-                        <input type="text" value={fields.creativeMessage} onChange={e => handleFieldChange('creativeMessage', e.target.value)} className="w-full bg-[#1a1a2e] border border-gray-500/30 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-cyan transition-colors" />
+                        <label className="block text-secondary font-medium mb-2">Key message</label>
+                        <input type="text" value={fields.creativeMessage} onChange={e => handleFieldChange('creativeMessage', e.target.value)} className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink focus:outline-none focus:border-brand-cyan transition-colors" />
                       </div>
                     </>
                   )}
@@ -746,15 +746,15 @@ export const PromptBuilderPage = () => {
           <div className="w-full lg:w-1/2">
             <div className="sticky top-28">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-bold text-white font-mono">Your Claude Prompt</h2>
+                <h2 className="text-xl font-bold text-ink font-mono">Your Claude Prompt</h2>
                 <div className="flex items-center gap-3">
-                  <button onClick={handleClear} className="px-4 py-2 rounded border border-gray-700 text-gray-300 hover:bg-gray-800 transition-colors text-sm font-bold">
+                  <button onClick={handleClear} className="px-4 py-2 rounded border border-line text-secondary hover:bg-surface transition-colors text-sm font-bold">
                     Clear All
                   </button>
                   <button 
                     onClick={handleCopy}
                     className={`px-4 py-2 rounded font-bold transition-colors text-sm flex items-center gap-2 ${
-                      copied ? 'bg-green-500 text-white' : 'bg-brand-amber text-brand-bg hover:bg-yellow-400'
+                      copied ? 'bg-success-surface text-ink' : 'bg-action text-brand-bg hover:bg-action-hover'
                     }`}
                   >
                     {copied ? <CheckCircle2 size={16} /> : <Copy size={16} />}
@@ -769,12 +769,12 @@ export const PromptBuilderPage = () => {
                     key={generatedPrompt}
                     initial={{ opacity: 0.8 }}
                     animate={{ opacity: 1 }}
-                    className="font-mono text-[16px] leading-[1.8] text-white whitespace-pre-wrap"
+                    className="font-mono text-[16px] leading-[1.8] text-ink whitespace-pre-wrap"
                   >
                     {generatedPrompt}
                   </motion.div>
                 ) : (
-                  <div className="text-gray-500 italic font-mono text-[16px] leading-[1.8]">
+                  <div className="text-subtle italic font-mono text-[16px] leading-[1.8]">
                     Your prompt will appear here as you fill in the fields above.<br/><br/>
                     Start by selecting a category and filling in what you need.
                   </div>
@@ -784,37 +784,37 @@ export const PromptBuilderPage = () => {
               {/* Prompt Quality Indicator */}
               <div className="mt-6">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-bold text-white">Prompt Strength</span>
+                  <span className="text-sm font-bold text-ink">Prompt Strength</span>
                   <span className={`text-sm font-bold ${strengthColor.replace('bg-', 'text-')}`}>{strengthLabel}</span>
                 </div>
                 <div className="flex gap-1 h-2 mb-2">
                   {Array.from({ length: 10 }).map((_, i) => (
                     <div 
                       key={i} 
-                      className={`flex-1 rounded-full ${i < strengthBars ? strengthColor : 'bg-gray-800'}`}
+                      className={`flex-1 rounded-full ${i < strengthBars ? strengthColor : 'bg-surface'}`}
                     ></div>
                   ))}
                 </div>
-                <div className="text-xs text-gray-400">{strengthText}</div>
+                <div className="text-xs text-secondary">{strengthText}</div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Example Prompts Section */}
-        <div className="mb-20 pt-12 border-t border-gray-800">
-          <h2 className="text-2xl font-bold font-mono text-white mb-8 text-center">Need inspiration? Try these examples</h2>
+        <div className="mb-20 pt-12 border-t border-line">
+          <h2 className="text-2xl font-bold font-mono text-ink mb-8 text-center">Need inspiration? Try these examples</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {EXAMPLES.map((ex, i) => (
-              <div key={i} className="bg-brand-surface border border-gray-800 rounded-xl p-6 flex flex-col items-start">
-                <div className="bg-brand-amber/10 text-brand-amber text-xs font-bold px-2 py-1 rounded uppercase tracking-wider mb-4">
+              <div key={i} className="bg-brand-surface border border-line rounded-xl p-6 flex flex-col items-start">
+                <div className="bg-callout text-emphasis text-xs font-bold px-2 py-1 rounded uppercase tracking-wider mb-4">
                   {PROMPT_CATEGORIES.find(c => c.id === ex.category)?.label}
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">{ex.title}</h3>
-                <p className="text-gray-400 text-sm mb-6 flex-1">{ex.desc}</p>
+                <h3 className="text-lg font-bold text-ink mb-2">{ex.title}</h3>
+                <p className="text-secondary text-sm mb-6 flex-1">{ex.desc}</p>
                 <button 
                   onClick={() => loadExample(ex)}
-                  className="text-brand-cyan font-bold text-sm hover:underline flex items-center gap-1"
+                  className="text-link font-bold text-sm hover:underline flex items-center gap-1"
                 >
                   Use this template →
                 </button>
@@ -835,24 +835,24 @@ export const PromptBuilderPage = () => {
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className="fixed bottom-0 left-0 w-full z-50 p-4 pointer-events-none"
           >
-            <div className="max-w-3xl mx-auto bg-[#1a1a2e] border border-brand-cyan shadow-2xl rounded-xl p-6 relative pointer-events-auto flex flex-col sm:flex-row items-center gap-6">
+            <div className="max-w-3xl mx-auto bg-surface border border-brand-cyan  rounded-xl p-6 relative pointer-events-auto flex flex-col sm:flex-row items-center gap-6">
               <button 
                 onClick={dismissEmail}
-                className="absolute top-3 right-3 text-gray-400 hover:text-white"
+                className="absolute top-3 right-3 text-secondary hover:text-ink"
               >
                 <X size={20} />
               </button>
               
               <div className="flex-1">
-                <h3 className="text-xl font-bold text-white mb-1">Want practical prompt examples each week?</h3>
-                <p className="text-gray-400 text-sm">Subscribe to The Weekly Edge for prompts, workflow tips and tool guidance.</p>
+                <h3 className="text-xl font-bold text-ink mb-1">Want practical prompt examples each week?</h3>
+                <p className="text-secondary text-sm">Subscribe to The Weekly Edge for prompts, workflow tips and tool guidance.</p>
               </div>
               
               <div className="w-full sm:w-auto">
                 <ConvertKitForm 
                   className="flex gap-2"
-                  inputClassName="bg-brand-bg border border-gray-700 rounded px-4 py-2 text-white focus:outline-none focus:border-brand-cyan transition-colors w-full sm:w-64"
-                  buttonClassName="bg-brand-cyan text-brand-bg px-4 py-2 rounded font-bold hover:bg-teal-400 transition-colors whitespace-nowrap"
+                  inputClassName="bg-brand-bg border border-line rounded px-4 py-2 text-ink focus:outline-none focus:border-brand-cyan transition-colors w-full sm:w-64"
+                  buttonClassName="bg-action text-brand-bg px-4 py-2 rounded font-bold hover:bg-action-hover transition-colors whitespace-nowrap"
                   buttonText="Subscribe to The Weekly Edge →"
                   successMessage="Subscribed. Watch your inbox for the next issue."
                 />

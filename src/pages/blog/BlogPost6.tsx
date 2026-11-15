@@ -65,9 +65,9 @@ export const BlogPost6 = () => {
   );
 
   return (
-    <div className="bg-brand-bg min-h-screen text-gray-300 font-sans pb-24 relative">
+    <div className="bg-brand-bg min-h-screen text-secondary font-sans pb-24 relative">
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-brand-cyan origin-left z-50"
+        className="fixed top-0 left-0 right-0 h-1 bg-action origin-left z-50"
         style={{ scaleX: scrollYProgress }}
       />
 
@@ -77,18 +77,18 @@ export const BlogPost6 = () => {
         } w-64`}
       >
         <div className="mb-4">
-          <div className="h-[2px] bg-gray-800 rounded-full overflow-hidden">
+          <div className="h-[2px] bg-surface rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-brand-cyan rounded-full"
+              className="h-full bg-action rounded-full"
               style={{ scaleX: scrollYProgress, transformOrigin: 'left' }}
             />
           </div>
-          <div className="text-[10px] font-mono text-gray-600 mt-1">Reading progress</div>
+          <div className="text-[10px] font-mono text-subtle mt-1">Reading progress</div>
         </div>
 
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-xs font-mono font-bold text-brand-cyan uppercase tracking-[0.2em]">Contents</span>
-          <div className="flex-1 h-px bg-brand-cyan opacity-30" />
+          <span className="text-xs font-mono font-bold text-link uppercase tracking-[0.2em]">Contents</span>
+          <div className="flex-1 h-px bg-action opacity-30" />
         </div>
 
         <ul className="space-y-3 font-inter">
@@ -98,13 +98,13 @@ export const BlogPost6 = () => {
                 onClick={() => scrollToSection(item.id)}
                 className={`text-left transition-all duration-200 flex items-center gap-2 ${
                   activeSection === item.id
-                    ? 'text-brand-cyan font-semibold text-[13px]'
-                    : 'text-gray-500 text-[12px] hover:text-gray-300'
+                    ? 'text-link font-semibold text-[13px]'
+                    : 'text-subtle text-[12px] hover:text-secondary'
                 }`}
               >
                 <span
                   className={`w-1 h-1 rounded-full flex-shrink-0 transition-all ${
-                    activeSection === item.id ? 'bg-brand-cyan scale-150' : 'bg-gray-700'
+                    activeSection === item.id ? 'bg-action scale-150' : 'bg-surface'
                   }`}
                 />
                 {item.label}
@@ -117,7 +117,7 @@ export const BlogPost6 = () => {
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-brand-surface border border-brand-cyan/30 p-3 rounded-full text-brand-cyan hover:bg-brand-cyan hover:text-brand-bg transition-all duration-300 z-50 shadow-lg hover:shadow-brand-cyan/20 hover:scale-110"
+          className="fixed bottom-8 right-8 bg-brand-surface border border-brand-cyan p-3 rounded-full text-link hover:bg-action-hover hover:text-brand-bg transition-all duration-300 z-50   hover:scale-110"
           aria-label="Back to top"
         >
           <ChevronUp size={24} />
@@ -127,18 +127,18 @@ export const BlogPost6 = () => {
       <div className="max-w-[680px] mx-auto px-6 pt-32">
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-6">
-            <span className="text-brand-cyan font-mono text-sm uppercase tracking-wider">AI News</span>
-            <span className="text-gray-500 font-mono text-sm">•</span>
-            <span className="text-gray-400 font-mono text-sm flex items-center gap-2">
+            <span className="text-link font-mono text-sm uppercase tracking-wider">AI News</span>
+            <span className="text-subtle font-mono text-sm">•</span>
+            <span className="text-secondary font-mono text-sm flex items-center gap-2">
               <Coffee size={16} /> 10 min read
             </span>
           </div>
-          <h1 className="text-[48px] font-bold font-inter text-white leading-tight mb-8">
+          <h1 className="text-[48px] font-bold font-inter text-ink leading-tight mb-8">
             You Don't Need to Be Technical to Use AI — Start Here
           </h1>
           <div className="flex flex-wrap gap-2">
             {['AI Tools', 'Beginners', 'Getting Started', 'Claude', 'Productivity', 'No Code'].map((tag) => (
-              <span key={tag} className="px-3 py-1 bg-gray-800 text-gray-300 text-xs font-mono rounded-full border border-gray-700">
+              <span key={tag} className="px-3 py-1 bg-surface text-secondary text-xs font-mono rounded-full border border-line">
                 {tag}
               </span>
             ))}
@@ -154,7 +154,7 @@ export const BlogPost6 = () => {
             transition={{ duration: 0.4 }}
           >
             <p>
-              <span className="font-bold text-white">
+              <span className="font-bold text-ink">
                 I built this website and publish editorial research about AI tools.
                 <br />
                 <br />
@@ -193,7 +193,7 @@ export const BlogPost6 = () => {
           >
             <H2 id="the-misconception">THE BIGGEST MISCONCEPTION ABOUT AI TOOLS</H2>
 
-            <figure className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+            <figure className="my-10 rounded-xl overflow-hidden border border-line ">
               <img
                 src="/images/screenshots/ai-misconception.jpg"
                 alt='Simple diagram: "What people think AI requires" vs "What AI actually requires"'
@@ -204,20 +204,20 @@ export const BlogPost6 = () => {
                   borderRadius: '12px',
                 }}
               />
-              <figcaption className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+              <figcaption className="text-subtle text-sm font-mono text-center py-3 bg-brand-surface">
                 What people think AI requires vs what AI actually requires
               </figcaption>
             </figure>
 
             <p>Here is what most people believe about AI tools:</p>
-            <ul className="list-disc pl-6 space-y-2 text-gray-300 my-4">
+            <ul className="list-disc pl-6 space-y-2 text-secondary my-4">
               <li>You need to understand how they work.</li>
               <li>You need programming knowledge.</li>
               <li>You need to be comfortable with complex technology.</li>
               <li>You need to be young or technical.</li>
             </ul>
             <p>Here is what is actually true:</p>
-            <p className="font-bold text-white">You need to know what you want and be able to describe it.</p>
+            <p className="font-bold text-ink">You need to know what you want and be able to describe it.</p>
             <p>That is the complete list.</p>
             <p>
               AI tools are not like spreadsheet software with a hundred menus and formulas to memorise. They are not like Photoshop
@@ -269,38 +269,38 @@ export const BlogPost6 = () => {
             <H3>The Three Categories You Actually Need to Know</H3>
 
             <div className="grid gap-6 md:grid-cols-3 my-8 not-prose">
-              <div className="rounded-xl border border-gray-800 bg-brand-surface p-6">
-                <div className="text-sm font-mono uppercase tracking-wider text-brand-cyan mb-3">Writing and Thinking Tools</div>
-                <p className="text-gray-300 text-base leading-7 mb-4">
+              <div className="rounded-xl border border-line bg-brand-surface p-6">
+                <div className="text-sm font-mono uppercase tracking-wider text-link mb-3">Writing and Thinking Tools</div>
+                <p className="text-secondary text-base leading-7 mb-4">
                   These help you write, edit, brainstorm, and think through problems.
                 </p>
-                <p className="text-sm text-gray-400 leading-7">
-                  <span className="font-semibold text-white">Examples:</span> Claude, ChatGPT
+                <p className="text-sm text-secondary leading-7">
+                  <span className="font-semibold text-ink">Examples:</span> Claude, ChatGPT
                   <br />
-                  <span className="font-semibold text-white">Best for:</span> emails, blog posts, decisions, summaries
+                  <span className="font-semibold text-ink">Best for:</span> emails, blog posts, decisions, summaries
                 </p>
               </div>
-              <div className="rounded-xl border border-gray-800 bg-brand-surface p-6">
-                <div className="text-sm font-mono uppercase tracking-wider text-brand-cyan mb-3">Research Tools</div>
-                <p className="text-gray-300 text-base leading-7 mb-4">
+              <div className="rounded-xl border border-line bg-brand-surface p-6">
+                <div className="text-sm font-mono uppercase tracking-wider text-link mb-3">Research Tools</div>
+                <p className="text-secondary text-base leading-7 mb-4">
                   These help you find information quickly with sources you can verify.
                 </p>
-                <p className="text-sm text-gray-400 leading-7">
-                  <span className="font-semibold text-white">Examples:</span> Perplexity
+                <p className="text-sm text-secondary leading-7">
+                  <span className="font-semibold text-ink">Examples:</span> Perplexity
                   <br />
-                  <span className="font-semibold text-white">Best for:</span> research, fact-checking, staying current on your
+                  <span className="font-semibold text-ink">Best for:</span> research, fact-checking, staying current on your
                   industry
                 </p>
               </div>
-              <div className="rounded-xl border border-gray-800 bg-brand-surface p-6">
-                <div className="text-sm font-mono uppercase tracking-wider text-brand-cyan mb-3">Creative Tools</div>
-                <p className="text-gray-300 text-base leading-7 mb-4">
+              <div className="rounded-xl border border-line bg-brand-surface p-6">
+                <div className="text-sm font-mono uppercase tracking-wider text-link mb-3">Creative Tools</div>
+                <p className="text-secondary text-base leading-7 mb-4">
                   These generate images, video, audio, and design assets.
                 </p>
-                <p className="text-sm text-gray-400 leading-7">
-                  <span className="font-semibold text-white">Examples:</span> Midjourney, Runway, ElevenLabs
+                <p className="text-sm text-secondary leading-7">
+                  <span className="font-semibold text-ink">Examples:</span> Midjourney, Runway, ElevenLabs
                   <br />
-                  <span className="font-semibold text-white">Best for:</span> visuals, marketing assets, content creation
+                  <span className="font-semibold text-ink">Best for:</span> visuals, marketing assets, content creation
                 </p>
               </div>
             </div>
@@ -318,7 +318,7 @@ export const BlogPost6 = () => {
           >
             <H2 id="where-to-start">WHERE TO START (THE ONLY RECOMMENDATION YOU NEED)</H2>
 
-            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+            <div className="my-10 rounded-xl overflow-hidden border border-line ">
               <img
                 src="/images/screenshots/claude-beginner-start.jpg"
                 alt="Claude AI interface showing a beginner conversation in progress"
@@ -330,7 +330,7 @@ export const BlogPost6 = () => {
                   filter: 'brightness(0.95) contrast(0.97)',
                 }}
               />
-              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+              <p className="text-subtle text-sm font-mono text-center py-3 bg-brand-surface">
                 A real Claude conversation — no technical knowledge required. Just describe what you need.
               </p>
             </div>
@@ -343,7 +343,7 @@ export const BlogPost6 = () => {
               The repository does not contain a dated personal-use log that supports a broader experience claim.
             </p>
             <p>Here is why Claude specifically:</p>
-            <ul className="list-disc pl-6 space-y-2 text-gray-300 my-4">
+            <ul className="list-disc pl-6 space-y-2 text-secondary my-4">
               <li>
                 It is honest about what it does not know. Claude is notably better at saying "I am not certain about this" which
                 matters when you are relying on it for real work.
@@ -360,48 +360,48 @@ export const BlogPost6 = () => {
 
             <div className="not-prose">
               <div className="my-8 flex gap-6">
-                <div className="shrink-0 w-12 h-12 rounded-full bg-brand-amber/10 border border-brand-amber/30 flex items-center justify-center text-brand-amber font-bold font-mono text-xl">
+                <div className="shrink-0 w-12 h-12 rounded-full bg-callout border border-brand-amber flex items-center justify-center text-emphasis font-bold font-mono text-xl">
                   1
                 </div>
                 <div>
-                  <div className="font-bold text-white text-lg mb-2">Create your account</div>
-                  <div className="text-gray-300 leading-8">Go to `claude.ai`, click sign up, and use your email or Google account.</div>
+                  <div className="font-bold text-ink text-lg mb-2">Create your account</div>
+                  <div className="text-secondary leading-8">Go to `claude.ai`, click sign up, and use your email or Google account.</div>
                 </div>
               </div>
               <div className="my-8 flex gap-6">
-                <div className="shrink-0 w-12 h-12 rounded-full bg-brand-amber/10 border border-brand-amber/30 flex items-center justify-center text-brand-amber font-bold font-mono text-xl">
+                <div className="shrink-0 w-12 h-12 rounded-full bg-callout border border-brand-amber flex items-center justify-center text-emphasis font-bold font-mono text-xl">
                   2
                 </div>
                 <div>
-                  <div className="font-bold text-white text-lg mb-2">Ask for something real</div>
-                  <div className="text-gray-300 leading-8">
+                  <div className="font-bold text-ink text-lg mb-2">Ask for something real</div>
+                  <div className="text-secondary leading-8">
                     Type something you actually need today instead of a test prompt.
                   </div>
                 </div>
               </div>
               <div className="my-8 flex gap-6">
-                <div className="shrink-0 w-12 h-12 rounded-full bg-brand-amber/10 border border-brand-amber/30 flex items-center justify-center text-brand-amber font-bold font-mono text-xl">
+                <div className="shrink-0 w-12 h-12 rounded-full bg-callout border border-brand-amber flex items-center justify-center text-emphasis font-bold font-mono text-xl">
                   3
                 </div>
                 <div>
-                  <div className="font-bold text-white text-lg mb-2">Refine the response</div>
-                  <div className="text-gray-300 leading-8">
+                  <div className="font-bold text-ink text-lg mb-2">Refine the response</div>
+                  <div className="text-secondary leading-8">
                     Tell it what to change: "Make it shorter", "Less formal", "Expand the second point".
                   </div>
                 </div>
               </div>
               <div className="my-8 flex gap-6">
-                <div className="shrink-0 w-12 h-12 rounded-full bg-brand-amber/10 border border-brand-amber/30 flex items-center justify-center text-brand-amber font-bold font-mono text-xl">
+                <div className="shrink-0 w-12 h-12 rounded-full bg-callout border border-brand-amber flex items-center justify-center text-emphasis font-bold font-mono text-xl">
                   4
                 </div>
                 <div>
-                  <div className="font-bold text-white text-lg mb-2">Keep the conversation going</div>
-                  <div className="text-gray-300 leading-8">This is not a single query. It gets better when you continue the conversation.</div>
+                  <div className="font-bold text-ink text-lg mb-2">Keep the conversation going</div>
+                  <div className="text-secondary leading-8">This is not a single query. It gets better when you continue the conversation.</div>
                 </div>
               </div>
             </div>
 
-            <p className="font-bold text-white">That is it. You are now using an AI tool.</p>
+            <p className="font-bold text-ink">That is it. You are now using an AI tool.</p>
 
             <CalloutTip>
               "The single most common mistake beginners make is treating it like a search engine. It is not Google. You do not type
@@ -486,12 +486,12 @@ export const BlogPost6 = () => {
                   result: 'A clear human explanation of exactly what it says.',
                 },
               ].map((item, index) => (
-                <div key={item.title} className="rounded-xl border border-gray-800 bg-brand-surface p-6">
-                  <div className="text-sm font-mono uppercase tracking-wider text-brand-cyan mb-3">{index + 1}. {item.title}</div>
-                  <p className="text-sm font-semibold text-white mb-2">The prompt:</p>
-                  <p className="text-gray-300 italic leading-8 mb-4">"{item.prompt}"</p>
-                  <p className="text-sm font-semibold text-white mb-2">What you get:</p>
-                  <p className="text-gray-400 leading-8">{item.result}</p>
+                <div key={item.title} className="rounded-xl border border-line bg-brand-surface p-6">
+                  <div className="text-sm font-mono uppercase tracking-wider text-link mb-3">{index + 1}. {item.title}</div>
+                  <p className="text-sm font-semibold text-ink mb-2">The prompt:</p>
+                  <p className="text-secondary italic leading-8 mb-4">"{item.prompt}"</p>
+                  <p className="text-sm font-semibold text-ink mb-2">What you get:</p>
+                  <p className="text-secondary leading-8">{item.result}</p>
                 </div>
               ))}
             </div>
@@ -532,7 +532,7 @@ export const BlogPost6 = () => {
               AI tools make mistakes. Claude, ChatGPT, Gemini — all of them will occasionally give you wrong information delivered
               with complete confidence.
             </p>
-            <p className="font-bold text-white">The rule is simple: never use AI output for something important without checking it.</p>
+            <p className="font-bold text-ink">The rule is simple: never use AI output for something important without checking it.</p>
             <p>
               Use it to write a first draft — then read it carefully before sending. Use it to summarise a contract — then read the
               actual contract before signing. Use it to research a topic — then verify key facts from authoritative sources.
@@ -583,7 +583,7 @@ export const BlogPost6 = () => {
           >
             <H2 id="your-next-step">YOUR NEXT STEP (KEEP IT SIMPLE)</H2>
 
-            <div className="my-10 rounded-xl overflow-hidden border border-gray-800 shadow-2xl">
+            <div className="my-10 rounded-xl overflow-hidden border border-line ">
               <img
                 src="/images/screenshots/ai-next-steps.jpg"
                 alt="Three simple steps to get started with AI tools today"
@@ -595,7 +595,7 @@ export const BlogPost6 = () => {
                   filter: 'brightness(0.95) contrast(0.97)',
                 }}
               />
-              <p className="text-gray-500 text-sm font-mono text-center py-3 bg-brand-surface">
+              <p className="text-subtle text-sm font-mono text-center py-3 bg-brand-surface">
                 Three steps. That is the entire learning curve. Start today.
               </p>
             </div>
@@ -603,11 +603,11 @@ export const BlogPost6 = () => {
             <p>I want to give you one specific thing to do after reading this.</p>
             <p>Not ten things. Not a list of tools to sign up for. Not a complicated system to implement.</p>
             <p>One thing.</p>
-            <p className="font-bold text-white">Go to claude.ai right now. Sign up for free. Ask it one thing you actually need today.</p>
+            <p className="font-bold text-ink">Go to claude.ai right now. Sign up for free. Ask it one thing you actually need today.</p>
             <p>
               Not a test prompt. Not "what is the capital of France." Something real. Something from your actual work or life.
             </p>
-            <ul className="list-disc pl-6 space-y-2 text-gray-300 my-4">
+            <ul className="list-disc pl-6 space-y-2 text-secondary my-4">
               <li>A difficult email you have been avoiding.</li>
               <li>A decision you are stuck on.</li>
               <li>A document you need to understand.</li>
@@ -649,7 +649,7 @@ export const BlogPost6 = () => {
             <p>
               Second — if you want to stay current on AI tools without spending hours researching I send one email every Thursday.
             </p>
-            <ul className="list-disc pl-6 space-y-2 text-gray-300 my-4">
+            <ul className="list-disc pl-6 space-y-2 text-secondary my-4">
               <li>One tool worth knowing.</li>
               <li>One workflow tip to test against your current process.</li>
               <li>One insight from the week.</li>
@@ -661,40 +661,40 @@ export const BlogPost6 = () => {
 
             <p>
               When you are ready to move from a first AI task to a repeatable publishing process, follow the{' '}
-              <Link to="/blog/ai-daily-workflow-solo-business" className="text-brand-cyan hover:underline">
+              <Link to="/blog/ai-daily-workflow-solo-business" className="text-link hover:underline">
                 complete research-to-publishing workflow
               </Link>
               .
             </p>
 
-            <div className="my-10 p-6 bg-brand-surface border border-brand-cyan/30 rounded-xl">
-              <div className="text-brand-cyan font-mono text-xs uppercase tracking-wider mb-2">
+            <div className="my-10 p-6 bg-brand-surface border border-brand-cyan rounded-xl">
+              <div className="text-link font-mono text-xs uppercase tracking-wider mb-2">
                 Not sure where to start?
               </div>
-              <h3 className="text-white font-bold text-xl mb-2">
+              <h3 className="text-ink font-bold text-xl mb-2">
                 Take My Free AI Readiness Quiz
               </h3>
-              <p className="text-gray-400 text-sm mb-4">
+              <p className="text-secondary text-sm mb-4">
                 Answer 5 quick questions and get a personalised recommendation for your perfect first AI tool. Takes 60 seconds.
               </p>
               <Link
                 to="/tools/ai-readiness-quiz"
-                className="inline-flex items-center gap-2 bg-brand-amber text-brand-bg font-bold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
+                className="inline-flex items-center gap-2 bg-action text-brand-bg font-bold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
               >
                 Take the Quiz — Free →
               </Link>
             </div>
 
-            <div className="not-prose my-10 rounded-2xl border border-brand-cyan/20 bg-brand-surface p-8 shadow-2xl">
-              <div className="text-xs font-mono uppercase tracking-[0.3em] text-brand-cyan mb-4">Newsletter Signup</div>
-              <h3 className="text-2xl font-bold font-inter text-white mb-3">Join The Weekly Edge</h3>
-              <p className="text-gray-300 leading-8 mb-6">
+            <div className="not-prose my-10 rounded-2xl border border-brand-cyan bg-brand-surface p-8 ">
+              <div className="text-xs font-mono uppercase tracking-[0.3em] text-link mb-4">Newsletter Signup</div>
+              <h3 className="text-2xl font-bold font-inter text-ink mb-3">Join The Weekly Edge</h3>
+              <p className="text-secondary leading-8 mb-6">
                 One tool worth knowing, one workflow tip to evaluate, and one insight from the week. Every Thursday.
               </p>
               <ConvertKitForm
                 className="flex flex-col sm:flex-row gap-3"
-                inputClassName="flex-1 px-4 py-3 rounded-lg bg-brand-bg border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-brand-cyan"
-                buttonClassName="px-6 py-3 rounded-lg bg-brand-cyan text-brand-bg font-bold hover:bg-white transition-colors"
+                inputClassName="flex-1 px-4 py-3 rounded-lg bg-brand-bg border border-line text-ink placeholder:text-subtle focus:outline-none focus:border-brand-cyan"
+                buttonClassName="px-6 py-3 rounded-lg bg-action text-brand-bg font-bold hover:bg-surface transition-colors"
                 buttonText="Subscribe Free"
                 placeholder="Your email address"
                 successMessage="You are in. The next Thursday issue will land in your inbox."
@@ -705,12 +705,12 @@ export const BlogPost6 = () => {
               And if you have questions — about any specific tool, about where to start, about whether a particular AI tool would
               be useful for your specific situation — send me an email.
             </p>
-            <p className="font-bold text-white">domskysolutions@gmail.com</p>
+            <p className="font-bold text-ink">domskysolutions@gmail.com</p>
             <p>I read every message personally.</p>
-            <p className="font-bold text-white mt-8">
+            <p className="font-bold text-ink mt-8">
               "You are not behind. You are exactly where you need to be to start."
             </p>
-            <p className="text-gray-400">
+            <p className="text-secondary">
               — Dominik
               <br />
               domskysolutions.com
@@ -719,8 +719,8 @@ export const BlogPost6 = () => {
         </div>
       </div>
 
-      <div id="related-articles" className="max-w-5xl mx-auto px-6 mt-24 border-t border-gray-800 pt-16">
-        <h2 className="text-2xl font-bold font-mono text-white mb-8">Related Articles</h2>
+      <div id="related-articles" className="max-w-5xl mx-auto px-6 mt-24 border-t border-line pt-16">
+        <h2 className="text-2xl font-bold font-mono text-ink mb-8">Related Articles</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {relatedPosts.map((post) => (
             <BlogCard key={post.slug} post={post} />
