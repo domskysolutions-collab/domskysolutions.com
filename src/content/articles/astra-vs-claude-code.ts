@@ -1,3 +1,4 @@
+import { articleCovers } from '../../data/articleCovers';
 import type { ArticleDocument } from '../types';
 import { PUBLIC_AUTHOR } from '../../data/site';
 
@@ -22,19 +23,8 @@ export const astraComparison = {
   relatedSlugs: ['/comparisons/claude-vs-chatgpt-vs-gemini-2026'],
   readingMinutes: 12,
   featuredImageRequired: true,
-  featuredImage: {
-    src: '/images/comparisons/codex-vs-claude-code.png',
-    alt: 'Codex vs Claude Code: cost, control and review.',
-    caption: 'Title artwork supplied by Domsky Solutions.',
-    width: 1200,
-    height: 620,
-  },
-  ogImage: {
-    src: '/images/comparisons/codex-vs-claude-code.png',
-    alt: 'Codex vs Claude Code: cost, control and review.',
-    width: 1200,
-    height: 620,
-  },
+  featuredImage: { ...articleCovers.codex, caption: 'Title artwork supplied by Domsky Solutions.' },
+  ogImage: articleCovers.codex,
   commercial: true,
   recommendedUpdateDays: 30,
   affiliateDisclosureRequired: false,

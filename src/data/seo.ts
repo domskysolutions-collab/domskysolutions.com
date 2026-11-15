@@ -1,11 +1,11 @@
 import { BLOG_POSTS } from './blogPosts';
 import { getArticle } from '../content/registry';
-import type { ArticleDocument } from '../content/types';
+import type { ArticleDocument, ArticleImage } from '../content/types';
 import { reviewCatalog, legacyReviewRedirects } from './reviewCatalog';
 import { AUTHOR_NAME, PUBLISHER_NAME, SITE_URL } from './site';
 
 export { SITE_URL } from './site';
-export type PageSeo = { path: string; title: string; description: string; socialTitle?: string; socialDescription?: string; type?: 'article' | 'website'; review?: typeof reviewCatalog[number]; noindex?: boolean; article?: ArticleDocument };
+export type PageSeo = { path: string; title: string; description: string; socialTitle?: string; socialDescription?: string; type?: 'article' | 'website'; review?: typeof reviewCatalog[number]; noindex?: boolean; article?: ArticleDocument; image?: ArticleImage };
 const page = (path: string, title: string, description: string): PageSeo => ({ path, title: `${title} | Domsky Solutions`, description });
 export const seoPages: PageSeo[] = [
   { path: '/', title: 'AI & SaaS Reviews for Solopreneurs | Domsky Solutions', description: 'Explore independent AI and SaaS reviews, practical workflows and free tools to choose software for your solo business.' },
@@ -30,6 +30,7 @@ export const seoPages: PageSeo[] = [
       ...(article?.socialDescription ? { socialDescription: article.socialDescription } : {}),
       type: 'article' as const,
       article,
+      image: !article && post.image ? { src: post.image, alt: post.imageAlt || post.title, width: post.imageWidth, height: post.imageHeight } : undefined,
     };
   }),
 ];
@@ -52,6 +53,7 @@ export function getBreadcrumbs(meta: PageSeo) {
 }
 
 export function structuredData(meta: PageSeo) {
+  const image = meta.article?.ogImage || meta.article?.featuredImage || meta.image;
   const author = { '@type': 'Person', '@id': `${SITE_URL}/about#author`, name: AUTHOR_NAME, url: `${SITE_URL}/about` };
   const organization = { '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: PUBLISHER_NAME, url: SITE_URL, founder: { '@id': author['@id'] } };
   const graph: object[] = [author, organization];
@@ -67,8 +69,8 @@ export function structuredData(meta: PageSeo) {
         ...(meta.article.publishedAt ? { datePublished: meta.article.publishedAt } : {}),
         ...(meta.article.updatedAt ? { dateModified: meta.article.updatedAt } : {}),
         articleSection: meta.article.category, keywords: meta.article.tags.join(', '),
-        ...((meta.article.ogImage || meta.article.featuredImage) ? { image: new URL((meta.article.ogImage || meta.article.featuredImage)!.src, SITE_URL).href } : {}),
       } : {}),
+      ...(image ? { image: new URL(image.src, SITE_URL).href } : {}),
       // Legacy publication days remain omitted until supplied; never infer them from migration time.
     });
   }
@@ -80,7 +82,7 @@ export function renderSeoHead(meta: PageSeo) {
   const socialTitle = meta.socialTitle || meta.title;
   const socialDescription = meta.socialDescription || meta.description;
   const tags = [['name', 'description', meta.description], ['name', 'robots', meta.noindex ? 'noindex, follow' : 'index, follow'], ['property', 'og:title', socialTitle], ['property', 'og:description', socialDescription], ['property', 'og:url', url], ['property', 'og:type', meta.type || 'website'], ['property', 'twitter:title', socialTitle], ['property', 'twitter:description', socialDescription], ['property', 'twitter:url', url]];
-  const image = meta.article?.ogImage || meta.article?.featuredImage;
+  const image = meta.article?.ogImage || meta.article?.featuredImage || meta.image;
   const imageUrl = new URL(image?.src || '/images/domsky-logo.png', SITE_URL).href;
   tags.push(['property', 'og:image', imageUrl], ['property', 'og:image:alt', image?.alt || 'Domsky Solutions'],
     ['name', 'twitter:card', image ? 'summary_large_image' : 'summary'], ['name', 'twitter:image', imageUrl],

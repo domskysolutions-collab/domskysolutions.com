@@ -1,3 +1,4 @@
+import { articleCovers } from '../data/articleCovers';
 
 import type { ArticleCardData } from './types';
 
@@ -20,7 +21,10 @@ export const legacyArticles: ArticleCardData[] = [
     category: "Design",
     date: "April 2026",
     readTime: "6 minutes",
-    image: null,
+    image: articleCovers.adobe.src,
+    imageAlt: articleCovers.adobe.alt,
+    imageWidth: articleCovers.adobe.width,
+    imageHeight: articleCovers.adobe.height,
     author: "Dominik Kanský"
   },
   {
@@ -30,7 +34,10 @@ export const legacyArticles: ArticleCardData[] = [
     category: "AI News",
     date: "April 2026",
     readTime: "9 minutes",
-    image: "/images/team-of-10-article.jpg",
+    image: articleCovers.tools.src,
+    imageAlt: articleCovers.tools.alt,
+    imageWidth: articleCovers.tools.width,
+    imageHeight: articleCovers.tools.height,
     author: "Dominik Kanský"
   }
 ];

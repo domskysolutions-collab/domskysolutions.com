@@ -1,3 +1,5 @@
+import { articleCovers } from '../../data/articleCovers';
+import { ArticleFigure } from '../../components/article/ArticleBlocks';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -15,13 +17,14 @@ const categories = [
 ];
 
 export const BlogPost2 = () => {
-  useEffect(() => window.scrollTo(0, 0), []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <main className="bg-brand-bg min-h-screen pt-32 pb-20">
       <article className="max-w-3xl mx-auto px-5 text-secondary leading-relaxed">
         <p className="text-emphasis font-mono text-xs uppercase tracking-wider mb-4">Legacy guide · evidence scope revised</p>
         <h1 className="text-4xl md:text-5xl font-bold font-mono text-ink leading-tight mb-6">10 AI tools for common solo-business tasks</h1>
         <p className="text-xl text-secondary mb-8">This guide maps common jobs to products worth evaluating. It does not claim that software replaces a team, guarantees professional output or produces measured savings.</p>
+        <ArticleFigure image={{ ...articleCovers.tools, caption: 'Supplied title artwork. No measured productivity advantage or team-replacement result is claimed.' }} eager />
         <div className="border border-brand-amber bg-callout p-5 mb-10">
           <strong className="text-ink">Evidence note:</strong> The original article did not include a dated comparative test record. Its team-replacement, productivity and output-quality claims have been removed. Review current vendor documentation and run representative tasks before subscribing.
         </div>

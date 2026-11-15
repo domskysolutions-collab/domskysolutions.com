@@ -40,6 +40,11 @@ function imageSize(filename: string): Size {
   if (extension === '.webp' && buffer.toString('ascii', 12, 16) === 'VP8X') {
     return { width: 1 + buffer.readUIntLE(24, 3), height: 1 + buffer.readUIntLE(27, 3) };
   }
+  if (extension === '.webp' && buffer.toString('ascii', 12, 16) === 'VP8 ') {
+    // Simple lossy WebP key-frame dimensions: RFC 6386, section 9.1.
+    assert.equal(buffer.subarray(23, 26).toString('hex'), '9d012a', 'Invalid VP8 key-frame header');
+    return { width: buffer.readUInt16LE(26) & 0x3fff, height: buffer.readUInt16LE(28) & 0x3fff };
+  }
   throw new Error(`Unsupported image format in presentation test: ${filename}`);
 }
 

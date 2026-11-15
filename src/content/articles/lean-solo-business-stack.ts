@@ -1,3 +1,4 @@
+import { articleCovers } from '../../data/articleCovers';
 import type { ArticleDocument } from '../types';
 import { PUBLIC_AUTHOR } from '../../data/site';
 
@@ -19,8 +20,8 @@ export const leanSoloBusinessStack = {
   relatedSlugs: ['/blog/replaced-saas-stack-with-ai-tools', '/comparisons/claude-vs-chatgpt-vs-gemini-2026', '/blog/ai-daily-workflow-solo-business', '/reviews/convertkit'],
   readingMinutes: 14,
   featuredImageRequired: true,
-  featuredImage: { src: '/images/lean-solo-business-stack.svg', alt: 'Three lean software-stack paths for a writer, service provider and small website builder', caption: 'Begin with an existing-tool check, then add only the capability a current job still needs.', width: 1600, height: 900 },
-  ogImage: { src: '/images/lean-solo-business-stack.svg', alt: 'Three lean software-stack paths for a writer, service provider and small website builder', width: 1600, height: 900 },
+  featuredImage: { ...articleCovers.stack, caption: 'Supplied title artwork illustrates software categories, not a universal stack. Keep useful tools and evaluate any assistant against a current task.' },
+  ogImage: articleCovers.stack,
   commercial: false,
   recommendedUpdateDays: 30,
   affiliateDisclosureRequired: false,

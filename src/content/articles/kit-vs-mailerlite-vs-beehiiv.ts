@@ -1,3 +1,4 @@
+import { articleCovers } from '../../data/articleCovers';
 import type { ArticleDocument } from '../types';
 import { PUBLIC_AUTHOR } from '../../data/site';
 
@@ -22,19 +23,8 @@ export const emailPlatformComparison = {
   relatedSlugs: ['/reviews/convertkit', '/blog/ai-daily-workflow-solo-business'],
   readingMinutes: 16,
   featuredImageRequired: true,
-  featuredImage: {
-    src: '/images/comparisons/kit-vs-mailerlite-vs-beehiiv.png',
-    alt: 'Kit, MailerLite and beehiiv: find the right email workflow.',
-    caption: 'Title artwork supplied by Domsky Solutions.',
-    width: 1200,
-    height: 620,
-  },
-  ogImage: {
-    src: '/images/comparisons/kit-vs-mailerlite-vs-beehiiv.png',
-    alt: 'Kit, MailerLite and beehiiv: find the right email workflow.',
-    width: 1200,
-    height: 620,
-  },
+  featuredImage: { ...articleCovers.email, caption: 'Title artwork supplied by Domsky Solutions.' },
+  ogImage: articleCovers.email,
   commercial: true,
   recommendedUpdateDays: 7,
   affiliateDisclosureRequired: false,

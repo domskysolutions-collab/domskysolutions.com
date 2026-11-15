@@ -1,3 +1,4 @@
+import { articleCovers } from '../../data/articleCovers';
 import type { ArticleDocument } from '../types';
 import { PUBLIC_AUTHOR } from '../../data/site';
 
@@ -22,19 +23,8 @@ export const assistantComparison = {
   relatedSlugs: ['/uses', '/comparisons/chatgpt-astra-vs-alternatives', '/blog/replaced-saas-stack-with-ai-tools'],
   readingMinutes: 13,
   featuredImageRequired: true,
-  featuredImage: {
-    src: '/images/comparisons/chatgpt-vs-claude-vs-gemini.png',
-    alt: 'ChatGPT, Claude and Gemini: one subscription or more?',
-    caption: 'Title artwork supplied by Domsky Solutions. The article does not claim a universal performance winner.',
-    width: 1200,
-    height: 620,
-  },
-  ogImage: {
-    src: '/images/comparisons/chatgpt-vs-claude-vs-gemini.png',
-    alt: 'ChatGPT, Claude and Gemini: one subscription or more?',
-    width: 1200,
-    height: 620,
-  },
+  featuredImage: { ...articleCovers.assistants, caption: 'Title artwork supplied by Domsky Solutions. The article does not claim a universal performance winner.' },
+  ogImage: articleCovers.assistants,
   commercial: true,
   recommendedUpdateDays: 30,
   affiliateDisclosureRequired: false,

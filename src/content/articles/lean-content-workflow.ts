@@ -1,3 +1,4 @@
+import { articleCovers } from '../../data/articleCovers';
 import type { ArticleDocument } from '../types';
 import { PUBLIC_AUTHOR } from '../../data/site';
 
@@ -27,19 +28,8 @@ export const leanContentWorkflow = {
   ],
   readingMinutes: 15,
   featuredImageRequired: true,
-  featuredImage: {
-    src: '/images/lean-content-workflow.svg',
-    alt: 'A source ledger flowing through human review into an article, email and LinkedIn post.',
-    caption: 'One researched idea becomes three purpose-specific assets, with human approval before drafting and release.',
-    width: 1600,
-    height: 900,
-  },
-  ogImage: {
-    src: '/images/lean-content-workflow.svg',
-    alt: 'One researched idea flowing into an article, email and social post.',
-    width: 1600,
-    height: 900,
-  },
+  featuredImage: { ...articleCovers.workflow, caption: 'Supplied title artwork. The full workflow below includes evidence checks and human approval before drafting and release.' },
+  ogImage: articleCovers.workflow,
   commercial: false,
   recommendedUpdateDays: 30,
   affiliateDisclosureRequired: false,
