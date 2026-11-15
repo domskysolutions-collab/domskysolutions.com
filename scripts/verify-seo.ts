@@ -66,7 +66,8 @@ for (const meta of seoPages) {
     assert(html.includes('property="og:image" content="' + SITE_URL + imagePath + '"'));
     assert.equal((html.match(/property="og:image"/g) || []).length, 1);
     assert(html.includes(escapeHtml(article.title)), 'Article title missing from output');
-    assert(html.includes(escapeHtml(AUTHOR_NAME)), 'Approved article byline missing from output');
+    assert(html.includes('>' + PUBLISHER_NAME), 'Publication byline missing from output');
+    assert(!html.includes('Facts last verified'), 'Verification label must not be publicly rendered');
     assert.equal(article.author.name, AUTHOR_NAME, `Structured author name: ${meta.path}`);
     assert.equal(article.author.type, 'Person', `Structured author type: ${meta.path}`);
     for (const block of article.blocks) {

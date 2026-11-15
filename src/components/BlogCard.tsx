@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, Clock } from 'lucide-react';
+import { PUBLISHER_NAME } from '../data/site';
 import type { ArticleCardData } from '../content/types';
 
 export const BlogCard: React.FC<{ post: ArticleCardData }> = ({ post }) => (
@@ -30,7 +31,7 @@ export const BlogCard: React.FC<{ post: ArticleCardData }> = ({ post }) => (
       </p>
       <div className="flex items-center justify-between mt-auto pt-4 border-t border-line">
         <div className="flex flex-col">
-          <span className="text-secondary text-xs font-medium">{post.author}</span>
+          <span className="text-secondary text-xs font-medium">{PUBLISHER_NAME}</span>
           <span className="text-subtle text-xs">{post.date}</span>
         </div>
         <span className="text-link text-sm font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">

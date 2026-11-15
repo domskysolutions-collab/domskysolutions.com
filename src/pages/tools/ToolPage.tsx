@@ -61,7 +61,7 @@ export const ToolPage = () => {
         {toolKey === 'claude' && (
           <div className="bg-surface border-l-4 border-brand-cyan p-6 mb-12">
             <h2 className="text-xl font-bold text-ink mb-2 flex items-center gap-2">
-              <span>🛠️</span> Try my free Claude Prompt Builder
+              <span>🛠️</span> Try our free Claude Prompt Builder
             </h2>
             <p className="text-secondary mb-4">
               Build a structured Claude prompt for review.

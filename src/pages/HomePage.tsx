@@ -50,7 +50,7 @@ export const HomePage = () => <main className="editorial-home bg-brand-bg min-h-
             One AI tool worth knowing. One practical workflow tip. One useful insight for building alone.
             No sponsors. No fluff. Free forever.
           </p>
-          <p className="text-sm text-secondary mb-6">See the kind of advice I cover: <Link to="/blog/ai-daily-workflow-solo-business" className="text-link underline">read the solo-business workflow guide</Link>.</p>
+          <p className="text-sm text-secondary mb-6">Explore the guidance we publish: <Link to="/blog/ai-daily-workflow-solo-business" className="text-link underline">read the solo-business workflow guide</Link>.</p>
           <ConvertKitForm
             className="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mb-6"
             inputClassName="flex-grow bg-brand-surface border border-line px-5 py-4 text-ink rounded-xl focus:outline-none focus:border-brand-cyan transition-colors font-sans text-sm"

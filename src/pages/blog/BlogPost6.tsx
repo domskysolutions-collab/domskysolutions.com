@@ -155,10 +155,10 @@ export const BlogPost6 = () => {
           >
             <p>
               <span className="font-bold text-ink">
-                I built this website and publish editorial research about AI tools.
+                Domsky Solutions publishes editorial research about AI tools.
                 <br />
                 <br />
-                And I am telling you honestly — you do not need any of that to start using AI tools today.
+                You can begin with a small task without a technical background.
               </span>
             </p>
             <p>
@@ -167,13 +167,12 @@ export const BlogPost6 = () => {
             </p>
             <p>This one is different.</p>
             <p>
-              I am writing this for the person who has heard about ChatGPT or Claude but has no idea where to start. For the small
+              This guide is for the person who has heard about ChatGPT or Claude but has no idea where to start. For the small
               business owner who keeps seeing AI tools mentioned but feels like they are not technical enough to use them. For the
               freelancer who is curious but intimidated.
             </p>
             <p>
-              That was me once — with computers, with design software, with coding. Every skill I have I taught myself because
-              someone eventually explained it in plain language.
+              Start with a task you understand and describe the result you need in plain language.
             </p>
             <p>This is that article for AI tools.</p>
           </motion.div>
@@ -227,13 +226,11 @@ export const BlogPost6 = () => {
               They are conversational. You talk to them like you would talk to a very capable person and they respond in kind.
             </p>
             <p>
-              If you can write an email — and I am assuming you can — you can use AI tools.
+              Writing an email is a practical starting task for trying an AI assistant.
             </p>
 
             <CalloutTip>
-              "I am a graphic designer and I still sometimes sit down with a blank screen and no
-              idea how to start something. The difference now is I have a thinking partner I can describe the problem to. That is
-              all AI tools are — a thinking partner that types very fast."
+              For a blank-page task, describe the audience, purpose and constraints. Treat the response as a draft to review, not a finished answer.
             </CalloutTip>
           </motion.div>
 
@@ -247,7 +244,7 @@ export const BlogPost6 = () => {
           >
             <H2 id="what-ai-tools-actually-are">WHAT AI TOOLS ACTUALLY ARE (IN PLAIN LANGUAGE)</H2>
             <p>
-              Let me strip away all the technical language and explain what you are actually dealing with.
+              Here is a plain-language explanation of what you are working with.
             </p>
             <p>
               An AI tool is software that has been trained on enormous amounts of text — books, articles, websites, conversations —
@@ -600,7 +597,7 @@ export const BlogPost6 = () => {
               </p>
             </div>
 
-            <p>I want to give you one specific thing to do after reading this.</p>
+            <p>Start with one specific task after reading this.</p>
             <p>Not ten things. Not a list of tools to sign up for. Not a complicated system to implement.</p>
             <p>One thing.</p>
             <p className="font-bold text-ink">Go to claude.ai right now. Sign up for free. Ask it one thing you actually need today.</p>
@@ -641,13 +638,13 @@ export const BlogPost6 = () => {
             transition={{ duration: 0.4 }}
           >
             <H2>ONE MORE THING</H2>
-            <p>If you found this useful there are two things I would ask.</p>
+            <p>If this was useful, there are two ways to continue.</p>
             <p>
               First — share it with one person you know who has been curious about AI tools but felt like they were not technical
               enough. This article was written for them.
             </p>
             <p>
-              Second — if you want to stay current on AI tools without spending hours researching I send one email every Thursday.
+              Second — if you want to stay current on AI tools without spending hours researching, we publish The Weekly Edge every Thursday.
             </p>
             <ul className="list-disc pl-6 space-y-2 text-secondary my-4">
               <li>One tool worth knowing.</li>
@@ -672,7 +669,7 @@ export const BlogPost6 = () => {
                 Not sure where to start?
               </div>
               <h3 className="text-ink font-bold text-xl mb-2">
-                Take My Free AI Readiness Quiz
+                Take Our Free AI Readiness Quiz
               </h3>
               <p className="text-secondary text-sm mb-4">
                 Answer 5 quick questions and get a personalised recommendation for your perfect first AI tool. Takes 60 seconds.
@@ -703,15 +700,15 @@ export const BlogPost6 = () => {
 
             <p>
               And if you have questions — about any specific tool, about where to start, about whether a particular AI tool would
-              be useful for your specific situation — send me an email.
+              be useful for your specific situation — send us an email.
             </p>
             <p className="font-bold text-ink">domskysolutions@gmail.com</p>
-            <p>I read every message personally.</p>
+            <p>Questions and corrections can be sent to the address above.</p>
             <p className="font-bold text-ink mt-8">
               "You are not behind. You are exactly where you need to be to start."
             </p>
             <p className="text-secondary">
-              — Dominik
+              — Domsky Solutions
               <br />
               domskysolutions.com
             </p>

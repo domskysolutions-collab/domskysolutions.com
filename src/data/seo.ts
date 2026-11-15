@@ -11,15 +11,15 @@ export const seoPages: PageSeo[] = [
   { path: '/', title: 'AI & SaaS Reviews for Solopreneurs | Domsky Solutions', description: 'Explore independent AI and SaaS reviews, practical workflows and free tools to choose software for your solo business.' },
   page('/reviews', 'AI & SaaS Reviews', 'Browse software reviews covering Claude, Cursor, Perplexity, Kit and Namecheap. Compare documented strengths, limitations and intended use cases.'),
   page('/tools', 'Free Tools Library', 'Four free browser utilities plus the Lean Stack Finder for prompts, content planning, cost audits and a careful first AI task.'),
-  page('/blog', 'AI Workflows & Insights', `Practical articles on AI workflows, software costs, design and running a solo business, written by ${AUTHOR_NAME}.`),
+  page('/blog', 'AI Workflows & Insights', `Practical articles on AI workflows, software costs, design and running a solo business, from ${PUBLISHER_NAME}.`),
   page('/comparisons', 'AI Tool Comparisons', 'Compare AI assistants side by side and explore their strengths, limitations and suitability for everyday work.'),
-  page('/about', `About ${AUTHOR_NAME}`, `Meet ${AUTHOR_NAME}, the designer and PC enthusiast behind ${PUBLISHER_NAME}, and learn how AI assists with content production.`),
+  { path: '/about', title: 'About Domsky Solutions | Independent AI & SaaS Research', description: 'Learn how Domsky Solutions researches and compares AI and SaaS tools for freelancers, creators, and small businesses.' },
   page('/methodology', 'Review Methodology & Evidence', 'How to interpret testing disclosures, savings examples, source links, evidence limits and review dates.'),
   { ...page('/uses', 'A Lean Solo-Business Stack: What to Use, Keep and Skip', 'Choose a smaller software stack for writing, client work or a website. Keep useful tools, identify gaps and avoid overlapping subscriptions.'), title: getArticle('/uses')?.seoTitle || 'A Lean Solo-Business Stack: Use, Keep and Skip | Domsky', socialTitle: getArticle('/uses')?.socialTitle, socialDescription: getArticle('/uses')?.socialDescription, type: 'article' as const, article: getArticle('/uses') },
   page('/privacy', 'Privacy Policy', 'How Domsky Solutions handles newsletter information, analytics and your privacy choices.'),
   page('/disclaimer', 'Affiliate & Editorial Disclosure', 'Understand affiliate links, editorial opinions and the limitations of information on Domsky Solutions.'),
   ...[['saas-calculator', 'Software Stack Audit Calculator', 'Compare old, retained and replacement recurring software cash while keeping migration costs, external services and owner time separate.'], ['prompt-builder', 'Claude Prompt Builder', 'Create structured prompts for writing, research and other Claude tasks.'], ['content-calendar', '30-Day Content Calendar', 'Plan a month of content ideas without templates that invent experience or results.'], ['ai-readiness-quiz', 'AI Readiness Quiz', 'Choose a careful first AI task without receiving a stack or product recommendation.']].map(([slug, title, description]) => page(`/tools/${slug}`, title, description)),
-  ...reviewCatalog.map(review => ({ ...page(review.link, `${review.name} Review`, `Explore ${review.name}: features, pricing considerations, strengths and limitations for solopreneurs. Read my editorial verdict and evidence disclosures.`), type: 'article' as const, review })),
+  ...reviewCatalog.map(review => ({ ...page(review.link, `${review.name} Review`, `Explore ${review.name}: features, pricing considerations, strengths and limitations for solopreneurs. Read our editorial verdict and evidence disclosures.`), type: 'article' as const, review })),
   { ...page('/reviews/namecheap', 'Namecheap Review', 'An editorial look at Namecheap for domains and hosting, with practical considerations and affiliate disclosure.'), type: 'article' },
   ...BLOG_POSTS.filter(post => post.slug !== '/uses').map(post => {
     const article = getArticle(post.slug);
@@ -37,7 +37,7 @@ export const seoPages: PageSeo[] = [
 export function getPageSeo(pathname: string): PageSeo {
   const normalized = pathname.replace(/\/+$/, '') || '/';
   const path = legacyReviewRedirects[normalized] || normalized;
-  return seoPages.find(page => page.path === path) || { ...page(normalized, 'Page not found', 'This page could not be found. Browse my reviews, free tools or blog.'), noindex: true };
+  return seoPages.find(page => page.path === path) || { ...page(normalized, 'Page not found', 'This page could not be found. Browse our reviews, free tools or blog.'), noindex: true };
 }
 
 export function getBreadcrumbs(meta: PageSeo) {

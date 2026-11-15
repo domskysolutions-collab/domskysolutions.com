@@ -13,7 +13,7 @@ export const Footer = () => {
               <img src="/images/brand/logo-dark.svg" alt="Domsky Solutions" width={480} height={128} className="w-[240px] h-auto" />
             </Link>
             <p className="text-secondary text-sm mb-6 max-w-sm">
-              Independent. Ad-free. Builder-focused. I curate practical AI tools, software reviews, and news for builders and founders.
+              Independent. Ad-free. Builder-focused. We publish practical AI tool research, software reviews and guides for builders and founders.
             </p>
           </div>
           
@@ -77,7 +77,7 @@ export const Footer = () => {
             © 2026 domskysolutions.com — All rights reserved
           </p>
           <p className="text-subtle text-xs">
-            domskysolutions.com is independent. I may earn commissions from affiliate links.
+            domskysolutions.com is independent. We may earn commissions from affiliate links.
           </p>
         </div>
       </div>

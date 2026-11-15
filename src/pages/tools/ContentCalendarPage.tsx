@@ -503,8 +503,8 @@ export const ContentCalendarPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
           <div className={`${SURFACE} border border-brand-cyan rounded-xl p-8`}>
             <div className="mb-6">
-              <h2 className="text-2xl font-bold font-mono text-ink mb-2">Tell me about your content</h2>
-              <p className="text-secondary">I’ll generate a structured posting plan for your niche and formats.</p>
+              <h2 className="text-2xl font-bold font-mono text-ink mb-2">Tell us about your content</h2>
+              <p className="text-secondary">We’ll generate a structured posting plan for your niche and formats.</p>
             </div>
 
             <div className="space-y-7">
@@ -862,7 +862,7 @@ export const ContentCalendarPage = () => {
                 <div className="bg-brand-surface border border-brand-cyan rounded-xl p-8">
                   <div className="text-ink font-bold font-mono text-xl mb-2">🗓️ Want a new calendar every month?</div>
                   <div className="text-secondary mb-6">
-                    Join The Weekly Edge — my free Thursday newsletter with fresh content ideas, AI tool tips, and
+                    Join The Weekly Edge — our free Thursday newsletter with fresh content ideas, AI tool tips, and
                     workflow hacks for solopreneurs.
                   </div>
                   <ConvertKitForm
