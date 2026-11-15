@@ -66,6 +66,8 @@ const validateFixture = (items: ArticleDocument[]) => validateContent(items, leg
 assert.deepEqual(validateFixture([fixture]).errors, []);
 const html = renderToStaticMarkup(<StaticRouter location={fixture.slug}><ArticlePage article={fixture} /></StaticRouter>);
 assert.equal((html.match(/<h1[ >]/g)||[]).length,1);
+assert(html.includes('>Domsky Solutions'));
+assert(!html.includes('Facts last verified'));
 assert(html.includes('&lt;script&gt;'));
 assert(!html.includes('<script>alert'));
 assert(html.includes('sponsored noopener noreferrer'));

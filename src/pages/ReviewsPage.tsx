@@ -12,10 +12,10 @@ export const ReviewsPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold font-mono text-ink mb-4">AI & SaaS Reviews</h1>
-          <p className="text-xl text-secondary max-w-2xl mx-auto">All my software reviews in one place. Each review explains its evidence, limitations and intended use case.</p>
+          <p className="text-xl text-secondary max-w-2xl mx-auto">All our software reviews in one place. Each review explains its evidence, limitations and intended use case.</p>
         </div>
         
-        <p className="mb-8 text-center text-secondary"><Link to="/methodology" className="text-link underline">How I review software</Link><span aria-hidden="true"> · </span><Link to="/uses" className="text-link underline">Start with the lean stack guide</Link></p>
+        <p className="mb-8 text-center text-secondary"><Link to="/methodology" className="text-link underline">How we review software</Link><span aria-hidden="true"> · </span><Link to="/uses" className="text-link underline">Start with the lean stack guide</Link></p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map((review, index) => (
             <motion.div 

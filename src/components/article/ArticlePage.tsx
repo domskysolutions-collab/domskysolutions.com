@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, useScroll } from 'motion/react';
 import { getArticle, getRelatedArticles } from '../../content/registry';
 import { formatArticleDate, type ArticleDocument } from '../../content/types';
+import { PUBLISHER_NAME } from '../../data/site';
 import { ArticleBlocks, ArticleFigure, AffiliateDisclosure } from './ArticleBlocks';
 import { NotFoundPage } from '../../pages/NotFoundPage';
 
@@ -39,11 +40,10 @@ export function ArticlePage({ article }: { article: ArticleDocument }) {
         <p className="font-mono text-xs uppercase tracking-widest text-link mb-5">{article.category} · {article.readingMinutes} min read</p>
         <h1 className="font-mono font-bold text-ink text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight">{article.title}</h1>
         <p className="text-lg sm:text-xl leading-relaxed text-secondary mt-6 max-w-3xl">{article.deck || article.description}</p>
-        <p className="mt-6 text-sm text-secondary">{article.author.name}
+        <p className="mt-6 text-sm text-secondary">{PUBLISHER_NAME}
           {article.publishedAt && <> · Published <time dateTime={article.publishedAt}>{formatArticleDate(article.publishedAt)}</time></>}
           {article.updatedAt && <> · Updated <time dateTime={article.updatedAt}>{formatArticleDate(article.updatedAt)}</time></>}
         </p>
-        {article.verifiedAt && <p className="mt-2 text-xs text-secondary">Facts last verified <time dateTime={article.verifiedAt}>{formatArticleDate(article.verifiedAt)}</time></p>}
       </header>
       <div className={hasToc ? 'grid lg:grid-cols-[200px_minmax(0,1fr)] gap-10 lg:gap-14 items-start' : 'max-w-[760px]'}>
         {hasToc && <nav aria-label="Article contents" className="lg:sticky lg:top-32 rounded-xl border border-line p-5 bg-brand-surface">
