@@ -6,10 +6,17 @@ import { ConvertKitForm } from '../components/ConvertKitForm';
 
 export const HomePage = () => <main className="editorial-home bg-brand-bg min-h-screen">
   <header className="ed-masthead">
-    <p className="ed-label">Domsky Solutions / Software decisions</p>
-    <h1>What deserves a place <br />in your software stack?</h1>
-    <p className="ed-deck">Comparisons and practical guides for running a solo business. Start with the work a tool must do, the limits that matter and the reasons to keep what you have.</p>
-    <Link className="ed-policy" to="/methodology">How to read the evidence</Link>
+    <div className="ed-hero-layout">
+      <div className="ed-hero-art" aria-hidden="true">
+        <img src="/images/brand/software-stack-hero.webp" alt="" width={1448} height={1086} fetchPriority="high" />
+      </div>
+      <div className="ed-hero-copy">
+        <p className="ed-label">Domsky Solutions <span aria-hidden="true">/</span> Software decisions</p>
+        <h1>What deserves a place in your software stack?</h1>
+        <p className="ed-deck">Comparisons and practical guides for running a solo business. Start with the work a tool must do, the limits that matter and the reasons to keep what you have.</p>
+        <Link className="ed-policy" to="/methodology">How to read the evidence</Link>
+      </div>
+    </div>
   </header>
   <section className="ed-lead-grid" aria-label="Featured reading">
     <article className="ed-lead">
