@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="visual-title visual-desc">
+<title id="visual-title">How Many AI Tools Do You Really Need?</title><desc id="visual-desc">A deliberate group of useful modules separated from optional extras, illustrating intentional tool selection.</desc>
+<rect width="1600" height="900" fill="#F4F0E8"/>
+<g transform="translate(80.0 48.0) scale(0.6500)"><title>Domsky Solutions</title><g fill="none" stroke="#B99963" stroke-width="3.5"><path d="M67 12H23A13 13 0 0 0 10 25V54M93 12h44a13 13 0 0 1 13 13v29M10 74v29a13 13 0 0 0 13 13h44M150 74v29a13 13 0 0 1-13 13H93"/><circle cx="80" cy="12" r="6"/><circle cx="80" cy="116" r="6"/></g><g fill="#2F5D5A"><path d="M25 34h28c17 0 28 13 28 30S70 94 53 94H25V58h12v24h16c10 0 16-7 16-18S63 46 53 46H25z"/><path d="M135 34h-31c-13 0-21 8-21 19s8 18 21 18h13c5 0 7 2 7 6s-2 6-7 6H87v11h31c13 0 20-7 20-18s-7-18-20-18h-14c-5 0-8-2-8-6s3-6 8-6h31z"/></g><g fill="#2B2A28" font-family="Arial, sans-serif"><text x="180" y="63" textLength="270" lengthAdjust="spacing" font-size="49" font-weight="700" letter-spacing="2">DOMSKY</text><text x="182" y="98" textLength="270" lengthAdjust="spacing" font-size="23" font-weight="400" letter-spacing="6.3">SOLUTIONS</text></g></g>
+<line x1="80.0" y1="166.0" x2="1520.0" y2="166.0" stroke="#DFE7DE" stroke-width="3"/>
+<text x="80.0" y="261.0" font-family="&quot;Lora&quot;, ui-serif, Georgia, Cambria, &quot;Times New Roman&quot;, Times, serif" font-size="64.0" font-weight="600" fill="#2B2A28">How many AI tools are enough?</text>
+<text x="80.0" y="371.0" font-family="&quot;DM Sans&quot;, ui-sans-serif, system-ui, sans-serif" font-size="36.0" font-weight="600" fill="#2B2A28">Current work</text>
+<rect x="80.0" y="416.0" width="166.2" height="166.2" fill="#2F5D5A"/>
+<rect x="270.2" y="416.0" width="166.2" height="166.2" fill="#2F5D5A"/>
+<rect x="460.5" y="416.0" width="166.2" height="166.2" fill="#2F5D5A"/>
+<text x="845.0" y="371.0" font-family="&quot;DM Sans&quot;, ui-sans-serif, system-ui, sans-serif" font-size="36.0" font-weight="600" fill="#2B2A28">Only if needed</text>
+<rect x="845.0" y="416.0" width="166.2" height="166.2" fill="#DFE7DE"/>
+<rect x="1035.2" y="416.0" width="166.2" height="166.2" fill="#DFE7DE"/>
+<rect x="1225.5" y="416.0" width="166.2" height="166.2" fill="#DFE7DE"/>
+<rect x="845.0" y="606.2" width="166.2" height="166.2" fill="#DFE7DE"/>
+<rect x="1035.2" y="606.2" width="166.2" height="166.2" fill="#DFE7DE"/>
+<rect x="1225.5" y="606.2" width="166.2" height="166.2" fill="#DFE7DE"/>
+</svg>

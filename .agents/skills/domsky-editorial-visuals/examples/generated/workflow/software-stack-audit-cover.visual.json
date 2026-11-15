@@ -1,0 +1,15 @@
+{
+  "id": "software-stack-audit-cover",
+  "file": "software-stack-audit-cover.svg",
+  "articleSlug": "/blog/replaced-saas-stack-with-ai-tools",
+  "articleStatus": "published",
+  "width": 1600,
+  "height": 900,
+  "format": "article",
+  "alt": "Editorial audit categories: keep, downgrade, cancel and trial, without a claimed savings result.",
+  "archetype": "software-workflow",
+  "method": "programmatic",
+  "status": "draft",
+  "sourceBrief": ".agents/skills/domsky-editorial-visuals/examples/workflow.json",
+  "maxBytes": 400000
+}

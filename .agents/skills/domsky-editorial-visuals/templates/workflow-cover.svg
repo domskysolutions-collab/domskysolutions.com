@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="{{WIDTH}}" height="{{HEIGHT}}" viewBox="0 0 {{WIDTH}} {{HEIGHT}}" role="img" aria-labelledby="visual-title visual-desc">
+<title id="visual-title">{{TITLE}}</title><desc id="visual-desc">{{ALT}}</desc>
+<rect width="{{WIDTH}}" height="{{HEIGHT}}" fill="{{PAGE}}"/>
+{{LOGO}}
+<rect x="{{MARGIN}}" y="{{RULE_Y}}" width="{{ACCENT_WIDTH}}" height="6" fill="{{GOLD}}"/>
+{{CONTENT}}
+</svg>

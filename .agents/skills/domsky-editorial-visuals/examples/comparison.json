@@ -1,0 +1,10 @@
+{
+  "id": "claude-chatgpt-gemini-cover", "title": "ChatGPT vs Claude vs Gemini: Which One Should a Solo Business Pay For?",
+  "articleSlug": "/comparisons/claude-vs-chatgpt-vs-gemini-2026", "articleStatus": "published",
+  "sourceFiles": ["src/content/articles/chatgpt-vs-claude-vs-gemini.ts"],
+  "contentType": "comparison", "intent": "comparison", "audience": "Solo business owners choosing one assistant",
+  "decision": "Whether one paid assistant covers the actual work", "message": "Compare task fit without declaring a universal winner",
+  "concept": "Equal typographic product fields with a restrained gold division and no performance symbols",
+  "headline": "Choose for the work.", "products": ["ChatGPT", "Claude", "Gemini"], "variant": "columns",
+  "alt": "Editorial comparison of ChatGPT, Claude and Gemini with equal prominence and no declared winner.", "method": "programmatic"
+}

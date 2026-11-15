@@ -1,0 +1,10 @@
+{
+  "id": "software-stack-audit-cover", "title": "Audit Your Software Stack: What to Keep, Cancel or Replace",
+  "articleSlug": "/blog/replaced-saas-stack-with-ai-tools", "articleStatus": "published",
+  "sourceFiles": ["src/content/articles/software-stack-audit.ts"],
+  "contentType": "guide", "intent": "audit", "audience": "Solo operators reviewing software subscriptions",
+  "decision": "Which tool still covers a required job", "message": "Classify coverage before changing a subscription",
+  "concept": "Four equal audit decision fields; categories are not sequential steps",
+  "headline": "Audit your software stack.", "steps": ["Keep", "Downgrade", "Cancel", "Trial"], "flow": false, "variant": "cards",
+  "alt": "Editorial audit categories: keep, downgrade, cancel and trial, without a claimed savings result.", "method": "programmatic"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "how-many-ai-tools-cover", "title": "How Many AI Tools Do You Really Need?",
+  "articleSlug": null, "articleStatus": "concept", "sourceFiles": [],
+  "contentType": "opinion", "intent": "selection-philosophy", "audience": "Solo founders considering overlapping software",
+  "decision": "Whether an additional tool solves a distinct current task", "message": "A deliberate selection matters more than the size of a collection",
+  "concept": "A compact purposeful group separated from optional modular extras; no universal tool count",
+  "headline": "How many AI tools are enough?", "selectedLabel": "Current work", "extrasLabel": "Only if needed", "selectedModules": 3, "extraModules": 6, "moduleMeaning": "Abstract coverage, not product counts", "variant": "selected",
+  "alt": "A deliberate group of useful modules separated from optional extras, illustrating intentional tool selection.", "method": "programmatic"
+}
