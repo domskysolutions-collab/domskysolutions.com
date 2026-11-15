@@ -2,6 +2,7 @@
 @import "tailwindcss";
 @import "./components/lean-stack-finder.css";
 @import "./pages/editorial-home.css";
+@import "./components/article/lean-workflow.css";
 
 @theme {
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;

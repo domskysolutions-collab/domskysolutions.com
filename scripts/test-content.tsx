@@ -35,6 +35,9 @@ reject(value => { value.blocks.push({type:'prosCons',pros:['One'],cons:['One']})
 reject(value => { value.blocks.push({type:'decisionCards',cards:[{label:'Only',title:'One',text:'One'}]}); }, /2–4 items/);
 reject(value => { value.blocks.push({type:'process',steps:[{title:'One'},{title:'Two'}]}); }, /3–6 titled steps/);
 reject(value => { value.blocks.push({type:'table',caption:'Example',columns:['A','B'],rows:[['One','Two']],highlightedColumns:[0]}); }, /product columns/);
+reject(value => { value.blocks.push({type:'table',caption:'Example',columns:['A','B'],rows:[['One','Two']],summary:' '}); }, /summary/);
+reject(value => { value.blocks.push({type:'image',image:{src:'/images/domsky-logo.png',alt:'Diagram',mobile:{src:'/images/missing.svg',width:1000,height:1500}}}); }, /Missing or invalid local image/);
+reject(value => { value.blocks.push({type:'image',image:{src:'/images/domsky-logo.png',alt:'Diagram',mobile:{src:'/images/domsky-logo.png',width:0,height:1500}}}); }, /Mobile image needs declared dimensions/);
 reject(value => { value.id='new-article'; value.publishedAt=null; }, /approved publication date/);
 const draft = clone(); draft.id='draft-example'; draft.slug='/blog/draft-example'; draft.status='draft';
 assert.deepEqual(selectPublished([draft,article]),[article]);
@@ -78,6 +81,20 @@ assert(html.includes('At a glance') && html.includes('Less suitable for'));
 assert(html.includes('Situation one') && html.includes('Example process'));
 assert(html.includes('Example social image') === false); // OG image is metadata, not a second body image.
 assert(html.includes('Example cover'));
+assert(!html.includes('<picture>')); // Existing single-source covers retain their renderer.
+const visualWorkflow = getArticle('/blog/ai-daily-workflow-solo-business')!;
+const workflowHtml = renderToStaticMarkup(<StaticRouter location={visualWorkflow.slug}><ArticlePage article={visualWorkflow} /></StaticRouter>);
+assert.equal((workflowHtml.match(/<picture>/g) || []).length, 3);
+assert.equal((workflowHtml.match(/<source media="\(max-width: 640px\)"/g) || []).length, 3);
+assert(workflowHtml.includes('width="1000" height="1500"'));
+assert.equal((workflowHtml.match(/<details /g) || []).length, 3);
+assert(!workflowHtml.includes('<details open'));
+assert.equal(visualWorkflow.blocks.flatMap(block => block.type === 'table' ? [block.rows.length] : []).join(','), '7,4,3');
+assert.equal(visualWorkflow.blocks.filter(block => block.type === 'list' && block.checklist).length, 3);
+for (const id of ['article-check', 'email-check', 'linkedin-check', 'evidence-pass', 'usefulness-pass', 'voice-pass']) assert(workflowHtml.includes(`id="${id}"`));
+assert(workflowHtml.includes('Kit Free does not include sequences or visual automation.'));
+assert(workflowHtml.includes('not emailed, posted or measured'));
+assert.deepEqual([visualWorkflow.publishedAt, visualWorkflow.updatedAt, visualWorkflow.verifiedAt], ['2026-09-25', '2026-09-26', '2026-09-26']);
 const meta = {...getPageSeo(article.slug), path:fixture.slug, article:fixture};
 const head=renderSeoHead(meta);
 assert(head.includes('article:published_time') && head.includes('article:modified_time'));

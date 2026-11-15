@@ -64,6 +64,16 @@ for (const article of publishedArticles) {
 }
 
 const source = (filename: string) => fs.readFileSync(filename, 'utf8');
+// Responsive diagrams must deliver the declared mobile canvas, not a crop of the desktop file.
+for (const article of publishedArticles) for (const block of article.blocks) {
+  if (block.type !== 'image' || !block.image.mobile) continue;
+  for (const image of [block.image, block.image.mobile]) {
+    const filename = path.join('public', image.src);
+    assert(fs.existsSync(filename), `Missing responsive diagram: ${image.src}`);
+    assert.deepEqual(imageSize(filename), { width: image.width, height: image.height }, `Diagram dimensions: ${image.src}`);
+    assert(fs.statSync(filename).size < 400000, `Diagram exceeds delivery budget: ${image.src}`);
+  }
+}
 const home = source('src/pages/HomePage.tsx');
 const navbar = source('src/components/Navbar.tsx');
 const runtimeSources = ['src/pages/blog/BlogPost6.tsx', 'src/pages/HomePage.tsx'].map(source).join('\n');

@@ -1,0 +1,35 @@
+/* A restrained, article-specific reading treatment; other routes retain their layout. */
+[data-editorial="workflow"] header h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.2;
+  letter-spacing: -.025em;
+}
+[data-editorial="workflow"] article { color: var(--color-ink); }
+[data-editorial="workflow"] article h2 {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-line);
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+  line-height: 1.35;
+  letter-spacing: -.015em;
+}
+[data-editorial="workflow"] article h3 {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+}
+[data-editorial="workflow"] article figure { border-radius: 0; }
+[data-editorial="workflow"] article figure:has(picture) { margin-block: 1.75rem; }
+[data-editorial="workflow"] article figcaption { font-size: .875rem; line-height: 1.6; }
+[data-editorial="workflow"] .article-reference > div { margin-top: 0; border-radius: 0; }
+[data-editorial="workflow"] article aside { border-radius: 0; box-shadow: none; }
+[data-editorial="workflow"] nav[aria-label="Article contents"] { border-radius: 0; }
+[data-editorial="workflow"] .article-checklist { padding: 0; list-style: none; }
+@media (max-width: 640px) {
+  [data-editorial="workflow"] article { font-size: 1rem; line-height: 1.75; }
+  [data-editorial="workflow"] article h2 { margin-top: 2.5rem; }
+}
