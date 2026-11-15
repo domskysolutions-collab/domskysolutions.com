@@ -8,12 +8,12 @@ import type { ArticleCardData } from '../content/types';
 
 export const BlogCard: React.FC<{ post: ArticleCardData }> = ({ post }) => (
   <Link to={post.slug} className="group flex flex-col bg-brand-surface border border-line rounded-xl overflow-hidden hover:border-brand-cyan transition-all duration-300">
-    {post.image && <div className="w-full h-[220px] overflow-hidden bg-surface">
+    {post.image && <div className={post.slug.startsWith('/comparisons/') ? 'w-full aspect-[60/31] overflow-hidden bg-brand-bg' : 'w-full h-[220px] overflow-hidden bg-surface'}>
       <img 
         src={post.image} 
         alt={post.imageAlt || post.title}
         loading="lazy"
-        className="block w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+        className={post.slug.startsWith('/comparisons/') ? 'block w-full h-full object-contain' : 'block w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500'}
         referrerPolicy="no-referrer"
       />
     </div>}
