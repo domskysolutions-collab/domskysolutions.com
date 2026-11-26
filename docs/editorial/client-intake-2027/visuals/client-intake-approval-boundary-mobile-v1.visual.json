@@ -1,0 +1,17 @@
+{
+  "id": "client-intake-approval-boundary-mobile-v1",
+  "file": "client-intake-approval-boundary-mobile-v1.svg",
+  "articleSlug": "/comparisons/ai-agent-vs-automation-client-intake-2027",
+  "articleStatus": "published",
+  "width": 1000,
+  "height": 1500,
+  "format": "pinterest",
+  "alt": "Proposed agent route: draft, owner review, approval validation and external dispatch. Pending, declined or expired approvals hold the message; changed content needs new review.",
+  "archetype": "software-workflow",
+  "method": "programmatic",
+  "status": "integrated",
+  "sourceBrief": "docs/editorial/client-intake-2027/approved-package/06-visual-brief.md",
+  "maxBytes": 400000,
+  "releaseState": "review branch only; owner editorial approval pending; not deployed",
+  "sitePath": "/images/comparisons/client-intake-approval-boundary-mobile-v1.svg"
+}

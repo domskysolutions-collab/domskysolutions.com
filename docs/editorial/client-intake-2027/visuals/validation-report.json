@@ -1,0 +1,76 @@
+{
+  "checkedAt": "2026-11-26",
+  "sourceValidation": {
+    "valid": true,
+    "results": [
+      {
+        "manifest": "D:\\domskysolutions\\editorial-overhaul\\domskysolutions.com-36ea3c27127de384a5df3fb42b5df77f9abc63bd\\docs\\editorial\\client-intake-2027\\visuals\\ai-agent-vs-automation-client-intake-2027-cover-v1-source.visual.json",
+        "file": "ai-agent-vs-automation-client-intake-2027-cover-v1.svg",
+        "width": 1600.0,
+        "height": 900.0,
+        "bytes": 2673,
+        "status": "draft",
+        "warnings": []
+      }
+    ],
+    "errors": [],
+    "humanReviewRequired": true
+  },
+  "deliveryAndSiteByteValidation": {
+    "valid": true,
+    "results": [
+      {
+        "manifest": "D:\\domskysolutions\\editorial-overhaul\\domskysolutions.com-36ea3c27127de384a5df3fb42b5df77f9abc63bd\\docs\\editorial\\client-intake-2027\\visuals\\ai-agent-vs-automation-client-intake-2027-cover-v1.visual.json",
+        "file": "ai-agent-vs-automation-client-intake-2027-cover-v1.webp",
+        "width": 1600,
+        "height": 900,
+        "bytes": 27052,
+        "status": "integrated",
+        "warnings": []
+      },
+      {
+        "manifest": "D:\\domskysolutions\\editorial-overhaul\\domskysolutions.com-36ea3c27127de384a5df3fb42b5df77f9abc63bd\\docs\\editorial\\client-intake-2027\\visuals\\client-intake-approval-boundary-mobile-v1.visual.json",
+        "file": "client-intake-approval-boundary-mobile-v1.svg",
+        "width": 1000.0,
+        "height": 1500.0,
+        "bytes": 5967,
+        "status": "integrated",
+        "warnings": []
+      },
+      {
+        "manifest": "D:\\domskysolutions\\editorial-overhaul\\domskysolutions.com-36ea3c27127de384a5df3fb42b5df77f9abc63bd\\docs\\editorial\\client-intake-2027\\visuals\\client-intake-approval-boundary-v1.visual.json",
+        "file": "client-intake-approval-boundary-v1.svg",
+        "width": 1600.0,
+        "height": 900.0,
+        "bytes": 6373,
+        "status": "integrated",
+        "warnings": []
+      }
+    ],
+    "errors": [],
+    "humanReviewRequired": true
+  },
+  "textContrast": {
+    "#2B2A28 on #F4F0E8": 12.62,
+    "#2B2A28 on #DFE7DE": 11.35,
+    "#2F5D5A on #F4F0E8": 6.52,
+    "#2F5D5A on #DFE7DE": 5.86
+  },
+  "manualInspection": {
+    "fullSizeCover": true,
+    "fullSizeDesktopDiagram": true,
+    "fullSizeMobileDiagram": true,
+    "cover320px": true,
+    "mobileDiagram270px": true,
+    "initialIssuesFixed": [
+      "Arrow connectors crossed held/changed branch labels; rerouted beside labels.",
+      "Long Agent + review label crowded field margins; wrapped at same 64px size."
+    ]
+  },
+  "notClaimed": [
+    "Browser integration QA delegated to coordinator/developer.",
+    "No provider/model intake tests.",
+    "No screen-reader or 200% zoom validation by design role.",
+    "No owner final editorial approval or production deployment."
+  ]
+}

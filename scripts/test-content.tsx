@@ -11,16 +11,22 @@ import { getPageSeo, renderSeoHead, structuredData, seoPages } from '../src/data
 import { BLOG_POSTS } from '../src/data/blogPosts';
 import type { ArticleDocument } from '../src/content/types';
 
-const article = articles[0];
+const article = articles.find(item => item.status === 'published')!;
+assert(article, 'Content tests require a published article in the catalog');
 const routes = seoPages.filter(page => !page.article && !legacyArticles.some(item => item.slug === page.path)).map(page => page.path);
 const validate = (items: ArticleDocument[]) => validateContent(items, legacyArticles, routes, src => fs.existsSync('public' + src));
 assert.deepEqual(validate(articles).errors, []);
 const clone = (): ArticleDocument => structuredClone(article);
+// Keep every referenced article available when mutating one candidate. Otherwise
+// missing catalog context can satisfy a rejection assertion for the wrong reason.
+const withCandidate = (candidate: ArticleDocument) => articles.map(item => item === article ? candidate : item);
+assert.deepEqual(validate(withCandidate(clone())).errors, []);
 const reject = (change: (value: ArticleDocument) => void, pattern: RegExp) => {
   const value = clone(); change(value);
-  assert.match(validate([value]).errors.join('\n'), pattern);
+  const errors = validate(withCandidate(value)).errors.filter(error => error.startsWith(value.id + ': '));
+  assert.match(errors.join('\n'), pattern);
 };
-assert.match(validate([article, article]).errors.join('\n'), /duplicate/i);
+assert.match(validate([...articles, article]).errors.join('\n'), /duplicate/i);
 reject(value => { value.slug = '/blog/you-dont-need-to-be-technical-to-use-ai'; }, /slug/);
 reject(value => { value.updatedAt = '2026-02-30'; }, /Invalid updatedAt/);
 reject(value => { value.verificationPending = ['Price needs verification']; }, /Unresolved verification/);
@@ -29,7 +35,7 @@ reject(value => { value.blocks.push({ type:'paragraph', text:[{text:'Unsafe',hre
 reject(value => { value.blocks.push({ type:'paragraph', text:[{text:'Unknown',href:'/blog/missing'}] }); }, /Unknown internal/);
 reject(value => { value.blocks.push({ type:'cta',title:'Offer',text:'Example',label:'Visit',href:'https://example.com/',affiliate:true }); }, /requires disclosure/);
 reject(value => { value.relatedSlugs = [value.slug]; }, /related article/);
-reject(value => { value.blocks.push({type:'heading',id:'short-answer',level:2,text:'Duplicate'}); }, /duplicate anchor/);
+reject(value => { value.blocks.push({type:'heading',id:'duplicate-test-anchor',level:2,text:'First fixture heading'}, {type:'heading',id:'duplicate-test-anchor',level:2,text:'Repeated fixture heading'}); }, /duplicate anchor/);
 reject(value => { value.blocks.push({type:'table',caption:'Example',columns:['A','B'],rows:[['One']]}); }, /row width/);
 reject(value => { value.blocks.push({type:'prosCons',pros:['One'],cons:['One']}); }, /2–6 items/);
 reject(value => { value.blocks.push({type:'decisionCards',cards:[{label:'Only',title:'One',text:'One'}]}); }, /2–4 items/);
@@ -45,12 +51,13 @@ assert.equal(getArticle(draft.slug), undefined);
 assert.equal(getArticle(article.slug + '/'), article);
 assert(getPageSeo(draft.slug).noindex);
 assert(!seoPages.some(page => page.path === draft.slug));
-assert.equal(getRelatedArticles(article)[0].slug,article.relatedSlugs[0]);
+assert.deepEqual(getRelatedArticles(article).map(item => item.slug), article.relatedSlugs);
 
 // Exercise every reusable block, escaping, affiliate markup, dated metadata and images.
 const fixture: ArticleDocument = {
-  ...clone(), id:'fixture', slug:'/blog/fixture', contentType:'guide', publishedAt:'2026-09-22', updatedAt:'2026-09-23',
+  ...clone(), id:'fixture', slug:'/blog/fixture', contentType:'guide', publishedAt:'2026-09-22', updatedAt:'2026-09-23', verifiedAt:'2026-09-23',
   relatedSlugs: [],
+  sources: [{id:'fixture-source',title:'Example source',url:'https://example.com/source'}],
   title:'<script>alert("unsafe")</script>', affiliateDisclosureRequired:true, disclosure:undefined,
   featuredImage:{src:'/images/domsky-logo.png',alt:'Example cover'}, ogImage:{src:'/images/astra-work-model-picker.webp',alt:'Example social image'},
   blocks:[
@@ -62,7 +69,19 @@ const fixture: ArticleDocument = {
     {type:'decisionCards',cards:[{label:'Situation one',title:'First choice',text:'First explanation'},{label:'Situation two',title:'Second choice',text:'Second explanation'}]},
     {type:'process',title:'Example process',steps:[{title:'Research',description:'Check sources'},{title:'Draft',description:'Write clearly'},{title:'Review',description:'Verify the result'}]},
     {type:'cta',title:'Next step',text:'Example CTA',label:'Visit example',href:'https://example.com/',affiliate:true},
-    ...clone().blocks,
+    {type:'heading',level:2,id:'short-answer',text:'Short answer'},
+    {type:'paragraph',text:[{text:'Example strong text',strong:true}, ' and ', {text:'an internal anchor',href:'#overview'}]},
+    {type:'quote',text:'Example quotation'},
+    {type:'heading',level:3,id:'detail',text:'Detail'},
+    {type:'list',items:['First item','Second item']},
+    {type:'list',ordered:true,items:['First step','Second step']},
+    {type:'note',title:'Example note',text:'Example evidence limitation'},
+    {type:'table',caption:'Example table',columns:['Criterion','Value'],rows:[['Example row','Example value']]},
+    {type:'pricing',caption:'Example price table',columns:['Plan','Condition'],rows:[['Example plan','Example condition']]},
+    {type:'image',image:{src:'/images/domsky-logo.png',alt:'Example inline image'}},
+    {type:'workflow',caption:'Example workflow',paths:[{title:'Example path',steps:['Input','Review','Output']}]},
+    {type:'divider'},
+    {type:'sources',id:'sources',title:'Example sources'},
   ],
 };
 const validateFixture = (items: ArticleDocument[]) => validateContent(items, legacyArticles, [...routes, ...articles.map(item => item.slug)], src => fs.existsSync('public' + src));
@@ -105,7 +124,7 @@ assert.equal(schema.datePublished,'2026-09-22');
 assert.equal(schema.dateModified,'2026-09-23');
 assert.equal((schema.author as {name:string}).name,fixture.author.name);
 assert(graph.some(item=>item['@type']==='BreadcrumbList'));
-assert.equal((structuredData(getPageSeo(article.slug))['@graph'] as Array<Record<string,unknown>>).find(item=>item['@type']==='Article')?.datePublished,'2026-09-24');
+assert.equal((structuredData(getPageSeo(article.slug))['@graph'] as Array<Record<string,unknown>>).find(item=>item['@type']==='Article')?.datePublished, article.publishedAt ?? undefined);
 
 const assistant = getArticle('/comparisons/claude-vs-chatgpt-vs-gemini-2026')!;
 assert(assistant);

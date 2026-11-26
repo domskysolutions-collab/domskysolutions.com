@@ -1,0 +1,16 @@
+{
+  "id": "ai-agent-vs-automation-client-intake-2027-cover-v1-source",
+  "file": "ai-agent-vs-automation-client-intake-2027-cover-v1.svg",
+  "articleSlug": "/comparisons/ai-agent-vs-automation-client-intake-2027",
+  "articleStatus": "published",
+  "width": 1600,
+  "height": 900,
+  "format": "article",
+  "alt": "Three client-intake approaches for 2027 planning: manual handling, rules-based automation and an agent with human review.",
+  "archetype": "software-workflow",
+  "method": "programmatic",
+  "status": "draft",
+  "sourceBrief": "docs/editorial/client-intake-2027/approved-package/06-visual-brief.md",
+  "maxBytes": 400000,
+  "releaseState": "review branch only; owner editorial approval pending; not deployed"
+}
