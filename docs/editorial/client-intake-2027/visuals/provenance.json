@@ -1,0 +1,22 @@
+{
+  "producedAt": "2026-11-26",
+  "method": "Programmatic editable SVG; bundled sharp rendered previews and WebP (quality 88, effort 6). No image generation, network or new dependencies.",
+  "runtimeBundle": "26.1123.11515",
+  "logo": "Unmodified inner geometry and wordmark of actual repo logo-light.svg; translated/scaled as a group.",
+  "fonts": "Existing Lora/Georgia serif and DM Sans/Arial sans-serif stacks. Raster inspection covers installed fallback metrics; no fonts downloaded.",
+  "articleStatusSemantics": "published means registered for rendering on review branch only; integrated means bytes staged and referenced by candidate. Neither means production release or owner approval.",
+  "reviewStatus": "Designer inspection complete; independent QA and owner final editorial review pending.",
+  "sourceHashes": {
+    "public/images/brand/logo-light.svg": "9de812970ea1777e1f83327300e587ff0723d3732a19645e66fe966e391bb3cf",
+    "docs/editorial/client-intake-2027/approved-package/06-visual-brief.md": "eaa655e6dc0e1e7ef8ffcddb218fb8b081430c4d6e4361766f8ac29ae43a3e87"
+  },
+  "assetHashes": {
+    "ai-agent-vs-automation-client-intake-2027-cover-v1.svg": "79136445a092f8e4d8e5a7648661072cbb23eefdb6d3240880a0685fb3cc59b7",
+    "ai-agent-vs-automation-client-intake-2027-cover-v1.webp": "6f50024636bebcc64412aceb310b0227585ab595e87e8010ea49c33784464aed",
+    "client-intake-approval-boundary-mobile-v1.svg": "6aaeffc7653a7709b5e6e2eb4b146b9718814ee4b304f2d9766e41b44877a3a6",
+    "client-intake-approval-boundary-v1.svg": "8709415796930f2e551d9941cb78eb7e763596e95f1459a1933807f2d6515b62"
+  },
+  "evidenceScope": "November 2026 provider documents. 2027 planning horizon and synthetic test scenarios, not observed test results.",
+  "coverFlow": false,
+  "diagramScope": "Agent configuration only; does not add per-message approval to the rules path."
+}

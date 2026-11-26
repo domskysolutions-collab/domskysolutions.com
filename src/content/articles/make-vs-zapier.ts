@@ -392,6 +392,17 @@ export const makeZapierComparison = {
       "text": "Start with the platform that supports your actual source and destination. If both do, use a short trial to decide which configuration you can explain and maintain."
     },
     {
+      "type": "paragraph",
+      "text": [
+        "Before choosing a platform, compare ",
+        {
+          "text": "manual intake, rules and an agent with human approval",
+          "href": "/comparisons/ai-agent-vs-automation-client-intake-2027"
+        },
+        " using the same complete, missing-data and exception enquiries."
+      ]
+    },
+    {
       "type": "heading",
       "level": 3,
       "id": "2-confirmed-newsletter-subscriber-external-tracking",

@@ -1,0 +1,81 @@
+
+> react-example@0.0.0 check
+> npm run lint && npm run typecheck && npm run test:content && npm run test:stack && npm run test:api && npm run build && npm run test:seo
+
+
+> react-example@0.0.0 lint
+> tsc --noEmit
+
+
+> react-example@0.0.0 typecheck
+> tsc --noEmit && tsc -p tsconfig.content.json && tsc -p tsconfig.api.json
+
+
+> react-example@0.0.0 test:content
+> tsx scripts/test-content.tsx && npm run test:content:quality && npm run test:presentation
+
+PASS: content validation rejection cases, legacy collisions, draft exclusion, related links, all blocks, escaping, disclosure, dates, images and Article/breadcrumb schema.
+
+> react-example@0.0.0 test:content:quality
+> tsx scripts/test-content-quality.ts
+
+PASS content quality: required fields, calendar dates, duplicates, references, image requirements, disclosure, contextual/incoming links, maintenance thresholds, malformed input, output totals and exit status.
+
+> react-example@0.0.0 test:presentation
+> tsx scripts/test-presentation.ts
+
+PASS presentation: 10 structured image assets, semantic tables, persistent navigation, placeholder removal, focus, print and palette contrast.
+
+> react-example@0.0.0 test:stack
+> tsc -p tsconfig.stack.json && tsx scripts/test-lean-stack.ts && tsx scripts/test-saas-audit.ts && tsx scripts/test-utility-ui.tsx
+
+PASS: 1125 recommendation combinations; four decision states, dated facts, first-task fixtures, immediate results, optional newsletter, persistence, retirement redirects and overlap prevention.
+PASS: SaaS audit positive, zero, negative, blank, invalid, large, migration, owner-time, external-service and currency cases.
+PASS: semantic keyboard controls, responsive layout contracts and claim-safe calendar templates.
+
+> react-example@0.0.0 test:api
+> tsx scripts/test-api-security.ts
+
+[api] newsletter_subscriber_failure { status: 504 }
+[api] newsletter_subscriber_failure { status: 503 }
+[api] provider_http_failure { status: 500 }
+[api] newsletter_subscriber_failure { status: 502 }
+[api] anthropic_provider_failure { status: 504 }
+[api] anthropic_provider_failure { status: 503 }
+[api] provider_http_failure { status: 500 }
+[api] anthropic_provider_failure { status: 502 }
+PASS API security: validation, size limits, newsletter consent, provider success/timeout/rate-limit/failure mocks, stable errors and abuse controls.
+
+> react-example@0.0.0 build
+> npm run validate:content && vite build && tsx scripts/prerender.tsx && npm run test:client-secrets
+
+
+> react-example@0.0.0 validate:content
+> tsx scripts/validate-content.ts
+
+Validated 10 structured articles and 3 preserved legacy entries.
+vite v6.4.1 building for production...
+transforming...
+✓ 2140 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   1.38 kB │ gzip:   0.71 kB
+dist/assets/index-w5nFENHo.css   59.26 kB │ gzip:  12.44 kB
+dist/assets/index-BtqVI4GZ.js   833.65 kB │ gzip: 248.82 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.20s
+Prerendered 37 indexable routes and a noindex 404; generated sitemap.
+
+> react-example@0.0.0 test:client-secrets
+> tsx scripts/check-client-secrets.ts
+
+PASS client secret scan: 41 built assets contain no known private names or configured values.
+
+> react-example@0.0.0 test:seo
+> tsx scripts/verify-seo.ts
+
+Verified metadata, schema, H1s and internal links across 37 routes; 16 redirects; noindex 404.
