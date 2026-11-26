@@ -9,3 +9,5 @@ Preserve evidence limits, attribution, disclosures, URLs, canonicals, schema and
 Keep the stack and lockfile. Preserve newsletter, finder logic, consent, analytics, affiliate tracking and unrelated behavior unless a specific authorized change requires it. Do not merge or deploy a review batch without user authorization. Report files changed, reader benefit, checks and remaining research/release concerns.
 
 For editorial covers, diagrams, imagery audits and image integration, use [domsky-editorial-visuals](.agents/skills/domsky-editorial-visuals/SKILL.md). Workflow: Research → Editorial brief → Article drafting → Verification → Visual brief → Featured image → Quality review → Article integration → Final editorial approval. The visual skill does not authorize factual inventions, published-asset replacement or a release beyond the user's approved scope.
+
+For delegated Domsky work, use [Domsky Agent Team](docs/DOMSKY_AGENT_TEAM.md). The main Codex session coordinates the project specialists in `.codex/agents/` and selects roles based on the task.
