@@ -45,7 +45,7 @@ export const HomePage = () => <main className="editorial-home bg-brand-bg min-h-
   </section>
   <section className="ed-section ed-tools" aria-labelledby="working-tools">
     <div><p className="ed-label">Working tools</p><h2 id="working-tools">Check the job and the cost.</h2><p>Use the calculator to separate recurring cash from migration work. Use the stack guide when you need to decide what to keep or skip.</p></div>
-    <ul><li><Link to="/tools/saas-calculator">Software stack audit calculator</Link></li><li><Link to="/uses">Lean solo-business stack guide</Link></li><li><Link to="/tools">Free planning tools</Link></li><li><Link to="/reviews">View all reviews</Link></li><li><Link to="/blog">All articles</Link></li></ul>
+    <ul><li><Link to="/tools/saas-calculator">Software stack audit calculator</Link></li><li><Link to="/uses">Lean solo-business stack guide</Link></li><li><Link to="/tools">Free planning tools</Link></li><li><Link to="/guides">Browse practical guides</Link></li><li><Link to="/blog">All articles</Link></li></ul>
   </section>
   <LeanStackFinder />
       {/* Newsletter */}

@@ -9,7 +9,7 @@ import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ToolsPage } from './pages/ToolsPage';
-import { ReviewsPage } from './pages/ReviewsPage';
+import { GuidesPage } from './pages/GuidesPage';
 import { BlogIndex } from './pages/BlogIndex';
 import { PrivacyPage } from './pages/PrivacyPage';
 import { DisclaimerPage } from './pages/DisclaimerPage';
@@ -47,7 +47,7 @@ export function SiteRoutes() {
         <Route path="/tools/content-calendar" element={<ContentCalendarPage />} />
         <Route path="/reviews/namecheap" element={<NamecheapReviewPage />} />
         <Route path="/tools/ai-readiness-quiz" element={<AiReadinessQuiz />} />
-        <Route path="/reviews" element={<ReviewsPage />} />
+        <Route path="/guides" element={<GuidesPage />} />
         <Route path="/reviews/:id" element={<ToolPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/blog" element={<BlogIndex />} />

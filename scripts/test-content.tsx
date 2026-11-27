@@ -4,10 +4,13 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { ArticlePage } from '../src/components/article/ArticlePage';
-import { articles, getArticle, getRelatedArticles, selectPublished } from '../src/content/registry';
+import { articles, articleCards, getArticle, getRelatedArticles, selectPublished, toArticleCard } from '../src/content/registry';
 import { legacyArticles } from '../src/content/legacy';
 import { validateContent } from '../src/content/validate';
-import { getPageSeo, renderSeoHead, structuredData, seoPages } from '../src/data/seo';
+import { getPageSeo, getBreadcrumbs, renderSeoHead, structuredData, seoPages } from '../src/data/seo';
+import { GuidesPage } from '../src/pages/GuidesPage';
+import { buildGuideGroups, guideGroups } from '../src/data/guideCatalog';
+import { legacyReviewRedirects, reviewCatalog } from '../src/data/reviewCatalog';
 import { BLOG_POSTS } from '../src/data/blogPosts';
 import type { ArticleDocument } from '../src/content/types';
 
@@ -223,4 +226,50 @@ assert(leanStackGraph.some(item => item['@type'] === 'Article'));
 assert(leanStackGraph.some(item => item['@type'] === 'WebPage'));
 assert(leanStackGraph.some(item => item['@type'] === 'BreadcrumbList'));
 assert(!leanStackGraph.some(item => ['HowTo', 'FAQPage', 'Product', 'Offer', 'Review', 'AggregateRating'].includes(String(item['@type']))));
-console.log('PASS: content validation rejection cases, legacy collisions, draft exclusion, related links, all blocks, escaping, disclosure, dates, images and Article/breadcrumb schema.');
+// The directory changes; individual reviews retain their identity and routes.
+for (const [slug, title] of [
+  ['/blog/cancelled-adobe-never-looked-back', 'Replace Adobe? A Practical Switching Checklist | Domsky'],
+  ['/blog/ai-tools-look-like-team-of-10', '10 AI Tools for Practical Solo-Business Tasks | Domsky'],
+]) {
+  const card = legacyArticles.find(item => item.slug === slug)!;
+  assert.equal(card.date, 'April 2026');
+  assert.equal(card.category, 'Guides');
+  const meta = getPageSeo(slug);
+  assert.equal(meta.title, title);
+  const legacySchema = (structuredData(meta)['@graph'] as Array<Record<string,unknown>>).find(item => item['@type'] === 'Article')!;
+  assert.equal(legacySchema.dateModified, '2026-11-27');
+  assert(!('datePublished' in legacySchema), 'Unknown publication day must stay omitted');
+  const head = renderSeoHead(meta);
+  assert(head.includes('property="article:modified_time" content="2026-11-27"'));
+  assert(!head.includes('article:published_time'));
+}
+assert.equal(legacyReviewRedirects['/reviews'], '/guides');
+assert.equal(getPageSeo('/reviews').path, '/guides');
+assert(!seoPages.some(page => page.path === '/reviews'));
+assert.equal(getPageSeo('/guides').type, undefined);
+assert.deepEqual(getBreadcrumbs(getPageSeo('/guides')).map(crumb => crumb.path), ['/', '/guides']);
+const guideSlugs = guideGroups.flatMap(group => group.articles.map(item => item.slug));
+assert.equal(new Set(guideSlugs).size, guideSlugs.length, 'Curated guides should not repeat');
+assert(guideSlugs.includes('/blog/cancelled-adobe-never-looked-back'));
+assert(guideSlugs.includes('/blog/ai-tools-look-like-team-of-10'));
+assert(!guideSlugs.includes('/blog/you-dont-need-to-be-technical-to-use-ai'));
+assert(!guideSlugs.some(slug => slug.startsWith('/reviews/')), 'Product reviews must not be relabeled guides');
+const futureGuide: ArticleDocument = {...clone(),id:'future-guide-fixture',slug:'/blog/future-guide-fixture',title:'A future practical guide',category:'Guides',contentType:'guide'};
+const draftGuide: ArticleDocument = {...futureGuide,id:'draft-guide-fixture',slug:'/blog/draft-guide-fixture',status:'draft'};
+const hiddenReview: ArticleDocument = {...futureGuide,id:'review-fixture',slug:'/blog/review-fixture',contentType:'review'};
+const discoveredGroups = buildGuideGroups([...articleCards,...[futureGuide,draftGuide,hiddenReview].map(toArticleCard)], [...articles,futureGuide,draftGuide,hiddenReview]);
+assert.deepEqual(discoveredGroups.slice(0, 2), guideGroups.slice(0, 2), 'Automatic discovery must preserve curated order');
+assert.deepEqual(discoveredGroups.at(-1)?.articles.map(item => item.slug), [futureGuide.slug], 'A new published guide appears automatically; drafts and reviews do not');
+const guideHtml = renderToStaticMarkup(<StaticRouter location="/guides"><GuidesPage /></StaticRouter>);
+assert.equal((guideHtml.match(/<h1(?:\s|>)/g) || []).length, 1);
+assert(guideHtml.includes('id="product-reviews"') && guideHtml.includes('Product review archive'));
+for (const slug of guideSlugs) assert(guideHtml.includes(`href="${slug}"`), `Missing curated guide: ${slug}`);
+for (const slug of [...reviewCatalog.map(review => review.link), '/reviews/convertkit', '/reviews/namecheap']) {
+  const meta = getPageSeo(slug);
+  assert.equal(meta.path, slug);
+  assert(!meta.noindex);
+  assert(guideHtml.includes(`href="${slug}"`), `Review missing from archive: ${slug}`);
+  assert.deepEqual(getBreadcrumbs(meta)[1], {name:'Product review archive',path:'/guides#product-reviews'});
+}
+
+console.log('PASS: content validation rejection cases, legacy collisions, draft exclusion, related links, all blocks, escaping, disclosure, dates, images, Article/breadcrumb schema and Guides/review archive routes.');

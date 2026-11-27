@@ -1,0 +1,18 @@
+{
+  "id": "solo-business-ai-tools-v2",
+  "file": "solo-business-ai-tools-v2.webp",
+  "articleSlug": "/blog/ai-tools-look-like-team-of-10",
+  "articleStatus": "published",
+  "width": 1600,
+  "height": 900,
+  "format": "article",
+  "alt": "10 AI tools for common solo-business tasks. One useful task at a time.",
+  "archetype": "software-workflow",
+  "method": "programmatic",
+  "status": "integrated",
+  "sourceBrief": "docs/editorial/guides-upgrade/visuals/visual-brief.md",
+  "maxBytes": 400000,
+  "flow": false,
+  "releaseState": "Review branch only; not final owner editorial approval or deployment.",
+  "sitePath": "/images/blog/solo-business-ai-tools-v2.webp"
+}

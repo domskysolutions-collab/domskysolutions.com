@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img">
+<title>10 AI tools — one useful task at a time</title>
+<desc>10 AI tools for common solo-business tasks. One useful task at a time. Editorial title illustration for proposed task recipes, not observed results.</desc>
+<rect width="1600" height="900" fill="#F4F0E8"/>
+<g transform="translate(80 54) scale(0.95)"><title>Domsky Solutions</title><g fill="none" stroke="#B99963" stroke-width="3.5"><path d="M67 12H23A13 13 0 0 0 10 25V54M93 12h44a13 13 0 0 1 13 13v29M10 74v29a13 13 0 0 0 13 13h44M150 74v29a13 13 0 0 1-13 13H93"/><circle cx="80" cy="12" r="6"/><circle cx="80" cy="116" r="6"/></g><g fill="#2F5D5A"><path d="M25 34h28c17 0 28 13 28 30S70 94 53 94H25V58h12v24h16c10 0 16-7 16-18S63 46 53 46H25z"/><path d="M135 34h-31c-13 0-21 8-21 19s8 18 21 18h13c5 0 7 2 7 6s-2 6-7 6H87v11h31c13 0 20-7 20-18s-7-18-20-18h-14c-5 0-8-2-8-6s3-6 8-6h31z"/></g><g fill="#2B2A28" font-family="Arial, sans-serif"><text x="180" y="63" textLength="270" lengthAdjust="spacing" font-size="49" font-weight="700" letter-spacing="2">DOMSKY</text><text x="182" y="98" textLength="270" lengthAdjust="spacing" font-size="23" font-weight="400" letter-spacing="6.3">SOLUTIONS</text></g></g>
+<line x1="80" y1="210" x2="1520" y2="210" stroke="#B99963" stroke-width="3"/>
+<text x="80" y="491" font-family="&quot;Lora&quot;, ui-serif, Georgia, Cambria, &quot;Times New Roman&quot;, Times, serif" font-size="210" font-weight="600" fill="#2B2A28">10 AI tools</text>
+<rect x="80" y="644" width="1440" height="176" fill="#DFE7DE"/>
+<line x1="80" y1="644" x2="1520" y2="644" stroke="#2F5D5A" stroke-width="4"/>
+<text x="120" y="755" font-family="&quot;DM Sans&quot;, ui-sans-serif, system-ui, sans-serif" font-size="72" font-weight="500" fill="#2F5D5A">One useful task at a time</text>
+</svg>

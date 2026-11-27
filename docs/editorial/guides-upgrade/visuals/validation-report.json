@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-11-27",
+  "source": {
+    "valid": true,
+    "results": [
+      {
+        "manifest": "D:\\domskysolutions\\editorial-overhaul\\domskysolutions.com-36ea3c27127de384a5df3fb42b5df77f9abc63bd\\docs\\editorial\\guides-upgrade\\visuals\\solo-business-ai-tools-v2-source.visual.json",
+        "file": "solo-business-ai-tools-v2.svg",
+        "width": 1600.0,
+        "height": 900.0,
+        "bytes": 1875,
+        "status": "draft",
+        "warnings": []
+      }
+    ],
+    "errors": [],
+    "humanReviewRequired": true
+  },
+  "deliveryAndSiteBytes": {
+    "valid": true,
+    "results": [
+      {
+        "manifest": "D:\\domskysolutions\\editorial-overhaul\\domskysolutions.com-36ea3c27127de384a5df3fb42b5df77f9abc63bd\\docs\\editorial\\guides-upgrade\\visuals\\solo-business-ai-tools-v2.visual.json",
+        "file": "solo-business-ai-tools-v2.webp",
+        "width": 1600,
+        "height": 900,
+        "bytes": 23100,
+        "status": "integrated",
+        "warnings": []
+      }
+    ],
+    "errors": [],
+    "humanReviewRequired": true
+  },
+  "essentialTextContrast": {
+    "inkOnCream": 12.62,
+    "tealOnSage": 5.86
+  },
+  "inspection": {
+    "fullSize1600x900": "Inspected actual rendered PNG; approved logo, exact copy, no clipping/cramped margins, no scores/unsupported claims.",
+    "thumbnail320x180": "Inspected actual rendered PNG;10 AI tools and One useful task at a time remain readable.",
+    "artworkDecision": "One focused task, not a recommendation to buy all ten. Typography-only software-workflow cover, no arrows or implied product system.",
+    "adobe": "Existing supplied checklist illustration retained unchanged at1744x901."
+  },
+  "limits": [
+    "No provider/account/generation/workflow tests performed.",
+    "Browser body/card/social integration and full project suite delegated to coordinator/developer/QA.",
+    "No screen-reader/zoom testing by this design role.",
+    "Owner final editorial approval and release pending."
+  ]
+}

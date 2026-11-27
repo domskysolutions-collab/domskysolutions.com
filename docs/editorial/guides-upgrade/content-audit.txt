@@ -1,0 +1,40 @@
+
+> react-example@0.0.0 content:check
+> tsx scripts/check-content.ts
+
+WARN /comparisons/ai-agent-vs-automation-client-intake-2027
+  WARN No incoming related-content references from other published structured articles
+
+WARN /comparisons/chatgpt-astra-vs-alternatives
+  WARN Last verified 62 days ago (recommended window: 30 days)
+
+WARN /comparisons/claude-vs-chatgpt-vs-gemini-2026
+  WARN Last verified 62 days ago (recommended window: 30 days)
+
+WARN /reviews/convertkit
+  WARN Last verified 62 days ago (recommended window: 30 days)
+
+WARN /comparisons/kit-vs-mailerlite-vs-beehiiv
+  WARN Last verified 62 days ago (recommended window: 7 days)
+
+WARN /blog/chatgpt-business-hub-small-business
+  WARN Last verified 12 days ago (recommended window: 7 days)
+
+WARN /blog/ai-daily-workflow-solo-business
+  WARN Last verified 62 days ago (recommended window: 30 days)
+
+PASS /blog/replaced-saas-stack-with-ai-tools
+
+
+WARN /uses
+  WARN Last verified 62 days ago (recommended window: 30 days)
+
+WARN /comparisons/make-vs-zapier-solo-business
+  WARN Last verified 56 days ago (recommended window: 30 days)
+
+Articles checked: 10
+Passed: 1
+Warnings: 9
+Errors: 0
+
+Scope: structured articles (including drafts). 3 legacy article bodies are not audited. Warning/error totals count findings, not articles.

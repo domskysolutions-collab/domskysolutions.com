@@ -17,7 +17,7 @@ const dcePaths = [
 
 const paths = new Set(seoPages.map(page => page.path));
 assert.equal(paths.size, seoPages.length, 'Duplicate route metadata');
-assert.equal(getPageSeo('/').title, 'AI & SaaS Reviews for Solopreneurs | Domsky Solutions', 'Approved homepage title');
+assert.equal(getPageSeo('/').title, 'AI & Software Guides for Solo Businesses | Domsky Solutions', 'Homepage title must match the guides and research front door');
 const titles = new Set<string>();
 const descriptions = new Set<string>();
 for (const meta of seoPages) {
@@ -101,7 +101,7 @@ for (const match of sitemap.matchAll(/<loc>(.*?)<\/loc>/g)) assert(match[1].star
 assert.equal(robots, `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 for (const meta of seoPages) {
   assert(sitemap.includes('<loc>' + SITE_URL + meta.path + '</loc>'), 'Missing sitemap URL');
-  const modified = meta.article?.updatedAt || meta.article?.publishedAt;
+  const modified = meta.article?.updatedAt || meta.article?.publishedAt || meta.updatedAt;
   if (modified) assert(sitemap.includes('<loc>' + SITE_URL + meta.path + '</loc><lastmod>' + modified + '</lastmod>'));
 }
 for (const path of dcePaths) {
@@ -133,6 +133,15 @@ for (const review of reviewCatalog) {
   assert(!serialized.includes('AggregateRating'), `Aggregate rating leaked into schema: ${review.link}`);
 }
 const vercel = JSON.parse(fs.readFileSync('vercel.json', 'utf8'));
+for (const [from, to] of Object.entries(legacyReviewRedirects)) {
+  assert(vercelRedirect(from, to), `Missing permanent legacy redirect: ${from}`);
+}
+assert(paths.has('/guides') && !paths.has('/reviews'), 'Guides replaces only the review directory in the sitemap');
+assert(!fs.existsSync('dist/reviews.html'), 'Redirect source must not be prerendered as an indexable page');
+for (const reviewPath of [...reviewCatalog.map(review => review.link), '/reviews/convertkit', '/reviews/namecheap']) {
+  assert(paths.has(reviewPath), `Individual review must stay indexable: ${reviewPath}`);
+  assert(!vercel.redirects.some((redirect: {source:string}) => redirect.source === reviewPath), `Individual review must not redirect: ${reviewPath}`);
+}
 for (const [from, to] of Object.entries(retiredUtilityRedirects)) {
   assert(!paths.has(from), `Retired utility remains indexable: ${from}`);
   assert(!sitemap.includes(`<loc>${SITE_URL}${from}</loc>`), `Retired utility remains in sitemap: ${from}`);

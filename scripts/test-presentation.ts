@@ -78,9 +78,10 @@ const home = source('src/pages/HomePage.tsx');
 const navbar = source('src/components/Navbar.tsx');
 const runtimeSources = ['src/pages/blog/BlogPost6.tsx', 'src/pages/HomePage.tsx'].map(source).join('\n');
 assert(!home.includes('/blog/you-dont-need-to-be-technical-to-use-ai'), 'Homepage must not promote DCE-01');
-assert(home.includes('to="/reviews"') && home.includes('View all reviews'), 'Homepage review CTA must open the reviews index');
+assert(home.includes('to="/guides"') && home.includes('Browse practical guides'), 'Homepage guide CTA must open the guides index');
 assert(home.includes('aria-label="Popular tool comparison"') && home.includes('scope="col"') && home.includes('scope="row"'), 'Homepage table needs an accessible scroll region and semantic headers');
 assert(navbar.includes("['/uses','Lean Stack']"), '/uses must remain in persistent navigation');
+assert(navbar.includes("['/guides','Guides']") && !navbar.includes("['/reviews','Reviews']"), 'Persistent navigation must offer Guides');
 assert(!runtimeSources.includes('Screenshot Placeholder'), 'Unfinished screenshot placeholder remains in a rendered page');
 
 function luminance(hex: string) {

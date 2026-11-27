@@ -22,8 +22,8 @@ export const ToolPage = () => {
 
   return (
     <div className="pt-32 pb-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
-      <Link to="/reviews" className="inline-flex items-center gap-2 text-link hover:underline font-mono text-sm mb-8">
-        <ArrowRight className="rotate-180" size={16} /> Back to all reviews
+      <Link to="/guides#product-reviews" className="inline-flex items-center gap-2 text-link hover:underline font-mono text-sm mb-8">
+        <ArrowRight className="rotate-180" size={16} /> Product review archive
       </Link>
       
       <div className="bg-brand-surface border border-line p-5 sm:p-8 md:p-12 relative overflow-hidden">
@@ -237,8 +237,8 @@ export const ToolPage = () => {
           <a href={tool.externalLink} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto bg-action text-brand-bg px-8 py-4 font-bold text-lg hover:bg-action-hover transition-all  flex items-center justify-center gap-2">
             {tool.ctaPrimary || "Visit Website"} <ExternalLink size={20} />
           </a>
-          <Link to="/reviews" className="w-full sm:w-auto bg-transparent border border-line text-ink px-8 py-4 font-bold text-lg hover:border-line hover:bg-brand-surface transition-all flex items-center justify-center gap-2">
-            <ArrowRight className="rotate-180" size={20} /> Back to all reviews
+          <Link to="/guides#product-reviews" className="w-full sm:w-auto bg-transparent border border-line text-ink px-8 py-4 font-bold text-lg hover:border-line hover:bg-brand-surface transition-all flex items-center justify-center gap-2">
+            <ArrowRight className="rotate-180" size={20} /> Product review archive
           </Link>
         </div>
       </div>
