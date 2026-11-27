@@ -1,0 +1,25 @@
+{
+  "producedAt": "2026-11-27",
+  "researchBaseline": "2026-11-26",
+  "method": "Programmatic SVG, bundled sharp to PNG previews and WebP quality88 effort6. No image-generation API, font download or dependency install.",
+  "runtimeBundle": "26.1123.11515",
+  "logo": "Actual public/images/brand/logo-light.svg inner geometry/text unchanged, translated/scaled.",
+  "fonts": "Source reads active Lora/serif and DM Sans/sans-serif stacks from src/index.css. Render uses installed font/fallback metrics; no exact cross-platform metrics promised.",
+  "article": "/blog/ai-tools-look-like-team-of-10",
+  "permission": "User-authorized guide upgrade includes removal of unsupported advantage artwork; review-branch production/integration only.",
+  "statusSemantics": "published means existing registered article; integrated means candidate shared reference + public byte copy. Neither status claims owner final editorial approval or production deployment.",
+  "originalAsset": "public/images/blog/solo-business-ai-tools.webp retained; no old asset overwritten.",
+  "sourceHashes": {
+    "public/images/brand/logo-light.svg": "9de812970ea1777e1f83327300e587ff0723d3732a19645e66fe966e391bb3cf",
+    "src/index.css": "f4a6c24aba7ebfd904f2570d637ba3b556874c88d82a61d6c250a7038b08520a",
+    "docs/editorial/guides-upgrade/research-and-brief.md": "24d48fe7fd7ebfcdb1cfee5abea9a49dfa3db036d12fb3c65158b31bda64b3e2",
+    "docs/editorial/guides-upgrade/ai-tools-draft.md": "842b377dba7cc1704a79fdc9429554786952e5510d6e6bc55012df0a8bdd4a19",
+    "docs/editorial/guides-upgrade/adobe-draft.md": "f7fd552c00cb0f2a3d8258ef74290c66783aa3efc90842a3e1e1a03414e7b26e",
+    "docs/editorial/guides-upgrade/visuals/visual-brief.md": "d91b4762a9980acd5b8697136a1d56c59f5a3fbb80134f82f281a15b02dd373e"
+  },
+  "assetHashes": {
+    "solo-business-ai-tools-v2.svg": "88d8e5520ae5e9003d4c60047acfc9b548c3b41f0292b45980a1e54bdc15cff1",
+    "solo-business-ai-tools-v2.webp": "a5f970bcb67dacb69bb6096762846bf38781c1bc9a97ef5ddc4697b7678b9008"
+  },
+  "retainedAdobeSha256": "9d30e906582f211a4952870c3bf5b1cc68645396b57dd2a29755282878a38ae2"
+}

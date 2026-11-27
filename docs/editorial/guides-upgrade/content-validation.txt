@@ -1,0 +1,5 @@
+
+> react-example@0.0.0 validate:content
+> tsx scripts/validate-content.ts
+
+Validated 10 structured articles and 3 preserved legacy entries.

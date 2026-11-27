@@ -23,7 +23,7 @@ export const Footer = () => {
               <li><Link to="/#stack-finder" className="hover:text-link transition-colors">Lean AI & SaaS Stack Finder</Link></li>
               <li><Link to="/uses" className="hover:text-link transition-colors">Lean tool stack</Link></li>
               <li><Link to="/tools" className="hover:text-link transition-colors">Free Tools</Link></li>
-              <li><Link to="/reviews" className="hover:text-link transition-colors">AI & SaaS Reviews</Link></li>
+              <li><Link to="/guides" className="hover:text-link transition-colors">Guides</Link></li>
               <li><Link to="/tools/prompt-builder" className="hover:text-link transition-colors">Prompt Builder</Link></li>
               <li><Link to="/tools/ai-readiness-quiz" className="hover:text-link transition-colors">AI Readiness Quiz</Link></li>
               <li><Link to="/tools/saas-calculator" className="hover:text-link transition-colors">Software Stack Audit</Link></li>

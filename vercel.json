@@ -25,6 +25,11 @@
       "permanent": true
     },
     {
+      "source": "/reviews",
+      "destination": "/guides",
+      "permanent": true
+    },
+    {
       "source": "/tools/claude",
       "destination": "/reviews/claude",
       "permanent": true

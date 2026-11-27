@@ -7,6 +7,7 @@ export const reviewCatalog = Object.entries(toolReviews).map(([slug, review]) =>
 }));
 export const reviewCount = reviewCatalog.length + 2; // Includes Kit and Namecheap.
 export const legacyReviewRedirects = Object.fromEntries([
+  ['/reviews', '/guides'],
   ...reviewCatalog.map(review => [`/tools/${review.slug}`, review.link]),
   ['/uses/convertkit', '/reviews/convertkit'],
   ['/uses/namecheap', '/reviews/namecheap'],

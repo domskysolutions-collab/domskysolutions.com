@@ -5,11 +5,11 @@ import { reviewCatalog, legacyReviewRedirects } from './reviewCatalog';
 import { AUTHOR_NAME, PUBLISHER_NAME, SITE_URL } from './site';
 
 export { SITE_URL } from './site';
-export type PageSeo = { path: string; title: string; description: string; socialTitle?: string; socialDescription?: string; type?: 'article' | 'website'; review?: typeof reviewCatalog[number]; noindex?: boolean; article?: ArticleDocument; image?: ArticleImage };
+export type PageSeo = { path: string; title: string; description: string; socialTitle?: string; socialDescription?: string; type?: 'article' | 'website'; review?: typeof reviewCatalog[number]; noindex?: boolean; article?: ArticleDocument; image?: ArticleImage; updatedAt?: string };
 const page = (path: string, title: string, description: string): PageSeo => ({ path, title: `${title} | Domsky Solutions`, description });
 export const seoPages: PageSeo[] = [
-  { path: '/', title: 'AI & SaaS Reviews for Solopreneurs | Domsky Solutions', description: 'Explore independent AI and SaaS reviews, practical workflows and free tools to choose software for your solo business.' },
-  page('/reviews', 'AI & SaaS Reviews', 'Browse software reviews covering Claude, Cursor, Perplexity, Kit and Namecheap. Compare documented strengths, limitations and intended use cases.'),
+  { path: '/', title: 'AI & Software Guides for Solo Businesses | Domsky Solutions', description: 'Practical AI and software guides, independent comparisons and free planning tools to make clearer decisions for your solo business.' },
+  page('/guides', 'Practical AI & Software Guides', 'Practical guides for solo businesses: build an AI workflow, audit subscriptions and evaluate software changes before adding another tool.'),
   page('/tools', 'Free Tools Library', 'Four free browser utilities plus the Lean Stack Finder for prompts, content planning, cost audits and a careful first AI task.'),
   page('/blog', 'AI Workflows & Insights', `Practical articles on AI workflows, software costs, design and running a solo business, from ${PUBLISHER_NAME}.`),
   page('/comparisons', 'AI Tool Comparisons', 'Compare AI assistants side by side and explore their strengths, limitations and suitability for everyday work.'),
@@ -25,11 +25,12 @@ export const seoPages: PageSeo[] = [
     const article = getArticle(post.slug);
     return {
       ...page(post.slug, post.title, post.excerpt),
-      ...(article?.seoTitle ? { title: article.seoTitle } : {}),
+      ...(article?.seoTitle ? { title: article.seoTitle } : post.seoTitle ? { title: post.seoTitle } : {}),
       ...(article?.socialTitle ? { socialTitle: article.socialTitle } : {}),
       ...(article?.socialDescription ? { socialDescription: article.socialDescription } : {}),
       type: 'article' as const,
       article,
+      updatedAt: !article ? post.updatedAt : undefined,
       image: !article && post.image ? { src: post.image, alt: post.imageAlt || post.title, width: post.imageWidth, height: post.imageHeight } : undefined,
     };
   }),
@@ -38,13 +39,15 @@ export const seoPages: PageSeo[] = [
 export function getPageSeo(pathname: string): PageSeo {
   const normalized = pathname.replace(/\/+$/, '') || '/';
   const path = legacyReviewRedirects[normalized] || normalized;
-  return seoPages.find(page => page.path === path) || { ...page(normalized, 'Page not found', 'This page could not be found. Browse our reviews, free tools or blog.'), noindex: true };
+  return seoPages.find(page => page.path === path) || { ...page(normalized, 'Page not found', 'This page could not be found. Browse our guides, free tools or blog.'), noindex: true };
 }
 
 export function getBreadcrumbs(meta: PageSeo) {
   const crumbs = [{ name: 'Home', path: '/' }];
   const parent = '/' + meta.path.split('/')[1];
-  if (parent !== meta.path) {
+  if (parent === '/reviews' && parent !== meta.path) {
+    crumbs.push({ name: 'Product review archive', path: '/guides#product-reviews' });
+  } else if (parent !== meta.path) {
     const parentPage = seoPages.find(p => p.path === parent);
     if (parentPage) crumbs.push({ name: parentPage.title.split(' | ')[0], path: parent });
   }
@@ -69,7 +72,7 @@ export function structuredData(meta: PageSeo) {
         ...(meta.article.publishedAt ? { datePublished: meta.article.publishedAt } : {}),
         ...(meta.article.updatedAt ? { dateModified: meta.article.updatedAt } : {}),
         articleSection: meta.article.category, keywords: meta.article.tags.join(', '),
-      } : {}),
+      } : meta.updatedAt ? { dateModified: meta.updatedAt } : {}),
       ...(image ? { image: new URL(image.src, SITE_URL).href } : {}),
       // Legacy publication days remain omitted until supplied; never infer them from migration time.
     });
@@ -92,6 +95,8 @@ export function renderSeoHead(meta: PageSeo) {
     if (meta.article.updatedAt) tags.push(['property', 'article:modified_time', meta.article.updatedAt]);
     tags.push(['property', 'article:author', new URL(meta.article.author.url, SITE_URL).href], ['property', 'article:section', meta.article.category]);
     for (const tag of meta.article.tags) tags.push(['property', 'article:tag', tag]);
+  } else if (meta.type === 'article' && meta.updatedAt) {
+    tags.push(['property', 'article:modified_time', meta.updatedAt]);
   }
   return `<title>${escapeHtml(meta.title)}</title>\n${tags.map(([attr, key, value]) => `<meta data-page-seo="true" ${attr}="${key}" content="${escapeHtml(value)}">`).join('\n')}\n${meta.noindex ? '' : `<link rel="canonical" href="${escapeHtml(url)}">`}\n<script id="page-schema" type="application/ld+json">${JSON.stringify(structuredData(meta)).replace(/</g, '\\u003c')}</script>`;
 }

@@ -9,7 +9,7 @@ export const NamecheapReviewPage = () => {
   return (
     <main className="bg-brand-bg min-h-screen pt-32 pb-20">
       <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Link to="/reviews" className="text-link font-mono text-sm hover:underline">← Back to all reviews</Link>
+        <Link to="/guides#product-reviews" className="text-link font-mono text-sm hover:underline">← Product review archive</Link>
         <div className="mt-8 bg-brand-surface border border-line p-6 sm:p-10">
           <p className="text-xs font-mono text-emphasis uppercase tracking-wider mb-4">Editorial review</p>
           <h1 className="text-4xl md:text-5xl font-bold font-mono text-ink leading-tight mb-5">Namecheap review</h1>

@@ -20,7 +20,11 @@ for (const route of [...paths, '/404']) {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, html);
 }
-fs.writeFileSync('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map(route => `<url><loc>${SITE_URL}${route}</loc>${getPageSeo(route).article?.updatedAt || getPageSeo(route).article?.publishedAt ? `<lastmod>${getPageSeo(route).article?.updatedAt || getPageSeo(route).article?.publishedAt}</lastmod>` : ''}</url>`).join('')}</urlset>\n`);
+fs.writeFileSync('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map(route => {
+  const meta = getPageSeo(route);
+  const modified = meta.article?.updatedAt || meta.article?.publishedAt || meta.updatedAt;
+  return `<url><loc>${SITE_URL}${route}</loc>${modified ? `<lastmod>${modified}</lastmod>` : ''}</url>`;
+}).join('')}</urlset>\n`);
 fs.writeFileSync('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 // Vercel cleanUrls serves route.html directly; unknown routes receive the static 404.
 const expected = { cleanUrls: true, trailingSlash: false, redirects: [...canonicalHostRedirects, ...Object.entries(legacyReviewRedirects).map(([source, destination]) => ({ source, destination, permanent: true })), ...Object.entries(retiredUtilityRedirects).map(([source, destination]) => ({ source, destination, permanent: true }))] };
